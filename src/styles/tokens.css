@@ -1,0 +1,100 @@
+/*
+ * NORIVE DESIGN TOKENS
+ * Titan Learning Platform — Phase 1
+ * Based on CI-Guidelines-Norive_1.html
+ * Version: 1.0 · 2026
+ */
+
+/* ─── FONTS ────────────────────────────────────────── */
+@import '@fontsource/cormorant-garamond/300.css';
+@import '@fontsource/cormorant-garamond/300-italic.css';
+@import '@fontsource/cormorant-garamond/600.css';
+@import '@fontsource/cormorant-garamond/600-italic.css';
+@import '@fontsource/dm-mono/300.css';
+@import '@fontsource/dm-mono/400.css';
+
+/* ─── LIGHT (PLANET / LERNWELT) ─────────────────── */
+:root {
+  /* Backgrounds */
+  --bg:          #EDE8DF;
+  --bg-alt:      #E5E0D7;
+  --surface:     rgba(255,255,255,0.55);
+
+  /* Text */
+  --text:        #1C1917;
+  --text-muted:  #5E5450;   /* 5.4:1 auf --bg ✓ */
+
+  /* Accent */
+  --accent:      #6E5035;   /* Warm Amber  5.4:1 auf --bg ✓ */
+  --accent-soft: rgba(110,80,53,0.08);
+
+  /* Border */
+  --border:      rgba(28,25,23,0.10);
+  --border-mid:  rgba(28,25,23,0.18);
+  --border-strong: rgba(28,25,23,0.30);
+
+  /* Feedback (plattform-spezifisch, CI-kompatibel) */
+  --correct:         rgba(110,80,53,0.12);
+  --correct-border:  #6E5035;
+  --incorrect:       rgba(150,50,50,0.10);
+  --incorrect-border: #963232;
+
+  /* Schriften */
+  --serif: 'Cormorant Garamond', Georgia, 'Iowan Old Style', serif;
+  --mono:  'DM Mono', 'Fira Mono', monospace;
+
+  /* Motion — exakt aus CI Guidelines */
+  --ease:      cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast:  0.35s;
+  --dur-mid:   0.55s;
+  --dur-slow:  0.85s;
+
+  /* Spacing — fluid */
+  --sp-xs:  4px;
+  --sp-sm:  clamp(8px,  1.0vw, 12px);
+  --sp-md:  clamp(16px, 2.0vw, 24px);
+  --sp-lg:  clamp(28px, 3.0vw, 40px);
+  --sp-xl:  clamp(40px, 5.0vw, 64px);
+  --sp-2xl: clamp(64px, 8.0vw, 100px);
+
+  /* Typografie */
+  --text-xs:   11px;
+  --text-sm:   13px;
+  --text-base: 16px;
+  --text-md:   clamp(18px, 2.0vw, 22px);
+  --text-lg:   clamp(24px, 3.0vw, 32px);
+  --text-xl:   clamp(32px, 4.5vw, 52px);
+  --text-2xl:  clamp(48px, 7.0vw, 80px);
+
+  /* Layout */
+  --max-read:    700px;
+  --max-content: 1100px;
+  --radius:      2px;    /* CI: minimal radius */
+}
+
+/* ─── DARK (SPACE / UNIVERSUM) ──────────────────── */
+[data-theme="dark"] {
+  /* Backgrounds */
+  --bg:          #141210;
+  --bg-alt:      #1C1917;
+  --surface:     rgba(28,25,23,0.60);
+
+  /* Text */
+  --text:        #EDE8DF;
+  --text-muted:  rgba(237,232,223,0.55);  /* ~4.5:1 ✓ */
+
+  /* Accent */
+  --accent:      #C4A882;   /* Warm Sand — 7.1:1 auf #141210 ✓ */
+  --accent-soft: rgba(196,168,130,0.10);
+
+  /* Border */
+  --border:      rgba(237,232,223,0.08);
+  --border-mid:  rgba(237,232,223,0.14);
+  --border-strong: rgba(237,232,223,0.25);
+
+  /* Feedback */
+  --correct:         rgba(196,168,130,0.15);
+  --correct-border:  #C4A882;
+  --incorrect:       rgba(180,80,80,0.15);
+  --incorrect-border: #C46060;
+}

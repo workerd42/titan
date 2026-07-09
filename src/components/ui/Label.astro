@@ -1,0 +1,46 @@
+---
+interface Props {
+  variant?: 'light' | 'dark';
+  class?: string;
+}
+const { variant = 'light', class: className = '' } = Astro.props;
+---
+
+<span class:list={['norive-label', `norive-label--${variant}`, className]}>
+  <slot />
+</span>
+
+<style>
+  .norive-label {
+    font-family: var(--mono);
+    font-size: var(--text-xs);
+    font-weight: 400;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .norive-label::before {
+    content: '';
+    width: 28px;
+    height: 1px;
+    flex-shrink: 0;
+    opacity: 0.5;
+  }
+
+  .norive-label--light {
+    color: var(--accent);
+  }
+  .norive-label--light::before {
+    background: var(--accent);
+  }
+
+  .norive-label--dark {
+    color: var(--accent);
+  }
+  .norive-label--dark::before {
+    background: var(--accent);
+  }
+</style>

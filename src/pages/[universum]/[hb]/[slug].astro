@@ -1,0 +1,1218 @@
+---
+import PlanetLayout from '../../../layouts/PlanetLayout.astro';
+import CTAButton from '../../../components/ui/CTAButton.astro';
+import { getBereich } from '../../../data/bereiche';
+import { UNIVERSEN, getUniversum } from '../../../data/universen';
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+
+export async function getStaticPaths() {
+  const alleThemen = await getCollection('themen');
+  const paths: Array<{ params: { universum: string; hb: string; slug: string }; props: { thema: CollectionEntry<'themen'> } }> = [];
+  for (const universum of UNIVERSEN) {
+    for (const thema of alleThemen) {
+      paths.push({
+        params: { universum: universum.id, hb: thema.data.handlungsbereich, slug: thema.id },
+        props: { thema },
+      });
+    }
+  }
+  return paths;
+}
+
+interface Props { thema: CollectionEntry<'themen'>; }
+const { universum: universumId } = Astro.params;
+const { thema } = Astro.props;
+const universum = getUniversum(universumId as string)!;
+const bereich = getBereich(thema.data.handlungsbereich)!;
+const { Content } = await render(thema);
+
+const alleThemen = await getCollection('themen');
+const themenDesBereichs = alleThemen
+  .filter((t) => t.data.handlungsbereich === bereich.id)
+  .sort((a, b) => a.data.order - b.data.order);
+const eigenerIndex  = themenDesBereichs.findIndex((t) => t.id === thema.id);
+const naechstesThema = themenDesBereichs[eigenerIndex + 1] ?? null;
+const vorigesThema   = themenDesBereichs[eigenerIndex - 1] ?? null;
+const base = import.meta.env.BASE_URL;
+const hbBase = `${base}${universum.id}/${bereich.id}/`;
+const d = thema.data;
+---
+
+<PlanetLayout
+  title={d.title}
+  description={d.description}
+  canonicalPath={`/${universum.id}/${bereich.id}/${thema.id}/`}
+  hbId={bereich.id}
+  hbNummer={bereich.nummer}
+  universumId={universum.id}
+>
+  <div class="thema-wrap" data-thema-slug={thema.id} data-wiederholung-tage={d.wiederholungTage}>
+
+    <!-- ╔══ KOPF ══════════════════════════════╗ -->
+    <header class="thema-kopf">
+      <nav class="thema-breadcrumb" aria-label="Seitenposition">
+        <a href={hbBase}>{bereich.titel}</a>
+        <span aria-hidden="true">·</span>
+        <span>{d.themengruppe}</span>
+      </nav>
+      <h1 class="thema-titel">{d.title}</h1>
+
+      <!-- Phasen-Reiseplan -->
+      <div class="phasen-reise" role="list" aria-label="Lernphasen">
+        {[
+          { key: 'verstehen', label: 'Verstehen', num: '01', icon: '◉' },
+          { key: 'merken',    label: 'Merken',    num: '02', icon: '◈' },
+          { key: 'anwenden',  label: 'Anwenden',  num: '03', icon: '◆' },
+          { key: 'pruefen',   label: 'Prüfen',    num: '04', icon: '◎' },
+        ].map(({ key, label, num, icon }) => (
+          <a href={`#phase-${key}`} class="phase-schritt" data-phase-label={key} data-done="false" role="listitem">
+            <span class="ps-icon" aria-hidden="true">{icon}</span>
+            <span class="ps-num" aria-hidden="true">{num}</span>
+            <span class="ps-label">{label}</span>
+          </a>
+        ))}
+      </div>
+    </header>
+
+    <!-- ╔══ PHASE 1: VERSTEHEN ═══════════════╗ -->
+    <section class="lern-phase phase-verstehen" id="phase-verstehen" aria-labelledby="h-verstehen">
+      <div class="phase-banner">
+        <div class="phase-banner-inner">
+          <span class="phase-banner-icon" aria-hidden="true">◉</span>
+          <div>
+            <p class="phase-banner-num">Phase 01</p>
+            <h2 id="h-verstehen" class="phase-banner-title">Verstehen</h2>
+            <p class="phase-banner-hint">Lies den Inhalt aufmerksam. Nimm dir Zeit — hier entsteht die Grundlage für alles weitere.</p>
+          </div>
+        </div>
+        <span class="phase-done-badge" data-phase-badge="verstehen" aria-hidden="true">✓ Abgeschlossen</span>
+      </div>
+
+      <!-- Wissensbibliothek -->
+      <div class="kb-container">
+        <!-- Haupterklärung -->
+        <div class="prose kb-erklaerung">
+          <Content />
+        </div>
+
+        <!-- Definitionen -->
+        {d.definitionen && d.definitionen.length > 0 && (
+          <div class="kb-block kb-block--definitionen">
+            <h3 class="kb-block-title">
+              <span aria-hidden="true">▸</span> Begriffe & Definitionen
+            </h3>
+            <dl class="def-liste">
+              {d.definitionen.map((def) => (
+                <>
+                  <dt class="def-term">{def.begriff}</dt>
+                  <dd class="def-text">{def.definition}</dd>
+                </>
+              ))}
+            </dl>
+          </div>
+        )}
+
+        <!-- Formeln -->
+        {d.formeln && d.formeln.length > 0 && (
+          <div class="kb-block kb-block--formeln">
+            <h3 class="kb-block-title">
+              <span aria-hidden="true">∑</span> Formelsammlung
+            </h3>
+            <div class="formel-stack">
+              {d.formeln.map((f) => (
+                <div class="formel-karte">
+                  <p class="formel-name">{f.name}</p>
+                  <div class="formel-display">{f.formel}</div>
+                  <p class="formel-erkl">{f.erklaerung}</p>
+                  {f.einheit && <p class="formel-einheit">Einheit: {f.einheit}</p>}
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        <!-- Rechenweg -->
+        {d.rechenbeispiel && (
+          <div class="kb-block kb-block--rechenweg">
+            <h3 class="kb-block-title">
+              <span aria-hidden="true">⟹</span> Rechenweg Schritt für Schritt
+            </h3>
+            <div class="rw-aufgabe">
+              <p class="rw-aufgabe-label">Aufgabe</p>
+              <p>{d.rechenbeispiel.aufgabe}</p>
+            </div>
+            <ol class="rw-schritte" aria-label="Lösungsschritte">
+              {d.rechenbeispiel.schritte.map((s) => (
+                <li class="rw-schritt">
+                  <span class="rw-n" aria-hidden="true">{s.schritt}</span>
+                  <div class="rw-body">
+                    <p class="rw-beschr">{s.beschreibung}</p>
+                    {s.berechnung && <div class="rw-rechnung">{s.berechnung}</div>}
+                    {s.ergebnis && <p class="rw-ergebnis">{s.ergebnis}</p>}
+                  </div>
+                </li>
+              ))}
+            </ol>
+            {d.rechenbeispiel.fazit && (
+              <div class="rw-fazit">
+                <p class="rw-fazit-label">Fazit</p>
+                <p>{d.rechenbeispiel.fazit}</p>
+              </div>
+            )}
+          </div>
+        )}
+
+        <!-- Zusammenfassung -->
+        {d.zusammenfassung && d.zusammenfassung.length > 0 && (
+          <div class="kb-block kb-block--zusammenfassung">
+            <h3 class="kb-block-title">
+              <span aria-hidden="true">✓</span> Das Wichtigste auf einen Blick
+            </h3>
+            <ul class="zf-liste">
+              {d.zusammenfassung.map((p) => <li class="zf-punkt">{p}</li>)}
+            </ul>
+          </div>
+        )}
+
+        <!-- Strukturierter Inhalt-Hinweis wenn keine erweiterte Bibliothek -->
+        {!d.formeln && !d.definitionen && !d.rechenbeispiel && !d.zusammenfassung && (
+          <div class="kb-hinweis">
+            <p class="kb-hinweis-title">Prüfungsrelevante Inhalte</p>
+            <p class="kb-hinweis-text">
+              Die Kernaussagen dieses Themas findest du in der Erklärung oben sowie im
+              Merksatz, Fallbeispiel und der IHK-Prüfungsfrage in den Phasen unten.
+              Detaillierte Formeln, Definitionen und Rechenwege werden schrittweise ergänzt.
+            </p>
+          </div>
+        )}
+      </div>
+
+      <!-- Phase abschließen -->
+      <div class="phase-abschluss">
+        <button class="phase-fertig-btn" data-action="verstehen-bestaetigen">
+          <span class="pfb-icon" aria-hidden="true">◉</span>
+          <span class="pfb-text">Ich habe den Inhalt verstanden</span>
+          <span class="pfb-arrow" aria-hidden="true">→</span>
+        </button>
+        <a href="#phase-merken" class="phase-weiter-link" aria-label="Weiter zu Phase Merken">
+          Weiter zu Merken ↓
+        </a>
+      </div>
+    </section>
+
+    <!-- ╔══ PHASE 2: MERKEN ══════════════════╗ -->
+    <section class="lern-phase phase-merken" id="phase-merken" aria-labelledby="h-merken">
+      <div class="phase-banner">
+        <div class="phase-banner-inner">
+          <span class="phase-banner-icon" aria-hidden="true">◈</span>
+          <div>
+            <p class="phase-banner-num">Phase 02</p>
+            <h2 id="h-merken" class="phase-banner-title">Merken</h2>
+            <p class="phase-banner-hint">Lerne diesen Satz auswendig. Er ist dein Anker für die Prüfung.</p>
+          </div>
+        </div>
+        <span class="phase-done-badge" data-phase-badge="merken" aria-hidden="true">✓ Abgeschlossen</span>
+      </div>
+
+      <div class="merksatz-container">
+        <blockquote class="merksatz" aria-label="Merksatz">
+          <span class="merksatz-anfuehrung" aria-hidden="true">„</span>
+          <span class="merksatz-text">{d.merksatz}</span>
+          <span class="merksatz-anfuehrung merksatz-anfuehrung--end" aria-hidden="true">"</span>
+        </blockquote>
+
+        <div class="merksatz-hilfe">
+          <p class="merksatz-hilfe-text">Tipps zum Merken: Laut aussprechen, mit eigenen Worten umformulieren, oder in Stichworten notieren.</p>
+        </div>
+      </div>
+
+      <div class="phase-abschluss">
+        <button class="phase-fertig-btn" data-action="merken-bestaetigen">
+          <span class="pfb-icon" aria-hidden="true">◈</span>
+          <span class="pfb-text">Ich kann den Merksatz wiedergeben</span>
+          <span class="pfb-arrow" aria-hidden="true">→</span>
+        </button>
+        <a href="#phase-anwenden" class="phase-weiter-link">Weiter zu Anwenden ↓</a>
+      </div>
+    </section>
+
+    <!-- ╔══ PHASE 3: ANWENDEN ════════════════╗ -->
+    <section class="lern-phase phase-anwenden" id="phase-anwenden" aria-labelledby="h-anwenden">
+      <div class="phase-banner">
+        <div class="phase-banner-inner">
+          <span class="phase-banner-icon" aria-hidden="true">◆</span>
+          <div>
+            <p class="phase-banner-num">Phase 03</p>
+            <h2 id="h-anwenden" class="phase-banner-title">Anwenden</h2>
+            <p class="phase-banner-hint">Übertrage das Gelernte auf eine realistische Situation. Schreibe deine Lösung auf, bevor du die Musterlösung ansiehst.</p>
+          </div>
+        </div>
+        <span class="phase-done-badge" data-phase-badge="anwenden" aria-hidden="true">✓ Abgeschlossen</span>
+      </div>
+
+      <!-- Kompass-Kontext (wenn vorhanden) -->
+      <div class="kompass-kontext" id="kompass-kontext" hidden>
+        <p class="kk-label" aria-hidden="true">◆ Dein Kompass-Unternehmen</p>
+        <p class="kk-text" id="kk-text">Dieses Fallbeispiel bezieht sich auf dein Unternehmen.</p>
+      </div>
+
+      <!-- Fallbeispiel -->
+      <div class="fallbeispiel-block">
+        <div class="fb-header">
+          <span class="fb-icon" aria-hidden="true">⬡</span>
+          <p class="fb-label">Fallbeispiel</p>
+        </div>
+        <div class="fb-body">
+          <p class="fb-situation" id="fb-situation-text">{d.fallbeispiel.situation}</p>
+          <div class="fb-aufgabe-wrap">
+            <p class="fb-aufgabe-label">Aufgabe</p>
+            <p>{d.fallbeispiel.aufgabe}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Antwort-Bereich -->
+      <div class="antwort-bereich">
+        <label class="antwort-label" for={`antwort-${thema.id}`}>
+          <span class="antwort-label-icon" aria-hidden="true">✏</span>
+          Deine Lösung
+        </label>
+        <textarea
+          id={`antwort-${thema.id}`}
+          class="antwort-textarea"
+          data-action="eigene-einschaetzung"
+          placeholder="Schreibe hier deine Lösung — in vollständigen Sätzen, so wie in der echten Prüfung …"
+          rows="5"
+        ></textarea>
+      </div>
+
+      <details class="musterlosung-details">
+        <summary>Musterlösung ansehen</summary>
+        <div class="ml-inhalt">
+          <p>{d.fallbeispiel.musterloesung}</p>
+        </div>
+      </details>
+
+      <div class="phase-abschluss">
+        <button class="phase-fertig-btn" data-action="anwenden-bestaetigen">
+          <span class="pfb-icon" aria-hidden="true">◆</span>
+          <span class="pfb-text">Lösung mit Muster verglichen — weiter</span>
+          <span class="pfb-arrow" aria-hidden="true">→</span>
+        </button>
+        <a href="#phase-pruefen" class="phase-weiter-link">Weiter zu Prüfen ↓</a>
+      </div>
+    </section>
+
+    <!-- ╔══ PHASE 4: PRÜFEN ══════════════════╗ -->
+    <section class="lern-phase phase-pruefen" id="phase-pruefen" aria-labelledby="h-pruefen">
+      <div class="phase-banner">
+        <div class="phase-banner-inner">
+          <span class="phase-banner-icon" aria-hidden="true">◎</span>
+          <div>
+            <p class="phase-banner-num">Phase 04</p>
+            <h2 id="h-pruefen" class="phase-banner-title">Prüfen</h2>
+            <p class="phase-banner-hint">Echte IHK-Prüfungsfrage. Beantworte sie schriftlich, dann prüfe deinen Lösungsweg.</p>
+          </div>
+        </div>
+        <span class="phase-done-badge" data-phase-badge="pruefen" aria-hidden="true">✓ Abgeschlossen</span>
+      </div>
+
+      <!-- Prüfungsfrage im Prüfungsmodus -->
+      <div class="pruefungs-modus">
+        <div class="pm-header">
+          <span class="pm-badge">IHK-Format</span>
+          <p class="pm-hint">Wie in der echten schriftlichen Prüfung</p>
+        </div>
+        <div class="pm-frage">
+          <p>{d.pruefungsfrage.frage}</p>
+        </div>
+      </div>
+
+      <details class="musterlosung-details">
+        <summary>Lösungsweg ansehen</summary>
+        <div class="ml-inhalt">
+          <ol class="lw-liste">
+            {d.pruefungsfrage.loesungsweg.map((s) => <li>{s}</li>)}
+          </ol>
+        </div>
+      </details>
+
+      <!-- Selbsteinschätzung -->
+      <div class="selbsteinschaetzung" role="group" aria-label="Wie gut hast du abgeschnitten?">
+        <p class="se-frage">Wie lief es?</p>
+        <div class="se-btns">
+          <button class="se-btn se-btn--gut" data-action="pruefen-einschaetzung" data-wert="geloest">
+            <span aria-hidden="true">✓</span> Konnte ich lösen
+          </button>
+          <button class="se-btn se-btn--wiederholen" data-action="pruefen-einschaetzung" data-wert="wiederholen">
+            <span aria-hidden="true">↻</span> Muss ich wiederholen
+          </button>
+        </div>
+        <p class="se-info" data-wiederholung-hinweis aria-live="polite">
+          Deine Einschätzung entscheidet, ob dieses Thema in {d.wiederholungTage} Tagen erneut vorgeschlagen wird.
+        </p>
+      </div>
+    </section>
+
+    <!-- ╔══ NAVIGATION ═══════════════════════╗ -->
+    <nav class="thema-nav" aria-label="Zwischen Themen wechseln">
+      <div>
+        {vorigesThema ? (
+          <CTAButton href={`${hbBase}${vorigesThema.id}/`} variant="back">
+            {vorigesThema.data.title}
+          </CTAButton>
+        ) : (
+          <CTAButton href={hbBase} variant="back">Zurück zur Übersicht</CTAButton>
+        )}
+      </div>
+      <div>
+        {naechstesThema ? (
+          <CTAButton href={`${hbBase}${naechstesThema.id}/`} variant="light">
+            {naechstesThema.data.title}
+          </CTAButton>
+        ) : (
+          <CTAButton href={hbBase} variant="light">Zurück zur Übersicht</CTAButton>
+        )}
+      </div>
+    </nav>
+
+  </div>
+</PlanetLayout>
+
+<script>
+  // ── PHASEN-SIDEBAR: Scroll-Verhalten (funktioniert auf ALLEN Planeten) ──────
+  // Scroll-basiert statt IntersectionObserver — zuverlässiger mit Astro ClientRouter
+
+  function initPhaseSidebar(): (() => void) | void {
+    const phasenReise = document.querySelector<HTMLElement>('.phasen-reise');
+    const themaKopf   = document.querySelector<HTMLElement>('.thema-kopf');
+    const lernPhasen  = document.querySelectorAll<HTMLElement>('.lern-phase');
+
+    if (!phasenReise || !themaKopf) return;
+
+    let active = false;
+
+    const check = () => {
+      const rect   = themaKopf.getBoundingClientRect();
+      const should = rect.bottom < 72; // Aktiviert wenn Header-Unterkante 72px über Top
+
+      if (should === active) return; // Kein Flackern
+      active = should;
+
+      phasenReise.classList.toggle('sidebar-mode', should);
+      lernPhasen.forEach(p => p.classList.toggle('sidebar-active', should));
+    };
+
+    // Scroll-Listener + initialer Check
+    window.addEventListener('scroll', check, { passive: true });
+    check();
+
+    // Cleanup-Funktion zurückgeben
+    return () => window.removeEventListener('scroll', check);
+  }
+
+  // Sofort ausführen (initaler Seitenaufruf)
+  let cleanup = initPhaseSidebar();
+
+  // Bei ClientRouter-Navigation: neu initialisieren
+  document.addEventListener('astro:page-load', () => {
+    cleanup?.();
+    cleanup = initPhaseSidebar();
+  });
+</script>
+
+<!-- Kompass-Integration: Fallbeispiel mit Unternehmensname personalisieren -->
+<script>
+  const KOMPASS_KEY = 'norive-kompass-v1';
+  try {
+    const kompass = JSON.parse(localStorage.getItem(KOMPASS_KEY) || 'null');
+    if (kompass?.name) {
+      // Kompass-Kontext einblenden
+      const ctx = document.getElementById('kompass-kontext');
+      const txt = document.getElementById('kk-text');
+      if (ctx && txt) {
+        ctx.hidden = false;
+        txt.textContent = `Denke beim Lösen an dein Unternehmen: ${kompass.name} — ${kompass.rechtsform || ''} ${kompass.branche ? '(' + {handel:'Handel',industrie:'Industrie',dienstleistung:'Dienstleistung',handwerk:'Handwerk',sonstiges:'Sonstiges'}[kompass.branche] + ')' : ''}`.trim();
+      }
+      // Unternehmensname im Fallbeispiel-Text substituieren (einfache Template-Ersetzung)
+      const sitEl = document.getElementById('fb-situation-text');
+      if (sitEl && sitEl.textContent) {
+        // Kompass-Unternehmen wird in Klammern angezeigt wenn vorhanden
+        const hinweis = document.createElement('p');
+        hinweis.className = 'fb-kompass-hinweis';
+        hinweis.innerHTML = `<small>💡 Beziehe diese Aufgabe gedanklich auf <strong>${kompass.name}</strong>.</small>`;
+        sitEl.parentElement?.appendChild(hinweis);
+      }
+    }
+  } catch { /* ignore */ }
+</script>
+
+<style>
+  .thema-wrap { padding-bottom: var(--sp-2xl); }
+
+  /* ── KOPF ───────────────────────────────────── */
+  .thema-kopf {
+    padding: var(--sp-xl) 0 var(--sp-xl);
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 0;
+    max-width: var(--max-read);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--sp-lg);
+    padding-right: var(--sp-lg);
+  }
+
+  .thema-breadcrumb {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.08em;
+    margin-bottom: var(--sp-md);
+    display: flex;
+    gap: var(--sp-sm);
+    flex-wrap: wrap;
+  }
+
+  .thema-breadcrumb a { color: var(--text-muted); text-decoration: none; }
+  .thema-breadcrumb a:hover { color: var(--accent); }
+
+  .thema-titel {
+    font-family: var(--serif);
+    font-size: clamp(26px, 4vw, 44px);
+    font-weight: 300;
+    letter-spacing: -0.025em;
+    line-height: 1.2;
+    color: var(--text);
+    margin-bottom: var(--sp-xl);
+  }
+
+  /* ── PHASEN-REISEPLAN ───────────────────────── */
+  .phasen-reise {
+    display: flex;
+    gap: 0;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    border-radius: 2px;
+    transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
+  }
+
+  /* ── SCROLL-SIDEBAR-MODUS ──────────────────── */
+  /* Wenn Nutzer nach unten scrollt, wandern die Phasen als
+     vertikale Sidebar an den linken Rand */
+  .phasen-reise.sidebar-mode {
+    position: fixed;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    flex-direction: column;
+    border: none;
+    border-right: 1px solid var(--border);
+    border-radius: 0;
+    background: var(--bg, #EDE8DF);
+    z-index: 30;
+    gap: 0;
+    width: 52px;
+    overflow: visible;
+    box-shadow: 2px 0 12px rgba(28,25,23,0.06);
+  }
+
+  /* Content-Einrückung wenn Sidebar aktiv */
+  .thema-kopf.sidebar-active {
+    padding-left: calc(52px + var(--sp-lg, 24px));
+  }
+
+  .lern-phase.sidebar-active {
+    padding-left: calc(52px + var(--sp-lg, 24px));
+  }
+
+  .phase-schritt {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    padding: var(--sp-sm) var(--sp-xs);
+    border-right: 1px solid var(--border);
+    text-decoration: none;
+    color: var(--text-muted);
+    background: transparent;
+    transition: background var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
+    position: relative;
+  }
+
+  /* Sidebar-Modus: quadratische Icons statt Leiste */
+  .sidebar-mode .phase-schritt {
+    flex: none;
+    width: 52px;
+    height: 52px;
+    padding: 0;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    justify-content: center;
+  }
+
+  .sidebar-mode .ps-num,
+  .sidebar-mode .ps-label { display: none; }
+
+  .sidebar-mode .ps-icon { font-size: 18px; }
+
+  .phase-schritt:last-child { border-right: none; }
+
+  .phase-schritt:hover {
+    background: var(--accent-soft);
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .phase-schritt[data-done="true"] {
+    background: var(--accent-soft);
+    color: var(--accent);
+  }
+
+  .phase-schritt[data-done="true"]::after {
+    content: '✓';
+    position: absolute;
+    top: 4px;
+    right: 6px;
+    font-size: 9px;
+    color: var(--accent);
+  }
+
+  .ps-icon {
+    font-size: 16px;
+    line-height: 1;
+    color: var(--accent);
+    opacity: 0.4;
+    transition: opacity var(--dur-fast) var(--ease);
+  }
+
+  .phase-schritt[data-done="true"] .ps-icon,
+  .phase-schritt:hover .ps-icon { opacity: 1; }
+
+  .ps-num {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.16em;
+    color: inherit;
+  }
+
+  .ps-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: inherit;
+    display: none;
+  }
+
+  @media (min-width: 480px) { .ps-label { display: block; } }
+
+  /* ── LERN-PHASE ─────────────────────────────── */
+  .lern-phase {
+    border-bottom: 1px solid var(--border);
+    scroll-margin-top: 100px;
+  }
+
+  /* ── PHASE-BANNER ───────────────────────────── */
+  .phase-banner {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--sp-md);
+    padding: var(--sp-xl) var(--sp-lg);
+    max-width: var(--max-read);
+    margin: 0 auto;
+  }
+
+  .phase-banner-inner {
+    display: flex;
+    gap: var(--sp-lg);
+    align-items: flex-start;
+  }
+
+  .phase-banner-icon {
+    font-size: 28px;
+    line-height: 1;
+    flex-shrink: 0;
+    margin-top: 4px;
+  }
+
+  /* Phasen-Farbidentitäten */
+  .phase-verstehen .phase-banner-icon { color: #6E7EA0; }
+  .phase-merken    .phase-banner-icon { color: var(--accent); }
+  .phase-anwenden  .phase-banner-icon { color: #5A8A6A; }
+  .phase-pruefen   .phase-banner-icon { color: #8A7650; }
+
+  .phase-banner-num {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+    max-width: none;
+  }
+
+  .phase-banner-title {
+    font-family: var(--mono);
+    font-size: clamp(20px, 2.5vw, 26px);
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    margin-bottom: var(--sp-sm);
+  }
+
+  /* Phasen-Titelfarben */
+  .phase-verstehen .phase-banner-title { color: #6E7EA0; }
+  .phase-merken    .phase-banner-title { color: var(--accent); }
+  .phase-anwenden  .phase-banner-title { color: #5A8A6A; }
+  .phase-pruefen   .phase-banner-title { color: #8A7650; }
+
+  .phase-banner-hint {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    max-width: 460px;
+  }
+
+  .phase-done-badge {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: var(--accent-soft);
+    padding: 4px 10px;
+    border: 1px solid var(--accent);
+    white-space: nowrap;
+    flex-shrink: 0;
+    display: none;
+  }
+
+  [data-phase-badge][data-visible="true"] { display: block; }
+
+  /* ── WISSENSBIBLIOTHEK ──────────────────────── */
+  .kb-container {
+    padding: 0 var(--sp-lg) var(--sp-xl);
+    max-width: var(--max-read);
+    margin: 0 auto;
+  }
+
+  .kb-erklaerung { margin-bottom: var(--sp-xl); }
+
+  .kb-block {
+    margin: var(--sp-xl) 0;
+    padding: var(--sp-lg);
+    border-left: 3px solid var(--border-mid);
+  }
+
+  .kb-block--definitionen { border-left-color: #6E7EA0; }
+  .kb-block--formeln      { border-left-color: var(--text-muted); }
+  .kb-block--rechenweg    { border-left-color: var(--text); }
+  .kb-block--zusammenfassung { border-left-color: var(--accent); background: var(--accent-soft); }
+
+  .kb-block-title {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: var(--sp-md);
+    display: flex;
+    align-items: center;
+    gap: var(--sp-sm);
+  }
+
+  /* Definitionen */
+  .def-liste { display: flex; flex-direction: column; gap: var(--sp-md); }
+  .def-term {
+    font-family: var(--serif); font-size: 18px; font-weight: 600;
+    font-style: italic; color: var(--text); margin-bottom: 2px;
+  }
+  .def-text {
+    font-family: var(--mono); font-size: 13px; font-weight: 300;
+    color: var(--text-muted); line-height: 1.7;
+    padding-left: var(--sp-md); border-left: 1px solid var(--border);
+    margin-bottom: var(--sp-sm); max-width: var(--max-read);
+  }
+
+  /* Formeln */
+  .formel-stack { display: flex; flex-direction: column; gap: var(--sp-lg); }
+  .formel-karte { background: var(--bg-alt); padding: var(--sp-lg); border: 1px solid var(--border); }
+  .formel-name {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--text-muted); margin-bottom: var(--sp-sm); max-width: none;
+  }
+  .formel-display {
+    font-family: var(--mono); font-size: clamp(15px, 1.8vw, 20px);
+    font-weight: 400; color: var(--text); background: var(--bg);
+    padding: var(--sp-md) var(--sp-lg); border: 1px solid var(--border-mid);
+    margin-bottom: var(--sp-sm); overflow-x: auto; white-space: nowrap;
+  }
+  .formel-erkl {
+    font-family: var(--mono); font-size: 13px; color: var(--text-muted);
+    line-height: 1.65; margin-bottom: 4px; max-width: var(--max-read);
+  }
+  .formel-einheit { font-family: var(--mono); font-size: 11px; color: var(--accent); opacity: 0.7; max-width: none; }
+
+  /* Rechenweg */
+  .rw-aufgabe { background: var(--bg-alt); padding: var(--sp-lg); border: 1px solid var(--border); margin-bottom: var(--sp-lg); }
+  .rw-aufgabe-label {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: var(--sp-sm); max-width: none;
+  }
+  .rw-schritte { list-style: none; padding: 0; margin: 0; }
+  .rw-schritt {
+    display: grid; grid-template-columns: 36px 1fr;
+    gap: var(--sp-md); padding: var(--sp-md) 0;
+    border-bottom: 1px solid var(--border); align-items: start;
+  }
+  .rw-n {
+    font-family: var(--mono); font-size: 11px; color: var(--accent);
+    width: 28px; height: 28px; border: 1px solid rgba(196,168,130,0.3);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  }
+  .rw-body { display: flex; flex-direction: column; gap: var(--sp-xs); }
+  .rw-beschr { font-family: var(--mono); font-size: 13px; font-weight: 400; color: var(--text); max-width: none; }
+  .rw-rechnung {
+    font-family: var(--mono); font-size: 14px; font-weight: 300;
+    background: var(--bg-alt); padding: var(--sp-sm) var(--sp-md);
+    border: 1px solid var(--border); overflow-x: auto; white-space: nowrap;
+  }
+  .rw-ergebnis { font-family: var(--mono); font-size: 13px; font-weight: 400; color: var(--accent); max-width: none; }
+  .rw-fazit {
+    margin-top: var(--sp-lg); padding: var(--sp-lg);
+    background: rgba(110,80,53,0.06); border-left: 2px solid var(--accent);
+  }
+  .rw-fazit-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin-bottom: var(--sp-sm); max-width: none; }
+  .rw-fazit p { font-family: var(--mono); font-size: 13px; font-weight: 300; line-height: 1.7; color: var(--text); max-width: var(--max-read); }
+
+  /* Zusammenfassung */
+  .zf-liste { list-style: none; padding: 0; display: flex; flex-direction: column; gap: var(--sp-sm); }
+  .zf-punkt {
+    font-family: var(--mono); font-size: 13px; font-weight: 300; line-height: 1.65;
+    color: var(--text); padding-left: var(--sp-lg); position: relative;
+  }
+  .zf-punkt::before { content: '→'; position: absolute; left: 0; color: var(--accent); font-size: 12px; }
+
+  .kb-folgt {
+    font-family: var(--mono); font-size: 13px; font-style: italic;
+    color: var(--text-muted); padding: var(--sp-lg); border: 1px dashed var(--border);
+    max-width: var(--max-read);
+  }
+
+  .kb-hinweis {
+    padding: var(--sp-lg);
+    border: 1px solid var(--border);
+    background: var(--bg-alt, rgba(110,80,53,0.03));
+    max-width: var(--max-read);
+  }
+
+  .kb-hinweis-title {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent, #6E5035);
+    margin-bottom: var(--sp-sm);
+    max-width: none;
+  }
+
+  .kb-hinweis-text {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--text-muted);
+    line-height: 1.7;
+    max-width: var(--max-read);
+  }
+
+  /* ── PHASE-ABSCHLUSS ────────────────────────── */
+  .phase-abschluss {
+    padding: var(--sp-lg) var(--sp-lg) var(--sp-xl);
+    max-width: var(--max-read);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: var(--sp-xl);
+    flex-wrap: wrap;
+  }
+
+  .phase-fertig-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--sp-md);
+    padding: 14px var(--sp-xl);
+    background: transparent;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
+    min-height: 48px;
+  }
+
+  .phase-fertig-btn:hover {
+    background: var(--accent);
+    color: var(--bg);
+  }
+
+  .phase-fertig-btn[data-chosen="true"] {
+    background: var(--accent);
+    color: var(--bg);
+    opacity: 0.65;
+    pointer-events: none;
+  }
+
+  .pfb-icon { font-size: 14px; }
+  .pfb-text { flex: 1; }
+  .pfb-arrow { opacity: 0.5; }
+
+  .phase-weiter-link {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color var(--dur-fast) var(--ease);
+  }
+
+  .phase-weiter-link:hover { color: var(--accent); }
+
+  /* ── MERKSATZ ───────────────────────────────── */
+  .merksatz-container {
+    padding: var(--sp-lg) var(--sp-lg) var(--sp-md);
+    max-width: var(--max-read);
+    margin: 0 auto;
+  }
+
+  .merksatz {
+    font-family: var(--serif);
+    font-size: clamp(20px, 2.8vw, 30px);
+    font-weight: 300;
+    line-height: 1.5;
+    color: var(--text);
+    padding: var(--sp-xl);
+    border: 1px solid var(--accent);
+    background: rgba(110,80,53,0.04);
+    position: relative;
+    margin-bottom: var(--sp-md);
+  }
+
+  .merksatz-anfuehrung {
+    font-size: 0.85em;
+    color: var(--accent);
+    opacity: 0.6;
+    font-style: normal;
+  }
+
+  .merksatz-anfuehrung--end { margin-left: 2px; }
+
+  .merksatz-text { font-style: italic; }
+
+  .merksatz-hilfe {
+    background: var(--bg-alt);
+    padding: var(--sp-md);
+    border: 1px solid var(--border);
+  }
+
+  .merksatz-hilfe-text {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text-muted);
+    max-width: none;
+  }
+
+  /* ── KOMPASS-KONTEXT ────────────────────────── */
+  .kompass-kontext {
+    max-width: var(--max-read);
+    margin: 0 auto var(--sp-lg);
+    padding: var(--sp-md) var(--sp-lg);
+    background: rgba(90,138,106,0.06);
+    border-left: 3px solid #5A8A6A;
+    margin-left: var(--sp-lg);
+    margin-right: var(--sp-lg);
+  }
+
+  .kk-label {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em;
+    text-transform: uppercase; color: #5A8A6A; margin-bottom: 4px; max-width: none;
+  }
+
+  .kk-text {
+    font-family: var(--mono); font-size: 13px; font-weight: 300;
+    color: var(--text); max-width: var(--max-read);
+  }
+
+  /* ── FALLBEISPIEL ───────────────────────────── */
+  .fallbeispiel-block {
+    max-width: var(--max-read);
+    margin: 0 auto var(--sp-lg);
+    padding-left: var(--sp-lg);
+    padding-right: var(--sp-lg);
+  }
+
+  .fb-header {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-sm);
+    margin-bottom: var(--sp-md);
+  }
+
+  .fb-icon { font-size: 18px; color: #5A8A6A; }
+
+  .fb-label {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: #5A8A6A; max-width: none;
+  }
+
+  .fb-body {
+    padding: var(--sp-lg);
+    border: 1px solid rgba(90,138,106,0.3);
+    background: rgba(90,138,106,0.03);
+  }
+
+  .fb-situation {
+    font-family: var(--mono); font-size: 14px; font-weight: 300;
+    line-height: 1.75; color: var(--text);
+    margin-bottom: var(--sp-md); max-width: var(--max-read);
+  }
+
+  .fb-aufgabe-wrap { border-top: 1px solid rgba(90,138,106,0.2); padding-top: var(--sp-md); }
+
+  .fb-aufgabe-label {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--text-muted); margin-bottom: var(--sp-xs); max-width: none;
+  }
+
+  .fb-kompass-hinweis {
+    font-family: var(--mono); font-size: 11px; color: #5A8A6A;
+    margin-top: var(--sp-sm); max-width: none;
+  }
+
+  /* ── ANTWORT-BEREICH ────────────────────────── */
+  .antwort-bereich {
+    max-width: var(--max-read);
+    margin: 0 auto var(--sp-lg);
+    padding-left: var(--sp-lg);
+    padding-right: var(--sp-lg);
+  }
+
+  .antwort-label {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-sm);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: var(--sp-sm);
+  }
+
+  .antwort-label-icon { font-size: 14px; color: #5A8A6A; }
+
+  .antwort-textarea {
+    width: 100%;
+    padding: var(--sp-md);
+    background: transparent;
+    border: 1px solid var(--border-mid);
+    border-left: 3px solid rgba(90,138,106,0.4);
+    font-family: var(--mono);
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--text);
+    resize: vertical;
+    line-height: 1.7;
+    margin-bottom: var(--sp-md);
+    transition: border-color var(--dur-fast) var(--ease);
+  }
+
+  .antwort-textarea:focus-visible {
+    outline: 1.5px solid #5A8A6A;
+    outline-offset: 2px;
+    border-left-color: #5A8A6A;
+  }
+
+  /* ── MUSTERLÖSUNG ───────────────────────────── */
+  .musterlosung-details {
+    max-width: var(--max-read);
+    margin: 0 auto var(--sp-lg);
+    padding-left: var(--sp-lg);
+    padding-right: var(--sp-lg);
+    border: 1px solid var(--border);
+  }
+
+  .musterlosung-details summary {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: var(--sp-md);
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: var(--sp-sm);
+    transition: color var(--dur-fast) var(--ease);
+    min-height: 44px;
+  }
+
+  .musterlosung-details summary::-webkit-details-marker { display: none; }
+  .musterlosung-details summary::before {
+    content: '+'; font-size: 18px; line-height: 1; flex-shrink: 0;
+    color: var(--accent); transition: transform var(--dur-fast) var(--ease);
+  }
+  .musterlosung-details[open] summary::before { transform: rotate(45deg); }
+  .musterlosung-details[open] summary { border-bottom: 1px solid var(--border); color: var(--text); }
+  .musterlosung-details summary:hover { color: var(--text); }
+
+  .ml-inhalt {
+    padding: var(--sp-lg);
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.75;
+    white-space: pre-wrap;
+  }
+
+  .lw-liste {
+    padding-left: var(--sp-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-md);
+  }
+
+  .lw-liste li {
+    font-family: var(--mono); font-size: 13px; font-weight: 300;
+    line-height: 1.7; white-space: pre-wrap;
+  }
+
+  /* ── PRÜFUNGSMODUS ──────────────────────────── */
+  .pruefungs-modus {
+    max-width: var(--max-read);
+    margin: 0 auto var(--sp-lg);
+    padding-left: var(--sp-lg);
+    padding-right: var(--sp-lg);
+    border: 2px solid rgba(138,118,80,0.4);
+  }
+
+  .pm-header {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-md);
+    padding: var(--sp-sm) var(--sp-lg);
+    background: rgba(138,118,80,0.06);
+    border-bottom: 1px solid rgba(138,118,80,0.2);
+  }
+
+  .pm-badge {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #8A7650;
+    padding: 3px 8px;
+    border: 1px solid rgba(138,118,80,0.4);
+  }
+
+  .pm-hint {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    max-width: none;
+  }
+
+  .pm-frage {
+    padding: var(--sp-lg);
+    font-family: var(--mono);
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.75;
+    white-space: pre-wrap;
+    color: var(--text);
+    max-width: var(--max-read);
+  }
+
+  /* ── SELBSTEINSCHÄTZUNG ─────────────────────── */
+  .selbsteinschaetzung {
+    max-width: var(--max-read);
+    margin: 0 auto;
+    padding: var(--sp-lg);
+    padding-bottom: var(--sp-xl);
+  }
+
+  .se-frage {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: var(--sp-md);
+    max-width: none;
+  }
+
+  .se-btns {
+    display: flex;
+    gap: var(--sp-md);
+    margin-bottom: var(--sp-md);
+    flex-wrap: wrap;
+  }
+
+  .se-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--sp-sm);
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 300;
+    padding: var(--sp-sm) var(--sp-lg);
+    border: 1px solid var(--border-mid);
+    background: none;
+    cursor: pointer;
+    transition: all var(--dur-fast) var(--ease);
+    min-height: 44px;
+  }
+
+  .se-btn--gut:hover { border-color: var(--accent); color: var(--accent); }
+  .se-btn--gut[data-chosen="true"] { border-color: var(--accent); background: var(--accent); color: var(--bg); }
+
+  .se-btn--wiederholen:hover { border-color: var(--text-muted); color: var(--text); }
+  .se-btn--wiederholen[data-chosen="true"] { border-color: var(--text-muted); background: var(--accent-soft); }
+
+  .se-info {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text-muted);
+    max-width: var(--max-read);
+  }
+
+  /* ── NAVIGATION ─────────────────────────────── */
+  .thema-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--sp-xl) var(--sp-lg) var(--sp-2xl);
+    border-top: 1px solid var(--border);
+    gap: var(--sp-lg);
+    flex-wrap: wrap;
+    max-width: var(--max-read);
+    margin: 0 auto;
+  }
+
+  /* ── RESPONSIVE ─────────────────────────────── */
+  @media (max-width: 600px) {
+    .phase-banner { padding: var(--sp-lg); flex-direction: column; }
+    .phase-banner-inner { gap: var(--sp-md); }
+    .phase-banner-icon { font-size: 22px; }
+    .phase-fertig-btn { width: 100%; justify-content: center; }
+    .se-btns { flex-direction: column; }
+    .thema-nav { flex-direction: column; align-items: flex-start; }
+    .rw-schritt { grid-template-columns: 28px 1fr; }
+    .phase-abschluss { flex-direction: column; align-items: flex-start; }
+  }
+</style>

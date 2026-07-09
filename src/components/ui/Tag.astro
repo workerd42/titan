@@ -1,0 +1,33 @@
+---
+interface Props {
+  variant?: 'default' | 'active';
+  class?: string;
+}
+const { variant = 'default', class: className = '' } = Astro.props;
+---
+
+<span class:list={['norive-tag', `norive-tag--${variant}`, className]}>
+  <slot />
+</span>
+
+<style>
+  .norive-tag {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 300;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    padding: 5px 10px;
+    border: 1px solid var(--border-mid);
+    border-radius: var(--radius);
+    transition:
+      border-color var(--dur-fast) var(--ease),
+      color var(--dur-fast) var(--ease);
+  }
+
+  .norive-tag--active {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+</style>

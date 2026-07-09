@@ -1,0 +1,331 @@
+---
+import SpaceLayout from '../../../layouts/SpaceLayout.astro';
+import Universe from '../../../components/space/Universe.astro';
+import Planet from '../../../components/space/Planet.astro';
+import { BEREICHE, getBereich } from '../../../data/bereiche';
+import { UNIVERSEN, getUniversum } from '../../../data/universen';
+import { getCollection, type CollectionEntry } from 'astro:content';
+
+export async function getStaticPaths() {
+  const paths: Array<{ params: { universum: string; hb: string } }> = [];
+  for (const universum of UNIVERSEN) {
+    for (const b of BEREICHE.filter((x) => x.universumId === universum.id)) {
+      paths.push({ params: { universum: universum.id, hb: b.id } });
+    }
+  }
+  return paths;
+}
+
+const { universum: universumId, hb } = Astro.params;
+const universum = getUniversum(universumId as string);
+const bereich = getBereich(hb as string);
+if (!bereich || !universum) return Astro.redirect(import.meta.env.BASE_URL);
+
+const alleThemen = await getCollection('themen');
+const themen = alleThemen
+  .filter(t => t.data.handlungsbereich === bereich.id)
+  .sort((a, b) => a.data.order - b.data.order);
+
+const base = import.meta.env.BASE_URL;
+const hbBase = `${base}${universum.id}/${bereich.id}/`;
+
+const gruppenNamen = bereich.themengruppen.map(g => g.name);
+
+// Bahnen: eine pro Themengruppe (rx/ry in % der viewBox 0 0 100 100)
+const ALL_ORBITS = [
+  { rx: 14, ry:  6 }, { rx: 21, ry:  9 }, { rx: 28, ry: 12 },
+  { rx: 35, ry: 15 }, { rx: 41, ry: 17 }, { rx: 46, ry: 19 }, { rx: 49, ry: 21 },
+];
+const ORBITS = ALL_ORBITS.slice(0, Math.max(gruppenNamen.length, 1));
+
+// Planetenfarben: 6 Variationen, pro Themengruppe eine
+const COLORS = [
+  { h: '#7AC0E8', b: '#1E2A3E', r: 'rgba(122,192,232,0.45)' },
+  { h: '#E8C480', b: '#3D2B1A', r: 'rgba(232,196,128,0.45)' },
+  { h: '#7AC898', b: '#1A2E20', r: 'rgba(122,200,152,0.45)' },
+  { h: '#E8889A', b: '#3E1A22', r: 'rgba(232,136,154,0.45)' },
+  { h: '#C880D8', b: '#2E1A3E', r: 'rgba(200,128,216,0.45)' },
+  { h: '#E89860', b: '#3D2418', r: 'rgba(232,152,96,0.45)' },
+];
+
+const CENTRAL_COLORS: Record<string, { h: string; b: string }> = {
+  hb1: { h: '#E8C480', b: '#3D2B1A' },
+  hb2: { h: '#7AC0E8', b: '#1E2A3E' },
+  hb3: { h: '#7AC898', b: '#1A2E20' },
+  hb4: { h: '#C880D8', b: '#2E1A3E' },
+};
+const cc = CENTRAL_COLORS[bereich.id] ?? { h: '#E8C480', b: '#3D2B1A' };
+
+// Themen → Orbit (pro Gruppe) + Startwinkel (gleichmäßig verteilt, Gruppen-Offset)
+const themenMitOrbit = (() => {
+  const result: Array<{
+    thema: CollectionEntry<'themen'>;
+    orbitIdx: number;
+    startAngle: number;
+    colorIdx: number;
+  }> = [];
+
+  gruppenNamen.forEach((gruppe, gi) => {
+    const gruppenThemen = themen.filter(t => t.data.themengruppe === gruppe);
+    const count = gruppenThemen.length;
+    const colorIdx = gi % COLORS.length;
+
+    gruppenThemen.forEach((thema, ti) => {
+      const angle = ((2 * Math.PI) / Math.max(count, 1)) * ti + gi * Math.PI * 0.38;
+      result.push({
+        thema,
+        orbitIdx: Math.min(gi, ALL_ORBITS.length - 1),
+        startAngle: angle,
+        colorIdx,
+      });
+    });
+  });
+
+  return result;
+})();
+---
+
+<SpaceLayout
+  title={`HF ${bereich.nummer} — ${bereich.titel}`}
+  description={`Handlungsfeld ${bereich.nummer}: ${themen.length} Kapitel zur IHK-Prüfungsvorbereitung.`}
+  canonicalPath={`/${universum.id}/${bereich.id}/`}
+>
+  <!-- Header -->
+  <header class="ui-hdr">
+    <a href={`${base}${universum.id}/`} class="uih-back-link" aria-label="Zurück zu allen Handlungsfeldern">
+      ← Alle HF
+    </a>
+    <div class="uih-center">
+      <span class="uih-nr">HF {bereich.nummer}</span>
+      <span class="uih-titel">{bereich.titel}</span>
+    </div>
+    <span class="uih-count">{themen.length} Kapitel</span>
+  </header>
+
+  <main id="hauptinhalt" tabindex="-1">
+    <Universe
+      stageId="theme-stage"
+      centralId="theme-center"
+      universumId={bereich.id}
+      orbits={ORBITS}
+      central={cc}
+      centralSize="sm"
+      hideOnMobile={true}
+    >
+      {themenMitOrbit.map(({ thema, orbitIdx, startAngle, colorIdx }) => (
+        <Planet
+          slug={thema.id}
+          hbId={bereich.id}
+          titel={thema.data.title}
+          gruppe={thema.data.themengruppe}
+          beschreibung={thema.data.description}
+          href={`${hbBase}${thema.id}/`}
+          orbitIdx={orbitIdx}
+          startAngle={startAngle}
+          color={COLORS[colorIdx]}
+        />
+      ))}
+    </Universe>
+
+    <!-- Zugängliche Liste (Mobile / Screenreader / reduced-motion) -->
+    <nav class="theme-list-sr" aria-label="Kapitel als Liste">
+      {gruppenNamen.map((gruppe) => {
+        const gt = themen.filter(t => t.data.themengruppe === gruppe);
+        if (!gt.length) return null;
+        return (
+          <div class="tls-gruppe">
+            <p class="tls-gruppe-titel">{gruppe}</p>
+            {gt.map(t => (
+              <a href={`${hbBase}${t.id}/`} class="tls-item">
+                {t.data.title}
+              </a>
+            ))}
+          </div>
+        );
+      })}
+    </nav>
+  </main>
+</SpaceLayout>
+
+<script src="../../../scripts/norive-progress.ts"></script>
+<script>
+  import { initDraggableOrbits, introAnimation, responsivePlanetSize } from '../../../scripts/gsap-orbits';
+  import { createFocusController, type FocusController } from '../../../scripts/gsap-focus';
+  import { gsap } from 'gsap';
+
+  const ORBITS = [
+    { rx: 14, ry:  6 }, { rx: 21, ry:  9 }, { rx: 28, ry: 12 },
+    { rx: 35, ry: 15 }, { rx: 41, ry: 17 }, { rx: 46, ry: 19 }, { rx: 49, ry: 21 },
+  ];
+  const BASE_SIZES = [36, 40, 32, 38, 34, 36, 30, 40, 34];
+
+  let controller: FocusController | null = null;
+
+  function initPage(): void {
+    const stage = document.getElementById('theme-stage');
+    if (!stage) return;
+
+    const canvas = document.getElementById('starfield-canvas') as HTMLCanvasElement | null;
+    if (canvas) canvas.style.display = 'none';
+    const wordmark = document.querySelector<HTMLElement>('.norive-wordmark');
+    const nav      = document.querySelector<HTMLElement>('.space-nav');
+    if (wordmark) wordmark.style.color = '#6E5035';
+    if (nav) nav.style.background = 'linear-gradient(to bottom, rgba(237,232,223,0.88) 0%, transparent 100%)';
+
+    const orbitSvg  = stage.querySelector<HTMLElement>('.orbit-svg');
+    const central   = document.getElementById('theme-center');
+    const planetEls = Array.from(document.querySelectorAll<HTMLElement>('.theme-planet'));
+
+    // ── STATE RESET ──
+    controller?.destroy();
+    controller = null;
+    gsap.killTweensOf(planetEls);
+    if (orbitSvg) { gsap.killTweensOf(orbitSvg); gsap.set(orbitSvg, { clearProps: 'all' }); }
+    if (central)  { gsap.killTweensOf(central);  gsap.set(central,  { clearProps: 'all' }); }
+    planetEls.forEach(el => { el.style.cssText = ''; });
+
+    // ── Größen ──
+    planetEls.forEach((el, i) => {
+      const size = responsivePlanetSize(BASE_SIZES[i % BASE_SIZES.length]);
+      el.style.width  = `${size}px`;
+      el.style.height = `${size}px`;
+    });
+
+    // ── 3-STATE FOCUS CONTROLLER ──
+    controller = createFocusController({
+      stage,
+      planets: planetEls,
+      systemParts: [orbitSvg, central],
+      heroSize: () => Math.min(420, window.innerWidth * 0.34, window.innerHeight * 0.56),
+      getData: (el) => ({
+        eyebrow: el.dataset.gruppe ?? '',
+        titel:   el.dataset.titel ?? '',
+        beschr:  el.dataset.beschreibung ?? '',
+        href:    (el as HTMLAnchorElement).href,
+        ctaText: 'Kapitel starten',
+      }),
+    });
+
+    // ── Drag-System ──
+    const bodies = planetEls.map(el => ({
+      el,
+      orbitIndex: parseInt(el.dataset.orbit ?? '0'),
+      startAngle: parseFloat(el.dataset.start ?? '0'),
+    }));
+
+    initDraggableOrbits(stage, ORBITS, bodies, (body, wasDragged) => {
+      if (wasDragged || !controller) return;
+      if (controller.isActive()) return;
+      controller.focusIn(body.el);
+    });
+
+    introAnimation(bodies, central);
+  }
+
+  // astro:page-load feuert bereits beim initialen Laden (Astro-Standard) —
+  // ein zusätzlicher direkter Aufruf würde initPage() doppelt ausführen.
+  document.addEventListener('astro:page-load', initPage);
+</script>
+
+<style>
+  /* ── HEADER ─────────────────────────────── */
+  .uih-back-link {
+    font-family: var(--mono, monospace);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: #5E5450;
+    text-decoration: none;
+    white-space: nowrap;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    transition: color 0.2s ease;
+    padding: 4px 0;
+  }
+  .uih-back-link:hover { color: #6E5035; }
+
+  .ui-hdr {
+    position: fixed;
+    top: 56px; /* Unterhalb space-nav */
+    left: 0; right: 0;
+    z-index: 20;
+    padding: 12px 24px;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    background: linear-gradient(to bottom, rgba(237,232,223,0.9) 0%, transparent 100%);
+  }
+
+  .uih-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    justify-self: center;
+  }
+
+  .uih-nr {
+    font-family: var(--mono, monospace);
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(110, 80, 53, 0.45);
+  }
+
+  .uih-titel {
+    font-family: var(--mono, monospace);
+    font-size: clamp(10px, 1.2vw, 13px);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #6E5035;
+    font-weight: 400;
+    text-align: center;
+  }
+
+  .uih-count {
+    font-family: var(--mono, monospace);
+    font-size: 10px;
+    color: rgba(110, 80, 53, 0.35);
+    justify-self: end;
+  }
+
+  /* ── ZUGÄNGLICHE LISTE ──────────────────── */
+  .theme-list-sr {
+    position: absolute;
+    width: 1px; height: 1px;
+    clip: rect(0, 0, 0, 0);
+    overflow: hidden;
+  }
+
+  @media (max-width: 600px), (prefers-reduced-motion: reduce) {
+    .theme-list-sr {
+      position: static;
+      width: auto; height: auto;
+      clip: auto; overflow: visible;
+      padding: 130px 20px 48px;
+    }
+    .tls-gruppe { margin-bottom: 24px; }
+    .tls-gruppe-titel {
+      font-family: var(--mono, monospace);
+      font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+      color: #6E5035; margin-bottom: 8px; max-width: none;
+    }
+    .tls-item {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 12px 0; border-bottom: 1px solid rgba(110, 80, 53, 0.12);
+      text-decoration: none; color: #1C1917;
+      font-family: var(--serif, Georgia); font-size: 15px; font-weight: 300;
+    }
+    .tls-item::after { content: '→'; color: rgba(110, 80, 53, 0.4); }
+    .tls-item:hover { color: #6E5035; }
+  }
+
+  /* ── RESPONSIVE HEADER ──────────────────── */
+  @media (max-width: 640px) {
+    .ui-hdr { grid-template-columns: auto 1fr auto; gap: 8px; }
+    .uih-count { display: none; }
+  }
+  @media (max-width: 400px) {
+    .uih-center { display: none; }
+  }
+</style>

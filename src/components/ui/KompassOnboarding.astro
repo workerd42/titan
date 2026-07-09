@@ -1,0 +1,558 @@
+---
+// KompassOnboarding.astro
+// Wird auf der Startseite und Universum-Seiten gerendert.
+// Zeigt sich automatisch wenn kein Kompass-Unternehmen existiert.
+---
+
+<div id="kompass-onboarding" class="onboarding-overlay" aria-modal="true" role="dialog" aria-labelledby="onboarding-title" hidden>
+  <div class="onboarding-panel">
+
+    <!-- Schritt-Indikator -->
+    <div class="onboarding-steps" aria-label="Fortschritt" role="list">
+      {[1,2,3,4].map((n) => (
+        <span class="onboarding-step-dot" data-step={n} role="listitem" aria-label={`Schritt ${n}`}></span>
+      ))}
+    </div>
+
+    <!-- Schritt 1: Willkommen -->
+    <div class="onboarding-step" data-step-content="1">
+      <p class="onboarding-eyebrow">Bevor es losgeht</p>
+      <h2 id="onboarding-title" class="onboarding-title">Dein Kompass-Unternehmen</h2>
+      <p class="onboarding-body">
+        Titan lernt sich besser, wenn alle Praxisbeispiele zu deinem eigenen Unternehmenskontext passen.
+        Erstelle in wenigen Schritten deinen persönlichen Unternehmens-Zwilling —
+        er begleitet dich durch die gesamte Kompetenzreise.
+      </p>
+      <p class="onboarding-hint">
+        Deine Angaben werden ausschließlich lokal in deinem Browser gespeichert.
+      </p>
+      <button class="onboarding-next-btn" data-next="2">
+        Jetzt einrichten
+        <span class="btn-arrow" aria-hidden="true">→</span>
+      </button>
+      <button class="onboarding-skip-btn" data-skip>
+        Vorerst überspringen
+      </button>
+    </div>
+
+    <!-- Schritt 2: Unternehmensname & Branche -->
+    <div class="onboarding-step" data-step-content="2" hidden>
+      <p class="onboarding-eyebrow">Schritt 1 von 3</p>
+      <h2 class="onboarding-title">Dein Unternehmen</h2>
+
+      <div class="form-group">
+        <label class="form-label" for="k-name">Unternehmensname</label>
+        <input
+          id="k-name"
+          type="text"
+          class="form-input"
+          placeholder="z. B. Mustermann GmbH"
+          autocomplete="organization"
+        />
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="k-branche">Branche</label>
+        <select id="k-branche" class="form-select">
+          <option value="">— Bitte wählen —</option>
+          <option value="handel">Handel & E-Commerce</option>
+          <option value="industrie">Industrie & Produktion</option>
+          <option value="dienstleistung">Dienstleistung & Beratung</option>
+          <option value="handwerk">Handwerk & Gewerbe</option>
+          <option value="sonstiges">Sonstiges</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="k-rechtsform">Rechtsform</label>
+        <select id="k-rechtsform" class="form-select">
+          <option value="">— Optional —</option>
+          <option>GmbH</option>
+          <option>GmbH & Co. KG</option>
+          <option>AG</option>
+          <option>KG</option>
+          <option>OHG</option>
+          <option>e.K.</option>
+          <option>GbR</option>
+          <option>Einzelunternehmen</option>
+        </select>
+      </div>
+
+      <div class="onboarding-actions">
+        <button class="onboarding-back-btn" data-back="1">← Zurück</button>
+        <button class="onboarding-next-btn" data-next="3">Weiter →</button>
+      </div>
+    </div>
+
+    <!-- Schritt 3: Größe & Struktur -->
+    <div class="onboarding-step" data-step-content="3" hidden>
+      <p class="onboarding-eyebrow">Schritt 2 von 3</p>
+      <h2 class="onboarding-title">Größe & Struktur</h2>
+
+      <div class="form-group">
+        <label class="form-label">Unternehmensgröße</label>
+        <div class="size-grid">
+          {[
+            { value: 'mikro', label: 'Kleinstunternehmen', sub: '< 10 Mitarbeiter' },
+            { value: 'klein', label: 'Kleinunternehmen', sub: '10–49 Mitarbeiter' },
+            { value: 'mittel', label: 'Mittelstand', sub: '50–249 Mitarbeiter' },
+            { value: 'gross', label: 'Großunternehmen', sub: '250+ Mitarbeiter' },
+          ].map(({ value, label, sub }) => (
+            <label class="size-option" data-value={value}>
+              <input type="radio" name="groesse" value={value} class="size-radio" />
+              <span class="size-label">{label}</span>
+              <span class="size-sub">{sub}</span>
+            </label>
+          ))}
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="k-ausbildung">Ausbildungsberufe im Unternehmen</label>
+        <input
+          id="k-ausbildung"
+          type="text"
+          class="form-input"
+          placeholder="z. B. Kaufmann/-frau für Büromanagement, Fachinformatiker"
+        />
+      </div>
+
+      <div class="onboarding-actions">
+        <button class="onboarding-back-btn" data-back="2">← Zurück</button>
+        <button class="onboarding-next-btn" data-next="4">Weiter →</button>
+      </div>
+    </div>
+
+    <!-- Schritt 4: Zielgruppen & Fertig -->
+    <div class="onboarding-step" data-step-content="4" hidden>
+      <p class="onboarding-eyebrow">Schritt 3 von 3</p>
+      <h2 class="onboarding-title">Markt & Zielgruppen</h2>
+
+      <div class="form-group">
+        <label class="form-label" for="k-zielgruppen">Wichtigste Zielgruppen</label>
+        <input
+          id="k-zielgruppen"
+          type="text"
+          class="form-input"
+          placeholder="z. B. Privatkunden 25–45 Jahre, gewerbliche Kunden"
+        />
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="k-besonderheiten">Besonderheiten des Unternehmens</label>
+        <textarea
+          id="k-besonderheiten"
+          class="form-textarea"
+          placeholder="z. B. Familienunternehmen seit 1985, Marktführer in der Region, aktuell in der Expansion …"
+          rows="3"
+        ></textarea>
+      </div>
+
+      <div class="onboarding-actions">
+        <button class="onboarding-back-btn" data-back="3">← Zurück</button>
+        <button class="onboarding-finish-btn" id="onboarding-finish">
+          Kompetenzreise starten
+          <span class="btn-arrow" aria-hidden="true">→</span>
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<style>
+  /* ── OVERLAY ─────────────────────────────────── */
+  .onboarding-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(20,18,16,0.92);
+    backdrop-filter: blur(8px);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--sp-lg);
+    opacity: 0;
+    animation: fade-in 0.5s var(--ease) forwards;
+  }
+
+  .onboarding-overlay[hidden] {
+    display: none;
+  }
+
+  @keyframes fade-in {
+    to { opacity: 1; }
+  }
+
+  /* ── PANEL ──────────────────────────────────── */
+  .onboarding-panel {
+    background: var(--bg-alt, #1C1917);
+    border: 1px solid rgba(196,168,130,0.15);
+    width: 100%;
+    max-width: 540px;
+    padding: var(--sp-2xl);
+    position: relative;
+    transform: translateY(24px);
+    animation: slide-up 0.5s var(--ease) forwards;
+  }
+
+  @keyframes slide-up {
+    to { transform: translateY(0); }
+  }
+
+  /* ── SCHRITTE ───────────────────────────────── */
+  .onboarding-steps {
+    display: flex;
+    gap: 8px;
+    margin-bottom: var(--sp-xl);
+  }
+
+  .onboarding-step-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    border: 1px solid rgba(196,168,130,0.3);
+    background: transparent;
+    transition: all var(--dur-fast) var(--ease);
+  }
+
+  .onboarding-step-dot[data-active="true"] {
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+
+  .onboarding-step-dot[data-done="true"] {
+    background: rgba(196,168,130,0.4);
+    border-color: transparent;
+  }
+
+  /* ── TYPOGRAFIE ─────────────────────────────── */
+  .onboarding-eyebrow {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent, #C4A882);
+    margin-bottom: var(--sp-sm);
+    max-width: none;
+  }
+
+  .onboarding-title {
+    font-family: var(--serif);
+    font-size: clamp(24px, 3vw, 32px);
+    font-weight: 300;
+    color: var(--text, #EDE8DF);
+    margin-bottom: var(--sp-md);
+    letter-spacing: -0.02em;
+  }
+
+  .onboarding-body {
+    font-family: var(--mono);
+    font-size: var(--text-sm, 13px);
+    font-weight: 300;
+    color: var(--text-muted, rgba(237,232,223,0.6));
+    line-height: 1.75;
+    margin-bottom: var(--sp-md);
+    max-width: 440px;
+  }
+
+  .onboarding-hint {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: rgba(196,168,130,0.4);
+    margin-bottom: var(--sp-xl);
+    max-width: none;
+  }
+
+  /* ── FORMULAR ───────────────────────────────── */
+  .form-group {
+    margin-bottom: var(--sp-lg);
+  }
+
+  .form-label {
+    display: block;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(237,232,223,0.5);
+    margin-bottom: var(--sp-sm);
+  }
+
+  .form-input,
+  .form-select,
+  .form-textarea {
+    width: 100%;
+    background: rgba(28,25,23,0.6);
+    border: 1px solid rgba(196,168,130,0.2);
+    color: var(--text, #EDE8DF);
+    font-family: var(--mono);
+    font-size: 14px;
+    font-weight: 300;
+    padding: 12px var(--sp-md);
+    outline: none;
+    transition: border-color var(--dur-fast) var(--ease);
+    appearance: none;
+    -webkit-appearance: none;
+  }
+
+  .form-input:focus,
+  .form-select:focus,
+  .form-textarea:focus {
+    border-color: var(--accent, #C4A882);
+  }
+
+  .form-select {
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(196,168,130,0.5)' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 40px;
+  }
+
+  .form-textarea {
+    resize: vertical;
+    min-height: 80px;
+    line-height: 1.6;
+  }
+
+  /* ── GRÖSSEN-GRID ───────────────────────────── */
+  .size-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--sp-sm);
+  }
+
+  .size-option {
+    display: flex;
+    flex-direction: column;
+    padding: var(--sp-md);
+    border: 1px solid rgba(196,168,130,0.15);
+    cursor: pointer;
+    transition: border-color var(--dur-fast) var(--ease), background var(--dur-fast) var(--ease);
+  }
+
+  .size-option:hover {
+    border-color: rgba(196,168,130,0.4);
+  }
+
+  .size-option:has(.size-radio:checked) {
+    border-color: var(--accent, #C4A882);
+    background: rgba(196,168,130,0.08);
+  }
+
+  .size-radio {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .size-label {
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--text, #EDE8DF);
+    margin-bottom: 2px;
+  }
+
+  .size-sub {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: rgba(237,232,223,0.4);
+  }
+
+  /* ── BUTTONS ────────────────────────────────── */
+  .onboarding-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: var(--sp-xl);
+  }
+
+  .onboarding-next-btn,
+  .onboarding-finish-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--bg, #141210);
+    background: var(--accent, #C4A882);
+    border: none;
+    padding: 12px var(--sp-xl);
+    cursor: pointer;
+    transition: opacity var(--dur-fast) var(--ease);
+    min-height: 44px;
+  }
+
+  .onboarding-next-btn:hover,
+  .onboarding-finish-btn:hover {
+    opacity: 0.85;
+  }
+
+  .onboarding-back-btn {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(237,232,223,0.4);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    min-height: 44px;
+    transition: color var(--dur-fast) var(--ease);
+  }
+
+  .onboarding-back-btn:hover { color: rgba(237,232,223,0.7); }
+
+  .onboarding-skip-btn {
+    display: block;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: rgba(237,232,223,0.3);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: var(--sp-md) 0 0;
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    transition: color var(--dur-fast) var(--ease);
+  }
+
+  .onboarding-skip-btn:hover { color: rgba(237,232,223,0.5); }
+
+  .btn-arrow {
+    font-size: 14px;
+    font-family: var(--mono);
+  }
+
+  /* ── RESPONSIVE ─────────────────────────────── */
+  @media (max-width: 600px) {
+    .onboarding-panel {
+      padding: var(--sp-xl) var(--sp-lg);
+    }
+    .size-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 420px) {
+    .size-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+  import type { KompassUnternehmen } from '../scripts/kompass';
+
+  const KOMPASS_KEY = 'norive-kompass-v1';
+
+  function loadKompass(): KompassUnternehmen | null {
+    try { return JSON.parse(localStorage.getItem(KOMPASS_KEY) || 'null'); }
+    catch { return null; }
+  }
+
+  function saveKompass(data: KompassUnternehmen): void {
+    try { localStorage.setItem(KOMPASS_KEY, JSON.stringify(data)); }
+    catch { /* ignore */ }
+  }
+
+  const overlay = document.getElementById('kompass-onboarding') as HTMLElement | null;
+  if (!overlay) throw new Error('Onboarding overlay not found');
+
+  // Zeigen wenn kein Kompass vorhanden
+  const existing = loadKompass();
+  if (!existing?.name) {
+    overlay.hidden = false;
+    overlay.removeAttribute('hidden');
+  }
+
+  let currentStep = 1;
+
+  function showStep(step: number): void {
+    currentStep = step;
+    document.querySelectorAll('[data-step-content]').forEach((el) => {
+      (el as HTMLElement).hidden = parseInt(el.getAttribute('data-step-content') || '0') !== step;
+    });
+    document.querySelectorAll('.onboarding-step-dot').forEach((dot) => {
+      const n = parseInt(dot.getAttribute('data-step') || '0');
+      (dot as HTMLElement).setAttribute('data-active', n === step ? 'true' : 'false');
+      (dot as HTMLElement).setAttribute('data-done', n < step ? 'true' : 'false');
+    });
+  }
+
+  showStep(1);
+
+  // Navigation
+  overlay.addEventListener('click', (e) => {
+    const target = e.target as HTMLElement;
+    const btn = target.closest('[data-next], [data-back], [data-skip], #onboarding-finish') as HTMLElement | null;
+    if (!btn) return;
+
+    if (btn.hasAttribute('data-skip')) {
+      overlay.hidden = true;
+      return;
+    }
+
+    const next = btn.getAttribute('data-next');
+    const back = btn.getAttribute('data-back');
+
+    if (next) showStep(parseInt(next));
+    if (back) showStep(parseInt(back));
+
+    if (btn.id === 'onboarding-finish') {
+      const kompass: KompassUnternehmen = {
+        name: (document.getElementById('k-name') as HTMLInputElement)?.value || 'Mein Unternehmen',
+        branche: (document.getElementById('k-branche') as HTMLSelectElement)?.value || 'sonstiges',
+        brancheKategorie: ((document.getElementById('k-branche') as HTMLSelectElement)?.value || 'sonstiges') as any,
+        groesse: ((document.querySelector('input[name="groesse"]:checked') as HTMLInputElement)?.value || 'mittel') as any,
+        mitarbeiter: '',
+        umsatz: '',
+        rechtsform: (document.getElementById('k-rechtsform') as HTMLSelectElement)?.value || '',
+        organisationsstruktur: '',
+        ausbildungsberufe: (document.getElementById('k-ausbildung') as HTMLInputElement)?.value || '',
+        zielgruppen: (document.getElementById('k-zielgruppen') as HTMLInputElement)?.value || '',
+        besonderheiten: (document.getElementById('k-besonderheiten') as HTMLTextAreaElement)?.value || '',
+        erstellt: new Date().toISOString(),
+      };
+      saveKompass(kompass);
+      window.dispatchEvent(new CustomEvent('norive:kompass-updated'));
+      overlay.hidden = true;
+
+      // Persönlichen Bereich öffnen um die gespeicherten Daten zu zeigen
+      const panel = document.getElementById('persoenlich-panel');
+      const toggle = document.getElementById('persoenlich-toggle') as HTMLButtonElement | null;
+      if (panel && toggle) {
+        panel.removeAttribute('hidden');
+        toggle.setAttribute('aria-expanded', 'true');
+      }
+
+      // Kurze Bestätigung einblenden
+      const toast = document.createElement('div');
+      toast.setAttribute('role', 'status');
+      toast.setAttribute('aria-live', 'polite');
+      toast.style.cssText = [
+        'position:fixed', 'bottom:32px', 'left:50%',
+        'transform:translateX(-50%)', 'z-index:2000',
+        'background:rgba(28,25,23,0.96)',
+        'border:1px solid rgba(196,168,130,0.4)',
+        'padding:14px 28px',
+        'font-family:var(--mono,monospace)',
+        'font-size:11px', 'letter-spacing:0.16em',
+        'text-transform:uppercase',
+        'color:rgba(196,168,130,0.9)',
+        'pointer-events:none',
+        'white-space:nowrap',
+      ].join(';');
+      toast.textContent = 'Kompass-Unternehmen gespeichert';
+      document.body.appendChild(toast);
+      setTimeout(() => toast.remove(), 3200);
+    }
+  });
+</script>

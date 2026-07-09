@@ -1,0 +1,171 @@
+---
+/**
+ * Planet.astro — Themen-Planet für die HF-Innenansicht (STATE 1 Objekt)
+ *
+ * Klick wird von gsap-orbits.ts abgefangen und löst via gsap-focus.ts
+ * die STATE-2-Transition aus. Navigation nur über den CTA im FocusPanel.
+ *
+ * Telemetrie-Kontrakt:
+ *   data-universum-id — HF-Zugehörigkeit (hb1…hb4)
+ *   data-slug         — Themen-Slug (Schlüssel in norive-progress-v2)
+ *   data-phase-dots   — Hook für norive-progress.ts (füllt die 4 Dots)
+ */
+interface Props {
+  slug: string;
+  hbId: string;
+  titel: string;
+  gruppe: string;
+  beschreibung: string;
+  href: string;
+  orbitIdx: number;
+  startAngle: number;
+  color: { h: string; b: string; r: string };
+}
+
+const { slug, hbId, titel, gruppe, beschreibung, href, orbitIdx, startAngle, color } = Astro.props;
+const gId = (s: string) => `tp-${slug}-${s}`;
+---
+
+<a
+  class="theme-planet"
+  href={href}
+  id={`tp-${slug}`}
+  data-slug={slug}
+  data-universum-id={hbId}
+  data-orbit={orbitIdx}
+  data-start={startAngle}
+  data-phase-dots={slug}
+  data-titel={titel}
+  data-gruppe={gruppe}
+  data-beschreibung={beschreibung}
+  aria-label={`${titel} — ${gruppe}`}
+>
+  <svg class="ps-sphere" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" overflow="visible">
+    <defs>
+      <radialGradient id={gId('g')} cx="35%" cy="30%" r="70%">
+        <stop offset="0%"   stop-color={color.h}  stop-opacity="0.95"/>
+        <stop offset="40%"  stop-color={color.b}  stop-opacity="0.88"/>
+        <stop offset="100%" stop-color="#060408"  stop-opacity="0.97"/>
+      </radialGradient>
+      <radialGradient id={gId('a')} cx="50%" cy="50%" r="50%">
+        <stop offset="65%"  stop-color="transparent"/>
+        <stop offset="100%" stop-color={color.r}/>
+      </radialGradient>
+    </defs>
+    <circle cx="50" cy="50" r="52" fill={`url(#${gId('a')})`}/>
+    <circle cx="50" cy="50" r="44" fill={`url(#${gId('g')})`}/>
+    <ellipse cx="36" cy="32" rx="10" ry="7" fill="rgba(255,250,240,0.18)"/>
+  </svg>
+
+  <!-- 4 Phasen-Dots (Verstehen · Merken · Anwenden · Prüfen) -->
+  <span class="tp-dots" aria-hidden="true">
+    <span class="tp-dot" data-filled="false"></span>
+    <span class="tp-dot" data-filled="false"></span>
+    <span class="tp-dot" data-filled="false"></span>
+    <span class="tp-dot" data-filled="false"></span>
+  </span>
+
+  <span class="tp-label" aria-hidden="true">
+    <span class="tpl-name">{titel}</span>
+    <span class="tpl-gruppe">{gruppe}</span>
+  </span>
+</a>
+
+<style>
+  .theme-planet {
+    position: absolute;
+    display: block;
+    text-decoration: none;
+    cursor: grab;
+    border-radius: 50%;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: none;
+    opacity: 0; /* Kein Flash — JS positioniert */
+  }
+  .theme-planet:active { cursor: grabbing; }
+
+  .ps-sphere {
+    width: 100%;
+    height: 100%;
+    display: block;
+    overflow: visible;
+    transition: filter 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .theme-planet:hover .ps-sphere,
+  .theme-planet:focus-visible .ps-sphere {
+    filter:
+      drop-shadow(0 0 12px rgba(196, 168, 130, 0.65))
+      drop-shadow(0 0 30px rgba(196, 168, 130, 0.28));
+  }
+
+  .theme-planet:focus-visible {
+    outline: 2px solid rgba(110, 80, 53, 0.6);
+    outline-offset: 6px;
+  }
+
+  .tp-dots {
+    position: absolute;
+    bottom: -18px; /* Unterhalb des Planeten */
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 3px;
+    pointer-events: none;
+  }
+
+  .tp-dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    border: 1px solid rgba(110, 80, 53, 0.25);
+    background: transparent;
+    transition: background 0.2s ease;
+  }
+
+  .tp-dot[data-filled="true"] {
+    background: #6E5035;
+    border-color: #6E5035;
+  }
+
+  .tp-label {
+    position: absolute;
+    bottom: calc(100% + 12px);
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+    white-space: nowrap;
+    z-index: 30;
+  }
+
+  .theme-planet:hover .tp-label,
+  .theme-planet:focus-visible .tp-label { opacity: 1; }
+
+  .tpl-name {
+    font-family: var(--mono, monospace);
+    font-size: 11px;
+    color: #1C1917;
+    background: rgba(237, 232, 223, 0.94);
+    border: 1px solid rgba(110, 80, 53, 0.15);
+    padding: 4px 10px;
+    letter-spacing: 0.04em;
+    max-width: 220px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .tpl-gruppe {
+    font-family: var(--mono, monospace);
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(110, 80, 53, 0.5);
+  }
+</style>

@@ -1,0 +1,34 @@
+---
+interface Props {
+  filled?: boolean;
+  label?: string;
+}
+const { filled = false, label = '' } = Astro.props;
+---
+
+<span
+  class="nav-dot"
+  data-filled={filled ? 'true' : 'false'}
+  aria-hidden="true"
+  title={label}
+></span>
+
+<style>
+  .nav-dot {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    border: 1px solid var(--border-mid);
+    background: transparent;
+    flex-shrink: 0;
+    transition:
+      background-color var(--dur-fast) var(--ease),
+      border-color var(--dur-fast) var(--ease);
+  }
+
+  .nav-dot[data-filled='true'] {
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+</style>

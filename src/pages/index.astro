@@ -1,0 +1,183 @@
+---
+/**
+ * Universum-Auswahl — WAHRE Startseite (Ebene 1 der Hierarchie).
+ *
+ * Strukturell identisch zur Galaxie-Auswahl (gleiches Orbit-Drag- und
+ * 3-State-Fokus-System), datengetrieben aus data/universen.ts. Aktuell
+ * existiert ein Universum (Fachwirt Marketing); das System skaliert
+ * ohne Codeänderung, sobald weitere Universen ergänzt werden.
+ */
+import SpaceLayout from '../layouts/SpaceLayout.astro';
+import Universe from '../components/space/Universe.astro';
+import UniversumGlobe from '../components/space/UniversumGlobe.astro';
+import { BEREICHE } from '../data/bereiche';
+import { UNIVERSEN } from '../data/universen';
+
+const base = import.meta.env.BASE_URL;
+
+function galaxienVon(universumId: string) {
+  return BEREICHE.filter((b) => b.universumId === universumId);
+}
+
+// Orbitalbahnen in % (SVG viewBox 0 0 100 100) — bis zu 4 Universen,
+// dieselbe Ringgeometrie wie auf der Galaxie-Auswahl für visuelle Konsistenz.
+const ORBITS = [
+  { rx: 18, ry: 7.5  },
+  { rx: 28, ry: 11.5 },
+  { rx: 37, ry: 15.5 },
+  { rx: 45, ry: 18.5 },
+];
+const START_ANGLES = [-0.4, 2.1, -1.8, 1.2];
+---
+
+<SpaceLayout
+  title="Titan"
+  description="Digitales Kompetenzsystem für die berufliche Weiterbildung — wähle dein Universum."
+  canonicalPath="/"
+  showPersonal={true}
+>
+  <Universe
+    stageId="kosmos-stage"
+    centralId="kosmos-center"
+    universumId="titan-kosmos"
+    orbits={ORBITS}
+    central={{ h: '#F0D880', b: '#C48830' }}
+    centralLabel="Titan"
+    centralSize="lg"
+  >
+    {UNIVERSEN.map((u, i) => (
+      <UniversumGlobe
+        universumId={u.id}
+        nummer={u.nummer}
+        titel={u.titel}
+        eyebrow={u.eyebrow}
+        beschreibung={u.beschreibung}
+        href={`${base}${u.id}/`}
+        galaxienCount={galaxienVon(u.id).length}
+        orbitIdx={i % ORBITS.length}
+        startAngle={START_ANGLES[i % START_ANGLES.length]}
+        color={u.color}
+      />
+    ))}
+
+    <div class="kosmos-intro" id="kosmos-intro">
+      <p>Digitales Kompetenzsystem</p>
+      <p>Wähle dein Universum</p>
+    </div>
+  </Universe>
+</SpaceLayout>
+
+<script>
+  import { initDraggableOrbits, introAnimation, responsivePlanetSize } from '../scripts/gsap-orbits';
+  import { createFocusController, type FocusController } from '../scripts/gsap-focus';
+  import { gsap } from 'gsap';
+
+  const ORBITS = [
+    { rx: 18, ry: 7.5  },
+    { rx: 28, ry: 11.5 },
+    { rx: 37, ry: 15.5 },
+    { rx: 45, ry: 18.5 },
+  ];
+  const BASE_SIZE = 100;
+
+  let controller: FocusController | null = null;
+
+  function initPage(): void {
+    const stage = document.getElementById('kosmos-stage');
+    if (!stage) return;
+
+    // Light-Mode Setup
+    const canvas = document.getElementById('starfield-canvas') as HTMLCanvasElement | null;
+    if (canvas) canvas.style.display = 'none';
+    const nav      = document.querySelector<HTMLElement>('.space-nav');
+    const wordmark = document.querySelector<HTMLElement>('.norive-wordmark');
+    if (nav)      nav.style.background = 'linear-gradient(to bottom, rgba(237,232,223,0.85) 0%, transparent 100%)';
+    if (wordmark) wordmark.style.color  = '#6E5035';
+
+    const orbitSvg  = stage.querySelector<HTMLElement>('.orbit-svg');
+    const central   = document.getElementById('kosmos-center');
+    const introEl   = document.getElementById('kosmos-intro');
+    const planetEls = Array.from(document.querySelectorAll<HTMLElement>('.universum-planet'));
+
+    // ── STATE RESET (ClientRouter Back-Navigation) ──
+    controller?.destroy();
+    controller = null;
+    gsap.killTweensOf(planetEls);
+    if (orbitSvg) { gsap.killTweensOf(orbitSvg); gsap.set(orbitSvg, { clearProps: 'all' }); }
+    if (central)  { gsap.killTweensOf(central);  gsap.set(central,  { clearProps: 'all' }); }
+    if (introEl)  introEl.style.display = '';
+    planetEls.forEach(el => { el.style.cssText = ''; });
+
+    // ── Größen ──
+    planetEls.forEach((el) => {
+      const size = responsivePlanetSize(BASE_SIZE);
+      el.style.width  = `${size}px`;
+      el.style.height = `${size}px`;
+    });
+
+    // ── 3-STATE FOCUS CONTROLLER ──
+    controller = createFocusController({
+      stage,
+      planets: planetEls,
+      systemParts: [orbitSvg, central, introEl],
+      heroSize: () => Math.min(560, window.innerWidth * 0.42, window.innerHeight * 0.68),
+      getData: (el) => ({
+        eyebrow: el.dataset.eyebrow ?? '',
+        titel:   el.dataset.titel ?? '',
+        beschr:  `${el.dataset.beschreibung ?? ''} — ${el.dataset.galaxien ?? '?'} Handlungsfelder`,
+        href:    (el as HTMLAnchorElement).href,
+        ctaText: 'Universum betreten',
+      }),
+    });
+
+    // ── Drag-System: Klick (ohne Drag) → STATE 2 ──
+    const bodies = planetEls.map(el => ({
+      el,
+      orbitIndex: parseInt(el.dataset.orbit ?? '0'),
+      startAngle: parseFloat(el.dataset.start ?? '0'),
+    }));
+
+    initDraggableOrbits(stage, ORBITS, bodies, (body, wasDragged) => {
+      if (wasDragged || !controller) return;
+      if (controller.isActive()) return; // Fokussiert → nur CTA/Ghost-Button bedienbar
+      controller.focusIn(body.el);
+    });
+
+    introAnimation(bodies, central);
+  }
+
+  // astro:page-load feuert bereits beim initialen Laden (Astro-Standard) —
+  // ein zusätzlicher direkter Aufruf würde initPage() doppelt ausführen.
+  document.addEventListener('astro:page-load', initPage);
+</script>
+
+<style>
+  /* ── INTRO-TEXT (unten mittig, STATE 1) ── */
+  .kosmos-intro {
+    position: absolute;
+    bottom: clamp(24px, 4vh, 48px);
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  .kosmos-intro p:first-child {
+    font-family: var(--mono, monospace);
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(110, 80, 53, 0.35);
+    margin-bottom: 4px;
+    max-width: none;
+  }
+
+  .kosmos-intro p:last-child {
+    font-family: var(--mono, monospace);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    color: rgba(110, 80, 53, 0.28);
+    max-width: none;
+  }
+</style>

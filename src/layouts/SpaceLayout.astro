@@ -1,0 +1,78 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import KompassOnboarding from '../components/ui/KompassOnboarding.astro';
+import PersoenlichPanel from '../components/ui/PersoenlichPanel.astro';
+import KonzeptPanel from '../components/ui/KonzeptPanel.astro';
+import { BEREICHE } from '../data/bereiche';
+import { getCollection } from 'astro:content';
+import '../styles/space.css';
+
+interface Props {
+  title: string;
+  description: string;
+  canonicalPath: string;
+  showPersonal?: boolean;
+  jsonLd?: Record<string, unknown>;
+}
+
+const { title, description, canonicalPath, showPersonal = true, jsonLd } = Astro.props;
+const base = import.meta.env.BASE_URL;
+
+// Slugs pro HB für Fortschrittsanzeige im persönlichen Panel
+const alleThemen = await getCollection('themen');
+const themenSlugs: Record<string, string[]> = {};
+BEREICHE.forEach((b) => {
+  themenSlugs[b.id] = alleThemen
+    .filter((t) => t.data.handlungsbereich === b.id)
+    .map((t) => t.id);
+});
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalPath={canonicalPath}
+  theme="dark"
+  jsonLd={jsonLd}
+>
+  <div class="space-shell" data-theme="dark">
+    <canvas id="starfield-canvas" aria-hidden="true" role="presentation"></canvas>
+
+    <!-- Navigation -->
+    <nav class="space-nav space-content" aria-label="Titan Hauptnavigation">
+      <a href={base} class="norive-wordmark" aria-label="Titan — Startseite">
+        Titan
+      </a>
+    </nav>
+
+    <!-- Hauptinhalt -->
+    <main id="hauptinhalt" tabindex="-1" class="space-content">
+      <slot />
+    </main>
+
+    <!-- Kompass-Onboarding -->
+    <KompassOnboarding />
+
+    <!-- Persönlicher Bereich (optional deaktivierbar) -->
+    {showPersonal && (
+      <>
+        <KonzeptPanel />
+        <PersoenlichPanel alleThemenSlugs={themenSlugs} />
+      </>
+    )}
+  </div>
+</BaseLayout>
+
+<!-- GSAP Universe Animations -->
+<script>
+  import { initUniverseAnimations } from '../scripts/gsap-universe';
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initUniverseAnimations);
+  } else {
+    initUniverseAnimations();
+  }
+</script>
+
+<!-- Progress Tracking -->
+<script src="../scripts/norive-progress.ts"></script>

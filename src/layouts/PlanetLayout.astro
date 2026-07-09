@@ -1,0 +1,123 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import CTAButton from '../components/ui/CTAButton.astro';
+import PersoenlichPanel from '../components/ui/PersoenlichPanel.astro';
+import KompassOnboarding from '../components/ui/KompassOnboarding.astro';
+import KonzeptPanel from '../components/ui/KonzeptPanel.astro';
+import { BEREICHE } from '../data/bereiche';
+import { getCollection } from 'astro:content';
+import '../styles/planet.css';
+
+interface Props {
+  title: string;
+  description: string;
+  canonicalPath: string;
+  hbId: string;
+  hbNummer: number;
+  /** URL-Segment des übergeordneten Universums, z. B. "fachwirt-marketing" */
+  universumId: string;
+  jsonLd?: Record<string, unknown>;
+}
+
+const { title, description, canonicalPath, hbId, hbNummer, universumId, jsonLd } = Astro.props;
+const base = import.meta.env.BASE_URL;
+
+// Slugs für PersoenlichPanel Fortschrittsanzeige
+const alleThemen = await getCollection('themen');
+const themenSlugs: Record<string, string[]> = {};
+BEREICHE.forEach((b) => {
+  themenSlugs[b.id] = alleThemen
+    .filter((t) => t.data.handlungsbereich === b.id)
+    .map((t) => t.id);
+});
+---
+
+<BaseLayout title={title} description={description} canonicalPath={canonicalPath} theme="light" jsonLd={jsonLd}>
+  <div class="planet-shell">
+
+    <!-- Topbar: Back zum HF-Planeten-System + Orientierung -->
+    <header class="planet-topbar" role="banner">
+      <div class="planet-topbar-back">
+        <!-- href geht zur Planeten-Seite innerhalb des richtigen Universums -->
+        <CTAButton href={`${base}${universumId}/${hbId}/`} variant="back" label={`Zurück zu Handlungsfeld ${hbNummer}`}>
+          ← Handlungsfeld {hbNummer}
+        </CTAButton>
+      </div>
+
+      <div class="planet-topbar-progress" id="topbar-progress" aria-live="polite" data-hb-id={hbId}>
+        <!-- Wird durch norive-progress.ts befüllt -->
+      </div>
+    </header>
+
+    <!-- Hauptinhalt -->
+    <main id="hauptinhalt" tabindex="-1">
+      <slot />
+    </main>
+
+    <!-- Footer -->
+    <footer class="planet-footer">
+      <a href={`${base}${universumId}/`} class="planet-home-link" aria-label="Zurück zur Handlungsfeld-Übersicht">
+        ← Alle Handlungsfelder
+      </a>
+      <span class="planet-footer-brand">Titan</span>
+    </footer>
+
+  </div>
+  <script src="../scripts/norive-progress.ts"></script>
+
+  <!-- Panels: auch auf Lernseiten verfügbar -->
+  <KompassOnboarding />
+  <KonzeptPanel />
+  <PersoenlichPanel alleThemenSlugs={themenSlugs} />
+</BaseLayout>
+
+<style>
+  .planet-topbar {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: var(--bg, #EDE8DF);
+    border-bottom: 1px solid var(--border, rgba(28,25,23,0.12));
+    padding: 12px var(--sp-lg, 24px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--sp-md, 16px);
+  }
+
+  .planet-topbar-progress {
+    font-family: var(--mono, monospace);
+    font-size: 11px;
+    color: var(--text-muted, #5E5450);
+    letter-spacing: 0.08em;
+    text-align: right;
+  }
+
+  /* Footer */
+  .planet-footer {
+    border-top: 1px solid var(--border, rgba(28,25,23,0.1));
+    padding: var(--sp-lg, 24px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .planet-home-link {
+    font-family: var(--mono, monospace);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: var(--text-muted, #5E5450);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .planet-home-link:hover { color: var(--accent, #6E5035); }
+
+  .planet-footer-brand {
+    font-family: var(--mono, monospace);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(110,80,53,0.3);
+  }
+</style>

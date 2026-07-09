@@ -1,0 +1,163 @@
+---
+/**
+ * GalaxieGlobe.astro — Handlungsfeld-Sphäre für die Galaxie-Auswahl (STATE 1 Objekt)
+ *
+ * Ebene 2 der Hierarchie: Universum → GALAXIE (HF) → Planet.
+ * Klick wird von gsap-orbits.ts abgefangen (kein direktes href-Follow) und
+ * löst über gsap-focus.ts die STATE-2-Transition aus. Navigation nur per CTA.
+ *
+ * Telemetrie-Kontrakt (Dozenten-Dashboard, Phase 2):
+ *   data-universum-id   — HF-Kennung (hb1…hb4)
+ *   data-galaxie-id     — Alias von data-universum-id (Klarheit auf HF-Ebene)
+ *   data-hb-slugs       — kommagetrennte Themen-Slugs des HF
+ *   data-progress-hb    — Fortschritt in %, client-seitig aus localStorage gesetzt
+ */
+interface Props {
+  hfId: string;
+  nummer: number;
+  titel: string;
+  beschreibung: string;
+  href: string;
+  themenCount: number;
+  hbSlugs: string[];
+  orbitIdx: number;
+  startAngle: number;
+  color: { highlight: string; base: string; rim: string; atmo: string };
+}
+
+const {
+  hfId, nummer, titel, beschreibung, href, themenCount,
+  hbSlugs, orbitIdx, startAngle, color,
+} = Astro.props;
+
+const gId = (s: string) => `hfp-${hfId}-${s}`;
+---
+
+<a
+  class="hf-planet"
+  href={href}
+  id={`planet-${hfId}`}
+  data-hf-id={hfId}
+  data-universum-id={hfId}
+  data-galaxie-id={hfId}
+  data-hb-slugs={hbSlugs.join(',')}
+  data-orbit={orbitIdx}
+  data-start={startAngle}
+  data-nummer={nummer}
+  data-titel={titel}
+  data-beschreibung={beschreibung}
+  data-themen={themenCount}
+  aria-label={`Handlungsfeld ${nummer}: ${titel}`}
+>
+  <svg class="ps-sphere" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" overflow="visible">
+    <defs>
+      <radialGradient id={gId('g')} cx="35%" cy="30%" r="70%">
+        <stop offset="0%"   stop-color={color.highlight} stop-opacity="0.95"/>
+        <stop offset="40%"  stop-color={color.base}      stop-opacity="0.88"/>
+        <stop offset="100%" stop-color="#06040A"          stop-opacity="0.97"/>
+      </radialGradient>
+      <radialGradient id={gId('a')} cx="50%" cy="50%" r="50%">
+        <stop offset="65%"  stop-color="transparent"/>
+        <stop offset="100%" stop-color={color.atmo}/>
+      </radialGradient>
+      <radialGradient id={gId('r')} cx="68%" cy="65%" r="55%">
+        <stop offset="0%"   stop-color="transparent"/>
+        <stop offset="72%"  stop-color="transparent"/>
+        <stop offset="100%" stop-color={color.rim}/>
+      </radialGradient>
+    </defs>
+    <circle cx="50" cy="50" r="52" fill={`url(#${gId('a')})`}/>
+    <circle cx="50" cy="50" r="44" fill={`url(#${gId('g')})`}/>
+    <circle cx="50" cy="50" r="44" fill={`url(#${gId('r')})`}/>
+    <ellipse cx="36" cy="33" rx="9" ry="6" fill="rgba(255,250,240,0.2)"/>
+  </svg>
+
+  <div class="hf-planet-label" aria-hidden="true">
+    <span class="hpl-num">HF {nummer}</span>
+    <span class="hpl-name">{titel}</span>
+    <span class="hpl-count">{themenCount} Kapitel</span>
+  </div>
+</a>
+
+<style>
+  .hf-planet {
+    position: absolute;
+    display: block;
+    text-decoration: none;
+    cursor: grab;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: none;
+    opacity: 0; /* Kein Flash bei 0,0 — JS positioniert und blendet ein */
+  }
+  .hf-planet:active { cursor: grabbing; }
+
+  .ps-sphere {
+    width: 100%;
+    height: 100%;
+    display: block;
+    overflow: visible;
+    transition: filter 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .hf-planet:hover .ps-sphere,
+  .hf-planet:focus-visible .ps-sphere {
+    filter:
+      drop-shadow(0 0 14px rgba(196, 168, 130, 0.65))
+      drop-shadow(0 0 36px rgba(196, 168, 130, 0.28));
+  }
+
+  .hf-planet:focus-visible {
+    outline: 2px solid rgba(110, 80, 53, 0.6);
+    outline-offset: 8px;
+    border-radius: 50%;
+  }
+
+  .hf-planet-label {
+    position: absolute;
+    bottom: calc(100% + 14px);
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.22s ease;
+    white-space: nowrap;
+    z-index: 50;
+  }
+
+  .hf-planet:hover .hf-planet-label,
+  .hf-planet:focus-visible .hf-planet-label { opacity: 1; }
+
+  .hpl-num {
+    font-family: var(--mono, monospace);
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(110, 80, 53, 0.45);
+  }
+
+  .hpl-name {
+    font-family: var(--mono, monospace);
+    font-size: 11px;
+    font-weight: 400;
+    color: #1C1917;
+    background: rgba(237, 232, 223, 0.95);
+    border: 1px solid rgba(110, 80, 53, 0.15);
+    padding: 4px 10px;
+    letter-spacing: 0.04em;
+    max-width: 240px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .hpl-count {
+    font-family: var(--mono, monospace);
+    font-size: 9px;
+    color: rgba(110, 80, 53, 0.5);
+    letter-spacing: 0.1em;
+  }
+</style>

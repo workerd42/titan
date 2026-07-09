@@ -1,0 +1,10 @@
+---
+import SpaceLayout from '../layouts/SpaceLayout.astro';
+---
+<SpaceLayout title="Nicht gefunden" description="404" canonicalPath="/404/">
+  <div class="shell" style="padding:var(--sp-2xl) 0; text-align:center;">
+    <p style="font-family:var(--serif); font-size:var(--text-xl); color:var(--text); font-weight:300;">404</p>
+    <p style="color:var(--text-muted); font-family:var(--mono); margin-top:var(--sp-md);">Seite nicht gefunden</p>
+    <a href={import.meta.env.BASE_URL} style="display:inline-block; margin-top:var(--sp-xl); color:var(--accent); font-family:var(--mono); font-size:var(--text-xs); letter-spacing:0.14em;">← Zurück</a>
+  </div>
+</SpaceLayout>
