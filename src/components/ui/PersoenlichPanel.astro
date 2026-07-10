@@ -159,44 +159,34 @@ const base = import.meta.env.BASE_URL;
   const PROGRESS_KEY = 'norive-progress-v2';
   const FIRST_KEY    = 'titan-first-visit';
 
-  const panel  = document.getElementById('persoenlich-panel') as HTMLElement;
-  const toggle = document.getElementById('persoenlich-toggle') as HTMLButtonElement;
-
-  function openPanel()  {
+  // ── STABILE FUNKTIONEN: fragen DOM bei jedem Aufruf frisch ab ──
+  function openPanel() {
+    const panel  = document.getElementById('persoenlich-panel');
+    const toggle = document.getElementById('persoenlich-toggle');
+    if (!panel || !toggle) return;
     panel.removeAttribute('hidden');
-    toggle.setAttribute('aria-expanded','true');
+    toggle.setAttribute('aria-expanded', 'true');
     render();
-    // Konzept-Panel schließen falls offen
-    const kp  = document.getElementById('konzept-panel') as HTMLElement | null;
-    const kt  = document.getElementById('konzept-toggle') as HTMLButtonElement | null;
-    if (kp && !kp.hidden) { kp.setAttribute('hidden',''); kt?.setAttribute('aria-expanded','false'); }
-    // Event für andere Komponenten
+    const kp = document.getElementById('konzept-panel');
+    const kt = document.getElementById('konzept-toggle');
+    if (kp && !kp.hidden) { kp.setAttribute('hidden', ''); kt?.setAttribute('aria-expanded', 'false'); }
     window.dispatchEvent(new CustomEvent('titan:meinbereich-opened'));
   }
-  function closePanel() { panel.setAttribute('hidden','');  toggle.setAttribute('aria-expanded','false'); }
 
-  toggle.addEventListener('click', () =>
-    toggle.getAttribute('aria-expanded') === 'true' ? closePanel() : openPanel()
-  );
-  document.getElementById('pp-close')?.addEventListener('click', closePanel);
-  document.addEventListener('keydown', e => { if (e.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') closePanel(); });
-
-  // Click-OUTSIDE: Panel schließen wenn außerhalb geklickt
-  document.addEventListener('click', (e) => {
-    if (toggle.getAttribute('aria-expanded') !== 'true') return;
-    const target = e.target as Node;
-    if (!panel.contains(target) && !toggle.contains(target)) closePanel();
-  });
+  function closePanel() {
+    const panel  = document.getElementById('persoenlich-panel');
+    const toggle = document.getElementById('persoenlich-toggle');
+    panel?.setAttribute('hidden', '');
+    toggle?.setAttribute('aria-expanded', 'false');
+  }
 
   function openOnboarding() {
     const ov = document.getElementById('kompass-onboarding');
     if (ov) { ov.removeAttribute('hidden'); ov.hidden = false; }
   }
-  document.getElementById('pp-setup-btn')?.addEventListener('click', openOnboarding);
-  document.getElementById('pp-edit-btn')?.addEventListener('click', openOnboarding);
 
   function renderKompass() {
-    const data = (() => { try { return JSON.parse(localStorage.getItem(KOMPASS_KEY)||'null'); } catch { return null; } })();
+    const data = (() => { try { return JSON.parse(localStorage.getItem(KOMPASS_KEY) || 'null'); } catch { return null; } })();
     const leer   = document.getElementById('pp-kompass-leer');
     const filled = document.getElementById('pp-kompass-data');
     if (data?.name) {
@@ -205,8 +195,8 @@ const base = import.meta.env.BASE_URL;
       const n = document.getElementById('pp-firma-name');
       const m = document.getElementById('pp-firma-meta');
       if (n) n.textContent = data.name;
-      const BL: Record<string,string> = {handel:'Handel',industrie:'Industrie',dienstleistung:'Dienstleistung',handwerk:'Handwerk',sonstiges:'Sonstiges'};
-      const GL: Record<string,string> = {mikro:'< 10 MA',klein:'10–49 MA',mittel:'50–249 MA',gross:'250+ MA'};
+      const BL = { handel:'Handel', industrie:'Industrie', dienstleistung:'Dienstleistung', handwerk:'Handwerk', sonstiges:'Sonstiges' };
+      const GL = { mikro:'< 10 MA', klein:'10–49 MA', mittel:'50–249 MA', gross:'250+ MA' };
       if (m) m.textContent = [data.rechtsform, BL[data.branche], GL[data.groesse]].filter(Boolean).join(' · ');
     } else {
       if (leer)   leer.hidden = false;
@@ -215,35 +205,71 @@ const base = import.meta.env.BASE_URL;
   }
 
   function renderProgress() {
-    const state  = (() => { try { return JSON.parse(localStorage.getItem(PROGRESS_KEY)||'{}'); } catch { return {}; } })();
-    const themen = (state as any).themen ?? {};
-    document.querySelectorAll<HTMLElement>('[data-progress-hb]').forEach(row => {
+    const state  = (() => { try { return JSON.parse(localStorage.getItem(PROGRESS_KEY) || '{}'); } catch { return {}; } })();
+    const themen = (state).themen ?? {};
+    document.querySelectorAll('[data-progress-hb]').forEach((row) => {
       const hbId  = row.getAttribute('data-progress-hb') ?? '';
-      const slugs: string[] = JSON.parse(row.getAttribute('data-hb-slugs')||'[]');
+      let slugs = [];
+      try { slugs = JSON.parse(row.getAttribute('data-hb-slugs') || '[]'); } catch { slugs = []; }
       if (!slugs.length) return;
       const total = slugs.length * 4;
       let done = 0;
-      slugs.forEach(s => { const t = (themen as any)[s]??{}; done += (t.verstehen?1:0)+(t.merken?1:0)+(t.anwenden?1:0)+(t.pruefen?1:0); });
-      const pct = Math.round((done/total)*100);
-      const fill = document.getElementById(`pp-fill-${hbId}`);
+      slugs.forEach((s) => { const t = themen[s] ?? {}; done += (t.verstehen?1:0)+(t.merken?1:0)+(t.anwenden?1:0)+(t.pruefen?1:0); });
+      const pct = Math.round((done / total) * 100);
+      const fill  = document.getElementById(`pp-fill-${hbId}`);
       const pctEl = document.getElementById(`pp-pct-${hbId}`);
       if (fill)  fill.style.width  = `${pct}%`;
       if (pctEl) pctEl.textContent = `${pct} %`;
     });
     const sv = document.getElementById('pp-streak-val');
-    if (sv) { const d = (state as any).lernStreakTage??0; sv.textContent = d > 0 ? `${d} Tag${d!==1?'e':''}` : '—'; }
+    if (sv) { const d = state.lernStreakTage ?? 0; sv.textContent = d > 0 ? `${d} Tag${d !== 1 ? 'e' : ''}` : '—'; }
   }
 
   function render() { renderKompass(); renderProgress(); }
 
-  // Erster Besuch: Panel nach Verzögerung öffnen
+  // ── PRO SEITE: Button-Listener neu anhängen + Anzeige aktualisieren
+  // (Elemente werden bei jeder Astro-ClientRouter-Navigation ersetzt) ──
+  function initPersoenlichPanel() {
+    const toggle = document.getElementById('persoenlich-toggle');
+    if (!toggle) return;
+
+    toggle.addEventListener('click', () =>
+      toggle.getAttribute('aria-expanded') === 'true' ? closePanel() : openPanel()
+    );
+    document.getElementById('pp-close')?.addEventListener('click', closePanel);
+    document.getElementById('pp-setup-btn')?.addEventListener('click', openOnboarding);
+    document.getElementById('pp-edit-btn')?.addEventListener('click', openOnboarding);
+
+    render();
+  }
+
+  document.addEventListener('astro:page-load', initPersoenlichPanel);
+
+  // ── EINMALIG: document/window überleben Navigation, keine Dopplung ──
+  document.addEventListener('keydown', (e) => {
+    const toggle = document.getElementById('persoenlich-toggle');
+    if (e.key === 'Escape' && toggle?.getAttribute('aria-expanded') === 'true') closePanel();
+  });
+
+  document.addEventListener('click', (e) => {
+    const toggle = document.getElementById('persoenlich-toggle');
+    const panel  = document.getElementById('persoenlich-panel');
+    if (!toggle || !panel || toggle.getAttribute('aria-expanded') !== 'true') return;
+    const target = e.target as Node;
+    if (!panel.contains(target) && !toggle.contains(target)) closePanel();
+  });
+
+  window.addEventListener('norive:kompass-updated', () => {
+    render();
+    const toggle = document.getElementById('persoenlich-toggle');
+    if (toggle?.getAttribute('aria-expanded') !== 'true') openPanel();
+  });
+  window.addEventListener('norive:progress-updated', renderProgress);
+
+  // Erster Besuch überhaupt: Panel einmalig nach Verzögerung öffnen
+  // (nur beim allerersten Laden — FIRST_KEY verhindert Wiederholung)
   if (!localStorage.getItem(FIRST_KEY)) {
     localStorage.setItem(FIRST_KEY, '1');
     setTimeout(openPanel, 1800);
   }
-
-  window.addEventListener('norive:kompass-updated', () => { render(); if (toggle.getAttribute('aria-expanded') !== 'true') openPanel(); });
-  window.addEventListener('norive:progress-updated', renderProgress);
-
-  render();
 </script>

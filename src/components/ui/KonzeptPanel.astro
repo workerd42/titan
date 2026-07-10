@@ -291,16 +291,19 @@
 </style>
 
 <script>
-  const panel  = document.getElementById('konzept-panel') as HTMLElement;
-  const toggle = document.getElementById('konzept-toggle') as HTMLButtonElement;
-  const close  = document.getElementById('kp-close') as HTMLButtonElement;
-
+  // ── STABILE FUNKTIONEN: fragen DOM bei jedem Aufruf frisch ab ──
+  // Werden sowohl von den (bei jeder Navigation neu angehängten) Button-
+  // Listenern als auch von den (nur einmal registrierten) document/window-
+  // Listenern genutzt, damit nach ClientRouter-Navigation nie auf veraltete
+  // Element-Referenzen zugegriffen wird.
   function openKonzept() {
+    const panel  = document.getElementById('konzept-panel');
+    const toggle = document.getElementById('konzept-toggle');
+    if (!panel || !toggle) return;
     panel.removeAttribute('hidden');
     toggle.setAttribute('aria-expanded', 'true');
-    // Mein Bereich schließen falls offen (kein Konflikt)
-    const mbPanel  = document.getElementById('persoenlich-panel') as HTMLElement | null;
-    const mbToggle = document.getElementById('persoenlich-toggle') as HTMLButtonElement | null;
+    const mbPanel  = document.getElementById('persoenlich-panel');
+    const mbToggle = document.getElementById('persoenlich-toggle');
     if (mbPanel && !mbPanel.hidden) {
       mbPanel.setAttribute('hidden', '');
       mbToggle?.setAttribute('aria-expanded', 'false');
@@ -308,26 +311,40 @@
   }
 
   function closeKonzept() {
-    panel.setAttribute('hidden', '');
-    toggle.setAttribute('aria-expanded', 'false');
+    const panel  = document.getElementById('konzept-panel');
+    const toggle = document.getElementById('konzept-toggle');
+    panel?.setAttribute('hidden', '');
+    toggle?.setAttribute('aria-expanded', 'false');
   }
 
-  toggle?.addEventListener('click', () =>
-    toggle.getAttribute('aria-expanded') === 'true' ? closeKonzept() : openKonzept()
-  );
-  close?.addEventListener('click', closeKonzept);
+  // ── PRO SEITE: Button-Listener neu anhängen (Elemente werden bei jeder
+  // Astro-ClientRouter-Navigation durch frische DOM-Knoten ersetzt) ──
+  function initKonzeptPanel() {
+    const toggle = document.getElementById('konzept-toggle');
+    const close  = document.getElementById('kp-close');
+    if (!toggle) return;
 
+    toggle.addEventListener('click', () =>
+      toggle.getAttribute('aria-expanded') === 'true' ? closeKonzept() : openKonzept()
+    );
+    close?.addEventListener('click', closeKonzept);
+  }
+
+  document.addEventListener('astro:page-load', initKonzeptPanel);
+
+  // ── EINMALIG: document/window überleben Navigation, keine Dopplung ──
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') closeKonzept();
+    const toggle = document.getElementById('konzept-toggle');
+    if (e.key === 'Escape' && toggle?.getAttribute('aria-expanded') === 'true') closeKonzept();
   });
 
-  // Click-OUTSIDE: Panel schließen wenn außerhalb geklickt
   document.addEventListener('click', (e) => {
-    if (toggle.getAttribute('aria-expanded') !== 'true') return;
+    const toggle = document.getElementById('konzept-toggle');
+    const panel  = document.getElementById('konzept-panel');
+    if (!toggle || !panel || toggle.getAttribute('aria-expanded') !== 'true') return;
     const target = e.target as Node;
     if (!panel.contains(target) && !toggle.contains(target)) closeKonzept();
   });
 
-  // Auf "Mein Bereich geöffnet" reagieren
   window.addEventListener('titan:meinbereich-opened', closeKonzept);
 </script>

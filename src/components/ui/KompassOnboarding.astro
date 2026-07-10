@@ -463,16 +463,6 @@
     catch { /* ignore */ }
   }
 
-  const overlay = document.getElementById('kompass-onboarding') as HTMLElement | null;
-  if (!overlay) throw new Error('Onboarding overlay not found');
-
-  // Zeigen wenn kein Kompass vorhanden
-  const existing = loadKompass();
-  if (!existing?.name) {
-    overlay.hidden = false;
-    overlay.removeAttribute('hidden');
-  }
-
   let currentStep = 1;
 
   function showStep(step: number): void {
@@ -487,72 +477,95 @@
     });
   }
 
-  showStep(1);
+  // ── PRO SEITE: Overlay-Klick-Delegation neu anhängen (Elemente werden
+  // bei jeder Astro-ClientRouter-Navigation durch frische DOM-Knoten
+  // ersetzt — sonst reagieren Weiter/Zurück/Fertig nicht mehr, sobald das
+  // Onboarding über "Bearbeiten" auf einer späteren Seite erneut geöffnet
+  // wird). Das automatische Anzeigen beim allerersten Besuch (fehlender
+  // Kompass) bleibt unverändert einmalig beim initialen Skript-Lauf. ──
+  function initOnboardingInteraction(): void {
+    const overlay = document.getElementById('kompass-onboarding') as HTMLElement | null;
+    if (!overlay) return;
 
-  // Navigation
-  overlay.addEventListener('click', (e) => {
-    const target = e.target as HTMLElement;
-    const btn = target.closest('[data-next], [data-back], [data-skip], #onboarding-finish') as HTMLElement | null;
-    if (!btn) return;
+    showStep(1);
 
-    if (btn.hasAttribute('data-skip')) {
-      overlay.hidden = true;
-      return;
-    }
+    overlay.addEventListener('click', (e) => {
+      const target = e.target as HTMLElement;
+      const btn = target.closest('[data-next], [data-back], [data-skip], #onboarding-finish') as HTMLElement | null;
+      if (!btn) return;
 
-    const next = btn.getAttribute('data-next');
-    const back = btn.getAttribute('data-back');
-
-    if (next) showStep(parseInt(next));
-    if (back) showStep(parseInt(back));
-
-    if (btn.id === 'onboarding-finish') {
-      const kompass: KompassUnternehmen = {
-        name: (document.getElementById('k-name') as HTMLInputElement)?.value || 'Mein Unternehmen',
-        branche: (document.getElementById('k-branche') as HTMLSelectElement)?.value || 'sonstiges',
-        brancheKategorie: ((document.getElementById('k-branche') as HTMLSelectElement)?.value || 'sonstiges') as any,
-        groesse: ((document.querySelector('input[name="groesse"]:checked') as HTMLInputElement)?.value || 'mittel') as any,
-        mitarbeiter: '',
-        umsatz: '',
-        rechtsform: (document.getElementById('k-rechtsform') as HTMLSelectElement)?.value || '',
-        organisationsstruktur: '',
-        ausbildungsberufe: (document.getElementById('k-ausbildung') as HTMLInputElement)?.value || '',
-        zielgruppen: (document.getElementById('k-zielgruppen') as HTMLInputElement)?.value || '',
-        besonderheiten: (document.getElementById('k-besonderheiten') as HTMLTextAreaElement)?.value || '',
-        erstellt: new Date().toISOString(),
-      };
-      saveKompass(kompass);
-      window.dispatchEvent(new CustomEvent('norive:kompass-updated'));
-      overlay.hidden = true;
-
-      // Persönlichen Bereich öffnen um die gespeicherten Daten zu zeigen
-      const panel = document.getElementById('persoenlich-panel');
-      const toggle = document.getElementById('persoenlich-toggle') as HTMLButtonElement | null;
-      if (panel && toggle) {
-        panel.removeAttribute('hidden');
-        toggle.setAttribute('aria-expanded', 'true');
+      if (btn.hasAttribute('data-skip')) {
+        overlay.hidden = true;
+        return;
       }
 
-      // Kurze Bestätigung einblenden
-      const toast = document.createElement('div');
-      toast.setAttribute('role', 'status');
-      toast.setAttribute('aria-live', 'polite');
-      toast.style.cssText = [
-        'position:fixed', 'bottom:32px', 'left:50%',
-        'transform:translateX(-50%)', 'z-index:2000',
-        'background:rgba(28,25,23,0.96)',
-        'border:1px solid rgba(196,168,130,0.4)',
-        'padding:14px 28px',
-        'font-family:var(--mono,monospace)',
-        'font-size:11px', 'letter-spacing:0.16em',
-        'text-transform:uppercase',
-        'color:rgba(196,168,130,0.9)',
-        'pointer-events:none',
-        'white-space:nowrap',
-      ].join(';');
-      toast.textContent = 'Kompass-Unternehmen gespeichert';
-      document.body.appendChild(toast);
-      setTimeout(() => toast.remove(), 3200);
+      const next = btn.getAttribute('data-next');
+      const back = btn.getAttribute('data-back');
+
+      if (next) showStep(parseInt(next));
+      if (back) showStep(parseInt(back));
+
+      if (btn.id === 'onboarding-finish') {
+        const kompass: KompassUnternehmen = {
+          name: (document.getElementById('k-name') as HTMLInputElement)?.value || 'Mein Unternehmen',
+          branche: (document.getElementById('k-branche') as HTMLSelectElement)?.value || 'sonstiges',
+          brancheKategorie: ((document.getElementById('k-branche') as HTMLSelectElement)?.value || 'sonstiges') as any,
+          groesse: ((document.querySelector('input[name="groesse"]:checked') as HTMLInputElement)?.value || 'mittel') as any,
+          mitarbeiter: '',
+          umsatz: '',
+          rechtsform: (document.getElementById('k-rechtsform') as HTMLSelectElement)?.value || '',
+          organisationsstruktur: '',
+          ausbildungsberufe: (document.getElementById('k-ausbildung') as HTMLInputElement)?.value || '',
+          zielgruppen: (document.getElementById('k-zielgruppen') as HTMLInputElement)?.value || '',
+          besonderheiten: (document.getElementById('k-besonderheiten') as HTMLTextAreaElement)?.value || '',
+          erstellt: new Date().toISOString(),
+        };
+        saveKompass(kompass);
+        window.dispatchEvent(new CustomEvent('norive:kompass-updated'));
+        overlay.hidden = true;
+
+        const panel  = document.getElementById('persoenlich-panel');
+        const toggle = document.getElementById('persoenlich-toggle') as HTMLButtonElement | null;
+        if (panel && toggle) {
+          panel.removeAttribute('hidden');
+          toggle.setAttribute('aria-expanded', 'true');
+        }
+
+        const toast = document.createElement('div');
+        toast.setAttribute('role', 'status');
+        toast.setAttribute('aria-live', 'polite');
+        toast.style.cssText = [
+          'position:fixed', 'bottom:32px', 'left:50%',
+          'transform:translateX(-50%)', 'z-index:2000',
+          'background:rgba(28,25,23,0.96)',
+          'border:1px solid rgba(196,168,130,0.4)',
+          'padding:14px 28px',
+          'font-family:var(--mono,monospace)',
+          'font-size:11px', 'letter-spacing:0.16em',
+          'text-transform:uppercase',
+          'color:rgba(196,168,130,0.9)',
+          'pointer-events:none',
+          'white-space:nowrap',
+        ].join(';');
+        toast.textContent = 'Kompass-Unternehmen gespeichert';
+        document.body.appendChild(toast);
+        setTimeout(() => toast.remove(), 3200);
+      }
+    });
+  }
+
+  document.addEventListener('astro:page-load', initOnboardingInteraction);
+
+  // Automatisches Anzeigen beim allerersten Besuch (kein Kompass gespeichert) —
+  // bewusst einmalig beim initialen Modul-Lauf, nicht bei jeder Navigation,
+  // damit das Overlay nach "Überspringen" nicht auf jeder weiteren Seite
+  // erneut aufpoppt.
+  const initialOverlay = document.getElementById('kompass-onboarding') as HTMLElement | null;
+  if (initialOverlay) {
+    const existing = loadKompass();
+    if (!existing?.name) {
+      initialOverlay.hidden = false;
+      initialOverlay.removeAttribute('hidden');
     }
-  });
+  }
 </script>
