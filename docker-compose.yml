@@ -35,7 +35,18 @@ services:
       postgres:
         condition: service_healthy
     environment:
-      DATABASE_URL: postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
+      # Diskrete Felder statt einer DATABASE_URL: In einer Verbindungs-URL
+      # (postgres://user:pass@host/db) zerreissen Sonderzeichen im Passwort
+      # — @ / : ? # % — die Syntax. Genau das ist beim ersten Deploy passiert
+      # (ERR_INVALID_URL, Container in Neustart-Schleife) und hätte bei jedem
+      # Passwortwechsel erneut zugeschlagen. So ist jedes Passwort erlaubt.
+      # Die .env-Schnittstelle bleibt unverändert POSTGRES_* — hier wird nur
+      # intern übersetzt.
+      PGHOST: postgres
+      PGPORT: 5432
+      PGUSER: ${POSTGRES_USER}
+      PGPASSWORD: ${POSTGRES_PASSWORD}
+      PGDATABASE: ${POSTGRES_DB}
       BETTER_AUTH_SECRET: ${BETTER_AUTH_SECRET:?BETTER_AUTH_SECRET fehlt in .env}
       BETTER_AUTH_URL: ${BETTER_AUTH_URL:?BETTER_AUTH_URL fehlt in .env}
     # Nur an localhost gebunden — TLS/öffentlicher Zugang läuft weiterhin

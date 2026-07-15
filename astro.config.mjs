@@ -31,9 +31,18 @@ export default defineConfig({
   // Typisierte Server-Env (astro:env/server). Secrets werden zur Laufzeit aus
   // der Umgebung gelesen (Dev: .env, Prod: Docker-Compose-Env), NICHT ins
   // Bundle inlined. drizzle-kit läuft außerhalb Astro und nutzt process.env.
+  // Bewusst diskrete PG-Felder statt einer DATABASE_URL: In einer URL
+  // (postgres://user:pass@host/db) zerreissen Sonderzeichen im Passwort —
+  // @ / : ? # % — die Syntax. Das ist real passiert (ERR_INVALID_URL beim
+  // ersten Deploy) und wäre bei jedem Passwortwechsel erneut aufgetreten.
+  // Als Felder übergeben gibt es keinerlei Zeichen-Beschränkung.
   env: {
     schema: {
-      DATABASE_URL: envField.string({ context: 'server', access: 'secret' }),
+      PGHOST: envField.string({ context: 'server', access: 'secret' }),
+      PGPORT: envField.number({ context: 'server', access: 'secret', default: 5432 }),
+      PGUSER: envField.string({ context: 'server', access: 'secret' }),
+      PGPASSWORD: envField.string({ context: 'server', access: 'secret' }),
+      PGDATABASE: envField.string({ context: 'server', access: 'secret' }),
       BETTER_AUTH_SECRET: envField.string({ context: 'server', access: 'secret' }),
       BETTER_AUTH_URL: envField.string({ context: 'server', access: 'secret', optional: true }),
     },

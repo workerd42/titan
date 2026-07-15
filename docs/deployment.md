@@ -62,12 +62,14 @@ https://prototyp-staging.norive.de
 Vorlage: `.env.example` im Repo. Für Produktion werden gebraucht:
 ```bash
 POSTGRES_USER=monarch
-POSTGRES_PASSWORD=<starkes-passwort>
+POSTGRES_PASSWORD=<starkes-passwort — beliebige Zeichen erlaubt>
 POSTGRES_DB=hermes
 BETTER_AUTH_SECRET=<openssl rand -base64 32>
 BETTER_AUTH_URL=https://prototyp-staging.norive.de
 ```
-`DATABASE_URL` wird von der Compose-Datei aus diesen Werten zusammengebaut — in Produktion **nicht** separat setzen. Die `.env` ist gitignored und wird nie ins Image kopiert (`.dockerignore`).
+Compose übersetzt diese Werte intern in die Felder `PGHOST`/`PGPORT`/`PGUSER`/`PGPASSWORD`/`PGDATABASE` für den App-Container — die `PG*`-Variablen gehören also **nicht** in die `.env`. Die `.env` ist gitignored und wird nie ins Image kopiert (`.dockerignore`).
+
+**Warum Einzelfelder statt einer `DATABASE_URL`?** Beim ersten Live-Deploy stand hier eine zusammengebaute URL (`postgres://user:passwort@postgres:5432/db`). Enthält das Passwort ein Zeichen mit Sonderbedeutung in URLs — `@ / : ? # %` — zerreisst es die Syntax: Der Container lief in eine Neustart-Schleife mit `ERR_INVALID_URL`, während Postgres selbst kerngesund war (irreführendes Fehlerbild, das nach einem DB-Problem aussah). Die Zugangsdaten werden jetzt als diskrete Felder an `pg` übergeben. Damit ist **jedes Passwort erlaubt** — es gibt keine Zeichen-Beschränkung mehr, und der Fehler kann bei künftigen Passwortwechseln nicht wiederkehren.
 
 **Namensgebung (festgelegt 2026-07-15):** Benutzer `monarch`, Datenbank `hermes` — bewusst **nicht** der Projektname (`titan` benennt das Projekt, nicht die Datenbank-Identität). Die **lokale Entwicklung darf abweichen** und nutzt weiterhin `titan/titan` (siehe [spickzettel.md](spickzettel.md)).
 
@@ -199,6 +201,8 @@ Zwei Dinge, **extern** überwacht (ein Monitoring auf demselben VPS merkt dessen
 7. **Middleware darf Auth/DB nicht zur Build-Zeit laden** — Astro führt die Middleware auch beim Prerendern der statischen Seiten aus. Ein statischer `import` von `lib/auth` würde beim Bauen eine DB-Verbindung/Secrets verlangen und den Build brechen. Deshalb in `middleware.ts`: `isPrerendered`-Guard + **dynamischer** Import. Beim Umbauen der Middleware unbedingt beibehalten.
 8. **Migrationen im Prod-Image** — `drizzle-kit` ist devDependency und liegt bewusst nicht im Image. Migrationen laufen über `scripts/migrate.mjs` (nur `drizzle-orm`/`pg`) automatisch beim Containerstart. Schlägt die Migration fehl, startet der Server absichtlich nicht.
 9. **Secrets fehlen** → `docker compose up` bricht sofort ab (`${VAR:?}` in der Compose-Datei). Das ist gewollt: besser lauter Abbruch als ein Start mit unsicheren Defaults. Dann `.env` neben `docker-compose.yml` prüfen.
+10. **Sonderzeichen im DB-Passwort ~~sprengen die Verbindungs-URL~~** (beim ersten Live-Deploy real passiert, **inzwischen strukturell behoben**) — Damals baute Compose eine `DATABASE_URL` (`postgres://user:passwort@postgres:5432/db`) zusammen; ein `/` im Passwort zerriss die Syntax, der App-Container lief in eine Neustart-Schleife mit `ERR_INVALID_URL`, nginx meldete 502 — während Postgres selbst durchgehend `healthy` war. Das Fehlerbild zeigte auf die DB, die Ursache lag im Passwort. **Heute übergibt Compose diskrete Felder (`PGHOST`/`PGUSER`/`PGPASSWORD`/…) statt einer URL, damit ist jedes Passwort erlaubt.** Merkposten für die Zukunft: Zugangsdaten nie durch eine URL zwängen, wenn die Bibliothek sie auch als Felder annimmt. Falls doch nötig, gehören sie durch `encodeURIComponent`.
+    *Nachwirkung:* Postgres brennt das Passwort beim allerersten Start ins Volume. Wird es nachträglich in der `.env` geändert, greift das ins Leere — die Reparatur damals verlangte `docker compose down -v` (Volume weg = Daten weg).
 
 ## ⚠️ Domain-Umzug: `prototyp-staging.norive.de` ist NICHT die finale Adresse
 
