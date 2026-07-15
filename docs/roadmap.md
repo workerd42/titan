@@ -97,6 +97,23 @@ Zwei gleichrangige Zielgruppen, zwei Einstiegswege:
 
 - [ ] Nutzer-/Rollenverwaltung, Content-Übersicht. **Detaillierter Scope in separater Rücksprache festzulegen** (offener Punkt).
 
+### 2.6 Redaktionssystem für Fachautoren (neu, 2026-07-15)
+
+**Auslöser:** Die Inhalte werden **dauerhaft von einem Fachautor** (ohne Technikkenntnisse) geliefert. „Markdown-Datei + Git-Commit" ist damit kein tragfähiger Weg mehr — ein CMS ist berechtigt.
+
+- [ ] **Auto-Deploy als Voraussetzung** — Titan rendert die Themenseiten statisch beim Build; ohne automatischen Deploy (Webhook → Build → Ausrollen) geht keine Textänderung live. **Das ist der eigentliche Aufwand, nicht das CMS.** Betrifft jede CMS-Variante.
+- [ ] CMS-Entscheidung umsetzen (Richtung: **Directus**, selbst gehostet auf einer Sub-Domain im Norive-Ökosystem)
+- [ ] Zod-Schema-Validierung erhalten: Astro-Content-Collections können per API laden **und** weiterhin gegen das Schema validieren → fehlerhafte Inhalte lassen den Build scheitern, statt live zu gehen.
+
+**Abgewogene Optionen:**
+
+| Option | Für | Gegen |
+|---|---|---|
+| **Directus** (selbst gehostet, kostenlos) — *Empfehlung* | Fachautor meldet sich mit **E-Mail/Passwort** an, kein GitHub nötig; sehr gute Editor-UI für verschachtelte Strukturen; EU-tauglich; eigene Revisionshistorie | Zweites System (Betrieb, Patches, Absicherung) |
+| **Git-basierter CMS** (Decap/Sveltia/Pages CMS) | Inhalte bleiben versioniert/überprüfbar (bei Prüfungsinhalten wertvoll); kein zweites System; kostenlos | **Fachautor bräuchte ein GitHub-Konto** oder wir betreiben einen OAuth-Proxy — praktische Hürde |
+| ~~PIM-System~~ | — | **Falsches Werkzeug.** PIM verwaltet Produktdaten (Artikel, Varianten, Attribute, Preise) für Verkaufskanäle. Titans Inhalte sind redaktionelle Lerntexte — Kategorie-Verwechslung. |
+| ~~Payload CMS~~ | — | Wollte **auch** Auth/API übernehmen → hätten wir doppelt (zwei Nutzersysteme). Directus wird bewusst **nur** als Redaktionswerkzeug für Mitarbeiter eingesetzt, sauber getrennt von der Lernenden-Anmeldung. |
+
 ## 🤖 Phase 3: KI-Orchestrierung & Interaktiver Baukasten
 
 **Ziel:** Aktivierung der Core-Engine in Phase 3 (Anwenden) und Phase 4 (Prüfen).

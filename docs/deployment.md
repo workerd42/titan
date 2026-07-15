@@ -61,13 +61,19 @@ https://prototyp-staging.norive.de
 ### 3a. Secrets auf dem VPS (`.env` neben `docker-compose.yml`)
 Vorlage: `.env.example` im Repo. Für Produktion werden gebraucht:
 ```bash
-POSTGRES_USER=titan
+POSTGRES_USER=monarch
 POSTGRES_PASSWORD=<starkes-passwort>
-POSTGRES_DB=titan
+POSTGRES_DB=hermes
 BETTER_AUTH_SECRET=<openssl rand -base64 32>
 BETTER_AUTH_URL=https://prototyp-staging.norive.de
 ```
 `DATABASE_URL` wird von der Compose-Datei aus diesen Werten zusammengebaut — in Produktion **nicht** separat setzen. Die `.env` ist gitignored und wird nie ins Image kopiert (`.dockerignore`).
+
+**Namensgebung (festgelegt 2026-07-15):** Benutzer `monarch`, Datenbank `hermes` — bewusst **nicht** der Projektname (`titan` benennt das Projekt, nicht die Datenbank-Identität). Die **lokale Entwicklung darf abweichen** und nutzt weiterhin `titan/titan` (siehe [spickzettel.md](spickzettel.md)).
+
+> ⚠️ **Nur einmal einstellbar:** Postgres übernimmt `POSTGRES_USER`/`POSTGRES_DB` **ausschließlich beim allerersten Start mit leerem Datenverzeichnis**. Danach stecken die Namen im Volume `titan_pgdata` fest — eine spätere Änderung in der `.env` greift wirkungslos ins Leere (die App bekäme dann Verbindungsfehler). Nachträglich zu ändern hieße: Volume löschen (= Datenverlust) oder manuell per SQL umbenennen. **Also vor dem ersten `docker compose up` festlegen.**
+
+*(Der Container heißt weiterhin `titan-postgres` — das ist ein Docker-interner Name des Projekt-Stacks, keine Zugangsdaten.)*
 
 ### 4. `deploy.sh` (auf dem VPS, im Projektordner)
 ```bash
@@ -110,7 +116,7 @@ curl -s http://127.0.0.1:8080/ | grep -o "Content-Security-Policy[^>]*"
 curl -s https://prototyp-staging.norive.de/api/auth/get-session
 
 # 5. Tabellen vorhanden?
-docker exec titan-postgres psql -U titan -d titan -c "\dt"
+docker exec titan-postgres psql -U monarch -d hermes -c "\dt"
 ```
 
 ## Datensicherung (Backup & Restore)

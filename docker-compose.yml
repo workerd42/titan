@@ -1,9 +1,13 @@
 # Titan — Produktions-Stack (Phase 2: Node + Postgres).
 #
 # Erwartet eine .env NEBEN dieser Datei (gitignored, auf dem VPS anzulegen):
-#   POSTGRES_USER, POSTGRES_PASSWORD, BETTER_AUTH_SECRET, BETTER_AUTH_URL
+#   POSTGRES_USER, POSTGRES_PASSWORD, POSTGRES_DB, BETTER_AUTH_SECRET, BETTER_AUTH_URL
 # Die ":?"-Syntax lässt `docker compose up` sofort und laut fehlschlagen,
-# wenn ein Secret fehlt — besser als ein Start mit unsicheren Defaults.
+# wenn ein Wert fehlt — besser als ein Start mit unsicheren Defaults.
+#
+# Bewusst KEIN Default für POSTGRES_DB/USER: Postgres brennt diese Namen beim
+# ersten Start ins Volume ein. Ein stiller Fallback würde also dauerhaft die
+# falsche Datenbank anlegen, und der Fehler fiele erst viel später auf.
 services:
   postgres:
     image: postgres:16-alpine
@@ -12,7 +16,7 @@ services:
     environment:
       POSTGRES_USER: ${POSTGRES_USER:?POSTGRES_USER fehlt in .env}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?POSTGRES_PASSWORD fehlt in .env}
-      POSTGRES_DB: ${POSTGRES_DB:-titan}
+      POSTGRES_DB: ${POSTGRES_DB:?POSTGRES_DB fehlt in .env}
     volumes:
       - titan_pgdata:/var/lib/postgresql/data
     # Bewusst KEIN ports-Mapping: die DB ist nur im Docker-Netz erreichbar,
@@ -31,7 +35,7 @@ services:
       postgres:
         condition: service_healthy
     environment:
-      DATABASE_URL: postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB:-titan}
+      DATABASE_URL: postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
       BETTER_AUTH_SECRET: ${BETTER_AUTH_SECRET:?BETTER_AUTH_SECRET fehlt in .env}
       BETTER_AUTH_URL: ${BETTER_AUTH_URL:?BETTER_AUTH_URL fehlt in .env}
     # Nur an localhost gebunden — TLS/öffentlicher Zugang läuft weiterhin
