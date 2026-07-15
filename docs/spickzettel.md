@@ -90,6 +90,23 @@ docker rmi <image>                         # Image löschen (Speicher freigeben)
 
 **Wichtige Falle:** `docker compose` wirkt immer auf das `docker-compose.yml` im **aktuellen Verzeichnis** — vorher immer mit `pwd`/`cd` sicherstellen, dass man im richtigen Projektordner ist (z.B. `/var/www/prototyp-staging.norive.de`), sonst startet man versehentlich einen ganz anderen Stack.
 
+## Backup & Restore (auf dem VPS)
+
+```bash
+cd /var/www/prototyp-staging.norive.de
+
+./scripts/backup.sh                    # Dump + Rotation (Default: /var/backups/titan, 7 Stück)
+ls -lh /var/backups/titan              # Was liegt da?
+
+# Restore (fragt vor dem Überschreiben nach)
+./scripts/restore.sh /var/backups/titan/titan_2026-07-15_031500.sql.gz
+
+# Cron (täglich 03:15) — crontab -e
+# 15 3 * * * cd /var/www/prototyp-staging.norive.de && ./scripts/backup.sh >> /var/log/titan-backup.log 2>&1
+```
+
+**Regel:** Restore mindestens **einmal echt proben** — ein ungetestetes Backup ist nur ein Versprechen. Off-site geht nur verschlüsselt (`BACKUP_PASSPHRASE`), das Skript verweigert es sonst. Details: [deployment.md](deployment.md).
+
 ## Unser Deploy-Workflow (Titan auf `prototyp-staging.norive.de`)
 
 **Lokal auf dem Mac** (nach Änderungen):

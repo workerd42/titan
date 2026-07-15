@@ -113,6 +113,75 @@ curl -s https://prototyp-staging.norive.de/api/auth/get-session
 docker exec titan-postgres psql -U titan -d titan -c "\dt"
 ```
 
+## Datensicherung (Backup & Restore)
+
+> **Warum das ab Phase 2 kritisch ist:** Bisher lagen alle Daten im Browser des Nutzers — ein Serverausfall war folgenlos. Jetzt liegen Konten und Lernfortschritt zentral in Postgres. **Ohne Backup ist ein Serverausfall echter Datenverlust.**
+
+### Warum `pg_dump` und nicht Plesk/Panel-Backups
+
+**Plesk** (bzw. vergleichbare Hosting-Panels) ist eine grafische Server-Verwaltung. Es sichert das, **was es selbst verwaltet** — Titan läuft aber als rohe Docker-Container mit einem Postgres im Docker-Volume, an dem ein Panel vorbeischaut. **Ein Plesk-Backup erfasst unsere Datenbank aller Voraussicht nach nicht.**
+
+Ein **VPS-Snapshot** (Abbild der ganzen Maschine, z. B. als IONOS-Zusatz) enthält das Volume zwar, ist aber grobkörnig (Restore = ganzer Server zurück, inkl. anderer Dienste), meist kostenpflichtig und bei laufender DB potenziell inkonsistent. → Sinnvolle **Ergänzung**, kein Ersatz.
+
+`scripts/backup.sh` ist deshalb hoster-unabhängig, präzise (nur unsere DB), granular wiederherstellbar und kostenlos.
+
+### Einrichtung auf dem VPS
+
+```bash
+cd /var/www/prototyp-staging.norive.de
+
+# Einmalig testen (schreibt nach /var/backups/titan)
+./scripts/backup.sh
+
+# Für Verschlüsselung (PFLICHT sobald off-site) auf dem VPS nötig:
+apt-get install -y gnupg      # bzw. apk add gnupg
+```
+
+**Cron einrichten** (`crontab -e`), täglich 03:15 Uhr:
+
+```cron
+15 3 * * * cd /var/www/prototyp-staging.norive.de && ./scripts/backup.sh >> /var/log/titan-backup.log 2>&1
+```
+
+**Konfiguration** (Umgebungsvariablen, alle optional):
+
+| Variable | Wirkung |
+|---|---|
+| `BACKUP_DIR` | Zielverzeichnis (Default `/var/backups/titan`) |
+| `PG_CONTAINER` | DB-Container (Default `titan-postgres`) |
+| `KEEP_DAILY` | Wie viele Dumps behalten (Default 7) |
+| `BACKUP_PASSPHRASE` | Wenn gesetzt → GPG-verschlüsselt. **Pflicht für off-site** |
+| `RCLONE_REMOTE` | z. B. `scaleway:titan-backups` → Off-site-Kopie |
+| `HEARTBEAT_URL` | Wird nur bei **vollem Erfolg** gepingt |
+
+**Eingebaute Schutzmechanismen:**
+- Dump < 500 Bytes → Abbruch (ein „erfolgreiches" leeres Backup wäre die gefährlichste Variante)
+- `RCLONE_REMOTE` **ohne** `BACKUP_PASSPHRASE` → **Abbruch**: personenbezogene Daten dürfen nicht unverschlüsselt zu Dritten
+- Fehlt `gpg` trotz gesetzter Passphrase → Abbruch statt stillem Überspringen der Verschlüsselung
+- Kein Heartbeat-Ping im Fehlerfall → das Monitoring schlägt an
+
+### Restore — **mindestens einmal echt proben**
+
+> Ein Backup, dessen Wiederherstellung nie getestet wurde, ist nur ein Versprechen. Dieser Weg wurde lokal verifiziert (14 Nutzer gelöscht → vollständig wiederhergestellt).
+
+```bash
+./scripts/restore.sh /var/backups/titan/titan_2026-07-15_031500.sql.gz
+# verschlüsselt:
+BACKUP_PASSPHRASE=... ./scripts/restore.sh /var/backups/titan/titan_....sql.gz.gpg
+```
+Das Skript fragt vor dem Überschreiben nach und zeigt danach eine Kurzprüfung (Anzahl Nutzer/Fortschritte).
+
+### Monitoring
+
+Zwei Dinge, **extern** überwacht (ein Monitoring auf demselben VPS merkt dessen Ausfall nicht):
+1. **Erreichbarkeit** der Seite (Uptime-Check)
+2. **Backup-Lauf** als Totmannschalter (`HEARTBEAT_URL`) — **wichtiger als es klingt**: ein still fehlschlagender Backup-Cron ist schlimmer als gar keiner, weil man sich in Sicherheit wiegt.
+
+**Anbieter-Anforderung: EU/Deutschland.** Kandidaten (Free-Tier, **bitte vor Einrichtung gegenprüfen — Konditionen/Firmensitze ändern sich**):
+- **Better Stack** (Tschechien 🇨🇿) — Uptime + Heartbeats in einem
+- Off-site-Speicher: **Scaleway Object Storage** (Frankreich 🇫🇷, Free-Tier) oder **Hetzner Storage Box** (Deutschland 🇩🇪, ~3,50 €/Monat)
+- ⚠️ **Zu klären:** Wo steht der VPS selbst? Ohne EU-Standort dort ist der Rest hinfällig.
+
 ## Bekannte Stolpersteine (aus der Deployment-Historie)
 
 1. **Doppelte/widersprüchliche CSP** (Host-nginx *und* App-Meta-Tag setzen unterschiedliche Policies) → Browser wendet die *Schnittmenge* an, die restriktivere gewinnt oft unerwartet und blockiert Inline-Scripts/fetch(). Lösung: CSP **nur** in `BaseLayout.astro`, nirgendwo sonst.
@@ -124,6 +193,20 @@ docker exec titan-postgres psql -U titan -d titan -c "\dt"
 7. **Middleware darf Auth/DB nicht zur Build-Zeit laden** — Astro führt die Middleware auch beim Prerendern der statischen Seiten aus. Ein statischer `import` von `lib/auth` würde beim Bauen eine DB-Verbindung/Secrets verlangen und den Build brechen. Deshalb in `middleware.ts`: `isPrerendered`-Guard + **dynamischer** Import. Beim Umbauen der Middleware unbedingt beibehalten.
 8. **Migrationen im Prod-Image** — `drizzle-kit` ist devDependency und liegt bewusst nicht im Image. Migrationen laufen über `scripts/migrate.mjs` (nur `drizzle-orm`/`pg`) automatisch beim Containerstart. Schlägt die Migration fehl, startet der Server absichtlich nicht.
 9. **Secrets fehlen** → `docker compose up` bricht sofort ab (`${VAR:?}` in der Compose-Datei). Das ist gewollt: besser lauter Abbruch als ein Start mit unsicheren Defaults. Dann `.env` neben `docker-compose.yml` prüfen.
+
+## ⚠️ Domain-Umzug: `prototyp-staging.norive.de` ist NICHT die finale Adresse
+
+Die Staging-Domain steckt an mehreren Stellen fest verdrahtet. **Beim Wechsel auf die Produktivdomain müssen alle mitwandern**, sonst brechen Logins:
+
+| Stelle | Wirkung bei Vergessen |
+|---|---|
+| `astro.config.mjs` → `SITE_URL` | Canonical-URLs zeigen auf die alte Domain (SEO-Schaden) |
+| **`BETTER_AUTH_URL`** (VPS-`.env`) | **Session-Cookies hängen an der Domain → Login funktioniert nicht mehr.** Der kritischste Punkt. |
+| `public/robots.txt` | Sitemap-Verweis zeigt ins Leere (aktuell ohnehin `Disallow: /`) |
+| JSON-LD (`BaseLayout.astro`) | `url`-Feld der Strukturdaten falsch |
+| Host-nginx (VPS) | `server_name` + TLS-Zertifikat für die neue Domain |
+
+**Bestehende Sessions werden beim Umzug ungültig** (Cookies gelten pro Domain) — alle Nutzer müssen sich einmal neu anmelden. Bei einem Prototyp unkritisch, bei echten Nutzern vorher ankündigen.
 
 ## Referenzen
 

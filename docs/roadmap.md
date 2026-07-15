@@ -63,6 +63,12 @@ Zwei gleichrangige Zielgruppen, zwei Einstiegswege:
 - [x] GitHub-basierter Deploy-Workflow (Deploy-Key, `deploy.sh` = `git pull` + `docker compose up -d --build`).
 - [x] **Stack auf Node + Postgres umgestellt** (2026-07-15): App-Container läuft als Node-Server (`@astrojs/node`, kein nginx mehr im Container), Postgres-Service ohne Host-Port, Auto-Migration beim Start via `scripts/migrate.mjs`. Lokal komplett verifiziert.
 - [ ] **Erster Live-Deploy mit Secrets** auf dem VPS (`.env` neben `docker-compose.yml`: `POSTGRES_*`, `BETTER_AUTH_SECRET`, `BETTER_AUTH_URL`) — noch offen.
+- [x] **Backup & Restore gebaut** (`scripts/backup.sh` / `restore.sh`): hoster-unabhängiger `pg_dump` mit Rotation, optionaler GPG-Verschlüsselung, Off-site via rclone und Heartbeat-Ping. **Restore lokal echt geprobt** (Daten gelöscht → vollständig wiederhergestellt). Aktivierung per Cron nach dem Live-Deploy.
+- [ ] Backup-Cron + externes Monitoring auf dem VPS einrichten (Anbieter EU/DE, siehe [deployment.md](deployment.md)).
+
+**Anbieter-Grundsatz (festgelegt 2026-07-15):** Alle Dienste mit Datenkontakt müssen in der **EU/Deutschland** liegen. Damit ausgeschieden: Cloudflare R2, Backblaze B2, UptimeRobot, Healthchecks.io, Resend (alle US). Kandidaten: **Better Stack** (CZ) fürs Monitoring, **Scaleway** (FR) oder **Hetzner** (DE) fürs Off-site-Backup, **Brevo** (FR) für Transaktions-Mail. *Offen: Standort des VPS selbst bestätigen.*
+
+**Nicht geeignet — geprüft:** *Plesk*-Backups erfassen nur Panel-verwaltete Inhalte, nicht unsere Docker-Container/Volumes. *VPS-Snapshots* (z. B. IONOS) sind eine grobkörnige Ergänzung, kein Ersatz für `pg_dump`.
 
 ### 2.2 Login / Auth ✅
 
@@ -81,6 +87,11 @@ Zwei gleichrangige Zielgruppen, zwei Einstiegswege:
 - [ ] Rolle „Dozent" (sieht Fortschritt zugeordneter Schüler).
 - [ ] Dashboard: Fortschritt pro Schüler/Handlungsfeld, Lernstreak, letzte Aktivität. Genaue Kennzahlen noch zu definieren.
 - [ ] Telemetrie-Kontrakt aus dem Frontend nutzen (`data-universum-id`, `data-hb-slugs`, `data-progress-hb`).
+
+**Datenmodell — Entscheidung revidiert (2026-07-15):** Ursprünglich war eine Normalisierung des JSONB-Fortschritts geplant. Nachgerechnet ist das **verfrühte Optimierung**: 200 Lernende × 46 Themen ≈ 9.200 Einträge — dafür reicht JSONB mit GIN-Index mühelos. **Stattdessen:** beim Cockpit-Bau eine kleine abgeleitete Zusammenfassung (Prozent je Handlungsfeld + letzte Aktivität) neben dem Blob mitschreiben → triviale, schnelle Abfragen ohne Migrationsrisiko.
+**Auslöser für eine echte Normalisierung** (im Blick behalten): Zeitreihen-/Verlaufsanalytik, Auswertungen über *alle* Organisationen hinweg, oder spürbar langsame Cockpit-Abfragen. Vorher nicht.
+
+**E-Mail-Versand (Voraussetzung für Einladungen, entschieden 2026-07-15):** **Brevo** (Frankreich, EU-konform, 300 Mails/Tag gratis) für **transaktionale** Mails (Einladung, Passwort-Reset). Bewusst **nicht** HubSpot: dessen Free-Tier ist Marketing-Mail, Transaktions-Mail ist ein kostenpflichtiges Add-on, und Marketing-Tooling vermischt Zustellbarkeit und Einwilligungs-Semantik. HubSpot bleibt optional für CRM/Marketing — aber **kein Tracking-Script in die App**, das würde das aktuell nicht nötige Cookie-Banner erzwingen (es gibt nur ein technisch notwendiges Session-Cookie).
 
 ### 2.5 Admin-Bereich
 
