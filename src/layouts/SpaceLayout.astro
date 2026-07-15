@@ -3,8 +3,8 @@ import BaseLayout from './BaseLayout.astro';
 import KompassOnboarding from '../components/ui/KompassOnboarding.astro';
 import PersoenlichPanel from '../components/ui/PersoenlichPanel.astro';
 import KonzeptPanel from '../components/ui/KonzeptPanel.astro';
-import { BEREICHE } from '../data/bereiche';
-import { getCollection } from 'astro:content';
+import SearchOverlay from '../components/ui/SearchOverlay.astro';
+import { getThemenSlugsByHb } from '../lib/content';
 import '../styles/space.css';
 
 interface Props {
@@ -19,13 +19,7 @@ const { title, description, canonicalPath, showPersonal = true, jsonLd } = Astro
 const base = import.meta.env.BASE_URL;
 
 // Slugs pro HB für Fortschrittsanzeige im persönlichen Panel
-const alleThemen = await getCollection('themen');
-const themenSlugs: Record<string, string[]> = {};
-BEREICHE.forEach((b) => {
-  themenSlugs[b.id] = alleThemen
-    .filter((t) => t.data.handlungsbereich === b.id)
-    .map((t) => t.id);
-});
+const themenSlugs = await getThemenSlugsByHb();
 ---
 
 <BaseLayout
@@ -53,6 +47,9 @@ BEREICHE.forEach((b) => {
     <!-- Kompass-Onboarding -->
     <KompassOnboarding />
 
+    <!-- Suche — immer verfügbar, unabhängig von showPersonal -->
+    <SearchOverlay />
+
     <!-- Persönlicher Bereich (optional deaktivierbar) -->
     {showPersonal && (
       <>
@@ -76,3 +73,6 @@ BEREICHE.forEach((b) => {
 
 <!-- Progress Tracking -->
 <script src="../scripts/norive-progress.ts"></script>
+
+<!-- Local-First-Sync: no-op ohne Login, gleicht mit Account ab wenn angemeldet -->
+<script src="../scripts/norive-sync.ts"></script>

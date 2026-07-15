@@ -1,9 +1,10 @@
 ---
 /**
- * Planet.astro — Themen-Planet für die HF-Innenansicht (STATE 1 Objekt)
+ * Planet.astro — Themen-Planet für die HF-Innenansicht (Karussell-Item, vertikal)
  *
- * Klick wird von gsap-orbits.ts abgefangen und löst via gsap-focus.ts
- * die STATE-2-Transition aus. Navigation nur über den CTA im FocusPanel.
+ * Klick wird von gsap-carousel.ts abgefangen: zentriert das Item, falls es
+ * nicht schon zentriert ist. Navigation nur über den CTA in
+ * CarouselCaptionSide.astro (Modell B+).
  *
  * Telemetrie-Kontrakt:
  *   data-universum-id — HF-Zugehörigkeit (hb1…hb4)
@@ -17,12 +18,11 @@ interface Props {
   gruppe: string;
   beschreibung: string;
   href: string;
-  orbitIdx: number;
-  startAngle: number;
+  index: number;
   color: { h: string; b: string; r: string };
 }
 
-const { slug, hbId, titel, gruppe, beschreibung, href, orbitIdx, startAngle, color } = Astro.props;
+const { slug, hbId, titel, gruppe, beschreibung, href, index, color } = Astro.props;
 const gId = (s: string) => `tp-${slug}-${s}`;
 ---
 
@@ -32,8 +32,7 @@ const gId = (s: string) => `tp-${slug}-${s}`;
   id={`tp-${slug}`}
   data-slug={slug}
   data-universum-id={hbId}
-  data-orbit={orbitIdx}
-  data-start={startAngle}
+  data-index={index}
   data-phase-dots={slug}
   data-titel={titel}
   data-gruppe={gruppe}
@@ -74,16 +73,16 @@ const gId = (s: string) => `tp-${slug}-${s}`;
 <style>
   .theme-planet {
     position: absolute;
+    top: 50%;
+    left: 34%;
     display: block;
     text-decoration: none;
-    cursor: grab;
+    cursor: pointer;
     border-radius: 50%;
     user-select: none;
     -webkit-user-select: none;
-    touch-action: none;
     opacity: 0; /* Kein Flash — JS positioniert */
   }
-  .theme-planet:active { cursor: grabbing; }
 
   .ps-sphere {
     width: 100%;

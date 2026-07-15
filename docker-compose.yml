@@ -1,7 +1,43 @@
+# Titan — Produktions-Stack (Phase 2: Node + Postgres).
+#
+# Erwartet eine .env NEBEN dieser Datei (gitignored, auf dem VPS anzulegen):
+#   POSTGRES_USER, POSTGRES_PASSWORD, BETTER_AUTH_SECRET, BETTER_AUTH_URL
+# Die ":?"-Syntax lässt `docker compose up` sofort und laut fehlschlagen,
+# wenn ein Secret fehlt — besser als ein Start mit unsicheren Defaults.
 services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: titan-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:?POSTGRES_USER fehlt in .env}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?POSTGRES_PASSWORD fehlt in .env}
+      POSTGRES_DB: ${POSTGRES_DB:-titan}
+    volumes:
+      - titan_pgdata:/var/lib/postgresql/data
+    # Bewusst KEIN ports-Mapping: die DB ist nur im Docker-Netz erreichbar,
+    # nie öffentlich.
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
   titan:
     build: .
     container_name: titan
     restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB:-titan}
+      BETTER_AUTH_SECRET: ${BETTER_AUTH_SECRET:?BETTER_AUTH_SECRET fehlt in .env}
+      BETTER_AUTH_URL: ${BETTER_AUTH_URL:?BETTER_AUTH_URL fehlt in .env}
+    # Nur an localhost gebunden — TLS/öffentlicher Zugang läuft weiterhin
+    # über das Host-nginx als Reverse-Proxy.
     ports:
-      - "127.0.0.1:8080:80"
+      - "127.0.0.1:8080:4321"
+
+volumes:
+  titan_pgdata:

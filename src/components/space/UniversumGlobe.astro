@@ -1,14 +1,15 @@
 ---
 /**
- * UniversumGlobe.astro — Universum-Sphäre für die Universum-Auswahl (STATE 1 Objekt)
+ * UniversumGlobe.astro — Universum-Sphäre für die Universum-Auswahl (Karussell-Item)
  *
  * Ebene 1 der Hierarchie: UNIVERSUM → Galaxie (HF) → Planet.
- * Strukturell identisch zu GalaxieGlobe.astro — gleiches Orbit-Drag- und
- * 3-State-Fokus-Verhalten, damit das System nahtlos skaliert sobald
+ * Strukturell identisch zu GalaxieGlobe.astro — gleiches Karussell- und
+ * Caption-Verhalten (Modell B+), damit das System nahtlos skaliert sobald
  * weitere Universen (z. B. andere IHK-Zertifizierungen) hinzukommen.
  *
- * Klick wird von gsap-orbits.ts abgefangen (kein direktes href-Follow) und
- * löst über gsap-focus.ts die STATE-2-Transition aus. Navigation nur per CTA.
+ * Klick wird von gsap-carousel.ts abgefangen (kein direktes href-Follow):
+ * zentriert das Item, falls es nicht schon zentriert ist. Navigation nur
+ * per CTA in CarouselCaption.astro.
  *
  * Telemetrie-Kontrakt (Dozenten-/Admin-Dashboard, Phase 2):
  *   data-universum-id — Universum-Kennung (URL-Segment)
@@ -21,14 +22,14 @@ interface Props {
   beschreibung: string;
   href: string;
   galaxienCount: number;
-  orbitIdx: number;
-  startAngle: number;
+  index: number;
   color: { highlight: string; base: string; rim: string; atmo: string };
+  comingSoon?: boolean;
 }
 
 const {
   universumId, nummer, titel, eyebrow, beschreibung, href,
-  galaxienCount, orbitIdx, startAngle, color,
+  galaxienCount, index, color, comingSoon = false,
 } = Astro.props;
 
 const gId = (s: string) => `up-${universumId}-${s}`;
@@ -39,14 +40,14 @@ const gId = (s: string) => `up-${universumId}-${s}`;
   href={href}
   id={`universum-${universumId}`}
   data-universum-id={universumId}
-  data-orbit={orbitIdx}
-  data-start={startAngle}
+  data-index={index}
   data-nummer={nummer}
   data-titel={titel}
   data-eyebrow={eyebrow}
   data-beschreibung={beschreibung}
   data-galaxien={galaxienCount}
-  aria-label={`${eyebrow}: ${titel}`}
+  data-coming-soon={comingSoon ? 'true' : 'false'}
+  aria-label={comingSoon ? `${eyebrow}: ${titel} — in Vorbereitung` : `${eyebrow}: ${titel}`}
 >
   <svg class="ps-sphere" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" overflow="visible">
     <defs>
@@ -71,25 +72,21 @@ const gId = (s: string) => `up-${universumId}-${s}`;
     <ellipse cx="36" cy="33" rx="9" ry="6" fill="rgba(255,250,240,0.22)"/>
   </svg>
 
-  <div class="universum-planet-label" aria-hidden="true">
-    <span class="upl-eyebrow">{eyebrow}</span>
-    <span class="upl-name">{titel}</span>
-    <span class="upl-count">{galaxienCount} Handlungsfelder</span>
-  </div>
+  {comingSoon && <span class="up-badge" aria-hidden="true">Coming Soon</span>}
 </a>
 
 <style>
   .universum-planet {
     position: absolute;
+    top: 80%;
+    left: 50%;
     display: block;
     text-decoration: none;
-    cursor: grab;
+    cursor: pointer;
     user-select: none;
     -webkit-user-select: none;
-    touch-action: none;
-    opacity: 0; /* Kein Flash bei 0,0 — JS positioniert und blendet ein */
+    opacity: 0; /* Kein Flash vor JS-Erstpositionierung */
   }
-  .universum-planet:active { cursor: grabbing; }
 
   .ps-sphere {
     width: 100%;
@@ -97,6 +94,28 @@ const gId = (s: string) => `up-${universumId}-${s}`;
     display: block;
     overflow: visible;
     transition: filter 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .universum-planet[data-coming-soon="true"] .ps-sphere {
+    filter: grayscale(0.6) brightness(0.85);
+  }
+
+  .up-badge {
+    position: absolute;
+    top: -6px;
+    right: -10px;
+    z-index: 5;
+    background: rgba(20, 18, 16, 0.9);
+    border: 1px solid rgba(196, 168, 130, 0.4);
+    color: rgba(196, 168, 130, 0.9);
+    font-family: var(--mono, monospace);
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 999px;
+    white-space: nowrap;
+    pointer-events: none;
   }
 
   .universum-planet:hover .ps-sphere,
@@ -110,53 +129,5 @@ const gId = (s: string) => `up-${universumId}-${s}`;
     outline: 2px solid rgba(110, 80, 53, 0.6);
     outline-offset: 8px;
     border-radius: 50%;
-  }
-
-  .universum-planet-label {
-    position: absolute;
-    bottom: calc(100% + 16px);
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 3px;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.22s ease;
-    white-space: nowrap;
-    z-index: 50;
-  }
-
-  .universum-planet:hover .universum-planet-label,
-  .universum-planet:focus-visible .universum-planet-label { opacity: 1; }
-
-  .upl-eyebrow {
-    font-family: var(--mono, monospace);
-    font-size: 9px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: rgba(110, 80, 53, 0.45);
-  }
-
-  .upl-name {
-    font-family: var(--mono, monospace);
-    font-size: 12px;
-    font-weight: 400;
-    color: #1C1917;
-    background: rgba(237, 232, 223, 0.95);
-    border: 1px solid rgba(110, 80, 53, 0.15);
-    padding: 5px 12px;
-    letter-spacing: 0.04em;
-    max-width: 280px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .upl-count {
-    font-family: var(--mono, monospace);
-    font-size: 9px;
-    color: rgba(110, 80, 53, 0.5);
-    letter-spacing: 0.1em;
   }
 </style>

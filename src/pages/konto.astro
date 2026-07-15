@@ -1,0 +1,232 @@
+---
+/**
+ * Konto — Login / Registrierung (Fundament, Email/Passwort).
+ * On-demand (prerender = false): liest Astro.locals.user (aus der Middleware)
+ * und leitet bereits Angemeldete zur Startseite weiter.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+export const prerender = false;
+
+const base = import.meta.env.BASE_URL;
+if (Astro.locals.user) {
+  return Astro.redirect(base);
+}
+---
+
+<BaseLayout
+  title="Konto"
+  description="Bei Titan anmelden oder registrieren."
+  canonicalPath="/konto/"
+  theme="light"
+>
+  <main id="hauptinhalt" tabindex="-1" class="konto-shell">
+    <div class="konto-card">
+      <a href={base} class="konto-back" aria-label="Zurück zur Startseite">← Titan</a>
+
+      <div class="konto-tabs" role="tablist" aria-label="Anmelden oder registrieren">
+        <button type="button" class="konto-tab" id="tab-login" data-mode="login" role="tab" aria-selected="true">Anmelden</button>
+        <button type="button" class="konto-tab" id="tab-register" data-mode="register" role="tab" aria-selected="false">Registrieren</button>
+      </div>
+
+      <h1 class="konto-titel" id="konto-titel">Willkommen zurück</h1>
+
+      <form class="konto-form" id="konto-form" novalidate>
+        <label class="konto-field" id="field-name" hidden>
+          <span class="konto-label">Name</span>
+          <input type="text" name="name" autocomplete="name" />
+        </label>
+        <label class="konto-field">
+          <span class="konto-label">E-Mail</span>
+          <input type="email" name="email" autocomplete="email" required />
+        </label>
+        <label class="konto-field">
+          <span class="konto-label">Passwort</span>
+          <input type="password" name="password" autocomplete="current-password" required minlength="8" />
+        </label>
+
+        <p class="konto-error" id="konto-error" role="alert" hidden></p>
+
+        <button type="submit" class="konto-submit" id="konto-submit">Anmelden</button>
+      </form>
+
+      <p class="konto-hint" id="konto-hint">
+        Ohne Konto lernst du weiterhin lokal auf diesem Gerät. Mit Konto wird dein Fortschritt gesichert und geräteübergreifend synchronisiert.
+      </p>
+    </div>
+  </main>
+</BaseLayout>
+
+<style>
+  .konto-shell {
+    min-height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #EDE8DF;
+    padding: 24px;
+  }
+  .konto-card {
+    width: min(400px, 100%);
+    background: #F6F3EC;
+    border: 1px solid rgba(110, 80, 53, 0.14);
+    padding: clamp(24px, 5vw, 40px);
+    position: relative;
+  }
+  .konto-back {
+    font-family: var(--mono, monospace);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: rgba(110, 80, 53, 0.7);
+    text-decoration: none;
+    display: inline-block;
+    margin-bottom: 24px;
+  }
+  .konto-back:hover { color: #6E5035; }
+
+  .konto-tabs { display: flex; gap: 4px; margin-bottom: 24px; }
+  .konto-tab {
+    flex: 1;
+    font-family: var(--mono, monospace);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(110, 80, 53, 0.55);
+    background: transparent;
+    border: 1px solid rgba(110, 80, 53, 0.18);
+    padding: 11px;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  }
+  .konto-tab[aria-selected="true"] {
+    color: #141210;
+    background: #C4A882;
+    border-color: #C4A882;
+  }
+
+  .konto-titel {
+    font-family: var(--serif, Georgia, serif);
+    font-size: clamp(24px, 4vw, 30px);
+    font-weight: 300;
+    color: #1C1917;
+    margin-bottom: 24px;
+  }
+
+  .konto-form { display: flex; flex-direction: column; gap: 16px; }
+  .konto-field { display: flex; flex-direction: column; gap: 6px; }
+  .konto-label {
+    font-family: var(--mono, monospace);
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(110, 80, 53, 0.7);
+  }
+  .konto-field input {
+    font-family: var(--mono, monospace);
+    font-size: 14px;
+    color: #1C1917;
+    background: #fff;
+    border: 1px solid rgba(110, 80, 53, 0.22);
+    padding: 12px 14px;
+    outline: none;
+    transition: border-color 0.2s ease;
+  }
+  .konto-field input:focus { border-color: #6E5035; }
+
+  .konto-error {
+    font-family: var(--mono, monospace);
+    font-size: 12px;
+    color: #9A3B2E;
+    margin: 0;
+    max-width: none;
+  }
+
+  .konto-submit {
+    font-family: var(--mono, monospace);
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #141210;
+    background: #C4A882;
+    border: none;
+    padding: 15px;
+    min-height: 50px;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: opacity 0.2s ease;
+  }
+  .konto-submit:hover { opacity: 0.9; }
+  .konto-submit:disabled { opacity: 0.5; cursor: default; }
+
+  .konto-hint {
+    font-family: var(--mono, monospace);
+    font-size: 11px;
+    line-height: 1.7;
+    color: rgba(94, 84, 80, 0.85);
+    margin-top: 24px;
+    max-width: none;
+  }
+</style>
+
+<script>
+  import { authClient } from '../lib/auth-client';
+
+  function initKonto(): void {
+    const form = document.getElementById('konto-form') as HTMLFormElement | null;
+    const submit = document.getElementById('konto-submit') as HTMLButtonElement | null;
+    const errorEl = document.getElementById('konto-error');
+    const titelEl = document.getElementById('konto-titel');
+    const nameField = document.getElementById('field-name');
+    const tabLogin = document.getElementById('tab-login');
+    const tabRegister = document.getElementById('tab-register');
+    if (!form || !submit || !errorEl || !titelEl || !nameField || !tabLogin || !tabRegister) return;
+
+    let mode: 'login' | 'register' = 'login';
+    const base = (document.querySelector('a.konto-back') as HTMLAnchorElement | null)?.getAttribute('href') || '/';
+
+    function setMode(next: 'login' | 'register'): void {
+      mode = next;
+      const isRegister = next === 'register';
+      tabLogin!.setAttribute('aria-selected', String(!isRegister));
+      tabRegister!.setAttribute('aria-selected', String(isRegister));
+      nameField!.hidden = !isRegister;
+      titelEl!.textContent = isRegister ? 'Konto erstellen' : 'Willkommen zurück';
+      submit!.textContent = isRegister ? 'Registrieren' : 'Anmelden';
+      errorEl!.hidden = true;
+    }
+
+    tabLogin.addEventListener('click', () => setMode('login'));
+    tabRegister.addEventListener('click', () => setMode('register'));
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      errorEl!.hidden = true;
+      submit!.disabled = true;
+      const fd = new FormData(form!);
+      const email = String(fd.get('email') || '').trim();
+      const password = String(fd.get('password') || '');
+      const name = String(fd.get('name') || '').trim();
+
+      try {
+        const res = mode === 'register'
+          ? await authClient.signUp.email({ email, password, name: name || email })
+          : await authClient.signIn.email({ email, password });
+
+        if (res.error) {
+          errorEl!.textContent = res.error.message || 'Anmeldung fehlgeschlagen.';
+          errorEl!.hidden = false;
+          submit!.disabled = false;
+          return;
+        }
+        // Erfolg → zur Startseite (dort greift der Fortschritts-Sync, folgt in Schritt 3).
+        window.location.href = base;
+      } catch {
+        errorEl!.textContent = 'Netzwerkfehler. Bitte erneut versuchen.';
+        errorEl!.hidden = false;
+        submit!.disabled = false;
+      }
+    });
+  }
+
+  document.addEventListener('astro:page-load', initKonto);
+</script>

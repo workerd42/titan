@@ -1,0 +1,150 @@
+---
+/**
+ * InfoButton.astro — "i"-Button unten links, zeigt Build-Metadaten
+ * (Version, Build-Datum/Zeit, Phase). Build-Zeitpunkt wird zur Build-Zeit
+ * einmalig eingefroren (statischer Export) — zeigt also "zuletzt gebaut am",
+ * nicht die aktuelle Uhrzeit des Betrachters.
+ */
+import pkg from '../../../package.json';
+
+const buildDate = new Date();
+const buildDatum = buildDate.toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric' });
+const buildZeit  = buildDate.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' });
+---
+
+<button
+  class="info-toggle"
+  id="info-toggle"
+  aria-label="Build-Informationen anzeigen"
+  title="Build-Informationen (Version, Datum)"
+  aria-expanded="false"
+  aria-controls="info-panel"
+>
+  <span aria-hidden="true">i</span>
+</button>
+
+<div class="info-panel" id="info-panel" hidden role="dialog" aria-label="Build-Informationen">
+  <button class="ip-close" id="ip-close" aria-label="Schließen">×</button>
+  <dl class="ip-list">
+    <div class="ip-row"><dt>Version</dt><dd>{pkg.version}</dd></div>
+    <div class="ip-row"><dt>Build</dt><dd>{buildDatum} · {buildZeit}</dd></div>
+    <div class="ip-row"><dt>Status</dt><dd>Phase 1 — Frontend</dd></div>
+  </dl>
+</div>
+
+<style>
+  .info-toggle {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 210;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid rgba(196, 168, 130, 0.5);
+    background: rgba(20, 18, 16, 0.9);
+    color: rgba(196, 168, 130, 0.9);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    font-family: var(--serif, Georgia, serif);
+    font-style: italic;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(6px);
+    transition: background 0.2s ease, border-color 0.2s ease;
+  }
+  .info-toggle:hover,
+  .info-toggle[aria-expanded="true"] {
+    background: rgba(32, 28, 24, 0.96);
+    border-color: rgba(196, 168, 130, 0.8);
+  }
+
+  .info-panel {
+    position: fixed;
+    bottom: 62px;
+    left: 20px;
+    z-index: 210;
+    width: 220px;
+    background: rgba(20, 18, 16, 0.97);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+    padding: 16px 18px;
+  }
+  .info-panel[hidden] { display: none; }
+
+  .ip-close {
+    position: absolute;
+    top: 6px;
+    right: 8px;
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.35);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    line-height: 1;
+    transition: color 0.2s ease;
+  }
+  .ip-close:hover { color: rgba(255, 255, 255, 0.8); }
+
+  .ip-list { display: flex; flex-direction: column; gap: 8px; }
+
+  .ip-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .ip-row dt {
+    font-family: var(--mono, monospace);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(196, 168, 130, 0.6);
+  }
+
+  .ip-row dd {
+    font-family: var(--mono, monospace);
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.75);
+    margin: 0;
+    text-align: right;
+  }
+</style>
+
+<script>
+  function initInfoButton(): void {
+    const toggle = document.getElementById('info-toggle');
+    const panel  = document.getElementById('info-panel');
+    const close  = document.getElementById('ip-close');
+    if (!toggle || !panel) return;
+
+    function open(): void {
+      panel!.removeAttribute('hidden');
+      toggle!.setAttribute('aria-expanded', 'true');
+    }
+    function hide(): void {
+      panel!.setAttribute('hidden', '');
+      toggle!.setAttribute('aria-expanded', 'false');
+    }
+
+    toggle.addEventListener('click', () =>
+      toggle.getAttribute('aria-expanded') === 'true' ? hide() : open()
+    );
+    close?.addEventListener('click', hide);
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') hide();
+    });
+
+    document.addEventListener('click', (e) => {
+      if (toggle.getAttribute('aria-expanded') !== 'true') return;
+      const target = e.target as Node;
+      if (!panel!.contains(target) && !toggle.contains(target)) hide();
+    });
+  }
+
+  document.addEventListener('astro:page-load', initInfoButton);
+</script>

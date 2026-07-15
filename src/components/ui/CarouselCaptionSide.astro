@@ -1,0 +1,93 @@
+---
+/**
+ * CarouselCaptionSide.astro — Karussell-Caption für Seite 3 (vertikal)
+ *
+ * Ersetzt FocusPanel.astro für den Modell-B+-Ablauf auf der Planeten-Ebene:
+ * rechts neben dem zentrierten Planeten, Typografie aus FocusPanel
+ * übernommen (Eyebrow/H1/Beschreibung/CTA), ohne Overlay-Chrome oder
+ * Slide-in-Choreografie. Wird von carousel-caption.ts befüllt/gecrossfadet
+ * (nutzt dieselben Element-IDs wie CarouselCaption.astro).
+ */
+---
+
+<div class="carousel-caption-side" id="carousel-caption">
+  <p class="ccs-eyebrow" id="cc-eyebrow"></p>
+  <h1 class="ccs-titel" id="cc-titel"></h1>
+  <p class="ccs-beschr" id="cc-beschr"></p>
+  <a class="ccs-cta" id="cc-cta" href="#">
+    <span id="cc-cta-text"></span>
+    <span aria-hidden="true">→</span>
+  </a>
+</div>
+
+<style>
+  .carousel-caption-side {
+    position: absolute;
+    top: 50%;
+    left: 54%;
+    transform: translateY(-50%);
+    z-index: 70;
+    width: min(400px, 32vw);
+    text-align: left;
+  }
+
+  .ccs-eyebrow {
+    font-family: var(--mono, monospace);
+    font-size: 11px;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: rgba(110, 80, 53, 0.6);
+    margin-bottom: 12px;
+    max-width: none;
+  }
+
+  .ccs-titel {
+    font-family: var(--serif, Georgia, serif);
+    font-size: clamp(26px, 3.2vw, 42px);
+    font-weight: 300;
+    color: #1C1917;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    margin-bottom: 16px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .ccs-beschr {
+    font-family: var(--mono, monospace);
+    font-size: 12px;
+    font-weight: 300;
+    color: #5E5450;
+    line-height: 1.75;
+    margin-bottom: 24px;
+    max-width: 380px;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .ccs-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-family: var(--mono, monospace);
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #141210;
+    background: #C4A882;
+    text-decoration: none;
+    padding: 15px 28px;
+    min-height: 48px;
+    border-radius: 999px;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+  .ccs-cta:hover { opacity: 0.88; transform: translateX(3px); text-decoration: none; }
+
+  @media (max-width: 900px) {
+    .carousel-caption-side { left: 58%; width: min(320px, 42vw); }
+  }
+</style>

@@ -16,6 +16,21 @@ const base = import.meta.env.BASE_URL;
 <aside id="persoenlich-panel" class="persoenlich-panel" aria-label="Persönlicher Bereich" hidden>
   <button class="pp-close" id="pp-close" aria-label="Schließen">×</button>
 
+  <section class="pp-sektion" aria-labelledby="pp-a-h">
+    <h3 id="pp-a-h" class="pp-sektion-titel">Konto</h3>
+    <div id="pp-auth-out">
+      <p class="pp-muted-text">Nicht angemeldet — Fortschritt nur auf diesem Gerät.</p>
+      <a class="pp-link-btn" id="pp-login-link" href={`${base}konto/`}>Anmelden / Registrieren →</a>
+    </div>
+    <div id="pp-auth-in" hidden>
+      <p class="pp-firma-meta" id="pp-auth-email">—</p>
+      <p class="pp-muted-text pp-sync-note">Fortschritt wird synchronisiert.</p>
+      <button class="pp-link-btn pp-link-btn--small" id="pp-logout-btn" type="button">Abmelden</button>
+    </div>
+  </section>
+
+  <div class="pp-divider"></div>
+
   <section class="pp-sektion" aria-labelledby="pp-k-h">
     <h3 id="pp-k-h" class="pp-sektion-titel">Kompass-Unternehmen</h3>
     <div id="pp-kompass-leer">
@@ -62,18 +77,18 @@ const base = import.meta.env.BASE_URL;
     top: calc(50vh + 6px);
     right: 0;
     z-index: 50; background: rgba(20,18,16,0.92);
-    border: 1px solid rgba(255,255,255,0.1); border-right: none;
-    padding: 16px 10px; cursor: pointer;
+    border: 1px solid rgba(196,168,130,0.45); border-right: none;
+    padding: 18px 12px; cursor: pointer;
     display: flex; flex-direction: column; align-items: center; gap: 6px;
     transition: background .22s ease, border-color .22s ease;
     backdrop-filter: blur(8px);
   }
   .persoenlich-toggle:hover { background: rgba(32,28,24,0.96); border-color: rgba(255,255,255,0.22); }
   .persoenlich-toggle[aria-expanded="true"] { border-color: rgba(196,168,130,0.4); }
-  .pt-icon { font-size: 16px; color: rgba(196,168,130,0.65); line-height: 1; }
+  .pt-icon { font-size: 19px; color: rgba(196,168,130,0.85); line-height: 1; }
   .pt-label {
-    font-family: var(--mono,monospace); font-size: 9px; letter-spacing: .14em;
-    text-transform: uppercase; color: rgba(255,255,255,0.35);
+    font-family: var(--mono,monospace); font-size: 10px; letter-spacing: .14em;
+    text-transform: uppercase; color: rgba(255,255,255,0.6);
     writing-mode: vertical-rl;
   }
 
@@ -114,6 +129,8 @@ const base = import.meta.env.BASE_URL;
   }
   .pp-link-btn:hover { color: rgba(196,168,130,1); }
   .pp-link-btn--small { font-size: 9px; opacity: .6; display: block; }
+  .pp-sync-note { color: rgba(122,200,152,.75); margin-bottom: 6px; }
+  a.pp-link-btn { text-decoration: none; display: inline-block; line-height: 44px; }
   .pp-link-btn--small:hover { opacity: 1; }
 
   .pp-firma-name {
@@ -225,7 +242,27 @@ const base = import.meta.env.BASE_URL;
     if (sv) { const d = state.lernStreakTage ?? 0; sv.textContent = d > 0 ? `${d} Tag${d !== 1 ? 'e' : ''}` : '—'; }
   }
 
-  function render() { renderKompass(); renderProgress(); }
+  /** Konto-Status: zeigt Anmelde-Link bzw. Email + Abmelden. */
+  async function renderAuth() {
+    const out = document.getElementById('pp-auth-out');
+    const inn = document.getElementById('pp-auth-in');
+    const mail = document.getElementById('pp-auth-email');
+    if (!out || !inn) return;
+    try {
+      const res = await fetch('/api/auth/get-session', { headers: { Accept: 'application/json' } });
+      const data = res.ok ? await res.json() : null;
+      const user = data?.user ?? null;
+      out.hidden = Boolean(user);
+      inn.hidden = !user;
+      if (user && mail) mail.textContent = user.email ?? '';
+    } catch {
+      // Kein Backend erreichbar → anonymer Zustand anzeigen.
+      out.hidden = false;
+      inn.hidden = true;
+    }
+  }
+
+  function render() { renderKompass(); renderProgress(); renderAuth(); }
 
   // ── PRO SEITE: Button-Listener neu anhängen + Anzeige aktualisieren
   // (Elemente werden bei jeder Astro-ClientRouter-Navigation ersetzt) ──
@@ -239,6 +276,22 @@ const base = import.meta.env.BASE_URL;
     document.getElementById('pp-close')?.addEventListener('click', closePanel);
     document.getElementById('pp-setup-btn')?.addEventListener('click', openOnboarding);
     document.getElementById('pp-edit-btn')?.addEventListener('click', openOnboarding);
+
+    document.getElementById('pp-logout-btn')?.addEventListener('click', async (e) => {
+      const btn = e.currentTarget as HTMLButtonElement;
+      btn.disabled = true;
+      try {
+        // Content-Type ist Pflicht — Better Auth lehnt Requests ohne ihn ab (415).
+        await fetch('/api/auth/sign-out', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: '{}',
+        });
+        window.location.reload();
+      } catch {
+        btn.disabled = false;
+      }
+    });
 
     render();
   }
@@ -265,6 +318,9 @@ const base = import.meta.env.BASE_URL;
     if (toggle?.getAttribute('aria-expanded') !== 'true') openPanel();
   });
   window.addEventListener('norive:progress-updated', renderProgress);
+  // Server-Sync: nur neu rendern, Panel NICHT aufklappen (im Gegensatz zu
+  // 'norive:kompass-updated', das eine bewusste Nutzeraktion signalisiert).
+  window.addEventListener('norive:synced', render);
 
   // Erster Besuch überhaupt: Panel einmalig nach Verzögerung öffnen
   // (nur beim allerersten Laden — FIRST_KEY verhindert Wiederholung)

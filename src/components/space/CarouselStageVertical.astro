@@ -1,0 +1,99 @@
+---
+/**
+ * CarouselStageVertical.astro — vertikale Coverflow-Bühne (Seite 3, Planeten)
+ *
+ * Analog zu CarouselStage.astro, aber vertikal ausgerichtet: zentriertes
+ * Item links-mittig, Caption rechts daneben (CarouselCaptionSide.astro).
+ * Auf Mobile/reduced-motion bleibt die Bühne ausgeblendet — die bestehende
+ * .theme-list-sr-Liste (statisch, in der Seite selbst) übernimmt dort.
+ */
+interface Props {
+  stageId: string;
+  universumId: string;
+  itemCount: number;
+}
+
+const { stageId, universumId, itemCount } = Astro.props;
+---
+
+<div class="carousel-stage-v" id={stageId} data-universum-id={universumId}>
+  <div class="carousel-track-v" id={`${stageId}-track`} tabindex="0" aria-label="Themenauswahl, mit Pfeiltasten navigierbar">
+    <slot />
+  </div>
+
+  <button type="button" class="carousel-arrow-v carousel-arrow-v--prev" id={`${stageId}-prev`} aria-label="Voriges Thema">
+    <span aria-hidden="true">↑</span>
+  </button>
+  <button type="button" class="carousel-arrow-v carousel-arrow-v--next" id={`${stageId}-next`} aria-label="Nächstes Thema">
+    <span aria-hidden="true">↓</span>
+  </button>
+
+  <p class="carousel-counter" id={`${stageId}-counter`} aria-live="polite">
+    <span id={`${stageId}-counter-current`}>1</span> / {itemCount}
+  </p>
+
+  <slot name="caption" />
+</div>
+
+<style>
+  .carousel-stage-v {
+    position: relative;
+    width: 100%;
+    height: 100dvh;
+    overflow: hidden;
+    background: #EDE8DF;
+    --text: #1C1917;
+    --text-muted: #5E5450;
+    --accent: #6E5035;
+  }
+
+  .carousel-track-v {
+    position: absolute;
+    inset: 0;
+    outline: none;
+    /* Items laufen oben/unten weich in den Hintergrund aus, statt hart
+       am Bühnenrand abgeschnitten zu werden. */
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 16%, black 84%, transparent 100%);
+    mask-image: linear-gradient(to bottom, transparent 0%, black 16%, black 84%, transparent 100%);
+  }
+
+  .carousel-arrow-v {
+    position: absolute;
+    left: 34%;
+    transform: translateX(-50%);
+    z-index: 80;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid rgba(110, 80, 53, 0.25);
+    background: rgba(237, 232, 223, 0.7);
+    color: #6E5035;
+    font-size: 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(6px);
+    transition: background 0.2s ease, border-color 0.2s ease;
+  }
+  .carousel-arrow-v:hover { background: rgba(237, 232, 223, 0.95); border-color: rgba(110, 80, 53, 0.5); }
+  .carousel-arrow-v--prev { top: 148px; }
+  .carousel-arrow-v--next { bottom: 24px; }
+
+  .carousel-counter {
+    position: absolute;
+    left: 34%;
+    bottom: 76px;
+    transform: translateX(-50%);
+    z-index: 80;
+    font-family: var(--mono, monospace);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: rgba(110, 80, 53, 0.5);
+    max-width: none;
+  }
+
+  @media (max-width: 600px), (prefers-reduced-motion: reduce) {
+    .carousel-stage-v { display: none; }
+  }
+</style>

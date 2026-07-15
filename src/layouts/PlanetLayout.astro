@@ -4,8 +4,8 @@ import CTAButton from '../components/ui/CTAButton.astro';
 import PersoenlichPanel from '../components/ui/PersoenlichPanel.astro';
 import KompassOnboarding from '../components/ui/KompassOnboarding.astro';
 import KonzeptPanel from '../components/ui/KonzeptPanel.astro';
-import { BEREICHE } from '../data/bereiche';
-import { getCollection } from 'astro:content';
+import SearchOverlay from '../components/ui/SearchOverlay.astro';
+import { getThemenSlugsByHb } from '../lib/content';
 import '../styles/planet.css';
 
 interface Props {
@@ -23,13 +23,7 @@ const { title, description, canonicalPath, hbId, hbNummer, universumId, jsonLd }
 const base = import.meta.env.BASE_URL;
 
 // Slugs für PersoenlichPanel Fortschrittsanzeige
-const alleThemen = await getCollection('themen');
-const themenSlugs: Record<string, string[]> = {};
-BEREICHE.forEach((b) => {
-  themenSlugs[b.id] = alleThemen
-    .filter((t) => t.data.handlungsbereich === b.id)
-    .map((t) => t.id);
-});
+const themenSlugs = await getThemenSlugsByHb();
 ---
 
 <BaseLayout title={title} description={description} canonicalPath={canonicalPath} theme="light" jsonLd={jsonLd}>
@@ -65,8 +59,12 @@ BEREICHE.forEach((b) => {
   </div>
   <script src="../scripts/norive-progress.ts"></script>
 
+  <!-- Local-First-Sync: no-op ohne Login, gleicht mit Account ab wenn angemeldet -->
+  <script src="../scripts/norive-sync.ts"></script>
+
   <!-- Panels: auch auf Lernseiten verfügbar -->
   <KompassOnboarding />
+  <SearchOverlay />
   <KonzeptPanel />
   <PersoenlichPanel alleThemenSlugs={themenSlugs} />
 </BaseLayout>

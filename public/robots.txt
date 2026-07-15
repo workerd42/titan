@@ -1,0 +1,4 @@
+# Prototyp-/Staging-Zustand — bewusst nicht crawlbar, Inhalte sollen
+# (noch) nicht öffentlich indexiert oder von KI-Systemen ausgewertet werden.
+User-agent: *
+Disallow: /

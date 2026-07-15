@@ -1,7 +1,7 @@
 ---
 import PlanetLayout from '../../../layouts/PlanetLayout.astro';
 import CTAButton from '../../../components/ui/CTAButton.astro';
-import { getBereich } from '../../../data/bereiche';
+import { BEREICHE, getBereich } from '../../../data/bereiche';
 import { UNIVERSEN, getUniversum } from '../../../data/universen';
 import { getCollection, render, type CollectionEntry } from 'astro:content';
 
@@ -9,7 +9,11 @@ export async function getStaticPaths() {
   const alleThemen = await getCollection('themen');
   const paths: Array<{ params: { universum: string; hb: string; slug: string }; props: { thema: CollectionEntry<'themen'> } }> = [];
   for (const universum of UNIVERSEN) {
+    const hbIdsDesUniversums = new Set(
+      BEREICHE.filter((b) => b.universumId === universum.id).map((b) => b.id),
+    );
     for (const thema of alleThemen) {
+      if (!hbIdsDesUniversums.has(thema.data.handlungsbereich)) continue;
       paths.push({
         params: { universum: universum.id, hb: thema.data.handlungsbereich, slug: thema.id },
         props: { thema },

@@ -1,0 +1,108 @@
+---
+/**
+ * CarouselCaption.astro — Karussell-Caption für Seite 1+2 (horizontal)
+ *
+ * Ersetzt FocusPanel.astro für den Modell-B+-Ablauf: kein separater
+ * Zoom-Schritt mehr — sobald ein Item zentriert ist, zeigt diese Caption
+ * sofort Titel/Beschreibung/CTA, zentriert über dem angeschnittenen
+ * Hero-Element. Wird von carousel-caption.ts befüllt/gecrossfadet.
+ */
+---
+
+<div class="carousel-caption" id="carousel-caption">
+  <p class="cc-eyebrow" id="cc-eyebrow"></p>
+  <h1 class="cc-titel" id="cc-titel"></h1>
+  <p class="cc-beschr" id="cc-beschr"></p>
+  <a class="cc-cta" id="cc-cta" href="#">
+    <span id="cc-cta-text"></span>
+    <span aria-hidden="true">→</span>
+  </a>
+</div>
+
+<style>
+  .carousel-caption {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 150; /* über allen Ring-Items (max. z-index 100) — bleibt immer lesbar */
+    width: min(560px, 88vw);
+    text-align: center;
+    pointer-events: none;
+  }
+
+  .cc-eyebrow {
+    font-family: var(--mono, monospace);
+    font-size: 11px;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: rgba(110, 80, 53, 0.6);
+    margin-bottom: 10px;
+    max-width: none;
+  }
+
+  .cc-titel {
+    font-family: var(--serif, Georgia, serif);
+    font-size: clamp(26px, 3.8vw, 44px);
+    font-weight: 300;
+    color: #1C1917;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    margin-bottom: 12px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .cc-beschr {
+    font-family: var(--mono, monospace);
+    font-size: 12px;
+    font-weight: 300;
+    color: #5E5450;
+    line-height: 1.7;
+    margin-bottom: 20px;
+    max-width: 440px;
+    margin-left: auto;
+    margin-right: auto;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .cc-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-family: var(--mono, monospace);
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #141210;
+    background: #C4A882;
+    text-decoration: none;
+    padding: 15px 28px;
+    min-height: 48px;
+    border-radius: 999px;
+    pointer-events: auto;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+  .cc-cta:hover { opacity: 0.88; transform: translateY(-1px); text-decoration: none; }
+
+  .cc-cta.is-disabled {
+    background: transparent;
+    border: 1px solid rgba(110, 80, 53, 0.3);
+    color: rgba(110, 80, 53, 0.5);
+    cursor: default;
+    pointer-events: none;
+  }
+  .cc-cta.is-disabled:hover { opacity: 1; transform: none; }
+
+  @media (max-width: 600px) {
+    .carousel-caption { width: min(560px, 70vw); }
+    .cc-titel { font-size: clamp(22px, 6.4vw, 32px); -webkit-line-clamp: 3; }
+    .cc-beschr { font-size: 11px; -webkit-line-clamp: 1; margin-bottom: 16px; }
+    .cc-cta { padding: 13px 20px; font-size: 11px; }
+  }
+</style>

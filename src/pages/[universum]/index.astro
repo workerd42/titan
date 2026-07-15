@@ -1,6 +1,7 @@
 ---
 import SpaceLayout from '../../layouts/SpaceLayout.astro';
-import Universe from '../../components/space/Universe.astro';
+import CarouselStage from '../../components/space/CarouselStage.astro';
+import CarouselCaption from '../../components/ui/CarouselCaption.astro';
 import GalaxieGlobe from '../../components/space/GalaxieGlobe.astro';
 import { BEREICHE } from '../../data/bereiche';
 import { UNIVERSEN, getUniversum } from '../../data/universen';
@@ -12,30 +13,27 @@ import { getCollection } from 'astro:content';
 
 const { universum: universumId } = Astro.params;
 const universum = getUniversum(universumId as string)!;
+const base = import.meta.env.BASE_URL;
+
+// Platzhalter-Universen ohne Handlungsfelder haben keine eigene Seite —
+// direkter Aufruf führt zurück zur Universum-Auswahl statt einer leeren Bühne.
+if (universum.comingSoon) return Astro.redirect(base);
+
 const bereicheDesUniversums = BEREICHE.filter((b) => b.universumId === universum.id);
 
 const alleThemen = await getCollection('themen');
-const base = import.meta.env.BASE_URL;
 const uBase = `${base}${universum.id}/`;
 
 function themenVon(hbId: string) {
   return alleThemen.filter(t => t.data.handlungsbereich === hbId);
 }
 
-// Farbwelten + Orbit-Zuordnung der vier Handlungsfelder
+// Farbwelten der vier Handlungsfelder
 const PLANET_CONFIG = [
-  { highlight: '#E8C480', base: '#3D2B1A', rim: 'rgba(232,196,128,0.45)', atmo: 'rgba(196,168,80,0.25)',  orbitIdx: 0, startAngle: -0.4 },
-  { highlight: '#7AC0E8', base: '#1E2A3E', rim: 'rgba(122,192,232,0.4)',  atmo: 'rgba(80,140,220,0.2)',   orbitIdx: 1, startAngle:  2.1 },
-  { highlight: '#7AC898', base: '#1A2E20', rim: 'rgba(120,200,152,0.4)',  atmo: 'rgba(60,180,100,0.18)',  orbitIdx: 2, startAngle: -1.8 },
-  { highlight: '#C880D8', base: '#2E1A3E', rim: 'rgba(200,128,216,0.4)',  atmo: 'rgba(160,80,200,0.18)',  orbitIdx: 3, startAngle:  1.2 },
-];
-
-// Orbitalbahnen in % (SVG viewBox 0 0 100 100)
-const ORBITS = [
-  { rx: 18, ry: 7.5  },
-  { rx: 28, ry: 11.5 },
-  { rx: 37, ry: 15.5 },
-  { rx: 45, ry: 18.5 },
+  { highlight: '#E8C480', base: '#3D2B1A', rim: 'rgba(232,196,128,0.45)', atmo: 'rgba(196,168,80,0.25)' },
+  { highlight: '#7AC0E8', base: '#1E2A3E', rim: 'rgba(122,192,232,0.4)',  atmo: 'rgba(80,140,220,0.2)'  },
+  { highlight: '#7AC898', base: '#1A2E20', rim: 'rgba(120,200,152,0.4)',  atmo: 'rgba(60,180,100,0.18)' },
+  { highlight: '#C880D8', base: '#2E1A3E', rim: 'rgba(200,128,216,0.4)',  atmo: 'rgba(160,80,200,0.18)' },
 ];
 ---
 
@@ -49,15 +47,7 @@ const ORBITS = [
     ← Alle Universen
   </a>
 
-  <Universe
-    stageId="solar-stage"
-    centralId="solar-center"
-    universumId={universum.id}
-    orbits={ORBITS}
-    central={{ h: '#F0D880', b: '#C48830' }}
-    centralLabel="Titan"
-    centralSize="lg"
-  >
+  <CarouselStage stageId="solar-stage" universumId={universum.id} itemCount={bereicheDesUniversums.length}>
     {bereicheDesUniversums.map((b, i) => {
       const themen = themenVon(b.id);
       const cfg = PLANET_CONFIG[i];
@@ -70,35 +60,26 @@ const ORBITS = [
           href={`${uBase}${b.id}/`}
           themenCount={themen.length}
           hbSlugs={themen.map(t => t.id)}
-          orbitIdx={cfg.orbitIdx}
-          startAngle={cfg.startAngle}
+          index={i}
           color={cfg}
         />
       );
     })}
 
-    <div class="solar-intro" id="solar-intro">
-      <p>{universum.eyebrow}</p>
-      <p>Wähle ein Handlungsfeld</p>
-    </div>
-  </Universe>
+    <CarouselCaption slot="caption" />
+  </CarouselStage>
 </SpaceLayout>
 
 <script>
-  import { initDraggableOrbits, introAnimation, responsivePlanetSize } from '../../scripts/gsap-orbits';
-  import { createFocusController, type FocusController } from '../../scripts/gsap-focus';
+  import { initCarousel, responsivePlanetSize, wireDots, updateDots, type CarouselController } from '../../scripts/gsap-carousel';
+  import { createCaptionSync, type CaptionSync } from '../../scripts/carousel-caption';
   import { gsap } from 'gsap';
 
-  const ORBITS = [
-    { rx: 18, ry: 7.5  },
-    { rx: 28, ry: 11.5 },
-    { rx: 37, ry: 15.5 },
-    { rx: 45, ry: 18.5 },
-  ];
   const BASE_SIZES = [100, 80, 68, 90];
   const PROGRESS_KEY = 'norive-progress-v2';
 
-  let controller: FocusController | null = null;
+  let controller: CarouselController | null = null;
+  let caption: CaptionSync | null = null;
 
   /** Fortschritt eines HF in % — zählt NUR die Themen dieses HF (data-hb-slugs). */
   function hbProgress(el: HTMLElement): number {
@@ -118,7 +99,8 @@ const ORBITS = [
 
   function initPage(): void {
     const stage = document.getElementById('solar-stage');
-    if (!stage) return;
+    const track = document.getElementById('solar-stage-track');
+    if (!stage || !track) return;
 
     // Light-Mode Setup
     const canvas = document.getElementById('starfield-canvas') as HTMLCanvasElement | null;
@@ -128,18 +110,14 @@ const ORBITS = [
     if (nav)      nav.style.background = 'linear-gradient(to bottom, rgba(237,232,223,0.85) 0%, transparent 100%)';
     if (wordmark) wordmark.style.color  = '#6E5035';
 
-    const orbitSvg  = stage.querySelector<HTMLElement>('.orbit-svg');
-    const central   = document.getElementById('solar-center');
-    const introEl   = document.getElementById('solar-intro');
     const planetEls = Array.from(document.querySelectorAll<HTMLElement>('.hf-planet'));
 
     // ── STATE RESET (ClientRouter Back-Navigation) ──
     controller?.destroy();
+    caption?.destroy();
     controller = null;
+    caption = null;
     gsap.killTweensOf(planetEls);
-    if (orbitSvg) { gsap.killTweensOf(orbitSvg); gsap.set(orbitSvg, { clearProps: 'all' }); }
-    if (central)  { gsap.killTweensOf(central);  gsap.set(central,  { clearProps: 'all' }); }
-    if (introEl)  introEl.style.display = '';
     planetEls.forEach(el => { el.style.cssText = ''; });
 
     // ── Größen + Telemetrie (data-progress-hb) ──
@@ -150,35 +128,38 @@ const ORBITS = [
       el.dataset.progressHb = String(hbProgress(el));
     });
 
-    // ── 3-STATE FOCUS CONTROLLER ──
-    controller = createFocusController({
-      stage,
-      planets: planetEls,
-      systemParts: [orbitSvg, central, introEl],
-      heroSize: () => Math.min(560, window.innerWidth * 0.42, window.innerHeight * 0.68),
-      getData: (el) => ({
+    // ── Caption-Sync (Modell B+: Caption folgt Zentrierung, kein Zoom-Schritt) ──
+    const captionRoot = document.getElementById('carousel-caption');
+    if (captionRoot) {
+      caption = createCaptionSync({
+        root: captionRoot,
+        eyebrow: document.getElementById('cc-eyebrow'),
+        titel: document.getElementById('cc-titel'),
+        beschr: document.getElementById('cc-beschr'),
+        cta: document.getElementById('cc-cta') as HTMLAnchorElement | null,
+        ctaText: document.getElementById('cc-cta-text'),
+      }, (el) => ({
         eyebrow: `Handlungsfeld ${el.dataset.nummer ?? ''}`,
         titel:   el.dataset.titel ?? '',
         beschr:  `${el.dataset.beschreibung ?? ''} — ${el.dataset.themen ?? '?'} Kapitel · ${el.dataset.progressHb ?? 0} % abgeschlossen`,
         href:    (el as HTMLAnchorElement).href,
         ctaText: 'Handlungsfeld betreten',
-      }),
+      }));
+    }
+
+    // ── Karussell ──
+    controller = initCarousel({
+      container: track,
+      items: planetEls,
+      orientation: 'horizontal',
+      mode: 'ring',
+      showHint: true,
+      onCenterChange: (i, el) => { caption?.sync(el); updateDots('solar-stage', i); },
     });
+    wireDots('solar-stage', controller);
 
-    // ── Drag-System: Klick (ohne Drag) → STATE 2 ──
-    const bodies = planetEls.map(el => ({
-      el,
-      orbitIndex: parseInt(el.dataset.orbit ?? '0'),
-      startAngle: parseFloat(el.dataset.start ?? '0'),
-    }));
-
-    initDraggableOrbits(stage, ORBITS, bodies, (body, wasDragged) => {
-      if (wasDragged || !controller) return;
-      if (controller.isActive()) return; // Fokussiert → nur CTA/Ghost-Button bedienbar
-      controller.focusIn(body.el);
-    });
-
-    introAnimation(bodies, central);
+    document.getElementById('solar-stage-prev')?.addEventListener('click', () => controller?.prev());
+    document.getElementById('solar-stage-next')?.addEventListener('click', () => controller?.next());
   }
 
   // astro:page-load feuert bereits beim initialen Laden (Astro-Standard) —
@@ -204,33 +185,4 @@ const ORBITS = [
     transition: color 0.2s ease;
   }
   .galaxie-back-link:hover { color: #6E5035; }
-
-  /* ── INTRO-TEXT (unten mittig, STATE 1) ── */
-  .solar-intro {
-    position: absolute;
-    bottom: clamp(24px, 4vh, 48px);
-    left: 50%;
-    transform: translateX(-50%);
-    text-align: center;
-    pointer-events: none;
-    z-index: 2;
-  }
-
-  .solar-intro p:first-child {
-    font-family: var(--mono, monospace);
-    font-size: 11px;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: rgba(110, 80, 53, 0.35);
-    margin-bottom: 4px;
-    max-width: none;
-  }
-
-  .solar-intro p:last-child {
-    font-family: var(--mono, monospace);
-    font-size: 12px;
-    letter-spacing: 0.1em;
-    color: rgba(110, 80, 53, 0.28);
-    max-width: none;
-  }
 </style>

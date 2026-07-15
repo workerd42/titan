@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -s http://localhost:4321/fachwirt-marketing/ -o /dev/null -w \"%{http_code}\\\\n\")",
+      "Skill(run)",
+      "Skill(run:*)",
+      "Bash(npm init *)",
+      "Bash(npm install *)",
+      "Bash(node verify-carousel.mjs)",
+      "Bash(NODE_PATH=./node_modules node debug-click.mjs)",
+      "Bash(NODE_PATH=./node_modules node verify-carousel.mjs)",
+      "mcp__claude_ai_Notion__notion-update-page"
+    ]
+  }
+}

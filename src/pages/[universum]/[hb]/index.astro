@@ -1,6 +1,7 @@
 ---
 import SpaceLayout from '../../../layouts/SpaceLayout.astro';
-import Universe from '../../../components/space/Universe.astro';
+import CarouselStageVertical from '../../../components/space/CarouselStageVertical.astro';
+import CarouselCaptionSide from '../../../components/ui/CarouselCaptionSide.astro';
 import Planet from '../../../components/space/Planet.astro';
 import { BEREICHE, getBereich } from '../../../data/bereiche';
 import { UNIVERSEN, getUniversum } from '../../../data/universen';
@@ -31,13 +32,6 @@ const hbBase = `${base}${universum.id}/${bereich.id}/`;
 
 const gruppenNamen = bereich.themengruppen.map(g => g.name);
 
-// Bahnen: eine pro Themengruppe (rx/ry in % der viewBox 0 0 100 100)
-const ALL_ORBITS = [
-  { rx: 14, ry:  6 }, { rx: 21, ry:  9 }, { rx: 28, ry: 12 },
-  { rx: 35, ry: 15 }, { rx: 41, ry: 17 }, { rx: 46, ry: 19 }, { rx: 49, ry: 21 },
-];
-const ORBITS = ALL_ORBITS.slice(0, Math.max(gruppenNamen.length, 1));
-
 // Planetenfarben: 6 Variationen, pro Themengruppe eine
 const COLORS = [
   { h: '#7AC0E8', b: '#1E2A3E', r: 'rgba(122,192,232,0.45)' },
@@ -48,39 +42,15 @@ const COLORS = [
   { h: '#E89860', b: '#3D2418', r: 'rgba(232,152,96,0.45)' },
 ];
 
-const CENTRAL_COLORS: Record<string, { h: string; b: string }> = {
-  hb1: { h: '#E8C480', b: '#3D2B1A' },
-  hb2: { h: '#7AC0E8', b: '#1E2A3E' },
-  hb3: { h: '#7AC898', b: '#1A2E20' },
-  hb4: { h: '#C880D8', b: '#2E1A3E' },
-};
-const cc = CENTRAL_COLORS[bereich.id] ?? { h: '#E8C480', b: '#3D2B1A' };
-
-// Themen → Orbit (pro Gruppe) + Startwinkel (gleichmäßig verteilt, Gruppen-Offset)
-const themenMitOrbit = (() => {
-  const result: Array<{
-    thema: CollectionEntry<'themen'>;
-    orbitIdx: number;
-    startAngle: number;
-    colorIdx: number;
-  }> = [];
-
+// Flache, geordnete Liste (Gruppe, dann Reihenfolge) + Farbe pro Gruppe —
+// kein Ring-/Winkel-Assignment mehr nötig (Karussell braucht nur den Index).
+const themenMitIndex = (() => {
+  const result: Array<{ thema: CollectionEntry<'themen'>; colorIdx: number }> = [];
   gruppenNamen.forEach((gruppe, gi) => {
     const gruppenThemen = themen.filter(t => t.data.themengruppe === gruppe);
-    const count = gruppenThemen.length;
     const colorIdx = gi % COLORS.length;
-
-    gruppenThemen.forEach((thema, ti) => {
-      const angle = ((2 * Math.PI) / Math.max(count, 1)) * ti + gi * Math.PI * 0.38;
-      result.push({
-        thema,
-        orbitIdx: Math.min(gi, ALL_ORBITS.length - 1),
-        startAngle: angle,
-        colorIdx,
-      });
-    });
+    gruppenThemen.forEach((thema) => result.push({ thema, colorIdx }));
   });
-
   return result;
 })();
 ---
@@ -103,16 +73,8 @@ const themenMitOrbit = (() => {
   </header>
 
   <main id="hauptinhalt" tabindex="-1">
-    <Universe
-      stageId="theme-stage"
-      centralId="theme-center"
-      universumId={bereich.id}
-      orbits={ORBITS}
-      central={cc}
-      centralSize="sm"
-      hideOnMobile={true}
-    >
-      {themenMitOrbit.map(({ thema, orbitIdx, startAngle, colorIdx }) => (
+    <CarouselStageVertical stageId="theme-stage" universumId={bereich.id} itemCount={themenMitIndex.length}>
+      {themenMitIndex.map(({ thema, colorIdx }, i) => (
         <Planet
           slug={thema.id}
           hbId={bereich.id}
@@ -120,12 +82,13 @@ const themenMitOrbit = (() => {
           gruppe={thema.data.themengruppe}
           beschreibung={thema.data.description}
           href={`${hbBase}${thema.id}/`}
-          orbitIdx={orbitIdx}
-          startAngle={startAngle}
+          index={i}
           color={COLORS[colorIdx]}
         />
       ))}
-    </Universe>
+
+      <CarouselCaptionSide slot="caption" />
+    </CarouselStageVertical>
 
     <!-- Zugängliche Liste (Mobile / Screenreader / reduced-motion) -->
     <nav class="theme-list-sr" aria-label="Kapitel als Liste">
@@ -149,21 +112,19 @@ const themenMitOrbit = (() => {
 
 <script src="../../../scripts/norive-progress.ts"></script>
 <script>
-  import { initDraggableOrbits, introAnimation, responsivePlanetSize } from '../../../scripts/gsap-orbits';
-  import { createFocusController, type FocusController } from '../../../scripts/gsap-focus';
+  import { initCarousel, responsivePlanetSize, type CarouselController } from '../../../scripts/gsap-carousel';
+  import { createCaptionSync, type CaptionSync } from '../../../scripts/carousel-caption';
   import { gsap } from 'gsap';
 
-  const ORBITS = [
-    { rx: 14, ry:  6 }, { rx: 21, ry:  9 }, { rx: 28, ry: 12 },
-    { rx: 35, ry: 15 }, { rx: 41, ry: 17 }, { rx: 46, ry: 19 }, { rx: 49, ry: 21 },
-  ];
-  const BASE_SIZES = [36, 40, 32, 38, 34, 36, 30, 40, 34];
+  const BASE_SIZES = [125, 140, 110, 130, 115, 125, 105, 140, 115];
 
-  let controller: FocusController | null = null;
+  let controller: CarouselController | null = null;
+  let caption: CaptionSync | null = null;
 
   function initPage(): void {
     const stage = document.getElementById('theme-stage');
-    if (!stage) return;
+    const track = document.getElementById('theme-stage-track');
+    if (!stage || !track) return;
 
     const canvas = document.getElementById('starfield-canvas') as HTMLCanvasElement | null;
     if (canvas) canvas.style.display = 'none';
@@ -172,16 +133,14 @@ const themenMitOrbit = (() => {
     if (wordmark) wordmark.style.color = '#6E5035';
     if (nav) nav.style.background = 'linear-gradient(to bottom, rgba(237,232,223,0.88) 0%, transparent 100%)';
 
-    const orbitSvg  = stage.querySelector<HTMLElement>('.orbit-svg');
-    const central   = document.getElementById('theme-center');
     const planetEls = Array.from(document.querySelectorAll<HTMLElement>('.theme-planet'));
 
-    // ── STATE RESET ──
+    // ── STATE RESET (ClientRouter Back-Navigation) ──
     controller?.destroy();
+    caption?.destroy();
     controller = null;
+    caption = null;
     gsap.killTweensOf(planetEls);
-    if (orbitSvg) { gsap.killTweensOf(orbitSvg); gsap.set(orbitSvg, { clearProps: 'all' }); }
-    if (central)  { gsap.killTweensOf(central);  gsap.set(central,  { clearProps: 'all' }); }
     planetEls.forEach(el => { el.style.cssText = ''; });
 
     // ── Größen ──
@@ -191,35 +150,40 @@ const themenMitOrbit = (() => {
       el.style.height = `${size}px`;
     });
 
-    // ── 3-STATE FOCUS CONTROLLER ──
-    controller = createFocusController({
-      stage,
-      planets: planetEls,
-      systemParts: [orbitSvg, central],
-      heroSize: () => Math.min(420, window.innerWidth * 0.34, window.innerHeight * 0.56),
-      getData: (el) => ({
+    // ── Caption-Sync (Modell B+: Caption folgt Zentrierung, kein Zoom-Schritt) ──
+    const captionRoot = document.getElementById('carousel-caption');
+    if (captionRoot) {
+      caption = createCaptionSync({
+        root: captionRoot,
+        eyebrow: document.getElementById('cc-eyebrow'),
+        titel: document.getElementById('cc-titel'),
+        beschr: document.getElementById('cc-beschr'),
+        cta: document.getElementById('cc-cta') as HTMLAnchorElement | null,
+        ctaText: document.getElementById('cc-cta-text'),
+      }, (el) => ({
         eyebrow: el.dataset.gruppe ?? '',
         titel:   el.dataset.titel ?? '',
         beschr:  el.dataset.beschreibung ?? '',
         href:    (el as HTMLAnchorElement).href,
         ctaText: 'Kapitel starten',
-      }),
+      }));
+    }
+
+    // ── Karussell (vertikal) ──
+    const counterEl = document.getElementById('theme-stage-counter-current');
+    controller = initCarousel({
+      container: track,
+      items: planetEls,
+      orientation: 'vertical',
+      showHint: true,
+      onCenterChange: (i, el) => {
+        caption?.sync(el);
+        if (counterEl) counterEl.textContent = String(i + 1);
+      },
     });
 
-    // ── Drag-System ──
-    const bodies = planetEls.map(el => ({
-      el,
-      orbitIndex: parseInt(el.dataset.orbit ?? '0'),
-      startAngle: parseFloat(el.dataset.start ?? '0'),
-    }));
-
-    initDraggableOrbits(stage, ORBITS, bodies, (body, wasDragged) => {
-      if (wasDragged || !controller) return;
-      if (controller.isActive()) return;
-      controller.focusIn(body.el);
-    });
-
-    introAnimation(bodies, central);
+    document.getElementById('theme-stage-prev')?.addEventListener('click', () => controller?.prev());
+    document.getElementById('theme-stage-next')?.addEventListener('click', () => controller?.next());
   }
 
   // astro:page-load feuert bereits beim initialen Laden (Astro-Standard) —
@@ -290,18 +254,26 @@ const themenMitOrbit = (() => {
   }
 
   /* ── ZUGÄNGLICHE LISTE ──────────────────── */
+  /* visibility:hidden statt der klassischen "clip"-Technik: auf dem Desktop
+     ist das 3D-Karussell selbst die Navigation (eigene Fokus-Reihenfolge,
+     eigenes aria-label) — die Liste soll dort NICHT zusätzlich per Tab
+     erreichbar/für Screenreader sichtbar sein, sonst verdoppelt sich jeder
+     Themen-Link (erst Karussell, dann unsichtbar diese Liste). Erst wenn
+     sie tatsächlich die einzige Navigation ist (Mobile/reduced-motion),
+     wird sie wieder normal sichtbar UND fokussierbar. */
   .theme-list-sr {
+    visibility: hidden;
     position: absolute;
     width: 1px; height: 1px;
-    clip: rect(0, 0, 0, 0);
     overflow: hidden;
   }
 
   @media (max-width: 600px), (prefers-reduced-motion: reduce) {
     .theme-list-sr {
+      visibility: visible;
       position: static;
       width: auto; height: auto;
-      clip: auto; overflow: visible;
+      overflow: visible;
       padding: 130px 20px 48px;
     }
     .tls-gruppe { margin-bottom: 24px; }

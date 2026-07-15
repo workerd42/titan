@@ -4,3 +4,7 @@ dist
 .github
 .astro
 *.log
+.env
+.env.*
+!.env.example
+drizzle/.snapshot

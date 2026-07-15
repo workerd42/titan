@@ -75,6 +75,14 @@ function saveProgress(state: NoriveProgress): void {
   } catch {
     // localStorage voll oder blockiert — Seite bleibt nutzbar
   }
+  // Einziger Andockpunkt für Phase 2: signalisiert Änderungen nach außen.
+  // norive-sync.ts nutzt das für den Server-Sync (nur bei aktiver Session),
+  // PersoenlichPanel für die Live-Aktualisierung der Fortschrittsanzeige.
+  try {
+    window.dispatchEvent(new CustomEvent('norive:progress-updated'));
+  } catch {
+    /* kein window (SSR/Build) — irrelevant, Script läuft nur im Browser */
+  }
 }
 
 // ─── STREAK ───────────────────────────────────────
@@ -310,3 +318,14 @@ if (document.readyState === 'loading') {
 } else {
   init();
 }
+
+// Phase 2: Nach einem Server-Sync (norive-sync.ts) steht ein neuer Stand im
+// localStorage — Anzeigen neu rendern, damit Phasen-Punkte/Streak/Fortschritt
+// ohne Reload stimmen.
+window.addEventListener('norive:synced', () => {
+  const state = loadProgress();
+  renderStreakDisplay(state);
+  renderPhaseDots(state);
+  renderPlanetComplete(state);
+  renderPlanetProgress(state);
+});
