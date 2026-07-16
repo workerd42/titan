@@ -134,8 +134,10 @@ Zwei gleichrangige Zielgruppen, zwei Einstiegswege:
 
 ### 3.2 Interaktive IHK-Werkzeuge (Phase 3 Modules)
 
+> **Vollständige Spezifikation:** [interaktive-module.md](interaktive-module.md) — ~20 wiederverwendbare Modultypen, je Planet zugewiesen, jedes erzeugt ein Artefakt fürs Präsentations-Deck (roter Faden: Kompass-Unternehmen). Grundlage: die 4 Handlungsbereiche + 5 Lehrbücher (`docs/quellen/`). Der Großteil ist **Stufe A** (deterministisch, ohne KI sofort baubar); nur Freitext-Feedback/Fall-Rekontextualisierung ist **Stufe B** (KI, dieser Abschnitt).
+
 - [ ] SWOT-Matrix Baukasten: Interaktives 4-Felder-Grid mit Live-KI-Hilfe.
-- [ ] Deckungsbeitrags- & Kennzahlen-Rechner: LaTeX-basierter Schritt-für-Schritt Rechenweg mit eigenen Zahlen des Kompass-Unternehmens.
+- [ ] Deckungsbeitrags- & Kennzahlen-Rechner: Schritt-für-Schritt Rechenweg mit eigenen Zahlen des Kompass-Unternehmens.
 - [ ] SMART-Zielprüfer & PESTEL-Analyse: Eingabemasken zur Prüfung von Strategiefragen.
 
 ### 3.3 Dynamic Spaced Repetition (Phase 4)
