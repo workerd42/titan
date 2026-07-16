@@ -61,11 +61,12 @@ export function createCaptionSync(
       return;
     }
 
+    // Ruhig/organisch (Kosmos-Gefühl): sanftes Aus- und Einblenden.
     tl?.kill();
     tl = gsap.timeline({ defaults: { overwrite: 'auto' } })
-      .to(els.root, { opacity: 0, y: 8, duration: 0.15, ease: 'power2.in' })
+      .to(els.root, { opacity: 0, y: 10, duration: 0.28, ease: 'sine.in' })
       .add(() => apply(d))
-      .to(els.root, { opacity: 1, y: 0, duration: 0.3, ease: 'power2.out' });
+      .to(els.root, { opacity: 1, y: 0, duration: 0.5, ease: 'sine.out' });
   }
 
   return {

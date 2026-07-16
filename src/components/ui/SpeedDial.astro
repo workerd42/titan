@@ -67,7 +67,9 @@ const { showKonzept = true, showPersonal = true } = Astro.props;
     right: 20px;
     z-index: 210;
     display: flex;
-    flex-direction: column-reverse; /* FAB unten, Aktionen wachsen nach oben */
+    /* DOM-Reihenfolge: Aktionen zuerst, FAB zuletzt → mit 'column' steht der
+       FAB unten und die Aktionen klappen nach OBEN aus. */
+    flex-direction: column;
     align-items: center;
     gap: 12px;
   }
@@ -115,7 +117,8 @@ const { showKonzept = true, showPersonal = true } = Astro.props;
     opacity: 0;
     transform: translateY(10px) scale(0.8);
     pointer-events: none;
-    transition: opacity 0.25s ease, transform 0.25s cubic-bezier(0.16,1,0.3,1), border-color 0.2s ease;
+    /* Ruhig/organisch (Kosmos-Gefühl): sanftes Auf-/Zuklappen. */
+    transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.16,1,0.3,1), border-color 0.2s ease;
   }
   .speed-dial[data-open="true"] .sd-action {
     opacity: 1;

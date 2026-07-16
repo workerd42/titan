@@ -53,7 +53,7 @@ const DECAY = 0.72;           // 'linear': geometrische Abnahme des Abstands je 
 const SWIPE_THRESHOLD_PX = 60;
 const SWIPE_VELOCITY_PX_MS = 0.5;
 
-const RING_DEFAULTS: Required<RingGeometry> = { rxRatio: 0.30, ryRatio: 0.24, rzRatio: 0.42 };
+const RING_DEFAULTS: Required<RingGeometry> = { rxRatio: 0.30, ryRatio: 0.27, rzRatio: 0.42 };
 
 function reduceMotion(): boolean {
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -177,10 +177,12 @@ export function initCarousel(opts: CarouselOpts): CarouselController {
 
   let ringRadii = mode === 'ring' ? computeRingRadii(container, ringGeo) : null;
   if (mode === 'ring') {
-    // Anker etwas oberhalb der Mitte — bei top:50% verschwand das vorderste,
-    // größte Element (Anker + positiver y-Versatz) unten aus dem sichtbaren
-    // Bereich der Stage (overflow:hidden). top:35% gibt genug Puffer nach unten.
-    gsap.set(items, { left: '50%', top: '35%' });
+    // Anker tief gesetzt (50%) + große ry (0.38): Das vorderste, größte Element
+    // (Anker + positiver y-Versatz) sitzt dadurch am unteren Bildrand und ragt
+    // bewusst darüber hinaus — der Nutzer soll das Gefühl haben, "darauf zu
+    // stehen" (Planeten-Horizont). Die Nachbarn weichen nach oben in den
+    // "Himmel" zurück.
+    gsap.set(items, { left: '50%', top: '50%' });
   }
 
   /** Setzt/animiert alle Items relativ zu einem (ggf. fraktionalen) virtuellen Center. */
@@ -193,7 +195,8 @@ export function initCarousel(opts: CarouselOpts): CarouselController {
         el.style.pointerEvents = opacity < 0.2 ? 'none' : '';
 
         if (animate && !reduceMotion()) {
-          gsap.to(el, { transform, opacity, duration: 0.55, ease: 'power3.inOut', overwrite: 'auto' });
+          // Ruhig/organisch (Kosmos-Gefühl): langsam, weiches Ein-/Ausschwingen.
+          gsap.to(el, { transform, opacity, duration: 0.85, ease: 'power2.inOut', overwrite: 'auto' });
         } else {
           gsap.set(el, { transform, opacity });
         }
@@ -209,7 +212,8 @@ export function initCarousel(opts: CarouselOpts): CarouselController {
       el.style.pointerEvents = opacity < 0.05 ? 'none' : '';
 
       if (animate && !reduceMotion()) {
-        gsap.to(el, { transform, opacity, duration: 0.45, ease: 'power3.out', overwrite: 'auto' });
+        // Ruhig/organisch (Kosmos-Gefühl): langsam, weiches Ausschwingen.
+        gsap.to(el, { transform, opacity, duration: 0.7, ease: 'power2.out', overwrite: 'auto' });
       } else {
         gsap.set(el, { transform, opacity });
       }
