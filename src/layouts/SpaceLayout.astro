@@ -4,6 +4,7 @@ import KompassOnboarding from '../components/ui/KompassOnboarding.astro';
 import PersoenlichPanel from '../components/ui/PersoenlichPanel.astro';
 import KonzeptPanel from '../components/ui/KonzeptPanel.astro';
 import SpeedDial from '../components/ui/SpeedDial.astro';
+import FocusView from '../components/ui/FocusView.astro';
 import SearchOverlay from '../components/ui/SearchOverlay.astro';
 import { getThemenSlugsByHb } from '../lib/content';
 import '../styles/space.css';
@@ -53,6 +54,9 @@ const themenSlugs = await getThemenSlugsByHb();
 
     <!-- Kompass-Onboarding -->
     <KompassOnboarding />
+
+    <!-- Zoom-Zwischenschritt (Seite 1/2/3) — geöffnet vom CTA der jeweiligen Seite -->
+    <FocusView />
 
     <!-- Suche — nur ab Kapitel-/Planeten-Ebene (Seite 3), siehe showSearch -->
     {showSearch && <SearchOverlay />}

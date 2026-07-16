@@ -53,6 +53,7 @@ function galaxienVon(universumId: string) {
 <script>
   import { initCarousel, responsivePlanetSize, wireDots, updateDots, type CarouselController } from '../scripts/gsap-carousel';
   import { createCaptionSync, type CaptionSync } from '../scripts/carousel-caption';
+  import { initFocusView, openFocus } from '../scripts/focus-view';
   import { gsap } from 'gsap';
 
   const BASE_SIZE = 100;
@@ -127,6 +128,26 @@ function galaxienVon(universumId: string) {
 
     document.getElementById('kosmos-stage-prev')?.addEventListener('click', () => controller?.prev());
     document.getElementById('kosmos-stage-next')?.addEventListener('click', () => controller?.next());
+
+    // ── Zoom-Zwischenschritt (#4): CTA öffnet den Fokus statt direkt zu
+    // navigieren. „Weiter" im Fokus führt dann zur Universum-Seite. ──
+    initFocusView();
+    const cta = document.getElementById('cc-cta') as HTMLAnchorElement | null;
+    cta?.addEventListener('click', (e) => {
+      if (cta.classList.contains('is-disabled') || !cta.getAttribute('href')) return; // Coming-Soon
+      e.preventDefault();
+      const idx = controller?.getCenterIndex() ?? 0;
+      const globe = planetEls[idx];
+      if (!globe) { window.location.href = cta.href; return; }
+      openFocus(globe, {
+        eyebrow: globe.dataset.eyebrow ?? '',
+        titel:   globe.dataset.titel ?? '',
+        beschr:  globe.dataset.beschreibung ?? '',
+        meta:    `${globe.dataset.galaxien ?? '?'} Handlungsfelder`,
+        href:    (globe as HTMLAnchorElement).href,
+        weiterText: 'Universum betreten',
+      });
+    });
   }
 
   // astro:page-load feuert bereits beim initialen Laden (Astro-Standard) —

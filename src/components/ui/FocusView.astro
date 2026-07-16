@@ -1,0 +1,185 @@
+---
+/**
+ * FocusView — Zoom-Zwischenschritt nach der Auswahl (Seite 1/2/3).
+ *
+ * Ablauf: Im Karussell ein Element zentrieren → CTA klicken → statt sofort zu
+ * navigieren öffnet sich dieser Fokus-Zustand: die gewählte Kugel groß rechts,
+ * ausführlichere Info + Aktionen links, vertikal zentriert.
+ *   • „Weiter" (Anchor) navigiert eine Ebene tiefer.
+ *   • „Zurück" schließt den Fokus und kehrt zum Karussell zurück.
+ *
+ * Wird von focus-view.ts befüllt/geöffnet/geschlossen. Liegt im SpaceLayout,
+ * ist also auf allen drei Auswahl-Ebenen verfügbar.
+ */
+---
+
+<div class="focus-view" id="focus-view" hidden>
+  <div class="fv-inner">
+    <div class="fv-info">
+      <button class="fv-zurueck" id="fv-zurueck" type="button">
+        <span aria-hidden="true">←</span> Zurück
+      </button>
+      <p class="fv-eyebrow" id="fv-eyebrow"></p>
+      <h2 class="fv-titel" id="fv-titel"></h2>
+      <p class="fv-beschr" id="fv-beschr"></p>
+      <p class="fv-meta" id="fv-meta"></p>
+      <a class="fv-weiter" id="fv-weiter" href="#">
+        <span id="fv-weiter-text">Weiter</span>
+        <span aria-hidden="true">→</span>
+      </a>
+    </div>
+    <div class="fv-stage" id="fv-globe-mount" aria-hidden="true"></div>
+  </div>
+</div>
+
+<style>
+  .focus-view {
+    position: fixed;
+    inset: 0;
+    z-index: 180; /* über Karussell (max 150 Caption), unter Modals (250) */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(24px, 5vw, 72px);
+    background: rgba(237, 232, 223, 0.97); /* Warm Linen — deckt das Karussell */
+    backdrop-filter: blur(8px);
+    opacity: 0;
+    transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .focus-view[hidden] { display: none; }
+  .focus-view.is-open { opacity: 1; }
+
+  .fv-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 46%) minmax(0, 54%);
+    align-items: center;
+    gap: clamp(24px, 5vw, 64px);
+    width: min(1100px, 100%);
+    max-height: 100%;
+  }
+
+  /* ── Info links ── */
+  .fv-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    transform: translateX(-14px);
+    opacity: 0;
+    transition: transform 0.5s cubic-bezier(0.16,1,0.3,1) 0.08s, opacity 0.5s ease 0.08s;
+  }
+  .focus-view.is-open .fv-info { transform: none; opacity: 1; }
+
+  .fv-zurueck {
+    font-family: var(--mono, monospace);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(110, 80, 53, 0.75);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px 0;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+    transition: color 0.2s ease, gap 0.2s ease;
+  }
+  .fv-zurueck:hover { color: #6E5035; gap: 12px; }
+
+  .fv-eyebrow {
+    font-family: var(--mono, monospace);
+    font-size: 11px;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: rgba(110, 80, 53, 0.6);
+    margin-bottom: 12px;
+  }
+  .fv-titel {
+    font-family: var(--serif, Georgia, serif);
+    font-size: clamp(30px, 4.5vw, 56px);
+    font-weight: 300;
+    color: #1C1917;
+    letter-spacing: -0.025em;
+    line-height: 1.1;
+    margin-bottom: 18px;
+  }
+  .fv-beschr {
+    font-family: var(--mono, monospace);
+    font-size: 13px;
+    font-weight: 300;
+    color: #5E5450;
+    line-height: 1.8;
+    margin-bottom: 16px;
+    max-width: 42ch;
+  }
+  .fv-meta {
+    font-family: var(--mono, monospace);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: rgba(110, 80, 53, 0.7);
+    margin-bottom: 28px;
+  }
+  .fv-meta:empty { display: none; }
+
+  .fv-weiter {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-family: var(--mono, monospace);
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #141210;
+    background: #C4A882;
+    text-decoration: none;
+    padding: 16px 32px;
+    min-height: 50px;
+    border-radius: 999px;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+  .fv-weiter:hover { opacity: 0.9; transform: translateY(-1px); text-decoration: none; }
+
+  /* ── Kugel rechts ── */
+  .fv-stage {
+    position: relative;
+    aspect-ratio: 1;
+    width: 100%;
+    max-width: min(48vh, 460px);
+    justify-self: center;
+    transform: scale(0.85);
+    opacity: 0;
+    transition: transform 0.55s cubic-bezier(0.16,1,0.3,1), opacity 0.5s ease;
+  }
+  .focus-view.is-open .fv-stage { transform: none; opacity: 1; }
+  /* Der eingesetzte Kugel-Klon füllt die Bühne */
+  .fv-stage :global(.fv-globe) {
+    position: relative !important;
+    inset: auto !important;
+    top: auto !important;
+    left: auto !important;
+    transform: none !important;
+    opacity: 1 !important;
+    width: 100% !important;
+    height: 100% !important;
+    pointer-events: none;
+  }
+
+  @media (max-width: 720px) {
+    .fv-inner {
+      grid-template-columns: 1fr;
+      justify-items: center;
+      text-align: center;
+      gap: clamp(20px, 6vw, 40px);
+    }
+    .fv-info { align-items: center; order: 2; }
+    .fv-beschr { text-align: center; }
+    .fv-stage { order: 1; max-width: min(38vh, 300px); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .focus-view, .fv-info, .fv-stage { transition: opacity 0.2s ease; }
+    .fv-info, .fv-stage { transform: none; }
+  }
+</style>

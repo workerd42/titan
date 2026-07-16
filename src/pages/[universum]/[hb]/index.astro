@@ -115,6 +115,7 @@ const themenMitIndex = (() => {
 <script>
   import { initCarousel, responsivePlanetSize, type CarouselController } from '../../../scripts/gsap-carousel';
   import { createCaptionSync, type CaptionSync } from '../../../scripts/carousel-caption';
+  import { initFocusView, openFocus } from '../../../scripts/focus-view';
   import { gsap } from 'gsap';
 
   const BASE_SIZES = [125, 140, 110, 130, 115, 125, 105, 140, 115];
@@ -188,6 +189,26 @@ const themenMitIndex = (() => {
 
     document.getElementById('theme-stage-prev')?.addEventListener('click', () => controller?.prev());
     document.getElementById('theme-stage-next')?.addEventListener('click', () => controller?.next());
+
+    // ── Zoom-Zwischenschritt (#4): CTA öffnet den Fokus statt direkt zu
+    // navigieren. „Weiter" führt dann in die Lernseite des Kapitels. ──
+    initFocusView();
+    const cta = document.getElementById('cc-cta') as HTMLAnchorElement | null;
+    cta?.addEventListener('click', (e) => {
+      if (cta.classList.contains('is-disabled') || !cta.getAttribute('href')) return;
+      e.preventDefault();
+      const idx = controller?.getCenterIndex() ?? 0;
+      const globe = planetEls[idx];
+      if (!globe) { window.location.href = cta.href; return; }
+      openFocus(globe, {
+        eyebrow: globe.dataset.gruppe ?? '',
+        titel:   globe.dataset.titel ?? '',
+        beschr:  globe.dataset.beschreibung ?? '',
+        meta:    '',
+        href:    (globe as HTMLAnchorElement).href,
+        weiterText: 'Kapitel starten',
+      });
+    });
   }
 
   // astro:page-load feuert bereits beim initialen Laden (Astro-Standard) —
