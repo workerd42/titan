@@ -1,0 +1,157 @@
+---
+/**
+ * /deck — Präsentations-Deck (Missions-Launch, Vorstufe).
+ *
+ * Sammelt alle in Phase „Anwenden" erzeugten Artefakte (bezogen aufs Kompass-
+ * Unternehmen) und macht sie abrufbar: ansehen, drucken / als Präsentation
+ * exportieren. Statisch gebaut; die Artefakte kommen client-seitig aus dem
+ * Fortschritt (localStorage bzw. synchronisierter Account-Stand).
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import { BEREICHE } from '../data/bereiche';
+import '../styles/modules.css';
+
+const base = import.meta.env.BASE_URL;
+const themen = await getCollection('themen');
+// slug → { titel, hb, hbTitel } für Gruppierung/Beschriftung im Client
+const hbTitel: Record<string, string> = Object.fromEntries(BEREICHE.map((b) => [b.id, `HF ${b.nummer} — ${b.titel}`]));
+const themenMeta = Object.fromEntries(
+  themen.map((t) => [t.id, { titel: t.data.title, hb: t.data.handlungsbereich, hbTitel: hbTitel[t.data.handlungsbereich] ?? t.data.handlungsbereich }]),
+);
+---
+
+<BaseLayout title="Präsentations-Deck — Titan" description="Deine gesammelten Artefakte für die IHK-Präsentation." canonicalPath="/deck/" theme="light">
+  <main id="hauptinhalt" class="deck-shell">
+    <header class="deck-head">
+      <a href={base} class="deck-back">← Titan</a>
+      <p class="deck-eyebrow">Missions-Launch</p>
+      <h1 class="deck-title">Dein Präsentations-Deck</h1>
+      <p class="deck-lead" id="deck-lead">Alle Artefakte, die du in der Phase „Anwenden" für dein Kompass-Unternehmen erstellt hast — gesammelt für die mündliche IHK-Prüfung.</p>
+      <div class="deck-actions" id="deck-actions" hidden>
+        <button class="tm-save" id="deck-print" type="button">Drucken / als PDF sichern</button>
+      </div>
+    </header>
+
+    <div id="deck-empty" class="deck-empty" hidden>
+      <p>Noch keine Artefakte gesammelt.</p>
+      <p class="deck-empty-sub">Öffne ein Kapitel mit einem interaktiven Werkzeug (z. B. <em>Marketingziele</em>, <em>Marktsegmentierung</em> oder <em>Deckungsbeitragsrechnung</em>), bearbeite es für dein Unternehmen und speichere das Artefakt.</p>
+    </div>
+
+    <div id="deck-content" class="deck-content"></div>
+  </main>
+
+  <script define:vars={{ themenMeta, base }}>
+    const PROGRESS_KEY = 'norive-progress-v2';
+    const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;' }[c]));
+
+    function collect() {
+      let st; try { st = JSON.parse(localStorage.getItem(PROGRESS_KEY) || '{}'); } catch { st = {}; }
+      const themen = st.themen || {};
+      const items = [];
+      for (const slug of Object.keys(themen)) {
+        const a = themen[slug]?.artefakt;
+        if (a && a.deckReif) items.push({ slug, ...a, meta: themenMeta[slug] || { titel: slug, hb: '—', hbTitel: '—' } });
+      }
+      // nach HF, dann Erstellzeit
+      items.sort((x, y) => (x.meta.hb).localeCompare(y.meta.hb) || (x.erstelltAm || '').localeCompare(y.erstelltAm || ''));
+      return items;
+    }
+
+    function renderDaten(modul, d) {
+      if (!d) return '';
+      if (modul === 'smart') {
+        const kr = d.kriterien || {};
+        const rows = Object.entries(kr).map(([k, v]) =>
+          `<li class="${v.erfuellt ? 'ok' : 'no'}"><b>${esc(k)}</b>${v.notiz ? ' — ' + esc(v.notiz) : ''}</li>`).join('');
+        return `<p class="deck-ziel">„${esc(d.ziel || '')}"</p><ul class="deck-krit">${rows}</ul>`;
+      }
+      if (modul === 'swot') {
+        const cell = (key, label) => `<div class="deck-swot-cell tm-swot-${key}"><p class="tm-swot-titel">${label}</p><ul>${(d[key]||[]).map(x=>`<li>${esc(x)}</li>`).join('') || '<li class="muted">—</li>'}</ul></div>`;
+        return `<div class="deck-swot">${cell('staerken','Stärken')}${cell('schwaechen','Schwächen')}${cell('chancen','Chancen')}${cell('risiken','Risiken')}</div>`;
+      }
+      if (modul === 'deckungsbeitrag') {
+        const f = (n) => (typeof n === 'number' && isFinite(n)) ? n.toLocaleString('de-DE',{maximumFractionDigits:2}) : '—';
+        const dbGes = d.dbStk * d.menge, gewinn = dbGes - d.fixk, be = d.dbStk > 0 ? Math.ceil(d.fixk / d.dbStk) : NaN;
+        return `<div class="tm-out">
+          <div class="tm-out-row"><span>DB / Stück</span><b>${f(d.dbStk)} €</b></div>
+          <div class="tm-out-row"><span>DB gesamt (${f(d.menge)} Stück)</span><b>${f(dbGes)} €</b></div>
+          <div class="tm-out-row"><span>Break-even-Menge</span><b>${f(be)} Stück</b></div>
+          <div class="tm-out-row tm-out-total"><span>Gewinn / Verlust</span><b class="${gewinn>=0?'pos':'neg'}">${f(gewinn)} €</b></div>
+        </div>`;
+      }
+      return `<pre class="deck-raw">${esc(JSON.stringify(d, null, 2))}</pre>`;
+    }
+
+    function render() {
+      const items = collect();
+      const empty = document.getElementById('deck-empty');
+      const actions = document.getElementById('deck-actions');
+      const content = document.getElementById('deck-content');
+      const lead = document.getElementById('deck-lead');
+      if (!items.length) { empty.hidden = false; actions.hidden = true; content.innerHTML = ''; return; }
+      empty.hidden = true; actions.hidden = false;
+      lead.textContent = `${items.length} Artefakt${items.length===1?'':'e'} gesammelt — bereit für deine Präsentation.`;
+
+      // nach HF gruppieren
+      const groups = {};
+      items.forEach((it) => { (groups[it.meta.hbTitel] ??= []).push(it); });
+      content.innerHTML = Object.entries(groups).map(([hb, arr]) => `
+        <section class="deck-group">
+          <h2 class="deck-group-title">${esc(hb)}</h2>
+          ${arr.map((it) => `
+            <article class="deck-card">
+              <div class="deck-card-head">
+                <p class="deck-card-kapitel">${esc(it.meta.titel)}</p>
+                <h3 class="deck-card-title">${esc(it.titel)}</h3>
+              </div>
+              ${renderDaten(it.modul, it.daten)}
+              <p class="deck-card-meta">Erstellt ${new Date(it.erstelltAm).toLocaleDateString('de-DE')}</p>
+            </article>`).join('')}
+        </section>`).join('');
+    }
+
+    document.getElementById('deck-print')?.addEventListener('click', () => window.print());
+    render();
+    window.addEventListener('norive:synced', render);
+    document.addEventListener('astro:page-load', render);
+  </script>
+
+  <style is:global>
+    /* global, da der Deck-Inhalt client-seitig injiziert wird (scoped CSS
+       greift auf innerHTML-Elemente nicht). */
+    .deck-shell { max-width: 900px; margin: 0 auto; padding: clamp(28px,5vw,64px) clamp(18px,4vw,32px) 96px; color: #1C1917; }
+    .deck-back { font-family: var(--mono,monospace); font-size: 12px; color: #6E5035; text-decoration: none; }
+    .deck-eyebrow { font-family: var(--mono,monospace); font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: rgba(110,80,53,0.65); margin: 20px 0 8px; }
+    .deck-title { font-family: var(--serif,Georgia,serif); font-weight: 300; font-size: clamp(28px,5vw,46px); letter-spacing: -0.02em; margin: 0 0 12px; }
+    .deck-lead { font-family: var(--mono,monospace); font-size: 13px; line-height: 1.7; color: #5E5450; max-width: 60ch; }
+    .deck-actions { margin-top: 22px; }
+    .deck-empty { border: 1px dashed rgba(28,25,23,0.2); border-radius: 4px; padding: 28px; text-align: center; font-family: var(--mono,monospace); color: #5E5450; margin-top: 24px; }
+    .deck-empty-sub { font-size: 12px; margin-top: 8px; color: #8a7d6a; }
+    .deck-content { display: flex; flex-direction: column; gap: 36px; margin-top: 36px; }
+    .deck-group-title { font-family: var(--mono,monospace); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #6E5035; border-bottom: 1px solid rgba(28,25,23,0.14); padding-bottom: 8px; margin: 0 0 16px; }
+    .deck-card { border: 1px solid rgba(28,25,23,0.14); border-radius: 4px; padding: clamp(16px,3vw,26px); background: #F6F3EC; margin-bottom: 16px; break-inside: avoid; }
+    .deck-card-kapitel { font-family: var(--mono,monospace); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: #8a7d6a; margin: 0 0 4px; }
+    .deck-card-title { font-family: var(--serif,Georgia,serif); font-weight: 400; font-size: 20px; margin: 0 0 14px; }
+    .deck-ziel { font-family: var(--serif,Georgia,serif); font-style: italic; font-size: 17px; color: #1C1917; margin: 0 0 12px; }
+    .deck-krit { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 6px; font-family: var(--mono,monospace); font-size: 12.5px; }
+    .deck-krit li::before { margin-right: 8px; }
+    .deck-krit li.ok::before { content: '✓'; color: #2f6b45; }
+    .deck-krit li.no::before { content: '○'; color: #a23b2e; }
+    .deck-swot { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .deck-swot-cell { padding: 12px; border-radius: 3px; }
+    .deck-swot-cell ul { margin: 4px 0 0; padding-left: 18px; font-family: var(--mono,monospace); font-size: 12px; color: #1C1917; }
+    .deck-swot-cell .muted { color: #8a7d6a; list-style: none; margin-left: -18px; }
+    .deck-card-meta { font-family: var(--mono,monospace); font-size: 10px; color: #8a7d6a; margin: 12px 0 0; }
+    .deck-raw { font-size: 11px; overflow-x: auto; }
+    @media (max-width: 560px) { .deck-swot { grid-template-columns: 1fr; } }
+
+    @media print {
+      .deck-back, .deck-actions { display: none; }
+      .deck-shell { max-width: none; padding: 0; }
+      .deck-card { background: #fff; break-inside: avoid; }
+      .deck-group { break-before: page; }
+      .deck-group:first-of-type { break-before: avoid; }
+    }
+  </style>
+</BaseLayout>

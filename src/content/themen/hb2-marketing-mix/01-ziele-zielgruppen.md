@@ -4,6 +4,7 @@ handlungsbereich: "hb2"
 themengruppe: "Marketing-Mix"
 order: 1
 description: "Ableitung und Hierarchie von Marketingzielen sowie systematische Definition und Analyse von Zielgruppen."
+werkzeug: "smart"
 
 definitionen:
   - begriff: "Oberziel (Unternehmensziel)"

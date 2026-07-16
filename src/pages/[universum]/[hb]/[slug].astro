@@ -4,6 +4,7 @@ import CTAButton from '../../../components/ui/CTAButton.astro';
 import { BEREICHE, getBereich } from '../../../data/bereiche';
 import { UNIVERSEN, getUniversum } from '../../../data/universen';
 import { getCollection, render, type CollectionEntry } from 'astro:content';
+import '../../../styles/modules.css';
 
 export async function getStaticPaths() {
   const alleThemen = await getCollection('themen');
@@ -275,20 +276,29 @@ const d = thema.data;
         </div>
       </div>
 
-      <!-- Antwort-Bereich -->
-      <div class="antwort-bereich">
-        <label class="antwort-label" for={`antwort-${thema.id}`}>
-          <span class="antwort-label-icon" aria-hidden="true">✏</span>
-          Deine Lösung
-        </label>
-        <textarea
-          id={`antwort-${thema.id}`}
-          class="antwort-textarea"
-          data-action="eigene-einschaetzung"
-          placeholder="Schreibe hier deine Lösung — in vollständigen Sätzen, so wie in der echten Prüfung …"
-          rows="5"
-        ></textarea>
-      </div>
+      {d.werkzeug && (
+        <div class="modul-block">
+          <p class="modul-block-label">Interaktives Werkzeug</p>
+          <div id="modul-mount" data-werkzeug={d.werkzeug} data-slug={thema.id}></div>
+        </div>
+      )}
+
+      {/* Freies Textfeld nur, wenn kein interaktives Werkzeug hinterlegt ist */}
+      {!d.werkzeug && (
+        <div class="antwort-bereich">
+          <label class="antwort-label" for={`antwort-${thema.id}`}>
+            <span class="antwort-label-icon" aria-hidden="true">✏</span>
+            Deine Lösung
+          </label>
+          <textarea
+            id={`antwort-${thema.id}`}
+            class="antwort-textarea"
+            data-action="eigene-einschaetzung"
+            placeholder="Schreibe hier deine Lösung — in vollständigen Sätzen, so wie in der echten Prüfung …"
+            rows="5"
+          ></textarea>
+        </div>
+      )}
 
       <details class="musterlosung-details">
         <summary>Musterlösung ansehen</summary>
@@ -298,11 +308,13 @@ const d = thema.data;
       </details>
 
       <div class="phase-abschluss">
-        <button class="phase-fertig-btn" data-action="anwenden-bestaetigen">
-          <span class="pfb-icon" aria-hidden="true">◆</span>
-          <span class="pfb-text">Lösung mit Muster verglichen — weiter</span>
-          <span class="pfb-arrow" aria-hidden="true">→</span>
-        </button>
+        {!d.werkzeug && (
+          <button class="phase-fertig-btn" data-action="anwenden-bestaetigen">
+            <span class="pfb-icon" aria-hidden="true">◆</span>
+            <span class="pfb-text">Lösung mit Muster verglichen — weiter</span>
+            <span class="pfb-arrow" aria-hidden="true">→</span>
+          </button>
+        )}
         <a href="#phase-pruefen" class="phase-weiter-link">Weiter zu Prüfen ↓</a>
       </div>
     </section>

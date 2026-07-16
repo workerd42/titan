@@ -1,0 +1,93 @@
+/* Interaktive Module (Phase „Anwenden") — global, da das DOM client-seitig
+   von module-engine.ts erzeugt wird (Astro-scoped CSS greift dort nicht). */
+
+.modul-block {
+  border: 1px solid var(--border, rgba(28,25,23,0.14));
+  border-radius: 4px;
+  background: var(--bg-surface-light, #F6F3EC);
+  padding: clamp(18px, 3vw, 28px);
+  margin-bottom: var(--sp-lg, 24px);
+}
+.modul-block-label {
+  font-family: var(--mono, monospace);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent, #6E5035);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.modul-block-label::before { content: '◆'; }
+
+.tm { display: flex; flex-direction: column; gap: 16px; }
+.tm-lead { font-family: var(--mono, monospace); font-size: 13px; line-height: 1.7; color: var(--text-muted, #5E5450); }
+.tm-lead strong { color: var(--text, #1C1917); font-weight: 500; }
+.tm-label { display: flex; flex-direction: column; gap: 6px; font-family: var(--mono, monospace); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent, #6E5035); }
+.tm-input {
+  font-family: var(--mono, monospace); font-size: 14px; color: var(--text, #1C1917);
+  background: #fff; border: 1px solid var(--border, rgba(28,25,23,0.16)); border-radius: 3px;
+  padding: 10px 12px; width: 100%; resize: vertical;
+}
+.tm-input:focus-visible { outline: 2px solid var(--accent, #6E5035); outline-offset: 1px; border-color: transparent; }
+
+.tm-hinweis { font-family: var(--mono, monospace); font-size: 12px; line-height: 1.6; color: var(--accent, #6E5035); background: rgba(196,168,130,0.14); border-radius: 3px; padding: 10px 12px; }
+.tm-soon { font-family: var(--mono, monospace); font-size: 13px; color: var(--text-muted, #5E5450); }
+
+/* SMART */
+.tm-krit { display: flex; flex-direction: column; gap: 10px; }
+.tm-krit-row { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 12px; align-items: center; }
+.tm-krit-head { display: flex; align-items: center; gap: 10px; cursor: pointer; }
+.tm-krit-titel { font-family: var(--mono, monospace); font-size: 12px; color: var(--text, #1C1917); font-weight: 500; }
+.tm-krit-hint { color: var(--text-muted, #8a7d6a); font-weight: 400; }
+.tm-check { width: 18px; height: 18px; accent-color: var(--accent, #6E5035); flex-shrink: 0; }
+.tm-note { font-size: 12px; }
+@media (max-width: 560px) { .tm-krit-row { grid-template-columns: 1fr; gap: 6px; } }
+
+/* SWOT */
+.tm-swot { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.tm-swot-cell { display: flex; flex-direction: column; gap: 6px; padding: 12px; border-radius: 3px; }
+.tm-swot-staerken  { background: rgba(90,138,106,0.10); }
+.tm-swot-schwaechen{ background: rgba(138,118,80,0.10); }
+.tm-swot-chancen   { background: rgba(110,126,160,0.10); }
+.tm-swot-risiken   { background: rgba(150,90,80,0.10); }
+.tm-swot-titel { font-family: var(--mono, monospace); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text, #1C1917); font-weight: 600; }
+.tm-swot-sub { font-weight: 400; text-transform: none; letter-spacing: 0; color: var(--text-muted, #8a7d6a); margin-left: 6px; }
+@media (max-width: 560px) { .tm-swot { grid-template-columns: 1fr; } }
+
+/* Rechner */
+.tm-form { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.tm-num { font-variant-numeric: tabular-nums; }
+.tm-out { display: flex; flex-direction: column; gap: 8px; padding: 14px 16px; background: rgba(28,25,23,0.04); border-radius: 3px; }
+.tm-out-row { display: flex; justify-content: space-between; align-items: baseline; font-family: var(--mono, monospace); font-size: 13px; color: var(--text-muted, #5E5450); }
+.tm-out-row b { color: var(--text, #1C1917); font-variant-numeric: tabular-nums; font-weight: 600; }
+.tm-out-total { border-top: 1px solid var(--border, rgba(28,25,23,0.14)); padding-top: 8px; margin-top: 2px; }
+.tm-out-total b.pos { color: #2f6b45; }
+.tm-out-total b.neg { color: #a23b2e; }
+@media (max-width: 560px) { .tm-form { grid-template-columns: 1fr; } }
+
+/* Speichern-Button */
+.tm-save {
+  align-self: flex-start;
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: var(--mono, monospace); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: #141210; background: var(--accent-dark, #C4A882); border: none; border-radius: 999px;
+  padding: 13px 26px; min-height: 46px; cursor: pointer; transition: opacity .2s ease, transform .2s ease;
+}
+.tm-save:hover { opacity: 0.9; transform: translateY(-1px); }
+.tm-save[data-saved="true"] { background: rgba(90,138,106,0.9); color: #fff; }
+
+/* Toast — klares Feedback beim Speichern */
+.titan-toast {
+  position: fixed; bottom: 24px; left: 50%; transform: translate(-50%, 20px);
+  z-index: 400; max-width: min(92vw, 420px);
+  background: rgba(20,18,16,0.96); color: #EDE8DF;
+  font-family: var(--mono, monospace); font-size: 12.5px; letter-spacing: 0.02em;
+  padding: 13px 20px; border-radius: 999px; border: 1px solid rgba(196,168,130,0.4);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.28);
+  opacity: 0; pointer-events: none;
+  transition: opacity .35s cubic-bezier(0.16,1,0.3,1), transform .35s cubic-bezier(0.16,1,0.3,1);
+}
+.titan-toast[data-show="true"] { opacity: 1; transform: translate(-50%, 0); }
+@media (prefers-reduced-motion: reduce) { .titan-toast { transition: opacity .2s ease; } }

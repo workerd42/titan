@@ -4,6 +4,7 @@ handlungsbereich: "hb1"
 themengruppe: "Marktforschung & Analyse"
 order: 8
 description: "Voraussetzungen und Kriterien der Marktsegmentierung, STP-Marketing, psychografische Ansätze und Buying-Center-Rollen im B2B."
+werkzeug: "swot"
 merksatz: "Ein gutes Segment muss man messen, erreichen und sich leisten können – sonst bleibt die Segmentierung Theorie."
 fallbeispiel:
   situation: |

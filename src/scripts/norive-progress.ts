@@ -9,12 +9,26 @@ const STORAGE_KEY = 'norive-progress-v2';
 
 type Pruefen = 'geloest' | 'wiederholen' | null;
 
+/**
+ * Artefakt — das Arbeitsergebnis eines interaktiven Moduls (Phase „Anwenden"),
+ * bezogen auf das Kompass-Unternehmen. Wird pro Thema gespeichert, synchronisiert
+ * mit dem Fortschritt und speist später das Präsentations-Deck (Missions-Launch).
+ */
+export interface Artefakt {
+  modul: string;              // werkzeug-Key (z. B. 'swot', 'smart', 'deckungsbeitrag')
+  titel: string;              // fürs Deck, z. B. "SWOT-Analyse — Musterfrau GmbH"
+  daten: unknown;             // modulspezifische Struktur (zum Wiederherstellen & Anzeigen)
+  erstelltAm: string;         // ISO
+  deckReif: boolean;          // fürs Präsentations-Deck freigegeben
+}
+
 interface ThemaState {
   verstehen?: boolean;
   merken?: boolean;
   anwenden?: boolean;
   pruefen?: Pruefen;
   eigeneEinschaetzung?: string;
+  artefakt?: Artefakt;
   wiederholungFaelligAm?: number | null;
 }
 
@@ -262,6 +276,26 @@ function initThemaPage(): void {
       persist();
     });
   }
+
+  // Anwenden — interaktives Modul: speichert ein Artefakt (bezogen aufs Kompass-
+  // Unternehmen) und schließt damit die Phase ab. norive-progress bleibt der
+  // einzige Schreiber des Fortschritts; das Modul meldet nur per Event.
+  window.addEventListener('norive:artefakt-speichern', (e: Event) => {
+    const detail = (e as CustomEvent).detail as { slug: string; modul: string; titel: string; daten: unknown };
+    if (!detail || detail.slug !== slug) return;
+    state.themen[slug].artefakt = {
+      modul: detail.modul,
+      titel: detail.titel,
+      daten: detail.daten,
+      erstelltAm: new Date().toISOString(),
+      deckReif: true,
+    };
+    state.themen[slug].anwenden = true;
+    anwendenBtn?.setAttribute('data-chosen', 'true');
+    persist();
+    // Rückmeldung an das Modul (für „✓ gespeichert"-Feedback).
+    window.dispatchEvent(new CustomEvent('norive:artefakt-gespeichert', { detail: { slug } }));
+  });
 
   // Prüfen — Selbstbewertung
   document.querySelectorAll<HTMLButtonElement>('[data-action="pruefen-einschaetzung"]').forEach((btn) => {
