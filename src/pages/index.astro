@@ -56,7 +56,7 @@ function galaxienVon(universumId: string) {
   import { initFocusView, openFocus } from '../scripts/focus-view';
   import { gsap } from 'gsap';
 
-  const BASE_SIZE = 100;
+  const BASE_SIZE = 245; // Vordere Kugel ~2,5× (Rest der Größe via Perspektive/rz)
 
   let controller: CarouselController | null = null;
   let caption: CaptionSync | null = null;

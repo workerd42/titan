@@ -53,7 +53,10 @@ const DECAY = 0.72;           // 'linear': geometrische Abnahme des Abstands je 
 const SWIPE_THRESHOLD_PX = 60;
 const SWIPE_VELOCITY_PX_MS = 0.5;
 
-const RING_DEFAULTS: Required<RingGeometry> = { rxRatio: 0.30, ryRatio: 0.27, rzRatio: 0.42 };
+// rzRatio ist HÖHEN-basiert (siehe computeRingRadii) — aspektstabil. Größere rz
+// = mehr Tiefenstaffelung: die vordere Kugel wächst deutlich stärker als die
+// Nachbarn (klare Hierarchie), statt alle gleich zu skalieren.
+const RING_DEFAULTS: Required<RingGeometry> = { rxRatio: 0.30, ryRatio: 0.24, rzRatio: 0.70 };
 
 function reduceMotion(): boolean {
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -86,7 +89,11 @@ function computeRingRadii(container: HTMLElement, geo: Required<RingGeometry>): 
   return {
     rx: r.width * geo.rxRatio,
     ry: r.height * geo.ryRatio,
-    rz: r.width * geo.rzRatio,
+    // rz (Tiefe → perspektivische Vergrößerung des vordersten Items) bewusst
+    // HÖHEN-basiert statt breiten-basiert: auf sehr breiten Schirmen (Ultrawide
+    // 2560×1080) würde ein breiten-basiertes rz die vorderste Kugel massiv
+    // aufblähen (Faktor ~5,8 statt ~1,9). Höhe hält die Größe aspektstabil.
+    rz: r.height * geo.rzRatio,
   };
 }
 
