@@ -128,12 +128,25 @@ cd /var/www/prototyp-staging.norive.de
 
 ## Verifizieren, dass alles live korrekt angekommen ist
 
+Seit Phase 2 ist der App-Container ein **Node-Server** (kein nginx-static mehr), Postgres läuft daneben.
+
 ```bash
-curl -s https://prototyp-staging.norive.de/ | grep -o "Content-Security-Policy[^>]*"
-docker exec titan grep -o "Content-Security-Policy[^>]*" /usr/share/nginx/html/index.html
-curl -s http://127.0.0.1:8080/ | grep -o "Content-Security-Policy[^>]*"
+docker compose ps        # titan "Up", titan-postgres "healthy"
+
+# App über das Reverse-Proxy-Ziel (nur lokal auf dem VPS gebunden):
+curl -s -o /dev/null -w "%{http_code}\n" http://127.0.0.1:8080/          # → 200
+
+# Öffentlich über TLS (Host-nginx):
+curl -s -o /dev/null -w "%{http_code}\n" https://prototyp-staging.norive.de/   # → 200
+
+# CSP kommt per <meta> aus BaseLayout (nicht als Header) — einmal prüfen, dass sie da ist:
+curl -s https://prototyp-staging.norive.de/ | grep -o "Content-Security-Policy" | head -1
+
+# DB erreichbar + Tabellen vorhanden (Prod-User/DB: monarch/hermes):
+docker exec titan-postgres psql -U monarch -d hermes -c "\dt"
 ```
-Alle drei Ausgaben sollten identisch sein.
+
+> Frühere Fassung prüfte drei identische CSP-Ausgaben aus `/usr/share/nginx/html/` — das galt für den alten nginx-Container und trifft seit Phase 2 nicht mehr zu.
 
 ## SSH-Deploy-Key (nur einmalig beim VPS-Setup nötig)
 

@@ -33,7 +33,7 @@
 
 **Ziel:** Vom reinen Local-First-Frontend zu einem System mit Accounts, serverseitiger Persistenz und einem Dozenten-Cockpit. **Nächste aktive Phase.**
 
-> **Status:** Teilweise begonnen. **Deployment-Fundament steht** — das statische Frontend läuft containerisiert (Docker/nginx) auf dem VPS `prototyp-staging.norive.de`, ausgerollt von GitHub (`workerd42/titan`) via `deploy.sh`. Siehe [deployment.md](deployment.md). Backend (Auth/DB/API/Cockpit) ist noch offen.
+> **Status (2026-07-16):** **Fundament live.** Der Stack läuft containerisiert als **Node + Postgres** auf dem VPS `prototyp-staging.norive.de`, ausgerollt von GitHub (`workerd42/titan`) via `deploy.sh`. Auth, DB und Fortschritts-Sync sind umgesetzt und in Produktion verifiziert (erste Registrierung liegt in der DB). Siehe [deployment.md](deployment.md). **Offen:** Dozenten-Cockpit (2.4), Admin (2.5), Redaktionssystem (2.6).
 >
 > **Hinweis zur Architektur-Entscheidung:** Die ursprüngliche Notion-Planung sah Payload CMS v3 als Content-Backend vor. Für „Dozent sieht Fortschritt aller Schüler" reicht zunächst ein schlankeres Auth+DB+API-Fundament; der volle Payload/n8n-Stack wird erst mit Phase 3 (KI-Artefakte) relevant. Konkrete Wahl (Auth-Methode, DB, Hosting) wird zu Beginn von Phase 2 festgelegt.
 
@@ -58,15 +58,16 @@ Zwei gleichrangige Zielgruppen, zwei Einstiegswege:
 
 ### 2.1 Deployment-Infrastruktur
 
-- [x] Docker-Containerisierung des statischen Frontends (Dockerfile, docker-compose.yml, nginx-Config im Repo).
+- [x] Docker-Containerisierung des Frontends (Dockerfile, docker-compose.yml). *(Die anfängliche nginx-Serve-Config wurde in Phase 2 durch den Node-Server ersetzt, siehe 2.1-Punkt unten.)*
 - [x] VPS-Deployment auf `prototyp-staging.norive.de` (Host-nginx als Reverse-Proxy + TLS).
 - [x] GitHub-basierter Deploy-Workflow (Deploy-Key, `deploy.sh` = `git pull` + `docker compose up -d --build`).
 - [x] **Stack auf Node + Postgres umgestellt** (2026-07-15): App-Container läuft als Node-Server (`@astrojs/node`, kein nginx mehr im Container), Postgres-Service ohne Host-Port, Auto-Migration beim Start via `scripts/migrate.mjs`. Lokal komplett verifiziert.
-- [ ] **Erster Live-Deploy mit Secrets** auf dem VPS (`.env` neben `docker-compose.yml`: `POSTGRES_*`, `BETTER_AUTH_SECRET`, `BETTER_AUTH_URL`) — noch offen.
-- [x] **Backup & Restore gebaut** (`scripts/backup.sh` / `restore.sh`): hoster-unabhängiger `pg_dump` mit Rotation, optionaler GPG-Verschlüsselung, Off-site via rclone und Heartbeat-Ping. **Restore lokal echt geprobt** (Daten gelöscht → vollständig wiederhergestellt). Aktivierung per Cron nach dem Live-Deploy.
-- [ ] Backup-Cron + externes Monitoring auf dem VPS einrichten (Anbieter EU/DE, siehe [deployment.md](deployment.md)).
+- [x] **Erster Live-Deploy mit Secrets** auf dem VPS (`.env` neben `docker-compose.yml`: `POSTGRES_*`, `BETTER_AUTH_SECRET`, `BETTER_AUTH_URL`) — **erfolgt 2026-07-15**. DB-Zugangsdaten werden als diskrete `PG*`-Felder übergeben (nicht als URL) — siehe Stolperstein in [deployment.md](deployment.md).
+- [x] **Backup & Restore gebaut** (`scripts/backup.sh` / `restore.sh`): hoster-unabhängiger `pg_dump` mit Rotation, optionaler GPG-Verschlüsselung, Off-site via rclone und Heartbeat-Ping. **Restore lokal echt geprobt** (Daten gelöscht → vollständig wiederhergestellt).
+- [x] **Backup-Cron auf dem VPS aktiv** (2026-07-16): täglich 03:15 UTC, Test-Feuerung bewiesen. **Backup liegt vorerst nur lokal auf dem VPS** (schützt gegen DB-Verlust, nicht gegen VPS-Verlust).
+- [ ] **Off-site-Backup** + externes Monitoring (Anbieter EU/DE). Off-site-Ziel: **Hetzner Storage Box 1 TB** (DE), sobald geholt — IONOS scheidet vertraglich aus. Details in [deployment.md](deployment.md).
 
-**Anbieter-Grundsatz (festgelegt 2026-07-15):** Alle Dienste mit Datenkontakt müssen in der **EU/Deutschland** liegen. Damit ausgeschieden: Cloudflare R2, Backblaze B2, UptimeRobot, Healthchecks.io, Resend (alle US). Kandidaten: **Better Stack** (CZ) fürs Monitoring, **Scaleway** (FR) oder **Hetzner** (DE) fürs Off-site-Backup, **Brevo** (FR) für Transaktions-Mail. *Offen: Standort des VPS selbst bestätigen.*
+**Anbieter-Grundsatz (festgelegt 2026-07-15):** Alle Dienste mit Datenkontakt müssen in der **EU/Deutschland** liegen. Damit ausgeschieden: Cloudflare R2, Backblaze B2, UptimeRobot, Healthchecks.io, Resend (alle US). **VPS-Standort bestätigt:** IONOS, Rechenzentrum Europa (VPS 4-4-120). Kandidaten/Entscheidungen: **Better Stack** (CZ) fürs Monitoring (offen), **Hetzner Storage Box** (DE) fürs Off-site-Backup (gewählt — ~~Scaleway~~ kostenpflichtig, ~~IONOS~~ vertraglich ausgeschlossen), **Brevo** (FR) für Transaktions-Mail. Jede Anbieter-Angabe **vor Einrichtung selbst gegenprüfen** — Konditionen ändern sich.
 
 **Nicht geeignet — geprüft:** *Plesk*-Backups erfassen nur Panel-verwaltete Inhalte, nicht unsere Docker-Container/Volumes. *VPS-Snapshots* (z. B. IONOS) sind eine grobkörnige Ergänzung, kein Ersatz für `pg_dump`.
 
