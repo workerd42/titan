@@ -190,7 +190,7 @@ Zwei Dinge, **extern** überwacht (ein Monitoring auf demselben VPS merkt dessen
 > ⚠️ **Kein Anbieter ohne eigene Prüfung übernehmen.** In diesem Projekt wurden bereits zwei „Free-Tier"-Empfehlungen widerlegt, nachdem der Nutzer selbst nachgesehen hat (u. a. Scaleway Object Storage — **ist kostenpflichtig**). Konditionen und Firmensitze ändern sich; jede Angabe hier ist ein Kandidat, keine Zusage. **Kosten außerhalb des bestehenden Abos sind ausgeschlossen.**
 
 - **Uptime + Heartbeat:** Kandidat **Better Stack** (Tschechien 🇨🇿) — Konditionen vor Einrichtung selbst prüfen.
-- **Off-site-Speicher:** offen. Nutzer klärt Konditionen direkt bei **IONOS** (bestehender Anbieter — falls im Vertrag enthalten, entstehen keine Zusatzkosten und die Daten bleiben beim selben EU-Anbieter). Bis dahin läuft das Backup **lokal auf dem VPS** (`RCLONE_REMOTE` bleibt ungesetzt).
+- **Off-site-Speicher:** **IONOS ausgeschlossen** (laut Vertrag nicht möglich, geprüft 2026-07-16). **Geplant: Hetzner Storage Box, 1 TB** (Deutschland 🇩🇪 — erfüllt die EU-Anforderung). Der Nutzer holt sie, sobald Zeit da ist; bis dahin läuft das Backup **lokal auf dem VPS** (`RCLONE_REMOTE` bleibt ungesetzt). Anbindung dann per rclone (Hetzner Storage Box spricht SFTP/WebDAV) — `backup.sh` erzwingt bei gesetztem `RCLONE_REMOTE` eine `BACKUP_PASSPHRASE`, off-site geht also nur GPG-verschlüsselt raus.
 - **Grenze des lokalen Backups, bewusst akzeptiert:** Ein Dump, der nur auf dem VPS liegt, überlebt den Verlust des VPS nicht. Für den Prototyp-Zustand tragbar; **vor echten Nutzerdaten muss off-site stehen.**
 
 ## Bekannte Stolpersteine (aus der Deployment-Historie)
