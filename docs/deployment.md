@@ -159,7 +159,7 @@ apt-get install -y gnupg      # bzw. apk add gnupg
 | `PG_CONTAINER` | DB-Container (Default `titan-postgres`) |
 | `KEEP_DAILY` | Wie viele Dumps behalten (Default 7) |
 | `BACKUP_PASSPHRASE` | Wenn gesetzt → GPG-verschlüsselt. **Pflicht für off-site** |
-| `RCLONE_REMOTE` | z. B. `scaleway:titan-backups` → Off-site-Kopie |
+| `RCLONE_REMOTE` | rclone-Ziel → Off-site-Kopie (Anbieter noch offen, s. u.) |
 | `HEARTBEAT_URL` | Wird nur bei **vollem Erfolg** gepingt |
 
 **Eingebaute Schutzmechanismen:**
@@ -185,10 +185,13 @@ Zwei Dinge, **extern** überwacht (ein Monitoring auf demselben VPS merkt dessen
 1. **Erreichbarkeit** der Seite (Uptime-Check)
 2. **Backup-Lauf** als Totmannschalter (`HEARTBEAT_URL`) — **wichtiger als es klingt**: ein still fehlschlagender Backup-Cron ist schlimmer als gar keiner, weil man sich in Sicherheit wiegt.
 
-**Anbieter-Anforderung: EU/Deutschland.** Kandidaten (Free-Tier, **bitte vor Einrichtung gegenprüfen — Konditionen/Firmensitze ändern sich**):
-- **Better Stack** (Tschechien 🇨🇿) — Uptime + Heartbeats in einem
-- Off-site-Speicher: **Scaleway Object Storage** (Frankreich 🇫🇷, Free-Tier) oder **Hetzner Storage Box** (Deutschland 🇩🇪, ~3,50 €/Monat)
-- ⚠️ **Zu klären:** Wo steht der VPS selbst? Ohne EU-Standort dort ist der Rest hinfällig.
+**Anbieter-Anforderung: EU/Deutschland.** Der VPS selbst erfüllt das (IONOS, Rechenzentrum Europa; VPS 4-4-120).
+
+> ⚠️ **Kein Anbieter ohne eigene Prüfung übernehmen.** In diesem Projekt wurden bereits zwei „Free-Tier"-Empfehlungen widerlegt, nachdem der Nutzer selbst nachgesehen hat (u. a. Scaleway Object Storage — **ist kostenpflichtig**). Konditionen und Firmensitze ändern sich; jede Angabe hier ist ein Kandidat, keine Zusage. **Kosten außerhalb des bestehenden Abos sind ausgeschlossen.**
+
+- **Uptime + Heartbeat:** Kandidat **Better Stack** (Tschechien 🇨🇿) — Konditionen vor Einrichtung selbst prüfen.
+- **Off-site-Speicher:** offen. Nutzer klärt Konditionen direkt bei **IONOS** (bestehender Anbieter — falls im Vertrag enthalten, entstehen keine Zusatzkosten und die Daten bleiben beim selben EU-Anbieter). Bis dahin läuft das Backup **lokal auf dem VPS** (`RCLONE_REMOTE` bleibt ungesetzt).
+- **Grenze des lokalen Backups, bewusst akzeptiert:** Ein Dump, der nur auf dem VPS liegt, überlebt den Verlust des VPS nicht. Für den Prototyp-Zustand tragbar; **vor echten Nutzerdaten muss off-site stehen.**
 
 ## Bekannte Stolpersteine (aus der Deployment-Historie)
 
