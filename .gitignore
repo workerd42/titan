@@ -25,3 +25,6 @@ yarn-error.log*
 
 # Claude Code — lokale, maschinenspezifische Einstellungen
 .claude/settings.local.json
+
+# Quell-PDFs / Referenzmaterial (lokal, nicht committen — kann Vertrauliches enthalten)
+docs/quellen/
