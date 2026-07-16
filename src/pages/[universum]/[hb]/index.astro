@@ -175,6 +175,9 @@ const themenMitIndex = (() => {
       container: track,
       items: planetEls,
       orientation: 'vertical',
+      // Max. 3 Planeten im Sichtfeld: ausgewählter + je 1 Nachbar oben/unten.
+      // Gibt mehr Luft und wirkt hochwertiger (siehe linearTransformFor).
+      maxVisible: 1,
       showHint: true,
       onCenterChange: (i, el) => {
         caption?.sync(el);

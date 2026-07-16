@@ -69,11 +69,12 @@ function linearTransformFor(offset: number, maxVisible: number, baseStep: number
   const abs = Math.abs(offset);
   const sign = offset === 0 ? 0 : Math.sign(offset);
   const dist = linearDistanceFor(abs, baseStep) * sign;
-  // Zentrum deutlich stärker hervorgehoben (1.4 statt 1.0) und Nachbarn fallen
-  // schneller in Transparenz ab ("auslaufen" Richtung Rand).
-  const scale = Math.max(0.5, 1.4 - 0.22 * abs);
+  // Seite 3 (Premium-Look): das ausgewählte Item steht prominent groß in der
+  // Mitte, die direkten Nachbarn (mit maxVisible=1 sind nur diese sichtbar)
+  // sind deutlich kleiner UND blasser — dadurch mehr Luft und klare Hierarchie.
+  const scale = Math.max(0.5, 1.45 - 0.7 * abs);
   const visible = abs <= maxVisible + 0.5; // +0.5 Toleranz für Drag-Zwischenwerte
-  const opacity = visible ? Math.max(0.12, 1 - 0.4 * abs) : 0;
+  const opacity = visible ? Math.max(0.1, 1 - 0.55 * abs) : 0;
   const zIndex = Math.round(100 - abs * 10);
   return { dist, scale, opacity, zIndex };
 }
