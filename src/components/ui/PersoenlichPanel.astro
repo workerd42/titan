@@ -8,12 +8,9 @@ const { alleThemenSlugs } = Astro.props;
 const base = import.meta.env.BASE_URL;
 ---
 
-<button class="persoenlich-toggle" id="persoenlich-toggle" aria-label="Mein Bereich öffnen" aria-expanded="false" aria-controls="persoenlich-panel">
-  <span class="pt-icon" aria-hidden="true">◎</span>
-  <span class="pt-label">Mein Bereich</span>
-</button>
-
-<aside id="persoenlich-panel" class="persoenlich-panel" aria-label="Persönlicher Bereich" hidden>
+<!-- Modal (Trigger sitzt im Speed-Dial, siehe SpeedDial.astro) -->
+<aside id="persoenlich-panel" class="persoenlich-modal" role="dialog" aria-modal="true" aria-label="Persönlicher Bereich" hidden>
+  <div class="pm-box">
   <button class="pp-close" id="pp-close" aria-label="Schließen">×</button>
 
   <section class="pp-sektion" aria-labelledby="pp-a-h">
@@ -68,41 +65,34 @@ const base = import.meta.env.BASE_URL;
       <p class="pp-streak-val" id="pp-streak-val">—</p>
     </div>
   </section>
+  </div>
 </aside>
 
 <style>
-  .persoenlich-toggle {
-    position: fixed;
-    /* Fest unter der Mitte, Konzept ist OBERHALB der Mitte */
-    top: calc(50vh + 6px);
-    right: 0;
-    z-index: 50; background: rgba(20,18,16,0.92);
-    border: 1px solid rgba(196,168,130,0.45); border-right: none;
-    padding: 18px 12px; cursor: pointer;
-    display: flex; flex-direction: column; align-items: center; gap: 6px;
-    transition: background .22s ease, border-color .22s ease;
-    backdrop-filter: blur(8px);
+  /* ── MODAL (Overlay + zentrierte Box) ── */
+  .persoenlich-modal {
+    position: fixed; inset: 0; z-index: 250;
+    display: flex; align-items: center; justify-content: center;
+    padding: 24px;
+    background: rgba(8,6,4,0.62);
+    backdrop-filter: blur(4px);
   }
-  .persoenlich-toggle:hover { background: rgba(32,28,24,0.96); border-color: rgba(255,255,255,0.22); }
-  .persoenlich-toggle[aria-expanded="true"] { border-color: rgba(196,168,130,0.4); }
-  .pt-icon { font-size: 19px; color: rgba(196,168,130,0.85); line-height: 1; }
-  .pt-label {
-    font-family: var(--mono,monospace); font-size: 10px; letter-spacing: .14em;
-    text-transform: uppercase; color: rgba(255,255,255,0.6);
-    writing-mode: vertical-rl;
-  }
+  .persoenlich-modal[hidden] { display: none; }
 
-  .persoenlich-panel {
-    position: fixed; top: 0; right: 0; bottom: 0;
-    width: min(320px,88vw); background: rgba(14,12,10,0.97);
-    border-left: 1px solid rgba(255,255,255,0.08); z-index: 200;
-    overflow-y: auto; padding: 48px 24px 60px;
-    backdrop-filter: blur(12px);
-    transform: translateX(100%);
-    transition: transform .45s cubic-bezier(0.16,1,0.3,1);
+  .pm-box {
+    position: relative;
+    width: min(360px,92vw); max-height: 88vh; overflow-y: auto;
+    background: rgba(14,12,10,0.98);
+    border: 1px solid rgba(255,255,255,0.1); border-radius: 4px;
+    padding: 44px 26px;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.5);
+    animation: pmIn 0.3s cubic-bezier(0.16,1,0.3,1);
   }
-  .persoenlich-panel:not([hidden]) { transform: translateX(0); display: block; }
-  .persoenlich-panel[hidden]       { display: block; transform: translateX(100%); pointer-events: none; }
+  @keyframes pmIn {
+    from { opacity: 0; transform: translateY(12px) scale(0.985); }
+    to   { opacity: 1; transform: none; }
+  }
+  @media (prefers-reduced-motion: reduce) { .pm-box { animation: none; } }
 
   .pp-close {
     position: absolute; top: 12px; right: 14px;
@@ -155,19 +145,12 @@ const base = import.meta.env.BASE_URL;
   .pp-streak-val { font-family: var(--serif,Georgia,serif); font-size: 24px; font-weight: 300; color: rgba(196,168,130,.8); max-width: none; }
 
   @media (max-width: 600px) {
-    .persoenlich-toggle {
-      top: auto; bottom: 20px; right: 20px; transform: none;
-      flex-direction: row; border: 1px solid rgba(255,255,255,.1);
-      border-radius: 2px; padding: 10px 14px;
+    .persoenlich-modal { align-items: flex-end; padding: 0; }
+    .pm-box {
+      width: 100%; max-width: 100%; max-height: 86vh;
+      border-radius: 8px 8px 0 0;
+      padding: 40px 22px calc(24px + env(safe-area-inset-bottom, 0px));
     }
-    .pt-label { writing-mode: horizontal-tb; font-size: 10px; }
-    .persoenlich-panel {
-      top: auto; left: 0; right: 0; bottom: 0; width: 100%; height: 80vh;
-      border-left: none; border-top: 1px solid rgba(255,255,255,.08);
-      transform: translateY(100%);
-    }
-    .persoenlich-panel:not([hidden]) { transform: translateY(0); }
-    .persoenlich-panel[hidden]       { transform: translateY(100%); }
   }
 </style>
 
@@ -309,6 +292,9 @@ const base = import.meta.env.BASE_URL;
     const panel  = document.getElementById('persoenlich-panel');
     if (!toggle || !panel || toggle.getAttribute('aria-expanded') !== 'true') return;
     const target = e.target as Node;
+    // Klick auf den Backdrop (Overlay selbst, nicht die Box) schließt.
+    if (target === panel) { closePanel(); return; }
+    // Klick außerhalb von Modal UND Trigger schließt ebenfalls.
     if (!panel.contains(target) && !toggle.contains(target)) closePanel();
   });
 

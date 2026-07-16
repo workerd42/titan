@@ -3,20 +3,9 @@
 // Schließt automatisch wenn Mein Bereich geöffnet wird und umgekehrt
 ---
 
-<!-- Toggle-Button (rechts, ÜBER Mein Bereich) -->
-<button
-  class="konzept-toggle"
-  id="konzept-toggle"
-  aria-label="Plattform-Konzept ansehen"
-  aria-expanded="false"
-  aria-controls="konzept-panel"
->
-  <span class="kt-icon" aria-hidden="true">?</span>
-  <span class="kt-label">Konzept</span>
-</button>
-
-<!-- Panel (öffnet von rechts) -->
-<aside id="konzept-panel" class="konzept-panel" aria-label="Plattform-Konzept" hidden>
+<!-- Modal (Trigger sitzt im Speed-Dial, siehe SpeedDial.astro) -->
+<aside id="konzept-panel" class="konzept-modal" role="dialog" aria-modal="true" aria-label="Plattform-Konzept" hidden>
+  <div class="km-box">
   <button class="kp-close" id="kp-close" aria-label="Konzept schließen">×</button>
 
   <header class="kp-header">
@@ -64,8 +53,9 @@
     <section class="kp-section">
       <h3 class="kp-section-title">Navigation</h3>
       <p class="kp-text">
-        Klicke ein Handlungsfeld an — halte gedrückt und ziehe, um Planeten auf ihrer
-        Bahn zu bewegen. Ein einfacher Klick öffnet die Details.
+        Blättere mit den Pfeilen, den Pfeiltasten oder per Wisch durch das Karussell —
+        oder klicke ein Nachbar-Element an, um es zu zentrieren. Der Button in der Mitte
+        führt eine Ebene tiefer.
       </p>
     </section>
 
@@ -80,78 +70,41 @@
       </p>
     </section>
   </div>
+  </div>
 </aside>
 
 <style>
-  /* ── TOGGLE — rechte Seite, oberhalb Mein Bereich ── */
-  .konzept-toggle {
+  /* ── MODAL (Overlay + zentrierte Box) ── */
+  .konzept-modal {
     position: fixed;
-    /* Fest über der Mitte, Mein Bereich ist UNTERHALB der Mitte */
-    bottom: calc(50vh + 6px);
-    right: 0;
-    z-index: 50;
-    background: rgba(20,18,16,0.92);
-    border: 1px solid rgba(196,168,130,0.45);
-    border-right: none;
-    padding: 16px 12px;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 5px;
-    backdrop-filter: blur(8px);
-    transition: background 0.2s ease, border-color 0.2s ease;
-  }
-
-  .konzept-toggle:hover,
-  .konzept-toggle[aria-expanded="true"] {
-    background: rgba(32,28,24,0.96);
-    border-color: rgba(196,168,130,0.4);
-  }
-
-  .kt-icon {
-    width: 21px;
-    height: 21px;
-    border: 1px solid rgba(196,168,130,0.6);
-    border-radius: 50%;
+    inset: 0;
+    z-index: 250;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: var(--mono, monospace);
-    font-size: 12px;
-    color: rgba(255,255,255,0.75);
-    line-height: 1;
-    flex-shrink: 0;
+    padding: 24px;
+    background: rgba(8,6,4,0.62);
+    backdrop-filter: blur(4px);
   }
+  .konzept-modal[hidden] { display: none; }
 
-  .kt-label {
-    font-family: var(--mono, monospace);
-    font-size: 9px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.6);
-    writing-mode: vertical-rl;
-  }
-
-  /* ── PANEL ──────────────────────────────── */
-  .konzept-panel {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    width: min(360px, 88vw);
-    background: rgba(14,12,10,0.97);
-    border-left: 1px solid rgba(255,255,255,0.08);
-    z-index: 200;
+  .km-box {
+    position: relative;
+    width: min(400px, 92vw);
+    max-height: 88vh;
     overflow-y: auto;
-    padding: 48px 24px 48px;
-    backdrop-filter: blur(12px);
-    transform: translateX(100%);
-    transition: transform 0.42s cubic-bezier(0.16,1,0.3,1);
+    background: rgba(14,12,10,0.98);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 4px;
+    padding: 44px 28px;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.5);
+    animation: kmIn 0.3s cubic-bezier(0.16,1,0.3,1);
   }
-
-  .konzept-panel:not([hidden]) { transform: translateX(0); display: block; }
-  .konzept-panel[hidden]       { display: block; transform: translateX(100%); pointer-events: none; }
+  @keyframes kmIn {
+    from { opacity: 0; transform: translateY(12px) scale(0.985); }
+    to   { opacity: 1; transform: none; }
+  }
+  @media (prefers-reduced-motion: reduce) { .km-box { animation: none; } }
 
   .kp-close {
     position: absolute;
@@ -263,30 +216,14 @@
 
   /* ── RESPONSIVE ─────────────────────────── */
   @media (max-width: 600px) {
-    .konzept-toggle {
-      /* Mobile: neben Mein Bereich, beide unten rechts */
-      top: auto;
-      bottom: 80px;  /* Über dem Mein Bereich Toggle */
-      right: 20px;
-      transform: none;
-      flex-direction: row;
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 2px;
-      padding: 8px 12px;
-    }
-    .kt-label { writing-mode: horizontal-tb; font-size: 9px; }
-
-    .konzept-panel {
-      top: auto;
-      left: 0; right: 0; bottom: 0;
+    .konzept-modal { align-items: flex-end; padding: 0; }
+    .km-box {
       width: 100%;
-      height: 80vh;
-      border-left: none;
-      border-top: 1px solid rgba(255,255,255,0.08);
-      transform: translateY(100%);
+      max-width: 100%;
+      max-height: 86vh;
+      border-radius: 8px 8px 0 0;
+      padding: 40px 22px calc(24px + env(safe-area-inset-bottom, 0px));
     }
-    .konzept-panel:not([hidden]) { transform: translateY(0); }
-    .konzept-panel[hidden]       { transform: translateY(100%); }
   }
 </style>
 
@@ -343,6 +280,9 @@
     const panel  = document.getElementById('konzept-panel');
     if (!toggle || !panel || toggle.getAttribute('aria-expanded') !== 'true') return;
     const target = e.target as Node;
+    // Klick auf den Backdrop (Overlay selbst, nicht die Box) schließt.
+    if (target === panel) { closeKonzept(); return; }
+    // Klick außerhalb von Modal UND Trigger schließt ebenfalls.
     if (!panel.contains(target) && !toggle.contains(target)) closeKonzept();
   });
 

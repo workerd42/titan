@@ -4,6 +4,7 @@ import CTAButton from '../components/ui/CTAButton.astro';
 import PersoenlichPanel from '../components/ui/PersoenlichPanel.astro';
 import KompassOnboarding from '../components/ui/KompassOnboarding.astro';
 import KonzeptPanel from '../components/ui/KonzeptPanel.astro';
+import SpeedDial from '../components/ui/SpeedDial.astro';
 import SearchOverlay from '../components/ui/SearchOverlay.astro';
 import { getThemenSlugsByHb } from '../lib/content';
 import '../styles/planet.css';
@@ -67,6 +68,7 @@ const themenSlugs = await getThemenSlugsByHb();
   <SearchOverlay />
   <KonzeptPanel />
   <PersoenlichPanel alleThemenSlugs={themenSlugs} />
+  <SpeedDial showKonzept={true} showPersonal={true} />
 </BaseLayout>
 
 <style>
