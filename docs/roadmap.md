@@ -39,9 +39,15 @@
 
 ### 2.0 Account- & Onboarding-Modell (festgelegt 2026-07-14)
 
+> **Zugangsmodell revidiert (2026-07-16): Hartes Gate statt Freemium.** Titan (die App) sitzt **vollständig hinter Login**. Vorgeschaltet ist ein **eigenes Projekt**: Unternehmens-/Produktseite + Lead-Pages + Landingpage → **Paywall** → Registrierung/Login → Titan. Das bisherige Freemium-/„anonym lernen"-Modell entfällt für die Lerninhalte.
+>
+> **Technische Konsequenz (Pflicht, sonst nur Kosmetik):** Die Lernseiten sind aktuell statisch vorgerendert und würden per Direkt-URL trotzdem ausgeliefert. Ein echtes Gate verlangt **serverseitiges Rendern hinter der Session** (`prerender = false` + Middleware-Redirect zu Login/Paywall) für die geschützten Routen. Ein reiner Client-Redirect schützt die Inhalte nicht. SEO ist dafür bereits aus (noindex/Disallow). Local-First (localStorage als schnelle Arbeitskopie) bleibt **post-Login** gültig.
+>
+> **Offen (Funnel-Detail, für die Umsetzung zu klären):** Reihenfolge Paywall ↔ Registrierung (zahlen-dann-provisionieren vs. registrieren-dann-Entitlement). Die vorgeschalteten Marketing-/Paywall-Seiten sind ein separater Baustein, nicht diese Astro-App.
+
 Zwei gleichrangige Zielgruppen, zwei Einstiegswege:
 
-- **B2C — Einzellerner:** Landingpage → Selbst-Registrierung (Email/Passwort) → lernen, eigener Fortschritts-Sync. (Optional fiktives Kompass-Übungsunternehmen anlegen.)
+- **B2C — Einzellerner:** Marketing-/Landingpage → Paywall → Registrierung (Email/Passwort) → lernen, eigener Fortschritts-Sync. (Optional fiktives Kompass-Übungsunternehmen anlegen.)
 - **B2B — Bildungsträger/Unternehmen:** Landingpage → **Organisation** registriert sich (Registrierender = Org-Admin, ggf. zugleich Dozent) → Admin legt Lerner an / lädt sie per Email ein → Lerner sind der Organisation zugeordnet → **Dozent sieht deren Fortschritt im Cockpit** → später Abrechnung pro Platz.
 
 **Rollen:** Plattform-Admin (Betreiber) · Org-Admin · Dozent · Lerner. (Org-Admin und Dozent können dieselbe Person sein.)
@@ -54,7 +60,7 @@ Zwei gleichrangige Zielgruppen, zwei Einstiegswege:
 
 **Sequenzierung (festgelegt):** Erst das **Einzel-Account-Fundament** (2.2/2.3 — registrieren/login/eigener Fortschritts-Sync; bedient B2C sofort und ist Voraussetzung für alles). **Direkt danach** die Organisations-/Rollen-/Einladungs-Schicht **zusammen mit dem Dozenten-Cockpit** (2.4), da dasselbe Modell.
 
-**Separat (Frontend, kein Auth):** Eine echte **Marketing-Landingpage** existiert noch nicht (aktuell ist `/` die App selbst) — eigener Baustein, unabhängig von der Auth-Arbeit.
+**Separat (eigenes Projekt, vorgeschaltet):** Unternehmens-/Produktseite + Lead-Pages + **Landingpage + Paywall** existieren noch nicht (aktuell ist `/` die App selbst). Sie sind dem Login **vorgeschaltet** und ein eigener Baustein — nicht diese Astro-App. Titan beginnt erst nach erfolgreichem Login/Entitlement.
 
 ### 2.1 Deployment-Infrastruktur
 
