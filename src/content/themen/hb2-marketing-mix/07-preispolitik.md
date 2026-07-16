@@ -4,6 +4,7 @@ handlungsbereich: "hb2"
 themengruppe: "Marketing-Mix"
 order: 7
 description: "Kosten-, nachfrage- und wettbewerbsorientierte Preisbildung, Preiselastizität sowie Hochpreis-, Niedrigpreis- und Penetrationsstrategien."
+werkzeug: "preisberechnung"
 merksatz: |
   Wer den Preis nur nach den eigenen Kosten festlegt, hat vielleicht recht gerechnet – aber noch nicht den Markt gefragt.
 fallbeispiel:

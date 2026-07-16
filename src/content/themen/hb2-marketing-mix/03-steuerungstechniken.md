@@ -4,6 +4,7 @@ handlungsbereich: "hb2"
 themengruppe: "Marketing-Mix"
 order: 3
 description: "Die Nutzwertanalyse (Scoring-Modell) zur Bewertung von Handlungsalternativen und die vier Perspektiven der Balanced Scorecard."
+werkzeug: "scoring"
 merksatz: |
   Eine Balanced Scorecard zwingt dazu, neben Finanzen auch Kunden, Prozesse und Mitarbeiter im Blick zu behalten.
 fallbeispiel:

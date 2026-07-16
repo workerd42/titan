@@ -51,6 +51,11 @@ const d = thema.data;
   hbNummer={bereich.nummer}
   universumId={universum.id}
 >
+  <!-- Fortschrittsbalken oben (füllt sich mit den erledigten Phasen) -->
+  <div class="thema-progress" role="progressbar" aria-label="Kapitel-Fortschritt" aria-valuemin="0" aria-valuemax="100">
+    <div class="thema-progress-fill" id="thema-progress-fill"></div>
+  </div>
+
   <div class="thema-wrap" data-thema-slug={thema.id} data-wiederholung-tage={d.wiederholungTage}>
 
     <!-- ╔══ KOPF ══════════════════════════════╗ -->
@@ -61,6 +66,12 @@ const d = thema.data;
         <span>{d.themengruppe}</span>
       </nav>
       <h1 class="thema-titel">{d.title}</h1>
+
+      <p class="thema-fortschritt-zeile">
+        <span class="tf-pct" id="thema-progress-pct">0 %</span>
+        <span class="tf-count" id="thema-progress-count">0/4 Phasen</span>
+        <span class="tf-hint">— dein Fortschritt in diesem Kapitel</span>
+      </p>
 
       <!-- Phasen-Reiseplan -->
       <div class="phasen-reise" role="list" aria-label="Lernphasen">
@@ -499,8 +510,35 @@ const d = thema.data;
     letter-spacing: -0.025em;
     line-height: 1.2;
     color: var(--text);
-    margin-bottom: var(--sp-xl);
+    margin-bottom: var(--sp-sm);
   }
+
+  /* ── Fortschritt: Balken oben + Prozentzeile ── */
+  .thema-progress {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: rgba(28,25,23,0.10);
+    z-index: 60;
+  }
+  .thema-progress-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--accent, #6E5035);
+    transition: width 0.6s cubic-bezier(0.16,1,0.3,1);
+  }
+  .thema-fortschritt-zeile {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    font-family: var(--mono);
+    margin-bottom: var(--sp-xl);
+    flex-wrap: wrap;
+  }
+  .tf-pct { font-size: 22px; font-weight: 500; color: var(--accent, #6E5035); font-variant-numeric: tabular-nums; }
+  .tf-count { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); }
+  .tf-hint { font-size: 11px; color: var(--text-muted); opacity: 0.7; }
+  @media (prefers-reduced-motion: reduce) { .thema-progress-fill { transition: none; } }
 
   /* ── PHASEN-REISEPLAN ───────────────────────── */
   .phasen-reise {

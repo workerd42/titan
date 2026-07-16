@@ -5,6 +5,8 @@
  * Version: 1.0 · 2026
  */
 
+import { showToast } from './toast';
+
 const STORAGE_KEY = 'norive-progress-v2';
 
 type Pruefen = 'geloest' | 'wiederholen' | null;
@@ -188,6 +190,22 @@ function renderPlanetComplete(state: NoriveProgress): void {
   });
 }
 
+const PHASE_LABEL: Record<string, string> = {
+  verstehen: 'Verstehen', merken: 'Merken', anwenden: 'Anwenden', pruefen: 'Prüfen',
+};
+
+/** Fortschrittsbalken oben + Prozentanzeige für DIESES Thema (0/25/50/75/100 %). */
+function renderThemaProgress(slug: string, state: NoriveProgress): void {
+  const done = phasenAbgeschlossen(state.themen[slug]);
+  const pct = done * 25;
+  const fill = document.getElementById('thema-progress-fill');
+  const pctEl = document.getElementById('thema-progress-pct');
+  const cntEl = document.getElementById('thema-progress-count');
+  if (fill) fill.style.width = `${pct}%`;
+  if (pctEl) pctEl.textContent = `${pct} %`;
+  if (cntEl) cntEl.textContent = `${done}/4 Phasen`;
+}
+
 function renderPhasenLeiste(slug: string, state: NoriveProgress): void {
   const t = state.themen[slug] ?? {};
   const map: Record<string, boolean> = {
@@ -233,6 +251,14 @@ function initThemaPage(): void {
     renderPhaseDots(state);
     renderPhasenLeiste(slug, state);
     renderPlanetProgress(state);
+    renderThemaProgress(slug, state);
+  }
+
+  // Deutliches Feedback: Toast mit Phase + neuem Gesamt-Prozentsatz.
+  function feiere(phaseKey: string): void {
+    const pct = phasenAbgeschlossen(state.themen[slug]) * 25;
+    const suffix = pct === 100 ? ' — Kapitel komplett! 🛰' : '';
+    showToast(`✓ ${PHASE_LABEL[phaseKey] ?? 'Phase'} abgeschlossen · ${pct} %${suffix}`);
   }
 
   // Verstehen
@@ -240,9 +266,11 @@ function initThemaPage(): void {
   if (verstehenBtn) {
     if (state.themen[slug].verstehen) verstehenBtn.setAttribute('data-chosen', 'true');
     verstehenBtn.addEventListener('click', () => {
+      const neu = !state.themen[slug].verstehen;
       state.themen[slug].verstehen = true;
       verstehenBtn.setAttribute('data-chosen', 'true');
       persist();
+      if (neu) feiere('verstehen');
     });
   }
 
@@ -251,9 +279,11 @@ function initThemaPage(): void {
   if (merkenBtn) {
     if (state.themen[slug].merken) merkenBtn.setAttribute('data-chosen', 'true');
     merkenBtn.addEventListener('click', () => {
+      const neu = !state.themen[slug].merken;
       state.themen[slug].merken = true;
       merkenBtn.setAttribute('data-chosen', 'true');
       persist();
+      if (neu) feiere('merken');
     });
   }
 
@@ -271,9 +301,11 @@ function initThemaPage(): void {
   if (anwendenBtn) {
     if (state.themen[slug].anwenden) anwendenBtn.setAttribute('data-chosen', 'true');
     anwendenBtn.addEventListener('click', () => {
+      const neu = !state.themen[slug].anwenden;
       state.themen[slug].anwenden = true;
       anwendenBtn.setAttribute('data-chosen', 'true');
       persist();
+      if (neu) feiere('anwenden');
     });
   }
 
@@ -283,6 +315,7 @@ function initThemaPage(): void {
   window.addEventListener('norive:artefakt-speichern', (e: Event) => {
     const detail = (e as CustomEvent).detail as { slug: string; modul: string; titel: string; daten: unknown };
     if (!detail || detail.slug !== slug) return;
+    const neu = !state.themen[slug].anwenden;
     state.themen[slug].artefakt = {
       modul: detail.modul,
       titel: detail.titel,
@@ -293,7 +326,9 @@ function initThemaPage(): void {
     state.themen[slug].anwenden = true;
     anwendenBtn?.setAttribute('data-chosen', 'true');
     persist();
-    // Rückmeldung an das Modul (für „✓ gespeichert"-Feedback).
+    const pct = phasenAbgeschlossen(state.themen[slug]) * 25;
+    showToast(`✓ Artefakt gespeichert · Anwenden ${neu ? 'abgeschlossen' : 'aktualisiert'} · ${pct} %`);
+    // Rückmeldung an das Modul (Button-Zustand „gespeichert").
     window.dispatchEvent(new CustomEvent('norive:artefakt-gespeichert', { detail: { slug } }));
   });
 
@@ -302,6 +337,7 @@ function initThemaPage(): void {
     const wert = btn.getAttribute('data-wert') as Pruefen;
     if (state.themen[slug].pruefen === wert) btn.setAttribute('data-chosen', 'true');
     btn.addEventListener('click', () => {
+      const warLeer = !state.themen[slug].pruefen;
       state.themen[slug].pruefen = wert;
       document.querySelectorAll<HTMLButtonElement>('[data-action="pruefen-einschaetzung"]')
         .forEach((b) => b.setAttribute('data-chosen', b === btn ? 'true' : 'false'));
@@ -312,11 +348,13 @@ function initThemaPage(): void {
       }
       persist();
       renderWiederholungHinweis(slug, state, tage);
+      if (warLeer) feiere('pruefen');
     });
   });
 
   renderPhasenLeiste(slug, state);
   renderWiederholungHinweis(slug, state, tage);
+  renderThemaProgress(slug, state);
 }
 
 // ─── RESET ────────────────────────────────────────

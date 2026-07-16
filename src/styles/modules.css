@@ -33,6 +33,8 @@
 .tm-input:focus-visible { outline: 2px solid var(--accent, #6E5035); outline-offset: 1px; border-color: transparent; }
 
 .tm-hinweis { font-family: var(--mono, monospace); font-size: 12px; line-height: 1.6; color: var(--accent, #6E5035); background: rgba(196,168,130,0.14); border-radius: 3px; padding: 10px 12px; }
+.tm-formel { font-family: var(--mono, monospace); font-size: 12px; line-height: 1.7; color: var(--text-muted, #5E5450); background: rgba(110,126,160,0.10); border-left: 2px solid rgba(110,126,160,0.5); border-radius: 0 3px 3px 0; padding: 10px 14px; }
+.tm-formel b { color: var(--text, #1C1917); }
 .tm-soon { font-family: var(--mono, monospace); font-size: 13px; color: var(--text-muted, #5E5450); }
 
 /* SMART */
@@ -66,6 +68,20 @@
 .tm-out-total b.pos { color: #2f6b45; }
 .tm-out-total b.neg { color: #a23b2e; }
 @media (max-width: 560px) { .tm-form { grid-template-columns: 1fr; } }
+
+/* Vier-Stufen */
+.tm-stufen { display: flex; flex-direction: column; gap: 10px; }
+.tm-stufe { display: flex; gap: 12px; align-items: flex-start; }
+.tm-stufe-num { flex-shrink: 0; width: 26px; height: 26px; border-radius: 50%; background: var(--accent-dark, #C4A882); color: #141210; font-family: var(--mono, monospace); font-size: 12px; font-weight: 600; display: flex; align-items: center; justify-content: center; margin-top: 2px; }
+.tm-stufe-col { flex: 1; display: flex; flex-direction: column; gap: 5px; }
+.tm-stufe-titel { font-family: var(--mono, monospace); font-size: 12px; color: var(--text, #1C1917); font-weight: 500; }
+
+/* Scoring-Tabelle */
+.tm-score { display: flex; flex-direction: column; gap: 8px; }
+.tm-score-head, .tm-score-row { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 8px; align-items: center; }
+.tm-score-head { font-family: var(--mono, monospace); font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted, #8a7d6a); padding: 0 2px; }
+.tm-score-row .tm-input { padding: 8px 10px; }
+@media (max-width: 560px) { .tm-score-head { display: none; } .tm-score-row { grid-template-columns: 1fr 1fr; } .tm-score-row .sc-name { grid-column: 1 / -1; } }
 
 /* Speichern-Button */
 .tm-save {

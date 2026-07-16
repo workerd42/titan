@@ -12,6 +12,8 @@
  * Event `norive:artefakt-speichern`. norive-progress.ts bleibt einziger Schreiber.
  */
 
+import { showToast } from './toast';
+
 const PROGRESS_KEY = 'norive-progress-v2';
 const KOMPASS_KEY = 'norive-kompass-v1';
 
@@ -52,20 +54,6 @@ function el<K extends keyof HTMLElementTagNameMap>(tag: K, cls?: string, html?: 
 }
 function esc(s: string): string {
   return s.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c] as string));
-}
-
-// ── Toast (Feedback beim Speichern) ───────────────────────
-function showToast(msg: string): void {
-  let t = document.getElementById('titan-toast');
-  if (!t) {
-    t = el('div', 'titan-toast');
-    t.id = 'titan-toast';
-    document.body.appendChild(t);
-  }
-  t.textContent = msg;
-  t.setAttribute('data-show', 'true');
-  window.clearTimeout((t as any)._h);
-  (t as any)._h = window.setTimeout(() => t!.setAttribute('data-show', 'false'), 3200);
 }
 
 // ═══════════════════════════════════════════════════════════
@@ -168,6 +156,10 @@ const dbModul: ModulFn = (ctx) => {
   const saved = (ctx.savedDaten as any) || {};
   const wrap = el('div', 'tm');
   wrap.appendChild(el('p', 'tm-lead', `Deckungsbeitrag & Break-even für ein Produkt von <strong>${esc(ctx.firma)}</strong>.`));
+  wrap.appendChild(el('div', 'tm-formel',
+    `<b>So rechnet es:</b> Deckungsbeitrag/Stück = Preis − variable Kosten. `
+    + `Break-even-Menge = Fixkosten ÷ DB/Stück (ab hier trägt jedes Stück zum Gewinn bei). `
+    + `Gewinn = DB gesamt − Fixkosten.`));
   const FELDER: [string, string, string][] = [
     ['preis', 'Preis / Stück (€)', saved.preis ?? ''],
     ['vark', 'Variable Kosten / Stück (€)', saved.vark ?? ''],
@@ -215,10 +207,179 @@ const dbModul: ModulFn = (ctx) => {
   ctx.mount.appendChild(wrap);
 };
 
+// Marktkennzahlen-Rechner (Familie: Rechner) ──────────────
+const marktanteilModul: ModulFn = (ctx) => {
+  const saved = (ctx.savedDaten as any) || {};
+  const wrap = el('div', 'tm');
+  wrap.appendChild(el('p', 'tm-lead', `Marktanteil von <strong>${esc(ctx.firma)}</strong> im relevanten Markt.`));
+  wrap.appendChild(el('div', 'tm-formel', `<b>So rechnet es:</b> Marktanteil = eigener Umsatz ÷ Marktvolumen. Relativer Marktanteil = eigener Umsatz ÷ Umsatz des stärksten Wettbewerbers (> 1 = Marktführer).`));
+  const FELDER: [string, string, any][] = [
+    ['eigen', 'Eigener Umsatz (€)', saved.eigen ?? ''],
+    ['markt', 'Marktvolumen gesamt (€)', saved.markt ?? ''],
+    ['wettb', 'Umsatz stärkster Wettbewerber (€)', saved.wettb ?? ''],
+  ];
+  const inputs: Record<string, HTMLInputElement> = {};
+  const form = el('div', 'tm-form');
+  FELDER.forEach(([k, label, val]) => {
+    const l = el('label', 'tm-label', label);
+    const inp = el('input', 'tm-input tm-num') as HTMLInputElement;
+    inp.type = 'number'; inp.value = String(val); inputs[k] = inp; l.appendChild(inp); form.appendChild(l);
+  });
+  wrap.appendChild(form);
+  const out = el('div', 'tm-out'); wrap.appendChild(out);
+  const f = (n: number, d = 1) => isFinite(n) ? n.toLocaleString('de-DE', { maximumFractionDigits: d }) : '—';
+  function recalc(): void {
+    const e = +inputs.eigen.value, m = +inputs.markt.value, w = +inputs.wettb.value;
+    const anteil = m > 0 ? (e / m) * 100 : NaN;
+    const rel = w > 0 ? e / w : NaN;
+    out.innerHTML = `
+      <div class="tm-out-row"><span>Marktanteil</span><b>${f(anteil)} %</b></div>
+      <div class="tm-out-row"><span>Relativer Marktanteil</span><b>${f(rel, 2)}${isFinite(rel) ? (rel >= 1 ? ' · Marktführer' : '') : ''}</b></div>`;
+  }
+  Object.values(inputs).forEach((i) => i.addEventListener('input', recalc)); recalc();
+  const btn = el('button', 'tm-save', 'Als Artefakt speichern <span aria-hidden="true">→</span>') as HTMLButtonElement;
+  btn.type = 'button';
+  btn.addEventListener('click', () => ctx.save(`Marktanteil — ${ctx.firma}`, { eigen: +inputs.eigen.value, markt: +inputs.markt.value, wettb: +inputs.wettb.value }));
+  wrap.appendChild(btn); ctx.mount.appendChild(wrap);
+};
+
+// Preis-Rechner / Zuschlagskalkulation (Familie: Rechner) ──
+const preisModul: ModulFn = (ctx) => {
+  const saved = (ctx.savedDaten as any) || {};
+  const wrap = el('div', 'tm');
+  wrap.appendChild(el('p', 'tm-lead', `Angebotspreis eines Produkts von <strong>${esc(ctx.firma)}</strong> per Zuschlagskalkulation.`));
+  wrap.appendChild(el('div', 'tm-formel', `<b>So rechnet es:</b> Selbstkosten + Gewinnzuschlag = Barverkaufspreis. Barverkaufspreis „im Hundert" um Skonto & Rabatt hochgerechnet = Listenverkaufspreis (Angebotspreis).`));
+  const FELDER: [string, string, any][] = [
+    ['sk', 'Selbstkosten / Stück (€)', saved.sk ?? ''],
+    ['gewinn', 'Gewinnzuschlag (%)', saved.gewinn ?? ''],
+    ['skonto', 'Skonto (%)', saved.skonto ?? ''],
+    ['rabatt', 'Rabatt (%)', saved.rabatt ?? ''],
+  ];
+  const inputs: Record<string, HTMLInputElement> = {};
+  const form = el('div', 'tm-form');
+  FELDER.forEach(([k, label, val]) => {
+    const l = el('label', 'tm-label', label);
+    const inp = el('input', 'tm-input tm-num') as HTMLInputElement;
+    inp.type = 'number'; inp.value = String(val); inputs[k] = inp; l.appendChild(inp); form.appendChild(l);
+  });
+  wrap.appendChild(form);
+  const out = el('div', 'tm-out'); wrap.appendChild(out);
+  const f = (n: number) => isFinite(n) ? n.toLocaleString('de-DE', { maximumFractionDigits: 2 }) : '—';
+  function recalc(): void {
+    const sk = +inputs.sk.value, g = +inputs.gewinn.value, sk2 = +inputs.skonto.value, r = +inputs.rabatt.value;
+    const bar = sk * (1 + g / 100);
+    const ziel = sk2 < 100 ? bar / (1 - sk2 / 100) : NaN;   // Skonto „im Hundert"
+    const liste = r < 100 ? ziel / (1 - r / 100) : NaN;     // Rabatt „im Hundert"
+    out.innerHTML = `
+      <div class="tm-out-row"><span>Barverkaufspreis</span><b>${f(bar)} €</b></div>
+      <div class="tm-out-row"><span>Zielverkaufspreis (nach Skonto)</span><b>${f(ziel)} €</b></div>
+      <div class="tm-out-row tm-out-total"><span>Listenverkaufspreis (Angebot)</span><b>${f(liste)} €</b></div>`;
+  }
+  Object.values(inputs).forEach((i) => i.addEventListener('input', recalc)); recalc();
+  const btn = el('button', 'tm-save', 'Als Artefakt speichern <span aria-hidden="true">→</span>') as HTMLButtonElement;
+  btn.type = 'button';
+  btn.addEventListener('click', () => ctx.save(`Preiskalkulation — ${ctx.firma}`, { sk: +inputs.sk.value, gewinn: +inputs.gewinn.value, skonto: +inputs.skonto.value, rabatt: +inputs.rabatt.value }));
+  wrap.appendChild(btn); ctx.mount.appendChild(wrap);
+};
+
+// Vier-Stufen-Methode (Familie: Sequenzer/Leitfaden) ───────
+const vierStufenModul: ModulFn = (ctx) => {
+  const STUFEN = [
+    ['Vorbereiten', 'Arbeitsplatz, Material, Auszubildende einstimmen'],
+    ['Vormachen & Erklären', 'Ausbilder zeigt und begründet jeden Schritt'],
+    ['Nachmachen lassen', 'Auszubildende führen aus und erklären dabei'],
+    ['Üben & Abschluss', 'Selbstständig üben, Feedback, Erfolgskontrolle'],
+  ];
+  const saved = (ctx.savedDaten as any) || {};
+  const wrap = el('div', 'tm');
+  wrap.appendChild(el('p', 'tm-lead', `Unterweisungsplan nach der Vier-Stufen-Methode für eine Tätigkeit bei <strong>${esc(ctx.firma)}</strong>.`));
+  const inp = el('input', 'tm-input') as HTMLInputElement;
+  inp.type = 'text'; inp.placeholder = 'z. B. „Kundenreklamation bearbeiten"'; inp.value = saved.taetigkeit || '';
+  const tl = el('label', 'tm-label', 'Tätigkeit / Lernziel'); tl.appendChild(inp); wrap.appendChild(tl);
+  const list = el('div', 'tm-stufen');
+  STUFEN.forEach(([titel, hint], i) => {
+    const s = (saved.schritte || [])[i] || {};
+    const row = el('div', 'tm-stufe');
+    row.appendChild(el('div', 'tm-stufe-num', String(i + 1)));
+    const col = el('div', 'tm-stufe-col');
+    col.appendChild(el('p', 'tm-stufe-titel', `${titel} <span class="tm-krit-hint">— ${hint}</span>`));
+    const ta = el('textarea', 'tm-input') as HTMLTextAreaElement;
+    ta.setAttribute('rows', '2'); ta.placeholder = 'Wie setzt du diese Stufe konkret um?'; ta.value = s.notiz || '';
+    ta.dataset.i = String(i); col.appendChild(ta); row.appendChild(col); list.appendChild(row);
+  });
+  wrap.appendChild(list);
+  const btn = el('button', 'tm-save', 'Als Artefakt speichern <span aria-hidden="true">→</span>') as HTMLButtonElement;
+  btn.type = 'button';
+  btn.addEventListener('click', () => {
+    const schritte = STUFEN.map(([titel], i) => ({ titel, notiz: (list.querySelector(`textarea[data-i="${i}"]`) as HTMLTextAreaElement).value.trim() }));
+    ctx.save(`Vier-Stufen-Unterweisung — ${ctx.firma}`, { taetigkeit: inp.value.trim(), schritte });
+  });
+  wrap.appendChild(btn); ctx.mount.appendChild(wrap);
+};
+
+// Nutzwertanalyse / Scoring (Familie: Rechner/Matrix) ──────
+const scoringModul: ModulFn = (ctx) => {
+  const saved = (ctx.savedDaten as any) || {};
+  const wrap = el('div', 'tm');
+  wrap.appendChild(el('p', 'tm-lead', `Nutzwertanalyse für eine Entscheidung bei <strong>${esc(ctx.firma)}</strong> — zwei Alternativen, gewichtete Kriterien (Bewertung 1–5).`));
+  const altA = el('input', 'tm-input') as HTMLInputElement; altA.type = 'text'; altA.placeholder = 'Alternative A'; altA.value = (saved.alternativen || [])[0] || '';
+  const altB = el('input', 'tm-input') as HTMLInputElement; altB.type = 'text'; altB.placeholder = 'Alternative B'; altB.value = (saved.alternativen || [])[1] || '';
+  const altRow = el('div', 'tm-form'); const la = el('label', 'tm-label', 'Alternative A'); la.appendChild(altA); const lb = el('label', 'tm-label', 'Alternative B'); lb.appendChild(altB); altRow.appendChild(la); altRow.appendChild(lb);
+  wrap.appendChild(altRow);
+  const savedK = saved.kriterien || [{}, {}, {}];
+  const table = el('div', 'tm-score');
+  table.appendChild(el('div', 'tm-score-head', `<span>Kriterium</span><span>Gewicht %</span><span>A (1–5)</span><span>B (1–5)</span>`));
+  for (let i = 0; i < 3; i++) {
+    const k = savedK[i] || {};
+    const row = el('div', 'tm-score-row');
+    const mk = (cls: string, ph: string, val: any, type = 'number') => { const x = el('input', `tm-input ${cls}`) as HTMLInputElement; x.type = type; x.placeholder = ph; x.value = val ?? ''; x.dataset.i = String(i); return x; };
+    row.appendChild(mk('sc-name', 'z. B. Kosten', k.name, 'text'));
+    row.appendChild(mk('sc-w tm-num', '40', k.gewicht));
+    row.appendChild(mk('sc-a tm-num', '4', k.a));
+    row.appendChild(mk('sc-b tm-num', '3', k.b));
+    table.appendChild(row);
+  }
+  wrap.appendChild(table);
+  const out = el('div', 'tm-out'); wrap.appendChild(out);
+  function read() {
+    const kriterien = [] as any[];
+    table.querySelectorAll('.tm-score-row').forEach((r, i) => {
+      kriterien.push({
+        name: (r.querySelector('.sc-name') as HTMLInputElement).value.trim(),
+        gewicht: +(r.querySelector('.sc-w') as HTMLInputElement).value,
+        a: +(r.querySelector('.sc-a') as HTMLInputElement).value,
+        b: +(r.querySelector('.sc-b') as HTMLInputElement).value,
+      });
+    });
+    return kriterien;
+  }
+  function recalc() {
+    const kr = read();
+    let sa = 0, sb = 0, gw = 0;
+    kr.forEach((k) => { const g = k.gewicht || 0; gw += g; sa += (k.a || 0) * g; sb += (k.b || 0) * g; });
+    const na = gw > 0 ? sa / gw : NaN, nb = gw > 0 ? sb / gw : NaN;
+    const f = (n: number) => isFinite(n) ? n.toLocaleString('de-DE', { maximumFractionDigits: 2 }) : '—';
+    const sieger = !isFinite(na) ? '' : na === nb ? 'Gleichstand' : (na > nb ? (altA.value || 'A') : (altB.value || 'B'));
+    out.innerHTML = `
+      <div class="tm-out-row"><span>Nutzwert ${esc(altA.value || 'A')}</span><b>${f(na)}</b></div>
+      <div class="tm-out-row"><span>Nutzwert ${esc(altB.value || 'B')}</span><b>${f(nb)}</b></div>
+      <div class="tm-out-row tm-out-total"><span>Empfehlung</span><b class="pos">${esc(sieger)}</b></div>`;
+  }
+  wrap.querySelectorAll('input').forEach((i) => i.addEventListener('input', recalc)); recalc();
+  const btn = el('button', 'tm-save', 'Als Artefakt speichern <span aria-hidden="true">→</span>') as HTMLButtonElement;
+  btn.type = 'button';
+  btn.addEventListener('click', () => ctx.save(`Nutzwertanalyse — ${ctx.firma}`, { alternativen: [altA.value.trim(), altB.value.trim()], kriterien: read() }));
+  wrap.appendChild(btn); ctx.mount.appendChild(wrap);
+};
+
 const REGISTRY: Record<string, ModulFn> = {
   smart: smartModul,
   swot: swotModul,
   deckungsbeitrag: dbModul,
+  marktanteil: marktanteilModul,
+  preisberechnung: preisModul,
+  'vier-stufen': vierStufenModul,
+  scoring: scoringModul,
 };
 
 // ── Mount ─────────────────────────────────────────────────
@@ -253,9 +414,9 @@ function mountModule(): void {
   });
 }
 
-// Nach dem Speichern: Feedback + „gespeichert"-Zustand am Button.
+// Nach dem Speichern: „gespeichert"-Zustand am Button (Toast kommt aus
+// norive-progress.ts, inkl. Prozentanzeige — kein doppeltes Toast hier).
 window.addEventListener('norive:artefakt-gespeichert', () => {
-  showToast('✓ Artefakt gespeichert — fließt in dein Präsentations-Deck');
   const btn = document.querySelector('#modul-mount .tm-save');
   if (btn) { btn.setAttribute('data-saved', 'true'); btn.innerHTML = '✓ Gespeichert — aktualisieren'; }
 });

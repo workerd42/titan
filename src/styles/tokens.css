@@ -67,7 +67,7 @@
   --text-2xl:  clamp(48px, 7.0vw, 80px);
 
   /* Layout */
-  --max-read:    700px;
+  --max-read:    820px;
   --max-content: 1100px;
   --radius:      2px;    /* CI: minimal radius */
 }

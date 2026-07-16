@@ -4,6 +4,7 @@ handlungsbereich: "hb4"
 themengruppe: "Berufsausbildung"
 order: 1
 description: "Vorbereiten, Vormachen und Erklären, Nachmachen und Erklärenlassen sowie Üben als klassische Lehrmethode für psychomotorische Fertigkeiten in der Ausbildung."
+werkzeug: "vier-stufen"
 merksatz: |
   Erst zeigen, dann erklären lassen, dann üben lassen – die Vier-Stufen-Methode überträgt Können, nicht nur Wissen.
 fallbeispiel:

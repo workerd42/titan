@@ -70,15 +70,33 @@ const themenMeta = Object.fromEntries(
         const cell = (key, label) => `<div class="deck-swot-cell tm-swot-${key}"><p class="tm-swot-titel">${label}</p><ul>${(d[key]||[]).map(x=>`<li>${esc(x)}</li>`).join('') || '<li class="muted">—</li>'}</ul></div>`;
         return `<div class="deck-swot">${cell('staerken','Stärken')}${cell('schwaechen','Schwächen')}${cell('chancen','Chancen')}${cell('risiken','Risiken')}</div>`;
       }
+      const f2 = (n, dd = 2) => (typeof n === 'number' && isFinite(n)) ? n.toLocaleString('de-DE',{maximumFractionDigits:dd}) : '—';
       if (modul === 'deckungsbeitrag') {
-        const f = (n) => (typeof n === 'number' && isFinite(n)) ? n.toLocaleString('de-DE',{maximumFractionDigits:2}) : '—';
         const dbGes = d.dbStk * d.menge, gewinn = dbGes - d.fixk, be = d.dbStk > 0 ? Math.ceil(d.fixk / d.dbStk) : NaN;
         return `<div class="tm-out">
-          <div class="tm-out-row"><span>DB / Stück</span><b>${f(d.dbStk)} €</b></div>
-          <div class="tm-out-row"><span>DB gesamt (${f(d.menge)} Stück)</span><b>${f(dbGes)} €</b></div>
-          <div class="tm-out-row"><span>Break-even-Menge</span><b>${f(be)} Stück</b></div>
-          <div class="tm-out-row tm-out-total"><span>Gewinn / Verlust</span><b class="${gewinn>=0?'pos':'neg'}">${f(gewinn)} €</b></div>
+          <div class="tm-out-row"><span>DB / Stück</span><b>${f2(d.dbStk)} €</b></div>
+          <div class="tm-out-row"><span>DB gesamt (${f2(d.menge,0)} Stück)</span><b>${f2(dbGes)} €</b></div>
+          <div class="tm-out-row"><span>Break-even-Menge</span><b>${f2(be,0)} Stück</b></div>
+          <div class="tm-out-row tm-out-total"><span>Gewinn / Verlust</span><b class="${gewinn>=0?'pos':'neg'}">${f2(gewinn)} €</b></div>
         </div>`;
+      }
+      if (modul === 'marktanteil') {
+        const anteil = d.markt>0?(d.eigen/d.markt)*100:NaN, rel=d.wettb>0?d.eigen/d.wettb:NaN;
+        return `<div class="tm-out"><div class="tm-out-row"><span>Marktanteil</span><b>${f2(anteil,1)} %</b></div><div class="tm-out-row"><span>Relativer Marktanteil</span><b>${f2(rel)}</b></div></div>`;
+      }
+      if (modul === 'preisberechnung') {
+        const bar=d.sk*(1+d.gewinn/100), ziel=d.skonto<100?bar/(1-d.skonto/100):NaN, liste=d.rabatt<100?ziel/(1-d.rabatt/100):NaN;
+        return `<div class="tm-out"><div class="tm-out-row"><span>Barverkaufspreis</span><b>${f2(bar)} €</b></div><div class="tm-out-row tm-out-total"><span>Listenverkaufspreis</span><b>${f2(liste)} €</b></div></div>`;
+      }
+      if (modul === 'vier-stufen') {
+        const steps=(d.schritte||[]).map((s,i)=>`<li><b>${i+1}. ${esc(s.titel)}</b>${s.notiz?' — '+esc(s.notiz):''}</li>`).join('');
+        return `${d.taetigkeit?`<p class="deck-ziel">„${esc(d.taetigkeit)}"</p>`:''}<ol class="deck-stufen">${steps}</ol>`;
+      }
+      if (modul === 'scoring') {
+        const kr=(d.kriterien||[]); let sa=0,sb=0,gw=0; kr.forEach(k=>{const g=k.gewicht||0;gw+=g;sa+=(k.a||0)*g;sb+=(k.b||0)*g;});
+        const na=gw>0?sa/gw:NaN,nb=gw>0?sb/gw:NaN; const A=esc((d.alternativen||[])[0]||'A'),B=esc((d.alternativen||[])[1]||'B');
+        const sieger=!isFinite(na)?'':na===nb?'Gleichstand':(na>nb?A:B);
+        return `<div class="tm-out"><div class="tm-out-row"><span>${A}</span><b>${f2(na)}</b></div><div class="tm-out-row"><span>${B}</span><b>${f2(nb)}</b></div><div class="tm-out-row tm-out-total"><span>Empfehlung</span><b class="pos">${sieger}</b></div></div>`;
       }
       return `<pre class="deck-raw">${esc(JSON.stringify(d, null, 2))}</pre>`;
     }
@@ -142,6 +160,7 @@ const themenMeta = Object.fromEntries(
     .deck-swot-cell { padding: 12px; border-radius: 3px; }
     .deck-swot-cell ul { margin: 4px 0 0; padding-left: 18px; font-family: var(--mono,monospace); font-size: 12px; color: #1C1917; }
     .deck-swot-cell .muted { color: #8a7d6a; list-style: none; margin-left: -18px; }
+    .deck-stufen { margin: 0; padding-left: 20px; font-family: var(--mono,monospace); font-size: 12.5px; line-height: 1.6; color: #1C1917; display: flex; flex-direction: column; gap: 6px; }
     .deck-card-meta { font-family: var(--mono,monospace); font-size: 10px; color: #8a7d6a; margin: 12px 0 0; }
     .deck-raw { font-size: 11px; overflow-x: auto; }
     @media (max-width: 560px) { .deck-swot { grid-template-columns: 1fr; } }
