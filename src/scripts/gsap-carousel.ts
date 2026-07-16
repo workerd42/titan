@@ -332,6 +332,24 @@ export function initCarousel(opts: CarouselOpts): CarouselController {
   container.addEventListener('pointerup', onPointerUp);
   container.addEventListener('pointercancel', onPointerUp);
 
+  // ── Reflow bei Größenänderung / Orientierungswechsel (#1) ──
+  // Ring-Radien (rx/ry/rz) UND Basisschritt hängen an der Containergröße. Ohne
+  // Neuberechnung driftet das ausgewählte Item nach Fenster-Resize oder Tablet-
+  // Drehung aus der Idealposition (unten-mittig, angeschnitten). Per rAF
+  // gebündelt, damit ein Resize-Sturm keinen Layout-Thrash erzeugt.
+  let reflowRaf = 0;
+  const onReflow = () => {
+    cancelAnimationFrame(reflowRaf);
+    reflowRaf = requestAnimationFrame(() => {
+      computeBaseStep();
+      if (mode === 'ring') ringRadii = computeRingRadii(container, ringGeo);
+      render(centerIndex, false);
+    });
+  };
+  const resizeObserver = new ResizeObserver(onReflow);
+  resizeObserver.observe(container);
+  window.addEventListener('orientationchange', onReflow);
+
   // ── Initiale Positionierung (kein Flash, kein Tween) ──
   render(centerIndex, false);
   onCenterChange(centerIndex, items[centerIndex]);
@@ -348,6 +366,9 @@ export function initCarousel(opts: CarouselOpts): CarouselController {
       container.removeEventListener('pointermove', onPointerMove);
       container.removeEventListener('pointerup', onPointerUp);
       container.removeEventListener('pointercancel', onPointerUp);
+      resizeObserver.disconnect();
+      window.removeEventListener('orientationchange', onReflow);
+      cancelAnimationFrame(reflowRaf);
       gsap.killTweensOf(items);
     },
   };
