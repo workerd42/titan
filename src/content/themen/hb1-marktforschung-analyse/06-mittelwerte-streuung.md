@@ -7,7 +7,7 @@ description: "Skalenarten, Häufigkeiten, Mittelwerte (Median, Modalwert, arithm
 merksatz: "Der Median teilt die Reihe, das arithmetische Mittel rechnet sie zusammen, das geometrische Mittel beschreibt ihr Wachstum."
 fallbeispiel:
   situation: |
-    Die Personalabteilung der KELLER Antriebstechnik GmbH hat die Bruttostundenlöhne
+    Die Personalabteilung der {{firma}} hat die Bruttostundenlöhne
     von 180 Lohnempfängern in sechs Lohngruppen erfasst und möchte einen
     Vergleichswert für Tarifverhandlungen ermitteln.
   aufgabe: |

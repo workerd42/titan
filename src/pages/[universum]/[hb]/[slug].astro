@@ -525,30 +525,43 @@ const d = thema.data;
   else document.addEventListener('DOMContentLoaded', initLese);
 </script>
 
-<!-- Kompass-Integration: Fallbeispiel mit Unternehmensname personalisieren -->
+<!-- Kompass-Integration: {{platzhalter}} im ganzen Inhalt ersetzen + Kontext-Hinweis -->
 <script>
-  const KOMPASS_KEY = 'norive-kompass-v1';
-  try {
-    const kompass = JSON.parse(localStorage.getItem(KOMPASS_KEY) || 'null');
-    if (kompass?.name) {
-      // Kompass-Kontext einblenden
-      const ctx = document.getElementById('kompass-kontext');
-      const txt = document.getElementById('kk-text');
-      if (ctx && txt) {
-        ctx.hidden = false;
-        txt.textContent = `Denke beim Lösen an dein Unternehmen: ${kompass.name} — ${kompass.rechtsform || ''} ${kompass.branche ? '(' + {handel:'Handel',industrie:'Industrie',dienstleistung:'Dienstleistung',handwerk:'Handwerk',sonstiges:'Sonstiges'}[kompass.branche] + ')' : ''}`.trim();
-      }
-      // Unternehmensname im Fallbeispiel-Text substituieren (einfache Template-Ersetzung)
-      const sitEl = document.getElementById('fb-situation-text');
-      if (sitEl && sitEl.textContent) {
-        // Kompass-Unternehmen wird in Klammern angezeigt wenn vorhanden
-        const hinweis = document.createElement('p');
-        hinweis.className = 'fb-kompass-hinweis';
-        hinweis.innerHTML = `<small>💡 Beziehe diese Aufgabe gedanklich auf <strong>${kompass.name}</strong>.</small>`;
-        sitEl.parentElement?.appendChild(hinweis);
-      }
+  import { substituteDom, readKompass, firmaName, hasKompass } from '../../../scripts/kompass-vars';
+
+  const BRANCHE: Record<string, string> = {
+    handel: 'Handel', industrie: 'Industrie', dienstleistung: 'Dienstleistung',
+    handwerk: 'Handwerk', sonstiges: 'Sonstiges',
+  };
+
+  function initKompass(): void {
+    const wrap = document.querySelector<HTMLElement>('.thema-wrap');
+    // 1) „Kompass überall": Platzhalter ({{firma}}, {{branche}} …) im Inhalt ersetzen.
+    substituteDom(wrap ?? document.body);
+    if (!hasKompass()) return;
+    const k = readKompass();
+    // 2) Kontext-Hinweis in Phase „Anwenden"
+    const ctx = document.getElementById('kompass-kontext');
+    const txt = document.getElementById('kk-text');
+    if (ctx && txt) {
+      ctx.hidden = false;
+      const branche = k?.branche ? `(${BRANCHE[k.branche] ?? k.branche})` : '';
+      const meta = [k?.rechtsform, branche].filter(Boolean).join(' ');
+      txt.textContent = `Denke beim Lösen an dein Unternehmen: ${firmaName()}${meta ? ' — ' + meta : ''}`;
     }
-  } catch { /* ignore */ }
+    // 3) Notiz am Fallbeispiel (nur einmal anhängen — läuft auch bei Navigation)
+    const sitEl = document.getElementById('fb-situation-text');
+    if (sitEl && !sitEl.parentElement?.querySelector('.fb-kompass-hinweis')) {
+      const hinweis = document.createElement('p');
+      hinweis.className = 'fb-kompass-hinweis';
+      hinweis.innerHTML = `<small>💡 Beziehe diese Aufgabe gedanklich auf <strong>${firmaName()}</strong>.</small>`;
+      sitEl.parentElement?.appendChild(hinweis);
+    }
+  }
+
+  document.addEventListener('astro:page-load', initKompass);
+  if (document.readyState !== 'loading') initKompass();
+  else document.addEventListener('DOMContentLoaded', initKompass);
 </script>
 
 <style>
