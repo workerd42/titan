@@ -198,14 +198,22 @@ const PHASE_LABEL: Record<string, string> = {
 function renderThemaProgress(slug: string, state: NoriveProgress): void {
   const done = phasenAbgeschlossen(state.themen[slug]);
   const pct = done * 25;
-  const fill = document.getElementById('thema-progress-fill');
   const pctEl = document.getElementById('thema-progress-pct');
-  const cntEl = document.getElementById('thema-progress-count');
-  if (fill) fill.style.width = `${pct}%`;
-  if (pctEl) pctEl.textContent = `${pct} %`;
-  if (cntEl) cntEl.textContent = `${done}/4 Phasen`;
+  if (pctEl) pctEl.textContent = `${pct}%`;
+  // Grafischer Ring (SVG r=19): Umfang als dasharray, Rest als dashoffset.
+  const ring = document.getElementById('thema-ring-fill');
+  if (ring) {
+    const C = 2 * Math.PI * 19;
+    (ring as unknown as SVGElement).style.strokeDasharray = String(C);
+    (ring as unknown as SVGElement).style.strokeDashoffset = String(C * (1 - pct / 100));
+  }
   // Barrierefreiheit: Progressbar-Wert für Screenreader aktualisieren.
-  document.querySelector('.thema-progress')?.setAttribute('aria-valuenow', String(pct));
+  document.querySelector('.thema-ring')?.setAttribute('aria-valuenow', String(pct));
+  // Rückwärtskompatibel (falls alte Elemente vorhanden):
+  const fill = document.getElementById('thema-progress-fill');
+  if (fill) fill.style.width = `${pct}%`;
+  const cntEl = document.getElementById('thema-progress-count');
+  if (cntEl) cntEl.textContent = `${done}/4 Phasen`;
 }
 
 function renderPhasenLeiste(slug: string, state: NoriveProgress): void {
