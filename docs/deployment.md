@@ -4,6 +4,8 @@ Wie Titan von der lokalen Entwicklung bis zur Live-Domain kommt, und wie künfti
 
 > **Stand Phase 2 (2026-07-15):** Der Stack besteht jetzt aus **zwei** Containern — die App läuft als **Node-Server** (nicht mehr nginx-static), dazu kommt **Postgres** für Accounts/Fortschritt. Migrationen laufen automatisch beim Containerstart.
 
+> 🔒 **Sichtbarkeit (2026-07-17): Staging ist versteckt.** `prototyp-staging.norive.de` liegt hinter **nginx Basic Auth** (Sofort-Schutz, Prototyp soll nicht öffentlich sichtbar sein) — 401 ohne Login. Konfiguriert server-weit im 443-Block (`auth_basic` + `auth_basic_user_file /etc/nginx/.htpasswd-titan`). **Wichtig:** die htpasswd-Datei muss für den nginx-Worker (`www-data`) lesbar sein (`chown root:www-data`, `chmod 640`) — sonst 500 bei der Passwort-Prüfung. Zugangsdaten liegen beim Betreiber (nicht im Repo). Das **richtige Better-Auth-Login-Gate** (nur Eingeloggte sehen Inhalte, statt Passwort-Dialog) ist noch offen — Basic Auth ist nur die Zwischenlösung.
+
 ## Überblick
 
 ```
