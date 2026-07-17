@@ -73,12 +73,14 @@ const d = thema.data;
         <span class="tf-hint">— dein Fortschritt in diesem Kapitel</span>
       </p>
 
-      <!-- Lese- & Barrierefreiheits-Optionen (gelten für alle vier Phasen, gespeichert) -->
-      <div class="lese-controls">
-        <button class="lese-toggle" id="lese-toggle" type="button" aria-expanded="false" aria-controls="lese-panel">
-          <span aria-hidden="true">Aa</span> Lesen &amp; Barrierefreiheit
-        </button>
-        <div class="lese-panel" id="lese-panel" role="group" aria-label="Lese- und Barrierefreiheits-Optionen" hidden>
+      {/* Lese- & Barrierefreiheits-Optionen — Trigger ist die „Aa"-Aktion im
+          Speed-Dial (siehe SpeedDial.astro / PlanetLayout). Modal, position:fixed,
+          daher hier im Header-DOM ohne Layout-Einfluss. */}
+      <div class="lese-modal" id="lese-modal" role="dialog" aria-modal="true" aria-label="Lesen und Barrierefreiheit" hidden>
+        <div class="lm-box">
+          <button class="lm-close" id="lese-close" type="button" aria-label="Schließen">×</button>
+          <p class="lm-title">Lesen &amp; Barrierefreiheit</p>
+          <p class="lm-sub">Gilt für alle vier Phasen · wird gespeichert</p>
           <div class="lese-row">
             <span class="lese-label" id="lese-l1">Lesemodus</span>
             <div class="lese-opts" role="group" aria-labelledby="lese-l1">
@@ -503,13 +505,15 @@ const d = thema.data;
     if (!wrap) return;
     const s = leseLoad();
     leseApply(s);
-    const toggle = document.getElementById('lese-toggle');
-    const panel = document.getElementById('lese-panel');
-    toggle?.addEventListener('click', () => {
-      const willOpen = panel?.hasAttribute('hidden') ?? false;
-      if (willOpen) panel?.removeAttribute('hidden'); else panel?.setAttribute('hidden', '');
-      toggle.setAttribute('aria-expanded', String(willOpen));
-    });
+    const toggle = document.getElementById('lese-toggle');   // „Aa" im Speed-Dial
+    const modal = document.getElementById('lese-modal');
+    const setOpen = (open: boolean) => {
+      if (open) modal?.removeAttribute('hidden'); else modal?.setAttribute('hidden', '');
+      toggle?.setAttribute('aria-expanded', String(open));
+    };
+    toggle?.addEventListener('click', () => setOpen(true));
+    document.getElementById('lese-close')?.addEventListener('click', () => setOpen(false));
+    modal?.addEventListener('click', (e) => { if (e.target === modal) setOpen(false); });
     document.querySelectorAll<HTMLElement>('.lese-opt').forEach((b) => {
       b.addEventListener('click', () => {
         const key = b.dataset.set; const val = b.dataset.val;
@@ -523,6 +527,16 @@ const d = thema.data;
   document.addEventListener('astro:page-load', initLese);
   if (document.readyState !== 'loading') initLese();
   else document.addEventListener('DOMContentLoaded', initLese);
+
+  // ESC schließt das Lese-Modal (einmalig, überlebt Navigation)
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'Escape') return;
+    const modal = document.getElementById('lese-modal');
+    if (modal && !modal.hasAttribute('hidden')) {
+      modal.setAttribute('hidden', '');
+      document.getElementById('lese-toggle')?.setAttribute('aria-expanded', 'false');
+    }
+  });
 </script>
 
 <!-- Kompass-Integration: {{platzhalter}} im ganzen Inhalt ersetzen + Kontext-Hinweis -->
@@ -629,20 +643,29 @@ const d = thema.data;
   .tf-count { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); }
   .tf-hint { font-size: 11px; color: var(--text-muted); }
 
-  /* ── Lese- & Barrierefreiheits-Panel ── */
-  .lese-controls { position: relative; margin-top: var(--sp-md); }
-  .lese-toggle {
-    font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em;
-    color: var(--text-muted); background: none; border: 1px solid var(--border-mid);
-    border-radius: 999px; padding: 7px 14px; min-height: 40px; cursor: pointer;
-    display: inline-flex; align-items: center; gap: 8px; transition: border-color .2s ease, color .2s ease;
+  /* ── Lese- & Barrierefreiheits-Modal (Trigger: „Aa" im Speed-Dial) ── */
+  .lese-modal {
+    position: fixed; inset: 0; z-index: 250;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+    background: rgba(8,6,4,0.55); backdrop-filter: blur(4px);
   }
-  .lese-toggle:hover { color: var(--text); border-color: var(--accent); }
-  .lese-panel {
-    margin-top: 10px; display: flex; flex-direction: column; gap: 14px;
+  .lese-modal[hidden] { display: none; }
+  .lm-box {
+    position: relative; width: min(440px, 92vw); max-height: 88vh; overflow-y: auto;
     background: var(--bg-surface-light, #F6F3EC); border: 1px solid var(--border-mid);
-    border-radius: 4px; padding: 16px 18px; max-width: 380px;
+    border-radius: 6px; padding: 32px 28px; display: flex; flex-direction: column; gap: 14px;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.35);
+    animation: lmIn .3s cubic-bezier(0.16,1,0.3,1);
   }
+  @keyframes lmIn { from { opacity: 0; transform: translateY(12px) scale(.985); } to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) { .lm-box { animation: none; } }
+  .lm-close {
+    position: absolute; top: 10px; right: 12px; font-size: 22px; line-height: 1;
+    color: var(--text-muted); background: none; border: none; cursor: pointer; padding: 6px 8px; min-height: 44px;
+  }
+  .lm-close:hover { color: var(--text); }
+  .lm-title { font-family: var(--serif); font-size: 20px; font-weight: 400; color: var(--text); margin: 0; }
+  .lm-sub { font-family: var(--mono); font-size: 11px; color: var(--text-muted); margin: -6px 0 6px; }
   .lese-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
   .lese-label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); }
   .lese-opts { display: inline-flex; gap: 4px; }

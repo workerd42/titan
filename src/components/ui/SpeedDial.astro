@@ -16,8 +16,10 @@
 interface Props {
   showKonzept?: boolean;
   showPersonal?: boolean;
+  /** „Aa" Lesen & Barrierefreiheit — nur auf Lernseiten (öffnet #lese-modal). */
+  showLese?: boolean;
 }
-const { showKonzept = true, showPersonal = true } = Astro.props;
+const { showKonzept = true, showPersonal = true, showLese = false } = Astro.props;
 ---
 
 <div class="speed-dial" id="speed-dial" data-open="false">
@@ -45,6 +47,19 @@ const { showKonzept = true, showPersonal = true } = Astro.props;
     >
       <span class="sd-tooltip" aria-hidden="true">Konzept</span>
       <span class="sd-icon" aria-hidden="true">?</span>
+    </button>
+  )}
+  {showLese && (
+    <button
+      class="sd-action"
+      id="lese-toggle"
+      type="button"
+      aria-label="Lesen &amp; Barrierefreiheit"
+      aria-expanded="false"
+      aria-controls="lese-modal"
+    >
+      <span class="sd-tooltip" aria-hidden="true">Lesen &amp; Barrierefreiheit</span>
+      <span class="sd-icon" aria-hidden="true">Aa</span>
     </button>
   )}
 
