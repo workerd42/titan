@@ -73,6 +73,37 @@ const d = thema.data;
         <span class="tf-hint">— dein Fortschritt in diesem Kapitel</span>
       </p>
 
+      <!-- Lese- & Barrierefreiheits-Optionen (gelten für alle vier Phasen, gespeichert) -->
+      <div class="lese-controls">
+        <button class="lese-toggle" id="lese-toggle" type="button" aria-expanded="false" aria-controls="lese-panel">
+          <span aria-hidden="true">Aa</span> Lesen &amp; Barrierefreiheit
+        </button>
+        <div class="lese-panel" id="lese-panel" role="group" aria-label="Lese- und Barrierefreiheits-Optionen" hidden>
+          <div class="lese-row">
+            <span class="lese-label" id="lese-l1">Lesemodus</span>
+            <div class="lese-opts" role="group" aria-labelledby="lese-l1">
+              <button class="lese-opt" data-set="lesemodus" data-val="true"  type="button">an</button>
+              <button class="lese-opt" data-set="lesemodus" data-val="false" type="button">aus</button>
+            </div>
+          </div>
+          <div class="lese-row">
+            <span class="lese-label" id="lese-l2">Schriftgröße</span>
+            <div class="lese-opts" role="group" aria-labelledby="lese-l2">
+              <button class="lese-opt" data-set="groesse" data-val="klein"  type="button" aria-label="Klein">A−</button>
+              <button class="lese-opt" data-set="groesse" data-val="normal" type="button" aria-label="Normal">A</button>
+              <button class="lese-opt lese-opt--big" data-set="groesse" data-val="gross" type="button" aria-label="Groß">A+</button>
+            </div>
+          </div>
+          <div class="lese-row">
+            <span class="lese-label" id="lese-l3">Zeilenabstand</span>
+            <div class="lese-opts" role="group" aria-labelledby="lese-l3">
+              <button class="lese-opt" data-set="abstand" data-val="normal" type="button">normal</button>
+              <button class="lese-opt" data-set="abstand" data-val="weit"   type="button">weit</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- Phasen-Reiseplan -->
       <div class="phasen-reise" role="list" aria-label="Lernphasen">
         {[
@@ -81,7 +112,7 @@ const d = thema.data;
           { key: 'anwenden',  label: 'Anwenden',  num: '03', icon: '◆' },
           { key: 'pruefen',   label: 'Prüfen',    num: '04', icon: '◎' },
         ].map(({ key, label, num, icon }) => (
-          <a href={`#phase-${key}`} class="phase-schritt" data-phase-label={key} data-done="false" role="listitem">
+          <a href={`#phase-${key}`} class="phase-schritt" data-phase-label={key} data-done="false" role="listitem" aria-label={`Zu Phase ${num}: ${label}`}>
             <span class="ps-icon" aria-hidden="true">{icon}</span>
             <span class="ps-num" aria-hidden="true">{num}</span>
             <span class="ps-label">{label}</span>
@@ -448,6 +479,52 @@ const d = thema.data;
   });
 </script>
 
+<!-- Lese- & Barrierefreiheits-Optionen: Zustand global gespeichert, gilt für alle vier Phasen -->
+<script>
+  const LESE_KEY = 'titan-lese-v1';
+  const LESE_DEFAULT = { lesemodus: 'false', groesse: 'normal', abstand: 'normal' };
+
+  function leseLoad(): Record<string, string> {
+    try { return { ...LESE_DEFAULT, ...JSON.parse(localStorage.getItem(LESE_KEY) || '{}') }; }
+    catch { return { ...LESE_DEFAULT }; }
+  }
+  function leseApply(s: Record<string, string>): void {
+    const wrap = document.querySelector<HTMLElement>('.thema-wrap');
+    if (!wrap) return;
+    wrap.dataset.lesemodus = s.lesemodus;
+    wrap.dataset.groesse = s.groesse;
+    wrap.dataset.abstand = s.abstand;
+    document.querySelectorAll<HTMLElement>('.lese-opt').forEach((b) => {
+      b.setAttribute('aria-pressed', String(s[b.dataset.set ?? ''] === b.dataset.val));
+    });
+  }
+  function initLese(): void {
+    const wrap = document.querySelector<HTMLElement>('.thema-wrap');
+    if (!wrap) return;
+    const s = leseLoad();
+    leseApply(s);
+    const toggle = document.getElementById('lese-toggle');
+    const panel = document.getElementById('lese-panel');
+    toggle?.addEventListener('click', () => {
+      const willOpen = panel?.hasAttribute('hidden') ?? false;
+      if (willOpen) panel?.removeAttribute('hidden'); else panel?.setAttribute('hidden', '');
+      toggle.setAttribute('aria-expanded', String(willOpen));
+    });
+    document.querySelectorAll<HTMLElement>('.lese-opt').forEach((b) => {
+      b.addEventListener('click', () => {
+        const key = b.dataset.set; const val = b.dataset.val;
+        if (!key || val == null) return;
+        s[key] = val;
+        try { localStorage.setItem(LESE_KEY, JSON.stringify(s)); } catch { /* voll/blockiert */ }
+        leseApply(s);
+      });
+    });
+  }
+  document.addEventListener('astro:page-load', initLese);
+  if (document.readyState !== 'loading') initLese();
+  else document.addEventListener('DOMContentLoaded', initLese);
+</script>
+
 <!-- Kompass-Integration: Fallbeispiel mit Unternehmensname personalisieren -->
 <script>
   const KOMPASS_KEY = 'norive-kompass-v1';
@@ -537,7 +614,46 @@ const d = thema.data;
   }
   .tf-pct { font-size: 22px; font-weight: 500; color: var(--accent, #6E5035); font-variant-numeric: tabular-nums; }
   .tf-count { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); }
-  .tf-hint { font-size: 11px; color: var(--text-muted); opacity: 0.7; }
+  .tf-hint { font-size: 11px; color: var(--text-muted); }
+
+  /* ── Lese- & Barrierefreiheits-Panel ── */
+  .lese-controls { position: relative; margin-top: var(--sp-md); }
+  .lese-toggle {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em;
+    color: var(--text-muted); background: none; border: 1px solid var(--border-mid);
+    border-radius: 999px; padding: 7px 14px; min-height: 40px; cursor: pointer;
+    display: inline-flex; align-items: center; gap: 8px; transition: border-color .2s ease, color .2s ease;
+  }
+  .lese-toggle:hover { color: var(--text); border-color: var(--accent); }
+  .lese-panel {
+    margin-top: 10px; display: flex; flex-direction: column; gap: 14px;
+    background: var(--bg-surface-light, #F6F3EC); border: 1px solid var(--border-mid);
+    border-radius: 4px; padding: 16px 18px; max-width: 380px;
+  }
+  .lese-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .lese-label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); }
+  .lese-opts { display: inline-flex; gap: 4px; }
+  .lese-opt {
+    font-family: var(--mono); font-size: 12px; color: var(--text-muted);
+    background: none; border: 1px solid var(--border-mid); border-radius: 3px;
+    padding: 6px 12px; min-height: 38px; min-width: 38px; cursor: pointer;
+    transition: background .15s ease, color .15s ease, border-color .15s ease;
+  }
+  .lese-opt:hover { color: var(--text); border-color: var(--accent); }
+  .lese-opt[aria-pressed="true"] { background: var(--accent, #6E5035); color: #fff; border-color: var(--accent); }
+  .lese-opt--big { font-size: 15px; }
+
+  /* Effekte — gelten für alle vier Phasen. Ziel: der Haupt-Lesetext (.prose). */
+  .thema-wrap[data-groesse="gross"] .prose { font-size: 1.15em; }
+  .thema-wrap[data-groesse="klein"] .prose { font-size: 0.9em; }
+  .thema-wrap[data-abstand="weit"] .prose { line-height: 2.05; }
+  .thema-wrap[data-abstand="weit"] .prose p { margin-bottom: 1.4em; }
+
+  /* Lesemodus: ablenkungsfrei — Navigations-Chrome aus, komfortablerer Satz;
+     Interaktions-Elemente (Werkzeuge, Buttons) bleiben nutzbar. */
+  .thema-wrap[data-lesemodus="true"] .phasen-reise { display: none; }
+  .thema-wrap[data-lesemodus="true"] .phase-done-badge { display: none; }
+  .thema-wrap[data-lesemodus="true"] .prose { font-size: 1.1em; line-height: 1.95; }
   @media (prefers-reduced-motion: reduce) { .thema-progress-fill { transition: none; } }
 
   /* ── PHASEN-REISEPLAN ───────────────────────── */
@@ -570,13 +686,17 @@ const d = thema.data;
     box-shadow: 2px 0 12px rgba(28,25,23,0.06);
   }
 
-  /* Content-Einrückung wenn Sidebar aktiv */
-  .thema-kopf.sidebar-active {
-    padding-left: calc(52px + var(--sp-lg, 24px));
-  }
+  /* KEIN Content-Shift mehr: Der Inhalt bleibt zentriert (max-width + margin auto),
+     die fixierte Sidebar schwebt in der linken Randspalte. Früher schob ein
+     padding-left den zentrierten Inhalt nach rechts → Sprung beim Scrollen +
+     gebrochene Zentrierung. Die .sidebar-active-Klasse bleibt (JS-Hook), wirkt
+     aber bewusst nicht mehr auf die Ausrichtung. */
 
-  .lern-phase.sidebar-active {
-    padding-left: calc(52px + var(--sp-lg, 24px));
+  /* Auf schmalen Schirmen ist die Randspalte zu klein für die 52px-Sidebar
+     (sie würde den Text überlappen) → dort ausblenden. Die Phasenleiste oben
+     bleibt zur Navigation erhalten. */
+  @media (max-width: 1000px) {
+    .phasen-reise.sidebar-mode { display: none; }
   }
 
   .phase-schritt {
@@ -993,7 +1113,7 @@ const d = thema.data;
 
   .kk-label {
     font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em;
-    text-transform: uppercase; color: #5A8A6A; margin-bottom: 4px; max-width: none;
+    text-transform: uppercase; color: #2F6B45; margin-bottom: 4px; max-width: none;
   }
 
   .kk-text {
@@ -1020,7 +1140,7 @@ const d = thema.data;
 
   .fb-label {
     font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em;
-    text-transform: uppercase; color: #5A8A6A; max-width: none;
+    text-transform: uppercase; color: #2F6B45; max-width: none;
   }
 
   .fb-body {
@@ -1169,7 +1289,7 @@ const d = thema.data;
     font-size: 10px;
     letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: #8A7650;
+    color: #5C4B28;
     padding: 3px 8px;
     border: 1px solid rgba(138,118,80,0.4);
   }

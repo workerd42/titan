@@ -204,6 +204,8 @@ function renderThemaProgress(slug: string, state: NoriveProgress): void {
   if (fill) fill.style.width = `${pct}%`;
   if (pctEl) pctEl.textContent = `${pct} %`;
   if (cntEl) cntEl.textContent = `${done}/4 Phasen`;
+  // Barrierefreiheit: Progressbar-Wert für Screenreader aktualisieren.
+  document.querySelector('.thema-progress')?.setAttribute('aria-valuenow', String(pct));
 }
 
 function renderPhasenLeiste(slug: string, state: NoriveProgress): void {
