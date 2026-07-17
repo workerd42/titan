@@ -4,6 +4,7 @@ handlungsbereich: "hb4"
 themengruppe: "Personalauswahl & Rekrutierung"
 order: 1
 description: "Personalmarketing als Positionierung des Unternehmens auf dem internen und externen Arbeitsmarkt, mit Employer Branding als zentralem Baustein."
+werkzeug: "swot"
 merksatz: |
   Personalmarketing funktioniert wie Produktmarketing – nur dass das Produkt der Arbeitsplatz ist und die Zielgruppe die eigenen und künftigen Mitarbeiter sind.
 fallbeispiel:

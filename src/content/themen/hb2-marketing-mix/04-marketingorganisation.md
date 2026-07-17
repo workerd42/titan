@@ -4,6 +4,7 @@ handlungsbereich: "hb2"
 themengruppe: "Marketing-Mix"
 order: 4
 description: "Funktions-, geografie-, produkt- und marktmanagementbezogene Marketingorganisation sowie die Netzwerkorganisation im Vergleich."
+werkzeug: "scoring"
 merksatz: |
   Je vielfältiger Produkte und Märkte, desto mehr lohnt sich eine Organisation entlang dieser Vielfalt statt entlang reiner Funktionen.
 fallbeispiel:

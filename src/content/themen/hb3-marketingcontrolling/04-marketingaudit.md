@@ -4,6 +4,7 @@ handlungsbereich: "hb3"
 themengruppe: "Marketingcontrolling"
 order: 4
 description: "Das Marketingaudit als systemorientierte, zukunftsgerichtete Generalinspektion der gesamten Marketingorganisation im Unterschied zum Soll-Ist-Vergleich."
+werkzeug: "swot"
 merksatz: |
   Der Soll-Ist-Vergleich fragt, ob das Ziel erreicht wurde – das Marketingaudit fragt, ob das Ziel überhaupt noch das richtige war.
 fallbeispiel:

@@ -4,6 +4,7 @@ handlungsbereich: "hb2"
 themengruppe: "Marketing-Mix"
 order: 8
 description: "Akquisitorische versus physische Distribution, Direktvertrieb versus indirekter Vertrieb sowie intensive, selektive und exklusive Distribution."
+werkzeug: "scoring"
 merksatz: |
   Die akquisitorische Distribution gewinnt den Kunden, die physische Distribution liefert ihm das Produkt – beides muss zusammenpassen.
 fallbeispiel:

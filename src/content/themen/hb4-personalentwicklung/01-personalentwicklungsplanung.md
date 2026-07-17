@@ -4,6 +4,7 @@ handlungsbereich: "hb4"
 themengruppe: "Personalentwicklung"
 order: 1
 description: "Feststellung von Qualifikationen und Leistungen als Ausgangspunkt der Personalentwicklung sowie Laufbahn- und Nachfolgeplanung als betriebliche Förderinstrumente."
+werkzeug: "smart"
 merksatz: |
   Personalentwicklung beginnt nicht mit der Maßnahme, sondern mit der ehrlichen Feststellung, wo ein Mitarbeiter heute steht.
 fallbeispiel:

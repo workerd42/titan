@@ -4,6 +4,7 @@ handlungsbereich: "hb2"
 themengruppe: "Marketing-Mix"
 order: 2
 description: "Top-down- versus Bottom-up-Budgetierung und die gängigen Budgetierungsmethoden im Marketing."
+werkzeug: "smart"
 merksatz: |
   Wer das Budget nach dem Umsatz von gestern bemisst, kürzt ausgerechnet dann, wenn am meisten Marketing nötig wäre.
 fallbeispiel:
