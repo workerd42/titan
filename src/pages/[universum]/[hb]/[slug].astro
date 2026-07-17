@@ -56,6 +56,45 @@ const d = thema.data;
     <div class="thema-progress-fill" id="thema-progress-fill"></div>
   </div>
 
+  {/* ── MODUS-AUSWAHL (vorangestellt, Norive-Stil) ──
+      Wird beim Kapitel-Einstieg gezeigt; „Entdecken" führt zur vollen Seite,
+      „Interaktive Module" springt zum Werkzeug. Nicht verfügbare Modi sind
+      ausgegraut. Standardmäßig sichtbar (kein Flash), JS entlässt bei Auswahl. */}
+  <div class="modus-select" id="modus-select" data-has-werkzeug={d.werkzeug ? 'true' : 'false'}>
+    <div class="ms-inner">
+      <p class="ms-eyebrow">{bereich.titel} · {d.themengruppe}</p>
+      <h1 class="ms-titel">{d.title}</h1>
+      <p class="ms-lead">Wie möchtest du dieses Kapitel bearbeiten?</p>
+      <div class="ms-cards">
+        <button class="ms-card" data-mode="entdecken" type="button">
+          <span class="ms-icon" aria-hidden="true">◉</span>
+          <span class="ms-name">Entdecken</span>
+          <span class="ms-desc">Alles auf einer Seite: Verstehen · Merken · Anwenden · Prüfen.</span>
+        </button>
+        <button class="ms-card" data-mode="module" data-needs="werkzeug" type="button">
+          <span class="ms-icon" aria-hidden="true">◆</span>
+          <span class="ms-name">Interaktive Module</span>
+          <span class="ms-desc">Werkzeuge zum Anwenden auf dein Kompass-Unternehmen.</span>
+        </button>
+        <button class="ms-card" data-mode="uebung" type="button" disabled>
+          <span class="ms-icon" aria-hidden="true">✎</span>
+          <span class="ms-name">Übungsbereich</span>
+          <span class="ms-desc">Fallaufgaben & Multiple-Choice. <em class="ms-soon">bald</em></span>
+        </button>
+        <button class="ms-card" data-mode="ihk" type="button" disabled>
+          <span class="ms-icon" aria-hidden="true">◎</span>
+          <span class="ms-name">IHK-Test-Format</span>
+          <span class="ms-desc">Prüfung im Original-Format. <em class="ms-soon">bald</em></span>
+        </button>
+        <button class="ms-card" data-mode="lernzettel" type="button" disabled>
+          <span class="ms-icon" aria-hidden="true">▤</span>
+          <span class="ms-name">Lernzettel</span>
+          <span class="ms-desc">Karteikarten mit den Schlüsselbegriffen. <em class="ms-soon">bald</em></span>
+        </button>
+      </div>
+    </div>
+  </div>
+
   <div class="thema-wrap" data-thema-slug={thema.id} data-wiederholung-tage={d.wiederholungTage}>
 
     <!-- ╔══ KOPF ══════════════════════════════╗ -->
@@ -578,6 +617,48 @@ const d = thema.data;
   else document.addEventListener('DOMContentLoaded', initKompass);
 </script>
 
+<!-- Modus-Auswahl: vorangestellte „Wie bearbeiten?"-Wahl -->
+<script>
+  function initModusSelect(): void {
+    const ov = document.getElementById('modus-select');
+    if (!ov || ov.dataset.done === 'true') return;
+    ov.dataset.done = 'true';
+    // Interaktive Module nur, wenn ein Werkzeug hinterlegt ist
+    if (ov.dataset.hasWerkzeug !== 'true') {
+      const m = ov.querySelector<HTMLButtonElement>('.ms-card[data-mode="module"]');
+      if (m) {
+        m.disabled = true;
+        const d = m.querySelector('.ms-desc');
+        if (d) d.innerHTML = 'Für dieses Kapitel (noch) kein interaktives Werkzeug. <em class="ms-soon">bald</em>';
+      }
+    }
+    const dismiss = () => {
+      ov.classList.add('is-gone');
+      document.body.style.overflow = '';
+      window.setTimeout(() => ov.setAttribute('hidden', ''), 360);
+    };
+    document.body.style.overflow = 'hidden';
+    ov.querySelectorAll<HTMLButtonElement>('.ms-card').forEach((c) => {
+      if (c.disabled) return;
+      c.addEventListener('click', () => {
+        const mode = c.dataset.mode;
+        dismiss();
+        if (mode === 'module') {
+          window.setTimeout(() => document.getElementById('phase-anwenden')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 400);
+        }
+      });
+    });
+    // Klick auf den Hintergrund → Standard „Entdecken"
+    ov.addEventListener('click', (e) => { if (e.target === ov) dismiss(); });
+    document.addEventListener('keydown', function esc(e) {
+      if (e.key === 'Escape' && !ov.hasAttribute('hidden')) { dismiss(); document.removeEventListener('keydown', esc); }
+    });
+  }
+  document.addEventListener('astro:page-load', initModusSelect);
+  if (document.readyState !== 'loading') initModusSelect();
+  else document.addEventListener('DOMContentLoaded', initModusSelect);
+</script>
+
 <style>
   .thema-wrap { padding-bottom: var(--sp-2xl); }
 
@@ -666,6 +747,36 @@ const d = thema.data;
   .lm-close:hover { color: var(--text); }
   .lm-title { font-family: var(--serif); font-size: 20px; font-weight: 400; color: var(--text); margin: 0; }
   .lm-sub { font-family: var(--mono); font-size: 11px; color: var(--text-muted); margin: -6px 0 6px; }
+
+  /* ── Modus-Auswahl (vorangestellt) ── */
+  .modus-select {
+    position: fixed; inset: 0; z-index: 300;
+    display: flex; align-items: center; justify-content: center;
+    padding: clamp(24px, 5vw, 64px);
+    background: #EDE8DF;
+    opacity: 1; transition: opacity 0.36s cubic-bezier(0.16,1,0.3,1);
+  }
+  .modus-select[hidden] { display: none; }
+  .modus-select.is-gone { opacity: 0; pointer-events: none; }
+  .ms-inner { width: min(960px, 100%); text-align: center; }
+  .ms-eyebrow { font-family: var(--mono); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(110,80,53,0.65); margin: 0 0 12px; }
+  .ms-titel { font-family: var(--serif); font-weight: 300; font-size: clamp(24px, 4vw, 40px); letter-spacing: -0.02em; color: #1C1917; line-height: 1.15; margin: 0 0 10px; text-wrap: balance; }
+  .ms-lead { font-family: var(--mono); font-size: 13px; color: #5E5450; margin: 0 0 clamp(24px, 4vw, 40px); }
+  .ms-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 14px; }
+  .ms-card {
+    display: flex; flex-direction: column; align-items: flex-start; gap: 8px; text-align: left;
+    background: #F6F3EC; border: 1px solid rgba(28,25,23,0.14); border-radius: 6px;
+    padding: 22px 20px; cursor: pointer; min-height: 156px;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  .ms-card:hover:not(:disabled) { transform: translateY(-3px); border-color: var(--accent-dark, #C4A882); box-shadow: 0 12px 30px rgba(0,0,0,0.08); }
+  .ms-card:focus-visible { outline: 2px solid #6E5035; outline-offset: 2px; }
+  .ms-card:disabled { opacity: 0.5; cursor: not-allowed; }
+  .ms-icon { font-size: 22px; color: var(--accent-dark, #C4A882); line-height: 1; }
+  .ms-name { font-family: var(--serif); font-size: 19px; color: #1C1917; }
+  .ms-desc { font-family: var(--mono); font-size: 12px; line-height: 1.6; color: #5E5450; }
+  .ms-soon { font-style: normal; font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(110,80,53,0.7); border: 1px solid rgba(110,80,53,0.3); border-radius: 999px; padding: 2px 7px; margin-left: 4px; white-space: nowrap; }
+  @media (prefers-reduced-motion: reduce) { .modus-select, .ms-card { transition: opacity 0.2s ease; } }
   .lese-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
   .lese-label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); }
   .lese-opts { display: inline-flex; gap: 4px; }
