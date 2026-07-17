@@ -20,6 +20,13 @@ export const user = pgTable('user', {
   image: text('image'),
   createdAt: timestamp('created_at').notNull().defaultNow(),
   updatedAt: timestamp('updated_at').notNull().defaultNow(),
+  // ── Better-Auth Admin-Plugin (Rollen/Rechte, Sperren) ──
+  // Rollen: 'platform-admin' | 'org-admin' | 'dozent' | 'lerner' (Default).
+  // Nur 'platform-admin' hat Admin-API-Zugriff (adminRoles in auth.ts).
+  role: text('role').notNull().default('lerner'),
+  banned: boolean('banned').notNull().default(false),
+  banReason: text('ban_reason'),
+  banExpires: timestamp('ban_expires'),
 });
 
 export const session = pgTable('session', {
@@ -31,6 +38,8 @@ export const session = pgTable('session', {
   ipAddress: text('ip_address'),
   userAgent: text('user_agent'),
   userId: text('user_id').notNull().references(() => user.id, { onDelete: 'cascade' }),
+  // Admin-Plugin: gesetzt, wenn ein Admin sich als dieser Nutzer ausgibt.
+  impersonatedBy: text('impersonated_by'),
 });
 
 export const account = pgTable('account', {

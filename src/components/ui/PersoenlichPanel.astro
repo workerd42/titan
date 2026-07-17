@@ -22,6 +22,7 @@ const base = import.meta.env.BASE_URL;
     <div id="pp-auth-in" hidden>
       <p class="pp-firma-meta" id="pp-auth-email">—</p>
       <p class="pp-muted-text pp-sync-note">Fortschritt wird synchronisiert.</p>
+      <a class="pp-link-btn pp-link-btn--small" id="pp-admin-link" href={`${base}admin/`} hidden>Admin-Panel →</a>
       <button class="pp-link-btn pp-link-btn--small" id="pp-logout-btn" type="button">Abmelden</button>
     </div>
   </section>
@@ -254,6 +255,8 @@ const base = import.meta.env.BASE_URL;
       out.hidden = Boolean(user);
       inn.hidden = !user;
       if (user && mail) mail.textContent = user.email ?? '';
+      const adminLink = document.getElementById('pp-admin-link');
+      if (adminLink) adminLink.hidden = user?.role !== 'platform-admin';
     } catch {
       // Kein Backend erreichbar → anonymer Zustand anzeigen.
       out.hidden = false;

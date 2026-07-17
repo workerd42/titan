@@ -7,9 +7,11 @@
  */
 import { betterAuth } from 'better-auth';
 import { drizzleAdapter } from 'better-auth/adapters/drizzle';
+import { admin } from 'better-auth/plugins';
 import { BETTER_AUTH_SECRET, BETTER_AUTH_URL } from 'astro:env/server';
 import { db } from './db';
 import * as schema from './db/schema';
+import { ac, roles } from './rollen-ac';
 
 export const auth = betterAuth({
   secret: BETTER_AUTH_SECRET,
@@ -32,4 +34,12 @@ export const auth = betterAuth({
     expiresIn: 60 * 60 * 24 * 30, // 30 Tage
     updateAge: 60 * 60 * 24,      // täglich verlängern
   },
+  plugins: [
+    admin({
+      ac,
+      roles,
+      defaultRole: 'lerner',
+      adminRoles: ['platform-admin'],
+    }),
+  ],
 });

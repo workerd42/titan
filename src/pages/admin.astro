@@ -1,0 +1,173 @@
+---
+/**
+ * /admin — Admin-Panel (nur Rolle 'platform-admin').
+ *
+ * On-demand gerendert (prerender=false), damit die Middleware die Session
+ * setzt und wir serverseitig die Rolle prüfen können. Die Nutzerverwaltung
+ * läuft über das Better-Auth Admin-Plugin (authClient.admin.*), das jeden
+ * Aufruf serverseitig autorisiert.
+ */
+export const prerender = false;
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { ROLLEN, ROLLEN_LABEL } from '../lib/rollen';
+
+const user = Astro.locals.user as { id: string; email?: string; name?: string; role?: string } | null;
+if (!user) return Astro.redirect('/konto/');
+const istAdmin = user.role === 'platform-admin';
+---
+
+<BaseLayout title="Admin — Titan" description="Nutzer- und Rollenverwaltung." canonicalPath="/admin/" theme="light">
+  <main id="hauptinhalt" class="admin-shell">
+    {!istAdmin ? (
+      <div class="admin-403">
+        <p class="a4-eyebrow">Kein Zugriff</p>
+        <h1 class="a4-title">Dieser Bereich ist der Plattform-Verwaltung vorbehalten.</h1>
+        <p class="a4-lead">Angemeldet als {user.email} (Rolle: {ROLLEN_LABEL[user.role ?? 'lerner'] ?? user.role}).</p>
+        <a class="a4-link" href={`${import.meta.env.BASE_URL}`}>← Zurück</a>
+      </div>
+    ) : (
+      <>
+        <header class="admin-head">
+          <a class="admin-back" href={import.meta.env.BASE_URL}>← Titan</a>
+          <p class="admin-eyebrow">Plattform-Verwaltung</p>
+          <h1 class="admin-title">Nutzer &amp; Rollen</h1>
+          <p class="admin-lead" id="admin-count">Lade Nutzer …</p>
+        </header>
+
+        <section class="admin-create">
+          <h2 class="admin-h2">Nutzer anlegen</h2>
+          <form class="ac-form" id="ac-form">
+            <input class="ac-in" id="ac-name" type="text" placeholder="Name" required />
+            <input class="ac-in" id="ac-email" type="email" placeholder="E-Mail" required />
+            <input class="ac-in" id="ac-pw" type="text" placeholder="Passwort" required minlength="8" />
+            <select class="ac-in" id="ac-role">
+              {ROLLEN.map((r) => <option value={r}>{ROLLEN_LABEL[r]}</option>)}
+            </select>
+            <button class="ac-btn" type="submit">Anlegen</button>
+          </form>
+          <p class="ac-msg" id="ac-msg" aria-live="polite"></p>
+        </section>
+
+        <section class="admin-list">
+          <div class="al-head">
+            <span>Nutzer</span><span>Rolle</span><span>Status</span><span>Aktion</span>
+          </div>
+          <div id="al-rows" data-me-id={user.id}><p class="al-loading">Lade …</p></div>
+        </section>
+      </>
+    )}
+  </main>
+
+  <script>
+    import { authClient } from '../lib/auth-client';
+    import { ROLLEN as rollen, ROLLEN_LABEL as labels } from '../lib/rollen';
+
+    function initAdmin() {
+      const rowsEl = document.getElementById('al-rows');
+      if (!rowsEl) return; // Nicht-Admins rendern die Liste nicht.
+      const meId = rowsEl.dataset.meId ?? '';
+      const countEl = document.getElementById('admin-count');
+      const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;' }[c]));
+
+      function roleSelect(u) {
+        const opts = rollen.map((r) => `<option value="${r}" ${u.role === r ? 'selected' : ''}>${esc(labels[r])}</option>`).join('');
+        return `<select class="al-role" data-id="${u.id}" ${u.id === meId ? 'disabled title="Eigene Rolle nicht änderbar"' : ''}>${opts}</select>`;
+      }
+      function row(u) {
+        const gesperrt = u.banned;
+        return `<div class="al-row" data-id="${u.id}">
+          <div class="al-user"><b>${esc(u.name)}</b><span>${esc(u.email)}</span></div>
+          <div>${roleSelect(u)}</div>
+          <div><span class="al-status ${gesperrt ? 'is-banned' : 'is-ok'}">${gesperrt ? 'gesperrt' : 'aktiv'}</span></div>
+          <div class="al-actions">
+            ${u.id === meId ? '<span class="al-me">du</span>' :
+              `<button class="al-ban" data-id="${u.id}" data-banned="${gesperrt}">${gesperrt ? 'entsperren' : 'sperren'}</button>`}
+          </div>
+        </div>`;
+      }
+
+      async function load() {
+        const res = await authClient.admin.listUsers({ query: { limit: 200, sortBy: 'createdAt', sortDirection: 'desc' } });
+        const users = res?.data?.users ?? [];
+        if (countEl) countEl.textContent = `${users.length} Nutzer`;
+        rowsEl.innerHTML = users.length ? users.map(row).join('') : '<p class="al-loading">Noch keine Nutzer.</p>';
+        wire();
+      }
+      function wire() {
+        rowsEl.querySelectorAll('.al-role').forEach((sel) => sel.addEventListener('change', async (e) => {
+          const t = e.target; const id = t.dataset.id;
+          t.disabled = true;
+          const r = await authClient.admin.setRole({ userId: id, role: t.value });
+          t.disabled = false;
+          if (r?.error) { alert('Fehler: ' + (r.error.message || 'Rolle nicht geändert')); load(); }
+        }));
+        rowsEl.querySelectorAll('.al-ban').forEach((btn) => btn.addEventListener('click', async (e) => {
+          const b = e.currentTarget; const id = b.dataset.id; const isBanned = b.dataset.banned === 'true';
+          b.disabled = true;
+          const r = isBanned
+            ? await authClient.admin.unbanUser({ userId: id })
+            : await authClient.admin.banUser({ userId: id, banReason: 'Vom Admin gesperrt' });
+          if (r?.error) { alert('Fehler: ' + (r.error.message || '')); b.disabled = false; } else load();
+        }));
+      }
+
+      document.getElementById('ac-form')?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const msg = document.getElementById('ac-msg');
+        const r = await authClient.admin.createUser({
+          name: document.getElementById('ac-name').value.trim(),
+          email: document.getElementById('ac-email').value.trim(),
+          password: document.getElementById('ac-pw').value,
+          role: document.getElementById('ac-role').value,
+        });
+        if (r?.error) { msg.textContent = '✗ ' + (r.error.message || 'Fehler'); msg.className = 'ac-msg err'; }
+        else { msg.textContent = '✓ Nutzer angelegt.'; msg.className = 'ac-msg ok'; e.target.reset(); load(); }
+      });
+
+      load();
+    }
+
+    initAdmin();
+    document.addEventListener('astro:page-load', initAdmin);
+  </script>
+
+  <style is:global>
+    .admin-shell { max-width: 940px; margin: 0 auto; padding: clamp(28px,5vw,64px) clamp(18px,4vw,32px) 96px; color: #1C1917; }
+    .admin-back { font-family: var(--mono,monospace); font-size: 12px; color: #6E5035; text-decoration: none; }
+    .admin-eyebrow { font-family: var(--mono,monospace); font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: rgba(110,80,53,0.65); margin: 20px 0 8px; }
+    .admin-title { font-family: var(--serif,Georgia,serif); font-weight: 300; font-size: clamp(28px,5vw,44px); margin: 0 0 8px; }
+    .admin-lead { font-family: var(--mono,monospace); font-size: 13px; color: #5E5450; }
+    .admin-h2 { font-family: var(--mono,monospace); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #6E5035; margin: 40px 0 14px; }
+
+    .ac-form { display: flex; flex-wrap: wrap; gap: 8px; }
+    .ac-in { font-family: var(--mono,monospace); font-size: 13px; padding: 10px 12px; border: 1px solid rgba(28,25,23,0.16); border-radius: 3px; background: #fff; color: #1C1917; flex: 1 1 160px; }
+    .ac-btn { font-family: var(--mono,monospace); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #141210; background: #C4A882; border: none; border-radius: 999px; padding: 10px 22px; cursor: pointer; }
+    .ac-btn:hover { opacity: .9; }
+    .ac-msg { font-family: var(--mono,monospace); font-size: 12px; margin-top: 8px; }
+    .ac-msg.ok { color: #2f6b45; } .ac-msg.err { color: #a23b2e; }
+
+    .admin-list { margin-top: 40px; }
+    .al-head, .al-row { display: grid; grid-template-columns: 2fr 1.2fr 0.9fr 1fr; gap: 12px; align-items: center; }
+    .al-head { font-family: var(--mono,monospace); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: #8a7d6a; padding: 0 4px 10px; border-bottom: 1px solid rgba(28,25,23,0.14); }
+    .al-row { padding: 12px 4px; border-bottom: 1px solid rgba(28,25,23,0.08); }
+    .al-user { display: flex; flex-direction: column; }
+    .al-user b { font-family: var(--serif,Georgia,serif); font-weight: 400; font-size: 15px; }
+    .al-user span { font-family: var(--mono,monospace); font-size: 11px; color: #8a7d6a; }
+    .al-role { font-family: var(--mono,monospace); font-size: 12px; padding: 7px 10px; border: 1px solid rgba(28,25,23,0.16); border-radius: 3px; background: #fff; }
+    .al-status { font-family: var(--mono,monospace); font-size: 11px; padding: 3px 10px; border-radius: 999px; }
+    .al-status.is-ok { background: rgba(90,138,106,0.14); color: #2f6b45; }
+    .al-status.is-banned { background: rgba(162,59,46,0.12); color: #a23b2e; }
+    .al-ban { font-family: var(--mono,monospace); font-size: 11px; color: #a23b2e; background: none; border: 1px solid rgba(162,59,46,0.3); border-radius: 999px; padding: 6px 12px; cursor: pointer; }
+    .al-ban:hover { background: rgba(162,59,46,0.08); }
+    .al-me { font-family: var(--mono,monospace); font-size: 11px; color: #8a7d6a; }
+    .al-loading { font-family: var(--mono,monospace); font-size: 12px; color: #8a7d6a; padding: 16px 4px; }
+
+    .admin-403 { max-width: 560px; margin: 12vh auto 0; text-align: center; }
+    .a4-eyebrow { font-family: var(--mono,monospace); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: #a23b2e; }
+    .a4-title { font-family: var(--serif,Georgia,serif); font-weight: 300; font-size: clamp(22px,4vw,32px); margin: 12px 0; }
+    .a4-lead { font-family: var(--mono,monospace); font-size: 13px; color: #5E5450; }
+    .a4-link { font-family: var(--mono,monospace); font-size: 12px; color: #6E5035; display: inline-block; margin-top: 20px; }
+    @media (max-width: 640px) { .al-head { display: none; } .al-row { grid-template-columns: 1fr; gap: 8px; } }
+  </style>
+</BaseLayout>
