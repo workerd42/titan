@@ -6,6 +6,24 @@ order: 1
 description: "Die Unterscheidung von Output-, Outcome- und Impact-Kennzahlen sowie die Auswahlkriterien für aussagekräftige Marketing-KPIs."
 merksatz: |
   Viele Klicks sind ein Output, ein Kauf ist ein Outcome – verwechsle die beiden nicht, wenn du Erfolg misst.
+begriffe:
+  - begriff: "KPI"
+    aufloesung: "Key Performance Indicator"
+    erklaerung: "Eine ausgewählte Schlüsselkennzahl, die den Erfolg einer Maßnahme messbar macht – nicht jede Zahl ist ein KPI."
+  - begriff: "ROI"
+    aufloesung: "Return on Investment"
+    erklaerung: "Verhältnis von Gewinn zu eingesetztem Kapital: (Gewinn ÷ Investition) × 100. Zeigt, ob sich eine Investition lohnt."
+  - begriff: "ROMI"
+    aufloesung: "Return on Marketing Investment"
+    erklaerung: "Der ROI speziell fürs Marketing: welcher Ergebnisbeitrag steht dem Marketingbudget gegenüber."
+  - begriff: "Conversion Rate"
+    aufloesung: "Konversionsrate"
+    erklaerung: "Anteil der Besucher, die eine gewünschte Aktion ausführen (z. B. Kauf): Conversions ÷ Besucher × 100."
+  - begriff: "CPO"
+    aufloesung: "Cost per Order"
+    erklaerung: "Kosten, die im Durchschnitt anfallen, um eine Bestellung zu gewinnen: Marketingkosten ÷ Bestellungen."
+  - begriff: "Output vs. Outcome"
+    erklaerung: "Output = unmittelbare Leistung (Klicks, Reichweite); Outcome = tatsächliche Wirkung (Kauf, Umsatz). Der Outcome zählt."
 fallbeispiel:
   situation: |
     Die DIGITALWERK Online-Boutique feiert intern den Erfolg ihrer letzten

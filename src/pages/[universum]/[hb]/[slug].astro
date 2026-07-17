@@ -64,7 +64,7 @@ const d = thema.data;
       Wird beim Kapitel-Einstieg gezeigt; „Entdecken" führt zur vollen Seite,
       „Interaktive Module" springt zum Werkzeug. Nicht verfügbare Modi sind
       ausgegraut. Standardmäßig sichtbar (kein Flash), JS entlässt bei Auswahl. */}
-  <div class="modus-select" id="modus-select" data-has-werkzeug={d.werkzeug ? 'true' : 'false'} hidden>
+  <div class="modus-select" id="modus-select" data-has-werkzeug={d.werkzeug ? 'true' : 'false'} data-has-begriffe={d.begriffe && d.begriffe.length > 0 ? 'true' : 'false'} hidden>
     <div class="ms-inner">
       <p class="ms-eyebrow">{bereich.titel} · {d.themengruppe}</p>
       <h1 class="ms-titel">{d.title}</h1>
@@ -455,6 +455,38 @@ const d = thema.data;
       </div>
     </section>
 
+    {/* ╔══ LERNZETTEL (Karteikarten, optional) ══╗ */}
+    {d.begriffe && d.begriffe.length > 0 && (
+      <section class="lern-phase lernzettel-section" id="lernzettel" aria-labelledby="h-lernzettel">
+        <div class="phase-banner">
+          <div class="phase-banner-inner">
+            <span class="phase-banner-icon" aria-hidden="true">▤</span>
+            <div>
+              <p class="phase-banner-num">Lernzettel</p>
+              <h2 id="h-lernzettel" class="phase-banner-title">Schlüsselbegriffe</h2>
+              <p class="phase-banner-hint">Tippe eine Karte, um die Auflösung zu sehen — ideal zum schnellen Wiederholen.</p>
+            </div>
+          </div>
+        </div>
+        <div class="lz-grid">
+          {d.begriffe.map((b) => (
+            <button class="lz-card" type="button" aria-label={`${b.begriff} — Auflösung anzeigen`}>
+              <span class="lz-inner">
+                <span class="lz-face lz-front">
+                  <span class="lz-begriff">{b.begriff}</span>
+                  <span class="lz-flip-hint" aria-hidden="true">tippen zum Umdrehen</span>
+                </span>
+                <span class="lz-face lz-back">
+                  {b.aufloesung && <span class="lz-aufloesung">{b.aufloesung}</span>}
+                  <span class="lz-erklaerung">{b.erklaerung}</span>
+                </span>
+              </span>
+            </button>
+          ))}
+        </div>
+      </section>
+    )}
+
     <!-- ╔══ NAVIGATION ═══════════════════════╗ -->
     <nav class="thema-nav" aria-label="Zwischen Themen wechseln">
       <div>
@@ -623,9 +655,10 @@ const d = thema.data;
 <script>
   const MODUS_KEY = 'titan-modus-v1';
   function applyModus(mode: string): void {
-    // „entdecken" = volle Seite (nichts weiter). „module" springt zum Werkzeug.
-    if (mode === 'module') {
-      window.setTimeout(() => document.getElementById('phase-anwenden')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 120);
+    // „entdecken" = volle Seite (nichts weiter). Andere Modi springen zum Ziel.
+    const targetId = mode === 'module' ? 'phase-anwenden' : mode === 'lernzettel' ? 'lernzettel' : '';
+    if (targetId) {
+      window.setTimeout(() => document.getElementById(targetId)?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 120);
     }
   }
   function initModusSelect(): void {
@@ -642,6 +675,12 @@ const d = thema.data;
         if (d) d.innerHTML = 'Für dieses Kapitel (noch) kein interaktives Werkzeug. <em class="ms-soon">bald</em>';
       }
     }
+    const begriffeAvail = ov.dataset.hasBegriffe === 'true';
+    if (begriffeAvail) {
+      const lz = ov.querySelector<HTMLButtonElement>('.ms-card[data-mode="lernzettel"]');
+      if (lz) { lz.disabled = false; const d = lz.querySelector('.ms-desc'); if (d) d.textContent = 'Karteikarten mit den Schlüsselbegriffen.'; }
+    }
+    const verfuegbar = (m: string) => m === 'module' ? moduleAvail : m === 'lernzettel' ? begriffeAvail : m === 'entdecken';
 
     const open = () => { ov.removeAttribute('hidden'); ov.classList.remove('is-gone'); document.body.style.overflow = 'hidden'; };
     const close = (animate = true) => {
@@ -653,7 +692,7 @@ const d = thema.data;
     // Gemerkte Auswahl → Screen überspringen (außer „module" ohne Werkzeug)
     let remembered: string | null = null;
     try { remembered = localStorage.getItem(MODUS_KEY); } catch { /* blockiert */ }
-    if (remembered && (remembered !== 'module' || moduleAvail)) { close(false); applyModus(remembered); }
+    if (remembered && verfuegbar(remembered)) { close(false); applyModus(remembered); }
     else open();
 
     ov.querySelectorAll<HTMLButtonElement>('.ms-card').forEach((c) => {
@@ -687,6 +726,23 @@ const d = thema.data;
       window.setTimeout(() => ov.setAttribute('hidden', ''), 360);
     }
   });
+</script>
+
+<!-- Lernzettel: Karteikarten umdrehen -->
+<script>
+  function initLernzettel(): void {
+    document.querySelectorAll<HTMLButtonElement>('.lz-card').forEach((card) => {
+      if (card.dataset.wired === 'true') return;
+      card.dataset.wired = 'true';
+      card.addEventListener('click', () => {
+        const flipped = card.classList.toggle('is-flipped');
+        card.setAttribute('aria-pressed', String(flipped));
+      });
+    });
+  }
+  document.addEventListener('astro:page-load', initLernzettel);
+  if (document.readyState !== 'loading') initLernzettel();
+  else document.addEventListener('DOMContentLoaded', initLernzettel);
 </script>
 
 <style>
@@ -759,6 +815,26 @@ const d = thema.data;
   }
   .modus-reopen:hover { color: var(--text); border-color: var(--accent); }
 
+  /* ── Lernzettel / Karteikarten ── */
+  .lz-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 14px; max-width: var(--max-read); margin: 0 auto; }
+  .lz-card { position: relative; min-height: 158px; perspective: 1100px; background: none; border: none; padding: 0; cursor: pointer; font-family: inherit; }
+  .lz-card:focus-visible { outline: 2px solid var(--accent, #6E5035); outline-offset: 3px; border-radius: 8px; }
+  .lz-inner { position: absolute; inset: 0; transform-style: preserve-3d; transition: transform 0.65s cubic-bezier(0.16,1,0.3,1); }
+  .lz-card.is-flipped .lz-inner { transform: rotateY(180deg); }
+  .lz-face {
+    position: absolute; inset: 0; -webkit-backface-visibility: hidden; backface-visibility: hidden;
+    display: flex; flex-direction: column; gap: 8px; padding: 20px;
+    border: 1px solid var(--border-mid); border-radius: 6px; text-align: left; overflow: auto;
+  }
+  .lz-front { background: var(--bg-surface-light, #F6F3EC); justify-content: center; transition: border-color 0.25s ease; }
+  .lz-back { background: #fff; transform: rotateY(180deg); justify-content: flex-start; }
+  .lz-begriff { font-family: var(--serif); font-size: clamp(22px, 3vw, 28px); color: var(--text); line-height: 1.1; }
+  .lz-flip-hint { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-top: 8px; }
+  .lz-aufloesung { font-family: var(--serif); font-size: 17px; color: var(--accent, #6E5035); margin-bottom: 2px; }
+  .lz-erklaerung { font-family: var(--mono); font-size: 12px; line-height: 1.65; color: var(--text-muted); }
+  .lz-card:hover:not(.is-flipped) .lz-front { border-color: var(--accent-dark, #C4A882); }
+  @media (prefers-reduced-motion: reduce) { .lz-inner { transition: none; } }
+
   /* ── Lese- & Barrierefreiheits-Modal (Trigger: „Aa" im Speed-Dial) ── */
   .lese-modal {
     position: fixed; inset: 0; z-index: 250;
@@ -802,7 +878,7 @@ const d = thema.data;
     display: flex; flex-direction: column; align-items: flex-start; gap: 8px; text-align: left;
     background: #F6F3EC; border: 1px solid rgba(28,25,23,0.14); border-radius: 6px;
     padding: 22px 20px; cursor: pointer; min-height: 156px;
-    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    transition: transform 0.35s cubic-bezier(0.16,1,0.3,1), border-color 0.25s ease, box-shadow 0.35s cubic-bezier(0.16,1,0.3,1);
   }
   .ms-card:hover:not(:disabled) { transform: translateY(-3px); border-color: var(--accent-dark, #C4A882); box-shadow: 0 12px 30px rgba(0,0,0,0.08); }
   .ms-card:focus-visible { outline: 2px solid #6E5035; outline-offset: 2px; }
@@ -991,17 +1067,18 @@ const d = thema.data;
     margin: 0 auto;
   }
 
+  /* Icon hängt in die linke Randspalte, damit der Banner-Text bündig zum
+     Fließtext (.kb-container etc.) steht — nicht um Icon+Abstand eingerückt. */
   .phase-banner-inner {
-    display: flex;
-    gap: var(--sp-lg);
-    align-items: flex-start;
+    position: relative;
   }
 
   .phase-banner-icon {
+    position: absolute;
+    left: -40px;
+    top: 2px;
     font-size: 28px;
     line-height: 1;
-    flex-shrink: 0;
-    margin-top: 4px;
   }
 
   /* Phasen-Farbidentitäten */
@@ -1574,8 +1651,9 @@ const d = thema.data;
   /* ── RESPONSIVE ─────────────────────────────── */
   @media (max-width: 600px) {
     .phase-banner { padding: var(--sp-lg); flex-direction: column; }
-    .phase-banner-inner { gap: var(--sp-md); }
-    .phase-banner-icon { font-size: 22px; }
+    /* Auf schmalen Schirmen kein Überhang → Icon eingerückt statt hängend */
+    .phase-banner-inner { padding-left: 32px; }
+    .phase-banner-icon { position: absolute; left: 0; top: 2px; font-size: 22px; }
     .phase-fertig-btn { width: 100%; justify-content: center; }
     .se-btns { flex-direction: column; }
     .thema-nav { flex-direction: column; align-items: flex-start; }

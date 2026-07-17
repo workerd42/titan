@@ -52,6 +52,14 @@ const themen = defineCollection({
     // ── MERKEN ────────────────────────────────────────────
     merksatz: z.string(),
 
+    // Lernzettel / Karteikarten (optional): Schlüsselbegriffe des Kapitels.
+    // Vorne der Begriff, hinten Auflösung (ausgeschrieben) + kurze Erklärung.
+    begriffe: z.array(z.object({
+      begriff: z.string(),                 // z. B. "ROI"
+      aufloesung: z.string().optional(),   // z. B. "Return on Investment"
+      erklaerung: z.string(),              // kurze eigene Definition
+    })).optional(),
+
     // ── ANWENDEN ──────────────────────────────────────────
     fallbeispiel: z.object({
       situation: z.string(),
