@@ -37,20 +37,26 @@ Die eigene Zeile ist geschützt: eigene Rolle nicht änderbar, kein Selbst-Sperr
 
 ## Ersten platform-admin einrichten (Bootstrap)
 
-Registrierungen bekommen immer `lerner`. Der erste Admin wird einmalig per DB
-gesetzt:
+Die öffentliche Registrierung ist **invite-only** (`disableSignUp`), deshalb kann
+sich auf einer frischen DB niemand selbst als erster Admin anlegen. Dafür gibt es
+[scripts/bootstrap-admin.ts](../scripts/bootstrap-admin.ts) — legt den ersten
+Admin direkt mit Better-Auths Passwort-Hashing an (login-kompatibel), idempotent:
 
-1. Ganz normal unter `/konto` registrieren.
-2. Diese Rolle einmalig per SQL heben (Beispiel Dev-Container):
+```bash
+npx tsx scripts/bootstrap-admin.ts admin@example.de "SicheresPasswort" "Anzeigename"
+```
 
-   ```bash
-   docker exec titan-pg-dev psql -U titan -d titan \
-     -c "update \"user\" set role='platform-admin' where email='DEINE@MAIL';"
-   ```
+Das Script verbindet über dieselben Env-Variablen wie die Migrationen
+(`PGHOST/PGPORT/PGUSER/PGPASSWORD/PGDATABASE`; Dev aus `.env`, Prod aus der
+Container-Umgebung). Existiert die E-Mail schon, wird sie nur auf
+`platform-admin` gehoben. Danach normal unter `/konto` einloggen — alle weiteren
+Accounts und Rollen vergibst du direkt im Panel (kein SQL mehr nötig).
 
-   Auf dem VPS analog gegen den Produktions-Postgres-Container (siehe
-   [deployment.md](./deployment.md)). Danach ist `/admin` erreichbar und alle
-   weiteren Admins können direkt im Panel vergeben werden.
+Auf dem VPS (nach `db:migrate`) einmalig gegen die Produktions-DB ausführen. Der
+genaue Aufruf hängt vom Container-Setup ab (das Produktions-Image enthält `tsx`
+und die TS-Quelle nicht zwingend, und Postgres ist nur im Docker-Netz
+erreichbar) — er wird im Deploy-Schritt festgelegt (siehe
+[deployment.md](./deployment.md)).
 
 ## Datenmodell
 
