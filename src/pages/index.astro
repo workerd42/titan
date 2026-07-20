@@ -124,6 +124,7 @@ function galaxienVon(universumId: string) {
       orientation: 'horizontal',
       mode: 'ring',
       showHint: true,
+      persistKey: 'titan-carousel:' + window.location.pathname,
       onCenterChange: (i, el) => { caption?.sync(el); updateDots('kosmos-stage', i); },
     });
     wireDots('kosmos-stage', controller);

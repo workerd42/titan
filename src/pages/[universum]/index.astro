@@ -155,6 +155,7 @@ const PLANET_CONFIG = [
       orientation: 'horizontal',
       mode: 'ring',
       showHint: true,
+      persistKey: 'titan-carousel:' + window.location.pathname,
       onCenterChange: (i, el) => { caption?.sync(el); updateDots('solar-stage', i); },
     });
     wireDots('solar-stage', controller);

@@ -33,6 +33,13 @@ export interface CarouselOpts {
   mode?: CarouselMode;
   ring?: RingGeometry;
   startIndex?: number;
+  /**
+   * Wenn gesetzt, merkt sich das Karussell seine aktive Position unter diesem
+   * Schlüssel in sessionStorage und stellt sie beim nächsten Aufbau wieder her
+   * (z. B. nach einem Abstecher ins Admin-Panel/Deck und Zurück). `startIndex`
+   * hat Vorrang, falls explizit gesetzt.
+   */
+  persistKey?: string;
   /** Nur 'linear': wie viele Nachbarn je Seite sichtbar bleiben (Rest opacity:0). */
   maxVisible?: number;
   /** Einmaliger Bedienhinweis beim allerersten Besuch (siehe HINT_STORAGE_KEY). */
@@ -165,10 +172,28 @@ export function initCarousel(opts: CarouselOpts): CarouselController {
   const maxVisible = opts.maxVisible ?? 2;
   const ringGeo = { ...RING_DEFAULTS, ...opts.ring };
   const count = items.length;
+  const persistKey = opts.persistKey;
 
+  // Gemerkte Position (falls vorhanden) als Startindex — explizites startIndex
+  // hat Vorrang. Ungültige/veraltete Werte werden unten ohnehin geclampt.
+  function readStoredIndex(): number | null {
+    if (!persistKey) return null;
+    try {
+      const raw = sessionStorage.getItem(persistKey);
+      if (raw == null) return null;
+      const n = parseInt(raw, 10);
+      return Number.isFinite(n) ? n : null;
+    } catch { return null; }
+  }
+  function persistIndex(): void {
+    if (!persistKey) return;
+    try { sessionStorage.setItem(persistKey, String(centerIndex)); } catch { /* Storage voll/blockiert */ }
+  }
+
+  const initialIndex = opts.startIndex ?? readStoredIndex() ?? 0;
   let centerIndex = mode === 'ring'
-    ? normalizeRingIndex(opts.startIndex ?? 0, count)
-    : Math.min(Math.max(opts.startIndex ?? 0, 0), count - 1);
+    ? normalizeRingIndex(initialIndex, count)
+    : Math.min(Math.max(initialIndex, 0), count - 1);
 
   const dismissHint = (opts.showHint && count > 1 && container.parentElement)
     ? maybeShowHint(container.parentElement)
@@ -242,6 +267,7 @@ export function initCarousel(opts: CarouselOpts): CarouselController {
     render(renderTarget, true);
     if (target !== centerIndex) {
       centerIndex = target;
+      persistIndex();
       onCenterChange(centerIndex, items[centerIndex]);
     }
   }

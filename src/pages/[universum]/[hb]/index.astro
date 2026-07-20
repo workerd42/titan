@@ -173,6 +173,7 @@ const themenMitIndex = (() => {
       // Gibt mehr Luft und wirkt hochwertiger (siehe linearTransformFor).
       maxVisible: 1,
       showHint: true,
+      persistKey: 'titan-carousel:' + window.location.pathname,
       onCenterChange: (i, el) => {
         caption?.sync(el);
         if (counterEl) counterEl.textContent = String(i + 1);
