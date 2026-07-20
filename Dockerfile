@@ -28,6 +28,9 @@ COPY --from=build /app/dist ./dist
 # kein drizzle-kit im Prod-Image nötig).
 COPY drizzle ./drizzle
 COPY scripts/migrate.mjs ./scripts/migrate.mjs
+# Einmaliger Bootstrap des ersten platform-admin (invite-only-tauglich, nutzt nur
+# Prod-Deps pg + better-auth/crypto). Aufruf on-demand via `docker compose exec`.
+COPY scripts/bootstrap-admin.mjs ./scripts/bootstrap-admin.mjs
 
 EXPOSE 4321
 

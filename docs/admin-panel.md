@@ -39,24 +39,29 @@ Die eigene Zeile ist geschützt: eigene Rolle nicht änderbar, kein Selbst-Sperr
 
 Die öffentliche Registrierung ist **invite-only** (`disableSignUp`), deshalb kann
 sich auf einer frischen DB niemand selbst als erster Admin anlegen. Dafür gibt es
-[scripts/bootstrap-admin.ts](../scripts/bootstrap-admin.ts) — legt den ersten
-Admin direkt mit Better-Auths Passwort-Hashing an (login-kompatibel), idempotent:
+[scripts/bootstrap-admin.mjs](../scripts/bootstrap-admin.mjs) — legt den ersten
+Admin direkt mit Better-Auths Passwort-Hashing an (login-kompatibel), idempotent.
+Bewusst `.mjs` mit rohem SQL, damit es unverändert auch im schlanken Prod-Image
+läuft (nur Prod-Deps `pg` + `better-auth`).
+
+**Lokal** (Env aus `.env`):
 
 ```bash
-npx tsx scripts/bootstrap-admin.ts admin@example.de "SicheresPasswort" "Anzeigename"
+node scripts/bootstrap-admin.mjs admin@example.de "SicheresPasswort" "Anzeigename"
+```
+
+**Im Prod-Container** (nach dem automatischen `migrate` beim Start), von der
+docker-compose-Root auf dem VPS:
+
+```bash
+docker compose exec titan node scripts/bootstrap-admin.mjs admin@example.de "…" "Name"
 ```
 
 Das Script verbindet über dieselben Env-Variablen wie die Migrationen
-(`PGHOST/PGPORT/PGUSER/PGPASSWORD/PGDATABASE`; Dev aus `.env`, Prod aus der
-Container-Umgebung). Existiert die E-Mail schon, wird sie nur auf
-`platform-admin` gehoben. Danach normal unter `/konto` einloggen — alle weiteren
-Accounts und Rollen vergibst du direkt im Panel (kein SQL mehr nötig).
-
-Auf dem VPS (nach `db:migrate`) einmalig gegen die Produktions-DB ausführen. Der
-genaue Aufruf hängt vom Container-Setup ab (das Produktions-Image enthält `tsx`
-und die TS-Quelle nicht zwingend, und Postgres ist nur im Docker-Netz
-erreichbar) — er wird im Deploy-Schritt festgelegt (siehe
-[deployment.md](./deployment.md)).
+(`PGHOST/PGPORT/PGUSER/PGPASSWORD/PGDATABASE`; im Container ohnehin gesetzt).
+Existiert die E-Mail schon, wird sie nur auf `platform-admin` gehoben. Danach
+normal unter `/konto` einloggen — alle weiteren Accounts und Rollen (z. B. einen
+**Dozenten**) vergibst du direkt im Panel (kein SQL mehr nötig).
 
 ## Datenmodell
 
