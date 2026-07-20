@@ -29,7 +29,7 @@ const istAdmin = user.role === 'platform-admin';
     ) : (
       <>
         <header class="admin-head">
-          <a class="admin-back" href={import.meta.env.BASE_URL}>← Titan</a>
+          <a class="admin-back" id="admin-back" href={import.meta.env.BASE_URL}>← Zurück</a>
           <p class="admin-eyebrow">Plattform-Verwaltung</p>
           <h1 class="admin-title">Nutzer &amp; Rollen</h1>
           <p class="admin-lead" id="admin-count">Lade Nutzer …</p>
@@ -63,7 +63,20 @@ const istAdmin = user.role === 'platform-admin';
     import { authClient } from '../lib/auth-client';
     import { ROLLEN as rollen, ROLLEN_LABEL as labels } from '../lib/rollen';
 
+    // „Zurück" springt in der Historie zur vorigen Seite (dort, wo man das
+    // Panel geöffnet hat), statt fest auf die Startseite. Fallback = href.
+    function wireBack() {
+      const back = document.getElementById('admin-back');
+      if (back && !back.dataset.wired) {
+        back.dataset.wired = '1';
+        back.addEventListener('click', (e) => {
+          if (window.history.length > 1) { e.preventDefault(); window.history.back(); }
+        });
+      }
+    }
+
     function initAdmin() {
+      wireBack();
       const rowsEl = document.getElementById('al-rows');
       if (!rowsEl) return; // Nicht-Admins rendern die Liste nicht.
       const meId = rowsEl.dataset.meId ?? '';

@@ -26,7 +26,7 @@ const themenMeta = Object.fromEntries(
 <BaseLayout title="Präsentations-Deck — Titan" description="Deine gesammelten Artefakte für die IHK-Präsentation." canonicalPath="/deck/" theme="light">
   <main id="hauptinhalt" class="deck-shell">
     <header class="deck-head">
-      <a href={base} class="deck-back">← Titan</a>
+      <a href={base} id="deck-back" class="deck-back">← Zurück</a>
       <p class="deck-eyebrow">Missions-Launch</p>
       <h1 class="deck-title">Dein Präsentations-Deck</h1>
       <p class="deck-lead" id="deck-lead">Alle Artefakte, die du in der Phase „Anwenden" für dein Kompass-Unternehmen erstellt hast — gesammelt für die mündliche IHK-Prüfung.</p>
@@ -132,6 +132,17 @@ const themenMeta = Object.fromEntries(
     }
 
     document.getElementById('deck-print')?.addEventListener('click', () => window.print());
+
+    // „Zurück" springt in der Historie zurück (dorthin, wo das Deck geöffnet
+    // wurde), statt fest auf die Startseite. Fallback = href.
+    const deckBack = document.getElementById('deck-back');
+    if (deckBack && !deckBack.dataset.wired) {
+      deckBack.dataset.wired = '1';
+      deckBack.addEventListener('click', (e) => {
+        if (window.history.length > 1) { e.preventDefault(); window.history.back(); }
+      });
+    }
+
     render();
     window.addEventListener('norive:synced', render);
     document.addEventListener('astro:page-load', render);
