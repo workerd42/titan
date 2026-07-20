@@ -29,6 +29,10 @@ export const auth = betterAuth({
     enabled: true,
     // Fürs Fundament ohne Mail-Versand: keine erzwungene Verifizierung.
     requireEmailVerification: false,
+    // Invite-only: keine öffentliche Selbst-Registrierung. Accounts werden
+    // ausschließlich im Admin-Panel angelegt (admin.createUser umgeht diese
+    // Sperre). Die Marketing-/Paywall-Registrierung folgt als spätere Schicht.
+    disableSignUp: true,
   },
   session: {
     expiresIn: 60 * 60 * 24 * 30, // 30 Tage

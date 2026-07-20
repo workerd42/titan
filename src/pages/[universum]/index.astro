@@ -1,19 +1,19 @@
 ---
+export const prerender = false;
+
 import SpaceLayout from '../../layouts/SpaceLayout.astro';
 import CarouselStage from '../../components/space/CarouselStage.astro';
 import CarouselCaption from '../../components/ui/CarouselCaption.astro';
 import GalaxieGlobe from '../../components/space/GalaxieGlobe.astro';
 import { BEREICHE } from '../../data/bereiche';
-import { UNIVERSEN, getUniversum } from '../../data/universen';
-
-export async function getStaticPaths() {
-  return UNIVERSEN.map((u) => ({ params: { universum: u.id } }));
-}
+import { getUniversum } from '../../data/universen';
 import { getCollection } from 'astro:content';
 
 const { universum: universumId } = Astro.params;
-const universum = getUniversum(universumId as string)!;
+const universum = getUniversum(universumId as string);
 const base = import.meta.env.BASE_URL;
+
+if (!universum) return new Response(null, { status: 404 });
 
 // Platzhalter-Universen ohne Handlungsfelder haben keine eigene Seite —
 // direkter Aufruf führt zurück zur Universum-Auswahl statt einer leeren Bühne.

@@ -24,18 +24,9 @@ if (Astro.locals.user) {
     <div class="konto-card">
       <a href={base} class="konto-back" aria-label="Zurück zur Startseite">← Titan</a>
 
-      <div class="konto-tabs" role="tablist" aria-label="Anmelden oder registrieren">
-        <button type="button" class="konto-tab" id="tab-login" data-mode="login" role="tab" aria-selected="true">Anmelden</button>
-        <button type="button" class="konto-tab" id="tab-register" data-mode="register" role="tab" aria-selected="false">Registrieren</button>
-      </div>
-
       <h1 class="konto-titel" id="konto-titel">Willkommen zurück</h1>
 
       <form class="konto-form" id="konto-form" novalidate>
-        <label class="konto-field" id="field-name" hidden>
-          <span class="konto-label">Name</span>
-          <input type="text" name="name" autocomplete="name" />
-        </label>
         <label class="konto-field">
           <span class="konto-label">E-Mail</span>
           <input type="email" name="email" autocomplete="email" required />
@@ -51,7 +42,9 @@ if (Astro.locals.user) {
       </form>
 
       <p class="konto-hint" id="konto-hint">
-        Ohne Konto lernst du weiterhin lokal auf diesem Gerät. Mit Konto wird dein Fortschritt gesichert und geräteübergreifend synchronisiert.
+        Titan ist derzeit ein geschlossener Prototyp. Der Zugang erfolgt über ein
+        eingerichtetes Konto — wende dich an die Plattform-Verwaltung, wenn du
+        noch keine Zugangsdaten hast.
       </p>
     </div>
   </main>
@@ -175,28 +168,9 @@ if (Astro.locals.user) {
     const form = document.getElementById('konto-form') as HTMLFormElement | null;
     const submit = document.getElementById('konto-submit') as HTMLButtonElement | null;
     const errorEl = document.getElementById('konto-error');
-    const titelEl = document.getElementById('konto-titel');
-    const nameField = document.getElementById('field-name');
-    const tabLogin = document.getElementById('tab-login');
-    const tabRegister = document.getElementById('tab-register');
-    if (!form || !submit || !errorEl || !titelEl || !nameField || !tabLogin || !tabRegister) return;
+    if (!form || !submit || !errorEl) return;
 
-    let mode: 'login' | 'register' = 'login';
     const base = (document.querySelector('a.konto-back') as HTMLAnchorElement | null)?.getAttribute('href') || '/';
-
-    function setMode(next: 'login' | 'register'): void {
-      mode = next;
-      const isRegister = next === 'register';
-      tabLogin!.setAttribute('aria-selected', String(!isRegister));
-      tabRegister!.setAttribute('aria-selected', String(isRegister));
-      nameField!.hidden = !isRegister;
-      titelEl!.textContent = isRegister ? 'Konto erstellen' : 'Willkommen zurück';
-      submit!.textContent = isRegister ? 'Registrieren' : 'Anmelden';
-      errorEl!.hidden = true;
-    }
-
-    tabLogin.addEventListener('click', () => setMode('login'));
-    tabRegister.addEventListener('click', () => setMode('register'));
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -205,12 +179,9 @@ if (Astro.locals.user) {
       const fd = new FormData(form!);
       const email = String(fd.get('email') || '').trim();
       const password = String(fd.get('password') || '');
-      const name = String(fd.get('name') || '').trim();
 
       try {
-        const res = mode === 'register'
-          ? await authClient.signUp.email({ email, password, name: name || email })
-          : await authClient.signIn.email({ email, password });
+        const res = await authClient.signIn.email({ email, password });
 
         if (res.error) {
           errorEl!.textContent = res.error.message || 'Anmeldung fehlgeschlagen.';

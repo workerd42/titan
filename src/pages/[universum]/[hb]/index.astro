@@ -7,15 +7,7 @@ import { BEREICHE, getBereich } from '../../../data/bereiche';
 import { UNIVERSEN, getUniversum } from '../../../data/universen';
 import { getCollection, type CollectionEntry } from 'astro:content';
 
-export async function getStaticPaths() {
-  const paths: Array<{ params: { universum: string; hb: string } }> = [];
-  for (const universum of UNIVERSEN) {
-    for (const b of BEREICHE.filter((x) => x.universumId === universum.id)) {
-      paths.push({ params: { universum: universum.id, hb: b.id } });
-    }
-  }
-  return paths;
-}
+export const prerender = false;
 
 const { universum: universumId, hb } = Astro.params;
 const universum = getUniversum(universumId as string);

@@ -1,4 +1,6 @@
 ---
+export const prerender = false;
+
 import PlanetLayout from '../../../layouts/PlanetLayout.astro';
 import CTAButton from '../../../components/ui/CTAButton.astro';
 import { BEREICHE, getBereich } from '../../../data/bereiche';
@@ -6,32 +8,20 @@ import { UNIVERSEN, getUniversum } from '../../../data/universen';
 import { getCollection, render, type CollectionEntry } from 'astro:content';
 import '../../../styles/modules.css';
 
-export async function getStaticPaths() {
-  const alleThemen = await getCollection('themen');
-  const paths: Array<{ params: { universum: string; hb: string; slug: string }; props: { thema: CollectionEntry<'themen'> } }> = [];
-  for (const universum of UNIVERSEN) {
-    const hbIdsDesUniversums = new Set(
-      BEREICHE.filter((b) => b.universumId === universum.id).map((b) => b.id),
-    );
-    for (const thema of alleThemen) {
-      if (!hbIdsDesUniversums.has(thema.data.handlungsbereich)) continue;
-      paths.push({
-        params: { universum: universum.id, hb: thema.data.handlungsbereich, slug: thema.id },
-        props: { thema },
-      });
-    }
-  }
-  return paths;
+const { universum: universumId, hb, slug } = Astro.params;
+const universum = getUniversum(universumId as string);
+const bereich = getBereich(hb as string);
+const alleThemen = await getCollection('themen');
+const thema = alleThemen.find((t) => t.id === slug);
+
+// SSR-Guard: ungültige Kombination aus Universum / Handlungsfeld / Thema → 404.
+if (!universum || !bereich || !thema
+    || thema.data.handlungsbereich !== bereich.id
+    || bereich.universumId !== universum.id) {
+  return new Response(null, { status: 404 });
 }
 
-interface Props { thema: CollectionEntry<'themen'>; }
-const { universum: universumId } = Astro.params;
-const { thema } = Astro.props;
-const universum = getUniversum(universumId as string)!;
-const bereich = getBereich(thema.data.handlungsbereich)!;
 const { Content } = await render(thema);
-
-const alleThemen = await getCollection('themen');
 const themenDesBereichs = alleThemen
   .filter((t) => t.data.handlungsbereich === bereich.id)
   .sort((a, b) => a.data.order - b.data.order);
