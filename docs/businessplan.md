@@ -227,12 +227,12 @@ Hoheit). 📝 *Bei Bedarf um persönliche Gründungswerte ergänzen.*
 
 ### Standort
 
-Als reines **SaaS ist der Betrieb ortsunabhängig** — keine Ladenfläche, keine
-Produktionsräume; Arbeit aus dem Home-Office/remote genügt. Die technische
+**Unternehmenssitz: Hohenpeißenberg (Bayern).** Als reines **SaaS ortsunabhängig**
+— kein Laden, keine Produktionsräume; Betrieb aus dem Home-Office. Die technische
 Infrastruktur steht bewusst in **EU/Deutschland** (VPS IONOS, Rechenzentrum
-Europa). Der Unternehmenssitz ist v. a. für Rechtsform und Förderprogramme
-relevant. 📝 *Konkreten Sitz (Ort/Bundesland) eintragen* — davon hängen z. B.
-regionale Gründungsförderungen ab.
+Europa). 💡 Der bayerische Sitz eröffnet regionale Förder-/Netzwerkoptionen
+(z. B. **LfA Förderbank Bayern**, **BayStartUP** für Finanzierung/Investoren-
+Matching) — im Finanzteil berücksichtigt.
 
 ### Rechtsform & Vorschriften
 
@@ -247,8 +247,6 @@ regionale Gründungsförderungen ab.
     Aufgaben-Varianten, bewertet nie) — vollständige Einordnung und Pflichten in
     **[ki-governance.md](ki-governance.md)**. Formale Einstufung/DPIA vor
     KI-Livegang juristisch bestätigen lassen.
-  - **Urheberrecht/Lizenzen:** Umgang mit IHK-Prüfungs-/Lehrbuchmaterial sauber
-    klären (eigene Formulierungen statt Übernahme). 📝 *Prüfen.*
 
 ### Risiken — Was könnte die Entwicklung behindern?
 
@@ -337,8 +335,9 @@ nicht nur Runway). Verwendung:
 - **Eigenmittel** (UG-Stammeinlage + Eigenkapital). 📝 *Anteil eintragen.*
 - **Fördermittel** (mit Gründungsberatung/Förderlotsen prüfen): **KfW-/ERP-Gründer­kredit
   StartGeld** (bis 125.000 €), **Gründungszuschuss** (Agentur für Arbeit, falls aus
-  ALG I), regionale **Landes-/Digitalisierungsförderung**, ggf. **Mikromezzaninfonds**;
-  **EXIST** nur bei Hochschulanbindung.
+  ALG I), regionale **Landes-/Digitalisierungsförderung** (Bayern: **LfA Förderbank
+  Bayern**, Beteiligungs-/Netzwerkzugang über **BayStartUP**), ggf.
+  **Mikromezzaninfonds**; **EXIST** nur bei Hochschulanbindung.
 - **Beteiligung** (Business Angel / stille Beteiligung) für den verbleibenden Teil.
 - 🔎 *Konkrete Programme + Konditionen selbst/mit Berater gegenprüfen — ändern sich.*
 
