@@ -39,6 +39,10 @@
   --incorrect:       rgba(150,50,50,0.10);
   --incorrect-border: #963232;
 
+  /* Semantisch: „Beispiel/Praxis"-Grün (Kompetenz- & Fallbeispiel-Labels) */
+  --success:      #2F6B45;   /* 4.9:1 auf --bg ✓ */
+  --success-soft: #5A8A6A;   /* dekorative Icons (große Glyphe) */
+
   /* Schriften */
   --serif: 'Cormorant Garamond', Georgia, 'Iowan Old Style', serif;
   --mono:  'DM Mono', 'Fira Mono', monospace;
@@ -96,5 +100,9 @@
   --correct:         rgba(196,168,130,0.15);
   --correct-border:  #C4A882;
   --incorrect:       rgba(180,80,80,0.15);
-  --incorrect-border: #C46060;
+  --incorrect-border: #E08585;  /* heller auf dunklem Grund: >4.5:1 auch auf Status-Pill ✓ */
+
+  /* Semantisch: helleres Grün für dunklen Grund */
+  --success:      #7FB894;   /* ~8:1 auf #141210 ✓ */
+  --success-soft: #7FB894;
 }

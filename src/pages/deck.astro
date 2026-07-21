@@ -172,42 +172,42 @@ const totalWerkzeuge = themen.filter((t) => t.data.werkzeug).length;
   <style is:global>
     /* global, da der Deck-Inhalt client-seitig injiziert wird (scoped CSS
        greift auf innerHTML-Elemente nicht). */
-    .deck-shell { max-width: 900px; margin: 0 auto; padding: clamp(28px,5vw,64px) clamp(18px,4vw,32px) 96px; color: #1C1917; }
-    .deck-back { font-family: var(--mono,monospace); font-size: 12px; color: #6E5035; text-decoration: none; }
-    .deck-eyebrow { font-family: var(--mono,monospace); font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: #6E5035; margin: 20px 0 8px; }
+    .deck-shell { max-width: 900px; margin: 0 auto; padding: clamp(28px,5vw,64px) clamp(18px,4vw,32px) 96px; color: var(--text); }
+    .deck-back { font-family: var(--mono,monospace); font-size: 12px; color: var(--accent); text-decoration: none; }
+    .deck-eyebrow { font-family: var(--mono,monospace); font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--accent); margin: 20px 0 8px; }
     .deck-title { font-family: var(--serif,Georgia,serif); font-weight: 300; font-size: clamp(28px,5vw,46px); letter-spacing: -0.02em; margin: 0 0 12px; }
-    .deck-lead { font-family: var(--mono,monospace); font-size: 13px; line-height: 1.7; color: #5E5450; max-width: 60ch; }
+    .deck-lead { font-family: var(--mono,monospace); font-size: 13px; line-height: 1.7; color: var(--text-muted); max-width: 60ch; }
     .deck-actions { margin-top: 22px; }
 
     /* ── Missions-Launch (Deck vollständig) — ruhiger, zeremonieller Moment ── */
     .deck-launch { position: relative; overflow: hidden; text-align: center; margin: 28px 0 8px; padding: 44px 24px 36px; border: 1px solid rgba(196,168,130,0.5); border-radius: 6px; background: linear-gradient(180deg, rgba(196,168,130,0.12), rgba(196,168,130,0.02)); }
     .deck-launch-glow { position: absolute; left: 0; right: 0; top: -60px; height: 220px; margin: 0 auto; pointer-events: none; background: radial-gradient(ellipse at 50% 0%, rgba(196,168,130,0.4), transparent 70%); animation: deck-glow 6s ease-in-out infinite; }
     .deck-launch-mark { position: relative; display: inline-block; font-size: 22px; color: #A8843C; }
-    .deck-launch-eyebrow { position: relative; font-family: var(--mono,monospace); font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase; color: #6E5035; margin: 10px 0 6px; }
-    .deck-launch-title { position: relative; font-family: var(--serif,Georgia,serif); font-weight: 300; font-size: clamp(24px,4vw,38px); letter-spacing: -0.01em; color: #1C1917; margin: 0 0 8px; }
-    .deck-launch-sub { position: relative; font-family: var(--mono,monospace); font-size: 12.5px; color: #5E5450; margin: 0; }
+    .deck-launch-eyebrow { position: relative; font-family: var(--mono,monospace); font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase; color: var(--accent); margin: 10px 0 6px; }
+    .deck-launch-title { position: relative; font-family: var(--serif,Georgia,serif); font-weight: 300; font-size: clamp(24px,4vw,38px); letter-spacing: -0.01em; color: var(--text); margin: 0 0 8px; }
+    .deck-launch-sub { position: relative; font-family: var(--mono,monospace); font-size: 12.5px; color: var(--text-muted); margin: 0; }
     @keyframes deck-glow { 0%, 100% { opacity: 0.45; transform: translateY(0); } 50% { opacity: 1; transform: translateY(6px); } }
     .deck-launch.is-enter { animation: deck-launch-in 0.9s cubic-bezier(0.16,1,0.3,1) both; }
     @keyframes deck-launch-in { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
     @media (prefers-reduced-motion: reduce) { .deck-launch-glow { animation: none; } .deck-launch.is-enter { animation: none; } }
-    .deck-empty { border: 1px dashed rgba(28,25,23,0.2); border-radius: 4px; padding: 28px; text-align: center; font-family: var(--mono,monospace); color: #5E5450; margin-top: 24px; }
-    .deck-empty-sub { font-size: 12px; margin-top: 8px; color: #5f574d; }
+    .deck-empty { border: 1px dashed rgba(28,25,23,0.2); border-radius: 4px; padding: 28px; text-align: center; font-family: var(--mono,monospace); color: var(--text-muted); margin-top: 24px; }
+    .deck-empty-sub { font-size: 12px; margin-top: 8px; color: var(--text-muted); }
     .deck-content { display: flex; flex-direction: column; gap: 36px; margin-top: 36px; }
-    .deck-group-title { font-family: var(--mono,monospace); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #6E5035; border-bottom: 1px solid rgba(28,25,23,0.14); padding-bottom: 8px; margin: 0 0 16px; }
-    .deck-card { border: 1px solid rgba(28,25,23,0.14); border-radius: 4px; padding: clamp(16px,3vw,26px); background: #F6F3EC; margin-bottom: 16px; break-inside: avoid; }
-    .deck-card-kapitel { font-family: var(--mono,monospace); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: #5f574d; margin: 0 0 4px; }
+    .deck-group-title { font-family: var(--mono,monospace); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); border-bottom: 1px solid rgba(28,25,23,0.14); padding-bottom: 8px; margin: 0 0 16px; }
+    .deck-card { border: 1px solid rgba(28,25,23,0.14); border-radius: 4px; padding: clamp(16px,3vw,26px); background: var(--bg-alt); margin-bottom: 16px; break-inside: avoid; }
+    .deck-card-kapitel { font-family: var(--mono,monospace); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); margin: 0 0 4px; }
     .deck-card-title { font-family: var(--serif,Georgia,serif); font-weight: 400; font-size: 20px; margin: 0 0 14px; }
-    .deck-ziel { font-family: var(--serif,Georgia,serif); font-style: italic; font-size: 17px; color: #1C1917; margin: 0 0 12px; }
+    .deck-ziel { font-family: var(--serif,Georgia,serif); font-style: italic; font-size: 17px; color: var(--text); margin: 0 0 12px; }
     .deck-krit { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 6px; font-family: var(--mono,monospace); font-size: 12.5px; }
     .deck-krit li::before { margin-right: 8px; }
-    .deck-krit li.ok::before { content: '✓'; color: #2f6b45; }
-    .deck-krit li.no::before { content: '○'; color: #a23b2e; }
+    .deck-krit li.ok::before { content: '✓'; color: var(--success); }
+    .deck-krit li.no::before { content: '○'; color: var(--incorrect-border); }
     .deck-swot { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
     .deck-swot-cell { padding: 12px; border-radius: 3px; }
-    .deck-swot-cell ul { margin: 4px 0 0; padding-left: 18px; font-family: var(--mono,monospace); font-size: 12px; color: #1C1917; }
-    .deck-swot-cell .muted { color: #5f574d; list-style: none; margin-left: -18px; }
-    .deck-stufen { margin: 0; padding-left: 20px; font-family: var(--mono,monospace); font-size: 12.5px; line-height: 1.6; color: #1C1917; display: flex; flex-direction: column; gap: 6px; }
-    .deck-card-meta { font-family: var(--mono,monospace); font-size: 10px; color: #5f574d; margin: 12px 0 0; }
+    .deck-swot-cell ul { margin: 4px 0 0; padding-left: 18px; font-family: var(--mono,monospace); font-size: 12px; color: var(--text); }
+    .deck-swot-cell .muted { color: var(--text-muted); list-style: none; margin-left: -18px; }
+    .deck-stufen { margin: 0; padding-left: 20px; font-family: var(--mono,monospace); font-size: 12.5px; line-height: 1.6; color: var(--text); display: flex; flex-direction: column; gap: 6px; }
+    .deck-card-meta { font-family: var(--mono,monospace); font-size: 10px; color: var(--text-muted); margin: 12px 0 0; }
     .deck-raw { font-size: 11px; overflow-x: auto; }
     @media (max-width: 560px) { .deck-swot { grid-template-columns: 1fr; } }
 

@@ -64,6 +64,17 @@ const { showKonzept = true, showPersonal = true, showLese = false } = Astro.prop
   )}
 
   <button
+    class="sd-action"
+    id="theme-toggle"
+    type="button"
+    aria-label="Dunkelmodus umschalten"
+    aria-pressed="false"
+  >
+    <span class="sd-tooltip" aria-hidden="true">Hell / Dunkel</span>
+    <span class="sd-icon" aria-hidden="true">◐</span>
+  </button>
+
+  <button
     class="sd-fab"
     id="speed-dial-toggle"
     type="button"
@@ -204,6 +215,18 @@ const { showKonzept = true, showPersonal = true, showLese = false } = Astro.prop
     dial.querySelectorAll('.sd-action').forEach((btn) =>
       btn.addEventListener('click', () => setDialOpen(false)),
     );
+
+    // Lesemodus-Theme umschalten (globale Nutzerpräferenz, persistiert).
+    const themeBtn = document.getElementById('theme-toggle');
+    if (themeBtn) {
+      themeBtn.setAttribute('aria-pressed', String(document.documentElement.dataset.theme === 'dark'));
+      themeBtn.addEventListener('click', () => {
+        const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+        document.documentElement.dataset.theme = next;
+        try { localStorage.setItem('titan-theme', next); } catch (e) {}
+        themeBtn.setAttribute('aria-pressed', String(next === 'dark'));
+      });
+    }
   }
 
   document.addEventListener('astro:page-load', initSpeedDial);

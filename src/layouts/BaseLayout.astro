@@ -73,6 +73,23 @@ const finalJsonLd = jsonLd ?? {
     <meta name="theme-color" content={theme === 'dark' ? '#141210' : '#EDE8DF'} />
     <link rel="icon" type="image/svg+xml" href={`${base}/favicon.svg`} />
 
+    <!-- Lesemodus-Theme: wendet die gespeicherte Nutzerwahl VOR dem Paint an
+         (kein Flash) und erneut nach jeder View-Transition-Navigation. Nur eine
+         explizite Wahl überschreibt den Seiten-Default (helle Lernwelt / dunkler
+         Kosmos). `is:inline`, damit es sofort läuft. -->
+    <script is:inline>
+      (function () {
+        function applyTheme() {
+          try {
+            var t = localStorage.getItem('titan-theme');
+            if (t === 'dark' || t === 'light') document.documentElement.dataset.theme = t;
+          } catch (e) {}
+        }
+        applyTheme();
+        document.addEventListener('astro:after-swap', applyTheme);
+      })();
+    </script>
+
     <script type="application/ld+json" set:html={JSON.stringify(finalJsonLd)} />
 
     <!-- View Transitions — Astro 7 ClientRouter -->
