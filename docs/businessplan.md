@@ -258,6 +258,7 @@ Matching) — im Finanzteil berücksichtigt.
 | Zielkunden ohne erwarteten Bedarf / geringe Zahlungsbereitschaft | Pilot als Marktvalidierung vor großem Invest; Preis am Lehrgangs-Budget ankern |
 | Stärkerer Wettbewerb als erwartet | Verteidigung über Content-Tiefe + einzigartigen Präsentations-Wedge + UX |
 | Content-Pflege / IHK-Rahmenplan-Änderungen | Kern adaptierbar (nur Spezialisierungen je Fachwirt neu); IHK-Änderungen kommen mit **jahrelangem Vorlauf** → genug Anpassungszeit; Engine/Content-Trennung + Fachautor-Partner + Redaktionssystem (Directus geplant) |
+| IHK-Konformität: uniforme Präsentationen könnten den Prüfungsausschüssen auffallen | **Struktureller Schutz vor Uniformität:** jede:r Lerner:in arbeitet am **eigenen fiktiven Kompass-Unternehmen** (andere Branche/Name/Zahlen) + KI erzeugt **hohe Varianz** in Fallstellungen → individuelle Ergebnisse statt Schablone. Das **formative Feedback fördert eigenes Denken** (kein Copy-Paste). Titan **verhindert** Plagiate, statt sie zu erzeugen — ein Verkaufsargument gegenüber IHK/Trägern. |
 | Regulatorik (DSGVO/EU-AI-Act) | Compliance-by-Design ([ki-governance.md](ki-governance.md)) + juristische Bestätigung |
 | Abhängigkeit von KI-/Infra-Anbietern | EU/DE-Anbietergrundsatz, self-hosting, Austauschbarkeit der Modelle |
 | Abhängigkeit vom Kooperationspartner (Netzwerk/Fachtiefe) | Kooperation vertraglich absichern (Rollen/Vergütung/Exklusivität/IP); Fachautoren-Basis verbreitern |
@@ -351,8 +352,7 @@ Summe den Vollbetrieb ~24 Monate. **So oder so ist das Vorhaben durchfinanziert.
   StartGeld** (bis 125.000 €), **Gründungszuschuss** (Agentur für Arbeit, falls aus
   ALG I), regionale **Landes-/Digitalisierungsförderung** (Bayern: **Start?Zuschuss!**
   — Zuschuss für innovative, digitale Gründungen; **LfA Förderbank Bayern**;
-  Beteiligungs-/Netzwerkzugang über **BayStartUP**), ggf. **Mikromezzaninfonds**;
-  **EXIST** nur bei Hochschulanbindung.
+  Beteiligungs-/Netzwerkzugang über **BayStartUP**)
 - **Beteiligung** (Business Angel / stille Beteiligung) für den verbleibenden Teil.
 - 🔎 *Konkrete Programme + Konditionen selbst/mit Berater gegenprüfen — ändern sich.*
 
