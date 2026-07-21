@@ -34,23 +34,29 @@ diesem Dokument zu messen.
 Titan setzt KI **assistierend**, nie **entscheidend** ein. Der rote Faden:
 
 ```
- Dozent (Mensch)            KI-Schicht (assistierend)         Lerner
- ───────────────            ─────────────────────────         ──────
- liefert den fachlichen  →  variiert daraus Aufgaben-/     →  übt an Varianten
- „Master" (autoritative     Fallstellungen (Formulierung,     des vom Menschen
- Inhalte, Musterlösungen,   Zahlen, Kontext) – NIE Inhalt     verantworteten
- Bewertungsmaßstäbe)        erfinden, NIE bewerten            Masters
+ Dozent (Mensch)            KI-Schicht (assistierend)          Lerner
+ ───────────────            ─────────────────────────          ──────
+ liefert den fachlichen  →  (1) variiert Aufgaben/Fälle     →  übt, schreibt zu
+ „Master" (autoritative        (Formulierung, Zahlen,           Fallaufgaben eigene
+ Inhalte, Musterlösungen)      Branchenkontext)                 Freitext-Lösungen
+                            (2) gibt dazu formatives,
+                                inhaltliches Feedback
+                                – erfindet nichts,
+                                VERGIBT KEINE NOTE
 ```
 
 - **Der Dozenten-Master ist die einzige Quelle der fachlichen Wahrheit.** Die KI
   erzeugt keine neuen Lerninhalte „aus dem Nichts", sondern **transformiert**
-  ausschließlich vorhandenes, vom Menschen freigegebenes Material (z. B. eine
-  Fallaufgabe umformulieren, mit anderen Zahlen/Branchenkontext versehen).
+  ausschließlich vorhandenes, vom Menschen freigegebenes Material.
+- **Formatives Feedback statt Benotung:** Bei Fallaufgaben mit Freitext-Antwort
+  gibt die KI ein **inhaltliches, unterstützendes Feedback** (Abgleich mit der
+  Musterlösung, fehlende Aspekte, Hinweise) — als **Lernhilfe zur
+  Selbstorientierung**. Sie vergibt **keine Note/keinen prüfungsrelevanten Score**
+  und trifft **keine Entscheidung über die Person**.
 - **Bewertung, Benotung, Prüfungsergebnis und Zugang bleiben zu 100 % beim
-  Dozenten bzw. der IHK.** Die KI trifft **keine** Entscheidung über eine Person.
-- **Menschliche Aufsicht (Human-in-the-Loop):** Varianten laufen konzeptionell
-  über die Freigabe-/Kontrolllogik des Dozenten; der Master bleibt jederzeit die
-  Referenz, gegen die geprüft wird.
+  Dozenten bzw. der IHK.**
+- **Menschliche Aufsicht (Human-in-the-Loop):** der Master bleibt jederzeit die
+  Referenz; das KI-Feedback ist unverbindlich und vom Lerner überstimmbar.
 
 Diese Rollentrennung ist die tragende Säule der gesamten Risiko-Einordnung.
 
@@ -96,16 +102,22 @@ eingesetzt wird, um
 - das angemessene Bildungsniveau einer Person zu bestimmen,
 - **unzulässiges Verhalten während Prüfungen** zu überwachen/erkennen.
 
-**Keiner dieser Tatbestände trifft auf Titan zu:** Die KI **bewertet nicht**,
-**entscheidet nicht über Zugang oder Niveau** und **überwacht keine Prüfungen**.
-Sie erzeugt ausschließlich **Übungs-/Fallvarianten** aus dem vom Dozenten
-verantworteten Master. Bewertung und Prüfung verbleiben beim Menschen (Dozent/IHK).
+**Einordnung für Titan:** Die KI **bestimmt keinen Zugang/kein Bildungsniveau** und
+**überwacht keine Prüfungen**. Sie gibt bei Fallaufgaben **formatives, inhaltliches
+Feedback** — aber **ohne Note/Score, ohne prüfungsrelevante Entscheidung und ohne
+den offiziellen Lern-/Prüfungsweg festzulegen**. Bewertung, Benotung und Prüfung
+verbleiben vollständig beim Menschen (Dozent/IHK). Ein reines **Selbstlern-Feedback**,
+das der Lerner ignorieren kann und das keine offizielle Wirkung entfaltet,
+„bewertet Lernergebnisse" nach unserer Einschätzung **nicht** im regulatorisch
+gemeinten (ergebnis-/entscheidungswirksamen) Sinn.
 
-→ **Design-Einordnung: Titan ist kein Hochrisiko-KI-System nach Annex III.**
-Diese Einordnung ist konsequent aufrechtzuerhalten: Sobald KI je in eine
-bewertende/entscheidende Funktion über Lernende rücken sollte, ändert sich die
-Einstufung – ein solcher Schritt wäre nur nach erneuter rechtlicher Prüfung und
-mit den dann geltenden Hochrisiko-Pflichten zulässig.
+→ **Design-Einordnung: Titan ist voraussichtlich kein Hochrisiko-KI-System.**
+⚠️ **Dies ist der sensibelste Punkt der Einstufung** und **vor KI-Livegang
+juristisch verbindlich zu bestätigen** — formatives Feedback liegt näher an der
+Hochrisiko-Grenze als reine Aufgaben-Varianten. Abgesichert wird es durch die
+Guardrails (Abschnitt 4) und die menschliche Aufsicht. Sobald die KI je
+Noten/Scores mit **offizieller Wirkung** vergäbe, kippt die Einstufung in
+Hochrisiko — das ist ausgeschlossen.
 
 ### 3.3 Anwendbare Pflicht: **Transparenz (Art. 50)**
 Für KI, die Inhalte erzeugt, gelten **Transparenzpflichten**. Titan setzt sie um:
@@ -177,6 +189,19 @@ Transparenzpflichten – vor jedem KI-Livegang umzusetzen.
 - [ ] Kennzeichnungs-UX für KI-generierte Inhalte in der Lernoberfläche umsetzen.
 - [ ] Human-in-the-Loop-Freigabe des Dozenten technisch abbilden.
 - [ ] Protokollierung (welcher Master → welche Variante) für Nachvollziehbarkeit.
+
+---
+
+## 7. Unabhängigkeit & Disclaimer (in Footer/Impressum aufnehmen)
+
+> **TITAN ist ein unabhängiges Lern- & Kompetenzsystem.** Alle Lehrinhalte,
+> Fallbeispiele und Übungen wurden von Dozenten eigenständig entwickelt. TITAN
+> steht in **keiner offiziellen Verbindung** zur Deutschen Industrie- und
+> Handelskammer (DIHK) oder zu regionalen Industrie- und Handelskammern.
+
+Dieser Hinweis gehört in die **Website-Fußzeile / das Impressum** und in
+Außendarstellung/Verkaufsmaterial (schützt vor dem Eindruck einer offiziellen
+IHK-Zusammenarbeit).
 
 ---
 

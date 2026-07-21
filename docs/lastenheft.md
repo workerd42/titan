@@ -116,8 +116,9 @@ Terminverwaltung/Abrechnung von Lehrgängen; kein Ersatz für die IHK-Prüfung s
 - **/LF083/** Transaktionale E-Mails (Einladung, Passwort-Reset) über EU-Anbieter. 🔜
 
 ### 4.9 KI-Schicht (geplant — niedrigrisiko)
-- **/LF090/** KI erzeugt ausschließlich **Aufgaben-/Fallvarianten** aus dem vom
-  Dozenten gelieferten Master; **keine Bewertung** von Lernenden. 🔜
+- **/LF090/** KI erzeugt **Aufgaben-/Fallvarianten** aus dem Dozenten-Master **und
+  gibt formatives, inhaltliches Feedback** zu Freitext-Falllösungen — **ohne
+  Note/Score**, ohne prüfungsrelevante Entscheidung. 🔜
   → Rahmen verbindlich in [ki-governance.md](ki-governance.md).
 - **/LF091/** n8n-Agenten mit fiktivem Rollenprofil + gebundenem Master
   (Halluzinations-Vermeidung); keine personenbezogenen Daten. 🔜
