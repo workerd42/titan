@@ -21,6 +21,9 @@ const hbTitel: Record<string, string> = Object.fromEntries(BEREICHE.map((b) => [
 const themenMeta = Object.fromEntries(
   themen.map((t) => [t.id, { titel: t.data.title, hb: t.data.handlungsbereich, hbTitel: hbTitel[t.data.handlungsbereich] ?? t.data.handlungsbereich }]),
 );
+// Anzahl Kapitel mit interaktivem Werkzeug = erwartete Artefakte. Sind alle
+// gesammelt, ist das Deck vollständig → „Missions-Launch".
+const totalWerkzeuge = themen.filter((t) => t.data.werkzeug).length;
 ---
 
 <BaseLayout title="Präsentations-Deck — Titan" description="Deine gesammelten Artefakte für die IHK-Präsentation." canonicalPath="/deck/" theme="light">
@@ -35,6 +38,14 @@ const themenMeta = Object.fromEntries(
       </div>
     </header>
 
+    <div id="deck-launch" class="deck-launch" hidden role="status">
+      <div class="deck-launch-glow" aria-hidden="true"></div>
+      <span class="deck-launch-mark" aria-hidden="true">✦</span>
+      <p class="deck-launch-eyebrow">Missions-Launch</p>
+      <h2 class="deck-launch-title">Deine IHK-Präsentation ist startklar</h2>
+      <p class="deck-launch-sub">Alle Artefakte gesammelt — dein Präsentations-Deck ist vollständig.</p>
+    </div>
+
     <div id="deck-empty" class="deck-empty" hidden>
       <p>Noch keine Artefakte gesammelt.</p>
       <p class="deck-empty-sub">Öffne ein Kapitel mit einem interaktiven Werkzeug (z. B. <em>Marketingziele</em>, <em>Marktsegmentierung</em> oder <em>Deckungsbeitragsrechnung</em>), bearbeite es für dein Unternehmen und speichere das Artefakt.</p>
@@ -43,7 +54,7 @@ const themenMeta = Object.fromEntries(
     <div id="deck-content" class="deck-content"></div>
   </main>
 
-  <script define:vars={{ themenMeta, base }}>
+  <script define:vars={{ themenMeta, base, totalWerkzeuge }}>
     const PROGRESS_KEY = 'norive-progress-v2';
     const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;' }[c]));
 
@@ -109,6 +120,16 @@ const themenMeta = Object.fromEntries(
       const actions = document.getElementById('deck-actions');
       const content = document.getElementById('deck-content');
       const lead = document.getElementById('deck-lead');
+
+      // Missions-Launch: alle erwarteten Artefakte gesammelt → Deck vollständig.
+      const launch = document.getElementById('deck-launch');
+      const complete = totalWerkzeuge > 0 && items.length >= totalWerkzeuge;
+      if (launch) {
+        launch.hidden = !complete;
+        if (complete && launch.dataset.shown !== '1') { launch.dataset.shown = '1'; launch.classList.add('is-enter'); }
+        if (!complete) { launch.dataset.shown = '0'; launch.classList.remove('is-enter'); }
+      }
+
       if (!items.length) { empty.hidden = false; actions.hidden = true; content.innerHTML = ''; return; }
       empty.hidden = true; actions.hidden = false;
       lead.textContent = `${items.length} Artefakt${items.length===1?'':'e'} gesammelt — bereit für deine Präsentation.`;
@@ -157,6 +178,18 @@ const themenMeta = Object.fromEntries(
     .deck-title { font-family: var(--serif,Georgia,serif); font-weight: 300; font-size: clamp(28px,5vw,46px); letter-spacing: -0.02em; margin: 0 0 12px; }
     .deck-lead { font-family: var(--mono,monospace); font-size: 13px; line-height: 1.7; color: #5E5450; max-width: 60ch; }
     .deck-actions { margin-top: 22px; }
+
+    /* ── Missions-Launch (Deck vollständig) — ruhiger, zeremonieller Moment ── */
+    .deck-launch { position: relative; overflow: hidden; text-align: center; margin: 28px 0 8px; padding: 44px 24px 36px; border: 1px solid rgba(196,168,130,0.5); border-radius: 6px; background: linear-gradient(180deg, rgba(196,168,130,0.12), rgba(196,168,130,0.02)); }
+    .deck-launch-glow { position: absolute; left: 0; right: 0; top: -60px; height: 220px; margin: 0 auto; pointer-events: none; background: radial-gradient(ellipse at 50% 0%, rgba(196,168,130,0.4), transparent 70%); animation: deck-glow 6s ease-in-out infinite; }
+    .deck-launch-mark { position: relative; display: inline-block; font-size: 22px; color: #A8843C; }
+    .deck-launch-eyebrow { position: relative; font-family: var(--mono,monospace); font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase; color: #6E5035; margin: 10px 0 6px; }
+    .deck-launch-title { position: relative; font-family: var(--serif,Georgia,serif); font-weight: 300; font-size: clamp(24px,4vw,38px); letter-spacing: -0.01em; color: #1C1917; margin: 0 0 8px; }
+    .deck-launch-sub { position: relative; font-family: var(--mono,monospace); font-size: 12.5px; color: #5E5450; margin: 0; }
+    @keyframes deck-glow { 0%, 100% { opacity: 0.45; transform: translateY(0); } 50% { opacity: 1; transform: translateY(6px); } }
+    .deck-launch.is-enter { animation: deck-launch-in 0.9s cubic-bezier(0.16,1,0.3,1) both; }
+    @keyframes deck-launch-in { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+    @media (prefers-reduced-motion: reduce) { .deck-launch-glow { animation: none; } .deck-launch.is-enter { animation: none; } }
     .deck-empty { border: 1px dashed rgba(28,25,23,0.2); border-radius: 4px; padding: 28px; text-align: center; font-family: var(--mono,monospace); color: #5E5450; margin-top: 24px; }
     .deck-empty-sub { font-size: 12px; margin-top: 8px; color: #5f574d; }
     .deck-content { display: flex; flex-direction: column; gap: 36px; margin-top: 36px; }
@@ -179,7 +212,7 @@ const themenMeta = Object.fromEntries(
     @media (max-width: 560px) { .deck-swot { grid-template-columns: 1fr; } }
 
     @media print {
-      .deck-back, .deck-actions { display: none; }
+      .deck-back, .deck-actions, .deck-launch-glow { display: none; }
       .deck-shell { max-width: none; padding: 0; }
       .deck-card { background: #fff; break-inside: avoid; }
       .deck-group { break-before: page; }
