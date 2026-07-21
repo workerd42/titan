@@ -261,6 +261,7 @@ Matching) — im Finanzteil berücksichtigt.
 | Regulatorik (DSGVO/EU-AI-Act) | Compliance-by-Design ([ki-governance.md](ki-governance.md)) + juristische Bestätigung |
 | Abhängigkeit von KI-/Infra-Anbietern | EU/DE-Anbietergrundsatz, self-hosting, Austauschbarkeit der Modelle |
 | Abhängigkeit vom Kooperationspartner (Netzwerk/Fachtiefe) | Kooperation vertraglich absichern (Rollen/Vergütung/Exklusivität/IP); Fachautoren-Basis verbreitern |
+| **KI-API-Kosten** laufen bei Vielnutzern aus dem Ruder (fixes Abo) | **Inklusiv-Kontingent pro Abo** + Drosselung/Nachbuchung; günstigeres Modell (Haiku) für einfache Aktionen; Prompt-Caching ([finanzplan.md](finanzplan.md)) |
 
 ---
 
@@ -311,7 +312,9 @@ Kurse), nicht auf bezahlten Ads.
 
 **Weitere variable Kosten:** Zahlungsabwicklung (z. B. Stripe ~1,5 % + 0,25 €/Tx),
 **Fachautor-Honorare** (projektbezogen je Handlungsfeld/neuem Fachwirt), höherer
-Server-/DB-Bedarf erst bei vielen Gleichzeitig-Nutzern.
+Server-/DB-Bedarf erst bei vielen Gleichzeitig-Nutzern, sowie **KI-API-Kosten**
+(~0,3–2,5 €/aktivem Lerner/Monat, per **Inklusiv-Kontingent pro Abo gedeckelt** —
+detailliert in [finanzplan.md](finanzplan.md)).
 
 ### Privatentnahme
 
@@ -346,9 +349,10 @@ Summe den Vollbetrieb ~24 Monate. **So oder so ist das Vorhaben durchfinanziert.
 - **Eigenmittel** (UG-Stammeinlage + Eigenkapital). 📝 *Anteil eintragen.*
 - **Fördermittel** (mit Gründungsberatung/Förderlotsen prüfen): **KfW-/ERP-Gründer­kredit
   StartGeld** (bis 125.000 €), **Gründungszuschuss** (Agentur für Arbeit, falls aus
-  ALG I), regionale **Landes-/Digitalisierungsförderung** (Bayern: **LfA Förderbank
-  Bayern**, Beteiligungs-/Netzwerkzugang über **BayStartUP**), ggf.
-  **Mikromezzaninfonds**; **EXIST** nur bei Hochschulanbindung.
+  ALG I), regionale **Landes-/Digitalisierungsförderung** (Bayern: **Start?Zuschuss!**
+  — Zuschuss für innovative, digitale Gründungen; **LfA Förderbank Bayern**;
+  Beteiligungs-/Netzwerkzugang über **BayStartUP**), ggf. **Mikromezzaninfonds**;
+  **EXIST** nur bei Hochschulanbindung.
 - **Beteiligung** (Business Angel / stille Beteiligung) für den verbleibenden Teil.
 - 🔎 *Konkrete Programme + Konditionen selbst/mit Berater gegenprüfen — ändern sich.*
 
