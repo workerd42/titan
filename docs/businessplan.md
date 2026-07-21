@@ -35,8 +35,8 @@ Präsentations-Deck für die mündliche IHK-Prüfung** in der Hand.
   📝 *Name/Lebenslauf/Qualifikationen konkretisieren.*
 - **Ab wann Gewinn:** die laufenden Sach-/Infrastrukturkosten bleiben schlank
   (~120 €/Monat inkl. KI); die Gewinnschwelle inkl. Gründer-Lebensunterhalt
-  (Familie) liegt im Szenario bei **≈ 175 B2C-Abos** oder **≈ 5–6 B2B-Kunden**
-  (siehe Finanzen).
+  (Familie) liegt im Szenario bei **≈ 175 B2C-Abos** oder **≈ 5–6 parallel
+  laufenden B2B-Kursen** (siehe Finanzen).
 - **Kapitalbedarf – wofür/wie viel:** **≈ 200.000 €** für ~24 Monate Aufbau
   (Gründergehalt, Content-Ausbau weiterer Fachwirte, Marketing, Puffer),
   finanziert über **Eigenmittel + Fördermittel + ggf. Beteiligung** (siehe
@@ -56,19 +56,34 @@ Nutzwertanalyse), **Übungsbereich**, **IHK-Testformat** und **Lernzettel**
 
 - **Was du verkaufst:** einen **Zugang** (Abo/Lizenz) zu einem Lernsystem, das
   Prüfungswissen in anwendbare, prüfungsnahe Ergebnisse überführt.
-- **USP:** Der **rote Faden Kompass-Unternehmen → Artefakte → fertige
-  IHK-Präsentation**. Kein PDF-Skript und keine Karteikarten-App bildet die
-  tatsächliche Prüfungsleistung (Präsentation + Fachgespräch) ab. Dazu ein
-  hochwertiges, ruhiges „Kosmos"-Interface, das sich von klassischen LMS abhebt.
+- **USP — Orientierung + prüfungsfertiges Ergebnis:** Titan gibt Lernenden von
+  Anfang an einen **konsistenten roten Faden**, den klassische Lehrgänge so nicht
+  bieten: Dort bringen wechselnde Dozent:innen unterschiedliche Bezugspunkte aus
+  ihren Branchen/Erfahrungen mit — bei Titan gestaltet jede:r stattdessen das
+  **eigene (fiktive) Unternehmen** strategisch und wendet alle Werkzeuge
+  durchgängig darauf an. Das erzeugt ein **neuartiges, interaktives Lernerlebnis**
+  mit echter Orientierung — und mündet nebenbei in ein **fertiges
+  IHK-Präsentations-Deck** (Kompass → Artefakte → Präsentation). Kein Skript und
+  keine Karteikarten-App leistet beides.
+
+- **Start-Fokus:** vier Fachwirt-Kurse (Fachwirt Marketing ist als erstes live).
+  Der **Kern-Lernstoff ist über Fachwirte hinweg weitgehend adaptierbar** — nur die
+  fachlichen Spezialisierungen werden je Fachwirt geliefert/angepasst. Dieselbe
+  Engine skaliert perspektivisch auf weitere Zielgruppen (z. B. Lernhilfe für die
+  kaufmännische Ausbildung).
 
 ### Nutzen — Warum begeistert dein Angebot die Kunden?
 
-- **Abgenommene Aufgabe:** Der Prüfling muss sich seine Prüfungspräsentation nicht
-  mehr mühsam selbst zusammenbauen — sie entsteht **als Nebenprodukt des Lernens**.
-- **Warum nützlich:** IHK-Fachwirt-Prüfungen sind anspruchsvoll und teuer
-  (Lehrgänge oft 2.000–4.000 €). Alles, was die Durchfallquote senkt und Zeit
-  spart, hat unmittelbaren, bezahlbaren Wert. Für Bildungsträger steigert es die
-  **Erfolgsquote ihrer Kurse** — ein Verkaufsargument im eigenen Markt.
+- **Orientierung & Konsistenz:** ein durchgängiger strategischer Bezugsrahmen (das
+  eigene Kompass-Unternehmen) statt uneinheitlicher Dozenten-Beispiele — genau die
+  Orientierung, die im klassischen Lehrgang fehlt.
+- **Abgenommene Aufgabe:** die Prüfungspräsentation entsteht **als Nebenprodukt des
+  Lernens**.
+- **Warum nützlich:** Fachwirt-Fortbildungen sind teuer — beim aktuellen
+  Referenz-Bildungsträger kostet allein der **Fachwirt Marketing 11.000 €**. Alles,
+  was Bestehensquote und Orientierung erhöht und Zeit spart, hat hohen, bezahlbaren
+  Wert. Für Bildungsträger steigert Titan die **Erfolgsquote ihrer Kurse** — ein
+  starkes Verkaufsargument im eigenen Markt.
 
 ### Kernfähigkeiten — Was kannst du gut?
 
@@ -83,9 +98,9 @@ Nutzwertanalyse), **Übungsbereich**, **IHK-Testformat** und **Lernzettel**
 
 | Stärken | Schwächen |
 |---|---|
-| Einzigartiger Präsentations-Wedge; hohe Produkt-/UX-Qualität; schlanke, EU-konforme Kostenbasis; skalierbare Engine/Content-Trennung | Enger Nischenmarkt (zunächst 1 Fachwirt); Content-Pflege ist Daueraufwand; 📝 Team-/Vertriebsressourcen (ergänzen); noch keine Zahlungsstrecke/Marktvalidierung |
+| Einzigartiger **Orientierungs- + Präsentations-Wedge**; hohe Produkt-/UX-Qualität; **adaptierbarer Kern-Lernstoff** (nur Spezialisierungen je Fachwirt neu); schlanke, EU-konforme Kostenbasis; skalierbare Engine/Content-Trennung | Start mit **vier Fachwirt-Kursen** (fokussierte Ausgangslage); fachliche **Spezialisierungen je Fachwirt** müssen geliefert/gepflegt werden; noch keine Zahlungsstrecke/Marktvalidierung; 📝 Team-/Vertriebsressourcen (ergänzen) |
 | **Chancen** | **Risiken** |
-| Ausbau auf weitere Fachwirte/Fachkaufleute; B2B-Lizenzierung an Bildungsträger; Aufstiegs-BAföG-geförderter Markt; KI-gestützte Fall-Varianten als Differenzierer | IHK-Rahmenplan-/Prüfungsänderungen; Wettbewerb durch etablierte Verlage/Lehrgangsanbieter; Abhängigkeit von Content-Qualität; regulatorische Anforderungen (DSGVO/EU-AI-Act — [ki-governance.md](ki-governance.md)) |
+| Weitere Fachwirte; **Ausweitung auf andere Zielgruppen** (z. B. kaufmännische Ausbildung als Lernhilfe); B2B-Lizenzierung an Bildungsträger; **Aufstiegs-BAföG-getriebene Nachfrage**; KI-gestützte Fall-Varianten als Differenzierer | Wettbewerb durch etablierte Verlage/Lehrgangsanbieter; Abhängigkeit von Content-Qualität; IHK-Rahmenplan-Änderungen (**mit jahrelangem Vorlauf → gut beherrschbar**); Regulatorik (DSGVO/EU-AI-Act — [ki-governance.md](ki-governance.md)) |
 
 ---
 
@@ -95,12 +110,15 @@ Nutzwertanalyse), **Übungsbereich**, **IHK-Testformat** und **Lernzettel**
 
 - **B2C — Selbstlerner:** angehende Fachwirte in der Prüfungsvorbereitung,
   oft berufsbegleitend, zeitknapp, prüfungsdatumsgetrieben.
-- **B2B — Bildungsträger/Organisationen:** kaufen **Zugänge pro Platz** und
-  provisionieren ihre Kursteilnehmer; Dozenten begleiten den Fortschritt über ein
-  Cockpit. (Technisch über das Better-Auth-Organization-Modell vorgesehen —
+- **B2B — Bildungsträger/Organisationen:** lizenzieren **pro Kurs (800 €/Monat je
+  Kohorte à 10–15 Teilnehmer)** und provisionieren ihre Kursteilnehmer; Dozenten
+  begleiten den Fortschritt über ein Cockpit. (Technisch über das Better-Auth-Organization-Modell vorgesehen —
   Rollen Org-Admin/Dozent/Lerner sind angelegt.)
-- **Erste Aufträge in Aussicht:** 📝 *Von dir zu ergänzen* (z. B. der Dozent, dem
-  das System gerade gezeigt wird, als Pilot/Referenz?).
+- **Erste Aufträge in Aussicht:** konkreter Erst-Zielkunde ist der **aktuelle
+  Referenz-Bildungsträger** — er bietet **vier Fachwirt-Kurse** an (4 × 800 €
+  = **3.200 €/Monat Potenzial** allein bei diesem einen Träger); der Dozent, dem
+  Titan gezeigt wird, ist ein möglicher Türöffner/Referenz. 📝 *Status der Gespräche
+  ergänzen.*
 
 ### Vertrieb und Kommunikation
 
@@ -214,7 +232,7 @@ regionale Gründungsförderungen ab.
 | Aufwendige/ungewisse Kundenakquise (v. a. B2C) | Fokus zuerst auf **B2B-Piloten** (Bildungsträger) mit vorhandener Distribution |
 | Zielkunden ohne erwarteten Bedarf / geringe Zahlungsbereitschaft | Pilot als Marktvalidierung vor großem Invest; Preis am Lehrgangs-Budget ankern |
 | Stärkerer Wettbewerb als erwartet | Verteidigung über Content-Tiefe + einzigartigen Präsentations-Wedge + UX |
-| Content-Pflege/Rahmenplan-Änderungen | Engine/Content-Trennung + Fachautor-Partner + Redaktionssystem (Directus geplant) |
+| Content-Pflege / IHK-Rahmenplan-Änderungen | Kern adaptierbar (nur Spezialisierungen je Fachwirt neu); IHK-Änderungen kommen mit **jahrelangem Vorlauf** → genug Anpassungszeit; Engine/Content-Trennung + Fachautor-Partner + Redaktionssystem (Directus geplant) |
 | Regulatorik (DSGVO/EU-AI-Act) | Compliance-by-Design ([ki-governance.md](ki-governance.md)) + juristische Bestätigung |
 | Abhängigkeit von KI-/Infra-Anbietern | EU/DE-Anbietergrundsatz, self-hosting, Austauschbarkeit der Modelle |
 | Schlüsselpersonen-/Ressourcenrisiko | 📝 *Team/Backup ergänzen* |
@@ -229,18 +247,21 @@ regionale Gründungsförderungen ab.
 
 ### Ertragsquellen / Umsatz — Wofür und wann fließt Geld?
 
-Zwei Erlössäulen, **Anker: Lehrgangskosten 2.000–4.000 €**.
+Zwei Erlössäulen, **Anker: Lehrgangskosten** — beim Referenz-Bildungsträger kostet
+allein der Fachwirt Marketing **11.000 €** (oft via Aufstiegs-BAföG gefördert).
+Titans Preise sind ein Bruchteil davon → leichte Kaufentscheidung.
 
 | Modell | Preis | Logik |
 |---|---|---|
 | **B2C-Abo** | **24 €/Monat** *oder* **129 € Prüfungspaket** (4–6 Monate) | Selbstzahler; monatlich/bei Abschluss |
-| **B2B-Lizenz** | **800 €/Monat** je Bildungsträger/Lehrgang | Organisation lizenziert; planbares Blockgeschäft |
+| **B2B-Lizenz** | **800 €/Monat je Kurs** (Kohorte 10–15 Teilnehmer) | Bildungsträger zahlt pro laufendem Kurs; mehrere Kurse = mehrfach |
 
-🔎 **B2B zu klären:** 800 €/Monat **pro Organisation** (beliebig viele Lerner) oder
-**pro laufendem Lehrgang/Kohorte**? Das entscheidet die Umsatzskalierung — klären
-wir im Durchgang.
+**Unit Economics B2B:** 800 € ÷ ~12 Teilnehmer ≈ **~65 €/Teilnehmer/Monat** — für
+den Bildungsträger mühelos in die Lehrgangsgebühr (Referenz: 11.000 €) einzupreisen. Ein
+Träger mit mehreren parallelen Kursen zahlt entsprechend mehrfach → **planbarer,
+skalierender Umsatzhebel** ohne zusätzlichen Vertriebsaufwand pro Kurs.
 
-💡 *Empfehlung:* B2B priorisieren (hoher, planbarer Umsatz je Abschluss; vorhandene
+💡 *Empfehlung:* B2B priorisieren (hoher, planbarer Umsatz je Kurs; vorhandene
 Distribution zum Prüfling).
 
 ### Kosten — Wofür gibst du Geld aus?
@@ -302,8 +323,9 @@ nicht nur Runway). Verwendung:
   ≈ **~4.150 €/Monat** (Marketing/Content sind separat aus dem Kapital finanziert).
 - **Break-even-Pfade:**
   - **B2C:** ~4.150 € ÷ 24 € ≈ **≈ 175 zahlende Abos**.
-  - **B2B:** ~4.150 € ÷ 800 € ≈ **≈ 5–6 B2B-Kunden** (planbarer, Blockgeschäft).
-  - Realistisch **Mischung** — schon wenige B2B-Kunden decken einen Großteil.
+  - **B2B:** ~4.150 € ÷ 800 € ≈ **≈ 5–6 parallel laufende Kurse** (von ggf. nur
+    2–3 Bildungsträgern) — planbares Blockgeschäft.
+  - Realistisch **Mischung** — schon wenige B2B-Kurse decken einen Großteil.
 - Die reinen **Betriebskosten bleiben winzig** (~120 €); Haupttreiber ist der
   Familien-Lebensunterhalt. Jeder Zusatzkunde hat eine **sehr hohe Marge**.
 
