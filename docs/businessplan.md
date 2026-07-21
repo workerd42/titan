@@ -327,12 +327,13 @@ Verwendung — konservativ als 24-Monats-Vollbetrieb *ohne* Umsatz gerechnet:
 | Verwendung | Betrag |
 |---|---|
 | Gründerentnahme (4.000 € × 24 Monate, Familie) | ~96.000 € |
-| Content-Ausbau (Fachautoren, weitere Fachwirte) | ~45.000 € |
-| Dev/Ops-Weiterentwicklung (Features, Skalierung, KI-Integration, Wartung) | ~20.000 € |
-| Marketing/Ads (reduziert — warmer B2B-Vertrieb) | ~18.000 € |
+| Content-Ausbau (Fachautoren, weitere Fachwirte) | ~40.000 € |
+| Dev/Ops-Weiterentwicklung (Features, Skalierung, KI-Integration, Wartung) | ~18.000 € |
+| Externes Design (Branding, Landingpage, Marketing-Kreativ, UI-Feinschliff) | ~10.000 € |
+| Marketing/Ads (warmer B2B-Vertrieb + B2C-Aufbau) | ~16.000 € |
 | KI-/Infrastruktur-Betrieb & Skalierung | ~6.000 € |
 | Gründung/Recht/Steuer (UG, Verträge, DSGVO-/AI-Act-Legal) | ~7.000 € |
-| Sicherheits-/Liquiditätspuffer (Familie + Makro-Risiko) | ~8.000 € |
+| Sicherheits-/Liquiditätspuffer (Familie + Makro-Risiko) | ~7.000 € |
 | **Summe** | **≈ 200.000 €** |
 
 **Puffer-Logik (wichtig):** Kommt der (konservative) Umsatz wie prognostiziert,
