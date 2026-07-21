@@ -53,6 +53,7 @@ const base = import.meta.env.BASE_URL;
           <span class="pp-hb-nr">HF {b.nummer}</span>
           <div class="pp-bar"><div class="pp-bar-fill" id={`pp-fill-${b.id}`}></div></div>
           <span class="pp-hb-pct" id={`pp-pct-${b.id}`}>0 %</span>
+          <div class="pp-konst" id={`pp-konst-${b.id}`} aria-hidden="true"></div>
         </a>
       );
     })}
@@ -156,6 +157,7 @@ const base = import.meta.env.BASE_URL;
   .pp-bar { height: 2px; background: rgba(255,255,255,.08); overflow: hidden; }
   .pp-bar-fill { height: 100%; background: rgba(196,168,130,.7); width: 0%; transition: width .8s cubic-bezier(0.16,1,0.3,1); }
   .pp-hb-pct { font-family: var(--mono,monospace); font-size: 9px; color: rgba(255,255,255,.28); text-align: right; }
+  .pp-konst { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 5px; margin-top: 4px; min-height: 5px; }
 
   .pp-streak { display: flex; align-items: baseline; justify-content: space-between; }
   .pp-streak-label { font-family: var(--mono,monospace); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.25); max-width: none; }
@@ -169,6 +171,16 @@ const base = import.meta.env.BASE_URL;
       padding: 40px 22px calc(24px + env(safe-area-inset-bottom, 0px));
     }
   }
+</style>
+
+<!-- Sternbild-Sterne werden client-seitig per innerHTML injiziert → scoped CSS
+     greift dort nicht, daher global. -->
+<style is:global>
+  #persoenlich-panel .pp-star { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,.16); transition: background .5s ease, box-shadow .5s ease; }
+  #persoenlich-panel .pp-star.lit { background: #C4A882; box-shadow: 0 0 6px rgba(196,168,130,.9); }
+  #persoenlich-panel .pp-konst.complete .pp-star.lit { box-shadow: 0 0 8px rgba(196,168,130,1); animation: pp-twinkle 3.2s ease-in-out infinite; }
+  @keyframes pp-twinkle { 0%, 100% { opacity: 1; } 50% { opacity: .55; } }
+  @media (prefers-reduced-motion: reduce) { #persoenlich-panel .pp-konst.complete .pp-star.lit { animation: none; } }
 </style>
 
 <script>
@@ -237,6 +249,15 @@ const base = import.meta.env.BASE_URL;
       const pctEl = document.getElementById(`pp-pct-${hbId}`);
       if (fill)  fill.style.width  = `${pct}%`;
       if (pctEl) pctEl.textContent = `${pct} %`;
+
+      // Sternbild: ein Stern je Thema, leuchtet bei voller Meisterung (4/4 Phasen);
+      // ist das ganze Handlungsfeld gemeistert, glüht die Konstellation.
+      const konst = document.getElementById(`pp-konst-${hbId}`);
+      if (konst) {
+        const mastered = slugs.map((s) => { const t = themen[s] ?? {}; return !!(t.verstehen && t.merken && t.anwenden && t.pruefen); });
+        konst.innerHTML = mastered.map((m) => `<span class="pp-star${m ? ' lit' : ''}"></span>`).join('');
+        konst.classList.toggle('complete', mastered.length > 0 && mastered.every(Boolean));
+      }
     });
     const sv = document.getElementById('pp-streak-val');
     if (sv) { const d = state.lernStreakTage ?? 0; sv.textContent = d > 0 ? `${d} Tag${d !== 1 ? 'e' : ''}` : '—'; }
