@@ -28,11 +28,11 @@ Präsentations-Deck für die mündliche IHK-Prüfung** in der Hand.
   und über ein Dozenten-Cockpit den Fortschritt begleiten.
 - **Nutzen:** höhere Bestehenswahrscheinlichkeit, spürbare Zeitersparnis, und ein
   prüfungsfertiges Ergebnis statt nur „gelernt zu haben".
-- **Gründungsteam & Qualifikationen:** im Kern **Einzelgründung** — ein
-  technischer Gründer, der Konzept, Plattform und Live-Betrieb eigenständig
-  umgesetzt hat (belegt: die Plattform läuft produktiv); ergänzt um
-  Fachautor:innen (Content) und Bildungsträger-Partnerschaften im Aufbau.
-  📝 *Name/Lebenslauf/Qualifikationen konkretisieren.*
+- **Gründungsteam & Qualifikationen:** **komplementäres Zweier-Team** — ein
+  technischer Gründer (Konzept, Plattform, Live-Betrieb; belegt produktiv) + ein
+  **Partner mit 20 Jahren Erfahrung als Fachwirt-Dozent**, der das Branchennetzwerk
+  mitbringt und einen **eigenen Bildungsträger aufbaut** (Fachtiefe + Marktzugang).
+  📝 *Namen/Rollen (Mitgründer-Anteile?) konkretisieren.*
 - **Ab wann Gewinn:** die laufenden Sach-/Infrastrukturkosten bleiben schlank
   (~120 €/Monat inkl. KI); die Gewinnschwelle inkl. Gründer-Lebensunterhalt
   (Familie) liegt im Szenario bei **≈ 175 B2C-Abos** oder **≈ 5–6 parallel
@@ -122,10 +122,12 @@ Nutzwertanalyse), **Übungsbereich**, **IHK-Testformat** und **Lernzettel**
 
 ### Vertrieb und Kommunikation
 
-- **Erreichen:** B2C über Content/SEO (später — aktuell bewusst `noindex`),
-  Social, Communities der Prüflinge; B2B über **Direktansprache von
-  Bildungsträgern/IHK-Lehrgangsanbietern** (stärkster Hebel: die haben die
-  Distribution zum Prüfling im richtigen Moment).
+- **Erreichen (B2B, Haupthebel):** über das **20-jährige Dozenten-Netzwerk des
+  Partners** — warmer Zugang zu Bildungsträgern statt Kaltakquise; dazu sein
+  **eigener künftiger Träger** als Anker-/Pilotkunde; weitere Träger über
+  Verbände/IHK-Kontakte.
+- **Erreichen (B2C):** Content/SEO (später — aktuell bewusst `noindex`), Social,
+  Prüflings-Communities.
 - **Kommunikation:** vorgeschaltete Marketing-/Landingpage → Paywall →
   Registrierung → Titan (das harte Login-Gate ist live).
 - **Gewinnen & halten:** Pilot mit einem Bildungsträger/Dozenten als Referenz;
@@ -135,16 +137,33 @@ Nutzwertanalyse), **Übungsbereich**, **IHK-Testformat** und **Lernzettel**
 
 ### Markt & Wettbewerb
 
-- **Wettbewerber:** Prüfungsvorbereitungs-Verlage & Skripte, klassische
-  Lehrgangsanbieter/Bildungsträger, generische Karteikarten-/Lern-Apps.
-- **Differenzierung:** keiner davon erzeugt die **prüfungsfertige Präsentation**
-  entlang eines durchgehenden Übungsunternehmens; dazu deutlich höhere UX-Qualität.
-- **Marktgröße:** 💡 Fachwirt-Abschlüsse in Deutschland gehen jährlich in die
-  Zehntausende (über alle Richtungen); „Fachwirt Marketing" ist davon eine kleinere
-  Teilmenge. 📝 *Belastbare Zahlen vor Investorengespräch verifizieren* (Quellen:
-  DIHK-Weiterbildungsstatistik, Statistisches Bundesamt).
-- **Branchenentwicklung:** wachsende Akzeptanz digitaler Weiterbildung,
-  Aufstiegs-BAföG als Rückenwind, KI als Effizienz-/Qualitätshebel.
+**Marktgröße (belegt):** In Deutschland bestehen **jährlich rund 20.000–25.000
+Personen eine kaufmännische Fachwirt-Fortbildungsprüfung** (BIBB/Destatis: 2019 =
+25.029, 2020 = 18.690 bestandene Fachwirt-Prüfungen; Fachwirte sind die größte
+Gruppe der kaufmännischen Aufstiegsfortbildung). Der Start-Fokus (vier
+Fachwirt-Kurse) adressiert einen Teil davon; **jede weitere Fachwirt-/Ausbildungs-
+Richtung vergrößert den erreichbaren Markt**. Rückenwind durch **Aufstiegs-BAföG**
+(staatlich geförderte Nachfrage) und wachsende Akzeptanz digitaler Weiterbildung.
+*(Quellen: BIBB-Datenreport / DIHK-Fortbildungsstatistik / Statistisches
+Bundesamt — vor Investorengespräch mit Aktualjahr bestätigen.)*
+
+**Wettbewerb (eingeordnet):**
+
+| Anbieter | Was es ist | Titans Abgrenzung |
+|---|---|---|
+| **Fachwirt Hero** | Lern-App (Wirtschaftsfachwirt), 20.000+ Fragen, Spaced-Repetition, Schwächenanalyse | Starker **Fragen-Drill**, aber reines Abfragen — keine Strategie-Anwendung, kein Artefakt/Präsentation, keine Orientierung am eigenen Unternehmen |
+| **QuizAcademy** | Quiz-/Karteikarten-Plattform, adaptiv, viele Fachwirt-Richtungen | Breit, aber **generische Quiz-Mechanik**; kein durchgehender roter Faden, kein prüfungsfertiges Ergebnis |
+| **Wirtschaftsfachwirt Pro** | Spezialisierte WFW-Prüfungs-App (Quiz/Kurs) | Enger Abfrage-Fokus; keine interaktive Fallbearbeitung am eigenen Kompass-Unternehmen |
+| **IHK-App(s)** | Offizielle Prüfungs-/Lern-Apps der IHKs | Amtlich, aber funktional/UX-basisch; kein strategisches Kompetenz-Cockpit |
+
+**Kern-Differenzierung:** Alle Wettbewerber sind **Abfrage-/Drill-Werkzeuge**
+(Fragen, Karteikarten, Spaced Repetition). **Keiner** bietet Titans Kern:
+strategische Anwendung am **eigenen (fiktiven) Unternehmen → Artefakte → fertige
+IHK-Präsentation** samt echter **Orientierung**. Titan spielt damit in einer
+eigenen Kategorie (Kompetenz-Cockpit) und ist zu Quiz-Apps eher **komplementär** als
+konkurrierend. 💡 *Ehrlich:* beim reinen Fragen-Umfang sind die etablierten Apps
+heute voraus — Titans Stärke ist **Anwendung & Orientierung**, nicht die größte
+Fragendatenbank.
 
 ---
 
@@ -152,22 +171,26 @@ Nutzwertanalyse), **Übungsbereich**, **IHK-Testformat** und **Lernzettel**
 
 ### Gründer*innen & Team
 
-**Kern: Einzelgründung durch einen technisch-konzeptionellen Gründer.** Belegte
-Kompetenzen (am Produkt sichtbar): Softwareentwicklung & Produktarchitektur
-(moderne Web-Plattform mit Auth, Datenbank, Rollen/Admin, live deployt),
-didaktische Konzeption (4-Phasen-Methodik, Artefakt-Baukasten), fachliche Nähe zum
-IHK-Marketing-Stoff, sowie Betrieb/DevOps (self-hosted, EU/DE, Backups).
+**Komplementäres Zweier-Team** — die passende Aufstellung für dieses Vorhaben:
 
-- **Motivation:** ein Lernprodukt, das die tatsächliche IHK-Prüfungsleistung
-  (Präsentation + Fachgespräch) abbildet, statt nur Wissen abzufragen.
-- **Aufzubauende Funktionen (perspektivisch):** Content-Redaktion
-  (Fachautor:innen), Vertrieb/Partnermanagement (Bildungsträger), später ggf.
-  Support. Zunächst schlank, Zukauf/Partner statt Festanstellung.
+- **Technischer Gründer (Produkt & Betrieb):** Softwareentwicklung &
+  Produktarchitektur (moderne Web-Plattform mit Auth, DB, Rollen/Admin, live
+  deployt), didaktische Konzeption (4-Phasen-Methodik, Artefakt-Baukasten),
+  Betrieb/DevOps (self-hosted, EU/DE).
+- **Partner — Fachwirt-Dozent (Fach & Markt):** **20 Jahre Erfahrung als Dozent
+  für Fachwirte**, tiefe fachliche Autorität und **etabliertes Branchennetzwerk**;
+  baut zudem einen **eigenen Bildungsträger** auf → direkter Marktzugang und
+  Erst-Kanal für Titan.
 
-📝 *Für den finalen Plan konkretisieren:* Name, Lebenslauf/Qualifikationsnachweise,
-ob mittelfristig Mitgründer:in/Anstellung geplant ist. 💡 Der **Gründer-Fit**
-(fachliche Nähe + belegte Umsetzungskraft der live laufenden Plattform) ist dein
-stärkstes Argument gegenüber Investoren/Förderung — prominent ausformulieren.
+Diese Kombination adressiert genau die zwei kritischen Risiken einer
+Bildungs-Gründung — **Fach-/Content-Tiefe** und **Vertriebszugang** — aus dem Team
+heraus. **Motivation:** ein Lernprodukt, das die tatsächliche IHK-Prüfungsleistung
+abbildet und Lernenden echte Orientierung gibt.
+
+📝 *Zu klären/ergänzen:* Namen & Lebensläufe, **formale Rolle des Partners
+(Mitgründer mit Anteilen vs. Kooperationspartner)**, geplante Fachautor:innen.
+💡 Dieser **Team-Fit (Tech × 20 Jahre Fachwirt-Praxis + Netzwerk)** ist eines
+deiner stärksten Investoren-/Förder-Argumente — prominent platzieren.
 
 ### Werte
 
@@ -178,7 +201,10 @@ Hoheit). 📝 *Bei Bedarf um persönliche Gründungswerte ergänzen.*
 
 ### Partner — Welche externen Schlüsselpartner brauchst du?
 
-- **Bildungsträger/IHK-Lehrgangsanbieter** (Distribution + B2B-Umsatz).
+- **Dozent-Partner & sein künftiger Bildungsträger** (Schlüsselpartner): bringt
+  Netzwerk + Fachtiefe und setzt Titan als **erster Bildungsträger-Kunde/Pilot** in
+  eigenen Kursen ein.
+- **Weitere Bildungsträger/IHK-Lehrgangsanbieter** (Distribution + B2B-Umsatz).
 - **Fachautor:innen/Dozent:innen** für Content-Qualität und Aktualität.
 - **Infrastruktur/Dienstleister (EU/DE):** VPS (IONOS), Off-site-Backup (Hetzner),
   Transaktionsmail (Brevo/FR), ggf. Monitoring (Better Stack/CZ), KI-Modell
