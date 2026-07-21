@@ -74,8 +74,9 @@ Skaliert mit Wachstum: KI wächst mit aktiven Lernern (siehe §1, gedeckelt per
 Kontingent), Zahlungsgebühren mit Umsatz; höherer Server-/DB-Bedarf erst bei
 vielen Gleichzeitig-Nutzern. **Content-Honorare** (Fachautoren) und **Marketing/
 Ads** sind projekt-/wachstumsbezogen und im Kapitalbedarf des
-[businessplan.md](businessplan.md) budgetiert (Design ~10 k, Content ~40 k,
-Dev/Ops ~18 k, Marketing ~18 k, Puffer ~7 k, Gründerentnahme ~96 k → ~200 k).
+[businessplan.md](businessplan.md) budgetiert (Gründerentnahme ~96 k, Content ~40 k,
+Dev/Ops ~18 k, Design ~10 k, Marketing ~16 k, KI-/Infra-Betrieb ~6 k,
+Gründung/Recht ~7 k, Puffer ~7 k → ~200 k).
 
 ---
 

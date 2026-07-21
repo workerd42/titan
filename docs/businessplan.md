@@ -12,37 +12,34 @@
 **Was hast du vor?**
 
 Titan ist ein interaktives Kompetenz-Cockpit für die Prüfungsvorbereitung
-geprüfter **IHK-Fachwirte** (Start: Fachwirt Marketing). Statt trockenem
-Auswendiglernen erarbeiten Lernende Schritt für Schritt echte Marketing-Artefakte
-(SWOT, Deckungsbeitrag, Marketing-Mix …) an **ihrem eigenen fiktiven
-Übungsunternehmen** („Kompass") — und halten am Ende ein **fertiges, druckfähiges
-Präsentations-Deck für die mündliche IHK-Prüfung** in der Hand.
+geprüfter **IHK-Fachwirte** (Start: Fachwirt Marketing). Statt Auswendiglernen
+erarbeiten Lernende echte Marketing-Artefakte (SWOT, Deckungsbeitrag,
+Marketing-Mix …) an **ihrem eigenen fiktiven Übungsunternehmen** („Kompass") und
+halten am Ende ein **druckfähiges Präsentations-Deck für die mündliche IHK-Prüfung**
+in der Hand.
 
-- **Kern der Idee:** „Vom trägen Auswendiglernen zum strategischen Handeln." Lernen
-  durch Anwenden entlang eines roten Fadens, der direkt auf die Prüfungsleistung
-  (Präsentation + Fachgespräch) einzahlt.
-- **Angebot:** Web-Plattform im Abo — geführte Lernmodule, interaktive Werkzeuge,
+- **Kern:** „Vom Auswendiglernen zum strategischen Handeln." Ein durchgängiger roter
+  Faden, der direkt auf die Prüfungsleistung (Präsentation + Fachgespräch) einzahlt.
+- **Angebot:** Web-Plattform im Abo — geführte Module, interaktive Werkzeuge,
   Übungs- & IHK-Testmodus, Lernzettel, automatisch erzeugtes Präsentations-Deck.
-- **Kunden:** (1) **B2C** — Prüflinge, die sich selbst vorbereiten. (2) **B2B** —
-  **Bildungsträger/IHK-Lehrgangsanbieter**, die Zugänge für ihre Kurse lizenzieren
-  und über ein Dozenten-Cockpit den Fortschritt begleiten.
-- **Nutzen:** höhere Bestehenswahrscheinlichkeit, spürbare Zeitersparnis, und ein
+- **Kunden:** **B2C** (Selbstzahler-Prüflinge) und **B2B**
+  (Bildungsträger/IHK-Lehrgangsanbieter, die Zugänge lizenzieren und per
+  Dozenten-Cockpit begleiten).
+- **Nutzen:** höhere Bestehenswahrscheinlichkeit, spürbare Zeitersparnis und ein
   prüfungsfertiges Ergebnis statt nur „gelernt zu haben".
-- **Gründungsteam & Qualifikationen:** **Einzelgründung** durch einen technischen
-  Gründer (Konzept, Plattform, Live-Betrieb; belegt produktiv), flankiert von einem
-  **starken Kooperationspartner** — einem Fachwirt-Dozenten mit **20 Jahren
-  Erfahrung**, Branchennetzwerk und eigenem Bildungsträger im Aufbau (Fachtiefe +
-  warmer Marktzugang). 📝 *Namen ergänzen.*
-- **Ab wann Gewinn:** die laufenden Sach-/Infrastrukturkosten bleiben schlank
-  (~120 €/Monat inkl. KI); die Gewinnschwelle inkl. Gründer-Lebensunterhalt
-  (Familie) liegt im Szenario bei **≈ 175 B2C-Abos** oder **≈ 5–6 parallel
-  laufenden B2B-Kursen** (siehe Finanzen).
-- **Kapitalbedarf – wofür/wie viel:** **≈ 200.000 € Wachstumskapital** (nicht bloß
-  Runway): Content-Ausbau weiterer Fachwirte, Dev/Ops-Weiterentwicklung,
-  Marktausbau, Gründer-Lebensunterhalt — plus **substanzieller Sicherheitspuffer**
-  (Familie + wirtschaftliche/politische Unwägbarkeiten). Break-even früh über den
-  Partner-Kanal (siehe Umsatzprognose); finanziert über **Eigenmittel +
-  Fördermittel (Bayern: LfA/BayStartUP) + ggf. Beteiligung**.
+- **Team:** **Einzelgründung** durch einen technischen Gründer (Konzept, Plattform,
+  Live-Betrieb; produktiv belegt), flankiert von **Jürgen Laudien** — Fachwirt-Dozent
+  mit **20 Jahren Erfahrung**, Branchennetzwerk und eigenem Bildungsträger im Aufbau
+  — als **Kooperationspartner** (Fachtiefe + warmer Marktzugang; nicht am Kapital
+  beteiligt → saubere Cap Table).
+- **Ab wann Gewinn:** Sach-/Infrastrukturkosten schlank (~120 €/Monat inkl. KI);
+  Gewinnschwelle inkl. Gründer-Lebensunterhalt (Familie) bei **≈ 175 B2C-Abos** oder
+  **≈ 5–6 parallel laufenden B2B-Kursen** (siehe Finanzen).
+- **Kapitalbedarf:** **≈ 200.000 € Wachstumskapital** (nicht bloß Runway):
+  Content-Ausbau weiterer Fachwirte, Dev/Ops, Marktausbau, Gründer-Lebensunterhalt +
+  **substanzieller Sicherheitspuffer**. Break-even früh über den warmen Partner-Kanal;
+  finanziert über **Eigenmittel + Fördermittel (Bayern: LfA/BayStartUP) + ggf.
+  Beteiligung**.
 
 ---
 
@@ -135,7 +132,7 @@ Nutzwertanalyse), **Übungsbereich**, **IHK-Testformat** und **Lernzettel**
 - **Gewinnen & halten:** Pilot mit einem Bildungsträger/Dozenten als Referenz;
   Erfolgsquote als Argument; Bindung über den fortlaufenden Lernpfad + das
   greifbare Ergebnis (Präsentations-Deck).
-- **Detail-Konzept:** siehe `docs/marketing-konzept.md` (folgt in dieser Sitzung).
+- **Detail-Konzept:** siehe [marketing-konzept.md](marketing-konzept.md).
 
 ### Markt & Wettbewerb
 
@@ -180,20 +177,22 @@ Kooperationspartner an der Seite:**
   (moderne Web-Plattform mit Auth, DB, Rollen/Admin, live deployt), didaktische
   Konzeption (4-Phasen-Methodik, Artefakt-Baukasten), Betrieb/DevOps
   (self-hosted, EU/DE). Hält die Anteile allein → **saubere Cap Table**.
-- **Kooperationspartner — Fachwirt-Dozent (Fach & Markt):** **20 Jahre Erfahrung**,
-  tiefe fachliche Autorität, **etabliertes Branchennetzwerk**, eigener
-  Bildungsträger im Aufbau. **Nicht am Kapital beteiligt** — bringt als Kooperation
-  Fachtiefe, Content-Autorität und **warmen Vertriebszugang** (erster B2B-Kanal).
+- **Jürgen Laudien — Fachwirt-Dozent, Kooperationspartner (Fach & Markt):**
+  **20 Jahre Erfahrung**, tiefe fachliche Autorität, **etabliertes
+  Branchennetzwerk**, eigener Bildungsträger im Aufbau. **Nicht am Kapital
+  beteiligt** — bringt als Kooperation Fachtiefe, Content-Autorität und **warmen
+  Vertriebszugang** (erster B2B-Kanal).
 
 So werden die zwei kritischen Risiken einer Bildungs-Gründung —
 **Fach-/Content-Tiefe** und **Vertriebszugang** — über die Kooperation abgedeckt,
 ohne die Gründer-Anteile zu verwässern. **Motivation:** ein Lernprodukt, das die
 tatsächliche IHK-Prüfungsleistung abbildet und echte Orientierung gibt.
 
-💡 *Empfehlung:* die Kooperation **vertraglich absichern** (Rollen,
-Vergütung/Provision, ggf. Exklusivität, IP-/Content-Rechte) — für
+💡 *Empfehlung:* die Kooperation mit Jürgen Laudien **vertraglich absichern**
+(Rollen, Vergütung/Provision, ggf. Exklusivität, IP-/Content-Rechte) — für
 Investoren/Förderung ein Pluspunkt und Schutz gegen Klumpenrisiko.
-📝 *Namen & Lebensläufe ergänzen; geplante Fachautor:innen benennen.*
+📝 *Lebenslauf/Referenzen von Jürgen Laudien ergänzen; weitere geplante
+Fachautor:innen benennen.*
 
 ### Werte
 
@@ -204,7 +203,7 @@ Hoheit). 📝 *Bei Bedarf um persönliche Gründungswerte ergänzen.*
 
 ### Partner — Welche externen Schlüsselpartner brauchst du?
 
-- **Dozent-Partner & sein künftiger Bildungsträger** (Schlüsselpartner): bringt
+- **Jürgen Laudien & sein künftiger Bildungsträger** (Schlüsselpartner): bringt
   Netzwerk + Fachtiefe und setzt Titan als **erster Bildungsträger-Kunde/Pilot** in
   eigenen Kursen ein.
 - **Weitere Bildungsträger/IHK-Lehrgangsanbieter** (Distribution + B2B-Umsatz).
@@ -405,5 +404,7 @@ weitere Kurs/Abo hat sehr hohe Marge.
 - **[produktvision.md](produktvision.md)** — ausführliche Produkt-/UX-Vision
 - **[ki-governance.md](ki-governance.md)** — EU-AI-Act-/DSGVO-Einordnung
 - **[roadmap.md](roadmap.md)** — Umsetzungsstand & Ausbau
-- **[lastenheft.md](lastenheft.md)** — Anforderungen (folgt)
+- **[lastenheft.md](lastenheft.md)** — Anforderungen
+- **[finanzplan.md](finanzplan.md)** — granularer Kosten-/KI-API-Detailplan
+- **[marketing-konzept.md](marketing-konzept.md)** — Marketing-/Vertriebskonzept
 - 📝 *Ergänzen:* Finanz-Tabellen, Lebensläufe/Qualifikationsnachweise, Referenzen.

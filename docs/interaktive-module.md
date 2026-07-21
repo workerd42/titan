@@ -21,9 +21,13 @@
    }
    ```
 
-## Umsetzungs-Status heute
+## Umsetzungs-Status heute (aktualisiert 2026-07-21)
 
-Das `werkzeug`-Feld existiert bereits im Schema (`src/content.config.ts`) mit 7 Werten — aber **nur 2 sind einem Planeten zugewiesen** (`marktanteil`, `deckungsbeitrag`) und **keiner wird gerendert**. Erster Schritt ist daher: Enum erweitern, Renderer bauen, Zuweisungen setzen.
+**Die Engine steht.** `src/scripts/module-engine.ts` ist ein generischer Modul-Renderer mit einheitlichem **Artefakt-Vertrag**: Jedes Modul mountet in `#modul-mount` (Phase „Anwenden" der Lernseite), liest das Kompass-Unternehmen und schreibt beim Speichern ein Artefakt über das Event `norive:artefakt-speichern` → `norive-progress.ts` (persistiert + gesynct; einziger Schreiber). Die Deck-Ansicht (`src/pages/deck.astro`) sammelt die `deckReif`-Artefakte bereits ein — die **Vorstufe des Missions-Launch**.
+
+**Implementiert (7 Modultypen, alle Stufe A, deterministisch):** `swot`, `smart`, `deckungsbeitrag`, `marktanteil`, `preisberechnung`, `vier-stufen`, `scoring`. Das `werkzeug`-Enum (`src/content.config.ts`) führt exakt diese 7 Werte; **13 der 46 Planeten** haben ein Werkzeug zugewiesen (`swot` ×3, `smart` ×3, `scoring` ×3, je ×1 `deckungsbeitrag`/`marktanteil`/`preisberechnung`/`vier-stufen`). Fehlt einem Planeten das Werkzeug, zeigt die „Interaktive Module"-Kachel ehrlich „bald".
+
+**Offen:** die restlichen ~21 spezifizierten Modultypen (unten), Zuweisung der übrigen 33 Planeten und alle **Stufe-B**-Veredelungen (Freitext-Feedback, Fall-Recast) — letztere hängen am KI-Backend (Roadmap Phase 3.1). Nächster Schritt: weitere Typen entlang der Bau-Reihenfolge unten ausrollen (Renderer je Familie steht als Muster bereit).
 
 ---
 

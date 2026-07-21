@@ -1,7 +1,7 @@
 # TITAN — Produkt- & Entwicklungs-Roadmap
 
 > Quelle: [Notion — Produkt- & Entwicklungs-Roadmap](https://app.notion.com/p/39895f8eb376811fb6aee7e9c6274216)
-> Ursprung: 2026-07-09 · Zuletzt aktualisiert nach Frontend-Rework & Deployment: 2026-07-14
+> Ursprung: 2026-07-09 · Zuletzt mit echtem Code-Stand abgeglichen: 2026-07-21
 
 ## ✅ Phase 1: Local-First MVP (Astro + GSAP + localStorage)
 
@@ -36,6 +36,8 @@
 > **Status (2026-07-16):** **Fundament live.** Der Stack läuft containerisiert als **Node + Postgres** auf dem VPS `prototyp-staging.norive.de`, ausgerollt von GitHub (`workerd42/titan`) via `deploy.sh`. Auth, DB und Fortschritts-Sync sind umgesetzt und in Produktion verifiziert (erste Registrierung liegt in der DB). Siehe [deployment.md](deployment.md). **Offen:** Dozenten-Cockpit (2.4), Admin (2.5), Redaktionssystem (2.6).
 >
 > **Aktualisierung (2026-07-17):** **Admin (2.5) ist LIVE** — Admin-Panel `/admin` + Rollen (platform-admin/org-admin/dozent/lerner) via Better-Auth-Admin-Plugin ([admin-panel.md](admin-panel.md)). **Echtes Login-Gate LIVE** (invite-only, Basic-Auth entfernt — [deployment.md](deployment.md)). **CMS-Entscheidung: Directus** (Payload verworfen). **Offen:** Dozenten-Cockpit (2.4), Redaktionssystem/Directus (2.6), KI-Schicht (Phase 3, **formatives Feedback ohne Note** — [ki-governance.md](ki-governance.md)).
+>
+> **Aktualisierung (2026-07-21, Code-Abgleich):** **Interaktive Module Stufe A vorgezogen** — die Modul-Engine (`module-engine.ts`) rendert bereits **7 Werkzeuge** (`swot`, `smart`, `deckungsbeitrag`, `marktanteil`, `preisberechnung`, `vier-stufen`, `scoring`) auf **13 von 46 Planeten** und schreibt Artefakte; `deck.astro` aggregiert sie (Missions-Launch-Vorstufe) → **3.2 und 4.1 sind damit teilweise erledigt** (Details unten, [interaktive-module.md](interaktive-module.md)). **Admin (2.5) formal als erledigt markiert.** **Dark Mode + Barrierefreiheit** plattformweit ergänzt (persistenter Hell/Dunkel-Umschalter, **0 axe-Kontrast­verstöße** in beiden Themes). **Offen bleibt:** Dozenten-Cockpit (2.4), Redaktionssystem (2.6), KI-Backend (3.1) + Stufe-B-Module, restliche ~21 Modultypen, Präsentations-Export (4.1).
 >
 > **Hinweis zur Architektur-Entscheidung:** Die ursprüngliche Notion-Planung sah Payload CMS v3 als Content-Backend vor. Für „Dozent sieht Fortschritt aller Schüler" reicht zunächst ein schlankeres Auth+DB+API-Fundament; der volle Payload/n8n-Stack wird erst mit Phase 3 (KI-Artefakte) relevant. Konkrete Wahl (Auth-Methode, DB, Hosting) wird zu Beginn von Phase 2 festgelegt.
 
@@ -102,9 +104,10 @@ Zwei gleichrangige Zielgruppen, zwei Einstiegswege:
 
 **E-Mail-Versand (Voraussetzung für Einladungen, entschieden 2026-07-15):** **Brevo** (Frankreich, EU-konform, 300 Mails/Tag gratis) für **transaktionale** Mails (Einladung, Passwort-Reset). Bewusst **nicht** HubSpot: dessen Free-Tier ist Marketing-Mail, Transaktions-Mail ist ein kostenpflichtiges Add-on, und Marketing-Tooling vermischt Zustellbarkeit und Einwilligungs-Semantik. HubSpot bleibt optional für CRM/Marketing — aber **kein Tracking-Script in die App**, das würde das aktuell nicht nötige Cookie-Banner erzwingen (es gibt nur ein technisch notwendiges Session-Cookie).
 
-### 2.5 Admin-Bereich
+### 2.5 Admin-Bereich ✅ (Kern)
 
-- [ ] Nutzer-/Rollenverwaltung, Content-Übersicht. **Detaillierter Scope in separater Rücksprache festzulegen** (offener Punkt).
+- [x] **Nutzer-/Rollenverwaltung** (`/admin`, platform-admin-gated): Rollen setzen (platform-admin/org-admin/dozent/lerner), Ban/Unban, Nutzerliste — via Better-Auth-Admin-Plugin + Access-Control ([admin-panel.md](admin-panel.md), [rollen-rechte.md](rollen-rechte.md)).
+- [ ] **Content-Übersicht** im Admin (kommt mit dem Redaktionssystem 2.6) — offen.
 
 ### 2.6 Redaktionssystem für Fachautoren (neu, 2026-07-15)
 
@@ -138,9 +141,14 @@ Zwei gleichrangige Zielgruppen, zwei Einstiegswege:
 
 > **Vollständige Spezifikation:** [interaktive-module.md](interaktive-module.md) — ~20 wiederverwendbare Modultypen, je Planet zugewiesen, jedes erzeugt ein Artefakt fürs Präsentations-Deck (roter Faden: Kompass-Unternehmen). Grundlage: die 4 Handlungsbereiche + 5 Lehrbücher (`docs/quellen/`). Der Großteil ist **Stufe A** (deterministisch, ohne KI sofort baubar); nur Freitext-Feedback/Fall-Rekontextualisierung ist **Stufe B** (KI, dieser Abschnitt).
 
-- [ ] SWOT-Matrix Baukasten: Interaktives 4-Felder-Grid mit Live-KI-Hilfe.
-- [ ] Deckungsbeitrags- & Kennzahlen-Rechner: Schritt-für-Schritt Rechenweg mit eigenen Zahlen des Kompass-Unternehmens.
-- [ ] SMART-Zielprüfer & PESTEL-Analyse: Eingabemasken zur Prüfung von Strategiefragen.
+> **Status (2026-07-21):** Der **deterministische Teil (Stufe A) ist vorgezogen und live** — Modul-Engine + Artefakt-Vertrag + Deck-Aggregation stehen. Die **KI-Veredelung (Stufe B)** bleibt an 3.1 gekoppelt.
+
+- [x] **Modul-Engine + Artefakt-Vertrag** (`module-engine.ts`): generischer Renderer, Kompass-Anbindung, Speicherung/Sync, Deck-Aggregation.
+- [x] **SWOT-Matrix-Baukasten** (`swot`, 4-Felder-Grid). *Live-KI-Qualitätshilfe = Stufe B, offen.*
+- [x] **Deckungsbeitrags-/Kennzahlen-Rechner** (`deckungsbeitrag`, `marktanteil`, `preisberechnung`) mit eigenen Kompass-Zahlen.
+- [x] **SMART-Zielprüfer** (`smart`), **Scoring/Nutzwertanalyse** (`scoring`), **Vier-Stufen-Methode** (`vier-stufen`). *PESTEL-Analyse offen.*
+- [ ] **Weitere ~21 Modultypen** (Rechner/Matrizen/Sequenzer/HB4) + Zuweisung der übrigen 33 Planeten — vollständiger Katalog in [interaktive-module.md](interaktive-module.md).
+- [ ] **Stufe B (KI):** Freitext-Feedback & Fall-Rekontextualisierung (braucht 3.1).
 
 ### 3.3 Dynamic Spaced Repetition (Phase 4)
 
@@ -152,9 +160,9 @@ Zwei gleichrangige Zielgruppen, zwei Einstiegswege:
 
 ### 4.1 Der IHK-Präsentations-Generator (USP)
 
-- [ ] Artefakt-Aggregator: Liest alle absolvierten Phase-3-Werkzeuge aus.
-- [ ] Missions-Launch UI: Generiert ein durchgängiges, formatiertes Präsentations-Deck (HTML-Slide-Show/Druck-PDF) für die mündliche IHK-Prüfung.
-- [ ] KI-Fachgespräch-Simulator: Erstellt aus den gewählten Artefakten einen individuellen Fragen-Leitfaden zur Vorbereitung auf die mündliche Prüfung.
+- [x] **Artefakt-Aggregator** (`deck.astro`): liest alle `deckReif`-Artefakte aus dem Fortschritt aus.
+- [ ] **Missions-Launch UI — Vorstufe live** (Deck-Ansicht + „Launch"-Banner in `deck.astro`); der **formatierte Export** (durchgängige HTML-Slide-Show/Druck-PDF) für die mündliche IHK-Prüfung ist noch offen.
+- [ ] KI-Fachgespräch-Simulator: Erstellt aus den gewählten Artefakten einen individuellen Fragen-Leitfaden (braucht KI-Backend 3.1).
 
 ### 4.2 3D-Visualisierung & Universum-Designer (three.js)
 
