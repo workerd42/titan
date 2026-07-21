@@ -37,10 +37,12 @@ Präsentations-Deck für die mündliche IHK-Prüfung** in der Hand.
   (~120 €/Monat inkl. KI); die Gewinnschwelle inkl. Gründer-Lebensunterhalt
   (Familie) liegt im Szenario bei **≈ 175 B2C-Abos** oder **≈ 5–6 parallel
   laufenden B2B-Kursen** (siehe Finanzen).
-- **Kapitalbedarf – wofür/wie viel:** **≈ 200.000 €** für ~24 Monate Aufbau
-  (Gründergehalt, Content-Ausbau weiterer Fachwirte, Marketing, Puffer),
-  finanziert über **Eigenmittel + Fördermittel + ggf. Beteiligung** (siehe
-  Kapitalbedarf & Finanzierung).
+- **Kapitalbedarf – wofür/wie viel:** **≈ 200.000 € Wachstumskapital** (nicht bloß
+  Runway): Content-Ausbau weiterer Fachwirte, Dev/Ops-Weiterentwicklung,
+  Marktausbau, Gründer-Lebensunterhalt — plus **substanzieller Sicherheitspuffer**
+  (Familie + wirtschaftliche/politische Unwägbarkeiten). Break-even früh über den
+  Partner-Kanal (siehe Umsatzprognose); finanziert über **Eigenmittel +
+  Fördermittel (Bayern: LfA/BayStartUP) + ggf. Beteiligung**.
 
 ---
 
@@ -301,10 +303,11 @@ Distribution zum Prüfling).
 | **KI (Anthropic Claude via n8n)** | **~100** |
 | **Summe Betrieb** | **≈ 120 €/Monat** |
 
-**Marketing/Ads (Wachstumsbudget, aus dem Kapital finanziert):**
-Social Media + Performance-Ads (Google, Meta, Bing). 💡 *Vorschlag:* Start als
-**Testbudget ~500 €/Monat**, datengetrieben skalierend auf **~1.500–2.000 €/Monat**.
-🔎 *Budget/Kanal-Mix im Durchgang festlegen.*
+**Marketing/Ads (aus dem Kapital):** Da der **B2B-Vertrieb warm über das
+Partnernetzwerk** läuft, ist der bezahlte Marketingbedarf anfangs gering — **Start
+~300–500 €/Monat** (Sichtbarkeit + B2C-Tests), gezielt skalierbar. Der Schwerpunkt
+der Mittel liegt bewusst auf **Content-Ausbau** (mehr Fachwirte = mehr verkaufbare
+Kurse), nicht auf bezahlten Ads.
 
 **Weitere variable Kosten:** Zahlungsabwicklung (z. B. Stripe ~1,5 % + 0,25 €/Tx),
 **Fachautor-Honorare** (projektbezogen je Handlungsfeld/neuem Fachwirt), höherer
@@ -318,18 +321,25 @@ treibt die Gewinnschwelle.
 
 ### Kapitalbedarf & Finanzierung
 
-**Gesamtbedarf ≈ 200.000 € für ~24 Monate Aufbau** (echte Wachstumsfinanzierung,
-nicht nur Runway). Verwendung:
+**Gesamtbedarf ≈ 200.000 € als Wachstumskapital** (nicht bloß Überlebens-Runway).
+Verwendung — konservativ als 24-Monats-Vollbetrieb *ohne* Umsatz gerechnet:
 
-| Verwendung | Betrag (Annahme) |
+| Verwendung | Betrag |
 |---|---|
-| Gründerentnahme (4.000 € × 24 Monate) | ~96.000 € |
-| Content-Ausbau (Fachautoren, weitere Fachwirte) | ~35.000 € |
-| Marketing/Ads (Reichweitenaufbau) | ~35.000 € |
-| KI-/Infrastruktur-Skalierung | ~8.000 € |
-| Gründung/Recht/Steuer (UG, Verträge, DSGVO-/AI-Act-Legal) | ~8.000 € |
-| Liquiditäts-/Risiko-Puffer | ~18.000 € |
+| Gründerentnahme (4.000 € × 24 Monate, Familie) | ~96.000 € |
+| Content-Ausbau (Fachautoren, weitere Fachwirte) | ~45.000 € |
+| Dev/Ops-Weiterentwicklung (Features, Skalierung, KI-Integration, Wartung) | ~20.000 € |
+| Marketing/Ads (reduziert — warmer B2B-Vertrieb) | ~18.000 € |
+| KI-/Infrastruktur-Betrieb & Skalierung | ~6.000 € |
+| Gründung/Recht/Steuer (UG, Verträge, DSGVO-/AI-Act-Legal) | ~7.000 € |
+| Sicherheits-/Liquiditätspuffer (Familie + Makro-Risiko) | ~8.000 € |
 | **Summe** | **≈ 200.000 €** |
+
+**Puffer-Logik (wichtig):** Kommt der (konservative) Umsatz wie prognostiziert,
+deckt er ab ~Monat 4 wachsend die laufenden Kosten → **ein erheblicher Teil der
+200 k wird gar nicht verbraucht und bleibt als echte Sicherheitsreserve** (Familie
++ wirtschaftliche/politische Unwägbarkeiten). Bleibt der Umsatz aus, finanziert die
+Summe den Vollbetrieb ~24 Monate. **So oder so ist das Vorhaben durchfinanziert.**
 
 💡 **Finanzierungsmix (inkl. Fördermittel — zu prüfen):**
 - **Eigenmittel** (UG-Stammeinlage + Eigenkapital). 📝 *Anteil eintragen.*
@@ -341,10 +351,32 @@ nicht nur Runway). Verwendung:
 - **Beteiligung** (Business Angel / stille Beteiligung) für den verbleibenden Teil.
 - 🔎 *Konkrete Programme + Konditionen selbst/mit Berater gegenprüfen — ändern sich.*
 
+### Umsatzprognose (24 Monate, konservativ)
+
+> ⚠️ **Prognose, keine Zusage** — Best-Effort-Szenario. Die Sicherheit liegt im
+> durchfinanzierten Puffer, falls es langsamer läuft.
+
+Startpunkt ist der **warme Partner-Kanal** (dessen Träger mit bis zu 4 Kursen),
+danach schrittweise weitere Träger + B2C.
+
+| Zeitraum | B2B-Kurse (800 €) | B2C-Abos (24 €) | Umsatz/Monat (ca.) |
+|---|---|---|---|
+| Monat 1–3 | 0–1 (Onboarding) | 0 | ~0–800 € |
+| Monat 4–6 | 2 | ~10 | ~1.840 € |
+| Monat 7–9 | 4 (Partner-Träger voll) | ~25 | ~3.800 € |
+| Monat 10–12 | 5 | ~40 | ~4.960 € |
+| Monat 13–18 | 7 | ~70 | ~7.280 € |
+| Monat 19–24 | 10 | ~120 | ~10.880 € |
+
+**Break-even (~4.150 €/Monat) ≈ Monat 10–11.** Danach wächst der Überschuss; jeder
+weitere Kurs/Abo hat sehr hohe Marge.
+
 ### Rentabilität
 
 - **Monatliche Deckung nötig (Betrieb + Lebensunterhalt):** ~120 € + ~4.000 €
   ≈ **~4.150 €/Monat** (Marketing/Content sind separat aus dem Kapital finanziert).
+- **Zeitliche Gewinnschwelle:** laut Umsatzprognose **≈ Monat 10–11** — danach
+  trägt sich der Betrieb selbst, der Kapitalpuffer bleibt weitgehend erhalten.
 - **Break-even-Pfade:**
   - **B2C:** ~4.150 € ÷ 24 € ≈ **≈ 175 zahlende Abos**.
   - **B2B:** ~4.150 € ÷ 800 € ≈ **≈ 5–6 parallel laufende Kurse** (von ggf. nur
