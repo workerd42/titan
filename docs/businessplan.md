@@ -33,13 +33,14 @@ Präsentations-Deck für die mündliche IHK-Prüfung** in der Hand.
   umgesetzt hat (belegt: die Plattform läuft produktiv); ergänzt um
   Fachautor:innen (Content) und Bildungsträger-Partnerschaften im Aufbau.
   📝 *Name/Lebenslauf/Qualifikationen konkretisieren.*
-- **Ab wann Gewinn:** dank **sehr schlanker Kostenbasis** (~20–40 €/Monat
-  Infrastruktur, self-hosted/EU) ist der laufende Betrieb früh kostendeckend; die
-  Gewinnschwelle inkl. Gründer-Lebensunterhalt liegt im Basis-Szenario bei
-  **≈ 90 B2C-Abos** oder **wenigen B2B-Lehrgängen** (siehe Finanzen).
-- **Fremdkapital – wofür/wie viel:** primär **Anlauf-Runway** (Lebensunterhalt in
-  der Aufbauphase) + Content + Marketing; Größenordnung **≈ 30.000 €** im
-  Basis-Szenario — *modelliert, mit deinen realen Zahlen zu finalisieren.*
+- **Ab wann Gewinn:** die laufenden Sach-/Infrastrukturkosten bleiben schlank
+  (~120 €/Monat inkl. KI); die Gewinnschwelle inkl. Gründer-Lebensunterhalt
+  (Familie) liegt im Szenario bei **≈ 175 B2C-Abos** oder **≈ 5–6 B2B-Kunden**
+  (siehe Finanzen).
+- **Kapitalbedarf – wofür/wie viel:** **≈ 200.000 €** für ~24 Monate Aufbau
+  (Gründergehalt, Content-Ausbau weiterer Fachwirte, Marketing, Puffer),
+  finanziert über **Eigenmittel + Fördermittel + ggf. Beteiligung** (siehe
+  Kapitalbedarf & Finanzierung).
 
 ---
 
@@ -222,87 +223,96 @@ regionale Gründungsförderungen ab.
 
 ## Finanzen
 
-> **Basis-Szenario (konservativ, modelliert).** Die Infrastrukturkosten sind
-> belegt-schlank; Preise und Mengen sind **realistische Annahmen**, klar
-> gekennzeichnet und mit deinen realen Zahlen zu finalisieren. Anbieterpreise „ca."
-> — vor Finalisierung gegenprüfen (Grundsatz aus [deployment.md](deployment.md)).
+> **Szenario (modelliert, mit deinen Vorgaben vom Review).** Infrastrukturkosten
+> belegt-schlank; Preise/Mengen sind realistische Annahmen. Anbieterpreise „ca."
+> — vor Finalisierung gegenprüfen. Offene Klärung markiert (🔎).
 
 ### Ertragsquellen / Umsatz — Wofür und wann fließt Geld?
 
-Zwei Erlössäulen, **Anker: Lehrgangskosten 2.000–4.000 €** → ein Tool im niedrigen
-dreistelligen Bereich ist eine leichte Zusatz-Kaufentscheidung.
+Zwei Erlössäulen, **Anker: Lehrgangskosten 2.000–4.000 €**.
 
-| Modell | Basis-Preis (Annahme) | Logik |
+| Modell | Preis | Logik |
 |---|---|---|
-| **B2C-Abo** | **24 €/Monat** *oder* **129 € Prüfungspaket** (4–6 Monate) | Selbstzahler; Geld fließt bei Abschluss/monatlich |
-| **B2B-Lizenz** | **79 €/Lernplatz je Lehrgang** (Staffel ab Menge) | Bildungsträger kauft Blöcke; planbarster Hebel |
+| **B2C-Abo** | **24 €/Monat** *oder* **129 € Prüfungspaket** (4–6 Monate) | Selbstzahler; monatlich/bei Abschluss |
+| **B2B-Lizenz** | **800 €/Monat** je Bildungsträger/Lehrgang | Organisation lizenziert; planbares Blockgeschäft |
 
-💡 *Empfehlung:* B2B priorisieren (planbares Blockgeschäft, vorhandene Distribution
-zum Prüfling). 📝 *Endgültige Preise festlegen.*
+🔎 **B2B zu klären:** 800 €/Monat **pro Organisation** (beliebig viele Lerner) oder
+**pro laufendem Lehrgang/Kohorte**? Das entscheidet die Umsatzskalierung — klären
+wir im Durchgang.
+
+💡 *Empfehlung:* B2B priorisieren (hoher, planbarer Umsatz je Abschluss; vorhandene
+Distribution zum Prüfling).
 
 ### Kosten — Wofür gibst du Geld aus?
 
-**Laufende Fixkosten heute (belegt schlank, EU/self-hosted):**
+**Laufende Betriebskosten (EU/self-hosted):**
 
 | Position | ca. €/Monat |
 |---|---|
 | VPS (IONOS VPS 4-4-120) | ~12 |
 | Off-site-Backup (Hetzner Storage Box 1 TB) | ~4 |
 | Domain | ~2 |
-| Transaktionsmail (Brevo, Free-Tier 300/Tag) | 0 |
+| Transaktionsmail (Brevo, Free-Tier → später paid) | 0 |
 | Monitoring (Free-Tier) | 0 |
-| KI (Claude via n8n, nutzungsabhängig) | 0–20 |
-| **Summe** | **≈ 20–40 €/Monat** |
+| **KI (Anthropic Claude via n8n)** | **~100** |
+| **Summe Betrieb** | **≈ 120 €/Monat** |
 
-**Skalierungskosten (mit Wachstum, variabel):** Zahlungsabwicklung (z. B. Stripe
-~1,5 % + 0,25 €/Transaktion), KI wenige Cent–€ je Fall-Generierung,
-**Fachautor-Honorare** (projektbezogen je Handlungsfeld/neuem Fachwirt),
-Marketing; höherer Server-/DB-Bedarf erst bei vielen gleichzeitigen Nutzern.
+**Marketing/Ads (Wachstumsbudget, aus dem Kapital finanziert):**
+Social Media + Performance-Ads (Google, Meta, Bing). 💡 *Vorschlag:* Start als
+**Testbudget ~500 €/Monat**, datengetrieben skalierend auf **~1.500–2.000 €/Monat**.
+🔎 *Budget/Kanal-Mix im Durchgang festlegen.*
+
+**Weitere variable Kosten:** Zahlungsabwicklung (z. B. Stripe ~1,5 % + 0,25 €/Tx),
+**Fachautor-Honorare** (projektbezogen je Handlungsfeld/neuem Fachwirt), höherer
+Server-/DB-Bedarf erst bei vielen Gleichzeitig-Nutzern.
 
 ### Privatentnahme
 
-**Annahme:** Vollzeit-Gründer, privater Bedarf **≈ 2.000 €/Monat** (netto, inkl.
-Haushalt/Kranken­versicherung/Steuerrücklage grob gerechnet). 📝 *An deine reale
-Situation anpassen* (Vorlagen-Richtwert: Haushaltsgeld ≥ 600 € + 200 € je weitere
-Person; Fahrzeug ≥ 250 €).
+**Gründer mit Familie: ≈ 4.000 €/Monat** (Lebensunterhalt inkl. Familie,
+Krankenversicherung, Steuerrücklage). Dies ist der größte laufende Posten und
+treibt die Gewinnschwelle.
 
 ### Kapitalbedarf & Finanzierung
 
-Als SaaS ist der Bedarf **nicht Sachinvestition, sondern Runway** (Zeit) + Content
-+ Marketing:
+**Gesamtbedarf ≈ 200.000 € für ~24 Monate Aufbau** (echte Wachstumsfinanzierung,
+nicht nur Runway). Verwendung:
 
-| Position | Betrag (Annahme) |
+| Verwendung | Betrag (Annahme) |
 |---|---|
-| Sachinvestition (Rechner als Sacheinlage vorhanden) | ~0 |
-| Einmalige Gründungskosten (UG: Notar/HR/Gewerbe) | ~500–1.000 € |
-| Anlauf-Runway Lebensunterhalt (~2.000 € × 12 Monate) | ~24.000 € |
-| Content-/Marketing-Puffer | ~5.000–6.000 € |
-| **Kapitalbedarf-Größenordnung** | **≈ 30.000 €** (~12 Monate Runway) |
+| Gründerentnahme (4.000 € × 24 Monate) | ~96.000 € |
+| Content-Ausbau (Fachautoren, weitere Fachwirte) | ~35.000 € |
+| Marketing/Ads (Reichweitenaufbau) | ~35.000 € |
+| KI-/Infrastruktur-Skalierung | ~8.000 € |
+| Gründung/Recht/Steuer (UG, Verträge, DSGVO-/AI-Act-Legal) | ~8.000 € |
+| Liquiditäts-/Risiko-Puffer | ~18.000 € |
+| **Summe** | **≈ 200.000 €** |
 
-💡 **Finanzierung:** Eigenmittel + ggf. **Gründungszuschuss** (Agentur für Arbeit,
-falls aus ALG I gegründet) oder **KfW-Gründerkredit/Förderdarlehen**. Hinweis:
-*Aufstiegs-BAföG* betrifft **deine Kunden** (finanziert deren Lehrgang), nicht die
-Gründung selbst. 📝 *Eigenkapital-Anteil + Quelle eintragen.*
+💡 **Finanzierungsmix (inkl. Fördermittel — zu prüfen):**
+- **Eigenmittel** (UG-Stammeinlage + Eigenkapital). 📝 *Anteil eintragen.*
+- **Fördermittel** (mit Gründungsberatung/Förderlotsen prüfen): **KfW-/ERP-Gründer­kredit
+  StartGeld** (bis 125.000 €), **Gründungszuschuss** (Agentur für Arbeit, falls aus
+  ALG I), regionale **Landes-/Digitalisierungsförderung**, ggf. **Mikromezzaninfonds**;
+  **EXIST** nur bei Hochschulanbindung.
+- **Beteiligung** (Business Angel / stille Beteiligung) für den verbleibenden Teil.
+- 🔎 *Konkrete Programme + Konditionen selbst/mit Berater gegenprüfen — ändern sich.*
 
 ### Rentabilität
 
-- **Monatliche Deckung nötig:** Fixkosten (~40 €) + Gründerentnahme (~2.000 €)
-  ≈ **~2.100 €/Monat**.
+- **Monatliche Deckung nötig (Betrieb + Lebensunterhalt):** ~120 € + ~4.000 €
+  ≈ **~4.150 €/Monat** (Marketing/Content sind separat aus dem Kapital finanziert).
 - **Break-even-Pfade:**
-  - **B2C:** ~2.100 € ÷ 24 € ≈ **≈ 90 zahlende Abos**.
-  - **B2B:** **2–3 laufende Lehrgänge** à 15–20 Plätze × 79 € decken denselben
-    Bedarf — planbarer, weil Blockgeschäft.
-- Weil die reinen **Betriebskosten winzig** sind, ist der laufende Betrieb schon
-  mit einer Handvoll Kunden cash-gedeckt; die eigentliche Schwelle ist der
-  **Gründer-Lebensunterhalt**. Das hält das Risiko niedrig und die Skalierung
-  attraktiv (hohe Marge je Zusatzkunde).
+  - **B2C:** ~4.150 € ÷ 24 € ≈ **≈ 175 zahlende Abos**.
+  - **B2B:** ~4.150 € ÷ 800 € ≈ **≈ 5–6 B2B-Kunden** (planbarer, Blockgeschäft).
+  - Realistisch **Mischung** — schon wenige B2B-Kunden decken einen Großteil.
+- Die reinen **Betriebskosten bleiben winzig** (~120 €); Haupttreiber ist der
+  Familien-Lebensunterhalt. Jeder Zusatzkunde hat eine **sehr hohe Marge**.
 
 ### Liquidität
 
-- **Hauptrisiko:** verzögerte B2B-Zahlungen (Rechnung/Zahlungsziel) treffen auf
-  laufende private Entnahme.
-- 💡 **Liquiditätsreserve ~3 Monate Bedarf (~6.000 €)** vorhalten; B2B möglichst mit
-  Vorkasse/kurzem Zahlungsziel; B2C-Abos zahlen sofort (Zahlungsdienstleister).
+- **Hauptrisiko:** verzögerte B2B-Zahlungen (Zahlungsziel) treffen auf laufende
+  private Entnahme (4.000 €/Monat).
+- 💡 **Liquiditätsreserve ~3 Monate Bedarf (~13.000–15.000 €)** vorhalten (im
+  Kapitalpuffer enthalten); B2B mit kurzem Zahlungsziel/Vorkasse, B2C zahlt sofort.
 - 📝 *Monatliche Liquiditätsvorschau mit realen Zahlen ergänzen.*
 
 ---
