@@ -28,11 +28,11 @@ Präsentations-Deck für die mündliche IHK-Prüfung** in der Hand.
   und über ein Dozenten-Cockpit den Fortschritt begleiten.
 - **Nutzen:** höhere Bestehenswahrscheinlichkeit, spürbare Zeitersparnis, und ein
   prüfungsfertiges Ergebnis statt nur „gelernt zu haben".
-- **Gründungsteam & Qualifikationen:** **komplementäres Zweier-Team** — ein
-  technischer Gründer (Konzept, Plattform, Live-Betrieb; belegt produktiv) + ein
-  **Partner mit 20 Jahren Erfahrung als Fachwirt-Dozent**, der das Branchennetzwerk
-  mitbringt und einen **eigenen Bildungsträger aufbaut** (Fachtiefe + Marktzugang).
-  📝 *Namen/Rollen (Mitgründer-Anteile?) konkretisieren.*
+- **Gründungsteam & Qualifikationen:** **Einzelgründung** durch einen technischen
+  Gründer (Konzept, Plattform, Live-Betrieb; belegt produktiv), flankiert von einem
+  **starken Kooperationspartner** — einem Fachwirt-Dozenten mit **20 Jahren
+  Erfahrung**, Branchennetzwerk und eigenem Bildungsträger im Aufbau (Fachtiefe +
+  warmer Marktzugang). 📝 *Namen ergänzen.*
 - **Ab wann Gewinn:** die laufenden Sach-/Infrastrukturkosten bleiben schlank
   (~120 €/Monat inkl. KI); die Gewinnschwelle inkl. Gründer-Lebensunterhalt
   (Familie) liegt im Szenario bei **≈ 175 B2C-Abos** oder **≈ 5–6 parallel
@@ -171,26 +171,27 @@ Fragendatenbank.
 
 ### Gründer*innen & Team
 
-**Komplementäres Zweier-Team** — die passende Aufstellung für dieses Vorhaben:
+**Einzelgründung durch den technischen Gründer — mit einem starken
+Kooperationspartner an der Seite:**
 
-- **Technischer Gründer (Produkt & Betrieb):** Softwareentwicklung &
-  Produktarchitektur (moderne Web-Plattform mit Auth, DB, Rollen/Admin, live
-  deployt), didaktische Konzeption (4-Phasen-Methodik, Artefakt-Baukasten),
-  Betrieb/DevOps (self-hosted, EU/DE).
-- **Partner — Fachwirt-Dozent (Fach & Markt):** **20 Jahre Erfahrung als Dozent
-  für Fachwirte**, tiefe fachliche Autorität und **etabliertes Branchennetzwerk**;
-  baut zudem einen **eigenen Bildungsträger** auf → direkter Marktzugang und
-  Erst-Kanal für Titan.
+- **Gründer (Produkt & Betrieb):** Softwareentwicklung & Produktarchitektur
+  (moderne Web-Plattform mit Auth, DB, Rollen/Admin, live deployt), didaktische
+  Konzeption (4-Phasen-Methodik, Artefakt-Baukasten), Betrieb/DevOps
+  (self-hosted, EU/DE). Hält die Anteile allein → **saubere Cap Table**.
+- **Kooperationspartner — Fachwirt-Dozent (Fach & Markt):** **20 Jahre Erfahrung**,
+  tiefe fachliche Autorität, **etabliertes Branchennetzwerk**, eigener
+  Bildungsträger im Aufbau. **Nicht am Kapital beteiligt** — bringt als Kooperation
+  Fachtiefe, Content-Autorität und **warmen Vertriebszugang** (erster B2B-Kanal).
 
-Diese Kombination adressiert genau die zwei kritischen Risiken einer
-Bildungs-Gründung — **Fach-/Content-Tiefe** und **Vertriebszugang** — aus dem Team
-heraus. **Motivation:** ein Lernprodukt, das die tatsächliche IHK-Prüfungsleistung
-abbildet und Lernenden echte Orientierung gibt.
+So werden die zwei kritischen Risiken einer Bildungs-Gründung —
+**Fach-/Content-Tiefe** und **Vertriebszugang** — über die Kooperation abgedeckt,
+ohne die Gründer-Anteile zu verwässern. **Motivation:** ein Lernprodukt, das die
+tatsächliche IHK-Prüfungsleistung abbildet und echte Orientierung gibt.
 
-📝 *Zu klären/ergänzen:* Namen & Lebensläufe, **formale Rolle des Partners
-(Mitgründer mit Anteilen vs. Kooperationspartner)**, geplante Fachautor:innen.
-💡 Dieser **Team-Fit (Tech × 20 Jahre Fachwirt-Praxis + Netzwerk)** ist eines
-deiner stärksten Investoren-/Förder-Argumente — prominent platzieren.
+💡 *Empfehlung:* die Kooperation **vertraglich absichern** (Rollen,
+Vergütung/Provision, ggf. Exklusivität, IP-/Content-Rechte) — für
+Investoren/Förderung ein Pluspunkt und Schutz gegen Klumpenrisiko.
+📝 *Namen & Lebensläufe ergänzen; geplante Fachautor:innen benennen.*
 
 ### Werte
 
@@ -235,12 +236,10 @@ regionale Gründungsförderungen ab.
 
 ### Rechtsform & Vorschriften
 
-- **Rechtsform:** 💡 **Empfehlung: UG (haftungsbeschränkt)** als realistischer
-  Start — geringe Stammkapital-Hürde (ab 1 €, praktisch einige Tausend € Puffer),
-  **Haftungsbegrenzung** und **Beteiligungsfähigkeit** (wichtig, sobald Investoren
-  einsteigen); später Umwandlung in eine GmbH möglich. Ein Einzelunternehmen wäre
-  nur für einen allerersten, investorenfreien Schritt sinnvoll. 📝 *Deine
-  Entscheidung eintragen.*
+- **Rechtsform:** **UG (haftungsbeschränkt)** — vom Gründer als Start bestätigt:
+  geringe Stammkapital-Hürde, **Haftungsbegrenzung** und **Beteiligungsfähigkeit**
+  (wichtig, sobald Investoren einsteigen). **Umwandlung in eine GmbH bei Wachstum**
+  vorgesehen.
 - **Besondere Vorschriften — bereits adressiert:**
   - **DSGVO:** technisch notwendiges Session-Cookie (kein Tracking → derzeit kein
     Cookie-Banner nötig), alle Datendienste EU/DE, Auftragsverarbeitung wo nötig.
@@ -261,7 +260,7 @@ regionale Gründungsförderungen ab.
 | Content-Pflege / IHK-Rahmenplan-Änderungen | Kern adaptierbar (nur Spezialisierungen je Fachwirt neu); IHK-Änderungen kommen mit **jahrelangem Vorlauf** → genug Anpassungszeit; Engine/Content-Trennung + Fachautor-Partner + Redaktionssystem (Directus geplant) |
 | Regulatorik (DSGVO/EU-AI-Act) | Compliance-by-Design ([ki-governance.md](ki-governance.md)) + juristische Bestätigung |
 | Abhängigkeit von KI-/Infra-Anbietern | EU/DE-Anbietergrundsatz, self-hosting, Austauschbarkeit der Modelle |
-| Schlüsselpersonen-/Ressourcenrisiko | 📝 *Team/Backup ergänzen* |
+| Abhängigkeit vom Kooperationspartner (Netzwerk/Fachtiefe) | Kooperation vertraglich absichern (Rollen/Vergütung/Exklusivität/IP); Fachautoren-Basis verbreitern |
 
 ---
 
