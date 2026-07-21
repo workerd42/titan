@@ -35,6 +35,8 @@
 
 > **Status (2026-07-16):** **Fundament live.** Der Stack läuft containerisiert als **Node + Postgres** auf dem VPS `prototyp-staging.norive.de`, ausgerollt von GitHub (`workerd42/titan`) via `deploy.sh`. Auth, DB und Fortschritts-Sync sind umgesetzt und in Produktion verifiziert (erste Registrierung liegt in der DB). Siehe [deployment.md](deployment.md). **Offen:** Dozenten-Cockpit (2.4), Admin (2.5), Redaktionssystem (2.6).
 >
+> **Aktualisierung (2026-07-17):** **Admin (2.5) ist LIVE** — Admin-Panel `/admin` + Rollen (platform-admin/org-admin/dozent/lerner) via Better-Auth-Admin-Plugin ([admin-panel.md](admin-panel.md)). **Echtes Login-Gate LIVE** (invite-only, Basic-Auth entfernt — [deployment.md](deployment.md)). **CMS-Entscheidung: Directus** (Payload verworfen). **Offen:** Dozenten-Cockpit (2.4), Redaktionssystem/Directus (2.6), KI-Schicht (Phase 3, **formatives Feedback ohne Note** — [ki-governance.md](ki-governance.md)).
+>
 > **Hinweis zur Architektur-Entscheidung:** Die ursprüngliche Notion-Planung sah Payload CMS v3 als Content-Backend vor. Für „Dozent sieht Fortschritt aller Schüler" reicht zunächst ein schlankeres Auth+DB+API-Fundament; der volle Payload/n8n-Stack wird erst mit Phase 3 (KI-Artefakte) relevant. Konkrete Wahl (Auth-Methode, DB, Hosting) wird zu Beginn von Phase 2 festgelegt.
 
 ### 2.0 Account- & Onboarding-Modell (festgelegt 2026-07-14)

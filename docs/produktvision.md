@@ -2,6 +2,8 @@
 
 > Quelle: [Notion — Produktvision & Konzept](https://app.notion.com/p/39895f8eb37681a98d36f6779d88af35) (Stand: 2026-07-09)
 
+> **Aktualisierung (2026-07-17):** Dieses Dokument beschreibt die **Vision**. Der real umgesetzte Stack weicht bewusst ab: **Better Auth + Drizzle + self-hosted Postgres** (Fundament **live**, Phase 2), **Directus** (statt Payload CMS) als geplantes Redaktionssystem, n8n self-hosted **EU/DE**. Das echte Login-Gate ist live (invite-only). Die KI gibt **formatives Feedback (keine Note)** — siehe [ki-governance.md](ki-governance.md). Maßgeblich für den Ist-Stand: [architektur.md](architektur.md), [roadmap.md](roadmap.md), [deployment.md](deployment.md).
+
 > **"Vom trägen Auswendiglernen zum strategischen Handeln."**
 > Ein universelles, kontextbasiertes Kompetenzsystem für IHK-Fachwirte.
 
@@ -120,6 +122,6 @@ Die Trennung von **Engine (Software)** und **Content-Packs (IHK-Daten)** garanti
 
 ### Warum diese Kombination gewinnt
 
-1. **Einmal entwickeln, N-mal ausrollen:** Ein neues Universum (z.B. Wirtschaftsfachwirt) wird nur in Payload CMS angelegt — UI-, Animation- und KI-Logik bleiben unberührt.
+1. **Einmal entwickeln, N-mal ausrollen:** Ein neues Universum (z.B. Wirtschaftsfachwirt) wird nur im Content/Redaktionssystem (geplant: **Directus**) angelegt — UI-, Animation- und KI-Logik bleiben unberührt.
 2. **PostgreSQL für Skalierung:** Erfasst riesige Datenmengen an User-Eingaben, Spaced-Repetition-Logs und generierten Artefakten.
 3. **Low-Latency KI-Workflows:** n8n puffert Prompts ab, damit Claude-Anfragen das Frontend nicht blockieren.
