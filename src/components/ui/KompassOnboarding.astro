@@ -185,8 +185,11 @@
   }
 
   /* ── PANEL ──────────────────────────────────── */
+  /* Fix dunkel (NICHT var(--bg-alt)) — der Onboarding-Dialog ist immer ein
+     dunkler Modal. Auf hell-thematischen Seiten (Kapitel/Planet) würde das Token
+     hell und der helle Text unsichtbar (a11y-Bug, gefunden im Härtetest). */
   .onboarding-panel {
-    background: var(--bg-alt, #1C1917);
+    background: #1C1917;
     border: 1px solid rgba(196,168,130,0.15);
     width: 100%;
     max-width: 540px;
@@ -232,7 +235,7 @@
     font-size: 10px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--accent, #C4A882);
+    color: #C4A882; /* fix hell/gold — im dunklen Modal; var(--accent) würde auf hellen Seiten dunkel */
     margin-bottom: var(--sp-sm);
     max-width: none;
   }
