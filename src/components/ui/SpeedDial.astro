@@ -19,9 +19,10 @@ interface Props {
   /** „Aa" Lesen & Barrierefreiheit — nur auf Lernseiten (öffnet #lese-modal). */
   showLese?: boolean;
   /**
-   * Hell/Dunkel-Umschalter — nur im Lernbereich sinnvoll. Auf den ersten drei
-   * Seiten (Universum/Galaxie/Planeten) ist der Kosmos bewusst immer dunkel
-   * (`.space-shell[data-theme="dark"]`), dort ergibt der Umschalter keinen Sinn.
+   * Hell/Dunkel-Umschalter — nur im Lernbereich sinnvoll. Die ersten drei Seiten
+   * (Universum/Galaxie/Planeten) haben eine feste, hell gehaltene Karussell-
+   * Ästhetik (`.carousel-stage` mit fixem Hintergrund), die auf den Theme-Wechsel
+   * bewusst nicht reagiert — dort ergäbe der Umschalter keine sichtbare Wirkung.
    */
   showTheme?: boolean;
 }
