@@ -10,7 +10,7 @@
 | Rolle | Kurz | Admin-Panel |
 |---|---|---|
 | **anonym** (nicht eingeloggt) | kein Zugriff auf Inhalte | – |
-| **lerner** (Default) | lernt, baut sein Kompass-Unternehmen, erzeugt Artefakte | – |
+| **lerner** (Default) | lernt, baut seine Star-Company, erzeugt Artefakte | – |
 | **dozent** | wie lerner + Fortschritts-Einsicht zugeordneter Lerner (Cockpit) | – |
 | **org-admin** | verwaltet Lerner der eigenen Organisation/eines Trägers | – |
 | **platform-admin** | Betreiber; plattformweite Nutzer-/Rollenverwaltung | ✅ ja (einzige) |
@@ -21,7 +21,7 @@
 |---|:--:|:--:|:--:|:--:|:--:|
 | `/konto` (Login) | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Lerninhalte ansehen (Kapitel, Module, Deck) | ❌→Login | ✅ | ✅ | ✅ | ✅ |
-| Eigenes Kompass-Unternehmen anlegen/bearbeiten | ❌ | ✅ | ✅ | ✅ | ✅ |
+| Eigenes Star-Company anlegen/bearbeiten | ❌ | ✅ | ✅ | ✅ | ✅ |
 | Werkzeuge nutzen → Artefakte/Deck erzeugen | ❌ | ✅ | ✅ | ✅ | ✅ |
 | Eigener Fortschritt speichern/synchronisieren | ❌ | ✅ | ✅ | ✅ | ✅ |
 | Fortschritt **zugeordneter Lerner** einsehen (Cockpit) 🔜 | ❌ | ❌ | ✅ | ✅ | ✅ |

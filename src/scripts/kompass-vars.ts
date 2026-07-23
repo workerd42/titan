@@ -1,6 +1,12 @@
 /**
  * KOMPASS-VARIABLEN — „Kompass überall" (Stufe 1: Ersetzung, kostenlos/offline).
  *
+ * NAMING: Nutzer-sichtbar heißt dieses Konzept **„Star-Company"** (Wording seit
+ * 2026-07-23). Intern bleibt alles bei `kompass` — Key `norive-kompass-v1`,
+ * DB-Tabelle `kompass_profile`, dieses Modul, Event `norive:kompass-updated` —
+ * bewusst stabil gehalten (Datenkompatibilität für Live-Nutzer). Nur Anzeigetexte
+ * wurden umbenannt.
+ *
  * Liest das Kompass-Unternehmen aus „Mein Bereich" (`norive-kompass-v1`) und
  * stellt Platzhalter bereit, die in Inhalten (Fallbeispiele, Aufgaben, Modul-
  * Texte, später Übungen/Tests) beim Rendern ersetzt werden:
@@ -40,7 +46,7 @@ export function hasKompass(): boolean {
 
 /** Der Anzeigename des Kompass-Unternehmens (mit neutralem Fallback). */
 export function firmaName(): string {
-  return readKompass()?.name || 'dein Kompass-Unternehmen';
+  return readKompass()?.name || 'deine Star-Company';
 }
 
 /** Platzhalter-Katalog aus dem Kompass-Unternehmen (mit sinnvollen Fallbacks). */

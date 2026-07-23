@@ -18,8 +18,14 @@ interface Props {
   showPersonal?: boolean;
   /** „Aa" Lesen & Barrierefreiheit — nur auf Lernseiten (öffnet #lese-modal). */
   showLese?: boolean;
+  /**
+   * Hell/Dunkel-Umschalter — nur im Lernbereich sinnvoll. Auf den ersten drei
+   * Seiten (Universum/Galaxie/Planeten) ist der Kosmos bewusst immer dunkel
+   * (`.space-shell[data-theme="dark"]`), dort ergibt der Umschalter keinen Sinn.
+   */
+  showTheme?: boolean;
 }
-const { showKonzept = true, showPersonal = true, showLese = false } = Astro.props;
+const { showKonzept = true, showPersonal = true, showLese = false, showTheme = false } = Astro.props;
 ---
 
 <div class="speed-dial" id="speed-dial" data-open="false">
@@ -63,16 +69,18 @@ const { showKonzept = true, showPersonal = true, showLese = false } = Astro.prop
     </button>
   )}
 
-  <button
-    class="sd-action"
-    id="theme-toggle"
-    type="button"
-    aria-label="Dunkelmodus umschalten"
-    aria-pressed="false"
-  >
-    <span class="sd-tooltip" aria-hidden="true">Hell / Dunkel</span>
-    <span class="sd-icon" aria-hidden="true">◐</span>
-  </button>
+  {showTheme && (
+    <button
+      class="sd-action"
+      id="theme-toggle"
+      type="button"
+      aria-label="Dunkelmodus umschalten"
+      aria-pressed="false"
+    >
+      <span class="sd-tooltip" aria-hidden="true">Hell / Dunkel</span>
+      <span class="sd-icon" aria-hidden="true">◐</span>
+    </button>
+  )}
 
   <button
     class="sd-fab"

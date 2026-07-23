@@ -104,12 +104,12 @@ Abo-Abschlüsse, **Retention/Streak**, Churn.
  Aufmerksamkeit        Interesse            Entscheidung          Bindung
  ─────────────         ─────────            ────────────          ───────
  SEO/Social/Ads   →    Landingpage +   →    Paywall/Registr. →    Aktivierung
- (B2C)                 Lead-Magnet           (Login-Gate live)     (Kompass anlegen)
+ (B2C)                 Lead-Magnet           (Login-Gate live)     (Star-Company anlegen)
  Partner-Netzwerk →    Demo/One-Pager  →    Kurs-Lizenz      →    Fortschritt/Deck
  (B2B)                                       (800 €/Monat)         (Streak, Referenz)
 ```
 
-**Aktivierungs-Schlüssel:** das **Kompass-Unternehmen anlegen** = erster
+**Aktivierungs-Schlüssel:** das **Star-Company anlegen** = erster
 „Aha"-Moment; **Retention** über sichtbaren Fortschritt (Progress, Streak) und das
 wachsende **Präsentations-Deck**.
 

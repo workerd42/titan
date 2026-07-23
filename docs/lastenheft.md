@@ -12,8 +12,8 @@
 
 Titan ist eine webbasierte Lernplattform, die angehende **IHK-Fachwirte** von der
 Theorie bis zur **prüfungsfertigen Präsentation** begleitet. Kern ist das Lernen
-durch Anwenden am eigenen fiktiven „Kompass"-Unternehmen (roter Faden:
-Kompass → Artefakte → IHK-Präsentation).
+durch Anwenden am eigenen fiktiven „Star-Company" (roter Faden:
+Star-Company → Artefakte → IHK-Präsentation).
 
 **Musskriterien (Kern):** geschützter Zugang mit Rollen; geführte Lernkapitel
 (4 Phasen); interaktive Werkzeuge, die Artefakte erzeugen; Sammlung der Artefakte
@@ -28,7 +28,7 @@ Terminverwaltung/Abrechnung von Lehrgängen; kein Ersatz für die IHK-Prüfung s
 
 ## 2. Zielgruppen & Rollen
 
-- **Lerner** (`lerner`) — Prüfling; nutzt Lerninhalte, Kompass, Deck. ✅
+- **Lerner** (`lerner`) — Prüfling; nutzt Lerninhalte, Star-Company, Deck. ✅
 - **Dozent** (`dozent`) — begleitet zugeordnete Lerner; Fortschritts-Einsicht. ◐ (Rolle vorhanden, Cockpit 🔜)
 - **Org-Admin** (`org-admin`) — verwaltet Lerner einer Organisation/eines Trägers. ◐ (Rolle vorhanden, Org-Funktionen 🔜)
 - **Plattform-Admin** (`platform-admin`) — Betreiber; volle Nutzer-/Rollenverwaltung. ✅
@@ -73,12 +73,12 @@ Terminverwaltung/Abrechnung von Lehrgängen; kein Ersatz für die IHK-Prüfung s
 - **/LF027/** Position im Karussell/Kapitel wird über Navigation hinweg
   wiederhergestellt. ✅
 
-### 4.3 Kompass-Unternehmen
+### 4.3 Star-Company
 - **/LF030/** Der Lerner konfiguriert einmalig sein fiktives Unternehmen
   (Name, Branche, Rechtsform, Größe …). ✅
-- **/LF031/** Kompass-Daten werden überall per Ersatzvariablen (`{{platzhalter}}`)
+- **/LF031/** Star-Company-Daten werden überall per Ersatzvariablen (`{{platzhalter}}`)
   eingesetzt (offline, ohne KI). ✅
-- **/LF032/** Kompass ist jederzeit über „Mein Bereich" einseh-/bearbeitbar. ✅
+- **/LF032/** Star-Company ist jederzeit über „Mein Bereich" einseh-/bearbeitbar. ✅
 
 ### 4.4 Interaktive Werkzeuge & Artefakte
 - **/LF040/** Werkzeuge in Phase „Anwenden" (SWOT, Deckungsbeitrag,
@@ -86,7 +86,7 @@ Terminverwaltung/Abrechnung von Lehrgängen; kein Ersatz für die IHK-Prüfung s
   weiterer Katalog 🔜)
 - **/LF041/** Jedes abgeschlossene Werkzeug erzeugt ein **Artefakt** (Folie) für
   das Präsentations-Deck. ✅
-- **/LF042/** Werkzeuge arbeiten mit den Kompass-Daten (personalisiert). ✅
+- **/LF042/** Werkzeuge arbeiten mit den Star-Company-Daten (personalisiert). ✅
 
 ### 4.5 Präsentations-Deck
 - **/LF050/** Alle erzeugten Artefakte werden zu einem **IHK-Präsentations-Deck**
@@ -95,7 +95,7 @@ Terminverwaltung/Abrechnung von Lehrgängen; kein Ersatz für die IHK-Prüfung s
 - **/LF052/** Leitfaden fürs Fachgespräch (KI-gestützt). 🔜
 
 ### 4.6 Fortschritt & Synchronisation
-- **/LF060/** Fortschritt & Kompass werden **lokal** gespeichert (Local-First,
+- **/LF060/** Fortschritt & Star-Company werden **lokal** gespeichert (Local-First,
   offline nutzbar). ✅
 - **/LF061/** Bei aktivem Konto Synchronisation auf den Server, geräteübergreifend
   (Merge-Regel: erledigt, wenn lokal ODER server erledigt). ✅
@@ -124,7 +124,7 @@ Terminverwaltung/Abrechnung von Lehrgängen; kein Ersatz für die IHK-Prüfung s
   (Halluzinations-Vermeidung); keine personenbezogenen Daten. 🔜
 - **/LF092/** KI-generierte Inhalte werden **als solche gekennzeichnet** und sind
   auf den Master rückführbar (Transparenz Art. 50). 🔜
-- **/LF093/** Grammatik-/Kontext-Puffer: Kompass-Daten einmalig zu einem
+- **/LF093/** Grammatik-/Kontext-Puffer: Star-Company-Daten einmalig zu einem
   deklinierten Kontext-JSON verarbeiten. 🔜
 
 ### 4.10 Redaktion / Content

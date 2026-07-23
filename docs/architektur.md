@@ -6,7 +6,7 @@
 
 Das System nutzt einen **Local-First & Offline-Capable Hybrid-Ansatz**:
 
-1. **Frontend (GitHub Pages / Ionos Edge):** Statisch gerendertes, blitzschnelles Astro-Bundle. Speichert Fortschritt und Kompass-Daten primär im `localStorage` für 0ms Latenz.
+1. **Frontend (GitHub Pages / Ionos Edge):** Statisch gerendertes, blitzschnelles Astro-Bundle. Speichert Fortschritt und Star-Company-Daten primär im `localStorage` für 0ms Latenz.
 2. **Backend Engine (Ionos Docker Server):** Verarbeitet komplexe KI-Evaluierungen (Phase 3), steuert n8n-Workflows und synchronisiert den Datenstand persistiert in PostgreSQL.
 
 ```
@@ -94,7 +94,7 @@ interface NoriveProgressV2 {
   lernStreakTage: number;
 }
 
-// 2. Das Kompass-Unternehmen ('norive-kompass-v1')
+// 2. Das Star-Company ('norive-kompass-v1')
 interface KompassUnternehmen {
   name: string;
   branche: 'handel' | 'industrie' | 'dienstleistung' | 'handwerk' | 'sonstiges';
@@ -191,7 +191,7 @@ export function initCarousel(opts: {
          │
          ├──► Phase 2 (Merken)    ──► Holt Merksatz aus Content Collection (#C4A882)
          │
-         ├──► Phase 3 (Anwenden)  ──► User befüllt Textarea mit Kompass-Kontext (#5A8A6A)
+         ├──► Phase 3 (Anwenden)  ──► User befüllt Textarea mit Star-Company-Kontext (#5A8A6A)
          │                                 │
          │                                 ▼
          │                        [n8n Webhook Call] ──► Anthropic API (Claude)
@@ -226,7 +226,7 @@ Ergänzt das bisher rein lokale (localStorage-)System um Accounts und serverseit
 | `src/lib/db/schema.ts` · `src/lib/db/index.ts` | Drizzle-Schema · Pool/Client (`astro:env/server`) |
 | `src/lib/progress-merge.ts` | **Union-Merge** (reine Funktionen, server- und clientseitig nutzbar) |
 | `src/pages/api/auth/[...all].ts` | Better-Auth-Handler |
-| `src/pages/api/progress.ts` | GET/PUT Fortschritt+Kompass, session-geschützt (401 ohne Login) |
+| `src/pages/api/progress.ts` | GET/PUT Fortschritt+Star-Company, session-geschützt (401 ohne Login) |
 | `src/middleware.ts` | Session → `Astro.locals.user/session`; `isPrerendered`-Guard + dynamischer Import (kein DB-Zugriff beim Bauen) |
 | `src/scripts/norive-sync.ts` | Local-First-Brücke (no-op ohne Login) |
 | `src/pages/konto.astro` | Login/Registrierung |
@@ -238,7 +238,7 @@ Ergänzt das bisher rein lokale (localStorage-)System um Accounts und serverseit
 2. **Beim Login:** lokaler Stand wird an `/api/progress` gepusht, der Server merged **autoritativ** und gibt das Ergebnis zurück (→ localStorage).
 3. **Union-Regel:** Eine Phase gilt als erledigt, wenn sie lokal **oder** serverseitig erledigt ist; Streak = max; späteres Lerndatum gewinnt. **Kein „last write wins"** — ein Gerät mit leerem Stand kann keinen Fortschritt löschen (verifiziert).
 
-**Event-Semantik (wichtig beim Erweitern):** `norive:kompass-updated` = *der Nutzer* hat den Kompass bearbeitet (öffnet „Mein Bereich"). `norive:synced` = Daten kamen vom Server (nur neu rendern, Panel **nicht** aufklappen). Diese Trennung verhindert, dass das Panel bei jedem Login aufspringt — und eine Push-Schleife.
+**Event-Semantik (wichtig beim Erweitern):** `norive:kompass-updated` = *der Nutzer* hat den Star-Company bearbeitet (öffnet „Mein Bereich"). `norive:synced` = Daten kamen vom Server (nur neu rendern, Panel **nicht** aufklappen). Diese Trennung verhindert, dass das Panel bei jedem Login aufspringt — und eine Push-Schleife.
 
 **Sicherheit:** Passwort-Hashing/Sessions/CSRF ausschließlich über Better Auth (nichts selbst gebaut); Cookies `httpOnly` + `SameSite=Lax`; Sessions serverseitig geprüft; Postgres ohne Host-Port (nur Docker-Netz); Secrets nur zur Laufzeit aus der Env (`astro:env/server`), nie im Bundle.
 

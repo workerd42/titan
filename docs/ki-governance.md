@@ -18,7 +18,7 @@
 
 **Zum jetzigen Zeitpunkt ist KEINE KI produktiv im Einsatz.** Die Lernplattform
 arbeitet mit vom Menschen erstellten Inhalten und – für die Personalisierung auf
-das „Kompass"-Unternehmen – mit **rein lokaler, offline arbeitender
+das „Star-Company" – mit **rein lokaler, offline arbeitender
 Textersetzung** (`{{platzhalter}}`, siehe [architektur.md](./architektur.md)),
 also ohne jedes KI-Modell.
 

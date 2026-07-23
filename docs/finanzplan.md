@@ -20,7 +20,7 @@
 
 | KI-Aktion | Wann | Modell | Input Tok | Output Tok | Kosten/Aufruf |
 |---|---|---|---|---|---|
-| **Kompass-Kontext-JSON** (Deklination) | 1× je Nutzer | Sonnet 5 | ~500 | ~300 | **~0,006 €** |
+| **Star-Company-Kontext-JSON** (Deklination) | 1× je Nutzer | Sonnet 5 | ~500 | ~300 | **~0,006 €** |
 | **Fallaufgaben-Variante** erzeugen | je Generierung | Sonnet 5 | ~1.500 | ~800 | **~0,017 €** |
 | **Formatives Feedback** (Freitext-Lösung) | je Antwort | Sonnet 5 | ~2.000 | ~500 | **~0,014 €** |
 
@@ -49,7 +49,7 @@ die Marge geschützt:
 
 - **B2C** (24 €/Monat) − ~1–2,50 € KI = **>90 % Marge** bleibt.
 - **B2B** (800 €/Kurs ÷ ~12 = ~65 €/Platz) − ~1–2,50 € KI = ebenfalls unkritisch.
-- Günstigeres Modell (Haiku 4.5) für einfache Aktionen (Kompass-JSON, simple
+- Günstigeres Modell (Haiku 4.5) für einfache Aktionen (Star-Company-JSON, simple
   Varianten) senkt die Kosten weiter; Sonnet 5 nur wo Qualität nötig ist
   (Feedback), Opus 4.8 nur für Sonderfälle.
 

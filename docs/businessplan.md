@@ -14,7 +14,7 @@
 Titan ist ein interaktives Kompetenz-Cockpit für die Prüfungsvorbereitung
 geprüfter **IHK-Fachwirte** (Start: Fachwirt Marketing). Statt Auswendiglernen
 erarbeiten Lernende echte Marketing-Artefakte (SWOT, Deckungsbeitrag,
-Marketing-Mix …) an **ihrem eigenen fiktiven Übungsunternehmen** („Kompass") und
+Marketing-Mix …) an **ihrem eigenen fiktiven Übungsunternehmen** („Star-Company") und
 halten am Ende ein **druckfähiges Präsentations-Deck für die mündliche IHK-Prüfung**
 in der Hand.
 
@@ -62,7 +62,7 @@ Nutzwertanalyse), **Übungsbereich**, **IHK-Testformat** und **Lernzettel**
   **eigene (fiktive) Unternehmen** strategisch und wendet alle Werkzeuge
   durchgängig darauf an. Das erzeugt ein **neuartiges, interaktives Lernerlebnis**
   mit echter Orientierung — und mündet nebenbei in ein **fertiges
-  IHK-Präsentations-Deck** (Kompass → Artefakte → Präsentation). Kein Skript und
+  IHK-Präsentations-Deck** (Star-Company → Artefakte → Präsentation). Kein Skript und
   keine Karteikarten-App leistet beides.
 
 - **Start-Fokus:** vier Fachwirt-Kurse (Fachwirt Marketing ist als erstes live).
@@ -74,7 +74,7 @@ Nutzwertanalyse), **Übungsbereich**, **IHK-Testformat** und **Lernzettel**
 ### Nutzen — Warum begeistert dein Angebot die Kunden?
 
 - **Orientierung & Konsistenz:** ein durchgängiger strategischer Bezugsrahmen (das
-  eigene Kompass-Unternehmen) statt uneinheitlicher Dozenten-Beispiele — genau die
+  eigene Star-Company) statt uneinheitlicher Dozenten-Beispiele — genau die
   Orientierung, die im klassischen Lehrgang fehlt.
 - **Abgenommene Aufgabe:** die Prüfungspräsentation entsteht **als Nebenprodukt des
   Lernens**.
@@ -152,7 +152,7 @@ Bundesamt — vor Investorengespräch mit Aktualjahr bestätigen.)*
 |---|---|---|
 | **Fachwirt Hero** | Lern-App (Wirtschaftsfachwirt), 20.000+ Fragen, Spaced-Repetition, Schwächenanalyse | Starker **Fragen-Drill**, aber reines Abfragen — keine Strategie-Anwendung, kein Artefakt/Präsentation, keine Orientierung am eigenen Unternehmen |
 | **QuizAcademy** | Quiz-/Karteikarten-Plattform, adaptiv, viele Fachwirt-Richtungen | Breit, aber **generische Quiz-Mechanik**; kein durchgehender roter Faden, kein prüfungsfertiges Ergebnis |
-| **Wirtschaftsfachwirt Pro** | Spezialisierte WFW-Prüfungs-App (Quiz/Kurs) | Enger Abfrage-Fokus; keine interaktive Fallbearbeitung am eigenen Kompass-Unternehmen |
+| **Wirtschaftsfachwirt Pro** | Spezialisierte WFW-Prüfungs-App (Quiz/Kurs) | Enger Abfrage-Fokus; keine interaktive Fallbearbeitung an der eigenen Star-Company |
 | **IHK-App(s)** | Offizielle Prüfungs-/Lern-Apps der IHKs | Amtlich, aber funktional/UX-basisch; kein strategisches Kompetenz-Cockpit |
 
 **Kern-Differenzierung:** Alle Wettbewerber sind **Abfrage-/Drill-Werkzeuge**
@@ -257,7 +257,7 @@ Matching) — im Finanzteil berücksichtigt.
 | Zielkunden ohne erwarteten Bedarf / geringe Zahlungsbereitschaft | Pilot als Marktvalidierung vor großem Invest; Preis am Lehrgangs-Budget ankern |
 | Stärkerer Wettbewerb als erwartet | Verteidigung über Content-Tiefe + einzigartigen Präsentations-Wedge + UX |
 | Content-Pflege / IHK-Rahmenplan-Änderungen | Kern adaptierbar (nur Spezialisierungen je Fachwirt neu); IHK-Änderungen kommen mit **jahrelangem Vorlauf** → genug Anpassungszeit; Engine/Content-Trennung + Fachautor-Partner + Redaktionssystem (Directus geplant) |
-| IHK-Konformität: uniforme Präsentationen könnten den Prüfungsausschüssen auffallen | **Struktureller Schutz vor Uniformität:** jede:r Lerner:in arbeitet am **eigenen fiktiven Kompass-Unternehmen** (andere Branche/Name/Zahlen) + KI erzeugt **hohe Varianz** in Fallstellungen → individuelle Ergebnisse statt Schablone. Das **formative Feedback fördert eigenes Denken** (kein Copy-Paste). Titan **verhindert** Plagiate, statt sie zu erzeugen — ein Verkaufsargument gegenüber IHK/Trägern. |
+| IHK-Konformität: uniforme Präsentationen könnten den Prüfungsausschüssen auffallen | **Struktureller Schutz vor Uniformität:** jede:r Lerner:in arbeitet am **eigenen fiktiven Star-Company** (andere Branche/Name/Zahlen) + KI erzeugt **hohe Varianz** in Fallstellungen → individuelle Ergebnisse statt Schablone. Das **formative Feedback fördert eigenes Denken** (kein Copy-Paste). Titan **verhindert** Plagiate, statt sie zu erzeugen — ein Verkaufsargument gegenüber IHK/Trägern. |
 | Regulatorik (DSGVO/EU-AI-Act) | Compliance-by-Design ([ki-governance.md](ki-governance.md)) + juristische Bestätigung |
 | Abhängigkeit von KI-/Infra-Anbietern | EU/DE-Anbietergrundsatz, self-hosting, Austauschbarkeit der Modelle |
 | Abhängigkeit vom Kooperationspartner (Netzwerk/Fachtiefe) | Kooperation vertraglich absichern (Rollen/Vergütung/Exklusivität/IP); Fachautoren-Basis verbreitern |

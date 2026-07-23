@@ -14,7 +14,7 @@ TITAN ist kein trockenes Learning-Management-System (LMS), sondern ein **interak
 Lerner konsumieren nicht nur Wissen, sondern erarbeiten Schritt für Schritt ihren eigenen **digitalen Zwilling für den beruflichen Erfolg**:
 
 - **Keine Bremsen:** Modernes Sci-Fi-/Minimal-Tech-Dashboard (Dark Mode, 60-FPS-Transitionen mit Astro & GSAP).
-- **Inverted Learning:** Die Theorie dient rein als Vorbereitung, um **Artefakte** (SWOT, Nutzwertanalyse, Deckungsbeiträge) für das eigene **Kompass-Unternehmen** freizuschalten.
+- **Inverted Learning:** Die Theorie dient rein als Vorbereitung, um **Artefakte** (SWOT, Nutzwertanalyse, Deckungsbeiträge) für das eigene **Star-Company** freizuschalten.
 - **Dualer Nutzen:** Nach dem Meistern aller Galaxien steht nicht nur ein grünes Häkchen auf dem Bildschirm, sondern ein **fertiges, druckfähiges Präsentations-Deck für die mündliche IHK-Prüfung** bereit.
 
 ## 2. Die UI/UX-Architektur: Das Galaxien-System
@@ -41,7 +41,7 @@ Lerner konsumieren nicht nur Wissen, sondern erarbeiten Schritt für Schritt ihr
 - **Planeten (Seite 3):** vertikales Karussell — ausgewählter Planet größer mittig, Nachbarn oben/unten weich auslaufend, Info-Panel rechts.
 - **Suche:** Volltext-Command-Palette (Lupe oben rechts) über alle drei Ebenen inkl. Themen-Volltext.
 - **Mobile:** Karussell bleibt auf Seite 1+2 aktiv (Swipe); Seite 3 nutzt eine statische, barrierefreie Themen-Liste.
-- **Persistente Panels (Konzept / Mein Bereich):** rechts angedockt, jederzeit aufklappbar; das Kompass-Unternehmen bleibt zugänglich.
+- **Persistente Panels (Konzept / Mein Bereich):** rechts angedockt, jederzeit aufklappbar; die Star-Company bleibt zugänglich.
 
 ## 3. Die synthetisierte 4-Phasen-Kompetenzreise
 
@@ -58,7 +58,7 @@ Jeder Planet (Kapitel) folgt exakt derselben 4-Phasen-Methodik, verbindet jedoch
 
 ◆ Phase 3: ANWENDEN   [#5A8A6A - Grün]  <-- DIE CORE-ENGINE!
 ├── AI-Szenario-Generator (Anthropic Claude via n8n Middleware).
-├── Generiert ein maßgeschneidertes Fallbeispiel für dein Kompass-Unternehmen.
+├── Generiert ein maßgeschneidertes Fallbeispiel für deine Star-Company.
 └── Interaktiver Baukasten (Guided Writing): Du wendest das Werkzeug (z.B. SWOT) an.
     → RESULTAT: Generiert ein "Artefakt" (Folie) für dein Präsentations-Deck!
 
@@ -68,9 +68,9 @@ Jeder Planet (Kapitel) folgt exakt derselben 4-Phasen-Methodik, verbindet jedoch
     dynamisch an dein eingetragenes IHK-Prüfungsdatum an.
 ```
 
-## 4. Das Kompass-System & Artefakt-Baukasten
+## 4. Das Star-Company-System & Artefakt-Baukasten
 
-Beim ersten Betreten des Universums konfiguriert der Nutzer das Kompass-Unternehmen.
+Beim ersten Betreten des Universums konfiguriert der Nutzer die Star-Company.
 
 ### Der KI-Kontext-Puffer
 

@@ -51,13 +51,13 @@
 
 Zwei gleichrangige Zielgruppen, zwei Einstiegswege:
 
-- **B2C — Einzellerner:** Marketing-/Landingpage → Paywall → Registrierung (Email/Passwort) → lernen, eigener Fortschritts-Sync. (Optional fiktives Kompass-Übungsunternehmen anlegen.)
+- **B2C — Einzellerner:** Marketing-/Landingpage → Paywall → Registrierung (Email/Passwort) → lernen, eigener Fortschritts-Sync. (Optional fiktives Star-Company anlegen.)
 - **B2B — Bildungsträger/Unternehmen:** Landingpage → **Organisation** registriert sich (Registrierender = Org-Admin, ggf. zugleich Dozent) → Admin legt Lerner an / lädt sie per Email ein → Lerner sind der Organisation zugeordnet → **Dozent sieht deren Fortschritt im Cockpit** → später Abrechnung pro Platz.
 
 **Rollen:** Plattform-Admin (Betreiber) · Org-Admin · Dozent · Lerner. (Org-Admin und Dozent können dieselbe Person sein.)
 
 **Begriffs-Trennung (wichtig, nicht vermischen):**
-- **Kompass-Unternehmen** = *fiktives Übungsunternehmen des Lerners* (für Fallbeispiele, existiert bereits im Frontend, `norive-kompass-v1`).
+- **Star-Company** = *fiktives Übungsunternehmen des Lerners* (für Fallbeispiele, existiert bereits im Frontend, `norive-kompass-v1`).
 - **Organisation / Bildungsträger** = *echter zahlender Kunde*, der Zugänge kauft und Lerner provisioniert. Im Code konsequent „Organisation".
 
 **Technik:** Better Auth **Organization-Plugin** (Organisationen + Rollen + Einladungen fertig) deckt den B2B-Weg ab. Das Dozenten-Cockpit ist die Org-/Dozent-Sicht auf den Fortschritt.
@@ -139,13 +139,13 @@ Zwei gleichrangige Zielgruppen, zwei Einstiegswege:
 
 ### 3.2 Interaktive IHK-Werkzeuge (Phase 3 Modules)
 
-> **Vollständige Spezifikation:** [interaktive-module.md](interaktive-module.md) — ~20 wiederverwendbare Modultypen, je Planet zugewiesen, jedes erzeugt ein Artefakt fürs Präsentations-Deck (roter Faden: Kompass-Unternehmen). Grundlage: die 4 Handlungsbereiche + 5 Lehrbücher (`docs/quellen/`). Der Großteil ist **Stufe A** (deterministisch, ohne KI sofort baubar); nur Freitext-Feedback/Fall-Rekontextualisierung ist **Stufe B** (KI, dieser Abschnitt).
+> **Vollständige Spezifikation:** [interaktive-module.md](interaktive-module.md) — ~20 wiederverwendbare Modultypen, je Planet zugewiesen, jedes erzeugt ein Artefakt fürs Präsentations-Deck (roter Faden: Star-Company). Grundlage: die 4 Handlungsbereiche + 5 Lehrbücher (`docs/quellen/`). Der Großteil ist **Stufe A** (deterministisch, ohne KI sofort baubar); nur Freitext-Feedback/Fall-Rekontextualisierung ist **Stufe B** (KI, dieser Abschnitt).
 
 > **Status (2026-07-21):** Der **deterministische Teil (Stufe A) ist vorgezogen und live** — Modul-Engine + Artefakt-Vertrag + Deck-Aggregation stehen. Die **KI-Veredelung (Stufe B)** bleibt an 3.1 gekoppelt.
 
-- [x] **Modul-Engine + Artefakt-Vertrag** (`module-engine.ts`): generischer Renderer, Kompass-Anbindung, Speicherung/Sync, Deck-Aggregation.
+- [x] **Modul-Engine + Artefakt-Vertrag** (`module-engine.ts`): generischer Renderer, Star-Company-Anbindung, Speicherung/Sync, Deck-Aggregation.
 - [x] **SWOT-Matrix-Baukasten** (`swot`, 4-Felder-Grid). *Live-KI-Qualitätshilfe = Stufe B, offen.*
-- [x] **Deckungsbeitrags-/Kennzahlen-Rechner** (`deckungsbeitrag`, `marktanteil`, `preisberechnung`) mit eigenen Kompass-Zahlen.
+- [x] **Deckungsbeitrags-/Kennzahlen-Rechner** (`deckungsbeitrag`, `marktanteil`, `preisberechnung`) mit eigenen Star-Company-Zahlen.
 - [x] **SMART-Zielprüfer** (`smart`), **Scoring/Nutzwertanalyse** (`scoring`), **Vier-Stufen-Methode** (`vier-stufen`). *PESTEL-Analyse offen.*
 - [ ] **Weitere ~21 Modultypen** (Rechner/Matrizen/Sequenzer/HB4) + Zuweisung der übrigen 33 Planeten — vollständiger Katalog in [interaktive-module.md](interaktive-module.md).
 - [ ] **Stufe B (KI):** Freitext-Feedback & Fall-Rekontextualisierung (braucht 3.1).

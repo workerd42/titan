@@ -22,7 +22,7 @@ Prüfungskontext** und **verlinken den amtlichen Wortlaut**.
 - **Didaktischer Mehrwert = Verkaufsargument.** Der Lernende versteht, *wie* die
   Norm in der IHK-Prüfung angewendet wird — nicht nur, *dass* es sie gibt.
 - **Roter Faden:** Das Anwendungsbeispiel bezieht sich möglichst auf das
-  **Kompass-Unternehmen** des Lernenden ([produktvision.md](produktvision.md)).
+  **Star-Company** des Lernenden ([produktvision.md](produktvision.md)).
 - **Rechtlich robust.** Amtliche Gesetzestexte sind zwar nach **§ 5 UrhG
   gemeinfrei** (ein Verbatim-Zitat wäre also nicht per se verboten) — Treiber ist
   hier der **Mehrwert + Konsistenz**, nicht bloß das Urheberrecht. **Verlags­kom­men­tierungen
@@ -44,7 +44,7 @@ gesetze:
     titel: "Gefährdungsbeurteilung"          # Kurztitel
     erklaerung: |                            # eigene Worte, KEIN Gesetzeszitat
       Der Arbeitgeber muss die mit der Arbeit verbundenen Gefährdungen ermitteln …
-    anwendung: |                             # Anwendungsbeispiel, möglichst am Kompass-Unternehmen
+    anwendung: |                             # Anwendungsbeispiel, möglichst am Star-Company
       In der IHK-Prüfung wird nach der gesetzlichen Grundlage gefragt — § 5 ArbSchG …
     quelle: "https://www.gesetze-im-internet.de/arbschg/__5.html"  # amtliche Fassung
 ```

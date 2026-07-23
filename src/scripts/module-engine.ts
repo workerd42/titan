@@ -393,7 +393,7 @@ function mountModule(): void {
   mount.replaceChildren();
 
   const kompass = readKompass();
-  const firma = kompass?.name || 'dein Kompass-Unternehmen';
+  const firma = kompass?.name || 'deine Star-Company';
 
   if (!fn) {
     // Werkzeug definiert, aber noch nicht implementiert → ehrlicher Platzhalter
@@ -401,7 +401,7 @@ function mountModule(): void {
     return;
   }
   if (!kompass?.name) {
-    mount.appendChild(el('p', 'tm-hinweis', '◆ Richte zuerst dein Kompass-Unternehmen ein (Mein Bereich), damit dieses Werkzeug auf deine Firma zugeschnitten arbeitet. Du kannst es aber auch schon jetzt ausfüllen.'));
+    mount.appendChild(el('p', 'tm-hinweis', '◆ Richte zuerst deine Star-Company ein (Mein Bereich), damit dieses Werkzeug auf deine Firma zugeschnitten arbeitet. Du kannst es aber auch schon jetzt ausfüllen.'));
   }
 
   fn({

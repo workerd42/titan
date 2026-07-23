@@ -11,7 +11,7 @@ Titan führt Lernende von der Theorie bis zur **fertigen IHK-Präsentation** —
 entlang **eines** durchgehenden Fadens:
 
 ```
- Kompass-Unternehmen  →  Werkzeuge (Phase „Anwenden")  →  Artefakte  →  Deck  →  IHK-Präsentation
+ Star-Company  →  Werkzeuge (Phase „Anwenden")  →  Artefakte  →  Deck  →  IHK-Präsentation
  (eigenes fiktives        SWOT, Deckungsbeitrag,           (Folien)      (Sammlung)   (druckfertig)
   Unternehmen, 1× erstellt) Nutzwertanalyse …
 ```
@@ -36,7 +36,7 @@ IHK-Test · Lernzettel** (die fünf Modi).
 
 ```
  Einladung (invite-only)  →  Account (Admin legt an)  →  Login (/konto)
-   →  Kompass-Unternehmen anlegen (Aha-Moment)  →  Lernen  →  Deck wächst mit
+   →  Star-Company anlegen (Aha-Moment)  →  Lernen  →  Deck wächst mit
 ```
 
 - **Kein offener Self-Signup** — Accounts entstehen im Admin-Panel bzw. (B2B) durch
@@ -48,7 +48,7 @@ IHK-Test · Lernzettel** (die fünf Modi).
 
 | Rolle | Aufgabe im Prozess |
 |---|---|
-| **Lerner** | lernt, baut Kompass-Unternehmen, erzeugt Artefakte, bereitet Präsentation vor |
+| **Lerner** | lernt, baut Star-Company, erzeugt Artefakte, bereitet Präsentation vor |
 | **Dozent** | liefert fachlichen **Master**, begleitet Lerner, sieht Fortschritt (Cockpit 🔜) |
 | **Org-Admin** (Bildungsträger) | provisioniert Lerner der Organisation, verwaltet Kurse 🔜 |
 | **Platform-Admin** | Betrieb, Nutzer-/Rollenverwaltung, Content-Freigabe |

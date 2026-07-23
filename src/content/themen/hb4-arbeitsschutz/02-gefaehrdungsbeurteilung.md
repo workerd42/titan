@@ -17,7 +17,7 @@ gesetze:
       beurteilt werden.
     anwendung: |
       In der IHK-Prüfung wird häufig nach der „gesetzlichen Grundlage" gefragt — die
-      Antwort ist § 5 ArbSchG. Für dein Kompass-Unternehmen: Hat es mehrere
+      Antwort ist § 5 ArbSchG. Für deine Star-Company: Hat sie mehrere
       gleichartige Büro-/Bildschirmarbeitsplätze, reicht eine stellvertretende
       Gefährdungsbeurteilung für den Typ „Büroarbeitsplatz" statt einer je Schreibtisch.
     quelle: "https://www.gesetze-im-internet.de/arbschg/__5.html"
@@ -32,7 +32,7 @@ gesetze:
       Prüfungsklassiker „Delegation ≠ Entlastung": Der Geschäftsführer darf die
       Durchführung der Gefährdungsbeurteilung an einen Abteilungsleiter übertragen,
       bleibt aber dafür verantwortlich, dass sie tatsächlich und aktuell erfolgt. Für
-      dein Kompass-Unternehmen heißt das: die Aufgabe ist übertragbar, die
+      deine Star-Company heißt das: die Aufgabe ist übertragbar, die
       Verantwortung nicht.
     quelle: "https://www.gesetze-im-internet.de/arbschg/__13.html"
 fallbeispiel:
