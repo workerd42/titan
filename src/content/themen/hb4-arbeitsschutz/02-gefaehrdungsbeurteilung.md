@@ -6,6 +6,35 @@ order: 2
 description: "Die gesetzliche Pflicht des Arbeitgebers zur Gefährdungsbeurteilung nach dem Arbeitsschutzgesetz sowie die nicht übertragbare Gesamtverantwortung trotz delegierbarer Einzelaufgaben."
 merksatz: |
   Aufgaben lassen sich delegieren, die Verantwortung für den Arbeitsschutz bleibt immer beim Arbeitgeber.
+gesetze:
+  - norm: "§ 5 ArbSchG"
+    titel: "Gefährdungsbeurteilung"
+    erklaerung: |
+      Der Arbeitgeber ist verpflichtet, die mit der Arbeit verbundenen Gefährdungen
+      zu ermitteln und daraus die erforderlichen Arbeitsschutzmaßnahmen abzuleiten.
+      Bei gleichartigen Arbeitsbedingungen genügt die Beurteilung eines
+      stellvertretenden Arbeitsplatzes — es muss nicht jeder Einzelplatz separat
+      beurteilt werden.
+    anwendung: |
+      In der IHK-Prüfung wird häufig nach der „gesetzlichen Grundlage" gefragt — die
+      Antwort ist § 5 ArbSchG. Für dein Kompass-Unternehmen: Hat es mehrere
+      gleichartige Büro-/Bildschirmarbeitsplätze, reicht eine stellvertretende
+      Gefährdungsbeurteilung für den Typ „Büroarbeitsplatz" statt einer je Schreibtisch.
+    quelle: "https://www.gesetze-im-internet.de/arbschg/__5.html"
+  - norm: "§ 13 ArbSchG"
+    titel: "Verantwortliche Personen & Pflichtenübertragung"
+    erklaerung: |
+      Einzelne Arbeitsschutzpflichten dürfen schriftlich auf zuverlässige und
+      fachkundige Personen übertragen werden. Die oberste Aufsichts- und
+      Kontrollpflicht sowie die Gesamtverantwortung verbleiben jedoch immer beim
+      Arbeitgeber — Delegation der Aufgabe ist keine Delegation der Verantwortung.
+    anwendung: |
+      Prüfungsklassiker „Delegation ≠ Entlastung": Der Geschäftsführer darf die
+      Durchführung der Gefährdungsbeurteilung an einen Abteilungsleiter übertragen,
+      bleibt aber dafür verantwortlich, dass sie tatsächlich und aktuell erfolgt. Für
+      dein Kompass-Unternehmen heißt das: die Aufgabe ist übertragbar, die
+      Verantwortung nicht.
+    quelle: "https://www.gesetze-im-internet.de/arbschg/__13.html"
 fallbeispiel:
   situation: |
     Ein Geschäftsführer hat die Durchführung der Gefährdungsbeurteilung für die

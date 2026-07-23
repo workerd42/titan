@@ -43,6 +43,19 @@ const themen = defineCollection({
 
     zusammenfassung: z.array(z.string()).optional(),
 
+    // Rechtsgrundlagen (optional): Gesetzes-/Paragraphen-Bezüge didaktisch
+    // aufbereitet — eigene Erklärung + Anwendungsbeispiel + Link zur amtlichen
+    // Quelle. BEWUSST KEINE verbatim Gesetzestexte (didaktischer Mehrwert +
+    // rechtlich robust; amtliche Fassung wird nur verlinkt). Siehe
+    // docs/content-richtlinien.md.
+    gesetze: z.array(z.object({
+      norm: z.string(),          // z. B. "§ 5 ArbSchG"
+      titel: z.string(),         // Kurztitel, z. B. "Gefährdungsbeurteilung"
+      erklaerung: z.string(),    // eigene Erklärung (kein Gesetzeszitat)
+      anwendung: z.string(),     // Anwendungsbeispiel im Prüfungskontext
+      quelle: z.string().url(),  // Deep-Link zur amtlichen Fassung (gesetze-im-internet.de)
+    })).optional(),
+
     // Interaktives Werkzeug (optional)
     werkzeug: z.enum([
       'swot', 'smart', 'deckungsbeitrag', 'marktanteil',
