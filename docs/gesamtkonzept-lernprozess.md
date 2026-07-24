@@ -76,8 +76,22 @@ Aufgaben, damit man *unbegrenzt* üben kann statt dieselbe Aufgabe zweimal (sieh
 - **HB-Prüfungssimulator** — mischt Aufgaben aus allen Kapiteln des Handlungsfelds.
 
 Der Satellit ist die **natürliche Brücke** zwischen Kapitel (Planet) und dem finalen
-**Missions-Launch** (Deck). 📝 *Zu klären: genaue Kennzahlen, Ablage-Ort im UI, ob pro
-HB ein sichtbares 3D-Objekt (Satellit/Station) im Karussell.*
+**Missions-Launch** (Deck).
+
+**Empfehlung (gestuft, reversibel):**
+- **Stufe 1 (jetzt, ohne WebGL):** Der Trainingsraum erscheint als **eigenes Item am
+  Ende des Planeten-Karussells** (Seite 3) — eine **andersartige „Station"/Satellit-
+  Kachel** (kein Planet), die sich klar abhebt. Narrativ: erst alle Kapitel (Planeten),
+  dann dockt der Trainingsraum an → „zusammenführen → Richtung Missions-Launch".
+  Öffnet einen **hellen Lern-Innenraum** („Licht an", wie ein Kapitel) mit den 4
+  Sammlungen. CSS/SVG genügt, architektur-konform, jederzeit rückführbar.
+- **Stufe 2 (Phase 4.2, WebGL):** echtes 3D-**Satelliten-Objekt**, das das Handlungsfeld
+  umkreist — gekoppelt an das three.js-Kosmos-Redesign.
+- **Warum am Karussell-Ende:** macht die HB-Ebene greifbar, ohne eine neue
+  Navigationsebene einzuziehen; der Satellit ist die sichtbare Brücke Kapitel → Deck.
+
+📝 *Noch zu klären: genaue Kennzahlen im Trainingsraum; ob der Satellit erst nach
+gewissem Kapitel-Fortschritt „andockt" (Belohnungsmoment).*
 
 ---
 
@@ -107,11 +121,22 @@ Lernende **wählt bewusst** einen und **begründet** die Wahl (Prüfungskriteriu
    Schüler **bestätigt und begründet** (Kompetenznachweis).
 3. **Gliederung:** KI hilft, die 6 Schritte des Bogens mit **eigenen Stichworten** zu
    füllen (aus den Artefakten des Lernenden gespeist) — der Schüler formuliert aus.
-4. **Theme/Design:** **Auswahl aus fertigen Themes** (Norive-Stil) **oder** KI-gestützte
-   Theme-Erstellung. „Der Prüfungsausschuss prüft **Kompetenz, nicht Designpreise**" →
-   Design ist unterstützend, nie Selbstzweck.
+4. **Theme/Design — bewusst VIELFÄLTIG:** **Auswahl aus vielen fertigen Themes**
+   (Norive-Familie, breite Palette) **oder** KI-gestützte Theme-Erstellung.
+   ⚠️ **Anti-Uniformität ist Pflicht, kein Nice-to-have:** Der Prüfungsausschuss achtet
+   darauf, **dass nicht alle Prüflinge dasselbe Deck mitbringen** — also braucht Titan
+   **große Design-Vielfalt** (viele Themes + KI-Generierung + individuelle Farbwelt je
+   Star-Company). Dennoch: „Der Prüfungsausschuss prüft **Kompetenz, nicht
+   Designpreise**" → Design bleibt unterstützend, nie Selbstzweck.
 5. **Artefakt-Einbau:** Das Deck zieht die passenden **Artefakte** (SWOT, DB-Rechnung …)
    automatisch an die richtigen Bogen-Schritte.
+
+> **Struktureller Schutz vor „Schablonen-Decks" (zugleich Verkaufsargument, vgl.
+> [businessplan.md](businessplan.md)):** Vielfalt entsteht auf **vier** Ebenen —
+> (a) unterschiedliche **Star-Company** (Branche/Name/Zahlen), (b) unterschiedlich
+> **gewählter Spannungsbogen**, (c) **große Theme-/Design-Palette** + KI-Theme-Erstellung,
+> (d) **KI-variierter Inhalt/Wording**. Titan **verhindert** uniforme Präsentationen,
+> statt sie zu erzeugen.
 
 ### 5.3 Qualitäts-Gate: die 9 Bewertungskriterien
 
@@ -149,6 +174,20 @@ KI generiert aus den gewählten Artefakten einen **Verteidigungs-Leitfaden**:
   behält die fachliche Hoheit; der Schüler **denkt selbst mit**. Niedrigrisiko-Einstufung,
   Details in [ki-governance.md](ki-governance.md). Aufgaben-Aufbereitung folgt
   [content-richtlinien.md](content-richtlinien.md) (kein Verbatim, eigene Erklärung).
+
+**Entwicklungspfad der KI-Rolle (Assistent ist der Start, nicht das Ende):**
+Der **Assistent** (assistieren, Feedback geben, Schüler entscheidet) ist bewusst der
+**Einstieg** — datenschutz- und akzeptanzfreundlich. Danach denkbare, **wählbare**
+Ausbaustufen (der Lernende steuert das Maß):
+- **Sparringspartner / sokratisch:** hinterfragt Entscheidungen („Warum dieser Bogen?
+  Welche Alternative hast du verworfen?") — trainiert genau das Fachgespräch.
+- **Prüfer-Simulation (Rollenspiel):** die KI spielt den Prüfungsausschuss durch
+  (Fachgespräch-Fragen, Nachbohren am Personalaspekt) — perspektivisch auch mit Stimme.
+- **Adaptiver Tutor:** erkennt Schwachstellen über Kapitel/HB hinweg und schlägt
+  gezielt Wiederholung/Übung vor (speist den HB-Trainingsraum).
+- **Höhere Autonomie (optional):** für Fortgeschrittene mehr Vorschlagskraft — **immer**
+  mit dem Schüler als Entscheider und ohne Benotung.
+📝 *Reihenfolge/Umfang der Ausbaustufen später terminieren (Roadmap Phase 3+).*
 
 ---
 
