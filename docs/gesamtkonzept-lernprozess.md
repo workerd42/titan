@@ -339,6 +339,11 @@ abgesicherter docker-compose-Service neben Titan, EU/self-hosted, Claude/Langdoc
     **Claude via Langdock** für **hohes Reasoning** (formatives Feedback, Fachgespräch) — bis ein
     EU-Modell auch das trägt. *Self-Hosting von Soofi braucht GPU-Infra → Kostenfaktor gegen die
     Token-Ersparnis abwägen.*
+  - **Test-Trigger (entschieden 2026-07-24):** Soofi **nicht jetzt** — Beobachtungs-Kandidat ab
+    Phase 3. Sobald das Feedback via Claude steht → **Blind-Vergleich Soofi vs. Claude** auf
+    deutsch-lastigen/einfachen Aufgaben; besteht Soofi eine **Qualitäts-Schwelle** → diese Aufgaben
+    umlegen. **Zuerst über einen EU-gehosteten Endpoint testen** (falls verfügbar); **GPU-Box nur,
+    wenn Kosten/Souveränität es rechtfertigen** — nicht früh mieten. (Verbindet mit Agenten-QA, §7.)
 - **Kosten je Fachgespräch:** niedrig ~1 ct (Haiku) · **mittel ~6 ct (Sonnet 5 + Caching → Empfehlung)**
   · hoch ~20 ct (Opus). **Kontingent-Risiko niedrig** → großzügiges Fair-Use, Drossel nur bei
   Missbrauch. Tabelle + Rechnung: [finanzplan.md](finanzplan.md) §1.2.
