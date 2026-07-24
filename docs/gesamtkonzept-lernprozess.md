@@ -127,8 +127,23 @@ Der Satellit ist die **natürliche Brücke** zwischen Kapitel (Planet) und dem f
 - **Warum am Karussell-Ende:** macht die HB-Ebene greifbar, ohne eine neue
   Navigationsebene einzuziehen; der Satellit ist die sichtbare Brücke Kapitel → Deck.
 
-📝 *Noch zu klären: genaue Kennzahlen im Trainingsraum; ob der Satellit erst nach
-gewissem Kapitel-Fortschritt „andockt" (Belohnungsmoment).*
+**Lern-Dramaturgie „Planet → Station → Startrampe" (Review 2026-07-24, empfohlen & bestätigt):**
+1. **Planet (Kapitel):** lernen + **Artefakt** erzeugen.
+2. **Satellit (HB) = Trainingsstation *und* Probe-Startrampe:** sammeln, üben/prüfen
+   (HB-**Trainings**-Sim), HB-Fortschritt — **und** eine **Probe-Präsentation** zu einem
+   HB-Thema bauen (Deck-Bau **niedrigschwellig lernen**, bevor es ernst wird). Der Satellit
+   ist **immer sichtbar**, aber **inaktiv/dunkel** und **erwacht/dockt an**, sobald das
+   **erste HB-Artefakt** existiert — Belohnungsmoment **ohne Gate**.
+3. **Missions-Launch (Universum-Ebene) = die echte Startrampe:** **DIE** Prüfungspräsentation
+   zum **einen** gewählten Thema (IHK-Realität: eine 10-Min-Präsentation, nicht eine je HB) —
+   zieht Artefakte aus dem ganzen Weg. Hier liegt auch die **globale Prüfungsvorbereitung**
+   + Spaced-Repetition (§3). Details: §5.
+
+**Prüfungssimulator, zwei Ebenen:** **HB-Trainings-Sim** im Satellit (Fokus ein HB) +
+**globale Prüfungsvorbereitung** (Ernst-Sim über alles, zeit-/prüfungsdatumsgesteuert) auf
+Universum-Ebene.
+
+📝 *Noch zu klären: genaue Kennzahlen im Trainingsraum.*
 
 ---
 
