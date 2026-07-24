@@ -85,6 +85,20 @@ mit Varianz zum echten Üben).
 Star-Company. Genau hier kommt die **KI (Stufe B)** ins Spiel — sie **rekontextualisiert**
 Aufgaben, damit man *unbegrenzt* üben kann statt dieselbe Aufgabe zweimal (siehe §6).
 
+**Entscheidungen (Review 2026-07-24):**
+- **Artefakt-Spur (leicht):** Nur **Interaktive Module** erzeugen deck-reife **Artefakte**.
+  Übung/Test/Karteikarten bleiben **Training** — hinterlassen aber eine **leichte Spur**:
+  ein **„geübt/geprüft"-Marker** (fließt in HB-Fortschritt + Wiederholungslogik) und die
+  **Fachbegriffe** aus den Karteikarten als Vokabular-Brücke zur Präsentation
+  („Fachbegriffe korrekt"). **Keine** vollen Artefakte aus Übung/Test (verwässert den Begriff).
+- **Empfohlene, nicht erzwungene Dramaturgie:** **Entdecken** ist visuell der **Startpunkt**,
+  üben/test als „festigen/prüfen" nachgelagert dargestellt — **alle Modi frei wählbar**
+  (kein hartes Gate; erwachsene Selbststeuerung, Local-First).
+- **Kein zusätzlicher Modus:** **Wiederholung/Prüfungsdatum** (Spaced Repetition, Roadmap
+  4.3) ist **kein Kapitel-Modus**, sondern eine **übergeordnete Ebene** (steuert *wann*
+  Karten/Übungen wiederkehren) → gehört in den HB-Satellit / eine globale
+  „Prüfungsvorbereitung"-Sicht. Die 6 Kapitel-Modi sind vollständig.
+
 ---
 
 ## 4. Die Handlungsfeld-Ebene — „Trainingsraum-Satellit" (Konzept)
