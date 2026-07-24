@@ -9,6 +9,25 @@
 
 ---
 
+## Auf einen Blick (Executive Summary)
+
+- **Was:** Titan führt den Lernenden vom **Universum** (IHK-Zertifizierung) bis zur **fertigen
+  IHK-Präsentation** — einmal die eigene **Star-Company** beschreiben, jedes Kapitel erzeugt ein
+  **Artefakt**, alle Artefakte werden zur Prüfungspräsentation (**Missions-Launch**, der USP).
+- **Nordstern (Design-Kompass):** *„Ich zeige nicht, was Marketing ist, sondern dass ich als Fachwirt
+  **Entscheidungen treffen** kann — unter Berücksichtigung von Markt, Wirtschaftlichkeit und Menschen."*
+  Jedes Feature wird daran gemessen.
+- **Die Reise:** **Planet** (lernen + Artefakt) → **Satellit** (HB-Trainingsstation + Probe-Startrampe,
+  dockt beim ersten Artefakt an) → **Missions-Launch** (Universum-Startrampe = die Prüfungspräsentation).
+- **Das Deck:** 4 wählbare **Spannungsbögen**, **KI-Assistenz** (Ideen/Bogen/Gliederung/Theme — *Schüler
+  entscheidet*), **9 Bewertungskriterien** als mitlaufender Status, **agiles Fachgespräch jederzeit**,
+  **Personalaspekt weich erzwungen**, **Anti-Uniformität** (Vielfalt ist Pflicht — IHK prüft das).
+- **KI:** Stufe A (jetzt, deterministisch) · Stufe B (Phase 3: Varianz, Feedback, Fachgespräch) —
+  **assistiert & gibt Feedback, benotet nie**. EU-Pfad: **Anthropic → Langdock (EU-Gateway) → Soofi/Mistral**.
+- **Design:** dunkler **Kosmos draußen**, „Licht an" im **Lernbereich** (umgesetzt).
+
+---
+
 ## 1. Nordstern (der rote Faden)
 
 **„Ich zeige nicht, was Marketing ist, sondern dass ich als Fachwirt Entscheidungen
@@ -262,11 +281,23 @@ Ausbaustufen (der Lernende steuert das Maß):
   ein **DSGVO**-Thema. Entschärft durch: (a) es gehen nur **fiktive Star-Company-Daten** an die KI
   (**keine echten Personendaten**) → minimale DSGVO-Exposition; (b) Zugriff über **Langdock**
   (DE, ISO 27001, SOC 2, **EU-Hosting, Zero-Retention**, DPA) als konforme Durchleitung.
-- **Anbieter-Pfad (gestuft):** 1. **Start Anthropic/Claude** direkt (beste Qualität). 2. **EU-konform
-  via Langdock** (Gateway, reicht Claude/Mistral EU-konform + DPA durch), sobald Compliance/Vertrieb
-  es verlangt. 3. **Perspektivisch nativ EU: Mistral** (FR, GPT-4-Klasse, günstig, aber noch **eine
-  Stufe unter der Claude-Spitze** bei hartem Reasoning); **Aleph Alpha** (DE) = Souveränität, nicht
-  Claude-Qualität. Umstellen, **sobald ein EU-Modell qualitativ trägt**.
+- **Anbieter-Pfad (gestuft):**
+  1. **Start Anthropic/Claude** direkt (beste Qualität).
+  2. **EU-konform via Langdock** (DE-Gateway, reicht Claude/Mistral EU-konform + DPA + Zero-Retention
+     durch), sobald Compliance/Vertrieb es verlangt.
+  3. **Perspektivisch nativ EU (beobachten, gestuft einsetzen):**
+     - **Soofi S** (DE, 30B **quelloffen**, München/Telekom-AI-Cloud, erneuerbare Energie) — **der
+       spannendste souveräne, nachhaltige EU-Kandidat**: deutsch-optimiert (passt zu Titans Content!),
+       **self-hostbar → volle Souveränität, ~0 Token-Kosten**. **Heute** schlägt es andere *offene*
+       Modelle (OLMo 3/Apertus), ist aber **noch nicht Claude-Frontier** fürs nuancierte
+       Fachgespräch/Feedback; die **~100B-Version** ist das Ziel.
+     - **Mistral** (FR) — GPT-4-Klasse, günstig, aber eine Stufe unter der Claude-Spitze bei hartem
+       Reasoning. **Aleph Alpha** (DE) = Souveränität, nicht Claude-Qualität.
+  - **Split-Strategie (Empfehlung):** **Soofi/EU self-hosted** für **deutsch-lastige, einfachere**
+    Aufgaben (Begriffs-/Karteikarten-Erklärungen, simple Varianten, Star-Company-Deklination);
+    **Claude via Langdock** für **hohes Reasoning** (formatives Feedback, Fachgespräch) — bis ein
+    EU-Modell auch das trägt. *Self-Hosting von Soofi braucht GPU-Infra → Kostenfaktor gegen die
+    Token-Ersparnis abwägen.*
 - **Kosten je Fachgespräch:** niedrig ~1 ct (Haiku) · **mittel ~6 ct (Sonnet 5 + Caching → Empfehlung)**
   · hoch ~20 ct (Opus). **Kontingent-Risiko niedrig** → großzügiges Fair-Use, Drossel nur bei
   Missbrauch. Tabelle + Rechnung: [finanzplan.md](finanzplan.md) §1.2.
