@@ -103,13 +103,13 @@ const PLANET_CONFIG = [
     const track = document.getElementById('solar-stage-track');
     if (!stage || !track) return;
 
-    // Light-Mode Setup
+    // Dunkler Kosmos: Sternfeld sichtbar, dunkler Nav-Scrim, Sand-Wortmarke
     const canvas = document.getElementById('starfield-canvas') as HTMLCanvasElement | null;
-    if (canvas) canvas.style.display = 'none';
+    if (canvas) canvas.style.display = '';
     const nav      = document.querySelector<HTMLElement>('.space-nav');
     const wordmark = document.querySelector<HTMLElement>('.norive-wordmark');
-    if (nav)      nav.style.background = 'linear-gradient(to bottom, rgba(237,232,223,0.85) 0%, transparent 100%)';
-    if (wordmark) wordmark.style.color  = '#6E5035';
+    if (nav)      nav.style.background = 'linear-gradient(to bottom, rgba(20,18,16,0.85) 0%, transparent 100%)';
+    if (wordmark) wordmark.style.color  = '#C4A882';
 
     const planetEls = Array.from(document.querySelectorAll<HTMLElement>('.hf-planet'));
 
@@ -199,12 +199,12 @@ const PLANET_CONFIG = [
     font-family: var(--mono, monospace);
     font-size: 11px;
     letter-spacing: 0.12em;
-    color: #5E5450;
+    color: var(--text-muted);
     text-decoration: none;
     min-height: 44px;
     display: inline-flex;
     align-items: center;
     transition: color 0.2s ease;
   }
-  .galaxie-back-link:hover { color: #6E5035; }
+  .galaxie-back-link:hover { color: var(--accent); }
 </style>
