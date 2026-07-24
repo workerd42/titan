@@ -27,6 +27,11 @@ docker compose -f docker-compose.directus.yml down -v
 > ⚠️ **Nur lokal.** Die Secrets in `docker-compose.directus.yml` sind Dev-Defaults. Die
 > Produktions-Instanz kommt später als eigener, abgesicherter Service (eigene Sub-Domain im
 > Norive-Ökosystem, echte Secrets, hinter Host-nginx) — siehe [deployment.md](deployment.md).
+>
+> **Betrieb (festgelegt):** Directus wird vom **Gründer selbst gehostet** (er ist **Admin**) und
+> **auf den eigenen Server gehoben, sobald das System lokal steht**. Der lokale Stack hier ist die
+> Vorstufe zum Modellieren/Testen. **Docker-Hinweis:** aktuell kostenlose Docker-Nutzung — bei
+> vollem Speicher/steigendem Bedarf den Wechsel auf eine kostenpflichtige Variante prüfen (Ops-Kostenposten).
 
 ## 2. Schnittstelle Titan ↔ Directus (entschieden)
 

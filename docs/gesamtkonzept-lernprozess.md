@@ -363,10 +363,18 @@ abgesicherter docker-compose-Service neben Titan, EU/self-hosted, Claude/Langdoc
 
 ## 7. Offene Punkte & Test-Strategie
 
-- **Agent-gestützte QA (Idee, bestätigt):** Solange **echte Test-User fehlen**, spielt ein
-  **Lernenden-Agent** den kompletten Missions-Launch **durch**, um **Fallstricke/Edge-Cases**
-  aufzudecken (Substitut für Nutzertests). Umsetzbar, sobald der Flow steht — kann als
-  Subagent gefahren werden.
+- **Agent-gestützte QA (entschieden 2026-07-24, zweigleisig):** (a) **deterministische
+  E2E-Regressionstests** (Playwright) **laufend ab jetzt** für die gebauten Teile; (b) ein
+  **KI-„verwirrter-Anfänger"-Agent**, der den kompletten Missions-Launch **durchspielt** und
+  **UX-Sackgassen / Verständnis-Hürden / KI-Feedback-Qualität / Durchspielbarkeit** aufdeckt —
+  **ab Phase 3** (sobald der Flow steht). Als **Subagent on-demand** (interne QA, vernachlässigbare
+  Kosten). Ergebnis: knappes **„Fallstrick-Protokoll"**.
+- **Lastentest (bestätigt):** **vor dem ersten öffentlichen/Marketing-Launch UND vor der ersten
+  großen B2B-Kohorte**. Titan ist überwiegend **statisch** (Lernseiten prerendered → sehr lastarm);
+  der Test zielt auf die **dynamischen Teile**: gleichzeitige **Auth/Sessions**, **/api/progress**-
+  Durchsatz, **DB unter Last**, und (Phase 3) die **KI/n8n-Pipeline** + Kontingent-Kosten bei
+  Parallelnutzung. Werkzeug: **k6** oder **Artillery** (EU/self-host-freundlich), gegen den
+  Staging-VPS. Früh Engpässe sehen (DB-Pool, n8n-Concurrency, KI-Kontingent).
 - **HB-Trainingsraum/Satellit:** verbleibend nur noch **Kennzahlen** im Trainingsraum
   (UI-Ort/Andock-Logik in §4 entschieden).
 - **Launch-Bereitschaft (§2):** konkrete Kosmos-Visualisierung wählen (Energie-Ring /
