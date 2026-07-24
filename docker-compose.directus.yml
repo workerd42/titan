@@ -1,0 +1,59 @@
+# Titan — LOKALE Directus-Instanz (Redaktionssystem, Vorbereitung + Tests).
+#
+# BEWUSST separat vom Titan-Prod-Stack (docker-compose.yml): eigene DB, eigene
+# Volumes, eigener Port. So kann Directus lokal aufgebaut/getestet werden, ohne
+# den bestehenden Titan-Stack zu berühren.
+#
+# NUR LOKAL — die Secrets hier sind Dev-Defaults, NICHT für Produktion.
+# Start:   docker compose -f docker-compose.directus.yml up -d
+# Stop:    docker compose -f docker-compose.directus.yml down
+# Admin:   http://localhost:8055   (admin@titan.local / directus-dev-admin)
+services:
+  directus-db:
+    image: postgres:16-alpine
+    container_name: titan-directus-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: directus
+      POSTGRES_PASSWORD: directus-dev
+      POSTGRES_DB: directus
+    volumes:
+      - directus_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U directus -d directus"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  directus:
+    image: directus/directus:11
+    container_name: titan-directus
+    restart: unless-stopped
+    depends_on:
+      directus-db:
+        condition: service_healthy
+    ports:
+      # Nur an localhost — kein öffentlicher Zugang.
+      - "127.0.0.1:8055:8055"
+    environment:
+      SECRET: "local-dev-directus-secret-change-me"
+      ADMIN_EMAIL: "admin@titan.local"
+      ADMIN_PASSWORD: "directus-dev-admin"
+      DB_CLIENT: "pg"
+      DB_HOST: "directus-db"
+      DB_PORT: "5432"
+      DB_DATABASE: "directus"
+      DB_USER: "directus"
+      DB_PASSWORD: "directus-dev"
+      PUBLIC_URL: "http://localhost:8055"
+      # CORS, damit der lokale Titan-Build/-Dev per API ziehen darf.
+      CORS_ENABLED: "true"
+      CORS_ORIGIN: "true"
+    volumes:
+      - directus_uploads:/directus/uploads
+      - directus_extensions:/directus/extensions
+
+volumes:
+  directus_pgdata:
+  directus_uploads:
+  directus_extensions:

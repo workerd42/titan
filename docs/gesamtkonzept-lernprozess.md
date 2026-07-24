@@ -74,8 +74,14 @@ je mehr Artefakte pro Galaxie/Universum gesammelt sind, desto weiter füllt sich
 **Missions-Bereitschaft** — Kandidaten: ein sich füllender **Energie-/Antriebs-Ring** ums
 Universum, ein **aufleuchtendes Sternbild**, oder ein **Start-Countdown**. Eine
 Ampel-Logik (rot → gelb → grün = „wie startklar") kann als subtiler Status dahinterliegen,
-aber im **Kosmos-Look** (Reaktor-/Energie-Metapher). 📝 *Konkrete Visualisierung wählen —
-Kandidat für den Kosmos-Politur-/Phase-4.2-Block.*
+aber im **Kosmos-Look** (Reaktor-/Energie-Metapher).
+
+**Entscheidung (Review 2026-07-24):** **MVP = Energie-/Antriebs-Ring, der sich füllt** (Artefakte
+gesammelt) **+ Textlabel „X/Y"** (barrierefrei — nicht nur Farbe; der Ring-Glow changiert subtil
+rot→gold, aber die **Zahl** trägt die Info). **Optional:** Prüfungsdatum-**Countdown**, sobald ein
+Datum gesetzt ist. **Sternbild** (aufleuchtende Sterne) = **Phase 4.2** (Ausbaustufe). **Wichtig:
+Phase-4-Ziel ist NASA-„Eyes"-Qualität** — die Launch-Anzeige soll dort in echtes WebGL-Niveau
+wachsen (siehe [roadmap.md](roadmap.md) 4.2, V2-Konzept im Figma).
 
 **Satellit in der Umlaufbahn (Phase 4):** Der HB-Trainingsraum-Satellit (§4) soll — mit
 Blick auf Phase 4 — **in der Umlaufbahn mitschweben** (WebGL: umkreist das Handlungsfeld).
@@ -173,7 +179,12 @@ Der Satellit ist die **natürliche Brücke** zwischen Kapitel (Planet) und dem f
 **globale Prüfungsvorbereitung** (Ernst-Sim über alles, zeit-/prüfungsdatumsgesteuert) auf
 Universum-Ebene.
 
-📝 *Noch zu klären: genaue Kennzahlen im Trainingsraum.*
+**Kennzahlen im Satellit (Entscheidung 2026-07-24)** — am Design-Kompass ausgerichtet („wie
+startklar bin ich für die Präsentation dieses HB?", keine Vanity-Zahlen):
+1. **Artefakte gesammelt** (X/Y) — die eigentliche Deck-Reife.
+2. **Kapitel-Fortschritt** (Verstehen → Anwenden).
+3. **Letztes Prüfungssim-Ergebnis** (HB-Trainings-Sim).
+4. **Wiederholung fällig / letzte Aktivität** (Spaced-Repetition-Signal).
 
 ---
 
