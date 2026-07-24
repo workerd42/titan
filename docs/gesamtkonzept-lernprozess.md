@@ -48,6 +48,22 @@ UNIVERSUM  (IHK-Zertifizierung, z. B. Fachwirt Marketing)   ── dunkler Kosmo
   (siehe §4) — der „Satellit/Trainingsraum".
 - **Planet** = Kapitel/Thema. Einstieg über die **Modus-Auswahl**.
 
+**Fortschritt Richtung Missions-Launch (neu, bestätigt):** Die Landkarte zeigt nicht nur
+„wo im Stoff", sondern den **Weg zur prüfungsfertigen Präsentation**. Thematisch als
+**„Startklar"-/Launch-Bereitschaft** (kosmos-passend, nicht als nüchterne Büro-Ampel):
+je mehr Artefakte pro Galaxie/Universum gesammelt sind, desto weiter füllt sich die
+**Missions-Bereitschaft** — Kandidaten: ein sich füllender **Energie-/Antriebs-Ring** ums
+Universum, ein **aufleuchtendes Sternbild**, oder ein **Start-Countdown**. Eine
+Ampel-Logik (rot → gelb → grün = „wie startklar") kann als subtiler Status dahinterliegen,
+aber im **Kosmos-Look** (Reaktor-/Energie-Metapher). 📝 *Konkrete Visualisierung wählen —
+Kandidat für den Kosmos-Politur-/Phase-4.2-Block.*
+
+**Satellit in der Umlaufbahn (Phase 4):** Der HB-Trainingsraum-Satellit (§4) soll — mit
+Blick auf Phase 4 — **in der Umlaufbahn mitschweben** (WebGL: umkreist das Handlungsfeld).
+Stufe 1: andockende **Station** am Karussell-Ende (CSS/SVG). Stufe 2: echtes
+**orbitierendes 3D-Objekt**. Bleibt bei **3 Navigationsebenen** (Universum/Galaxie/Planet)
++ orbitierendem Satellit — keine zusätzliche Klick-Ebene.
+
 ---
 
 ## 3. Der Kapitel-Lernprozess (die Modi)
