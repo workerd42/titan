@@ -205,14 +205,26 @@ Feedback**, **keine Note**):
 8. **Zeitmanagement — 10 Minuten:** Analyse & Problem **3–4 Min**, Lösung & Entscheidung **4–5 Min**, Umsetzung & Fazit **1–2 Min**.
 9. **Präsentationsstil** — klare Sprache (kein Foliensprech), Fachbegriffe korrekt, selbstbewusst; Deck **unterstützt** den Vortrag.
 
-### 5.4 Fachgespräch-Simulator (nach der Präsentation)
+**Feedback-Modus (Review 2026-07-24):** Die 9 Kriterien laufen als **subtiler mitlaufender
+Status** mit (Orientierung). Zusätzlich — der Kern: der Schüler kann **jederzeit ein
+Fachgespräch auslösen** (§5.4), eine **agile Feedback-Schleife** statt Bewertung erst am
+Ende. **Personalaspekt (häufigster Stolperstein): weich erzwungen** — die KI fragt beim
+Lösungs-/Umsetzungsschritt **aktiv** nach der Personal-Dimension, und der Status flaggt
+**auffällig** „Personal noch nicht als Teil der Lösung erkennbar", **blockiert aber nicht**
+(Schüler entscheidet, kein hartes Gate).
 
-„Nach der Präsentation folgt das Fachgespräch — oft entscheidet es über die Note." Die
-KI generiert aus den gewählten Artefakten einen **Verteidigungs-Leitfaden**:
+### 5.4 Fachgespräch-Simulator — jederzeit (agile Feedback-Schleife)
+
+Das Fachgespräch ist **nicht** nur der Abschluss: Der Schüler kann **während des Baus
+jederzeit „frag mich" auslösen** → die KI führt ein **Mini-Fachgespräch zum aktuellen
+Stand** (aus den gewählten Artefakten). Kern-Fragen (auch für den finalen Ernst-Lauf):
 - Kann ich meine **Entscheidung verteidigen**?
 - Kenne ich **Alternativen und deren Nachteile**?
 - Kann ich erklären, **warum genau dieser Weg**?
 - Kann ich den **Personalaspekt vertiefen**?
+
+„Nach der Präsentation folgt das Fachgespräch — oft entscheidet es über die Note." Deshalb
+ist das Üben davon **durchgängig** verfügbar, nicht nur am Schluss.
 
 ---
 
@@ -243,10 +255,17 @@ Ausbaustufen (der Lernende steuert das Maß):
 
 ---
 
-## 7. Offene Punkte (zu besprechen)
+## 7. Offene Punkte & Test-Strategie
 
-- **HB-Trainingsraum/Satellit:** UI-Ort, Kennzahlen, ob eigenes 3D-Objekt im Karussell.
+- **Agent-gestützte QA (Idee, bestätigt):** Solange **echte Test-User fehlen**, spielt ein
+  **Lernenden-Agent** den kompletten Missions-Launch **durch**, um **Fallstricke/Edge-Cases**
+  aufzudecken (Substitut für Nutzertests). Umsetzbar, sobald der Flow steht — kann als
+  Subagent gefahren werden.
+- **HB-Trainingsraum/Satellit:** verbleibend nur noch **Kennzahlen** im Trainingsraum
+  (UI-Ort/Andock-Logik in §4 entschieden).
+- **Launch-Bereitschaft (§2):** konkrete Kosmos-Visualisierung wählen (Energie-Ring /
+  Sternbild / Countdown) — Kandidat für den Phase-4.2-Block.
 - **Übungswelten-Content:** Fallaufgaben/MC pro Kapitel (Stufe A) + KI-Varianz (Stufe B).
-- **Deck-Generator:** Umfang Stufe-A-Vorstufe (Aggregation steht) → KI-Assistenz → Export
-  (HTML-Slides/PDF). Fertige Themes vs. KI-Theme-Erstellung.
+- **Deck-Generator:** Export (HTML-Slides/PDF); Umfang der KI-Assistenz-Stufen.
+- **KI-Ausbaustufen (§6):** Reihenfolge Sparring/Prüfer-Sim/adaptiver Tutor terminieren.
 - **„alle weiteren Themen"** (vom Nutzer angekündigt) — hier andocken.
