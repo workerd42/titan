@@ -253,6 +253,24 @@ Ausbaustufen (der Lernende steuert das Maß):
   mit dem Schüler als Entscheider und ohne Benotung.
 📝 *Reihenfolge/Umfang der Ausbaustufen später terminieren (Roadmap Phase 3+).*
 
+**Kosten, EU-Souveränität & AI Act (Review 2026-07-24):**
+- **AI Act ≠ Modell-Herkunft:** Der EU AI Act ist **risikobasiert**. Titan ist **niedrigrisiko**
+  (formatives Feedback, **keine Benotung/Entscheidung über die Person**); die Pflicht ist v. a.
+  **Transparenz** („es ist KI"). **Der AI Act verlangt kein EU-Modell** — ein US-Anbieter
+  (Anthropic) ist AI-Act-konform, solange Risikoklasse + Transparenz stimmen.
+- **EU-Souveränität = DSGVO-/Vertrauens-Frage (nicht AI-Act):** Der Datentransfer in die USA ist
+  ein **DSGVO**-Thema. Entschärft durch: (a) es gehen nur **fiktive Star-Company-Daten** an die KI
+  (**keine echten Personendaten**) → minimale DSGVO-Exposition; (b) Zugriff über **Langdock**
+  (DE, ISO 27001, SOC 2, **EU-Hosting, Zero-Retention**, DPA) als konforme Durchleitung.
+- **Anbieter-Pfad (gestuft):** 1. **Start Anthropic/Claude** direkt (beste Qualität). 2. **EU-konform
+  via Langdock** (Gateway, reicht Claude/Mistral EU-konform + DPA durch), sobald Compliance/Vertrieb
+  es verlangt. 3. **Perspektivisch nativ EU: Mistral** (FR, GPT-4-Klasse, günstig, aber noch **eine
+  Stufe unter der Claude-Spitze** bei hartem Reasoning); **Aleph Alpha** (DE) = Souveränität, nicht
+  Claude-Qualität. Umstellen, **sobald ein EU-Modell qualitativ trägt**.
+- **Kosten je Fachgespräch:** niedrig ~1 ct (Haiku) · **mittel ~6 ct (Sonnet 5 + Caching → Empfehlung)**
+  · hoch ~20 ct (Opus). **Kontingent-Risiko niedrig** → großzügiges Fair-Use, Drossel nur bei
+  Missbrauch. Tabelle + Rechnung: [finanzplan.md](finanzplan.md) §1.2.
+
 ---
 
 ## 7. Offene Punkte & Test-Strategie

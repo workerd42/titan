@@ -55,6 +55,32 @@ die Marge geschützt:
 
 📝 *Konkretes Inklusiv-Kontingent + Drossel-/Nachbuch-Logik festlegen.*
 
+### 1.2 Fachgespräch-Simulator — Kosten je Gesprächsverlauf (mehrturnig)
+
+> Das **jederzeit auslösbare Fachgespräch** (agile Feedback-Schleife, siehe
+> [gesamtkonzept-lernprozess.md](gesamtkonzept-lernprozess.md) §5) ist mehrturnig →
+> teurer als eine Einzelaktion. Annahme: gecachter Kontext (System-Prompt +
+> Star-Company + Bewertungskriterien ≈ 3 k Tokens, Cache-Read ≈ 0,1× Input).
+
+| Profil | Modell | Turns | ≈ Kosten / Gesprächsverlauf |
+|---|---|---|---|
+| **niedrig** | Haiku 4.5 | ~3, gut gecacht | **~0,01 €** |
+| **mittel** *(Empfehlung)* | **Sonnet 5 + Prompt-Caching** | ~5 | **~0,06 €** |
+| **hoch** | Opus 4.8 | ~8, wenig Caching | **~0,20 €** |
+
+**Empfehlung:** **Sonnet 5 + Prompt-Caching als Default** (gute Feedback-Qualität,
+~5–8 ct/Gespräch); **Haiku 4.5** für simple Nachfragen; **Opus 4.8** nur Sonderfälle.
+Zugriff EU-konform über **Langdock** (Gateway) möglich — dessen **Plattformkosten
+separat prüfen** (kommen zur reinen Modell-Nutzung hinzu).
+
+**Kalkuliertes Kontingent-Risiko (beide Fallstricke):**
+- *Zu eng* → tötet den USP „unbegrenzt üben" + frustriert. *Zu weit* → Kostenlauf bei fixem Abo.
+- **Rechnung:** selbst ein **Vielnutzer mit 50 Fachgesprächen/Monat** (mittel) = **~3 €/Monat**
+  KI → gegen **24 € B2C-Abo** unkritisch (>85 % Marge). 100 Gespräche ≈ 6 € — immer noch tragbar.
+- **Fazit:** Das Kostenrisiko ist **niedrig** → **großzügiges „Fair Use"** (hohes Limit),
+  **Drosselung nur bei Missbrauch/Bot-Verdacht**, Haiku-Fallback für einfache Turns. Der
+  Lernwert (unbegrenztes Üben = USP) rechtfertigt das kleine kalkulierte Kostenrisiko.
+
 ---
 
 ## 2. Laufende Betriebskosten (monatlich)
