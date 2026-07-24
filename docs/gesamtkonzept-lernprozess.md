@@ -298,7 +298,20 @@ Ausbaustufen (der Lernende steuert das Maß):
   gezielt Wiederholung/Übung vor (speist den HB-Trainingsraum).
 - **Höhere Autonomie (optional):** für Fortgeschrittene mehr Vorschlagskraft — **immer**
   mit dem Schüler als Entscheider und ohne Benotung.
-📝 *Reihenfolge/Umfang der Ausbaustufen später terminieren (Roadmap Phase 3+).*
+**Phase-3-Reihenfolge (entschieden 2026-07-24):**
+1. **Star-Company-Kontext-JSON** (Deklination) — billig, einmalig, Voraussetzung fürs Wording.
+2. **Formatives Feedback (Freitext)** — USP-Differenzierer; **direkt via Claude/Tool-Runner, ohne n8n**.
+3. **Fachgespräch-Simulator** (agile Schleife) — auf demselben Feedback-Kern.
+4. **Fallaufgaben-Varianz / Fall-Recast** — **hier** kommen die **n8n-Agenten-Teams** rein
+   (komplexe Orchestrierung: Master variieren, fremde Firma, Lösung mitgenerieren).
+5. **Sparring / Prüfer-Sim / adaptiver Tutor** — spätere Veredelung (Kosten stets im Blick).
+
+**Von Tag 1 mit:** Guardrails (Master/Personalakte-Grounding, **kein Benoten**, Transparenz) +
+Kosten-Gate (Inklusiv-Kontingent + Haiku-Fallback). **n8n-Flows erst ab Schritt 4** (kein
+Over-Engineering) — **aber das Agenten-Team + die „Personalakten" (Persona + fachliche Tiefe) werden
+früh als Design-Artefakt DEFINIERT**, bevor gebaut wird.
+📝 *n8n-Instanz auf dem VPS vorhanden, aber noch zu installieren/konfigurieren (Support nötig) →
+abgesicherter docker-compose-Service neben Titan, EU/self-hosted, Claude/Langdock-Anbindung.*
 
 **Kosten, EU-Souveränität & AI Act (Review 2026-07-24):**
 - **AI Act ≠ Modell-Herkunft:** Der EU AI Act ist **risikobasiert**. Titan ist **niedrigrisiko**
