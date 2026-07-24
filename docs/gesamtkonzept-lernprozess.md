@@ -118,6 +118,17 @@ Aufgaben, damit man *unbegrenzt* üben kann statt dieselbe Aufgabe zweimal (sieh
   Karten/Übungen wiederkehren) → gehört in den HB-Satellit / eine globale
   „Prüfungsvorbereitung"-Sicht. Die 6 Kapitel-Modi sind vollständig.
 
+**Star-Company-Durchschlag (Prinzip, Review 2026-07-24):** Sobald die Star-Company
+definiert ist, **trägt sie durch alle Aufgaben** — Fallbeispiele, interaktive Module,
+Übungen, Deck. Technische Basis: die Ersetzungs-Engine `kompass-vars.ts`
+(`{{firma}}/{{branche}}/{{groesse}}/…` überall ersetzt). Das ist der **rote Faden** +
+Anti-Uniformitäts-Motor.
+> **Bewusste Ausnahme — IHK-Test-Format:** Die echte schriftliche IHK-Prüfung gibt eine
+> **fremde, vorgegebene** Fallfirma (ad-hoc-Analyse unter Zeitdruck). Deshalb trainiert die
+> **Prüfungssimulation bewusst auch an FREMDEN, KI-variierten Firmen** (Stufe B) — sonst
+> blinder Fleck bei **Transfer-/Analysekompetenz** auf neue Situationen (Bewertungskriterium).
+> Also: Star-Company als roter Faden **überall**; die Prüfungssim mischt **fremde Fälle** dazu.
+
 ---
 
 ## 4. Die Handlungsfeld-Ebene — „Trainingsraum-Satellit" (Konzept)
