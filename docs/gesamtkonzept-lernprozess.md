@@ -15,6 +15,13 @@
 treffen kann — unter Berücksichtigung von Markt, Wirtschaftlichkeit und Menschen."**
 (Abschluss-Merksatz aus der Fachgespräch-Schulung — er ist Titans didaktischer Nordstern.)
 
+> **Design-Kompass (VERBINDLICH):** **Jede** Feature-/Design-Entscheidung wird an genau
+> diesem Satz gemessen. Prüffrage immer: *„Bringt das den Lernenden näher an eine
+> **begründete Entscheidung** mit Bezug auf **Markt, Wirtschaftlichkeit und Menschen**?"*
+> Reines Faktenwissen (z. B. Karteikarten) ist **Mittel, nicht Ziel** — auch Wiederholung
+> und Übung zahlen letztlich auf **Entscheidungskompetenz** ein. Features, die diese Frage
+> nicht mit „ja" beantworten, werden zurückgestellt.
+
 Konkret: Der Lernende beschreibt **einmal** seine **Star-Company** und wird durch den
 **kompletten Prozess** begleitet — jedes Kapitel wendet ein Werkzeug **auf genau diese
 Firma** an → jedes Ergebnis ist ein **Artefakt** → alle Artefakte fügen sich zur
