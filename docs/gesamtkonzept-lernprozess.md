@@ -325,7 +325,16 @@ Ausbaustufen (der Lernende steuert das Maß):
   (UI-Ort/Andock-Logik in §4 entschieden).
 - **Launch-Bereitschaft (§2):** konkrete Kosmos-Visualisierung wählen (Energie-Ring /
   Sternbild / Countdown) — Kandidat für den Phase-4.2-Block.
-- **Übungswelten-Content:** Fallaufgaben/MC pro Kapitel (Stufe A) + KI-Varianz (Stufe B).
+- **Übungswelten-Content (entschieden 2026-07-24):** **Stufe A = MC + Selbstcheck** (jetzt, ohne
+  KI); **Freitext-Fallaufgaben + Varianz = Stufe B** (KI ab Phase 3). Aufgaben in **eigenem
+  Titan-Wording** (weg von IHK-Formulierungen, [content-richtlinien.md](content-richtlinien.md)).
+  Varianz/„Master" über **n8n-Agenten-Teams mit fiktiver Personalakte** (Persona + fachliche Tiefe,
+  gegen Halluzination — [ki-governance.md](ki-governance.md)). *Offen: Menge Aufgaben je Kapitel.*
+- **Redaktionssystem-Integration (entschieden 2026-07-24):** **Directus = Quelle der Wahrheit**;
+  Titan **zieht beim Build** (Content-Loader + **Zod-Validierung** → statisch), **Webhook → CI-Build
+  → Deploy**. **Nicht** Runtime-Fetch, **nicht** Push (bewahrt statisch/schnell/**offline** — kritisch
+  in der Prüfung). Vorhandene **Fachwirt-PDFs müssen erst strukturiert** in Directus abgelegt werden
+  (pro Thema/Feld) — der eigentliche Aufwand. Siehe [roadmap.md](roadmap.md) 2.6 / EPIC-13.
 - **Deck-Generator:** Export (HTML-Slides/PDF); Umfang der KI-Assistenz-Stufen.
 - **KI-Ausbaustufen (§6):** Reihenfolge Sparring/Prüfer-Sim/adaptiver Tutor terminieren.
 - **„alle weiteren Themen"** (vom Nutzer angekündigt) — hier andocken.
