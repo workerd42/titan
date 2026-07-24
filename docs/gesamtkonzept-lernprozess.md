@@ -256,6 +256,23 @@ Stand** (aus den gewählten Artefakten). Kern-Fragen (auch für den finalen Erns
 „Nach der Präsentation folgt das Fachgespräch — oft entscheidet es über die Note." Deshalb
 ist das Üben davon **durchgängig** verfügbar, nicht nur am Schluss.
 
+### 5.5 Export, Zustände & Vielfalt (Review 2026-07-24)
+
+- **Export = portable Datei (prüfungstauglich):** **PDF** als primäres, **offline-sicheres**
+  Ergebnis (läuft auf jedem IHK-Beamer/Laptop ohne Internet); **PPTX** zum Nachbearbeiten als
+  spätere Option. **Titan-Web = Bau-Werkzeug, nicht Präsentations-Laufzeit.** Erst der Export
+  macht „fertiges Deck" real.
+- **Zwei Zustände + Versionierung:** **„In Bearbeitung"** (editierbar) ↔ **„Publikation-Frei"**
+  (eingefrorene Prüfungsversion). Entspricht sichtbar dem `deckReif`-Flag.
+- **Vielfalt — kleinster Nenner:** Der Großteil ist **inhärent & gratis** — (a) andere
+  Star-Company, (b) anderer Spannungsbogen, (c) anderes Thema → Inhalt + Struktur unterscheiden
+  sich schon stark. **Minimaler Zusatz:** **3–5 Basis-Templates × ~6 Farbwelten** (auto aus
+  Star-Company/Branche oder wählbar) = **20–30 distinkte Looks**. **Große KI-Theme-Generierung =
+  Ausbaustufe, nicht MVP.**
+- **Sprecher-Notizen + 10-Min-Timing:** je Folie ein **auto-Entwurf** für Sprecher-Notizen
+  (editierbar); Export als **Präsentations-PDF** + **„Notizen-Handout"**. Beim Bauen läuft eine
+  **10-Min-Timing-Leiste** (3–4 / 4–5 / 1–2 Min) mit und **warnt bei Überladung**.
+
 ---
 
 ## 6. Die Rolle der KI (EU-AI-Act-konform)
