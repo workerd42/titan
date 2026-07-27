@@ -71,5 +71,14 @@ live zu gehen).
 5. **Fachwirt-PDFs strukturieren** — einmalig pro Fachwirt in die Collection überführen
    (nicht 1:1 nutzbar; pro Thema/Feld), in **eigenem Titan-Wording**
    ([content-richtlinien.md](content-richtlinien.md)).
-6. **Rendering**: künftig entscheiden, ob Lernseiten aus `themen` (Markdown) **oder** `themenCms`
-   (Directus) gerendert werden (Umschalt-/Merge-Strategie) — aktuell additiv/parallel.
+**🔁 Render-Kreislauf prototypisiert (2026-07-27):** Route `src/pages/cms-vorschau/[slug].astro`
+(prerender=false, hinter dem Login-Gate) rendert ein Thema **live aus `themenCms` (Directus)** statt
+aus Markdown — schlanke Inhaltsvorschau (Verstehen/Merksatz/Begriffe/Fallbeispiel/Prüfen), Body via
+`marked`. End-to-End verifiziert: Titel in Directus geändert → Sync → Seite zog mit → zurückgesetzt.
+Die echten 46 Lernseiten (aus `themen`, Markdown) bleiben unangetastet → **reversibel**. Dafür wurde
+`body` (optional) ins geteilte `themenSchema` + den Loader aufgenommen.
+
+**⬜ Offen:**
+6. **Rendering-Umschaltung entscheiden**: ob/wann die *echten* Lernseiten (`[universum]/[hb]/[slug]`)
+   von `themen` (Markdown) auf `themenCms` (Directus) umgestellt werden — Merge- vs. Umschalt-Strategie.
+   Vorschau-Route ist der Testträger. Voraussetzung: Themen vollständig in Directus überführt.

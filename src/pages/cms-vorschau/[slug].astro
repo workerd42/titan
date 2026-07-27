@@ -1,0 +1,226 @@
+---
+export const prerender = false;
+
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import { marked } from 'marked';
+
+/**
+ * REDAKTIONS-VORSCHAU (reversibel, additiv).
+ *
+ * Rendert ein Thema aus `themenCms` (Directus) statt aus den Markdown-Dateien.
+ * Zweck: den kompletten Redaktions-Kreislauf sichtbar machen — Fachautor pflegt
+ * in Directus → Rebuild → diese Seite zeigt die Änderung, ohne Code-Anfassen.
+ *
+ * Bewusst NICHT die volle Lern-UI (PlanetLayout/Phasen/Karussell), sondern eine
+ * schlanke, ehrliche Inhaltsvorschau. Die echten 46 Lernseiten (aus `themen`,
+ * Markdown) bleiben unangetastet. Diese Route liegt hinter dem Login-Gate.
+ */
+const { slug } = Astro.params;
+const themen = await getCollection('themenCms');
+const thema = themen.find((t) => t.id === slug);
+
+if (!thema) {
+  return new Response(null, { status: 404 });
+}
+
+const d = thema.data;
+const HB_NAMEN: Record<string, string> = {
+  hb1: 'HB 1 — Marktorientierte Unternehmensführung',
+  hb2: 'HB 2 — Marketing-Instrumente',
+  hb3: 'HB 3 — Erfolgsmessung & Steuerung',
+  hb4: 'HB 4 — Recht & Arbeitsschutz',
+};
+const bodyHtml = d.body ? await marked.parse(d.body) : '';
+---
+
+<BaseLayout
+  title={`Vorschau · ${d.title}`}
+  description={d.description}
+  canonicalPath={`/cms-vorschau/${slug}/`}
+  theme="light"
+>
+  <main class="cmsv">
+    <div class="cmsv__inner">
+      <div class="cmsv__badge" role="status">
+        <span class="cmsv__dot" aria-hidden="true"></span>
+        Redaktions-Vorschau · Quelle: <strong>Directus</strong> (themenCms)
+      </div>
+
+      <header class="cmsv__head">
+        <p class="cmsv__eyebrow">{HB_NAMEN[d.handlungsbereich] ?? d.handlungsbereich} · {d.themengruppe}</p>
+        <h1 class="cmsv__title">{d.title}</h1>
+        <p class="cmsv__lead">{d.description}</p>
+      </header>
+
+      {bodyHtml && (
+        <section class="cmsv__section">
+          <h2 class="cmsv__h2">Verstehen</h2>
+          <div class="cmsv__prose" set:html={bodyHtml} />
+        </section>
+      )}
+
+      {d.merksatz && (
+        <aside class="cmsv__merksatz">
+          <span class="cmsv__merklabel">Merksatz</span>
+          <p>{d.merksatz}</p>
+        </aside>
+      )}
+
+      {d.begriffe && d.begriffe.length > 0 && (
+        <section class="cmsv__section">
+          <h2 class="cmsv__h2">Begriffe</h2>
+          <dl class="cmsv__begriffe">
+            {d.begriffe.map((b) => (
+              <div class="cmsv__begriff">
+                <dt>{b.begriff}{b.aufloesung ? ` (${b.aufloesung})` : ''}</dt>
+                <dd>{b.erklaerung}</dd>
+              </div>
+            ))}
+          </dl>
+        </section>
+      )}
+
+      {d.fallbeispiel && (
+        <section class="cmsv__section">
+          <h2 class="cmsv__h2">Anwenden — Fallbeispiel</h2>
+          <div class="cmsv__card">
+            <p class="cmsv__cardrow"><strong>Situation:</strong> {d.fallbeispiel.situation}</p>
+            <p class="cmsv__cardrow"><strong>Aufgabe:</strong> {d.fallbeispiel.aufgabe}</p>
+            <p class="cmsv__cardrow"><strong>Musterlösung:</strong> {d.fallbeispiel.musterloesung}</p>
+          </div>
+        </section>
+      )}
+
+      {d.pruefungsfrage && (
+        <section class="cmsv__section">
+          <h2 class="cmsv__h2">Prüfen</h2>
+          <div class="cmsv__card">
+            <p class="cmsv__cardrow"><strong>Frage:</strong> {d.pruefungsfrage.frage}</p>
+            <ol class="cmsv__weg">
+              {d.pruefungsfrage.loesungsweg.map((s) => <li>{s}</li>)}
+            </ol>
+          </div>
+        </section>
+      )}
+
+      <footer class="cmsv__foot">
+        Diese Seite rendert live aus Directus. Ändere das Thema im Redaktionssystem,
+        starte den Build/Sync neu — der Text hier zieht mit.
+      </footer>
+    </div>
+  </main>
+</BaseLayout>
+
+<style>
+  .cmsv {
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding: clamp(24px, 5vw, 64px) var(--sp-md);
+  }
+  .cmsv__inner {
+    max-width: var(--max-read, 68ch);
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-lg);
+  }
+  .cmsv__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    align-self: flex-start;
+    font-size: var(--text-xs);
+    letter-spacing: 0.04em;
+    color: var(--text-muted);
+    background: var(--accent-soft);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 8px 16px;
+  }
+  .cmsv__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex: none;
+  }
+  .cmsv__head { display: flex; flex-direction: column; gap: var(--sp-xs); }
+  .cmsv__eyebrow {
+    margin: 0;
+    font-size: var(--text-xs);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .cmsv__title {
+    margin: 0;
+    font-family: var(--serif);
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    font-size: var(--text-xl);
+    line-height: 1.12;
+    text-wrap: balance;
+  }
+  .cmsv__lead { margin: 0; color: var(--text-muted); font-size: var(--text-md); }
+  .cmsv__section { display: flex; flex-direction: column; gap: var(--sp-sm); }
+  .cmsv__h2 {
+    margin: 0;
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: var(--text-lg);
+    padding-bottom: var(--sp-xs);
+    border-bottom: 1px solid var(--border);
+  }
+  .cmsv__merksatz {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    background: var(--surface);
+    border-left: 3px solid var(--accent);
+    border-radius: var(--radius);
+    padding: var(--sp-md);
+  }
+  .cmsv__merksatz p { margin: 0; font-size: var(--text-md); }
+  .cmsv__merklabel {
+    font-size: var(--text-xs);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .cmsv__begriffe { margin: 0; display: flex; flex-direction: column; gap: var(--sp-sm); }
+  .cmsv__begriff dt { font-weight: 600; }
+  .cmsv__begriff dd { margin: 2px 0 0; color: var(--text-muted); }
+  .cmsv__card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: var(--sp-md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-sm);
+  }
+  .cmsv__cardrow { margin: 0; }
+  .cmsv__weg { margin: 0; padding-left: 1.3em; display: flex; flex-direction: column; gap: 6px; }
+  .cmsv__foot {
+    margin-top: var(--sp-md);
+    padding-top: var(--sp-md);
+    border-top: 1px solid var(--border);
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+  }
+</style>
+
+<!-- Markdown-Body kommt via set:html → scoped Styles greifen nicht, darum global. -->
+<style is:global>
+  .cmsv__prose { font-size: var(--text-md); line-height: 1.7; }
+  .cmsv__prose > :first-child { margin-top: 0; }
+  .cmsv__prose > :last-child { margin-bottom: 0; }
+  .cmsv__prose p { margin: 0 0 var(--sp-sm); }
+  .cmsv__prose h2, .cmsv__prose h3 { font-family: var(--serif); font-weight: 400; margin: var(--sp-md) 0 var(--sp-xs); }
+  .cmsv__prose ul, .cmsv__prose ol { margin: 0 0 var(--sp-sm); padding-left: 1.3em; }
+  .cmsv__prose li { margin: 4px 0; }
+  .cmsv__prose strong { font-weight: 600; }
+  .cmsv__prose a { color: var(--accent); }
+</style>

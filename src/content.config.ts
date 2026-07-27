@@ -14,6 +14,11 @@ const themenSchema = z.object({
   order: z.number(),
   description: z.string(),
 
+  // Haupterklärung („Verstehen"-Prosa). Bei Markdown-Themen steckt der Text im
+  // Datei-Body (via render()); bei Directus-Themen kommt er als Markdown-String
+  // aus diesem Feld. Darum optional — je nach Quelle ist eins der beiden gesetzt.
+  body: z.string().optional(),
+
   // ── WISSENSBIBLIOTHEK (Phase 1: Verstehen) ─────────────
   definitionen: z.array(z.object({
     begriff: z.string(),
@@ -129,6 +134,7 @@ async function directusThemenLoader() {
       themengruppe: t.themengruppe,
       order: t.order,
       description: t.description,
+      body: t.body ?? undefined,
       definitionen: t.definitionen ?? undefined,
       formeln: t.formeln ?? undefined,
       rechenbeispiel: t.rechenbeispiel ?? undefined,
