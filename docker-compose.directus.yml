@@ -37,7 +37,7 @@ services:
       - "127.0.0.1:8055:8055"
     environment:
       SECRET: "local-dev-directus-secret-change-me"
-      ADMIN_EMAIL: "admin@titan.local"
+      ADMIN_EMAIL: "admin@titan.dev"
       ADMIN_PASSWORD: "directus-dev-admin"
       DB_CLIENT: "pg"
       DB_HOST: "directus-db"

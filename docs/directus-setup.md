@@ -20,7 +20,10 @@ docker compose -f docker-compose.directus.yml down -v
 ```
 
 - **Admin-UI:** http://localhost:8055
-- **Login:** `admin@titan.local` / `directus-dev-admin`  *(nur lokal! Dev-Defaults)*
+- **Login:** `admin@titan.dev` / `directus-dev-admin`  *(nur lokal! Dev-Defaults)*
+  - ⚠️ **Gotcha:** Directus' Login-Validator lehnt `.local`-Domains als „ungültige E-Mail" ab →
+    der Admin-Bootstrap scheitert **stillschweigend** (Schema da, aber 0 User). Darum eine
+    **echte TLD** (`.dev`) verwenden. Bei „0 users": `down -v` + `up -d` (frischer Bootstrap).
 - **Health:** `curl http://localhost:8055/server/health` → `{"status":"ok"}`
 - **API (Beispiel):** `curl http://localhost:8055/items/<collection>` (nach Login/Token)
 
