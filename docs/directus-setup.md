@@ -53,15 +53,23 @@ Fachautor pflegt in Directus  ──►  Directus = Quelle der Wahrheit
 und **Zod bleibt das Sicherheitsnetz** (fehlerhafte Inhalte lassen den Build scheitern statt
 live zu gehen).
 
-## 3. Nächste Schritte (offen)
+## 3. Stand & nächste Schritte
 
-1. **Datenmodell modellieren** — Directus-Collections spiegeln das Titan-Content-Schema
-   (`src/content.config.ts`): Themen mit Feldern `title, handlungsbereich, themengruppe,
-   definitionen, formeln, rechenbeispiel, zusammenfassung, gesetze, merksatz, begriffe,
-   fallbeispiel, pruefungsfrage, werkzeug` (+ künftig `fallaufgaben`, `mc`).
-2. **Astro-Content-Loader** bauen, der aus der Directus-API lädt **und** gegen das Zod-Schema
-   validiert (Astro-Content-Collections unterstützen eigene Loader).
-3. **Auto-Deploy** (Webhook → Build → Ausrollen) — der eigentliche Aufwand (Roadmap 2.6).
-4. **Fachwirt-PDFs strukturieren** — einmalig pro Fachwirt in die Collections überführen
+**✅ Erledigt (2026-07-27):**
+1. **Datenmodell** — Collection `themen` mit 19 Feldern (spiegelt `src/content.config.ts`;
+   Nested/Arrays als JSON; `status` = draft/published für „In Bearbeitung/Publikation-Frei").
+2. **Astro-Content-Loader** — Collection `themenCms` in `src/content.config.ts` zieht per
+   **Build-time Pull** (`filter status=published`) und validiert gegen **dasselbe Zod-Schema**
+   wie die Markdown-Themen. **Graceful:** kein Token / Directus offline → leere Collection
+   (Markdown-`themen` bleibt unberührt → reversibel). Zugriff über **statischen Dev-Token**
+   (`DIRECTUS_TOKEN`, lokal als Fallback; **Prod: scoped Read-Token via Env**).
+3. **End-to-End verifiziert** — Test-Thema `99-directus-test` (published) kommt via Loader durch,
+   Zod-validiert (Begriffe/Fallbeispiel/Wiederholung ok).
+
+**⬜ Offen:**
+4. **Auto-Deploy** (Webhook → Build → Ausrollen) — der eigentliche Aufwand (Roadmap 2.6).
+5. **Fachwirt-PDFs strukturieren** — einmalig pro Fachwirt in die Collection überführen
    (nicht 1:1 nutzbar; pro Thema/Feld), in **eigenem Titan-Wording**
    ([content-richtlinien.md](content-richtlinien.md)).
+6. **Rendering**: künftig entscheiden, ob Lernseiten aus `themen` (Markdown) **oder** `themenCms`
+   (Directus) gerendert werden (Umschalt-/Merge-Strategie) — aktuell additiv/parallel.
