@@ -26,7 +26,7 @@ begriffe:
     erklaerung: "Output = unmittelbare Leistung (Klicks, Reichweite); Outcome = tatsächliche Wirkung (Kauf, Umsatz). Der Outcome zählt."
 fallbeispiel:
   situation: |
-    Die DIGITALWERK Online-Boutique feiert intern den Erfolg ihrer letzten
+    Die {{firma}} feiert intern den Erfolg ihrer letzten
     Social-Media-Kampagne: 500.000 Impressionen und 40.000 Klicks. Der tatsächliche
     Umsatz im Aktionszeitraum ist jedoch kaum gestiegen.
   aufgabe: |
@@ -41,10 +41,10 @@ fallbeispiel:
     gefeierten Zahlen beschreiben also Aktivität, nicht Erfolg.
 pruefungsfrage:
   frage: |
-    Die DIGITALWERK Online-Boutique möchte künftig ein KPI-System aufbauen, das
+    Die {{firma}} möchte künftig ein KPI-System aufbauen, das
     Aktivität klar von tatsächlicher Wirkung trennt.
     a) Erläutern Sie den Unterschied zwischen Output-, Outcome- und Impact-Kennzahlen
-    anhand eines eigenen Beispiels aus dem Online-Handel.
+    anhand eines eigenen Beispiels aus deinem Unternehmen.
     b) Nennen Sie zwei Kriterien, die eine Kennzahl erfüllen sollte, um als aussagekräftige
     KPI zu gelten.
     c) Warum ist eine isolierte Betrachtung der Conversion Rate ohne Berücksichtigung des
