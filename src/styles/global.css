@@ -125,7 +125,12 @@ em {
 }
 
 .prose table {
-  width: 100%;
+  /* Responsiv: breite Tabellen scrollen in sich selbst, statt die ganze Seite
+     horizontal zu sprengen (v. a. auf Mobile). */
+  display: block;
+  width: max-content;
+  max-width: 100%;
+  overflow-x: auto;
   border-collapse: collapse;
   margin: var(--sp-lg) 0;
   font-size: var(--text-sm);

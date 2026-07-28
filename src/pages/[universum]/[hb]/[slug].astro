@@ -948,9 +948,23 @@ const d = thema.data;
   .lese-opt--big { font-size: 15px; }
   @media (prefers-reduced-motion: reduce) { .lese-opt { transition: color .15s ease; } }
 
-  /* Effekte — gelten für alle vier Phasen. Ziel: der Haupt-Lesetext (.prose). */
-  .thema-wrap[data-groesse="gross"] .prose { font-size: 1.15em; }
-  .thema-wrap[data-groesse="klein"] .prose { font-size: 0.9em; }
+  /* Effekte — gelten für ALLE vier Phasen und den GESAMTEN Lerninhalt (nicht
+     nur .prose). Früher skalierte nur der eine .prose-Block; alle anderen Blöcke
+     (Definitionen, Formeln, Merksatz, Fallbeispiel, Prüfung, Begriffe, Werkzeug)
+     nutzen feste px-Größen und blieben unverändert → „A+/A− bewirkt nichts".
+     `zoom` skaliert den kompletten Block hierarchie-erhaltend (Text + Abstände).
+     Angewandt auf die Inhalts-Container, NICHT auf fixe Chrome (Speed-Dial). */
+  .thema-wrap[data-groesse="gross"] .thema-kopf,
+  .thema-wrap[data-groesse="gross"] .lern-phase { zoom: 1.12; }
+  .thema-wrap[data-groesse="klein"] .thema-kopf,
+  .thema-wrap[data-groesse="klein"] .lern-phase { zoom: 0.9; }
+  /* Auf schmalen Screens ist der Inhalt volle Viewport-Breite → zoom>1 würde
+     horizontal überlaufen. Die Vor-Zoom-Breite entsprechend verkleinern, damit
+     der gezoomte Block exakt in den Viewport passt (kein Horizontal-Scroll). */
+  @media (max-width: 700px) {
+    .thema-wrap[data-groesse="gross"] .thema-kopf,
+    .thema-wrap[data-groesse="gross"] .lern-phase { width: calc(100% / 1.12); margin-inline: auto; }
+  }
   .thema-wrap[data-abstand="weit"] .prose { line-height: 2.05; }
   .thema-wrap[data-abstand="weit"] .prose p { margin-bottom: 1.4em; }
 
@@ -1464,12 +1478,12 @@ const d = thema.data;
   /* ── KOMPASS-KONTEXT ────────────────────────── */
   .kompass-kontext {
     max-width: var(--max-read);
+    /* Zentriert wie alle anderen Inhaltsblöcke. Zuvor hoben margin-left/right
+       das `margin: 0 auto` wieder auf → der Block klebte links am Rand. */
     margin: 0 auto var(--sp-lg);
     padding: var(--sp-md) var(--sp-lg);
     background: rgba(90,138,106,0.06);
     border-left: 3px solid #5A8A6A;
-    margin-left: var(--sp-lg);
-    margin-right: var(--sp-lg);
   }
 
   .kk-label {
@@ -1529,6 +1543,27 @@ const d = thema.data;
   }
 
   /* ── ANTWORT-BEREICH ────────────────────────── */
+  /* Interaktives Werkzeug — dieselbe zentrierte Lesespalte wie der Fließtext
+     und das freie Antwortfeld (.antwort-bereich). Zuvor OHNE max-width/Zentrierung
+     → das Werkzeug brach voll nach links aus und „überlagerte" die Seite. */
+  .modul-block {
+    max-width: var(--max-read);
+    margin: 0 auto var(--sp-lg);
+    padding-left: var(--sp-lg);
+    padding-right: var(--sp-lg);
+  }
+  .modul-block-label {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-sm);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: var(--sp-sm);
+  }
+
   .antwort-bereich {
     max-width: var(--max-read);
     margin: 0 auto var(--sp-lg);
