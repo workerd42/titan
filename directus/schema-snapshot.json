@@ -13,7 +13,7 @@
         "collapse": "open",
         "collection": "themen",
         "color": null,
-        "display_template": "{{title}}",
+        "display_template": "{{fachwirt}} – {{handlungsbereich}} · {{title}}",
         "group": null,
         "hidden": false,
         "icon": "school",
@@ -265,7 +265,7 @@
         "readonly": false,
         "required": true,
         "searchable": true,
-        "sort": 3,
+        "sort": 4,
         "special": null,
         "translations": null,
         "validation": null,
@@ -428,6 +428,14 @@
             {
               "text": "Scoring-Modell",
               "value": "scoring"
+            },
+            {
+              "text": "BCG-/Portfolio-Matrix",
+              "value": "portfolio"
+            },
+            {
+              "text": "Break-even-Rechner",
+              "value": "breakeven"
             }
           ]
         },
@@ -1553,6 +1561,70 @@
         "data_type": "json",
         "default_value": null,
         "max_length": null,
+        "numeric_precision": null,
+        "numeric_scale": null,
+        "is_nullable": true,
+        "is_unique": false,
+        "is_indexed": false,
+        "is_primary_key": false,
+        "is_generated": false,
+        "generation_expression": null,
+        "has_auto_increment": false,
+        "foreign_key_table": null,
+        "foreign_key_column": null
+      }
+    },
+    {
+      "collection": "themen",
+      "field": "fachwirt",
+      "type": "string",
+      "meta": {
+        "collection": "themen",
+        "conditions": null,
+        "display": null,
+        "display_options": null,
+        "field": "fachwirt",
+        "group": "grp_identitaet",
+        "hidden": false,
+        "interface": "select-dropdown",
+        "note": "Welcher Fachwirt? Bestimmt zusammen mit dem Handlungsbereich die Einordnung (z. B. „Marketing – HB1\").",
+        "options": {
+          "choices": [
+            {
+              "text": "Marketing",
+              "value": "marketing"
+            },
+            {
+              "text": "Vertrieb",
+              "value": "vertrieb"
+            },
+            {
+              "text": "Industrie",
+              "value": "industrie"
+            }
+          ]
+        },
+        "readonly": false,
+        "required": true,
+        "searchable": true,
+        "sort": 3,
+        "special": null,
+        "translations": [
+          {
+            "language": "de-DE",
+            "translation": "Fachwirt"
+          }
+        ],
+        "validation": null,
+        "validation_message": null,
+        "width": "half"
+      },
+      "schema": {
+        "name": "fachwirt",
+        "table": "themen",
+        "data_type": "character varying",
+        "default_value": "marketing",
+        "max_length": 255,
         "numeric_precision": null,
         "numeric_scale": null,
         "is_nullable": true,

@@ -92,6 +92,15 @@ aus Markdown — schlanke Inhaltsvorschau (Verstehen/Merksatz/Begriffe/Fallbeisp
 Die echten 46 Lernseiten (aus `themen`, Markdown) bleiben unangetastet → **reversibel**. Dafür wurde
 `body` (optional) ins geteilte `themenSchema` + den Loader aufgenommen.
 
+**✅ Vollmigration + Multi-Fachwirt (2026-07-28):** **Alle 46 Themen** strukturiert in Directus
+(`node directus/migrate-all.mjs`, idempotent — liest die Markdown-Themen, füllt Directus neu).
+Neues Pflichtfeld **`fachwirt`** (Marketing/Vertrieb/Industrie) — zusammen mit `handlungsbereich`
+ergibt sich die Einordnung **„Marketing – HB1"** (Collection-Anzeige `{{fachwirt}} – {{handlungsbereich}} · {{title}}`).
+So skaliert das Modell auf beliebig viele Fachwirte (HB1–HB4 bleiben wiederverwendbar). `themenCms`
+zieht alle 46 durch Zod (verifiziert: 46/46, 15 mit Werkzeug). **Inhalte leben im Docker-Volume**,
+das **Schema** ist versioniert (`directus/schema-snapshot.json`), die **Migration** reproduzierbar
+(`directus/migrate-all.mjs`).
+
 **⬜ Offen:**
 6. **Rendering-Umschaltung entscheiden**: ob/wann die *echten* Lernseiten (`[universum]/[hb]/[slug]`)
    von `themen` (Markdown) auf `themenCms` (Directus) umgestellt werden — Merge- vs. Umschalt-Strategie.

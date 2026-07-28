@@ -9,6 +9,10 @@ import { glob } from 'astro/loaders';
 const themenSchema = z.object({
   // ── IDENTITÄT ─────────────────────────────────────────
   title: z.string(),
+  // Welcher Fachwirt (skaliert auf viele) — zusammen mit handlungsbereich ergibt
+  // sich die Einordnung „Marketing – HB1". Markdown-Themen sind alle Marketing
+  // (Default); Directus liefert den Wert explizit mit.
+  fachwirt: z.enum(['marketing', 'vertrieb', 'industrie']).default('marketing'),
   handlungsbereich: z.enum(['hb1', 'hb2', 'hb3', 'hb4']),
   themengruppe: z.string(),
   order: z.number(),
@@ -131,6 +135,7 @@ async function directusThemenLoader() {
     return (data ?? []).map((t: Record<string, unknown>) => ({
       id: t.slug as string,
       title: t.title,
+      fachwirt: t.fachwirt ?? 'marketing',
       handlungsbereich: t.handlungsbereich,
       themengruppe: t.themengruppe,
       order: t.order,
