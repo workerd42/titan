@@ -8,7 +8,7 @@ merksatz: |
   Ein technisch perfektes Produkt kann trotzdem als minderwertig empfunden werden – Qualität entscheidet am Ende der Kunde, nicht das Prüflabor.
 fallbeispiel:
   situation: |
-    Die TECHNOFORM Haushaltsgeräte GmbH hat ein neues Bügeleisen entwickelt, das alle
+    Die {{firma}} hat ein neues Bügeleisen entwickelt, das alle
     relevanten DIN- und VDE-Normen mit Bestwerten erfüllt. Trotzdem verkauft es sich
     deutlich schlechter als ein technisch einfacheres Konkurrenzmodell.
   aufgabe: |
@@ -25,7 +25,7 @@ fallbeispiel:
     berücksichtigt wurden.
 pruefungsfrage:
   frage: |
-    Die TECHNOFORM Haushaltsgeräte GmbH möchte künftig beide Qualitätsdimensionen
+    Die {{firma}} möchte künftig beide Qualitätsdimensionen
     systematisch in die Produktentwicklung einbeziehen.
     a) Erläutern Sie den objektiven Qualitätsbegriff und nennen Sie zwei Beispiele für
     zugrunde liegende technische Normen.

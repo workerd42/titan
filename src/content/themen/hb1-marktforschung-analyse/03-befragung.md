@@ -7,7 +7,7 @@ description: "Kommunikationsarten der Befragung sowie standardisierte und nicht 
 merksatz: "Je standardisierter die Befragung, desto besser die Vergleichbarkeit – je freier das Gespräch, desto tiefer die Erkenntnis."
 fallbeispiel:
   situation: |
-    Die Laborzulieferer PRIMA Chemie KG will herausfinden, welche technischen
+    Die {{firma}} will herausfinden, welche technischen
     Eigenschaften ihrer Spezialfilter für Einkaufsleiter in der Pharmaindustrie
     wirklich entscheidungsrelevant sind. Es gibt nur eine Handvoll relevanter Kunden.
   aufgabe: |
@@ -21,7 +21,7 @@ fallbeispiel:
     um das Gespräch flexibel an den jeweiligen Gesprächspartner anzupassen.
 pruefungsfrage:
   frage: |
-    PRIMA Chemie KG plant zusätzlich eine breite Imagebefragung bei 2.000 Apotheken
+    Die {{firma}} plant zusätzlich eine breite Imagebefragung bei 2.000 Apotheken
     in Deutschland.
     a) Welche Befragungsstrategie ist hierfür im Regelfall die geeignetere –
     standardisiert oder nicht standardisiert? Begründen Sie.

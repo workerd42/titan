@@ -8,7 +8,7 @@ merksatz: |
   TQM macht Qualität zur Aufgabe aller Bereiche – Kaizen macht Verbesserung zur Daueraufgabe aller Mitarbeiter.
 fallbeispiel:
   situation: |
-    Die STAHLKRAFT Beschläge GmbH hat Qualitätssicherung bisher ausschließlich als
+    Die {{firma}} hat Qualitätssicherung bisher ausschließlich als
     Aufgabe der Produktionsabteilung verstanden. Reklamationen zu unklarer
     Produktbeschreibung im Marketing und langsamer Reaktion im Kundenservice werden
     davon nicht erfasst.
@@ -25,7 +25,7 @@ fallbeispiel:
     Reaktionszeiten im Service, Verständlichkeit der Produktkommunikation) einbeziehen.
 pruefungsfrage:
   frage: |
-    Die STAHLKRAFT Beschläge GmbH möchte künftig eine unternehmensweite Kultur der
+    Die {{firma}} möchte künftig eine unternehmensweite Kultur der
     kontinuierlichen Verbesserung etablieren.
     a) Charakterisieren Sie das Total-Quality-Management-Konzept und nennen Sie seinen
     ursprünglichen fachlichen Ausgangsbereich.

@@ -8,7 +8,7 @@ merksatz: |
   Die ökonomische Kontrolle fragt, ob sich die Maßnahme rechnet – die pädagogische Kontrolle fragt, ob überhaupt etwas gelernt wurde.
 fallbeispiel:
   situation: |
-    Die WERTARBEIT Möbelmanufaktur GmbH hat eine große Verkaufsschulung für ihr
+    Die {{firma}} hat eine große Verkaufsschulung für ihr
     Vertriebsteam durchgeführt. Die Geschäftsführung möchte nun wissen, ob sich die
     Investition gelohnt hat.
   aufgabe: |
@@ -27,7 +27,7 @@ fallbeispiel:
     liefern, ohne nachhaltigen Lerneffekt.
 pruefungsfrage:
   frage: |
-    Die WERTARBEIT Möbelmanufaktur GmbH möchte künftig alle Weiterbildungsmaßnahmen
+    Die {{firma}} möchte künftig alle Weiterbildungsmaßnahmen
     systematisch bewerten.
     a) Erläutern Sie den Fokus der ökonomischen Erfolgskontrolle.
     b) Erläutern Sie den Fokus der pädagogischen Erfolgskontrolle und nennen Sie eine

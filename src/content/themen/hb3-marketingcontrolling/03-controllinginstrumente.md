@@ -8,7 +8,7 @@ merksatz: |
   Die Gap-Analyse zeigt nicht nur, dass eine Lücke besteht, sondern zwingt zur Entscheidung, ob sie operativ oder strategisch geschlossen werden muss.
 fallbeispiel:
   situation: |
-    Die TALWIND Fahrradkomponenten GmbH stellt fest, dass die geplante Umsatzkurve für
+    Die {{firma}} stellt fest, dass die geplante Umsatzkurve für
     die nächsten fünf Jahre deutlich über der erwarteten Kurve liegt, wenn man nur die
     bestehenden Produkte in bestehenden Märkten weiterverfolgt.
   aufgabe: |
@@ -24,7 +24,7 @@ fallbeispiel:
     (vergleiche Ansoff-Matrix), um die strategische Lücke zu schließen.
 pruefungsfrage:
   frage: |
-    Die TALWIND Fahrradkomponenten GmbH möchte zusätzlich systematisch von einem
+    Die {{firma}} möchte zusätzlich systematisch von einem
     deutlich erfolgreicheren Wettbewerber lernen.
     a) Wie wird dieses Vorgehen bezeichnet, und was ist sein grundsätzliches Ziel?
     b) Unterscheiden Sie strategische und operative Controllinginstrumente anhand von

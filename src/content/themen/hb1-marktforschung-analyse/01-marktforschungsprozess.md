@@ -41,7 +41,7 @@ merksatz: |
 
 fallbeispiel:
   situation: |
-    Die MEDEX Pharmahandel GmbH möchte ein neues Nahrungsergänzungsmittel auf den Markt bringen
+    Die {{firma}} möchte ein neues Nahrungsergänzungsmittel auf den Markt bringen
     und beauftragt eine Marktforschungsstudie zur Zielgruppenanalyse.
   aufgabe: |
     Erläutern Sie den vollständigen Marktforschungsprozess und begründen Sie, warum Sie

@@ -42,7 +42,7 @@ formeln:
     einheit: "Umsatz in €, Absatz in Stück etc."
 
 rechenbeispiel:
-  aufgabe: "Die VENTO Klimatechnik GmbH erzielte 2024 einen Inlandsumsatz von 18 Mio. €. Das Marktvolumen für Klimageräte beträgt 120 Mio. €. Der größte Wettbewerber hat einen Marktanteil von 30 %."
+  aufgabe: "Die {{firma}} erzielte 2024 einen Inlandsumsatz von 18 Mio. €. Das Marktvolumen für Klimageräte beträgt 120 Mio. €. Der größte Wettbewerber hat einen Marktanteil von 30 %."
   schritte:
     - schritt: 1
       beschreibung: "Absoluten Marktanteil berechnen"
@@ -72,7 +72,7 @@ merksatz: |
 
 fallbeispiel:
   situation: |
-    Die VENTO Klimatechnik GmbH hat 2024 einen Inlandsumsatz von 18 Mio. € erzielt.
+    Die {{firma}} hat 2024 einen Inlandsumsatz von 18 Mio. € erzielt.
     Das gesamte Marktvolumen betrug 120 Mio. €. Der größte Wettbewerber kommt auf 30 %.
   aufgabe: |
     Berechnen Sie den absoluten und den relativen Marktanteil der VENTO Klimatechnik
@@ -84,7 +84,7 @@ fallbeispiel:
 
 pruefungsfrage:
   frage: |
-    Die Geschäftsführung der VENTO Klimatechnik GmbH möchte den Umsatz für die
+    Die Geschäftsführung der {{firma}} möchte den Umsatz für die
     nächsten drei Jahre prognostizieren.
     a) Erläutern Sie den Unterschied zwischen qualitativen und quantitativen Prognoseverfahren.
     b) Nennen Sie die wichtigste Einschränkung einer linearen Trendprognose.

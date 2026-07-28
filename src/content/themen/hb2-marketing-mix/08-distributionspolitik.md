@@ -9,7 +9,7 @@ merksatz: |
   Die akquisitorische Distribution gewinnt den Kunden, die physische Distribution liefert ihm das Produkt – beides muss zusammenpassen.
 fallbeispiel:
   situation: |
-    Die ALPENQUELL Outdoor-Getränke GmbH stellt hochpreisige Bio-Erfrischungsgetränke
+    Die {{firma}} stellt hochpreisige Bio-Erfrischungsgetränke
     her und möchte ihr Markenimage als exklusive Premiummarke schützen, gleichzeitig aber
     deutschlandweit erhältlich sein.
   aufgabe: |
@@ -24,7 +24,7 @@ fallbeispiel:
     würde.
 pruefungsfrage:
   frage: |
-    Die ALPENQUELL Outdoor-Getränke GmbH überlegt zusätzlich, einen eigenen Online-Shop
+    Die {{firma}} überlegt zusätzlich, einen eigenen Online-Shop
     für Endkunden aufzubauen statt ausschließlich über den Handel zu verkaufen.
     a) Wie wird diese Vertriebsform bezeichnet, und nennen Sie einen Vor- und einen
     Nachteil gegenüber dem indirekten Vertrieb.

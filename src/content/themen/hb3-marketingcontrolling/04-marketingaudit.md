@@ -9,7 +9,7 @@ merksatz: |
   Der Soll-Ist-Vergleich fragt, ob das Ziel erreicht wurde – das Marketingaudit fragt, ob das Ziel überhaupt noch das richtige war.
 fallbeispiel:
   situation: |
-    Die KORNBLUME Mühlenbetriebe GmbH erreicht seit Jahren zuverlässig ihre
+    Die {{firma}} erreicht seit Jahren zuverlässig ihre
     Umsatzplanziele. Trotzdem wächst die Sorge der Geschäftsführung, dass die gesamte
     Marketingausrichtung nicht mehr zur veränderten Wettbewerbslandschaft (Bio-Trend,
     Online-Direktvertrieb neuer Wettbewerber) passt.
@@ -26,7 +26,7 @@ fallbeispiel:
     zeitgemäß ist.
 pruefungsfrage:
   frage: |
-    Die Geschäftsführung der KORNBLUME Mühlenbetriebe GmbH beauftragt ein
+    Die Geschäftsführung der {{firma}} beauftragt ein
     Marketingaudit.
     a) Charakterisieren Sie das Marketingaudit anhand zweier zentraler Eigenschaften.
     b) Welche Bereiche eines Unternehmens sollte ein vollständiges Marketingaudit

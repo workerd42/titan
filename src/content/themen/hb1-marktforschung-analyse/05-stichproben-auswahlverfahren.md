@@ -7,7 +7,7 @@ description: "Voll- versus Teilerhebung sowie Zufallsauswahl- und bewusste Auswa
 merksatz: "Im Massenmarkt entscheidet die Quote, im Fachmarkt entscheiden die Großen."
 fallbeispiel:
   situation: |
-    Die Marktforschungsabteilung der TERRA Möbelwerke AG soll zwei Untersuchungen
+    Die Marktforschungsabteilung der {{firma}} soll zwei Untersuchungen
     vorbereiten: eine bundesweite Verbraucherbefragung zu Wohntrends und eine
     Befragung der zwölf größten Spanplattenlieferanten Europas.
   aufgabe: |
@@ -23,7 +23,7 @@ fallbeispiel:
     ihnen direkt befragt – eine Zufallsauswahl wäre hier unsinnig.
 pruefungsfrage:
   frage: |
-    Ein externer Berater schlägt der TERRA Möbelwerke AG vor, für die
+    Ein externer Berater schlägt der {{firma}} vor, für die
     Verbraucherbefragung „einfach ein paar Leute auf der Straße zu befragen,
     das spart Kosten."
     a) Nehmen Sie zu diesem Vorschlag begründet Stellung.

@@ -8,7 +8,7 @@ merksatz: |
   Ein Pretest verhindert die teure Fehlkampagne, ein Posttest erklärt erst hinterher, warum sie funktioniert hat oder nicht.
 fallbeispiel:
   situation: |
-    Die WOLKENFREI Outdoorjacken GmbH hat eine neue TV-Kampagne bereits bundesweit
+    Die {{firma}} hat eine neue TV-Kampagne bereits bundesweit
     ausgestrahlt. Erst danach lässt sie eine Befragung durchführen, ob sich die Zuschauer
     an die Werbung erinnern und was sie über die Marke denken.
   aufgabe: |
@@ -22,7 +22,7 @@ fallbeispiel:
     Rollout aufdecken können.
 pruefungsfrage:
   frage: |
-    Die WOLKENFREI Outdoorjacken GmbH möchte für die nächste Kampagne beide
+    Die {{firma}} möchte für die nächste Kampagne beide
     Testverfahren sinnvoll kombinieren.
     a) Erläutern Sie den grundsätzlichen Unterschied zwischen Pretest und Posttest im
     Hinblick auf ihren Zeitpunkt und ihre Funktion.

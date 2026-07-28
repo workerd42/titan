@@ -32,7 +32,7 @@ merksatz: |
 
 fallbeispiel:
   situation: |
-    Die GREENFIT GmbH möchte eine neue Linie nachhaltiger Sportbekleidung einführen und
+    Die {{firma}} möchte eine neue Linie nachhaltiger Sportbekleidung einführen und
     muss Marketingziele für das erste Jahr definieren.
   aufgabe: |
     Formulieren Sie drei SMART-Marketingziele für die Markteinführung der Produktlinie

@@ -9,11 +9,11 @@ merksatz: |
   Personalmarketing funktioniert wie Produktmarketing – nur dass das Produkt der Arbeitsplatz ist und die Zielgruppe die eigenen und künftigen Mitarbeiter sind.
 fallbeispiel:
   situation: |
-    Die NORDSTERN Logistik GmbH hat zunehmend Schwierigkeiten, offene Stellen im
+    Die {{firma}} hat zunehmend Schwierigkeiten, offene Stellen im
     Fachkräftebereich zu besetzen, obwohl das Gehalt marktüblich ist. Bewerber geben in
     Gesprächen an, das Unternehmen bisher kaum gekannt zu haben.
   aufgabe: |
-    Erläutern Sie, mit welchem Instrument die NORDSTERN Logistik GmbH diesem Problem
+    Erläutern Sie, mit welchem Instrument die {{firma}} diesem Problem
     begegnen kann, und skizzieren Sie den Grundgedanken.
   musterloesung: |
     Das Unternehmen sollte in Employer Branding investieren – den professionellen
@@ -25,7 +25,7 @@ fallbeispiel:
     Arbeitgeber liegen, nicht auf weiteren Gehaltserhöhungen.
 pruefungsfrage:
   frage: |
-    Die Geschäftsführung der NORDSTERN Logistik GmbH befürchtet, dass Investitionen in
+    Die Geschäftsführung der {{firma}} befürchtet, dass Investitionen in
     Personalmarketing nur zusätzliche Kosten verursachen, ohne den wirtschaftlichen
     Nutzen des Unternehmens zu steigern.
     a) Erläutern Sie den scheinbaren Zielkonflikt zwischen sozialen und wirtschaftlichen

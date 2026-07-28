@@ -8,7 +8,7 @@ merksatz: |
   Eine Produktidee wird erst zur Innovation, wenn sie Ideenfindung, Bewertung, Wirtschaftlichkeitsprüfung und Markterprobung durchlaufen hat.
 fallbeispiel:
   situation: |
-    Die BIENENGOLD Naturkosmetik GmbH hat aus einem internen Ideenwettbewerb eine
+    Die {{firma}} hat aus einem internen Ideenwettbewerb eine
     vielversprechende Idee für eine neue Pflegeserie erhalten. Mehrere weitere Ideen liegen
     ebenfalls vor.
   aufgabe: |
@@ -23,7 +23,7 @@ fallbeispiel:
     kostenintensive materielle Produktentwicklung beginnt.
 pruefungsfrage:
   frage: |
-    Die BIENENGOLD Naturkosmetik GmbH plant, die neue Pflegeserie zunächst in
+    Die {{firma}} plant, die neue Pflegeserie zunächst in
     ausgewählten Drogeriemärkten zu testen, bevor die bundesweite Einführung erfolgt.
     a) Wie wird ein solches Vorgehen bezeichnet, und welchem Schritt im
     Innovationsprozess ist es zuzuordnen?

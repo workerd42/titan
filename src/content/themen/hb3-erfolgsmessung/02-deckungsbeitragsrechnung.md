@@ -36,7 +36,7 @@ formeln:
     einheit: "€"
 
 rechenbeispiel:
-  aufgabe: "Die FORMWERK Spritzguss GmbH produziert Produkt A (DB 18 €/Stück, 30 Min. Maschinenzeit) und Produkt B (DB 12 €/Stück, 10 Min. Maschinenzeit). Die Maschine läuft maximal 800 Stunden pro Monat. Welches Produkt soll bei einem Maschinenengpass bevorzugt produziert werden?"
+  aufgabe: "Die {{firma}} produziert Produkt A (DB 18 €/Stück, 30 Min. Maschinenzeit) und Produkt B (DB 12 €/Stück, 10 Min. Maschinenzeit). Die Maschine läuft maximal 800 Stunden pro Monat. Welches Produkt soll bei einem Maschinenengpass bevorzugt produziert werden?"
   schritte:
     - schritt: 1
       beschreibung: "Relativen DB für Produkt A berechnen"
@@ -66,7 +66,7 @@ merksatz: |
 
 fallbeispiel:
   situation: |
-    Die FORMWERK Spritzguss GmbH produziert zwei Kunststoffteile. Teil A erzielt einen
+    Die {{firma}} produziert zwei Kunststoffteile. Teil A erzielt einen
     Deckungsbeitrag von 18 € pro Stück, Teil B von 12 € pro Stück. Die Produktionsanlage
     ist aktuell nicht ausgelastet.
   aufgabe: |

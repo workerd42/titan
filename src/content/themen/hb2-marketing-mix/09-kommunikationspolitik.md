@@ -8,7 +8,7 @@ merksatz: |
   Erst Attention, dann Interest, dann Desire — und nur wer alle drei schafft, bekommt am Ende die Action.
 fallbeispiel:
   situation: |
-    Die KLANGWERK Kopfhörer GmbH bringt ein neues Modell auf den Markt und plant eine
+    Die {{firma}} bringt ein neues Modell auf den Markt und plant eine
     Kommunikationskampagne. Bisher gibt es nur eine klassische Anzeigenkampagne in
     Fachmagazinen.
   aufgabe: |
@@ -24,7 +24,7 @@ fallbeispiel:
     Online-Shop (erleichtert die letzte Stufe, die tatsächliche Kaufhandlung).
 pruefungsfrage:
   frage: |
-    Die KLANGWERK Kopfhörer GmbH erwägt zusätzlich, gezielt Fachhändler mit
+    Die {{firma}} erwägt zusätzlich, gezielt Fachhändler mit
     Sonderkonditionen zu motivieren, das neue Modell aktiv zu empfehlen, statt nur direkt
     beim Endkunden zu werben.
     a) Wie wird diese Strategie bezeichnet, und wie unterscheidet sie sich von der

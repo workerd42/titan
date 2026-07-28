@@ -8,7 +8,7 @@ merksatz: "Eine Sekundärquelle ist erst dann brauchbar, wenn sie glaubwürdig, 
 fallbeispiel:
   situation: |
     Ein Verband meldet, der mittelständische Werkzeugmaschinenbau sei 2025 um 9 % gewachsen.
-    Die NORDFRÄS GmbH will diese Zahl ihrer Investitionsplanung zugrunde legen.
+    Die {{firma}} will diese Zahl ihrer Investitionsplanung zugrunde legen.
   aufgabe: |
     Prüfen Sie, ob die Verbandszahl ungeprüft übernommen werden sollte, und nennen Sie
     die Kriterien, anhand derer Sie das beurteilen würden.
@@ -21,7 +21,7 @@ fallbeispiel:
     vergleichbar? Erst danach ist eine Investitionsentscheidung auf dieser Basis vertretbar.
 pruefungsfrage:
   frage: |
-    Die Geschäftsleitung der NORDFRÄS GmbH möchte vor einer Investitionsentscheidung auf
+    Die Geschäftsleitung der {{firma}} möchte vor einer Investitionsentscheidung auf
     Daten externer Verbände zurückgreifen, statt eine teure Primärerhebung zu beauftragen.
     a) Nennen Sie vier Hauptkriterien zur Beurteilung der Qualität einer Sekundärquelle.
     b) Erläutern Sie zusätzlich die drei klassischen Gütekriterien empirischer Forschung.

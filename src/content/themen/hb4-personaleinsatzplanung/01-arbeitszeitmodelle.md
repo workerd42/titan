@@ -8,7 +8,7 @@ merksatz: |
   KAPOVAZ plant nach dem Arbeitsanfall – bei wenig Arbeit werden wenige Mitarbeiter eingeplant, bei viel Arbeit entsprechend mehr.
 fallbeispiel:
   situation: |
-    Die FRESHBOX Feinkost-Lieferdienst GmbH verzeichnet starke tägliche
+    Die {{firma}} verzeichnet starke tägliche
     Nachfrageschwankungen: An manchen Tagen gehen doppelt so viele Bestellungen ein wie an
     anderen. Bisher ist für jeden Tag dieselbe feste Mitarbeiterzahl eingeplant, was an
     schwachen Tagen zu Leerlauf und an starken Tagen zu Überlastung führt.
@@ -25,7 +25,7 @@ fallbeispiel:
     schwachen Tagen zu teure) Personalstärke vorzuhalten.
 pruefungsfrage:
   frage: |
-    Die FRESHBOX Feinkost-Lieferdienst GmbH beschäftigt auch einen schwerbehinderten
+    Die {{firma}} beschäftigt auch einen schwerbehinderten
     Mitarbeiter im Lager.
     a) Erläutern Sie das Grundprinzip von KAPOVAZ und nennen Sie einen Vorteil für den
     Arbeitgeber.

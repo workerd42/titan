@@ -8,7 +8,7 @@ merksatz: |
   Strategie ohne Kontrolle ist Hoffnung – Kontrolle ohne Strategie ist Buchhaltung.
 fallbeispiel:
   situation: |
-    Die FERNBLICK Reiseveranstalter GmbH hat eine klare strategische Ausrichtung
+    Die {{firma}} hat eine klare strategische Ausrichtung
     („Premium-Individualreisen für Naturliebhaber"), aber die einzelnen Reisebüros vor Ort
     verkaufen weiterhin nach eigenem Ermessen, ohne erkennbaren Bezug zu dieser Strategie.
   aufgabe: |
@@ -24,7 +24,7 @@ fallbeispiel:
     ist an mehreren Stellen unterbrochen statt geschlossen.
 pruefungsfrage:
   frage: |
-    Die FERNBLICK Reiseveranstalter GmbH möchte künftig die operative Ebene besser an die
+    Die {{firma}} möchte künftig die operative Ebene besser an die
     Strategie anbinden.
     a) Nennen Sie die fünf Phasen des Managementkreislaufs.
     b) Erläutern Sie, warum die Phase „Information" als Querschnittsfunktion gilt und

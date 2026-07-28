@@ -8,7 +8,7 @@ merksatz: |
   Kosten pro Klick sagen wenig – erst Neukundenzahl, Kundenwert und Umsatz zeigen, ob eine Online-Maßnahme wirklich erfolgreich war.
 fallbeispiel:
   situation: |
-    Die CLICKFAIR Online-Marketing-Abteilung der SONNENHOF Gartenmöbel GmbH präsentiert
+    Die {{firma}} präsentiert
     stolz, dass die Kosten pro Klick in der letzten Kampagne gesenkt werden konnten.
     Die Geschäftsführung bleibt skeptisch, ob das allein etwas über den Erfolg aussagt.
   aufgabe: |
@@ -25,7 +25,7 @@ fallbeispiel:
     haben.
 pruefungsfrage:
   frage: |
-    Die SONNENHOF Gartenmöbel GmbH möchte ein sinnvolles Kennzahlensystem für ihr
+    Die {{firma}} möchte ein sinnvolles Kennzahlensystem für ihr
     Onlinemarketing aufbauen.
     a) Warum eignet sich das Onlinemarketing besonders gut für eine zeitnahe
     Erfolgskontrolle im Vergleich zu klassischen Marketingmaßnahmen?

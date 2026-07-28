@@ -9,7 +9,7 @@ merksatz: |
   Eine Balanced Scorecard zwingt dazu, neben Finanzen auch Kunden, Prozesse und Mitarbeiter im Blick zu behalten.
 fallbeispiel:
   situation: |
-    Die FRISCHWERK Feinkost GmbH muss sich zwischen drei möglichen neuen
+    Die {{firma}} muss sich zwischen drei möglichen neuen
     Vertriebspartnern entscheiden und möchte das nicht aus dem Bauch heraus tun.
   aufgabe: |
     Schlagen Sie ein geeignetes Verfahren vor und skizzieren Sie die nötigen Schritte.
@@ -23,7 +23,7 @@ fallbeispiel:
     diskutierbar dokumentiert, statt rein subjektiv zu sein.
 pruefungsfrage:
   frage: |
-    Die Geschäftsführung der FRISCHWERK Feinkost GmbH möchte zusätzlich ein
+    Die Geschäftsführung der {{firma}} möchte zusätzlich ein
     Steuerungsinstrument einführen, das nicht nur die Finanzkennzahlen, sondern auch
     Kunden- und Prozessqualität laufend im Blick behält.
     a) Welches Instrument empfehlen Sie, und nennen Sie dessen vier Perspektiven.

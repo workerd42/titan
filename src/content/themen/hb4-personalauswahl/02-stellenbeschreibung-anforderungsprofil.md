@@ -8,7 +8,7 @@ merksatz: |
   Die Stellenbeschreibung stellt die Stelle in den Mittelpunkt, das Anforderungsprofil den Menschen, der sie ausfüllen soll.
 fallbeispiel:
   situation: |
-    Die Personalabteilung der KLARSICHT Optikgroßhandel GmbH möchte eine neu geschaffene
+    Die Personalabteilung der {{firma}} möchte eine neu geschaffene
     Stelle „Marketingassistenz Social Media" besetzen und hat bisher nur eine grobe
     Stellenanzeige mit dem Satz „Bewerber sollten kreativ und teamfähig sein" formuliert.
   aufgabe: |
@@ -26,7 +26,7 @@ fallbeispiel:
     bestimmten Plattformen) fehlt bislang völlig.
 pruefungsfrage:
   frage: |
-    Die KLARSICHT Optikgroßhandel GmbH möchte künftig für jede neue Stelle sowohl eine
+    Die {{firma}} möchte künftig für jede neue Stelle sowohl eine
     Stellenbeschreibung als auch ein Anforderungsprofil erstellen.
     a) Erläutern Sie den grundsätzlichen Unterschied zwischen Stellenbeschreibung und
     Anforderungsprofil.

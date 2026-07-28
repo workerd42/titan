@@ -23,7 +23,7 @@ fallbeispiel:
     Durchschnitt über alle Beschäftigten.
 pruefungsfrage:
   frage: |
-    Die KELLER Antriebstechnik GmbH ist zusätzlich von 2019 bis 2024 jährlich
+    Die {{firma}} ist zusätzlich von 2019 bis 2024 jährlich
     gewachsen, allerdings mit schwankenden Raten. Der Umsatz stieg von 40,0 Mio. €
     auf 53,6 Mio. €.
     a) Welcher Mittelwert ist geeignet, um die durchschnittliche jährliche

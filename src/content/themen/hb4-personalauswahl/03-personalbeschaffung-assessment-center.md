@@ -8,7 +8,7 @@ merksatz: |
   Ein Assessment-Center zeigt, was ein Bewerber wirklich kann – ein Lebenslauf zeigt nur, was er behauptet zu können.
 fallbeispiel:
   situation: |
-    Die WERKBANK Maschinenbau AG möchte kurzfristig einen Kapazitätsengpass in der
+    Die {{firma}} möchte kurzfristig einen Kapazitätsengpass in der
     Auftragsabwicklung überbrücken, ohne eine dauerhafte Neueinstellung vorzunehmen.
   aufgabe: |
     Schlagen Sie geeignete Maßnahmen der internen Personalbeschaffung vor.
@@ -21,7 +21,7 @@ fallbeispiel:
     Personalbeschaffung (z. B. eine reguläre Stellenausschreibung) der passendere Weg.
 pruefungsfrage:
   frage: |
-    Die WERKBANK Maschinenbau AG plant zusätzlich, künftig Führungspositionen über ein
+    Die {{firma}} plant zusätzlich, künftig Führungspositionen über ein
     aufwendigeres Auswahlverfahren zu besetzen als bisher.
     a) Erläutern Sie den Grundgedanken und Nutzen eines Assessment-Centers.
     b) Nennen Sie einen Grund, warum Assessment-Center in der Praxis meist nur für

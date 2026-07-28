@@ -7,7 +7,7 @@ description: "Die drei weiteren primärforscherischen Erhebungsmethoden neben de
 merksatz: "Beobachtung zeigt, was geschieht. Das Experiment zeigt, warum. Das Panel zeigt, wie es sich über Zeit verändert."
 fallbeispiel:
   situation: |
-    Die FRISCH & FEIN Backwaren AG will wissen, ob eine neue, schmalere Verpackung
+    Die {{firma}} will wissen, ob eine neue, schmalere Verpackung
     den Absatz ihres Bio-Brots steigert – unter sonst gleichen Bedingungen.
   aufgabe: |
     Welche Erhebungsmethode ist hier geeignet, und welcher Versuchstyp im

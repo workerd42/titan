@@ -8,14 +8,14 @@ merksatz: |
   Die Verwaltung liefert die Daten, die Betreuung kümmert sich um den Menschen dahinter – beides zusammen ergibt gute Personalarbeit.
 fallbeispiel:
   situation: |
-    Die BÜROWELT Fachhandel GmbH verwaltet Personaldaten bisher in mehreren
+    Die {{firma}} verwaltet Personaldaten bisher in mehreren
     unterschiedlichen Excel-Tabellen, die von verschiedenen Personen gepflegt werden. Bei
     einer Gehaltsanpassung kommt es wiederholt zu Übertragungsfehlern zwischen den
     Tabellen.
   aufgabe: |
     Schlagen Sie eine Verbesserung vor und begründen Sie sie.
   musterloesung: |
-    Die BÜROWELT Fachhandel GmbH sollte ein zentrales Personalinformationssystem
+    Die {{firma}} sollte ein zentrales Personalinformationssystem
     einführen, in dem Stammdaten, Entgeltdaten und Leistungsdaten der Mitarbeiter
     einheitlich erfasst werden. Ein solches System reduziert Übertragungsfehler, da Daten
     nur noch an einer Stelle gepflegt werden müssen, und erleichtert zugleich weitere
@@ -23,7 +23,7 @@ fallbeispiel:
     zentral und aktuell verfügbar sind.
 pruefungsfrage:
   frage: |
-    Die BÜROWELT Fachhandel GmbH möchte künftig auch die Aus- und Fortbildung ihrer
+    Die {{firma}} möchte künftig auch die Aus- und Fortbildung ihrer
     Mitarbeiter besser dokumentieren.
     a) Erläutern Sie, welche Datenarten in einem Personalinformationssystem
     typischerweise erfasst werden.

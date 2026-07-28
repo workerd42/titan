@@ -8,7 +8,7 @@ merksatz: |
   Wer Industriegütermarketing wie Konsumgütermarketing betreibt, übersieht das Buying-Center und verliert das Geschäft.
 fallbeispiel:
   situation: |
-    Die PRÄZISA Werkzeugbau GmbH verkauft CNC-Fertigungsanlagen an Automobilzulieferer.
+    Die {{firma}} verkauft CNC-Fertigungsanlagen an Automobilzulieferer.
     Der neue Marketingleiter, der zuvor bei einem Konsumgüterhersteller tätig war, plant
     eine breite Plakatkampagne mit emotionalem Markenversprechen.
   aufgabe: |
@@ -24,7 +24,7 @@ fallbeispiel:
     die direkt auf die Entscheidungslogik des Buying-Centers einzahlen.
 pruefungsfrage:
   frage: |
-    Die PRÄZISA Werkzeugbau GmbH erwägt zusätzlich, eine ergänzende Wartungs- und
+    Die {{firma}} erwägt zusätzlich, eine ergänzende Wartungs- und
     Schulungsdienstleistung für ihre Anlagen anzubieten.
     a) Nennen Sie zwei Aufgabenbereiche des Produktmanagements nach Kotler.
     b) Erläutern Sie eine wesentliche Besonderheit des Dienstleistungsmarketings
