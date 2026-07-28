@@ -121,5 +121,12 @@ const { stageId, universumId, itemCount } = Astro.props;
 
   @media (max-width: 600px) {
     .carousel-arrow { width: 38px; height: 38px; }
+    /* Auf schmalen Screens die Ränder weich ausblenden: die seitlichen
+       Nachbar-Welten zerlaufen sanft statt hart am Bildrand abgeschnitten
+       zu werden. */
+    .carousel-track {
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 22%, black 78%, transparent 100%);
+      mask-image: linear-gradient(to right, transparent 0%, black 22%, black 78%, transparent 100%);
+    }
   }
 </style>

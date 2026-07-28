@@ -298,16 +298,17 @@ const themenMitIndex = (() => {
     .tls-gruppe-titel {
       font-family: var(--mono, monospace);
       font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
-      color: #6E5035; margin-bottom: 8px; max-width: none;
+      /* Dunkler Kosmos (Seite 3): Akzent-Gold statt Hell-Modus-Braun. */
+      color: var(--accent); margin-bottom: 8px; max-width: none;
     }
     .tls-item {
       display: flex; justify-content: space-between; align-items: center;
-      padding: 12px 0; border-bottom: 1px solid rgba(110, 80, 53, 0.12);
-      text-decoration: none; color: #1C1917;
+      padding: 12px 0; border-bottom: 1px solid var(--border);
+      text-decoration: none; color: var(--text);
       font-family: var(--serif, Georgia); font-size: 15px; font-weight: 300;
     }
-    .tls-item::after { content: '→'; color: rgba(110, 80, 53, 0.4); }
-    .tls-item:hover { color: #6E5035; }
+    .tls-item::after { content: '→'; color: var(--text-muted); }
+    .tls-item:hover { color: var(--accent); }
   }
 
   /* ── RESPONSIVE HEADER ──────────────────── */

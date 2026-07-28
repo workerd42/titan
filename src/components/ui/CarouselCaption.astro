@@ -31,6 +31,20 @@
     pointer-events: none;
   }
 
+  /* Weicher Radial-Scrim hinter der Caption: hebt Titel/Text von den
+     dahinterliegenden Planeten ab (v. a. auf schmalen Screens, wo die
+     Nachbar-Welten nah an den Text rücken). Liegt über den Planeten,
+     aber unter dem Caption-Text. */
+  .carousel-caption::before {
+    content: '';
+    position: absolute;
+    inset: -48px -28px;
+    z-index: -1;
+    background: radial-gradient(ellipse 72% 62% at 50% 50%,
+      rgba(20, 18, 16, 0.82) 0%, rgba(20, 18, 16, 0.5) 48%, transparent 78%);
+    pointer-events: none;
+  }
+
   .cc-eyebrow {
     font-family: var(--mono, monospace);
     font-size: 11px;
@@ -100,9 +114,11 @@
   .cc-cta.is-disabled:hover { opacity: 1; transform: none; }
 
   @media (max-width: 600px) {
-    .carousel-caption { width: min(560px, 70vw); }
+    /* Breiter als zuvor (70vw war zu schmal → Titel/Teaser brachen unschön um). */
+    .carousel-caption { width: min(560px, 88vw); }
     .cc-titel { font-size: clamp(22px, 6.4vw, 32px); -webkit-line-clamp: 3; }
-    .cc-beschr { font-size: 11px; -webkit-line-clamp: 1; margin-bottom: 16px; }
+    /* Teaser darf umbrechen statt nach einer Zeile mit „…" abzuschneiden. */
+    .cc-beschr { font-size: 11.5px; -webkit-line-clamp: 3; max-width: 100%; margin-bottom: 16px; }
     .cc-cta { padding: 13px 20px; font-size: 11px; }
   }
 </style>

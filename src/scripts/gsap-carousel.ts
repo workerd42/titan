@@ -150,7 +150,11 @@ function maybeShowHint(mountEl: HTMLElement): (() => void) {
   const hint = document.createElement('div');
   hint.className = 'carousel-hint';
   hint.setAttribute('role', 'status');
-  hint.textContent = 'Pfeiltasten, Wischen oder Klick zum Navigieren';
+  // Gerätespezifisch: Touch-Geräte haben keine Pfeiltasten, Desktop kein Wischen.
+  const touch = window.matchMedia('(pointer: coarse)').matches;
+  hint.textContent = touch
+    ? 'Wischen oder Tippen zum Navigieren'
+    : 'Pfeiltasten, Klick oder Wischen zum Navigieren';
   mountEl.appendChild(hint);
   requestAnimationFrame(() => hint.classList.add('is-visible'));
 
@@ -431,8 +435,11 @@ export function updateDots(stageId: string, activeIndex: number): void {
 
 export function responsivePlanetSize(basePx: number): number {
   const vw = window.innerWidth;
-  if (vw < 480) return Math.round(basePx * 0.55);
-  if (vw < 768) return Math.round(basePx * 0.72);
-  if (vw < 1024) return Math.round(basePx * 0.88);
+  // Auf schmalen Screens deutlich kleiner: der vorderste Planet wird per
+  // Perspektive (rz) zusätzlich vergrößert — zu große Basiswerte ließen ihn
+  // die Bottom-Nav überlappen und schnitten die Nachbarn am Rand an.
+  if (vw < 480) return Math.round(basePx * 0.44);
+  if (vw < 768) return Math.round(basePx * 0.60);
+  if (vw < 1024) return Math.round(basePx * 0.82);
   return basePx;
 }
