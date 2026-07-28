@@ -494,6 +494,58 @@ const portfolioModul: ModulFn = (ctx) => {
   wrap.appendChild(btn); ctx.mount.appendChild(wrap);
 };
 
+// ── Mini-Kurs-Kopf: „Was ist das? · Wann? · Beispiel" pro Werkzeug ──
+// Macht aus dem nackten Formular eine geführte Lektion (Konzept + Worked Example),
+// bevor der/die Lernende es frei auf die Star-Company anwendet. Statischer,
+// vertrauenswürdiger Autoreninhalt (innerHTML mit eigenen <b> ok).
+const MODUL_INFO: Record<string, { konzept: string; wann: string; beispiel: string }> = {
+  swot: {
+    konzept: 'Die SWOT-Analyse stellt <b>interne</b> Stärken/Schwächen den <b>externen</b> Chancen/Risiken gegenüber — ein ehrliches Gesamtbild der Ausgangslage.',
+    wann: 'Vor jeder Strategie-Entscheidung, um die eigene Position zu bestimmen.',
+    beispiel: 'Eine Bäckerei: <b>Stärke</b> frische Handwerksware · <b>Schwäche</b> nur eine Filiale · <b>Chance</b> Bio-Trend · <b>Risiko</b> Discounter nebenan.',
+  },
+  smart: {
+    konzept: 'SMART macht aus einem vagen Wunsch ein <b>überprüfbares Ziel</b>: Spezifisch, Messbar, Attraktiv, Realistisch, Terminiert.',
+    wann: 'Immer wenn du ein Marketingziel formulierst, das später bewertbar sein soll.',
+    beispiel: '„Mehr Umsatz" → „Den Online-Umsatz bis 31.12. um 15 % steigern."',
+  },
+  deckungsbeitrag: {
+    konzept: 'Der Deckungsbeitrag zeigt, was ein Produkt nach Abzug der <b>variablen Kosten</b> zur Deckung der Fixkosten beiträgt.',
+    wann: 'Wenn du wissen willst, ob und ab wann ein Produkt Geld verdient.',
+    beispiel: 'Preis 50 € − variable Kosten 30 € = 20 € DB/Stück; bei 10.000 € Fixkosten trägt ab 500 Stück jedes weitere zum Gewinn bei.',
+  },
+  marktanteil: {
+    konzept: 'Der Marktanteil setzt den <b>eigenen Umsatz</b> ins Verhältnis zum Gesamtmarkt (absolut) bzw. zum stärksten Wettbewerber (relativ).',
+    wann: 'Zur Standortbestimmung im Wettbewerb und für Ziele wie „Marktführerschaft".',
+    beispiel: '18 Mio. € Umsatz bei 120 Mio. € Marktvolumen = 15 % Marktanteil.',
+  },
+  preisberechnung: {
+    konzept: 'Die Zuschlagskalkulation baut den Angebotspreis Schritt für Schritt aus den <b>Selbstkosten</b> + Gewinn + Rabatt/Skonto auf.',
+    wann: 'Wenn du einen kostendeckenden, marktfähigen Angebotspreis brauchst.',
+    beispiel: '80 € Selbstkosten + 20 % Gewinn = 96 € Barpreis, hochgerechnet um Skonto/Rabatt zum Listenpreis.',
+  },
+  'vier-stufen': {
+    konzept: 'Die Vier-Stufen-Methode ist die klassische Unterweisung: Vorbereiten → Vormachen → Nachmachen → Üben.',
+    wann: 'Wenn du eine:n Auszubildende:n eine konkrete Tätigkeit anlernst.',
+    beispiel: 'Eine Reklamation bearbeiten: erst erklären, dann vormachen, dann selbst machen lassen, dann festigen.',
+  },
+  scoring: {
+    konzept: 'Die Nutzwertanalyse vergleicht Alternativen anhand <b>gewichteter Kriterien</b> — die höchste Punktsumme gewinnt.',
+    wann: 'Bei Entscheidungen mit mehreren Kriterien (Lieferant, Standort, Agentur …).',
+    beispiel: 'Agentur A vs. B nach Preis (40 %), Qualität (40 %), Nähe (20 %) bewerten.',
+  },
+  portfolio: {
+    konzept: 'Die BCG-Matrix ordnet Produkte nach <b>Marktwachstum</b> und <b>relativem Marktanteil</b> in Stars, Fragezeichen, Cash Cows und Arme Hunde.',
+    wann: 'Um ein Produktportfolio zu steuern: investieren, abschöpfen oder aufgeben.',
+    beispiel: 'Wachsendes Produkt mit hohem Anteil = Star (investieren); schrumpfendes mit niedrigem Anteil = Armer Hund (aufgeben).',
+  },
+  breakeven: {
+    konzept: 'Der Break-even (Gewinnschwelle) ist die Menge, ab der die <b>Deckungsbeiträge die Fixkosten</b> genau decken — ab da beginnt der Gewinn.',
+    wann: 'Um zu prüfen, ab welcher Absatzmenge sich ein Produkt lohnt.',
+    beispiel: '10.000 € Fixkosten ÷ 20 € DB/Stück = 500 Stück Break-even.',
+  },
+};
+
 const REGISTRY: Record<string, ModulFn> = {
   smart: smartModul,
   swot: swotModul,
@@ -524,6 +576,19 @@ function mountModule(): void {
     mount.appendChild(el('p', 'tm-soon', `Interaktives Modul „${esc(werkzeug)}" ist in Vorbereitung. Nutze bis dahin das Textfeld unten.`));
     return;
   }
+  // Mini-Kurs-Kopf: Konzept + Worked Example VOR dem Werkzeug (falls hinterlegt).
+  const info = MODUL_INFO[werkzeug];
+  if (info) {
+    const box = el('div', 'tm-konzept');
+    box.innerHTML =
+      `<p class="tm-konzept-label">Was ist das?</p>`
+      + `<p class="tm-konzept-text">${info.konzept}</p>`
+      + `<p class="tm-konzept-row"><span class="tm-konzept-tag">Wann</span><span>${info.wann}</span></p>`
+      + `<p class="tm-konzept-row"><span class="tm-konzept-tag">Beispiel</span><span>${info.beispiel}</span></p>`
+      + `<p class="tm-konzept-cta">Jetzt selbst — auf deine Star-Company angewendet:</p>`;
+    mount.appendChild(box);
+  }
+
   if (!kompass?.name) {
     mount.appendChild(el('p', 'tm-hinweis', '◆ Richte zuerst deine Star-Company ein (Mein Bereich), damit dieses Werkzeug auf deine Firma zugeschnitten arbeitet. Du kannst es aber auch schon jetzt ausfüllen.'));
   }
