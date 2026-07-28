@@ -965,6 +965,10 @@ const d = thema.data;
     .thema-wrap[data-groesse="gross"] .thema-kopf,
     .thema-wrap[data-groesse="gross"] .lern-phase { width: calc(100% / 1.12); margin-inline: auto; }
   }
+  /* Zeilenabstand „weit" — wie die Schriftgröße jetzt inhaltsweit (nicht nur
+     .prose): greift auf den Haupt-Lesetext aller Phasen (Absätze, Listen,
+     Definitions-Terme). Spezifischer als die Einzel-Element-Regeln → gewinnt. */
+  .thema-wrap[data-abstand="weit"] :is(.thema-kopf, .lern-phase) :is(p, li, dd, dt) { line-height: 1.95; }
   .thema-wrap[data-abstand="weit"] .prose { line-height: 2.05; }
   .thema-wrap[data-abstand="weit"] .prose p { margin-bottom: 1.4em; }
 
