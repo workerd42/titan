@@ -63,8 +63,22 @@ live zu gehen).
    wie die Markdown-Themen. **Graceful:** kein Token / Directus offline → leere Collection
    (Markdown-`themen` bleibt unberührt → reversibel). Zugriff über **statischen Dev-Token**
    (`DIRECTUS_TOKEN`, lokal als Fallback; **Prod: scoped Read-Token via Env**).
-3. **End-to-End verifiziert** — Test-Thema `99-directus-test` (published) kommt via Loader durch,
-   Zod-validiert (Begriffe/Fallbeispiel/Wiederholung ok).
+3. **End-to-End verifiziert** — Test-Thema (published) kommt via Loader durch, Zod-validiert.
+
+**✅ Arbeitsreif gemacht (2026-07-28):** Die `themen`-Collection ist jetzt **fachautor-tauglich**
+(kein JSON-Tippen mehr, siehe [directus-fachautor-anleitung.md](directus-fachautor-anleitung.md)):
+- **Phasen-Gruppen** im Formular (Identität · Verstehen · Merken · Anwenden · Prüfen · Wiederholung).
+- **Listen** (Begriffe, Definitionen, Formeln, Rechtsgrundlagen) als klickbare **Repeater**;
+  Zusammenfassung/Lösungsweg als **Tags**.
+- **Fallbeispiel & Prüfungsfrage flach** — beschriftete Einzelfelder (`fall_*`, `pruef_*`) statt
+  JSON-Objekt; der Loader baut daraus wieder die vom Zod-Schema erwartete verschachtelte Form.
+- **Pflichtfelder**, **Dropdowns** (Handlungsbereich, Werkzeug, **Status „In Bearbeitung/Publikation-Frei"**),
+  Defaults (Status=draft, Wiederholung=4), **Feld-Hinweise** (u. a. Urheberrecht bei Gesetzen).
+- **Deutsche Oberfläche** + saubere Feld-Labels (Übersetzungen).
+- **Schema versioniert** im Repo: [`directus/schema-snapshot.json`](../directus/schema-snapshot.json)
+  (+ [`directus/README.md`](../directus/README.md) — Snapshot/Apply). Test-Thema entfernt; nur das
+  echte KPI-Thema bleibt.
+- `rechenbeispiel` bleibt bewusst JSON (selten/fortgeschritten).
 
 **⬜ Offen:**
 4. **Auto-Deploy** (Webhook → Build → Ausrollen) — der eigentliche Aufwand (Roadmap 2.6).

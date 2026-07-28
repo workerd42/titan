@@ -143,8 +143,18 @@ async function directusThemenLoader() {
       werkzeug: t.werkzeug ?? undefined,
       merksatz: t.merksatz,
       begriffe: t.begriffe ?? undefined,
-      fallbeispiel: t.fallbeispiel,
-      pruefungsfrage: t.pruefungsfrage,
+      // Fallbeispiel/Prüfungsfrage liegen in Directus als flache Einzelfelder
+      // (autoren-freundlich) → hier zurück in die vom Zod-Schema erwartete
+      // verschachtelte Form bringen.
+      fallbeispiel: {
+        situation: t.fall_situation,
+        aufgabe: t.fall_aufgabe,
+        musterloesung: t.fall_musterloesung,
+      },
+      pruefungsfrage: {
+        frage: t.pruef_frage,
+        loesungsweg: t.pruef_loesungsweg ?? [],
+      },
       wiederholungTage: t.wiederholungTage ?? 4,
     }));
   } catch (e) {

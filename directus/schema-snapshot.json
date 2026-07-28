@@ -1,0 +1,1594 @@
+{
+  "version": 1,
+  "directus": "11.17.4",
+  "vendor": "postgres",
+  "collections": [
+    {
+      "collection": "themen",
+      "meta": {
+        "accountability": "all",
+        "archive_app_filter": true,
+        "archive_field": null,
+        "archive_value": null,
+        "collapse": "open",
+        "collection": "themen",
+        "color": null,
+        "display_template": "{{title}}",
+        "group": null,
+        "hidden": false,
+        "icon": "school",
+        "item_duplication_fields": null,
+        "note": "Titan Lern-Themen (spiegelt src/content.config.ts). Zod validiert beim Pull.",
+        "preview_url": null,
+        "singleton": false,
+        "sort": null,
+        "sort_field": "order",
+        "translations": null,
+        "unarchive_value": null,
+        "versioning": false
+      },
+      "schema": {
+        "name": "themen"
+      }
+    }
+  ],
+  "fields": [
+    {
+      "collection": "themen",
+      "field": "id",
+      "type": "integer",
+      "meta": {
+        "collection": "themen",
+        "conditions": null,
+        "display": null,
+        "display_options": null,
+        "field": "id",
+        "group": null,
+        "hidden": true,
+        "interface": "input",
+        "note": null,
+        "options": null,
+        "readonly": true,
+        "required": false,
+        "searchable": true,
+        "sort": 1,
+        "special": null,
+        "translations": null,
+        "validation": null,
+        "validation_message": null,
+        "width": "full"
+      },
+      "schema": {
+        "name": "id",
+        "table": "themen",
+        "data_type": "integer",
+        "default_value": "nextval('themen_id_seq'::regclass)",
+        "max_length": null,
+        "numeric_precision": 32,
+        "numeric_scale": 0,
+        "is_nullable": false,
+        "is_unique": true,
+        "is_indexed": false,
+        "is_primary_key": true,
+        "is_generated": false,
+        "generation_expression": null,
+        "has_auto_increment": true,
+        "foreign_key_table": null,
+        "foreign_key_column": null
+      }
+    },
+    {
+      "collection": "themen",
+      "field": "status",
+      "type": "string",
+      "meta": {
+        "collection": "themen",
+        "conditions": null,
+        "display": null,
+        "display_options": null,
+        "field": "status",
+        "group": "grp_identitaet",
+        "hidden": false,
+        "interface": "select-dropdown",
+        "note": "„In Bearbeitung\" = Entwurf (nicht live). „Publikation-Frei\" = wird beim nächsten Build live gezogen.",
+        "options": {
+          "choices": [
+            {
+              "text": "In Bearbeitung",
+              "value": "draft"
+            },
+            {
+              "text": "Publikation-Frei",
+              "value": "published"
+            }
+          ]
+        },
+        "readonly": false,
+        "required": true,
+        "searchable": true,
+        "sort": 7,
+        "special": null,
+        "translations": null,
+        "validation": null,
+        "validation_message": null,
+        "width": "half"
+      },
+      "schema": {
+        "name": "status",
+        "table": "themen",
+        "data_type": "character varying",
+        "default_value": "draft",
+        "max_length": 255,
+        "numeric_precision": null,
+        "numeric_scale": null,
+        "is_nullable": true,
+        "is_unique": false,
+        "is_indexed": false,
+        "is_primary_key": false,
+        "is_generated": false,
+        "generation_expression": null,
+        "has_auto_increment": false,
+        "foreign_key_table": null,
+        "foreign_key_column": null
+      }
+    },
+    {
+      "collection": "themen",
+      "field": "slug",
+      "type": "string",
+      "meta": {
+        "collection": "themen",
+        "conditions": null,
+        "display": null,
+        "display_options": null,
+        "field": "slug",
+        "group": "grp_identitaet",
+        "hidden": false,
+        "interface": "input",
+        "note": "Eindeutiger Dateiname-Stil, z. B. `01-kpi-systematik`. Wird Teil der URL. Keine Leer-/Sonderzeichen.",
+        "options": {
+          "slug": true,
+          "trim": true
+        },
+        "readonly": false,
+        "required": true,
+        "searchable": true,
+        "sort": 1,
+        "special": null,
+        "translations": null,
+        "validation": null,
+        "validation_message": null,
+        "width": "half"
+      },
+      "schema": {
+        "name": "slug",
+        "table": "themen",
+        "data_type": "character varying",
+        "default_value": null,
+        "max_length": 255,
+        "numeric_precision": null,
+        "numeric_scale": null,
+        "is_nullable": true,
+        "is_unique": false,
+        "is_indexed": false,
+        "is_primary_key": false,
+        "is_generated": false,
+        "generation_expression": null,
+        "has_auto_increment": false,
+        "foreign_key_table": null,
+        "foreign_key_column": null
+      }
+    },
+    {
+      "collection": "themen",
+      "field": "title",
+      "type": "string",
+      "meta": {
+        "collection": "themen",
+        "conditions": null,
+        "display": null,
+        "display_options": null,
+        "field": "title",
+        "group": "grp_identitaet",
+        "hidden": false,
+        "interface": "input",
+        "note": "Titel des Themas, wie er im Lernbereich erscheint.",
+        "options": null,
+        "readonly": false,
+        "required": true,
+        "searchable": true,
+        "sort": 2,
+        "special": null,
+        "translations": [
+          {
+            "language": "de-DE",
+            "translation": "Titel"
+          }
+        ],
+        "validation": null,
+        "validation_message": null,
+        "width": "full"
+      },
+      "schema": {
+        "name": "title",
+        "table": "themen",
+        "data_type": "character varying",
+        "default_value": null,
+        "max_length": 255,
+        "numeric_precision": null,
+        "numeric_scale": null,
+        "is_nullable": true,
+        "is_unique": false,
+        "is_indexed": false,
+        "is_primary_key": false,
+        "is_generated": false,
+        "generation_expression": null,
+        "has_auto_increment": false,
+        "foreign_key_table": null,
+        "foreign_key_column": null
+      }
+    },
+    {
+      "collection": "themen",
+      "field": "handlungsbereich",
+      "type": "string",
+      "meta": {
+        "collection": "themen",
+        "conditions": null,
+        "display": null,
+        "display_options": null,
+        "field": "handlungsbereich",
+        "group": "grp_identitaet",
+        "hidden": false,
+        "interface": "select-dropdown",
+        "note": "Handlungsbereich der IHK-Prüfung.",
+        "options": {
+          "choices": [
+            {
+              "text": "HB 1 — Marktorientierte Unternehmensführung",
+              "value": "hb1"
+            },
+            {
+              "text": "HB 2 — Marketing-Instrumente",
+              "value": "hb2"
+            },
+            {
+              "text": "HB 3 — Erfolgsmessung & Steuerung",
+              "value": "hb3"
+            },
+            {
+              "text": "HB 4 — Recht & Arbeitsschutz",
+              "value": "hb4"
+            }
+          ]
+        },
+        "readonly": false,
+        "required": true,
+        "searchable": true,
+        "sort": 3,
+        "special": null,
+        "translations": null,
+        "validation": null,
+        "validation_message": null,
+        "width": "half"
+      },
+      "schema": {
+        "name": "handlungsbereich",
+        "table": "themen",
+        "data_type": "character varying",
+        "default_value": null,
+        "max_length": 255,
+        "numeric_precision": null,
+        "numeric_scale": null,
+        "is_nullable": true,
+        "is_unique": false,
+        "is_indexed": false,
+        "is_primary_key": false,
+        "is_generated": false,
+        "generation_expression": null,
+        "has_auto_increment": false,
+        "foreign_key_table": null,
+        "foreign_key_column": null
+      }
+    },
+    {
+      "collection": "themen",
+      "field": "themengruppe",
+      "type": "string",
+      "meta": {
+        "collection": "themen",
+        "conditions": null,
+        "display": null,
+        "display_options": null,
+        "field": "themengruppe",
+        "group": "grp_identitaet",
+        "hidden": false,
+        "interface": "input",
+        "note": "Thematische Untergruppe (frei), z. B. „Kennzahlen & Controlling\".",
+        "options": null,
+        "readonly": false,
+        "required": true,
+        "searchable": true,
+        "sort": 4,
+        "special": null,
+        "translations": null,
+        "validation": null,
+        "validation_message": null,
+        "width": "half"
+      },
+      "schema": {
+        "name": "themengruppe",
+        "table": "themen",
+        "data_type": "character varying",
+        "default_value": null,
+        "max_length": 255,
+        "numeric_precision": null,
+        "numeric_scale": null,
+        "is_nullable": true,
+        "is_unique": false,
+        "is_indexed": false,
+        "is_primary_key": false,
+        "is_generated": false,
+        "generation_expression": null,
+        "has_auto_increment": false,
+        "foreign_key_table": null,
+        "foreign_key_column": null
+      }
+    },
+    {
+      "collection": "themen",
+      "field": "order",
+      "type": "integer",
+      "meta": {
+        "collection": "themen",
+        "conditions": null,
+        "display": null,
+        "display_options": null,
+        "field": "order",
+        "group": "grp_identitaet",
+        "hidden": false,
+        "interface": "input",
+        "note": "Reihenfolge innerhalb des Handlungsbereichs (kleinste zuerst).",
+        "options": null,
+        "readonly": false,
+        "required": true,
+        "searchable": true,
+        "sort": 5,
+        "special": null,
+        "translations": [
+          {
+            "language": "de-DE",
+            "translation": "Reihenfolge"
+          }
+        ],
+        "validation": null,
+        "validation_message": null,
+        "width": "half"
+      },
+      "schema": {
+        "name": "order",
+        "table": "themen",
+        "data_type": "integer",
+        "default_value": 1,
+        "max_length": null,
+        "numeric_precision": 32,
+        "numeric_scale": 0,
+        "is_nullable": true,
+        "is_unique": false,
+        "is_indexed": false,
+        "is_primary_key": false,
+        "is_generated": false,
+        "generation_expression": null,
+        "has_auto_increment": false,
+        "foreign_key_table": null,
+        "foreign_key_column": null
+      }
+    },
+    {
+      "collection": "themen",
+      "field": "werkzeug",
+      "type": "string",
+      "meta": {
+        "collection": "themen",
+        "conditions": null,
+        "display": null,
+        "display_options": null,
+        "field": "werkzeug",
+        "group": "grp_verstehen",
+        "hidden": false,
+        "interface": "select-dropdown",
+        "note": "Optionales interaktives Werkzeug für dieses Thema.",
+        "options": {
+          "allowNone": true,
+          "choices": [
+            {
+              "text": "SWOT-Analyse",
+              "value": "swot"
+            },
+            {
+              "text": "SMART-Ziele",
+              "value": "smart"
+            },
+            {
+              "text": "Deckungsbeitrag",
+              "value": "deckungsbeitrag"
+            },
+            {
+              "text": "Marktanteil",
+              "value": "marktanteil"
+            },
+            {
+              "text": "Preisberechnung",
+              "value": "preisberechnung"
+            },
+            {
+              "text": "Vier-Stufen-Methode",
+              "value": "vier-stufen"
+            },
+            {
+              "text": "Scoring-Modell",
+              "value": "scoring"
+            }
+          ]
+        },
+        "readonly": false,
+        "required": false,
+        "searchable": true,
+        "sort": 7,
+        "special": null,
+        "translations": null,
+        "validation": null,
+        "validation_message": null,
+        "width": "half"
+      },
+      "schema": {
+        "name": "werkzeug",
+        "table": "themen",
+        "data_type": "character varying",
+        "default_value": null,
+        "max_length": 255,
+        "numeric_precision": null,
+        "numeric_scale": null,
+        "is_nullable": true,
+        "is_unique": false,
+        "is_indexed": false,
+        "is_primary_key": false,
+        "is_generated": false,
+        "generation_expression": null,
+        "has_auto_increment": false,
+        "foreign_key_table": null,
+        "foreign_key_column": null
+      }
+    },
+    {
+      "collection": "themen",
+      "field": "wiederholungTage",
+      "type": "integer",
+      "meta": {
+        "collection": "themen",
+        "conditions": null,
+        "display": null,
+        "display_options": null,
+        "field": "wiederholungTage",
+        "group": "grp_wiederholung",
+        "hidden": false,
+        "interface": "input",
+        "note": "Nach wie vielen Tagen zur Wiederholung vorschlagen (Standard 4).",
+        "options": null,
+        "readonly": false,
+        "required": false,
+        "searchable": true,
+        "sort": 1,
+        "special": null,
+        "translations": [
+          {
+            "language": "de-DE",
+            "translation": "Wiederholung (Tage)"
+          }
+        ],
+        "validation": null,
+        "validation_message": null,
+        "width": "half"
+      },
+      "schema": {
+        "name": "wiederholungTage",
+        "table": "themen",
+        "data_type": "integer",
+        "default_value": 4,
+        "max_length": null,
+        "numeric_precision": 32,
+        "numeric_scale": 0,
+        "is_nullable": true,
+        "is_unique": false,
+        "is_indexed": false,
+        "is_primary_key": false,
+        "is_generated": false,
+        "generation_expression": null,
+        "has_auto_increment": false,
+        "foreign_key_table": null,
+        "foreign_key_column": null
+      }
+    },
+    {
+      "collection": "themen",
+      "field": "description",
+      "type": "text",
+      "meta": {
+        "collection": "themen",
+        "conditions": null,
+        "display": null,
+        "display_options": null,
+        "field": "description",
+        "group": "grp_identitaet",
+        "hidden": false,
+        "interface": "input-multiline",
+        "note": "1–2 Sätze Kurzbeschreibung (Teaser / Meta-Beschreibung).",
+        "options": null,
+        "readonly": false,
+        "required": true,
+        "searchable": true,
+        "sort": 6,
+        "special": null,
+        "translations": [
+          {
+            "language": "de-DE",
+            "translation": "Beschreibung"
+          }
+        ],
+        "validation": null,
+        "validation_message": null,
+        "width": "full"
+      },
+      "schema": {
+        "name": "description",
+        "table": "themen",
+        "data_type": "text",
+        "default_value": null,
+        "max_length": null,
+        "numeric_precision": null,
+        "numeric_scale": null,
+        "is_nullable": true,
+        "is_unique": false,
+        "is_indexed": false,
+        "is_primary_key": false,
+        "is_generated": false,
+        "generation_expression": null,
+        "has_auto_increment": false,
+        "foreign_key_table": null,
+        "foreign_key_column": null
+      }
+    },
+    {
+      "collection": "themen",
+      "field": "merksatz",
+      "type": "text",
+      "meta": {
+        "collection": "themen",
+        "conditions": null,
+        "display": null,
+        "display_options": null,
+        "field": "merksatz",
+        "group": "grp_merken",
+        "hidden": false,
+        "interface": "input-multiline",
+        "note": "Ein einprägsamer Kernsatz zum Thema.",
+        "options": null,
+        "readonly": false,
+        "required": true,
+        "searchable": true,
+        "sort": 1,
+        "special": null,
+        "translations": null,
+        "validation": null,
+        "validation_message": null,
+        "width": "full"
+      },
+      "schema": {
+        "name": "merksatz",
+        "table": "themen",
+        "data_type": "text",
+        "default_value": null,
+        "max_length": null,
+        "numeric_precision": null,
+        "numeric_scale": null,
+        "is_nullable": true,
+        "is_unique": false,
+        "is_indexed": false,
+        "is_primary_key": false,
+        "is_generated": false,
+        "generation_expression": null,
+        "has_auto_increment": false,
+        "foreign_key_table": null,
+        "foreign_key_column": null
+      }
+    },
+    {
+      "collection": "themen",
+      "field": "definitionen",
+      "type": "json",
+      "meta": {
+        "collection": "themen",
+        "conditions": null,
+        "display": null,
+        "display_options": null,
+        "field": "definitionen",
+        "group": "grp_verstehen",
+        "hidden": false,
+        "interface": "list",
+        "note": "Zentrale Begriffe mit Definition.",
+        "options": {
+          "addLabel": "Definition hinzufügen",
+          "fields": [
+            {
+              "field": "begriff",
+              "meta": {
+                "interface": "input",
+                "required": true,
+                "width": "half"
+              },
+              "name": "Begriff",
+              "type": "string"
+            },
+            {
+              "field": "definition",
+              "meta": {
+                "interface": "input-multiline",
+                "required": true,
+                "width": "full"
+              },
+              "name": "Definition",
+              "type": "text"
+            }
+          ],
+          "template": "{{begriff}}"
+        },
+        "readonly": false,
+        "required": false,
+        "searchable": true,
+        "sort": 2,
+        "special": [
+          "cast-json"
+        ],
+        "translations": null,
+        "validation": null,
+        "validation_message": null,
+        "width": "full"
+      },
+      "schema": {
+        "name": "definitionen",
+        "table": "themen",
+        "data_type": "json",
+        "default_value": null,
+        "max_length": null,
+        "numeric_precision": null,
+        "numeric_scale": null,
+        "is_nullable": true,
+        "is_unique": false,
+        "is_indexed": false,
+        "is_primary_key": false,
+        "is_generated": false,
+        "generation_expression": null,
+        "has_auto_increment": false,
+        "foreign_key_table": null,
+        "foreign_key_column": null
+      }
+    },
+    {
+      "collection": "themen",
+      "field": "formeln",
+      "type": "json",
+      "meta": {
+        "collection": "themen",
+        "conditions": null,
+        "display": null,
+        "display_options": null,
+        "field": "formeln",
+        "group": "grp_verstehen",
+        "hidden": false,
+        "interface": "list",
+        "note": "Formeln mit Erklärung.",
+        "options": {
+          "addLabel": "Formel hinzufügen",
+          "fields": [
+            {
+              "field": "name",
+              "meta": {
+                "interface": "input",
+                "required": true,
+                "width": "half"
+              },
+              "name": "Name",
+              "type": "string"
+            },
+            {
+              "field": "einheit",
+              "meta": {
+                "interface": "input",
+                "width": "half"
+              },
+              "name": "Einheit (optional)",
+              "type": "string"
+            },
+            {
+              "field": "formel",
+              "meta": {
+                "interface": "input",
+                "required": true,
+                "width": "full"
+              },
+              "name": "Formel",
+              "type": "string"
+            },
+            {
+              "field": "erklaerung",
+              "meta": {
+                "interface": "input-multiline",
+                "required": true,
+                "width": "full"
+              },
+              "name": "Erklärung",
+              "type": "text"
+            }
+          ],
+          "template": "{{name}}"
+        },
+        "readonly": false,
+        "required": false,
+        "searchable": true,
+        "sort": 3,
+        "special": [
+          "cast-json"
+        ],
+        "translations": null,
+        "validation": null,
+        "validation_message": null,
+        "width": "full"
+      },
+      "schema": {
+        "name": "formeln",
+        "table": "themen",
+        "data_type": "json",
+        "default_value": null,
+        "max_length": null,
+        "numeric_precision": null,
+        "numeric_scale": null,
+        "is_nullable": true,
+        "is_unique": false,
+        "is_indexed": false,
+        "is_primary_key": false,
+        "is_generated": false,
+        "generation_expression": null,
+        "has_auto_increment": false,
+        "foreign_key_table": null,
+        "foreign_key_column": null
+      }
+    },
+    {
+      "collection": "themen",
+      "field": "rechenbeispiel",
+      "type": "json",
+      "meta": {
+        "collection": "themen",
+        "conditions": null,
+        "display": null,
+        "display_options": null,
+        "field": "rechenbeispiel",
+        "group": "grp_verstehen",
+        "hidden": false,
+        "interface": "input-code",
+        "note": "Optional/fortgeschritten (JSON): { aufgabe, schritte[], fazit }. Nur bei Rechen-Themen nötig.",
+        "options": {
+          "language": "json"
+        },
+        "readonly": false,
+        "required": false,
+        "searchable": true,
+        "sort": 4,
+        "special": [
+          "cast-json"
+        ],
+        "translations": null,
+        "validation": null,
+        "validation_message": null,
+        "width": "full"
+      },
+      "schema": {
+        "name": "rechenbeispiel",
+        "table": "themen",
+        "data_type": "json",
+        "default_value": null,
+        "max_length": null,
+        "numeric_precision": null,
+        "numeric_scale": null,
+        "is_nullable": true,
+        "is_unique": false,
+        "is_indexed": false,
+        "is_primary_key": false,
+        "is_generated": false,
+        "generation_expression": null,
+        "has_auto_increment": false,
+        "foreign_key_table": null,
+        "foreign_key_column": null
+      }
+    },
+    {
+      "collection": "themen",
+      "field": "zusammenfassung",
+      "type": "json",
+      "meta": {
+        "collection": "themen",
+        "conditions": null,
+        "display": null,
+        "display_options": null,
+        "field": "zusammenfassung",
+        "group": "grp_verstehen",
+        "hidden": false,
+        "interface": "tags",
+        "note": "Kernaussagen als Stichpunkte (Enter = neuer Punkt).",
+        "options": {
+          "placeholder": "Kernaussage eingeben + Enter"
+        },
+        "readonly": false,
+        "required": false,
+        "searchable": true,
+        "sort": 5,
+        "special": [
+          "cast-json"
+        ],
+        "translations": null,
+        "validation": null,
+        "validation_message": null,
+        "width": "full"
+      },
+      "schema": {
+        "name": "zusammenfassung",
+        "table": "themen",
+        "data_type": "json",
+        "default_value": null,
+        "max_length": null,
+        "numeric_precision": null,
+        "numeric_scale": null,
+        "is_nullable": true,
+        "is_unique": false,
+        "is_indexed": false,
+        "is_primary_key": false,
+        "is_generated": false,
+        "generation_expression": null,
+        "has_auto_increment": false,
+        "foreign_key_table": null,
+        "foreign_key_column": null
+      }
+    },
+    {
+      "collection": "themen",
+      "field": "gesetze",
+      "type": "json",
+      "meta": {
+        "collection": "themen",
+        "conditions": null,
+        "display": null,
+        "display_options": null,
+        "field": "gesetze",
+        "group": "grp_verstehen",
+        "hidden": false,
+        "interface": "list",
+        "note": "Rechtsgrundlagen: EIGENE Erklärung + Anwendung + amtliche Quelle. KEINE wörtlichen Gesetzestexte (Urheberrecht) — siehe content-richtlinien.md.",
+        "options": {
+          "addLabel": "Rechtsgrundlage hinzufügen",
+          "fields": [
+            {
+              "field": "norm",
+              "meta": {
+                "interface": "input",
+                "options": {
+                  "placeholder": "z. B. § 5 ArbSchG"
+                },
+                "required": true,
+                "width": "half"
+              },
+              "name": "Norm",
+              "type": "string"
+            },
+            {
+              "field": "titel",
+              "meta": {
+                "interface": "input",
+                "required": true,
+                "width": "half"
+              },
+              "name": "Titel",
+              "type": "string"
+            },
+            {
+              "field": "erklaerung",
+              "meta": {
+                "interface": "input-multiline",
+                "required": true,
+                "width": "full"
+              },
+              "name": "Erklärung (eigene Worte)",
+              "type": "text"
+            },
+            {
+              "field": "anwendung",
+              "meta": {
+                "interface": "input-multiline",
+                "required": true,
+                "width": "full"
+              },
+              "name": "Anwendungsbeispiel",
+              "type": "text"
+            },
+            {
+              "field": "quelle",
+              "meta": {
+                "interface": "input",
+                "options": {
+                  "placeholder": "https://www.gesetze-im-internet.de/…"
+                },
+                "required": true,
+                "width": "full"
+              },
+              "name": "Amtliche Quelle (URL)",
+              "type": "string"
+            }
+          ],
+          "template": "{{norm}} — {{titel}}"
+        },
+        "readonly": false,
+        "required": false,
+        "searchable": true,
+        "sort": 6,
+        "special": [
+          "cast-json"
+        ],
+        "translations": null,
+        "validation": null,
+        "validation_message": null,
+        "width": "full"
+      },
+      "schema": {
+        "name": "gesetze",
+        "table": "themen",
+        "data_type": "json",
+        "default_value": null,
+        "max_length": null,
+        "numeric_precision": null,
+        "numeric_scale": null,
+        "is_nullable": true,
+        "is_unique": false,
+        "is_indexed": false,
+        "is_primary_key": false,
+        "is_generated": false,
+        "generation_expression": null,
+        "has_auto_increment": false,
+        "foreign_key_table": null,
+        "foreign_key_column": null
+      }
+    },
+    {
+      "collection": "themen",
+      "field": "begriffe",
+      "type": "json",
+      "meta": {
+        "collection": "themen",
+        "conditions": null,
+        "display": null,
+        "display_options": null,
+        "field": "begriffe",
+        "group": "grp_merken",
+        "hidden": false,
+        "interface": "list",
+        "note": "Karteikarten-Begriffe zum Merken.",
+        "options": {
+          "addLabel": "Begriff hinzufügen",
+          "fields": [
+            {
+              "field": "begriff",
+              "meta": {
+                "interface": "input",
+                "required": true,
+                "width": "half"
+              },
+              "name": "Begriff",
+              "type": "string"
+            },
+            {
+              "field": "aufloesung",
+              "meta": {
+                "interface": "input",
+                "width": "half"
+              },
+              "name": "Auflösung/Abk. (optional)",
+              "type": "string"
+            },
+            {
+              "field": "erklaerung",
+              "meta": {
+                "interface": "input-multiline",
+                "required": true,
+                "width": "full"
+              },
+              "name": "Erklärung",
+              "type": "text"
+            }
+          ],
+          "template": "{{begriff}}"
+        },
+        "readonly": false,
+        "required": false,
+        "searchable": true,
+        "sort": 2,
+        "special": [
+          "cast-json"
+        ],
+        "translations": null,
+        "validation": null,
+        "validation_message": null,
+        "width": "full"
+      },
+      "schema": {
+        "name": "begriffe",
+        "table": "themen",
+        "data_type": "json",
+        "default_value": null,
+        "max_length": null,
+        "numeric_precision": null,
+        "numeric_scale": null,
+        "is_nullable": true,
+        "is_unique": false,
+        "is_indexed": false,
+        "is_primary_key": false,
+        "is_generated": false,
+        "generation_expression": null,
+        "has_auto_increment": false,
+        "foreign_key_table": null,
+        "foreign_key_column": null
+      }
+    },
+    {
+      "collection": "themen",
+      "field": "body",
+      "type": "text",
+      "meta": {
+        "collection": "themen",
+        "conditions": null,
+        "display": null,
+        "display_options": null,
+        "field": "body",
+        "group": "grp_verstehen",
+        "hidden": false,
+        "interface": "input-rich-text-md",
+        "note": "Haupterklärung („Verstehen\"). Markdown erlaubt (Absätze, Listen, **fett**, Tabellen).",
+        "options": null,
+        "readonly": false,
+        "required": false,
+        "searchable": true,
+        "sort": 1,
+        "special": null,
+        "translations": [
+          {
+            "language": "de-DE",
+            "translation": "Haupttext (Verstehen)"
+          }
+        ],
+        "validation": null,
+        "validation_message": null,
+        "width": "full"
+      },
+      "schema": {
+        "name": "body",
+        "table": "themen",
+        "data_type": "text",
+        "default_value": null,
+        "max_length": null,
+        "numeric_precision": null,
+        "numeric_scale": null,
+        "is_nullable": true,
+        "is_unique": false,
+        "is_indexed": false,
+        "is_primary_key": false,
+        "is_generated": false,
+        "generation_expression": null,
+        "has_auto_increment": false,
+        "foreign_key_table": null,
+        "foreign_key_column": null
+      }
+    },
+    {
+      "collection": "themen",
+      "field": "grp_identitaet",
+      "type": "alias",
+      "meta": {
+        "collection": "themen",
+        "conditions": null,
+        "display": null,
+        "display_options": null,
+        "field": "grp_identitaet",
+        "group": null,
+        "hidden": false,
+        "interface": "group-detail",
+        "note": null,
+        "options": {
+          "showHeader": true
+        },
+        "readonly": false,
+        "required": false,
+        "searchable": true,
+        "sort": 1,
+        "special": [
+          "alias",
+          "no-data",
+          "group"
+        ],
+        "translations": [
+          {
+            "language": "de-DE",
+            "translation": "Identität & Einordnung"
+          }
+        ],
+        "validation": null,
+        "validation_message": null,
+        "width": "full"
+      }
+    },
+    {
+      "collection": "themen",
+      "field": "grp_verstehen",
+      "type": "alias",
+      "meta": {
+        "collection": "themen",
+        "conditions": null,
+        "display": null,
+        "display_options": null,
+        "field": "grp_verstehen",
+        "group": null,
+        "hidden": false,
+        "interface": "group-detail",
+        "note": null,
+        "options": {
+          "showHeader": true
+        },
+        "readonly": false,
+        "required": false,
+        "searchable": true,
+        "sort": 2,
+        "special": [
+          "alias",
+          "no-data",
+          "group"
+        ],
+        "translations": [
+          {
+            "language": "de-DE",
+            "translation": "Verstehen"
+          }
+        ],
+        "validation": null,
+        "validation_message": null,
+        "width": "full"
+      }
+    },
+    {
+      "collection": "themen",
+      "field": "grp_merken",
+      "type": "alias",
+      "meta": {
+        "collection": "themen",
+        "conditions": null,
+        "display": null,
+        "display_options": null,
+        "field": "grp_merken",
+        "group": null,
+        "hidden": false,
+        "interface": "group-detail",
+        "note": null,
+        "options": {
+          "showHeader": true
+        },
+        "readonly": false,
+        "required": false,
+        "searchable": true,
+        "sort": 3,
+        "special": [
+          "alias",
+          "no-data",
+          "group"
+        ],
+        "translations": [
+          {
+            "language": "de-DE",
+            "translation": "Merken"
+          }
+        ],
+        "validation": null,
+        "validation_message": null,
+        "width": "full"
+      }
+    },
+    {
+      "collection": "themen",
+      "field": "grp_anwenden",
+      "type": "alias",
+      "meta": {
+        "collection": "themen",
+        "conditions": null,
+        "display": null,
+        "display_options": null,
+        "field": "grp_anwenden",
+        "group": null,
+        "hidden": false,
+        "interface": "group-detail",
+        "note": null,
+        "options": {
+          "showHeader": true
+        },
+        "readonly": false,
+        "required": false,
+        "searchable": true,
+        "sort": 4,
+        "special": [
+          "alias",
+          "no-data",
+          "group"
+        ],
+        "translations": [
+          {
+            "language": "de-DE",
+            "translation": "Anwenden — Fallbeispiel"
+          }
+        ],
+        "validation": null,
+        "validation_message": null,
+        "width": "full"
+      }
+    },
+    {
+      "collection": "themen",
+      "field": "grp_pruefen",
+      "type": "alias",
+      "meta": {
+        "collection": "themen",
+        "conditions": null,
+        "display": null,
+        "display_options": null,
+        "field": "grp_pruefen",
+        "group": null,
+        "hidden": false,
+        "interface": "group-detail",
+        "note": null,
+        "options": {
+          "showHeader": true
+        },
+        "readonly": false,
+        "required": false,
+        "searchable": true,
+        "sort": 5,
+        "special": [
+          "alias",
+          "no-data",
+          "group"
+        ],
+        "translations": [
+          {
+            "language": "de-DE",
+            "translation": "Prüfen"
+          }
+        ],
+        "validation": null,
+        "validation_message": null,
+        "width": "full"
+      }
+    },
+    {
+      "collection": "themen",
+      "field": "grp_wiederholung",
+      "type": "alias",
+      "meta": {
+        "collection": "themen",
+        "conditions": null,
+        "display": null,
+        "display_options": null,
+        "field": "grp_wiederholung",
+        "group": null,
+        "hidden": false,
+        "interface": "group-detail",
+        "note": null,
+        "options": {
+          "showHeader": true
+        },
+        "readonly": false,
+        "required": false,
+        "searchable": true,
+        "sort": 6,
+        "special": [
+          "alias",
+          "no-data",
+          "group"
+        ],
+        "translations": [
+          {
+            "language": "de-DE",
+            "translation": "Wiederholung"
+          }
+        ],
+        "validation": null,
+        "validation_message": null,
+        "width": "full"
+      }
+    },
+    {
+      "collection": "themen",
+      "field": "fall_situation",
+      "type": "text",
+      "meta": {
+        "collection": "themen",
+        "conditions": null,
+        "display": null,
+        "display_options": null,
+        "field": "fall_situation",
+        "group": "grp_anwenden",
+        "hidden": false,
+        "interface": "input-multiline",
+        "note": "Ausgangslage/Szenario des Falls.",
+        "options": null,
+        "readonly": false,
+        "required": true,
+        "searchable": true,
+        "sort": 1,
+        "special": null,
+        "translations": [
+          {
+            "language": "de-DE",
+            "translation": "Situation"
+          }
+        ],
+        "validation": null,
+        "validation_message": null,
+        "width": "full"
+      },
+      "schema": {
+        "name": "fall_situation",
+        "table": "themen",
+        "data_type": "text",
+        "default_value": null,
+        "max_length": null,
+        "numeric_precision": null,
+        "numeric_scale": null,
+        "is_nullable": true,
+        "is_unique": false,
+        "is_indexed": false,
+        "is_primary_key": false,
+        "is_generated": false,
+        "generation_expression": null,
+        "has_auto_increment": false,
+        "foreign_key_table": null,
+        "foreign_key_column": null
+      }
+    },
+    {
+      "collection": "themen",
+      "field": "fall_aufgabe",
+      "type": "text",
+      "meta": {
+        "collection": "themen",
+        "conditions": null,
+        "display": null,
+        "display_options": null,
+        "field": "fall_aufgabe",
+        "group": "grp_anwenden",
+        "hidden": false,
+        "interface": "input-multiline",
+        "note": "Konkrete Aufgabenstellung an die/den Lernende:n.",
+        "options": null,
+        "readonly": false,
+        "required": true,
+        "searchable": true,
+        "sort": 2,
+        "special": null,
+        "translations": [
+          {
+            "language": "de-DE",
+            "translation": "Aufgabe"
+          }
+        ],
+        "validation": null,
+        "validation_message": null,
+        "width": "full"
+      },
+      "schema": {
+        "name": "fall_aufgabe",
+        "table": "themen",
+        "data_type": "text",
+        "default_value": null,
+        "max_length": null,
+        "numeric_precision": null,
+        "numeric_scale": null,
+        "is_nullable": true,
+        "is_unique": false,
+        "is_indexed": false,
+        "is_primary_key": false,
+        "is_generated": false,
+        "generation_expression": null,
+        "has_auto_increment": false,
+        "foreign_key_table": null,
+        "foreign_key_column": null
+      }
+    },
+    {
+      "collection": "themen",
+      "field": "fall_musterloesung",
+      "type": "text",
+      "meta": {
+        "collection": "themen",
+        "conditions": null,
+        "display": null,
+        "display_options": null,
+        "field": "fall_musterloesung",
+        "group": "grp_anwenden",
+        "hidden": false,
+        "interface": "input-multiline",
+        "note": "Musterlösung / erwarteter Lösungsweg.",
+        "options": null,
+        "readonly": false,
+        "required": true,
+        "searchable": true,
+        "sort": 3,
+        "special": null,
+        "translations": [
+          {
+            "language": "de-DE",
+            "translation": "Musterlösung"
+          }
+        ],
+        "validation": null,
+        "validation_message": null,
+        "width": "full"
+      },
+      "schema": {
+        "name": "fall_musterloesung",
+        "table": "themen",
+        "data_type": "text",
+        "default_value": null,
+        "max_length": null,
+        "numeric_precision": null,
+        "numeric_scale": null,
+        "is_nullable": true,
+        "is_unique": false,
+        "is_indexed": false,
+        "is_primary_key": false,
+        "is_generated": false,
+        "generation_expression": null,
+        "has_auto_increment": false,
+        "foreign_key_table": null,
+        "foreign_key_column": null
+      }
+    },
+    {
+      "collection": "themen",
+      "field": "pruef_frage",
+      "type": "text",
+      "meta": {
+        "collection": "themen",
+        "conditions": null,
+        "display": null,
+        "display_options": null,
+        "field": "pruef_frage",
+        "group": "grp_pruefen",
+        "hidden": false,
+        "interface": "input-multiline",
+        "note": "Prüfungsähnliche Frage zum Thema.",
+        "options": null,
+        "readonly": false,
+        "required": true,
+        "searchable": true,
+        "sort": 1,
+        "special": null,
+        "translations": [
+          {
+            "language": "de-DE",
+            "translation": "Frage"
+          }
+        ],
+        "validation": null,
+        "validation_message": null,
+        "width": "full"
+      },
+      "schema": {
+        "name": "pruef_frage",
+        "table": "themen",
+        "data_type": "text",
+        "default_value": null,
+        "max_length": null,
+        "numeric_precision": null,
+        "numeric_scale": null,
+        "is_nullable": true,
+        "is_unique": false,
+        "is_indexed": false,
+        "is_primary_key": false,
+        "is_generated": false,
+        "generation_expression": null,
+        "has_auto_increment": false,
+        "foreign_key_table": null,
+        "foreign_key_column": null
+      }
+    },
+    {
+      "collection": "themen",
+      "field": "pruef_loesungsweg",
+      "type": "json",
+      "meta": {
+        "collection": "themen",
+        "conditions": null,
+        "display": null,
+        "display_options": null,
+        "field": "pruef_loesungsweg",
+        "group": "grp_pruefen",
+        "hidden": false,
+        "interface": "tags",
+        "note": "Lösungsschritte als Stichpunkte (Enter = neuer Schritt).",
+        "options": {
+          "placeholder": "Lösungsschritt + Enter"
+        },
+        "readonly": false,
+        "required": false,
+        "searchable": true,
+        "sort": 2,
+        "special": [
+          "cast-json"
+        ],
+        "translations": [
+          {
+            "language": "de-DE",
+            "translation": "Lösungsweg"
+          }
+        ],
+        "validation": null,
+        "validation_message": null,
+        "width": "full"
+      },
+      "schema": {
+        "name": "pruef_loesungsweg",
+        "table": "themen",
+        "data_type": "json",
+        "default_value": null,
+        "max_length": null,
+        "numeric_precision": null,
+        "numeric_scale": null,
+        "is_nullable": true,
+        "is_unique": false,
+        "is_indexed": false,
+        "is_primary_key": false,
+        "is_generated": false,
+        "generation_expression": null,
+        "has_auto_increment": false,
+        "foreign_key_table": null,
+        "foreign_key_column": null
+      }
+    }
+  ],
+  "systemFields": [
+    {
+      "collection": "directus_activity",
+      "field": "timestamp",
+      "schema": {
+        "is_indexed": true
+      }
+    },
+    {
+      "collection": "directus_revisions",
+      "field": "activity",
+      "schema": {
+        "is_indexed": true
+      }
+    },
+    {
+      "collection": "directus_revisions",
+      "field": "parent",
+      "schema": {
+        "is_indexed": true
+      }
+    }
+  ],
+  "relations": []
+}
