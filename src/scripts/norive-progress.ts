@@ -245,6 +245,11 @@ function renderWiederholungHinweis(slug: string, state: NoriveProgress, tage: nu
 
 // ─── THEMA-SEITEN INTERAKTION ──────────────────────
 
+// Da initThemaPage bei JEDER Client-Navigation (astro:page-load) neu läuft, muss
+// der EINZIGE window-weite Listener (Artefakt-Speichern) vorher entfernt werden —
+// sonst akkumuliert er pro Kapitelwechsel. Modul-scope, damit removbar.
+let artefaktHandler: ((e: Event) => void) | null = null;
+
 function initThemaPage(): void {
   const root = document.querySelector<HTMLElement>('[data-thema-slug]');
   if (!root) return;
@@ -322,7 +327,8 @@ function initThemaPage(): void {
   // Anwenden — interaktives Modul: speichert ein Artefakt (bezogen aufs Kompass-
   // Unternehmen) und schließt damit die Phase ab. norive-progress bleibt der
   // einzige Schreiber des Fortschritts; das Modul meldet nur per Event.
-  window.addEventListener('norive:artefakt-speichern', (e: Event) => {
+  if (artefaktHandler) window.removeEventListener('norive:artefakt-speichern', artefaktHandler);
+  artefaktHandler = (e: Event) => {
     const detail = (e as CustomEvent).detail as { slug: string; modul: string; titel: string; daten: unknown };
     if (!detail || detail.slug !== slug) return;
     const neu = !state.themen[slug].anwenden;
@@ -340,7 +346,8 @@ function initThemaPage(): void {
     showToast(`✓ Artefakt gespeichert · Anwenden ${neu ? 'abgeschlossen' : 'aktualisiert'} · ${pct} %`);
     // Rückmeldung an das Modul (Button-Zustand „gespeichert").
     window.dispatchEvent(new CustomEvent('norive:artefakt-gespeichert', { detail: { slug } }));
-  });
+  };
+  window.addEventListener('norive:artefakt-speichern', artefaktHandler);
 
   // Prüfen — Selbstbewertung
   document.querySelectorAll<HTMLButtonElement>('[data-action="pruefen-einschaetzung"]').forEach((btn) => {
@@ -395,11 +402,12 @@ function init(): void {
   initReset();
 }
 
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', init);
-} else {
-  init();
-}
+// WICHTIG: astro:page-load (nicht DOMContentLoaded) — Titan nutzt den ClientRouter
+// (View Transitions). DOMContentLoaded feuert bei Client-seitiger Navigation NICHT,
+// dadurch blieben nach einem Kapitelwechsel die Phasen-Buttons OHNE Handler und der
+// Fortschritt (%/Ring) aktualisierte sich beim Klick nicht. astro:page-load feuert
+// bei der Erstladung UND nach jeder Navigation — wie alle anderen Skripte der Seite.
+document.addEventListener('astro:page-load', init);
 
 // Phase 2: Nach einem Server-Sync (norive-sync.ts) steht ein neuer Stand im
 // localStorage — Anzeigen neu rendern, damit Phasen-Punkte/Streak/Fortschritt
