@@ -372,6 +372,128 @@ const scoringModul: ModulFn = (ctx) => {
   wrap.appendChild(btn); ctx.mount.appendChild(wrap);
 };
 
+// Break-even / Gewinnschwelle (Familie: Rechner) ──────────
+const breakevenModul: ModulFn = (ctx) => {
+  const saved = (ctx.savedDaten as any) || {};
+  const wrap = el('div', 'tm');
+  wrap.appendChild(el('p', 'tm-lead', `Gewinnschwelle (Break-even) für ein Produkt von <strong>${esc(ctx.firma)}</strong> — ab welcher Menge lohnt es sich?`));
+  wrap.appendChild(el('div', 'tm-formel',
+    `<b>So rechnet es:</b> Deckungsbeitrag/Stück = Preis − variable Kosten. `
+    + `Break-even-Menge = Fixkosten ÷ DB/Stück · Break-even-Umsatz = Menge × Preis. `
+    + `Menge für Zielgewinn = (Fixkosten + Zielgewinn) ÷ DB/Stück.`));
+  const FELDER: [string, string, any][] = [
+    ['preis', 'Preis / Stück (€)', saved.preis ?? ''],
+    ['vark', 'Variable Kosten / Stück (€)', saved.vark ?? ''],
+    ['fixk', 'Fixkosten gesamt (€)', saved.fixk ?? ''],
+    ['ziel', 'Zielgewinn (€, optional)', saved.ziel ?? ''],
+  ];
+  const inputs: Record<string, HTMLInputElement> = {};
+  const form = el('div', 'tm-form');
+  FELDER.forEach(([k, label, val]) => {
+    const l = el('label', 'tm-label', label);
+    const inp = el('input', 'tm-input tm-num') as HTMLInputElement;
+    inp.type = 'number'; inp.inputMode = 'decimal'; inp.value = String(val);
+    inputs[k] = inp; l.appendChild(inp); form.appendChild(l);
+  });
+  wrap.appendChild(form);
+  const out = el('div', 'tm-out'); wrap.appendChild(out);
+  const fmt = (n: number) => n.toLocaleString('de-DE', { maximumFractionDigits: 2 });
+  function recalc(): void {
+    const p = +inputs.preis.value, v = +inputs.vark.value, f = +inputs.fixk.value, z = +inputs.ziel.value || 0;
+    const db = p - v;
+    const beM = db > 0 ? f / db : NaN;
+    const beU = isFinite(beM) ? beM * p : NaN;
+    const zielM = db > 0 ? (f + z) / db : NaN;
+    out.innerHTML = `
+      <div class="tm-out-row"><span>Deckungsbeitrag / Stück</span><b>${isFinite(db) ? fmt(db) + ' €' : '—'}</b></div>
+      <div class="tm-out-row"><span>Break-even-Menge</span><b>${isFinite(beM) ? fmt(Math.ceil(beM)) + ' Stück' : '—'}</b></div>
+      <div class="tm-out-row"><span>Break-even-Umsatz</span><b>${isFinite(beU) ? fmt(beU) + ' €' : '—'}</b></div>
+      <div class="tm-out-row tm-out-total"><span>Menge für Zielgewinn</span><b class="${z > 0 ? 'pos' : ''}">${isFinite(zielM) && z > 0 ? fmt(Math.ceil(zielM)) + ' Stück' : '—'}</b></div>`;
+  }
+  Object.values(inputs).forEach((i) => i.addEventListener('input', recalc));
+  recalc();
+  const btn = el('button', 'tm-save', 'Als Artefakt speichern <span aria-hidden="true">→</span>') as HTMLButtonElement;
+  btn.type = 'button';
+  btn.addEventListener('click', () => ctx.save(`Break-even — ${ctx.firma}`, { preis: +inputs.preis.value, vark: +inputs.vark.value, fixk: +inputs.fixk.value, ziel: +inputs.ziel.value }));
+  wrap.appendChild(btn); ctx.mount.appendChild(wrap);
+};
+
+// BCG-/Portfolio-Matrix (Familie: Matrix) ──────────────────
+const portfolioModul: ModulFn = (ctx) => {
+  const saved = (ctx.savedDaten as any) || {};
+  const wrap = el('div', 'tm');
+  wrap.appendChild(el('p', 'tm-lead', `Ordne die Produkte/Geschäftsfelder von <strong>${esc(ctx.firma)}</strong> in die BCG-Matrix ein — die Einordnung passiert automatisch.`));
+  wrap.appendChild(el('div', 'tm-formel',
+    `<b>So funktioniert es:</b> Zwei Achsen — <b>Marktwachstum</b> (Attraktivität) und <b>relativer Marktanteil</b> `
+    + `(eigener Umsatz ÷ Umsatz des stärksten Wettbewerbers). Schwellen: Wachstum ≥ 10 % = hoch · `
+    + `relativer Marktanteil ≥ 1,0 = hoch. Daraus ergeben sich vier Felder mit je einer Normstrategie.`));
+
+  const savedP = saved.produkte || [{}, {}, {}, {}];
+  const table = el('div', 'tm-bcg-input');
+  table.appendChild(el('div', 'tm-bcg-head', `<span>Produkt / Geschäftsfeld</span><span>Marktwachstum %</span><span>rel. Marktanteil</span>`));
+  for (let i = 0; i < 4; i++) {
+    const p = savedP[i] || {};
+    const row = el('div', 'tm-bcg-row');
+    const mk = (cls: string, ph: string, val: any, type = 'number') => {
+      const x = el('input', `tm-input ${cls}`) as HTMLInputElement;
+      x.type = type; if (type === 'number') x.inputMode = 'decimal';
+      x.placeholder = ph; x.value = val ?? ''; x.dataset.i = String(i); return x;
+    };
+    row.appendChild(mk('bc-name', 'z. B. Produkt A', p.name, 'text'));
+    row.appendChild(mk('bc-w tm-num', '12', p.wachstum));
+    row.appendChild(mk('bc-m tm-num', '1,5', p.anteil));
+    table.appendChild(row);
+  }
+  wrap.appendChild(table);
+
+  const matrix = el('div', 'tm-bcg'); wrap.appendChild(matrix);
+  const FELDER: Record<string, { titel: string; sub: string; strat: string }> = {
+    star:    { titel: 'Stars', sub: 'Wachstum hoch · Anteil hoch', strat: 'Investieren — Wachstum finanzieren' },
+    frage:   { titel: 'Fragezeichen', sub: 'Wachstum hoch · Anteil niedrig', strat: 'Selektiv fördern oder aufgeben' },
+    cashcow: { titel: 'Cash Cows', sub: 'Wachstum niedrig · Anteil hoch', strat: 'Abschöpfen — Mittel für Stars' },
+    hund:    { titel: 'Arme Hunde', sub: 'Wachstum niedrig · Anteil niedrig', strat: 'Desinvestieren / eliminieren' },
+  };
+  const classify = (w: number, m: number): string => {
+    const hiW = w >= 10, hiM = m >= 1;
+    return hiW && hiM ? 'star' : hiW ? 'frage' : hiM ? 'cashcow' : 'hund';
+  };
+  function read(): { name: string; wachstum: number; anteil: number }[] {
+    const arr: { name: string; wachstum: number; anteil: number }[] = [];
+    table.querySelectorAll('.tm-bcg-row').forEach((r) => {
+      arr.push({
+        name: (r.querySelector('.bc-name') as HTMLInputElement).value.trim(),
+        wachstum: +(r.querySelector('.bc-w') as HTMLInputElement).value,
+        anteil: +(r.querySelector('.bc-m') as HTMLInputElement).value,
+      });
+    });
+    return arr;
+  }
+  function recalc(): void {
+    const prods = read();
+    matrix.replaceChildren();
+    (['star', 'frage', 'cashcow', 'hund'] as const).forEach((key) => {
+      const f = FELDER[key];
+      const cell = el('div', `tm-bcg-cell tm-bcg-${key}`);
+      cell.appendChild(el('p', 'tm-bcg-titel', `${f.titel} <span class="tm-swot-sub">${f.sub}</span>`));
+      const chips = el('div', 'tm-bcg-chips');
+      prods.forEach((p) => {
+        if (p.name && isFinite(p.wachstum) && isFinite(p.anteil) && classify(p.wachstum, p.anteil) === key) {
+          chips.appendChild(el('span', 'tm-bcg-chip', esc(p.name)));
+        }
+      });
+      cell.appendChild(chips);
+      cell.appendChild(el('p', 'tm-bcg-strat', f.strat));
+      matrix.appendChild(cell);
+    });
+  }
+  table.querySelectorAll('input').forEach((i) => i.addEventListener('input', recalc));
+  recalc();
+  const btn = el('button', 'tm-save', 'Als Artefakt speichern <span aria-hidden="true">→</span>') as HTMLButtonElement;
+  btn.type = 'button';
+  btn.addEventListener('click', () => ctx.save(`BCG-Portfolio — ${ctx.firma}`, { produkte: read() }));
+  wrap.appendChild(btn); ctx.mount.appendChild(wrap);
+};
+
 const REGISTRY: Record<string, ModulFn> = {
   smart: smartModul,
   swot: swotModul,
@@ -380,6 +502,8 @@ const REGISTRY: Record<string, ModulFn> = {
   preisberechnung: preisModul,
   'vier-stufen': vierStufenModul,
   scoring: scoringModul,
+  breakeven: breakevenModul,
+  portfolio: portfolioModul,
 };
 
 // ── Mount ─────────────────────────────────────────────────

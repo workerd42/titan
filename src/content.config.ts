@@ -59,6 +59,7 @@ const themenSchema = z.object({
   werkzeug: z.enum([
     'swot', 'smart', 'deckungsbeitrag', 'marktanteil',
     'preisberechnung', 'vier-stufen', 'scoring',
+    'portfolio', 'breakeven',
   ]).optional(),
 
   // ── MERKEN ────────────────────────────────────────────

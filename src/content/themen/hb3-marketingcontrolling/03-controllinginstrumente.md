@@ -4,6 +4,7 @@ handlungsbereich: "hb3"
 themengruppe: "Marketingcontrolling"
 order: 3
 description: "Strategische, operative und führungsübergreifende Controllinginstrumente, die Gap-Analyse zur Lückenidentifikation und Benchmarking als Vergleichsinstrument."
+werkzeug: "portfolio"
 merksatz: |
   Die Gap-Analyse zeigt nicht nur, dass eine Lücke besteht, sondern zwingt zur Entscheidung, ob sie operativ oder strategisch geschlossen werden muss.
 fallbeispiel:

@@ -4,6 +4,7 @@ handlungsbereich: "hb2"
 themengruppe: "Marketing-Mix"
 order: 6
 description: "Der Innovationsprozess von der Ideenfindung über Scoring und Wirtschaftlichkeitsanalyse bis zur Markterprobung, sowie Pionier-, Imitator- und Späteinsteigerstrategien."
+werkzeug: "breakeven"
 merksatz: |
   Eine Produktidee wird erst zur Innovation, wenn sie Ideenfindung, Bewertung, Wirtschaftlichkeitsprüfung und Markterprobung durchlaufen hat.
 fallbeispiel:
