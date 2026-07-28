@@ -67,6 +67,43 @@ pruefungsfrage:
       gemeinsame Betrachtung mehrerer Kennzahlen verhindert eine einseitige, irreführende
       Erfolgsinterpretation.
 wiederholungTage: 4
+mcFragen:
+  - frage: "Ein Online-Shop meldet 40.000 Klicks auf eine Kampagne. Um welche Art von Kennzahl handelt es sich?"
+    optionen:
+      - "Output-Kennzahl"
+      - "Outcome-Kennzahl"
+      - "Impact-Kennzahl"
+      - "Return on Investment"
+    richtige: 0
+    operator: "nennen"
+    erklaerung: "Klicks sind eine Output-Kennzahl (unmittelbare Leistung). Erst ein Kauf wäre ein Outcome."
+  - frage: "Wie ist die Conversion Rate definiert?"
+    optionen:
+      - "Conversions ÷ Besucher × 100"
+      - "Gewinn ÷ Investition × 100"
+      - "Marketingkosten ÷ Bestellungen"
+      - "Umsatz ÷ variable Kosten"
+    richtige: 0
+    operator: "definieren"
+    erklaerung: "Conversion Rate = Anteil der Besucher, die eine gewünschte Aktion ausführen: Conversions ÷ Besucher × 100."
+  - frage: "Was misst der CPO (Cost per Order)?"
+    optionen:
+      - "Die durchschnittlichen Kosten, um eine Bestellung zu gewinnen"
+      - "Den Umsatz pro Kunde"
+      - "Die Klickrate einer Anzeige"
+      - "Den Marktanteil"
+    richtige: 0
+    operator: "definieren"
+    erklaerung: "CPO = Marketingkosten ÷ Bestellungen — was es im Schnitt kostet, eine Bestellung zu gewinnen."
+  - frage: "Worin unterscheidet sich der ROMI vom allgemeinen ROI?"
+    optionen:
+      - "Er stellt den Ergebnisbeitrag speziell dem Marketingbudget gegenüber"
+      - "Er misst ausschließlich den Umsatz"
+      - "Er lässt die Investition außen vor"
+      - "Es gibt keinen Unterschied"
+    richtige: 0
+    operator: "erläutern"
+    erklaerung: "ROMI = ROI speziell fürs Marketing: welcher Ergebnisbeitrag steht dem Marketingbudget gegenüber."
 ---
 
 Damit Marketingerfolg nicht mit reiner Aktivität verwechselt wird, unterscheidet die Erfolgsmessung systematisch drei Kennzahlenebenen:

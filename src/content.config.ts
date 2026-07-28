@@ -88,6 +88,17 @@ const themenSchema = z.object({
     loesungsweg: z.array(z.string()),
   }),
 
+  // ── ÜBEN (Multiple-Choice, optional) ──────────────────
+  // Recall-Training (nennen/definieren) — der Aufwärmer, nicht die Prüfung.
+  // Siehe docs/pruefungs-blaupause.md. `richtige` = Index der korrekten Option.
+  mcFragen: z.array(z.object({
+    frage: z.string(),
+    optionen: z.array(z.string()).min(2),
+    richtige: z.number().int().min(0),
+    erklaerung: z.string(),
+    operator: z.string().optional(),
+  })).optional(),
+
   // ── WIEDERHOLUNG ──────────────────────────────────────
   wiederholungTage: z.number().default(4),
 });

@@ -98,6 +98,43 @@ pruefungsfrage:
       Unternehmen Gewinn.
 
 wiederholungTage: 5
+mcFragen:
+  - frage: "Wie berechnet man den Deckungsbeitrag pro Stück?"
+    optionen:
+      - "Verkaufspreis − variable Stückkosten"
+      - "Verkaufspreis − Fixkosten"
+      - "Umsatz − Gewinn"
+      - "Fixkosten ÷ Menge"
+    richtige: 0
+    operator: "definieren"
+    erklaerung: "DB/Stück = Verkaufspreis − variable Stückkosten. Er trägt zur Deckung der Fixkosten bei."
+  - frage: "Bei einem Kapazitätsengpass — welche Kennzahl entscheidet, welches Produkt bevorzugt wird?"
+    optionen:
+      - "Der Deckungsbeitrag pro Engpasseinheit (relativer DB)"
+      - "Der absolute DB pro Stück"
+      - "Der Verkaufspreis"
+      - "Die Höhe der Fixkosten"
+    richtige: 0
+    operator: "nennen"
+    erklaerung: "Bei einem Engpass zählt der DB pro Engpassstunde (relativer DB), nicht der absolute DB pro Stück."
+  - frage: "Welche Kosten zählen zu den variablen Kosten?"
+    optionen:
+      - "Kosten, die mit der Produktionsmenge steigen (z. B. Material)"
+      - "Die Miete der Fabrikhalle"
+      - "Das Gehalt der Geschäftsführung"
+      - "Jährliche Versicherungsprämien"
+    richtige: 0
+    operator: "beschreiben"
+    erklaerung: "Variable Kosten verändern sich mit der Menge (z. B. Material). Miete, Gehälter und Versicherung sind Fixkosten."
+  - frage: "Bei FREIER Kapazität — welcher Deckungsbeitrag zählt für die Produktwahl?"
+    optionen:
+      - "Der absolute Deckungsbeitrag"
+      - "Der relative DB pro Engpassstunde"
+      - "Die Fixkosten"
+      - "Der Marktanteil"
+    richtige: 0
+    operator: "nennen"
+    erklaerung: "Bei freier Kapazität zählt der absolute DB; erst bei einem Engpass der DB pro Engpassstunde."
 ---
 
 Die Deckungsbeitragsrechnung ist ein zentrales Instrument der **Teilkostenrechnung** — im Gegensatz zur Vollkostenrechnung werden die Fixkosten nicht auf einzelne Produkte verteilt, sondern als Gesamtblock behandelt. Das macht die Methode deutlich aussagekräftiger für kurzfristige Entscheidungen.

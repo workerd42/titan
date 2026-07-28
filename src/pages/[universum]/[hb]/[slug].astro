@@ -31,6 +31,7 @@ const vorigesThema   = themenDesBereichs[eigenerIndex - 1] ?? null;
 const base = import.meta.env.BASE_URL;
 const hbBase = `${base}${universum.id}/${bereich.id}/`;
 const d = thema.data;
+const mcFragen = d.mcFragen ?? [];
 ---
 
 <PlanetLayout
@@ -54,7 +55,7 @@ const d = thema.data;
       Wird beim Kapitel-Einstieg gezeigt; „Entdecken" führt zur vollen Seite,
       „Interaktive Module" springt zum Werkzeug. Nicht verfügbare Modi sind
       ausgegraut. Standardmäßig sichtbar (kein Flash), JS entlässt bei Auswahl. */}
-  <div class="modus-select" id="modus-select" data-has-werkzeug={d.werkzeug ? 'true' : 'false'} data-has-begriffe={(d.begriffe && d.begriffe.length > 0) || (d.definitionen && d.definitionen.length > 0) ? 'true' : 'false'} hidden>
+  <div class="modus-select" id="modus-select" data-has-werkzeug={d.werkzeug ? 'true' : 'false'} data-has-begriffe={(d.begriffe && d.begriffe.length > 0) || (d.definitionen && d.definitionen.length > 0) ? 'true' : 'false'} data-has-mc={d.mcFragen && d.mcFragen.length > 0 ? 'true' : 'false'} hidden>
     <a class="ms-back" href={hbBase} aria-label={`Zurück zu ${bereich.titel}`}>
       <span aria-hidden="true">←</span> Zurück
     </a>
@@ -525,6 +526,45 @@ const d = thema.data;
       </section>
     )}
 
+    {/* ╔══ ÜBUNGSBEREICH (Multiple-Choice, optional) ══╗ */}
+    {mcFragen.length > 0 && (
+      <section class="lern-phase uebung-section" id="uebung" aria-labelledby="h-uebung">
+        <div class="phase-banner">
+          <div class="phase-banner-inner">
+            <span class="phase-banner-icon" aria-hidden="true">✎</span>
+            <div>
+              <p class="phase-banner-num">Übungsbereich</p>
+              <h2 id="h-uebung" class="phase-banner-title">Multiple-Choice</h2>
+              <p class="phase-banner-hint">Schnelles Recall-Training — wähle die richtige Antwort und sieh sofort die Erklärung.</p>
+            </div>
+          </div>
+        </div>
+        <div class="mc-quiz" id="mc-quiz" data-total={mcFragen.length}>
+          {mcFragen.map((f, qi) => (
+            <div class="mc-frage" data-qi={qi} data-richtige={f.richtige} hidden={qi !== 0}>
+              <div class="mc-kopf">
+                <span class="mc-zaehler">Frage {qi + 1} / {mcFragen.length}</span>
+                {f.operator && <span class="mc-operator">Übungstyp: {f.operator}</span>}
+              </div>
+              <p class="mc-frage-text">{f.frage}</p>
+              <div class="mc-optionen">
+                {f.optionen.map((opt, oi) => (
+                  <button class="mc-opt" type="button" data-oi={oi}>{opt}</button>
+                ))}
+              </div>
+              <p class="mc-erklaerung" hidden>{f.erklaerung}</p>
+              <button class="mc-weiter" type="button" hidden>Weiter <span aria-hidden="true">→</span></button>
+            </div>
+          ))}
+          <div class="mc-ergebnis" id="mc-ergebnis" hidden>
+            <p class="mc-ergebnis-titel">Übung abgeschlossen</p>
+            <p class="mc-ergebnis-score" id="mc-score"></p>
+            <button class="mc-nochmal" id="mc-nochmal" type="button">Nochmal üben <span aria-hidden="true">↻</span></button>
+          </div>
+        </div>
+      </section>
+    )}
+
     <!-- ╔══ NAVIGATION ═══════════════════════╗ -->
     <nav class="thema-nav" aria-label="Zwischen Themen wechseln">
       <div>
@@ -694,7 +734,7 @@ const d = thema.data;
   const MODUS_KEY = 'titan-modus-v1';
   function applyModus(mode: string): void {
     // „entdecken" = volle Seite (nichts weiter). Andere Modi springen zum Ziel.
-    const targetId = mode === 'module' ? 'phase-anwenden' : mode === 'lernzettel' ? 'lernzettel' : '';
+    const targetId = mode === 'module' ? 'phase-anwenden' : mode === 'lernzettel' ? 'lernzettel' : mode === 'uebung' ? 'uebung' : '';
     if (targetId) {
       window.setTimeout(() => document.getElementById(targetId)?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 120);
     }
@@ -718,7 +758,12 @@ const d = thema.data;
       const lz = ov.querySelector<HTMLButtonElement>('.ms-card[data-mode="lernzettel"]');
       if (lz) { lz.disabled = false; const d = lz.querySelector('.ms-desc'); if (d) d.textContent = 'Karteikarten mit den Schlüsselbegriffen.'; }
     }
-    const verfuegbar = (m: string) => m === 'module' ? moduleAvail : m === 'lernzettel' ? begriffeAvail : m === 'entdecken';
+    const mcAvail = ov.dataset.hasMc === 'true';
+    if (mcAvail) {
+      const ub = ov.querySelector<HTMLButtonElement>('.ms-card[data-mode="uebung"]');
+      if (ub) { ub.disabled = false; const d = ub.querySelector('.ms-desc'); if (d) d.textContent = 'Multiple-Choice zum schnellen Selbsttest.'; }
+    }
+    const verfuegbar = (m: string) => m === 'module' ? moduleAvail : m === 'lernzettel' ? begriffeAvail : m === 'uebung' ? mcAvail : m === 'entdecken';
 
     const open = () => { ov.removeAttribute('hidden'); ov.classList.remove('is-gone'); document.body.style.overflow = 'hidden'; };
     const close = (animate = true) => {
@@ -764,6 +809,74 @@ const d = thema.data;
       window.setTimeout(() => ov.setAttribute('hidden', ''), 360);
     }
   });
+</script>
+
+<!-- Übungsbereich: Multiple-Choice-Quiz (Recall-Training, ohne KI) -->
+<script>
+  function initMcQuiz(): void {
+    const quiz = document.getElementById('mc-quiz');
+    if (!quiz || quiz.dataset.init === 'true') return;
+    quiz.dataset.init = 'true';
+    const total = parseInt(quiz.dataset.total ?? '0', 10);
+    const fragen = Array.from(quiz.querySelectorAll<HTMLElement>('.mc-frage'));
+    const ergebnis = document.getElementById('mc-ergebnis');
+    let idx = 0, richtig = 0;
+
+    const zeige = (i: number) => {
+      fragen.forEach((f, n) => { f.hidden = n !== i; });
+      if (ergebnis) ergebnis.hidden = true;
+    };
+    const ende = () => {
+      fragen.forEach((f) => { f.hidden = true; });
+      if (ergebnis) ergebnis.hidden = false;
+      const score = document.getElementById('mc-score');
+      if (score) score.textContent = `${richtig} von ${total} richtig · ${Math.round((richtig / total) * 100)} %`;
+    };
+
+    fragen.forEach((frage) => {
+      const richtige = parseInt(frage.dataset.richtige ?? '0', 10);
+      const opts = Array.from(frage.querySelectorAll<HTMLButtonElement>('.mc-opt'));
+      const erkl = frage.querySelector<HTMLElement>('.mc-erklaerung');
+      const weiter = frage.querySelector<HTMLButtonElement>('.mc-weiter');
+      opts.forEach((opt) => {
+        opt.addEventListener('click', () => {
+          if (frage.dataset.beantwortet === 'true') return;
+          frage.dataset.beantwortet = 'true';
+          const gewaehlt = parseInt(opt.dataset.oi ?? '-1', 10);
+          opts.forEach((o, oi) => {
+            o.disabled = true;
+            if (oi === richtige) o.classList.add('is-richtig');
+            else if (oi === gewaehlt) o.classList.add('is-falsch');
+          });
+          if (gewaehlt === richtige) richtig++;
+          if (erkl) erkl.hidden = false;
+          if (weiter) weiter.hidden = false;
+        });
+      });
+      weiter?.addEventListener('click', () => {
+        idx++;
+        if (idx >= total) ende(); else zeige(idx);
+      });
+    });
+
+    document.getElementById('mc-nochmal')?.addEventListener('click', () => {
+      idx = 0; richtig = 0;
+      fragen.forEach((frage) => {
+        frage.dataset.beantwortet = '';
+        frage.querySelectorAll<HTMLButtonElement>('.mc-opt').forEach((o) => {
+          o.disabled = false; o.classList.remove('is-richtig', 'is-falsch');
+        });
+        const erkl = frage.querySelector<HTMLElement>('.mc-erklaerung');
+        const weiter = frage.querySelector<HTMLElement>('.mc-weiter');
+        if (erkl) erkl.hidden = true;
+        if (weiter) weiter.hidden = true;
+      });
+      zeige(0);
+    });
+  }
+  document.addEventListener('astro:page-load', initMcQuiz);
+  if (document.readyState !== 'loading') initMcQuiz();
+  else document.addEventListener('DOMContentLoaded', initMcQuiz);
 </script>
 
 <!-- Lernzettel: Karteikarten umdrehen -->
@@ -1805,4 +1918,39 @@ const d = thema.data;
     .rw-schritt { grid-template-columns: 28px 1fr; }
     .phase-abschluss { flex-direction: column; align-items: flex-start; }
   }
+
+  /* ── ÜBUNGSBEREICH (Multiple-Choice) ─────────── */
+  .mc-quiz { max-width: var(--max-read); margin: 0 auto; padding: 0 var(--sp-lg) var(--sp-lg); }
+  .mc-kopf { display: flex; justify-content: space-between; align-items: center; gap: var(--sp-md); margin-bottom: var(--sp-md); }
+  .mc-zaehler { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); }
+  .mc-operator { font-family: var(--mono); font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); border: 1px solid var(--border); border-radius: 999px; padding: 3px 10px; }
+  .mc-frage-text { font-family: var(--serif); font-size: var(--text-lg); line-height: 1.35; color: var(--text); margin-bottom: var(--sp-md); max-width: var(--max-read); }
+  .mc-optionen { display: flex; flex-direction: column; gap: 10px; }
+  .mc-opt {
+    text-align: left; font-family: var(--mono); font-size: 14px; line-height: 1.5; color: var(--text);
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 14px 16px; cursor: pointer; transition: border-color 0.15s ease, background 0.15s ease;
+  }
+  .mc-opt:hover:not(:disabled) { border-color: var(--accent); }
+  .mc-opt:disabled { cursor: default; }
+  .mc-opt.is-richtig { border-color: var(--correct-border); background: var(--success-soft); color: var(--text); }
+  .mc-opt.is-falsch { border-color: var(--incorrect-border); background: var(--incorrect); }
+  .mc-opt.is-richtig::after { content: ' ✓'; color: var(--success); font-weight: 700; }
+  .mc-erklaerung {
+    font-family: var(--mono); font-size: 13px; line-height: 1.65; color: var(--text-muted);
+    background: rgba(90,138,106,0.06); border-left: 3px solid var(--success); border-radius: 0 var(--radius) var(--radius) 0;
+    padding: 12px 14px; margin-top: var(--sp-md);
+  }
+  .mc-weiter, .mc-nochmal {
+    align-self: flex-start; margin-top: var(--sp-md); font-family: var(--mono); font-size: 12px;
+    letter-spacing: 0.1em; text-transform: uppercase; color: #141210; background: var(--accent);
+    border: none; border-radius: 999px; padding: 12px 22px; min-height: 44px; cursor: pointer;
+    transition: opacity 0.15s ease;
+  }
+  .mc-weiter:hover, .mc-nochmal:hover { opacity: 0.88; }
+  .mc-ergebnis { text-align: center; padding: var(--sp-xl) 0; display: flex; flex-direction: column; align-items: center; gap: var(--sp-sm); }
+  /* display:flex überschreibt sonst das [hidden]-Attribut → explizit ausblenden. */
+  .mc-ergebnis[hidden] { display: none; }
+  .mc-ergebnis-titel { font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); }
+  .mc-ergebnis-score { font-family: var(--serif); font-size: var(--text-xl); color: var(--text); }
 </style>

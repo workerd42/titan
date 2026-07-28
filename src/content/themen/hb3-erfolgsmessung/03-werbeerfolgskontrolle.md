@@ -48,6 +48,43 @@ pruefungsfrage:
       Marke oder eine gesteigerte Markenbekanntheit – beide Größen ergänzen sich, da
       Werbewirkung selten unmittelbar rein am Umsatz ablesbar ist.
 wiederholungTage: 4
+mcFragen:
+  - frage: "Wann wird ein Pretest durchgeführt?"
+    optionen:
+      - "Vor dem Kampagnenstart"
+      - "Nach Abschluss der Kampagne"
+      - "Während der Budgetfreigabe"
+      - "Nur bei nachweislichem Misserfolg"
+    richtige: 0
+    operator: "nennen"
+    erklaerung: "Der Pretest findet VOR dem Start statt und beugt der teuren Fehlkampagne vor."
+  - frage: "Was ist der Hauptzweck eines Posttests?"
+    optionen:
+      - "Den Erfolg einer gelaufenen Kampagne messen und erklären"
+      - "Die Kampagne vorab absichern"
+      - "Die Fixkosten senken"
+      - "Die Zielgruppe definieren"
+    richtige: 0
+    operator: "beschreiben"
+    erklaerung: "Der Posttest misst im Nachhinein, warum eine Kampagne funktioniert hat oder nicht."
+  - frage: "Warum reicht ein Posttest allein oft nicht aus?"
+    optionen:
+      - "Weil er eine teure Fehlkampagne nicht mehr verhindern kann"
+      - "Weil er zu günstig ist"
+      - "Weil er vor dem Start läuft"
+      - "Weil er den Umsatz ignoriert"
+    richtige: 0
+    operator: "begründen"
+    erklaerung: "Der Posttest erklärt erst hinterher — die Fehlinvestition lässt sich dann nicht mehr verhindern. Dafür ist der Pretest da."
+  - frage: "Welche Aussage zu Pre- und Posttest trifft zu?"
+    optionen:
+      - "Der Pretest beugt vor, der Posttest erklärt im Nachhinein"
+      - "Beide finden nach der Kampagne statt"
+      - "Der Pretest misst den erzielten Umsatz"
+      - "Der Posttest ersetzt den Pretest vollständig"
+    richtige: 0
+    operator: "begründen"
+    erklaerung: "Pretest = vorbeugend (verhindert Fehlkampagne); Posttest = nachträglich erklärend. Sie ergänzen sich."
 ---
 
 Die Kontrolle des Werbeerfolgs erfolgt in zwei zeitlich unterschiedlichen Ansätzen:
