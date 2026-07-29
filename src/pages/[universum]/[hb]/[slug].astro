@@ -93,7 +93,7 @@ const mcFragen = d.mcFragen ?? [];
     </div>
   </div>
 
-  <div class="thema-wrap" data-thema-slug={thema.id} data-wiederholung-tage={d.wiederholungTage}>
+  <div class="thema-wrap" data-thema-slug={thema.id} data-wiederholung-tage={d.wiederholungTage} data-modus="entdecken">
 
     <!-- ╔══ KOPF ══════════════════════════════╗ -->
     <header class="thema-kopf">
@@ -733,10 +733,16 @@ const mcFragen = d.mcFragen ?? [];
 <script>
   const MODUS_KEY = 'titan-modus-v1';
   function applyModus(mode: string): void {
-    // „entdecken" = volle Seite (nichts weiter). Andere Modi springen zum Ziel.
-    const targetId = mode === 'module' ? 'phase-anwenden' : mode === 'lernzettel' ? 'lernzettel' : mode === 'uebung' ? 'uebung' : '';
-    if (targetId) {
-      window.setTimeout(() => document.getElementById(targetId)?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 120);
+    // Jeder Modus ist jetzt eine EIGENE, fokussierte Ansicht (Lernzettel/Übung
+    // getrennt von Entdecken). data-modus am .thema-wrap steuert per CSS, welche
+    // Inhalte sichtbar sind.
+    const wrap = document.querySelector<HTMLElement>('.thema-wrap');
+    if (wrap) wrap.dataset.modus = mode;
+    // „module" → zum Werkzeug scrollen; sonst frisch oben starten.
+    if (mode === 'module') {
+      window.setTimeout(() => document.getElementById('modul-mount')?.scrollIntoView({ behavior: 'smooth', block: 'center' }), 120);
+    } else {
+      window.setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 60);
     }
   }
   function initModusSelect(): void {
@@ -792,6 +798,7 @@ const mcFragen = d.mcFragen ?? [];
       if (e.target !== ov) return;
       try { localStorage.setItem(MODUS_KEY, 'entdecken'); } catch { /* blockiert */ }
       close();
+      applyModus('entdecken');
     });
     // „Modus wechseln" im Kopf öffnet den Screen erneut
     document.getElementById('modus-reopen')?.addEventListener('click', open);
@@ -1236,6 +1243,20 @@ const mcFragen = d.mcFragen ?? [];
     border-bottom: 1px solid var(--border);
     scroll-margin-top: 100px;
   }
+
+  /* ── MODUS-ANSICHTEN: jeder Modus ist eine eigene, fokussierte Ansicht ──
+     Entdecken & Module = die geführte 4-Phasen-Reise; Lernzettel und
+     Übungsbereich sind eigene, getrennte Ansichten (nicht mehr Teil von Entdecken). */
+  .thema-wrap[data-modus="entdecken"] .lernzettel-section,
+  .thema-wrap[data-modus="entdecken"] .uebung-section,
+  .thema-wrap[data-modus="module"] .lernzettel-section,
+  .thema-wrap[data-modus="module"] .uebung-section { display: none; }
+
+  .thema-wrap[data-modus="lernzettel"] .phasen-reise,
+  .thema-wrap[data-modus="lernzettel"] .lern-phase:not(.lernzettel-section) { display: none; }
+
+  .thema-wrap[data-modus="uebung"] .phasen-reise,
+  .thema-wrap[data-modus="uebung"] .lern-phase:not(.uebung-section) { display: none; }
 
   /* ── PHASE-BANNER ───────────────────────────── */
   .phase-banner {
