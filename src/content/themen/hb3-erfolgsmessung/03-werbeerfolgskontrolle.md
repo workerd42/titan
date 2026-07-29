@@ -85,6 +85,21 @@ mcFragen:
     richtige: 0
     operator: "begründen"
     erklaerung: "Pretest = vorbeugend (verhindert Fehlkampagne); Posttest = nachträglich erklärend. Sie ergänzen sich."
+pruefungsaufgabe:
+  situation: "Die {{firma}} plant eine bundesweite TV-Kampagne mit hohem Budget. Die Marketingleitung ist unsicher, ob die Werbebotschaft ankommt und wie sich der Erfolg später belegen lässt."
+  teilaufgaben:
+    - operator: "erläutern"
+      punkte: 4
+      aufgabe: "Erläutern Sie den Unterschied zwischen einem Pretest und einem Posttest."
+      loesungshinweis: "Pretest = VOR dem Kampagnenstart (prüft Verständlichkeit/Wirkung der Botschaft, beugt einer teuren Fehlkampagne vor). Posttest = NACH der Kampagne (misst den tatsächlichen Erfolg, z. B. Werbeerinnerung/Bekanntheit)."
+    - operator: "empfehlen"
+      punkte: 4
+      aufgabe: "Empfehlen Sie, welchen Test die {{firma}} vor dem teuren Kampagnenstart einsetzen sollte, und begründen Sie."
+      loesungshinweis: "Pretest: Er deckt Schwächen der Botschaft auf, bevor das hohe Budget ausgegeben ist — so lässt sich eine teure Fehlkampagne vermeiden. Ein Posttest kann das nicht mehr verhindern, er erklärt nur im Nachhinein."
+    - operator: "begründen"
+      punkte: 3
+      aufgabe: "Begründen Sie, warum ein Posttest allein für die Erfolgskontrolle nicht ausreicht."
+      loesungshinweis: "Der Posttest misst erst nach Abschluss — Fehlinvestitionen sind dann bereits entstanden. Erst die Kombination (Pretest zur Absicherung + Posttest zur Wirkungsmessung) liefert eine vollständige Werbeerfolgskontrolle."
 ---
 
 Die Kontrolle des Werbeerfolgs erfolgt in zwei zeitlich unterschiedlichen Ansätzen:

@@ -104,6 +104,21 @@ mcFragen:
     richtige: 0
     operator: "erläutern"
     erklaerung: "ROMI = ROI speziell fürs Marketing: welcher Ergebnisbeitrag steht dem Marketingbudget gegenüber."
+pruefungsaufgabe:
+  situation: "Die {{firma}} hat im letzten Quartal 500.000 € in Online-Marketing investiert. Die Geschäftsführung feiert 2 Mio. Impressionen und 80.000 Klicks, ist mit dem tatsächlichen Umsatzbeitrag aber unzufrieden. Sie sollen ein aussagekräftiges Kennzahlensystem aufbauen."
+  teilaufgaben:
+    - operator: "erläutern"
+      punkte: 6
+      aufgabe: "Erläutern Sie den Unterschied zwischen Output-, Outcome- und Impact-Kennzahlen anhand eines eigenen Beispiels aus dem Online-Marketing."
+      loesungshinweis: "Output = unmittelbare Leistung (Impressionen, Klicks). Outcome = tatsächliche Wirkung (Conversion, Kauf, Umsatz). Impact = übergeordnete, langfristige Wirkung (Markenbekanntheit, Kundenbindung). Beispiel: 80.000 Klicks (Output) → 1.600 Käufe (Outcome) → höhere Wiederkaufrate (Impact)."
+    - operator: "nennen"
+      punkte: 4
+      aufgabe: "Nennen Sie zwei Kriterien, die eine Kennzahl erfüllen muss, um als aussagekräftige KPI zu gelten, und begründen Sie diese jeweils kurz."
+      loesungshinweis: "Aus: Relevanz (nachvollziehbarer Bezug zum Unternehmensziel), Vergleichbarkeit (einheitlich über Zeit/Kampagnen), Beeinflussbarkeit (das Marketing kann einwirken), Verständlichkeit (für Entscheider interpretierbar). Zwei davon mit kurzer Begründung genügen."
+    - operator: "empfehlen"
+      punkte: 5
+      aufgabe: "Empfehlen Sie der Geschäftsführung eine Outcome-Kennzahl, die den Erfolg der Investition besser abbildet als Klicks, und begründen Sie Ihre Wahl."
+      loesungshinweis: "Z. B. Conversion Rate (Conversions ÷ Besucher × 100), ROMI oder CPO. Begründung: Klicks (Output) sagen nichts über den Umsatzbeitrag; erst Outcome-Kennzahlen zeigen, ob sich die 500.000 € wirtschaftlich gelohnt haben."
 ---
 
 Damit Marketingerfolg nicht mit reiner Aktivität verwechselt wird, unterscheidet die Erfolgsmessung systematisch drei Kennzahlenebenen:

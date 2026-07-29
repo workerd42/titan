@@ -32,6 +32,9 @@ const base = import.meta.env.BASE_URL;
 const hbBase = `${base}${universum.id}/${bereich.id}/`;
 const d = thema.data;
 const mcFragen = d.mcFragen ?? [];
+const pa = d.pruefungsaufgabe;
+const ihkTeilaufgaben = pa?.teilaufgaben ?? [];
+const ihkPunkte = ihkTeilaufgaben.reduce((s, t) => s + t.punkte, 0);
 ---
 
 <PlanetLayout
@@ -55,7 +58,7 @@ const mcFragen = d.mcFragen ?? [];
       Wird beim Kapitel-Einstieg gezeigt; „Entdecken" führt zur vollen Seite,
       „Interaktive Module" springt zum Werkzeug. Nicht verfügbare Modi sind
       ausgegraut. Standardmäßig sichtbar (kein Flash), JS entlässt bei Auswahl. */}
-  <div class="modus-select" id="modus-select" data-has-werkzeug={d.werkzeug ? 'true' : 'false'} data-has-begriffe={(d.begriffe && d.begriffe.length > 0) || (d.definitionen && d.definitionen.length > 0) ? 'true' : 'false'} data-has-mc={d.mcFragen && d.mcFragen.length > 0 ? 'true' : 'false'} hidden>
+  <div class="modus-select" id="modus-select" data-has-werkzeug={d.werkzeug ? 'true' : 'false'} data-has-begriffe={(d.begriffe && d.begriffe.length > 0) || (d.definitionen && d.definitionen.length > 0) ? 'true' : 'false'} data-has-mc={d.mcFragen && d.mcFragen.length > 0 ? 'true' : 'false'} data-has-ihk={d.pruefungsaufgabe ? 'true' : 'false'} hidden>
     <a class="ms-back" href={hbBase} aria-label={`Zurück zu ${bereich.titel}`}>
       <span aria-hidden="true">←</span> Zurück
     </a>
@@ -565,6 +568,45 @@ const mcFragen = d.mcFragen ?? [];
       </section>
     )}
 
+    {/* ╔══ IHK-TEST-FORMAT (Selbstcheck, optional) ══╗ */}
+    {pa && (
+      <section class="lern-phase ihk-section" id="ihk-test" aria-labelledby="h-ihk">
+        <div class="phase-banner">
+          <div class="phase-banner-inner">
+            <span class="phase-banner-icon" aria-hidden="true">◎</span>
+            <div>
+              <p class="phase-banner-num">IHK-Test-Format</p>
+              <h2 id="h-ihk" class="phase-banner-title">Prüfungsaufgabe</h2>
+              <p class="phase-banner-hint">Wie in der echten Prüfung: eine betriebliche Situation, dazu Teilaufgaben mit Punkten. Formuliere deine Antwort, dann vergleiche selbst mit der Musterlösung.</p>
+            </div>
+          </div>
+        </div>
+        <div class="ihk-body">
+          <div class="ihk-situation">
+            <p class="ihk-situation-label">Betriebliche Situation</p>
+            <p>{pa.situation}</p>
+          </div>
+          <p class="ihk-gesamt">Gesamt erreichbar: <strong>{ihkPunkte} Punkte</strong></p>
+          {ihkTeilaufgaben.map((t, i) => (
+            <div class="ihk-aufgabe">
+              <div class="ihk-aufgabe-kopf">
+                <span class="ihk-nr">Aufgabe {i + 1}</span>
+                <span class="ihk-operator" title="IHK-Operator">{t.operator}</span>
+                <span class="ihk-punkte">{t.punkte} P.</span>
+              </div>
+              <p class="ihk-aufgabe-text">{t.aufgabe}</p>
+              <textarea class="ihk-antwort" rows="4" placeholder="Formuliere deine Antwort wie in der Prüfung …" aria-label={`Antwort zu Aufgabe ${i + 1}`}></textarea>
+              <button class="ihk-reveal" type="button">Musterlösung anzeigen</button>
+              <div class="ihk-loesung" hidden>
+                <p class="ihk-loesung-label">Lösungshinweis</p>
+                <p>{t.loesungshinweis}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+    )}
+
     <!-- ╔══ NAVIGATION ═══════════════════════╗ -->
     <nav class="thema-nav" aria-label="Zwischen Themen wechseln">
       <div>
@@ -769,7 +811,12 @@ const mcFragen = d.mcFragen ?? [];
       const ub = ov.querySelector<HTMLButtonElement>('.ms-card[data-mode="uebung"]');
       if (ub) { ub.disabled = false; const d = ub.querySelector('.ms-desc'); if (d) d.textContent = 'Multiple-Choice zum schnellen Selbsttest.'; }
     }
-    const verfuegbar = (m: string) => m === 'module' ? moduleAvail : m === 'lernzettel' ? begriffeAvail : m === 'uebung' ? mcAvail : m === 'entdecken';
+    const ihkAvail = ov.dataset.hasIhk === 'true';
+    if (ihkAvail) {
+      const ih = ov.querySelector<HTMLButtonElement>('.ms-card[data-mode="ihk"]');
+      if (ih) { ih.disabled = false; const d = ih.querySelector('.ms-desc'); if (d) d.textContent = 'Prüfungsaufgabe im Original-Format mit Musterlösung.'; }
+    }
+    const verfuegbar = (m: string) => m === 'module' ? moduleAvail : m === 'lernzettel' ? begriffeAvail : m === 'uebung' ? mcAvail : m === 'ihk' ? ihkAvail : m === 'entdecken';
 
     const open = () => { ov.removeAttribute('hidden'); ov.classList.remove('is-gone'); document.body.style.overflow = 'hidden'; };
     const close = (animate = true) => {
@@ -884,6 +931,30 @@ const mcFragen = d.mcFragen ?? [];
   document.addEventListener('astro:page-load', initMcQuiz);
   if (document.readyState !== 'loading') initMcQuiz();
   else document.addEventListener('DOMContentLoaded', initMcQuiz);
+</script>
+
+<!-- IHK-Test-Format: Musterlösung je Teilaufgabe ein-/ausblenden (Selbstcheck) -->
+<script>
+  function initIhkTest(): void {
+    document.querySelectorAll<HTMLButtonElement>('.ihk-reveal').forEach((btn) => {
+      if (btn.dataset.init === 'true') return;
+      btn.dataset.init = 'true';
+      btn.addEventListener('click', () => {
+        const loesung = btn.nextElementSibling as HTMLElement | null;
+        if (!loesung || !loesung.classList.contains('ihk-loesung')) return;
+        if (loesung.hasAttribute('hidden')) {
+          loesung.removeAttribute('hidden');
+          btn.textContent = 'Musterlösung ausblenden';
+        } else {
+          loesung.setAttribute('hidden', '');
+          btn.textContent = 'Musterlösung anzeigen';
+        }
+      });
+    });
+  }
+  document.addEventListener('astro:page-load', initIhkTest);
+  if (document.readyState !== 'loading') initIhkTest();
+  else document.addEventListener('DOMContentLoaded', initIhkTest);
 </script>
 
 <!-- Lernzettel: Karteikarten umdrehen -->
@@ -1249,14 +1320,19 @@ const mcFragen = d.mcFragen ?? [];
      Übungsbereich sind eigene, getrennte Ansichten (nicht mehr Teil von Entdecken). */
   .thema-wrap[data-modus="entdecken"] .lernzettel-section,
   .thema-wrap[data-modus="entdecken"] .uebung-section,
+  .thema-wrap[data-modus="entdecken"] .ihk-section,
   .thema-wrap[data-modus="module"] .lernzettel-section,
-  .thema-wrap[data-modus="module"] .uebung-section { display: none; }
+  .thema-wrap[data-modus="module"] .uebung-section,
+  .thema-wrap[data-modus="module"] .ihk-section { display: none; }
 
   .thema-wrap[data-modus="lernzettel"] .phasen-reise,
   .thema-wrap[data-modus="lernzettel"] .lern-phase:not(.lernzettel-section) { display: none; }
 
   .thema-wrap[data-modus="uebung"] .phasen-reise,
   .thema-wrap[data-modus="uebung"] .lern-phase:not(.uebung-section) { display: none; }
+
+  .thema-wrap[data-modus="ihk"] .phasen-reise,
+  .thema-wrap[data-modus="ihk"] .lern-phase:not(.ihk-section) { display: none; }
 
   /* ── PHASE-BANNER ───────────────────────────── */
   .phase-banner {
@@ -1974,4 +2050,25 @@ const mcFragen = d.mcFragen ?? [];
   .mc-ergebnis[hidden] { display: none; }
   .mc-ergebnis-titel { font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); }
   .mc-ergebnis-score { font-family: var(--serif); font-size: var(--text-xl); color: var(--text); }
+
+  /* ── IHK-TEST-FORMAT ─────────────────────────── */
+  .ihk-body { max-width: var(--max-read); margin: 0 auto; padding: 0 var(--sp-lg) var(--sp-lg); }
+  .ihk-situation { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: var(--radius); padding: var(--sp-md); margin-bottom: var(--sp-md); }
+  .ihk-situation-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+  .ihk-situation p:last-child { font-family: var(--mono); font-size: 13.5px; line-height: 1.7; color: var(--text); }
+  .ihk-gesamt { font-family: var(--mono); font-size: 12px; color: var(--text-muted); margin-bottom: var(--sp-lg); }
+  .ihk-gesamt strong { color: var(--text); }
+  .ihk-aufgabe { padding: var(--sp-md) 0; border-top: 1px solid var(--border); }
+  .ihk-aufgabe-kopf { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+  .ihk-nr { font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); }
+  .ihk-operator { font-family: var(--mono); font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); border: 1px solid var(--border); border-radius: 999px; padding: 3px 10px; }
+  .ihk-punkte { margin-left: auto; font-family: var(--mono); font-size: 11px; color: var(--text-muted); font-variant-numeric: tabular-nums; }
+  .ihk-aufgabe-text { font-family: var(--mono); font-size: 14px; line-height: 1.6; color: var(--text); margin-bottom: var(--sp-sm); }
+  .ihk-antwort { width: 100%; font-family: var(--mono); font-size: 13px; line-height: 1.6; color: var(--text); background: var(--bg-alt, var(--surface)); border: 1px solid var(--border); border-radius: var(--radius); padding: 12px 14px; resize: vertical; }
+  .ihk-antwort:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .ihk-reveal { margin-top: var(--sp-sm); font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); background: none; border: 1px solid var(--border); border-radius: 999px; padding: 8px 16px; min-height: 40px; cursor: pointer; transition: border-color 0.15s ease; }
+  .ihk-reveal:hover { border-color: var(--accent); }
+  .ihk-loesung { margin-top: var(--sp-sm); background: rgba(90,138,106,0.06); border-left: 3px solid var(--success); border-radius: 0 var(--radius) var(--radius) 0; padding: 12px 14px; }
+  .ihk-loesung-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--success); margin-bottom: 6px; }
+  .ihk-loesung p:last-child { font-family: var(--mono); font-size: 13px; line-height: 1.7; color: var(--text); }
 </style>

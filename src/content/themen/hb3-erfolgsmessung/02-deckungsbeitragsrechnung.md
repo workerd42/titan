@@ -135,6 +135,21 @@ mcFragen:
     richtige: 0
     operator: "nennen"
     erklaerung: "Bei freier Kapazität zählt der absolute DB; erst bei einem Engpass der DB pro Engpassstunde."
+pruefungsaufgabe:
+  situation: "Die {{firma}} fertigt zwei Produkte auf derselben Maschine (maximal 800 Stunden pro Monat). Produkt A: Deckungsbeitrag 18 €/Stück, 30 Min. Maschinenzeit. Produkt B: Deckungsbeitrag 12 €/Stück, 10 Min. Maschinenzeit. Die Nachfrage übersteigt die Kapazität."
+  teilaufgaben:
+    - operator: "ermitteln"
+      punkte: 4
+      aufgabe: "Ermitteln Sie für beide Produkte den Deckungsbeitrag pro Maschinenstunde."
+      loesungshinweis: "A: 18 € ÷ 0,5 h = 36 €/h. B: 12 € ÷ (10/60 h) = 12 € ÷ 0,1667 h ≈ 72 €/h."
+    - operator: "empfehlen"
+      punkte: 4
+      aufgabe: "Empfehlen Sie begründet, welches Produkt bei dem Engpass bevorzugt gefertigt werden soll."
+      loesungshinweis: "Produkt B. Bei einem Kapazitätsengpass zählt nicht der absolute DB pro Stück (A ist höher), sondern der relative DB pro Engpasseinheit. B erwirtschaftet ≈ 72 €/h gegenüber 36 €/h bei A — also doppelt so viel Deckungsbeitrag je knapper Maschinenstunde."
+    - operator: "erläutern"
+      punkte: 3
+      aufgabe: "Erläutern Sie, warum bei FREIER Kapazität eine andere Entscheidung sinnvoll sein kann."
+      loesungshinweis: "Ohne Engpass ist die Maschinenzeit nicht knapp — dann zählt der absolute Deckungsbeitrag pro Stück (A: 18 € > B: 12 €). Der relative DB ist nur bei einem Engpass die richtige Steuerungsgröße."
 ---
 
 Die Deckungsbeitragsrechnung ist ein zentrales Instrument der **Teilkostenrechnung** — im Gegensatz zur Vollkostenrechnung werden die Fixkosten nicht auf einzelne Produkte verteilt, sondern als Gesamtblock behandelt. Das macht die Methode deutlich aussagekräftiger für kurzfristige Entscheidungen.

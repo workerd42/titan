@@ -99,6 +99,20 @@ const themenSchema = z.object({
     operator: z.string().optional(),
   })).optional(),
 
+  // ── IHK-TEST-FORMAT (optional) ────────────────────────
+  // Bildet die echte Prüfungsstruktur nach: eine betriebliche Situation, dazu
+  // Teilaufgaben mit Operator + Punkten + Lösungshinweis (Selbstvergleich).
+  // Blaupause: docs/pruefungs-blaupause.md. Eigenes Titan-Wording.
+  pruefungsaufgabe: z.object({
+    situation: z.string(),
+    teilaufgaben: z.array(z.object({
+      operator: z.string(),
+      aufgabe: z.string(),
+      punkte: z.number().int().positive(),
+      loesungshinweis: z.string(),
+    })),
+  }).optional(),
+
   // ── WIEDERHOLUNG ──────────────────────────────────────
   wiederholungTage: z.number().default(4),
 });
