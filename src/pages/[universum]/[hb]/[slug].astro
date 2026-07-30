@@ -887,7 +887,21 @@ const ihkPunkte = ihkTeilaufgaben.reduce((s, t) => s + t.punkte, 0);
       if (score) score.textContent = `${richtig} von ${total} richtig · ${Math.round((richtig / total) * 100)} %`;
     };
 
+    // Antwort-Optionen zufällig anordnen (sonst stünde die richtige immer vorne).
+    // Korrektheit hängt an data-oi, nicht an der Position → Mischen ist sicher.
+    const mische = (frage: HTMLElement): void => {
+      const box = frage.querySelector('.mc-optionen');
+      if (!box) return;
+      const opts = Array.from(box.querySelectorAll<HTMLButtonElement>('.mc-opt'));
+      for (let i = opts.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [opts[i], opts[j]] = [opts[j], opts[i]];
+      }
+      opts.forEach((o) => box.appendChild(o));
+    };
+
     fragen.forEach((frage) => {
+      mische(frage);
       const richtige = parseInt(frage.dataset.richtige ?? '0', 10);
       const opts = Array.from(frage.querySelectorAll<HTMLButtonElement>('.mc-opt'));
       const erkl = frage.querySelector<HTMLElement>('.mc-erklaerung');
@@ -897,10 +911,11 @@ const ihkPunkte = ihkTeilaufgaben.reduce((s, t) => s + t.punkte, 0);
           if (frage.dataset.beantwortet === 'true') return;
           frage.dataset.beantwortet = 'true';
           const gewaehlt = parseInt(opt.dataset.oi ?? '-1', 10);
-          opts.forEach((o, oi) => {
+          opts.forEach((o) => {
             o.disabled = true;
-            if (oi === richtige) o.classList.add('is-richtig');
-            else if (oi === gewaehlt) o.classList.add('is-falsch');
+            const ooi = parseInt(o.dataset.oi ?? '-1', 10);
+            if (ooi === richtige) o.classList.add('is-richtig');
+            else if (ooi === gewaehlt) o.classList.add('is-falsch');
           });
           if (gewaehlt === richtige) richtig++;
           if (erkl) erkl.hidden = false;
@@ -924,6 +939,7 @@ const ihkPunkte = ihkTeilaufgaben.reduce((s, t) => s + t.punkte, 0);
         const weiter = frage.querySelector<HTMLElement>('.mc-weiter');
         if (erkl) erkl.hidden = true;
         if (weiter) weiter.hidden = true;
+        mische(frage);
       });
       zeige(0);
     });
