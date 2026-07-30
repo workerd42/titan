@@ -79,6 +79,17 @@ pruefungsfrage:
       Gesamtverantwortung für den Arbeitsschutz verbleiben jedoch immer beim
       Arbeitgeber und sind nicht übertragbar.
 wiederholungTage: 5
+pruefungsaufgabe:
+  situation: "Ein Geschäftsführer hat die Durchführung der Gefährdungsbeurteilung für die\nBildschirmarbeitsplätze vollständig an den zuständigen Abteilungsleiter delegiert.\nBei einer Kontrolle stellt sich heraus, dass die Beurteilung seit Jahren nicht\naktualisiert wurde. Der Geschäftsführer verweist auf die Zuständigkeit des\nAbteilungsleiters.\n"
+  teilaufgaben:
+    - operator: "beurteilen"
+      aufgabe: "Beurteilen Sie, ob sich der Geschäftsführer damit von seiner Verantwortung befreien\nkann.\n"
+      punkte: 8
+      loesungshinweis: "Nein. Auch wenn der Arbeitgeber unternehmerische Pflichten wie die Durchführung der\nGefährdungsbeurteilung auf Mitarbeiter (hier den Abteilungsleiter) übertragen kann,\nbleibt er stets dafür verantwortlich, dass die übertragenen Pflichten auch\ntatsächlich umgesetzt werden. Die oberste Aufsichts- und Kontrollverpflichtung sowie\ndie Gesamtverantwortung für den Arbeitsschutz sind nicht übertragbar. Der\nGeschäftsführer kann sich daher nicht allein durch den Verweis auf die Delegation von\nseiner Verantwortung befreien.\n"
+    - operator: "erläutern"
+      aufgabe: "Ein Unternehmen führt erstmals eine systematische Gefährdungsbeurteilung für seine\nMarketingabteilung durch.\na) Nennen Sie die gesetzliche Grundlage der Gefährdungsbeurteilung.\nb) Erläutern Sie, wonach sich der Umfang bzw. die Vorgehensweise der\nGefährdungsbeurteilung richtet.\nc) Erläutern Sie den Unterschied zwischen der Übertragbarkeit einzelner\nArbeitsschutzpflichten und der Übertragbarkeit der Gesamtverantwortung.\n"
+      punkte: 7
+      loesungshinweis: "§ 5 des Arbeitsschutzgesetzes (ArbSchG) sowie die aufgrund dessen erlassenen\nVerordnungen.\n · Der Arbeitgeber muss die mit der Arbeit der Beschäftigten verbundenen\nGefährdungen beurteilen. Die Beurteilung ist je nach Art der Tätigkeit\nvorzunehmen; bei gleichartigen Arbeitsbedingungen ist die Beurteilung eines\nArbeitsplatzes oder einer Tätigkeit ausreichend, statt jeden Einzelfall separat zu\nbeurteilen.\n · Einzelne Unternehmerpflichten (z. B. die konkrete Durchführung der\nGefährdungsbeurteilung) können auf Beschäftigte übertragen werden, z. B. auf eine\nFührungskraft. Die oberste Aufsichts- und Kontrollverpflichtung sowie die\nGesamtverantwortung für den Arbeitsschutz verbleiben jedoch immer beim\nArbeitgeber und sind nicht übertragbar.\n"
 ---
 
 Eine der zentralen gesetzlichen Pflichten des Arbeitgebers im Arbeitsschutz ist die **Gefährdungsbeurteilung**, geregelt in **§ 5 des Arbeitsschutzgesetzes (ArbSchG)** sowie den aufgrund dessen erlassenen Verordnungen. Der Arbeitgeber muss ermitteln, welche Maßnahmen des Arbeitsschutzes erforderlich sind, indem er die mit der Arbeit der Beschäftigten verbundenen Gefährdungen beurteilt.

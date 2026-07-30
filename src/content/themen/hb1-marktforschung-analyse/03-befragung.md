@@ -36,6 +36,17 @@ pruefungsfrage:
     - |
       c) Onlinebefragung: kostengünstigste Form, schnelle Durchführung bei großer Stichprobe, automatische Datenerfassung ohne Übertragungsfehler – bei einer Zielgruppe wie Apotheken ist von ausreichender Online-Affinität auszugehen.
 wiederholungTage: 4
+pruefungsaufgabe:
+  situation: "Die {{firma}} will herausfinden, welche technischen\nEigenschaften ihrer Spezialfilter für Einkaufsleiter in der Pharmaindustrie\nwirklich entscheidungsrelevant sind. Es gibt nur eine Handvoll relevanter Kunden.\n"
+  teilaufgaben:
+    - operator: "begründen"
+      aufgabe: "Empfehlen Sie eine Befragungsstrategie und begründen Sie die Wahl.\n"
+      punkte: 8
+      loesungshinweis: "Ein nicht standardisiertes Interview (Leitfadeninterview) ist hier vorzuziehen.\nDer Kreis der Befragten ist klein, technisch heterogen und erfordert ein\nFachgespräch auf Augenhöhe. Eine starre Fragebogenstruktur würde wichtige,\nvorab nicht bedachte Aspekte (z. B. neue Normanforderungen) gar nicht erfassen.\nTypisch für den B2B-Bereich: Der Interviewer muss selbst Fachwissen mitbringen,\num das Gespräch flexibel an den jeweiligen Gesprächspartner anzupassen.\n"
+    - operator: "nennen"
+      aufgabe: "Die {{firma}} plant zusätzlich eine breite Imagebefragung bei 2.000 Apotheken\nin Deutschland.\na) Welche Befragungsstrategie ist hierfür im Regelfall die geeignetere –\nstandardisiert oder nicht standardisiert? Begründen Sie.\nb) Nennen Sie je zwei Vor- und Nachteile der von Ihnen gewählten Strategie.\nc) Welche Kommunikationsart (persönlich, schriftlich, telefonisch, online)\nwürden Sie für diese Größenordnung empfehlen, und warum?\n"
+      punkte: 7
+      loesungshinweis: "a) Standardisierte Befragung, da eine große, relativ homogene Zielgruppe (Apotheken) zu denselben Themen befragt wird und die Ergebnisse statistisch ausgewertet werden sollen.\n · b) Vorteile: Interviewereinfluss wird ausgeschaltet, Ergebnisse sind statistisch gut aufbereitbar. Nachteile: Es werden nur die im Fragebogen vorgesehenen Sachverhalte erfasst, unerwartete Aspekte gehen verloren.\n · c) Onlinebefragung: kostengünstigste Form, schnelle Durchführung bei großer Stichprobe, automatische Datenerfassung ohne Übertragungsfehler – bei einer Zielgruppe wie Apotheken ist von ausreichender Online-Affinität auszugehen.\n"
 ---
 
 Bei der Befragung unterscheidet man zunächst die **Kommunikationsart**: persönlich, schriftlich, telefonisch oder online. Die Onlinebefragung ist heute die mit Abstand häufigste und kostengünstigste Form, da kein personeller Erhebungsaufwand entsteht – ihr Schwachpunkt ist die oft fehlende Repräsentanz, weil die Grundgesamtheit der Internetnutzer nicht exakt bekannt ist.

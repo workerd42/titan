@@ -53,6 +53,17 @@ pruefungsfrage:
       Vorabinformation über landestypische Gepflogenheiten ein wesentlicher Baustein
       professioneller, situationsgerechter Kommunikation mit externen Partnern.
 wiederholungTage: 4
+pruefungsaufgabe:
+  situation: "Ein deutscher Marketingmanager verhandelt per Videokonferenz mit einem Geschäftspartner\naus einem ostasiatischen Land. Auf die direkte Frage „Sind Sie mit diesem Vorschlag\neinverstanden?\" antwortet der Partner ausweichend mit „Das ist interessant, wir werden\nes sorgfältig prüfen\" – und lächelt dabei zustimmend.\n"
+  teilaufgaben:
+    - operator: "erläutern"
+      aufgabe: "Erläutern Sie, warum diese Reaktion nicht zwangsläufig als Zustimmung fehlgedeutet\nwerden sollte, und leiten Sie eine Verhaltensempfehlung ab.\n"
+      punkte: 8
+      loesungshinweis: "In vielen ostasiatischen Kulturkreisen gilt ein direktes „Nein\" oder eine offene\nAblehnung als unhöflich, weshalb Kritik oder Ablehnung häufig indirekt und\nverklausuliert formuliert wird. Auch Mimik und Gestik (hier: das Lächeln) können in\ndiesem Kulturkreis anders zu interpretieren sein als in Deutschland – ein Lächeln\nsignalisiert nicht zwingend Zustimmung, sondern kann auch Höflichkeit oder\nUnbehagen ausdrücken. Empfehlung: Sich im Vorfeld über landestypische\nKommunikationsgepflogenheiten informieren und bei Unsicherheit gezielt und behutsam\nnachfragen, statt die Aussage vorschnell als klare Zustimmung zu werten.\n"
+    - operator: "erläutern"
+      aufgabe: "Ihr Unternehmen plant eine Telefonkonferenz mit Geschäftspartnern aus drei\nverschiedenen Zeitzonen sowie Teilnehmern, die nicht alle Deutsch sprechen.\na) Nennen Sie zwei organisatorische Herausforderungen internationaler Kommunikation\nund je eine mögliche Lösung.\nb) Erläutern Sie, warum Mimik und Gestik bei interkultureller Kommunikation zu\nMissverständnissen führen können.\nc) Begründen Sie, warum sich ein Geprüfter Fachwirt für Marketing im Vorfeld über die\nGepflogenheiten der beteiligten Länder informieren sollte.\n"
+      punkte: 7
+      loesungshinweis: "Zeitverschiebung: kann zu unpraktischen Uhrzeiten für einzelne Teilnehmer führen –\nLösung: sorgfältige Planung und ggf. rotierende, für alle Seiten faire\nTerminwahl. Sprachbarrieren: können zu Missverständnissen führen – Lösung:\nVerwendung einer gemeinsamen Verkehrssprache (häufig Englisch) und Bereitstellung\nschriftlicher Zusammenfassungen im Nachgang.\n · Mimik und Gestik werden in unterschiedlichen Kulturräumen unterschiedlich\ninterpretiert – eine Geste, die in einer Kultur Zustimmung ausdrückt, kann in einer\nanderen neutral oder sogar negativ verstanden werden, was ohne entsprechendes\nHintergrundwissen leicht zu Fehleinschätzungen der eigentlichen Gesprächsabsicht\nführt.\n · Da Kommunikationsfehler durch unzureichende interkulturelle Kenntnisse\nGeschäftsbeziehungen belasten oder Verhandlungen scheitern lassen können, ist die\nVorabinformation über landestypische Gepflogenheiten ein wesentlicher Baustein\nprofessioneller, situationsgerechter Kommunikation mit externen Partnern.\n"
 ---
 
 Kommunikation wird zunehmend anspruchsvoller, wenn sie sich über Kulturgrenzen hinweg vollzieht. Für die situationsgerechte Kommunikation mit internationalen Partnern sind mehrere Besonderheiten zu berücksichtigen:

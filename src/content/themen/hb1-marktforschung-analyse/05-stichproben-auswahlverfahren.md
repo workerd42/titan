@@ -39,6 +39,17 @@ pruefungsfrage:
     - |
       c) Vollerhebung, wenn die Grundgesamtheit klein und identifizierbar ist (z. B. wenige große Lieferanten). Teilerhebung, wenn die Grundgesamtheit sehr groß ist und eine vollständige Erfassung zu teuer oder zeitaufwendig wäre.
 wiederholungTage: 4
+pruefungsaufgabe:
+  situation: "Die Marktforschungsabteilung der {{firma}} soll zwei Untersuchungen\nvorbereiten: eine bundesweite Verbraucherbefragung zu Wohntrends und eine\nBefragung der zwölf größten Spanplattenlieferanten Europas.\n"
+  teilaufgaben:
+    - operator: "begründen"
+      aufgabe: "Schlagen Sie für beide Fälle ein geeignetes Auswahlverfahren vor und\nbegründen Sie den Unterschied.\n"
+      punkte: 8
+      loesungshinweis: "Für die Verbraucherbefragung eignet sich das Quotenverfahren: Die Struktur\nrelevanter Merkmale (z. B. Alter, Wohnsituation) wird aus der Grundgesamtheit\nübernommen und proportional in der Stichprobe abgebildet – praktikabel, da\nMillionen Verbraucher nicht einzeln identifizierbar sind. Für die\nLieferantenbefragung eignet sich ein Konzentrationsverfahren (Cut-off-Verfahren):\nDa nur zwölf Anbieter überhaupt relevant sind, werden alle oder die größten von\nihnen direkt befragt – eine Zufallsauswahl wäre hier unsinnig.\n"
+    - operator: "erläutern"
+      aufgabe: "Ein externer Berater schlägt der {{firma}} vor, für die\nVerbraucherbefragung „einfach ein paar Leute auf der Straße zu befragen,\ndas spart Kosten.\"\na) Nehmen Sie zu diesem Vorschlag begründet Stellung.\nb) Erläutern Sie den Unterschied zwischen einfacher und geschichteter\nZufallsauswahl an einem eigenen Beispiel.\nc) Wann ist im B2B-Bereich eher eine Vollerhebung sinnvoll, wann eine\nTeilerhebung?\n"
+      punkte: 7
+      loesungshinweis: "a) Der Vorschlag ist abzulehnen. Eine willkürliche Auswahl (z. B. Passantenbefragung) liefert keine repräsentativen, verzerrungsfreien Daten und lässt keine gesicherten Rückschlüsse auf die Grundgesamtheit zu. Sie ist in der Marktforschung nicht zulässig und kann höchstens als unverbindliches Stimmungsbild dienen.\n · b) Bei der einfachen Zufallsauswahl hat jedes Element der Grundgesamtheit dieselbe Chance, gezogen zu werden, ohne Rücksicht auf Merkmalsverteilungen. Bei der geschichteten Zufallsauswahl wird die Grundgesamtheit vorher nach einem relevanten Merkmal (z. B. Geschlecht) in Schichten unterteilt, aus denen anteilig gezogen wird – Beispiel: getrennte Ziehung bei 30 % männlichen und 70 % weiblichen Verwendern eines Produkts, damit dieses Verhältnis in der Stichprobe erhalten bleibt.\n · c) Vollerhebung, wenn die Grundgesamtheit klein und identifizierbar ist (z. B. wenige große Lieferanten). Teilerhebung, wenn die Grundgesamtheit sehr groß ist und eine vollständige Erfassung zu teuer oder zeitaufwendig wäre.\n"
 ---
 
 Bevor eine Stichprobe gezogen wird, muss die **Grundgesamtheit** sachlich, zeitlich und räumlich klar abgegrenzt sein. Danach folgt die Wahl des Erhebungsprinzips: **Vollerhebung** (alle Merkmalsträger werden erfasst – typisch im B2B-Bereich mit wenigen, identifizierbaren Anbietern) oder **Teilerhebung/Stichprobe** (typisch im B2C-Bereich mit Millionen nicht einzeln erfassbarer Konsumenten).

@@ -41,6 +41,17 @@ pruefungsfrage:
     - |
       c) Die Standardabweichung, da sie angibt, wie eng die Einzelwerte um den Mittelwert streuen. Der Mittelwert allein zeigt nur die zentrale Tendenz, sagt aber nichts darüber aus, ob die Löhne nah beieinanderliegen oder stark auseinanderdriften – zwei Belegschaften mit gleichem Durchschnittslohn können völlig unterschiedlich homogen bezahlt sein.
 wiederholungTage: 5
+pruefungsaufgabe:
+  situation: "Die Personalabteilung der {{firma}} hat die Bruttostundenlöhne\nvon 180 Lohnempfängern in sechs Lohngruppen erfasst und möchte einen\nVergleichswert für Tarifverhandlungen ermitteln.\n"
+  teilaufgaben:
+    - operator: "berechnen"
+      aufgabe: "Welcher Mittelwert ist hier sachlich richtig zu berechnen, und warum nicht\neinfach der Modalwert?\n"
+      punkte: 8
+      loesungshinweis: "Da die Löhne in einer Häufigkeitstabelle (Lohnhöhe mit Anzahl der Beschäftigten\nje Gruppe) vorliegen, ist der gewogene arithmetische Mittelwert zu berechnen:\nJede Lohnhöhe wird mit der Anzahl der zugehörigen Beschäftigten gewichtet, die\nSumme durch die Gesamtzahl der Beschäftigten geteilt. Der Modalwert (häufigster\nLohn) wäre hier irreführend, da er nur die größte Gruppe abbildet und nicht alle\n180 Werte einbezieht – für Tarifverhandlungen zählt aber der repräsentative\nDurchschnitt über alle Beschäftigten.\n"
+    - operator: "nennen"
+      aufgabe: "Die {{firma}} ist zusätzlich von 2019 bis 2024 jährlich\ngewachsen, allerdings mit schwankenden Raten. Der Umsatz stieg von 40,0 Mio. €\nauf 53,6 Mio. €.\na) Welcher Mittelwert ist geeignet, um die durchschnittliche jährliche\nWachstumsrate zu bestimmen? Begründen Sie.\nb) Nennen Sie zwei Skalenarten, denen die Merkmale „Lohngruppe\" (1 bis 6) und\n„Bruttostundenlohn in €\" jeweils zuzuordnen sind, und begründen Sie kurz.\nc) Welches Streuungsmaß würden Sie zusätzlich zum Mittelwert angeben, um die\nHomogenität der Löhne zu beurteilen, und warum reicht der Mittelwert allein\nnicht aus?\n"
+      punkte: 7
+      loesungshinweis: "a) Der geometrische Mittelwert, da es sich um die Verdichtung eines Wachstumsprozesses (Veränderungsraten) und nicht um die Verdichtung einzelner Größen handelt. Berechnung über den Wachstumsfaktor pro Jahr, n-te Wurzel aus dem Produkt aller Wachstumsfaktoren.\n · b) „Lohngruppe\" ist ordinalskaliert (natürliche Rangfolge 1 bis 6, aber die Abstände zwischen den Gruppen sind nicht notwendigerweise gleich groß). „Bruttostundenlohn in €\" ist metrisch (verhältnis-)skaliert, da ein absoluter Nullpunkt existiert und Verhältnisse gebildet werden können (10 €/Std. ist doppelt so viel wie 5 €/Std.).\n · c) Die Standardabweichung, da sie angibt, wie eng die Einzelwerte um den Mittelwert streuen. Der Mittelwert allein zeigt nur die zentrale Tendenz, sagt aber nichts darüber aus, ob die Löhne nah beieinanderliegen oder stark auseinanderdriften – zwei Belegschaften mit gleichem Durchschnittslohn können völlig unterschiedlich homogen bezahlt sein.\n"
 ---
 
 Bevor Daten verdichtet werden können, muss die **Skalenart** des Merkmals bekannt sein: Nominalskalen erfassen reine Eigenschaften ohne Rangfolge (z. B. Pkw-Marke), Ordinalskalen erfassen eine Rangfolge ohne messbare Abstände (z. B. Schulnoten), metrische Skalen erlauben Abstände und Verhältnisse (z. B. Umsatz, Alter).

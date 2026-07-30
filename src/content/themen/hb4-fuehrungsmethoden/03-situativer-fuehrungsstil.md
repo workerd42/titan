@@ -51,6 +51,17 @@ pruefungsfrage:
       selbst sowie die Positionsmacht der Führungskraft eine wichtige Rolle bei der Wahl
       des passenden Führungsstils.
 wiederholungTage: 5
+pruefungsaufgabe:
+  situation: "Ein neuer Auszubildender startet in der Marketingabteilung und kennt weder die\ninternen Prozesse noch die verwendeten Tools. Eine erfahrene Kollegin im selben Team\narbeitet seit zehn Jahren selbstständig und hochkompetent an anspruchsvollen\nProjekten.\n"
+  teilaufgaben:
+    - operator: "erläutern"
+      aufgabe: "Erläutern Sie, warum beide Mitarbeiter nach dem situativen Führungsstil\nunterschiedlich geführt werden sollten.\n"
+      punkte: 8
+      loesungshinweis: "Nach dem situativen Führungsstil (z. B. nach Hersey/Blanchard) hängt der passende\nFührungsstil von der persönlichen Beziehung zwischen Führungskraft und Mitarbeiter\nsowie von Aufgabe und Reifegrad des Mitarbeiters ab. Der neue Auszubildende benötigt\naufgrund fehlender Erfahrung eine stärker aufgabenorientierte, anleitende Führung\nmit klaren Vorgaben. Die erfahrene Kollegin braucht dagegen kaum fachliche\nAnleitung, sondern eher eine beziehungsorientierte Führung, die ihre Selbstständigkeit\nunterstützt und wertschätzt. Ein einheitlicher Führungsstil für beide würde entweder\nden Auszubildenden überfordern oder die erfahrene Kollegin unnötig einengen.\n"
+    - operator: "erläutern"
+      aufgabe: "Eine Führungskraft möchte die Motivation ihrer Mitarbeiter besser verstehen, um sie\ngezielter zu führen.\na) Erläutern Sie den Grundgedanken des situativen Führungsstils und nennen Sie ein\nzugehöriges Modell.\nb) Unterscheiden Sie intrinsische von extrinsischer Motivation anhand je eines\nBeispiels.\nc) Nennen Sie zwei Faktoren, die laut situativem Führungsstil neben der\npersönlichen Beziehung zum Mitarbeiter die Wahl des Führungsstils beeinflussen.\n"
+      punkte: 7
+      loesungshinweis: "Der situative Führungsstil geht davon aus, dass es keinen universell richtigen\nFührungsstil gibt, sondern dass dieser von der jeweiligen Situation abhängt –\ninsbesondere von der persönlichen Beziehung zwischen Führungskraft und Mitarbeiter.\nEin bekanntes Modell hierzu ist die Theorie von Hersey und Blanchard.\n · Intrinsische Motivation: Die Tätigkeit wird ausgeführt, weil der Mitarbeiter darin\nselbst Sinn und Erfüllung sieht und Freude an der Arbeit findet (z. B. Freude an\nkreativer Konzeptentwicklung). Extrinsische Motivation: Die Tätigkeit wird\nausgeführt, um eine von außen kommende Belohnung zu erhalten oder eine Bestrafung\nzu vermeiden (z. B. Gehalt, Bonuszahlung, Anerkennung durch Vorgesetzte).\n · Neben der persönlichen Beziehung spielen laut situativem Führungsstil die Aufgabe\nselbst sowie die Positionsmacht der Führungskraft eine wichtige Rolle bei der Wahl\ndes passenden Führungsstils.\n"
 ---
 
 Während die klassischen Führungsstile (autoritär, kooperativ, Laisser-faire) feste Verhaltensmuster beschreiben, geht der **situative Führungsstil** – ein bekanntes Modell hierzu stammt von **Hersey und Blanchard** – einen entscheidenden Schritt weiter: Es gibt keinen universell „richtigen" Führungsstil, sondern die Führungskraft muss aufgaben- und beziehungsorientiert führen, abhängig von der jeweiligen Situation.

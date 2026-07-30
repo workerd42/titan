@@ -52,6 +52,17 @@ pruefungsfrage:
       Employer-Branding-Maßnahmen insgesamt, die das Unternehmen als attraktive Marke am
       Arbeitsmarkt verankern.
 wiederholungTage: 4
+pruefungsaufgabe:
+  situation: "Die {{firma}} hat zunehmend Schwierigkeiten, offene Stellen im\nFachkräftebereich zu besetzen, obwohl das Gehalt marktüblich ist. Bewerber geben in\nGesprächen an, das Unternehmen bisher kaum gekannt zu haben.\n"
+  teilaufgaben:
+    - operator: "erläutern"
+      aufgabe: "Erläutern Sie, mit welchem Instrument die {{firma}} diesem Problem\nbegegnen kann, und skizzieren Sie den Grundgedanken.\n"
+      punkte: 8
+      loesungshinweis: "Das Unternehmen sollte in Employer Branding investieren – den professionellen\nAuftritt und die gezielte Positionierung als attraktiver Arbeitgeber am externen\nArbeitsmarkt. Ziel ist es, dass potenzielle Bewerber den Arbeitgeber überhaupt\nkennenlernen, sich mit ihm identifizieren können und stolz darauf sind, dort zu\narbeiten. Da die reine Gehaltshöhe hier offensichtlich nicht das Problem ist, sondern\ndie mangelnde Bekanntheit, sollte der Fokus auf Sichtbarkeit und Markenbildung als\nArbeitgeber liegen, nicht auf weiteren Gehaltserhöhungen.\n"
+    - operator: "erläutern"
+      aufgabe: "Die Geschäftsführung der {{firma}} befürchtet, dass Investitionen in\nPersonalmarketing nur zusätzliche Kosten verursachen, ohne den wirtschaftlichen\nNutzen des Unternehmens zu steigern.\na) Erläutern Sie den scheinbaren Zielkonflikt zwischen sozialen und wirtschaftlichen\nZielen im Personalmarketing.\nb) Begründen Sie, warum dieser Zielkonflikt bei genauerer Betrachtung auflösbar ist.\nc) Nennen Sie zwei Aspekte, die zum Personalmarketing zählen, neben dem externen\nArbeitgeberauftritt.\n"
+      punkte: 7
+      loesungshinweis: "Auf den ersten Blick kosten soziale Ziele (angemessene Entlohnung, gute\nArbeitsbedingungen, zeitgemäße Führung) Geld, ohne dass sich der wirtschaftliche\nNutzen unmittelbar in Zahlen darstellen lässt – ein scheinbarer Zielkonflikt zu\nrein wirtschaftlichen Zielen wie Kostensenkung.\n · Der Konflikt löst sich auf, da soziale Ziele nur erreicht werden können, wenn man\ndie wirtschaftlichen Ziele des Unternehmens mitberücksichtigt, und umgekehrt: Werden\nsoziale Ziele nicht erfüllt, sinkt die Mitarbeitermotivation und -leistung, was\nsich mittelfristig negativ auf die wirtschaftlichen Ziele auswirkt (z. B. durch\nFachkräftemangel oder hohe Fluktuation).\n · Zum Personalmarketing zählt neben dem Auftritt am externen Arbeitsmarkt auch die\nPositionierung am internen Arbeitsmarkt – etwa durch Maßnahmen, die das Image als\nArbeitgeber bei den bereits beschäftigten Mitarbeitern positiv prägen, sowie\nEmployer-Branding-Maßnahmen insgesamt, die das Unternehmen als attraktive Marke am\nArbeitsmarkt verankern.\n"
 ---
 
 Personalmarketing überträgt den Marketinggedanken auf den Bereich der Personalgewinnung und -bindung: Es umfasst alle Maßnahmen, die das Image eines Unternehmens als Arbeitgeber auf dem **internen und externen Arbeitsmarkt** positiv prägen.

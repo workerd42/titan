@@ -50,6 +50,17 @@ pruefungsfrage:
       Stellenbeschreibung, die den Handlungsrahmen eines Mitarbeiters absteckt, ohne dass
       die Führungskraft direkt eingreifen muss.
 wiederholungTage: 5
+pruefungsaufgabe:
+  situation: "Eine Vertriebsleiterin führt ihr Team bisher, indem sie am Ende jedes Quartals allein\ndie erzielten Verkaufszahlen bewertet, ohne vorher gemeinsam mit den Mitarbeitern\nZiele festgelegt zu haben. Mitarbeiter empfinden dies als unfair, da unklar war,\nworan sie eigentlich gemessen werden.\n"
+  teilaufgaben:
+    - operator: "erläutern"
+      aufgabe: "Ordnen Sie das bisherige Vorgehen einem Management-by-Modell zu und schlagen Sie eine\nAlternative vor.\n"
+      punkte: 8
+      loesungshinweis: "Das bisherige Vorgehen entspricht Management by Results (MbR): Es erfolgt nur eine\nZielvorgabe, wichtig sind allein die erbrachten Ergebnisse, anhand derer die Leistung\nim Nachhinein bewertet wird. Da die Mitarbeiter das Vorgehen als unfair empfinden,\nwäre ein Wechsel zu Management by Objectives (MbO) sinnvoll: Hier werden die Ziele in\nMitarbeitergesprächen gemeinsam mit dem Mitarbeiter für die kommende Periode\nfestgelegt, was die Zielakzeptanz erhöht und Transparenz darüber schafft, woran der\nErfolg gemessen wird.\n"
+    - operator: "nennen"
+      aufgabe: "Die Vertriebsleiterin überlegt, künftig nur noch bei Abweichungen vom vereinbarten\nRahmen persönlich einzugreifen und ihrem Team ansonsten volle Handlungsfreiheit zu\nlassen.\na) Wie wird dieses Führungsmodell bezeichnet, und was ist sein Grundprinzip?\nb) Nennen Sie die größte Herausforderung bei der praktischen Umsetzung von\nManagement by Objectives.\nc) Unterscheiden Sie direkte von indirekten Führungsmitteln und nennen Sie je ein\nBeispiel.\n"
+      punkte: 7
+      loesungshinweis: "Management by Exception (MbE). Die Mitarbeiter erhalten einen vorgegebenen Rahmen,\ninnerhalb dessen sie selbstständig handeln dürfen; die Führungskraft greift nur bei\nAbweichungen von diesem Rahmen (Ausnahmefällen) persönlich ein.\n · Die größte Herausforderung besteht darin, dass Ziele tatsächlich nach den\nSMART-Kriterien formuliert werden müssen und die Art der Zielerreichung den\nUnternehmensinteressen entsprechen muss – in der Praxis gelingt eine präzise,\nüberprüfbare Zielformulierung nicht immer.\n · Direkte Führungsmittel werden unmittelbar zur Personalführung eingesetzt, z. B.\neine Zielvereinbarung im Mitarbeitergespräch. Indirekte Führungsmittel sind\norganisatorische Hilfsmittel im Rahmen der Personalpolitik, z. B. eine\nStellenbeschreibung, die den Handlungsrahmen eines Mitarbeiters absteckt, ohne dass\ndie Führungskraft direkt eingreifen muss.\n"
 ---
 
 Führungskräfte setzen zur Personalführung unterschiedliche **Führungsmittel** ein. Man unterscheidet dabei **direkte Führungsmittel**, die unmittelbar zur Personalführung eingesetzt werden (z. B. Zielvereinbarungen im Mitarbeitergespräch), und **indirekte Führungsmittel**, die als organisatorische Hilfsmittel im Rahmen der Personalpolitik wirken (z. B. die Stellenbeschreibung).

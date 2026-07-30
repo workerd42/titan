@@ -52,6 +52,17 @@ pruefungsfrage:
       erst die nötige Grundlage, um subjektive Qualität gezielt zu gestalten statt zu
       erraten.
 wiederholungTage: 4
+pruefungsaufgabe:
+  situation: "Die {{firma}} hat ein neues Bügeleisen entwickelt, das alle\nrelevanten DIN- und VDE-Normen mit Bestwerten erfüllt. Trotzdem verkauft es sich\ndeutlich schlechter als ein technisch einfacheres Konkurrenzmodell.\n"
+  teilaufgaben:
+    - operator: "erläutern"
+      aufgabe: "Erläutern Sie diesen Widerspruch anhand der zwei Qualitätsbegriffe.\n"
+      punkte: 8
+      loesungshinweis: "Das Produkt erfüllt den objektiven Qualitätsbegriff hervorragend (technische\nSpezifikationen, Normkonformität). Der Verkaufserfolg hängt jedoch maßgeblich vom\nsubjektiven Qualitätsbegriff ab – der psychologisch geprägten Wahrnehmung der\nKunden, die von Produktanmutung, Preis-Leistungs-Verhältnis, Trends und dem\nVergleich mit Konkurrenzprodukten beeinflusst wird. Offenbar überzeugt das\nKonkurrenzmodell die Zielgruppe trotz geringerer technischer Werte stärker in Design,\nHaptik oder Markenwahrnehmung – ein Hinweis, dass die Marktsegmentierung und die\nsubjektiven Erwartungen der Zielgruppe bei der Produktentwicklung zu wenig\nberücksichtigt wurden.\n"
+    - operator: "erläutern"
+      aufgabe: "Die {{firma}} möchte künftig beide Qualitätsdimensionen\nsystematisch in die Produktentwicklung einbeziehen.\na) Erläutern Sie den objektiven Qualitätsbegriff und nennen Sie zwei Beispiele für\nzugrunde liegende technische Normen.\nb) Erläutern Sie den subjektiven Qualitätsbegriff und nennen Sie zwei Einflussfaktoren.\nc) Begründen Sie, warum die genaue Kenntnis der Zielgruppe (Marktsegmentierung)\nVoraussetzung für die Beurteilung der subjektiven Qualität ist.\n"
+      punkte: 7
+      loesungshinweis: "a) Der objektive Qualitätsbegriff umfasst anbieterbezogene, technisch messbare\nAspekte wie Qualitätssicherung, Ausschussquoten und die Übereinstimmung mit\ntechnischen Spezifikationen. Beispiele für Normen: DIN- bzw. EN-Normen, ISO-Normen,\nVDE-Vorschriften.\n · b) Der subjektive Qualitätsbegriff knüpft an die psychologischen Anforderungen der\nAbnehmer an – wie gut das Produkt die Bedürfnisse und Nutzenanforderungen des\nVerbrauchers erfüllt. Einflussfaktoren: das Preis-Leistungs-Verhältnis und die\nProduktanmutung (weitere mögliche Faktoren: Trends, Mode, Vergleich mit\nKonkurrenzprodukten, die Person des Abnehmers selbst).\n · c) Subjektive Qualitätswahrnehmung ist individuell und gruppenspezifisch\nunterschiedlich geprägt. Ohne genaue Kenntnis der Zielgruppe (ihrer Erwartungen,\nästhetischen und sozialen Ansprüche) lässt sich nicht vorhersagen, welche\nProduktausprägung als hochwertig empfunden wird – die Marktsegmentierung liefert\nerst die nötige Grundlage, um subjektive Qualität gezielt zu gestalten statt zu\nerraten.\n"
 ---
 
 Qualität wird häufig als rein technischer Begriff missverstanden – tatsächlich vollzieht sich die Qualitätsbeurteilung im Marketing in **zwei grundlegend verschiedenen Richtungen**:

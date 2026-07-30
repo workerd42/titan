@@ -47,6 +47,17 @@ pruefungsfrage:
       Prozesse, was die Einarbeitungszeit verkürzt und das Risiko einer Fehlbesetzung
       verringert.
 wiederholungTage: 4
+pruefungsaufgabe:
+  situation: "Die GARTENFREUDE Gartencenter-Kette möchte eine Mitarbeiterin mit Potenzial gezielt\nauf eine künftige Filialleitung vorbereiten, hat aber bisher keine systematische\nFeststellung ihrer aktuellen Qualifikationen und Entwicklungsfelder vorgenommen.\n"
+  teilaufgaben:
+    - operator: "erläutern"
+      aufgabe: "Erläutern Sie, warum dieser erste Schritt für eine erfolgreiche\nPersonalentwicklungsplanung unverzichtbar ist.\n"
+      punkte: 8
+      loesungshinweis: "Ohne eine systematische Feststellung der Qualifikationen und Leistungen der\nMitarbeiterin fehlt die Grundlage, um passende Entwicklungsmaßnahmen abzuleiten. Erst\nwenn bekannt ist, über welche Kompetenzen sie bereits verfügt und wo noch\nEntwicklungsbedarf besteht (z. B. Führungserfahrung, betriebswirtschaftliches\nWissen), können gezielte Maßnahmen wie Schulungen, Job-Rotation oder eine\nNachfolgeplanung sinnvoll geplant werden. Ohne diese Grundlage bestünde das Risiko,\nFördermaßnahmen an den falschen Stellen anzusetzen.\n"
+    - operator: "erläutern"
+      aufgabe: "Die GARTENFREUDE Gartencenter-Kette möchte zusätzlich systematisch vorbereiten, wer\nlangfristig aus dem Unternehmen heraus neue Führungspositionen übernehmen kann.\na) Nennen Sie die zwei Aufgabenbereiche der Personalentwicklungsplanung.\nb) Erläutern Sie den Nutzen von Laufbahnplanungen für Mitarbeiter mit Potenzial.\nc) Erläutern Sie den Zweck von Nachfolgeplanungen und nennen Sie einen Vorteil\ngegenüber einer rein externen Nachbesetzung.\n"
+      punkte: 7
+      loesungshinweis: "Die Feststellung der Qualifikationen und Leistungen der Mitarbeiter sowie die\ndarauf aufbauenden Aufgaben im Rahmen der eigentlichen Personalentwicklungsplanung\n(Ableitung und Planung konkreter Fördermaßnahmen).\n · Im Rahmen von Laufbahnplanungen werden theoretische Möglichkeiten der\nWeiterentwicklung aufgezeigt. Diese sind zwar nicht verbindlich, eröffnen aber\nPerspektiven und wirken motivierend auf Mitarbeiter mit Entwicklungspotenzial.\n · Über Nachfolgeplanungen können Mitarbeiter systematisch auf die Übernahme neuer,\nhöherwertiger Stellen vorbereitet werden. Vorteil gegenüber externer\nNachbesetzung: Der Mitarbeiter kennt bereits die Unternehmenskultur und interne\nProzesse, was die Einarbeitungszeit verkürzt und das Risiko einer Fehlbesetzung\nverringert.\n"
 ---
 
 Personalentwicklung beginnt nicht mit der Auswahl einer Fördermaßnahme, sondern mit der systematischen **Feststellung der Qualifikationen und Leistungen** der Mitarbeiter. Erst auf dieser Grundlage lassen sich sinnvolle Entwicklungskonzepte zusammenstellen, um die Qualifikation der Mitarbeiter im Sinne des Unternehmens gezielt zu erhöhen.

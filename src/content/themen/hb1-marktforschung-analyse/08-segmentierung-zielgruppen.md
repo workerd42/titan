@@ -38,6 +38,17 @@ pruefungsfrage:
     - |
       c) Der Gatekeeper steuert den Informationsfluss im Einkaufsgremium, indem er Informationen selektiv weitergibt oder zurückhält – er beeinflusst damit indirekt, welche Anbieter und Argumente die eigentlichen Entscheider überhaupt erreichen, ohne selbst die Kaufentscheidung zu treffen.
 wiederholungTage: 5
+pruefungsaufgabe:
+  situation: "Die Manufaktur LEDERWERK Maier plant eine neue Linie hochpreisiger Lederwaren\nfür eine kaufkräftige, qualitätsbewusste Zielgruppe ab 50 Jahren.\n"
+  teilaufgaben:
+    - operator: "erläutern"
+      aufgabe: "Schlagen Sie drei Segmentierungskriterien mit je einem konkreten Merkmal vor,\ndie für diese Zielgruppendefinition relevant sind.\n"
+      punkte: 8
+      loesungshinweis: "Demografisch: Alter ab 50 Jahren. Sozioökonomisch: überdurchschnittliches\nHaushaltsnettoeinkommen. Psychografisch: hohe Wertschätzung von Qualität,\nLanglebigkeit und Handwerkstradition (z. B. dem „Disziplin/Kontrolle\"-Typus\nnahestehend, falls mit der Limbic-Map gearbeitet wird). Diese drei Kriterien\nzusammen sind erst dann eine taugliche Zielgruppendefinition, wenn die Segmentgröße\nauch messbar und über bestehende Vertriebskanäle erreichbar ist.\n"
+    - operator: "erläutern"
+      aufgabe: "Ein Kollege schlägt vor, einfach „alle Personen, die gerne shoppen\" als Zielgruppe\nzu definieren.\na) Erläutern Sie anhand der Voraussetzungen der Marktsegmentierung, warum diese\nDefinition untauglich ist.\nb) Nennen Sie die fünf klassischen Kategorien von Segmentierungskriterien im\nB2C-Bereich.\nc) Erläutern Sie für den B2B-Bereich, welche Rolle ein „Gatekeeper\" im\nBuying-Center einnimmt.\n"
+      punkte: 7
+      loesungshinweis: "a) Die Definition verletzt mehrere Voraussetzungen: Sie ist kaum messbar (wie wird „gerne shoppen\" erhoben?), die Kaufverhaltensrelevanz für ein konkretes Produkt ist unklar, und die Zugänglichkeit für eine gezielte Marktbearbeitung fehlt – das Segment ist zu unscharf, um damit ein Produkt-, Preis- oder Kommunikationskonzept abzuleiten.\n · b) Demografische Kriterien (Alter, Geschlecht, Familienstand), sozioökonomische Kriterien (Einkommen, Beruf, Bildung), geografische Kriterien (Region, Stadt/Land), psychografische Kriterien (Einstellungen, Lebensstil, Milieu) und Verhaltenskriterien (Markenloyalität, Mediennutzung).\n · c) Der Gatekeeper steuert den Informationsfluss im Einkaufsgremium, indem er Informationen selektiv weitergibt oder zurückhält – er beeinflusst damit indirekt, welche Anbieter und Argumente die eigentlichen Entscheider überhaupt erreichen, ohne selbst die Kaufentscheidung zu treffen.\n"
 ---
 
 **Marktsegmentierung** ist die Aufteilung eines heterogenen Gesamtmarktes in Teilmärkte, die in sich möglichst homogen und gegenüber anderen Segmenten möglichst heterogen sind. Damit ein Segment tatsächlich brauchbar ist, müssen fünf Voraussetzungen erfüllt sein: **Kaufverhaltensrelevanz** der Kriterien, **Messbarkeit** der Segmentgröße, **Zugänglichkeit** für die Marktbearbeitung, **Wirtschaftlichkeit** (Mehrertrag übersteigt Mehrkosten) und **zeitliche Stabilität** des Segments.

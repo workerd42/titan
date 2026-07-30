@@ -51,6 +51,17 @@ pruefungsfrage:
       Verbesserungspotenziale aufdeckt, lässt es sich im weitesten Sinne als
       Managementinstrument und damit als Bestandteil des TQM-Gedankens verstehen.
 wiederholungTage: 5
+pruefungsaufgabe:
+  situation: "Die {{firma}} hat Qualitätssicherung bisher ausschließlich als\nAufgabe der Produktionsabteilung verstanden. Reklamationen zu unklarer\nProduktbeschreibung im Marketing und langsamer Reaktion im Kundenservice werden\ndavon nicht erfasst.\n"
+  teilaufgaben:
+    - operator: "erläutern"
+      aufgabe: "Erläutern Sie anhand des TQM-Konzepts, warum dieses enge Verständnis von\nQualitätssicherung zu kurz greift.\n"
+      punkte: 8
+      loesungshinweis: "Total Quality Management versteht Qualität explizit nicht als alleinige Aufgabe der\nProduktion, sondern als Ausrichtung auf Qualität in allen Unternehmensbereichen –\neinschließlich Marketing und Kundenservice. Unklare Produktbeschreibungen und\nlangsame Serviceantworten sind ebenso Qualitätsmängel wie technische Fehler in der\nFertigung. Ein konsequentes TQM würde auch Marketingcontrolling als Bestandteil des\npermanenten Verbesserungsprozesses begreifen und entsprechende Kennzahlen (z. B.\nReaktionszeiten im Service, Verständlichkeit der Produktkommunikation) einbeziehen.\n"
+    - operator: "erläutern"
+      aufgabe: "Die {{firma}} möchte künftig eine unternehmensweite Kultur der\nkontinuierlichen Verbesserung etablieren.\na) Charakterisieren Sie das Total-Quality-Management-Konzept und nennen Sie seinen\nursprünglichen fachlichen Ausgangsbereich.\nb) Erläutern Sie das Kaizen-Prinzip und grenzen Sie es von TQM ab.\nc) Begründen Sie, warum sich das Marketingcontrolling als Bestandteil von TQM\nverstehen lässt.\n"
+      punkte: 7
+      loesungshinweis: "a) TQM ist ein Managementkonzept der permanenten Verbesserung mit dem Ziel, Qualität\nin allen Unternehmensbereichen zu verankern – nicht nur in der Fertigung.\nUrsprünglich stammt das Konzept aus der Produktionswirtschaft.\n · b) Kaizen kommt aus der japanischen Produktionstechnik und bedeutet das Streben nach\nimmerwährender Verbesserung. Während TQM eher als übergeordnetes\nManagementkonzept mit Fokus auf Qualität in allen Bereichen zu verstehen ist,\nerstreckt Kaizen als Managementsystem den Verbesserungsgedanken explizit auf alle\nbetrieblichen Prozesse – beide Konzepte überschneiden sich stark und ergänzen sich\nin der praktischen Umsetzung.\n · c) Der Managementkreislauf (Zielbildung – Planung – Ausführung – Kontrolle) macht den\npermanenten Verbesserungsprozess anschaulich, den auch TQM verfolgt. Da\nMarketingcontrolling genau diesen Kreislauf im Marketingbereich umsetzt und laufend\nVerbesserungspotenziale aufdeckt, lässt es sich im weitesten Sinne als\nManagementinstrument und damit als Bestandteil des TQM-Gedankens verstehen.\n"
 ---
 
 Qualitätssicherung endet nicht an der Werkshalle – dieser Gedanke steht im Zentrum des **Total-Quality-Managements (TQM)**. TQM ist als Managementkonzept der **permanenten Verbesserung** definiert und stammt ursprünglich aus der Produktionswirtschaft, wurde aber längst auf alle Unternehmensbereiche ausgeweitet: TQM richtet das gesamte Unternehmen – einschließlich Marketing, Vertrieb und Kundenservice – konsequent auf Qualität aus.

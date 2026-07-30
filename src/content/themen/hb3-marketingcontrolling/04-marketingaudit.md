@@ -49,6 +49,17 @@ pruefungsfrage:
       Marketingaudit wirkt präventiv, indem es Anpassungsbedarf erkennt, bevor er sich in
       sinkenden Erfolgskennzahlen niederschlägt.
 wiederholungTage: 5
+pruefungsaufgabe:
+  situation: "Die {{firma}} erreicht seit Jahren zuverlässig ihre\nUmsatzplanziele. Trotzdem wächst die Sorge der Geschäftsführung, dass die gesamte\nMarketingausrichtung nicht mehr zur veränderten Wettbewerbslandschaft (Bio-Trend,\nOnline-Direktvertrieb neuer Wettbewerber) passt.\n"
+  teilaufgaben:
+    - operator: "erläutern"
+      aufgabe: "Erläutern Sie, warum ein reiner Soll-Ist-Vergleich diese Sorge nicht ausräumen kann,\nund schlagen Sie ein passendes Instrument vor.\n"
+      punkte: 8
+      loesungshinweis: "Ein Soll-Ist-Vergleich würde lediglich bestätigen, dass die bisherigen Ziele erreicht\nwurden – er sagt aber nichts darüber aus, ob diese Ziele angesichts veränderter\nMarktbedingungen noch die richtigen sind. Hierfür ist ein Marketingaudit das passende\nInstrument: eine systematische, zukunftsorientierte Generalinspektion der gesamten\nMarketingorganisation, -strategie, -ziele und -prozesse, die unabhängig von der\nbisherigen Zielerreichung hinterfragt, ob die grundsätzliche Ausrichtung noch\nzeitgemäß ist.\n"
+    - operator: "begründen"
+      aufgabe: "Die Geschäftsführung der {{firma}} beauftragt ein\nMarketingaudit.\na) Charakterisieren Sie das Marketingaudit anhand zweier zentraler Eigenschaften.\nb) Welche Bereiche eines Unternehmens sollte ein vollständiges Marketingaudit\ntypischerweise erfassen?\nc) Begründen Sie, warum ein Marketingaudit sinnvollerweise auch dann durchgeführt\nwerden sollte, wenn aktuell keine akuten Probleme erkennbar sind.\n"
+      punkte: 7
+      loesungshinweis: "a) Es ist systemorientiert (betrachtet die gesamte Marketingorganisation als\nSystem, nicht nur Einzelkennzahlen) und zukunftsorientiert (fragt nach der\nZukunftstauglichkeit der Ausrichtung, nicht nach der Erreichung vergangener Ziele).\n · b) Typischerweise die Marketingziele und -strategie, die Marketingorganisation, die\nMarketingsysteme und -prozesse, sowie die Ausgestaltung des Marketingmix selbst –\njeweils im Abgleich mit der aktuellen und erwarteten Marktentwicklung.\n · c) Marktveränderungen (neue Wettbewerber, veränderte Kundenpräferenzen,\ntechnologischer Wandel) kündigen sich oft nicht in den kurzfristigen\nIst-Kennzahlen an, bevor sie bereits Wirkung zeigen. Ein regelmäßiges\nMarketingaudit wirkt präventiv, indem es Anpassungsbedarf erkennt, bevor er sich in\nsinkenden Erfolgskennzahlen niederschlägt.\n"
 ---
 
 Während der Soll-Ist-Vergleich prüft, ob bereits festgelegte Ziele erreicht wurden, stellt das **Marketingaudit** eine grundsätzlichere Frage: Ist die gesamte Marketingausrichtung überhaupt noch die richtige?

@@ -45,6 +45,17 @@ pruefungsfrage:
       Personalbeschaffung: Gewinnung neuer Mitarbeiter außerhalb des Unternehmens, z. B.
       über öffentliche Stellenanzeigen oder Personalvermittler.
 wiederholungTage: 5
+pruefungsaufgabe:
+  situation: "Die {{firma}} möchte kurzfristig einen Kapazitätsengpass in der\nAuftragsabwicklung überbrücken, ohne eine dauerhafte Neueinstellung vorzunehmen.\n"
+  teilaufgaben:
+    - operator: "erläutern"
+      aufgabe: "Schlagen Sie geeignete Maßnahmen der internen Personalbeschaffung vor.\n"
+      punkte: 8
+      loesungshinweis: "Für einen kurzfristigen, nicht dauerhaften Engpass eignen sich Maßnahmen der internen\nPersonalbeschaffung: die Anordnung von Überstunden, Urlaubsverschiebungen sowie der\nEinsatz interner kurzfristiger Aushilfen aus anderen Abteilungen. Diese Maßnahmen\nsind jedoch nicht für eine dauerhafte Lösung geeignet – sollte sich der\nPersonalbedarf als langfristig herausstellen, wäre stattdessen die externe\nPersonalbeschaffung (z. B. eine reguläre Stellenausschreibung) der passendere Weg.\n"
+    - operator: "erläutern"
+      aufgabe: "Die {{firma}} plant zusätzlich, künftig Führungspositionen über ein\naufwendigeres Auswahlverfahren zu besetzen als bisher.\na) Erläutern Sie den Grundgedanken und Nutzen eines Assessment-Centers.\nb) Nennen Sie einen Grund, warum Assessment-Center in der Praxis meist nur für\nFührungspositionen oder in verkürzter Form für Auszubildende eingesetzt werden.\nc) Grenzen Sie interne von externer Personalbeschaffung anhand je eines Beispiels ab.\n"
+      punkte: 7
+      loesungshinweis: "Ein Assessment-Center (AC) ermöglicht es, mehrere Bewerber miteinander zu\nvergleichen und die Personalauswahl objektiver zu gestalten. Da Bewerber ihr Können\nin unterschiedlichen, realitätsnahen Situationen unter Beweis stellen müssen,\nlassen sich zudem mehrere Kompetenzfelder gleichzeitig erfassen, was mit einem\nreinen Vorstellungsgespräch nicht möglich wäre.\n · Aufgrund des hohen Zeit-, Verwaltungs- und Kostenaufwands wird ein vollständiges\nAssessment-Center in der Praxis meist nur für Führungspositionen durchgeführt. Bei\nder Auswahl von Auszubildenden werden häufig verkürzte, sogenannte „kleine\"\nAssessment-Center eingesetzt.\n · Interne Personalbeschaffung: Besetzung durch Mitarbeiter aus den eigenen Reihen,\nz. B. durch interne Stellenausschreibung oder Versetzung. Externe\nPersonalbeschaffung: Gewinnung neuer Mitarbeiter außerhalb des Unternehmens, z. B.\nüber öffentliche Stellenanzeigen oder Personalvermittler.\n"
 ---
 
 Bei der Personalbeschaffung wird grundsätzlich zwischen zwei Wegen unterschieden:

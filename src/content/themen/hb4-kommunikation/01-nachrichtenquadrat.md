@@ -50,6 +50,17 @@ pruefungsfrage:
       ein Missverständnis auf der Beziehungs- oder Selbstoffenbarungsebene vor, obwohl
       der Sender nur eine sachliche Aussage machen wollte.
 wiederholungTage: 4
+pruefungsaufgabe:
+  situation: "Ein Kunde ruft bei seiner Marketingagentur an und sagt: „Ich verlasse mich da ganz\nauf Ihre Fachkenntnisse. Das Budget ist Ihnen ja bekannt. In zwei Wochen hätte ich\ngerne Ihre konkreten Ausarbeitungen.\" Die zuständige Sachbearbeiterin hört daraus nur\nheraus: „Termin in zwei Wochen\" und plant entsprechend knapp.\n"
+  teilaufgaben:
+    - operator: "analysieren"
+      aufgabe: "Analysieren Sie die Kundenaussage anhand aller vier Seiten des Nachrichtenquadrats.\n"
+      punkte: 8
+      loesungshinweis: "Sachebene: Der Messeauftritt muss nun konkret geplant und ausgearbeitet werden.\nAppell: Die Ausarbeitung soll in zwei Wochen vorliegen – eine klare Handlungsaufforderung.\nSelbstoffenbarung: Der Kunde signalisiert, dass er mit der bisherigen Zusammenarbeit\nzufrieden ist und delegationsbereit auftritt. Beziehungsebene: Die Formulierung „ich\nverlasse mich ganz auf Sie\" drückt Vertrauen und eine partnerschaftliche\nZusammenarbeit aus. Die Sachbearbeiterin hat nur mit einem Ohr (Sachebene/Appell)\nzugehört und die Vertrauens- und Beziehungsbotschaft überhört – ein Dank für das\nVertrauen wäre situativ angemessen gewesen.\n"
+    - operator: "erläutern"
+      aufgabe: "Ein Teamkollege sagt in einer Besprechung gereizt: „Die Präsentation für morgen ist\nja wohl noch gar nicht fertig, oder?\"\na) Erläutern Sie, welche der vier Seiten der Nachricht hier mehrdeutig sein können,\nund geben Sie je eine mögliche Interpretation an.\nb) Erklären Sie, warum das Modell auch als „Vier-Ohren-Modell\" bezeichnet wird.\nc) Nennen Sie eine praktische Konsequenz für die Kommunikation im Team, die sich aus\ndem Modell ableiten lässt.\n"
+      punkte: 7
+      loesungshinweis: "Sachebene: reine Nachfrage zum Bearbeitungsstand. Appell: Aufforderung, die\nPräsentation umgehend fertigzustellen. Selbstoffenbarung: Der Sprecher könnte\nselbst gestresst oder unter Termindruck sein. Beziehungsebene: Je nach Tonfall\nkönnte darin auch Misstrauen oder Kritik an der Zuverlässigkeit des Empfängers\nmitschwingen.\n · Weil jede Nachricht auf vier verschiedenen Kanälen gleichzeitig gesendet wird und\nder Empfänger ebenfalls mit vier verschiedenen „Ohren\" (für jede der vier Seiten)\nzuhören kann – je nachdem, welches Ohr beim Empfänger dominiert, kann dieselbe\nAussage sehr unterschiedlich verstanden werden.\n · Konsequenz: Bei Missverständnissen im Team lohnt es sich nachzufragen, welche Ebene\nder Empfänger gehört hat, statt vorschnell von böser Absicht auszugehen – oft liegt\nein Missverständnis auf der Beziehungs- oder Selbstoffenbarungsebene vor, obwohl\nder Sender nur eine sachliche Aussage machen wollte.\n"
 ---
 
 Für die situationsgerechte Kommunikation im Berufsalltag ist das **Nachrichtenquadrat** des Kommunikationswissenschaftlers **Friedemann Schulz von Thun** eines der wichtigsten Analysewerkzeuge. Es besagt: Jede Nachricht enthält gleichzeitig vier unterschiedliche Botschaften.

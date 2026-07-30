@@ -52,6 +52,17 @@ pruefungsfrage:
       Datenlieferanten und Adressaten von Controlling-Erkenntnissen) – es ist keine
       isolierte Funktion einer einzelnen Abteilung.
 wiederholungTage: 4
+pruefungsaufgabe:
+  situation: "Die {{firma}} präsentiert\nstolz, dass die Kosten pro Klick in der letzten Kampagne gesenkt werden konnten.\nDie Geschäftsführung bleibt skeptisch, ob das allein etwas über den Erfolg aussagt.\n"
+  teilaufgaben:
+    - operator: "erläutern"
+      aufgabe: "Nehmen Sie zur Aussagekraft der präsentierten Kennzahl Stellung und schlagen Sie\naussagekräftigere Kennzahlen vor.\n"
+      punkte: 8
+      loesungshinweis: "Die Skepsis der Geschäftsführung ist berechtigt: Reine Kosteninformationen wie\nKosten pro Klick oder Kosten pro Bestellung sind für sich genommen wenig\naufschlussreich, da sie nichts über die tatsächliche Wirkung aussagen. Aussagekräftiger\nsind Kennzahlen wie die Anzahl der gewonnenen Neukunden und deren Wert (Customer\nLifetime Value), die erzielten Umsätze, die Anzahl der Bestellungen und die Anzahl der\ngewonnenen Kontakte. Erst im Zusammenspiel dieser Größen lässt sich beurteilen, ob\nniedrigere Klickkosten auch tatsächlich zu wirtschaftlich besseren Ergebnissen geführt\nhaben.\n"
+    - operator: "erläutern"
+      aufgabe: "Die {{firma}} möchte ein sinnvolles Kennzahlensystem für ihr\nOnlinemarketing aufbauen.\na) Warum eignet sich das Onlinemarketing besonders gut für eine zeitnahe\nErfolgskontrolle im Vergleich zu klassischen Marketingmaßnahmen?\nb) Welches im Marketingcontrolling bereits bekannte Steuerungsinstrument kann auch\nzur Strukturierung eines Onlinemarketing-Kennzahlensystems herangezogen werden?\nc) Erläutern Sie, warum Marketingcontrolling als bereichsübergreifende, mit dem\ngesamten Unternehmen vernetzte Funktion zu verstehen ist.\n"
+      punkte: 7
+      loesungshinweis: "a) Im Onlinemarketing ist es möglich, den Erfolg einer Maßnahme nahezu ohne\nVerzögerung zu messen, da digitale Interaktionen (Klicks, Käufe, Verweildauer)\nunmittelbar und automatisiert erfasst werden können – anders als bei klassischen\nMedien, wo Wirkung oft nur über zeitversetzte Befragungen (Pretest/Posttest)\nermittelbar ist.\n · b) Die Balanced Scorecard – sie kann analog auch für ein Onlinemarketing-\nKennzahlensystem herangezogen werden, um verschiedene Perspektiven (z. B. auch ein\nuser-orientiertes Kennzahlensystem mit Fokus auf die Nutzer) strukturiert\nzusammenzuführen.\n · c) Marketingcontrolling ist im Rahmen eines ganzheitlichen Ansatzes mit dem gesamten\nUnternehmen vernetzt, da nahezu alle organisatorischen Einheiten in irgendeiner Form\nam Umsetzungsprozess mitwirken (z. B. Vertrieb, Produktion, Kundenservice als\nDatenlieferanten und Adressaten von Controlling-Erkenntnissen) – es ist keine\nisolierte Funktion einer einzelnen Abteilung.\n"
 ---
 
 Marketingcontrolling ist keine isolierte Aufgabe einer einzelnen Abteilung, sondern im Rahmen eines ganzheitlichen Ansatzes eng mit dem **gesamten Unternehmen vernetzt** – nahezu jede organisatorische Einheit wirkt in irgendeiner Form am Umsetzungsprozess mit, sei es als Datenlieferant oder als Adressat der gewonnenen Erkenntnisse.

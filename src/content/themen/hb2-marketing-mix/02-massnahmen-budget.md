@@ -46,6 +46,17 @@ pruefungsfrage:
       einzelne Kampagne versus mehrjährige operative Marketingplanung) und die internen
       Ressourcen (Personal, vorhandenes Know-how, Kapazitäten).
 wiederholungTage: 4
+pruefungsaufgabe:
+  situation: "Die KLARTEXT Verlagsgruppe hatte im letzten Jahr einen Umsatzrückgang von 12 %. Der\nController schlägt vor, das Marketingbudget für das kommende Jahr proportional dazu\nebenfalls um 12 % zu kürzen, „wie immer, in Prozent vom Umsatz\".\n"
+  teilaufgaben:
+    - operator: "erläutern"
+      aufgabe: "Nehmen Sie zu diesem Vorschlag begründet Stellung.\n"
+      punkte: 8
+      loesungshinweis: "Die Methode „Budgetierung nach Umsatz\" hat genau diesen Schwachpunkt: Sie wirkt\nprozyklisch statt antizyklisch. In Jahren mit Umsatzrückgang sinkt das Budget\nautomatisch mit – genau dann, wenn zusätzliche Marketinganstrengungen nötig wären, um\ndie Abwärtsspirale zu durchbrechen. Sinnvoller wäre eine zielorientierte Methode: Erst\nfestlegen, welches Marketingziel (z. B. Stabilisierung der Kundenbasis) erreicht werden\nsoll, und das dafür nötige Budget unabhängig vom Vorjahresumsatz bestimmen.\n"
+    - operator: "erläutern"
+      aufgabe: "Die KLARTEXT Verlagsgruppe diskutiert intern, ob die Budgetplanung künftig top-down\noder bottom-up erfolgen soll.\na) Erläutern Sie den Unterschied zwischen Top-down- und Bottom-up-Budgetierung.\nb) Nennen Sie eine weitere gängige Budgetierungsmethode neben der umsatzbasierten und\nerläutern Sie ihren Nachteil.\nc) Nennen Sie zwei Komponenten, die bei der Marketingmaßnahmenplanung neben dem Budget\nberücksichtigt werden müssen.\n"
+      punkte: 7
+      loesungshinweis: "a) Top-down: Die Marketingleitung gibt verbindliche Budgetvorgaben vor, die von den\nnachgeordneten Ebenen einzuhalten sind. Bottom-up: Produktmanager oder\nLinienverantwortliche unterbreiten der Leitung eigene Budgetvorschläge, die dann\ngemeinsam abgestimmt werden.\n · b) Die „All-you-can-afford\"-Methode: Es wird so viel Budget wie finanziell möglich in\ndas Marketing investiert. Nachteil: Die Budgethöhe orientiert sich an der\nverfügbaren Liquidität, nicht an den tatsächlich zur Zielerreichung nötigen Mitteln –\nMarketing wird so zum reinen Kostenfaktor statt zur Investition behandelt.\n · c) Der Zeitraum (kurz-, mittel- oder langfristige Planung, z. B. Mediaplanung für eine\neinzelne Kampagne versus mehrjährige operative Marketingplanung) und die internen\nRessourcen (Personal, vorhandenes Know-how, Kapazitäten).\n"
 ---
 
 Damit aus Marketingzielen wirksame Maßnahmen werden, braucht es eine Planung, die mehrere Komponenten gleichzeitig berücksichtigt: den **Zeitraum** (von der mittelfristigen operativen Planung über 1–5 Jahre bis zur kurzfristigen dispositiven Planung einzelner Kampagnen), die **internen Ressourcen** (Personal, Know-how, Kapazitäten) und das **Budget**.

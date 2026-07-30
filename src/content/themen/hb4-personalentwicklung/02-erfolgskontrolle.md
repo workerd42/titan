@@ -52,6 +52,17 @@ pruefungsfrage:
       Erfolgskontrolle in der Praxis meist auf Off-the-Job-Maßnahmen liegt, deren Kosten
       klar abgrenzbar sind.
 wiederholungTage: 5
+pruefungsaufgabe:
+  situation: "Die {{firma}} hat eine große Verkaufsschulung für ihr\nVertriebsteam durchgeführt. Die Geschäftsführung möchte nun wissen, ob sich die\nInvestition gelohnt hat.\n"
+  teilaufgaben:
+    - operator: "erläutern"
+      aufgabe: "Erläutern Sie, warum diese Frage nicht allein mit einer einzigen Kontrollmethode\nbeantwortet werden kann.\n"
+      punkte: 8
+      loesungshinweis: "Die Frage nach dem Erfolg der Schulung hat zwei unterschiedliche Dimensionen. Die\nökonomische Erfolgskontrolle stellt Kosten und Nutzen gegenüber und versucht, messbare\nErgebnisse (z. B. gestiegene Verkaufszahlen) der Maßnahme zuzuordnen – dies ist nicht\nimmer einfach, da sich der Erfolg von Personalentwicklungsmaßnahmen nicht in jedem\nFall eindeutig in Zahlen darstellen lässt. Ergänzend braucht es die pädagogische\nErfolgskontrolle, die prüft, ob und was die Teilnehmer tatsächlich gelernt haben. Erst\nbeide Sichtweisen zusammen ergeben ein vollständiges Bild: Eine Schulung kann\npädagogisch erfolgreich sein (viel gelernt), aber ökonomisch enttäuschen, wenn das\nGelernte nicht in die Praxis übertragen wird – oder umgekehrt kurzfristig Zahlen\nliefern, ohne nachhaltigen Lerneffekt.\n"
+    - operator: "erläutern"
+      aufgabe: "Die {{firma}} möchte künftig alle Weiterbildungsmaßnahmen\nsystematisch bewerten.\na) Erläutern Sie den Fokus der ökonomischen Erfolgskontrolle.\nb) Erläutern Sie den Fokus der pädagogischen Erfolgskontrolle und nennen Sie eine\nhilfreiche Leitfrage.\nc) Begründen Sie, warum bei On-the-Job-Maßnahmen die ökonomische Erfolgskontrolle\nbesonders schwierig ist.\n"
+      punkte: 7
+      loesungshinweis: "Bei der ökonomischen Erfolgskontrolle stehen Kosten und Nutzen im Mittelpunkt. Man\nversucht, messbare Ergebnisse aufzuzeigen, um die Rechtfertigung und Empfehlung von\nPersonalentwicklungsmaßnahmen zu ermöglichen – dies gelingt jedoch nicht immer\neinfach, da sich der Erfolg nicht in jedem Fall exakt in Zahlen darstellen lässt.\n · Bei der pädagogischen Erfolgskontrolle stehen das Lernen und Lehren im Vordergrund.\nEine hilfreiche Leitfrage ist: „Was sollte gelernt werden, und was wurde tatsächlich\ngelernt?\" – durch den Abgleich der ursprünglichen Lernziele mit dem tatsächlich\nGelernten lässt sich der pädagogische Erfolg beurteilen.\n · Bei On-the-Job-Maßnahmen (Lernen direkt am Arbeitsplatz, eingebettet in die normale\nTätigkeit) lassen sich die dadurch verursachten Kosten kaum sauber von den\nlaufenden Betriebskosten trennen, weshalb der Fokus der ökonomischen\nErfolgskontrolle in der Praxis meist auf Off-the-Job-Maßnahmen liegt, deren Kosten\nklar abgrenzbar sind.\n"
 ---
 
 Ob eine Personalentwicklungsmaßnahme erfolgreich war, lässt sich aus zwei unterschiedlichen Blickwinkeln beurteilen:

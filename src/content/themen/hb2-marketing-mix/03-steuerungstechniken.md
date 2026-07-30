@@ -44,6 +44,17 @@ pruefungsfrage:
       dauerhaftes, ganzheitliches Steuerungssystem zur laufenden Überwachung der gesamten
       Unternehmensstrategie über mehrere Perspektiven hinweg.
 wiederholungTage: 5
+pruefungsaufgabe:
+  situation: "Die {{firma}} muss sich zwischen drei möglichen neuen\nVertriebspartnern entscheiden und möchte das nicht aus dem Bauch heraus tun.\n"
+  teilaufgaben:
+    - operator: "skizzieren"
+      aufgabe: "Schlagen Sie ein geeignetes Verfahren vor und skizzieren Sie die nötigen Schritte.\n"
+      punkte: 8
+      loesungshinweis: "Geeignet ist ein Scoring-Modell (Nutzwertanalyse). Vorgehen: 1. Relevante Kriterien\nfestlegen (z. B. Reichweite, Bonität, Branchenpassung, Konditionen). 2. Kriterien nach\nWichtigkeit gewichten (Gewichtungssumme = 100 %). 3. Jeden der drei Vertriebspartner\npro Kriterium auf einer Punkteskala (z. B. 1–10) bewerten. 4. Punktwerte mit der\nGewichtung multiplizieren und je Partner aufsummieren. 5. Der Partner mit dem höchsten\nGesamtnutzwert wird ausgewählt – die Entscheidung ist dadurch nachvollziehbar und\ndiskutierbar dokumentiert, statt rein subjektiv zu sein.\n"
+    - operator: "erläutern"
+      aufgabe: "Die Geschäftsführung der {{firma}} möchte zusätzlich ein\nSteuerungsinstrument einführen, das nicht nur die Finanzkennzahlen, sondern auch\nKunden- und Prozessqualität laufend im Blick behält.\na) Welches Instrument empfehlen Sie, und nennen Sie dessen vier Perspektiven.\nb) Erläutern Sie für die Kundenperspektive ein mögliches Kennzahlenbeispiel.\nc) Was unterscheidet ein Scoring-Modell grundsätzlich von der Balanced Scorecard im\nHinblick auf den Anwendungszweck?\n"
+      punkte: 7
+      loesungshinweis: "a) Die Balanced Scorecard. Ihre vier Perspektiven sind: Finanzperspektive,\nKundenperspektive, Prozessperspektive und Potenzial- bzw. Mitarbeiterperspektive.\n · b) Kundenperspektive, z. B. Kundenzufriedenheitsindex oder Kundenbindungsrate – misst,\nwie die Außenwirkung auf die Kunden tatsächlich ankommt, nicht nur den daraus\nresultierenden Umsatz.\n · c) Ein Scoring-Modell ist ein punktuelles Entscheidungsinstrument für eine konkrete\nAuswahlsituation (z. B. Wahl zwischen Alternativen). Die Balanced Scorecard ist ein\ndauerhaftes, ganzheitliches Steuerungssystem zur laufenden Überwachung der gesamten\nUnternehmensstrategie über mehrere Perspektiven hinweg.\n"
 ---
 
 Um Entscheidungen zwischen mehreren Handlungsalternativen nachvollziehbar zu treffen, eignet sich das **Scoring-Modell (Nutzwertanalyse)**. Es läuft in festen Schritten ab: Kriterien festlegen → Kriterien gewichten → Alternativen je Kriterium bewerten → gewichtete Punktwerte aufsummieren → Alternative mit dem höchsten Gesamtnutzwert wählen. Der Vorteil liegt in der Transparenz: Subjektive Einschätzungen werden strukturiert und damit diskutierbar gemacht, ohne falsche Scheingenauigkeit zu erzeugen.

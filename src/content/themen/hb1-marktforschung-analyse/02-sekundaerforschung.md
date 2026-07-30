@@ -35,6 +35,17 @@ pruefungsfrage:
     - |
       c) Die Daten wurden ursprünglich zu einem anderen Zweck erhoben und passen daher oft nicht exakt zur eigenen Fragestellung; unterschiedliche Abgrenzungen der Grundgesamtheit erschweren internationale oder zeitliche Vergleiche.
 wiederholungTage: 4
+pruefungsaufgabe:
+  situation: "Ein Verband meldet, der mittelständische Werkzeugmaschinenbau sei 2025 um 9 % gewachsen.\nDie {{firma}} will diese Zahl ihrer Investitionsplanung zugrunde legen.\n"
+  teilaufgaben:
+    - operator: "nennen"
+      aufgabe: "Prüfen Sie, ob die Verbandszahl ungeprüft übernommen werden sollte, und nennen Sie\ndie Kriterien, anhand derer Sie das beurteilen würden.\n"
+      punkte: 8
+      loesungshinweis: "Verbandsstatistiken bilden nur die meldenden Mitgliedsunternehmen ab. Wenn der\nOrganisationsgrad des Verbands gering ist, kann die Zahl stark von der tatsächlichen\nBranchenentwicklung abweichen. Vor der Übernahme sollte geprüft werden: Wie hoch ist\nder Organisationsgrad? Stammt die Zahl aus einer wissenschaftlich nachvollziehbaren\nErhebung (Erhebungsmethodik)? Ist sie mit Vorjahreszahlen nach gleicher Abgrenzung\nvergleichbar? Erst danach ist eine Investitionsentscheidung auf dieser Basis vertretbar.\n"
+    - operator: "erläutern"
+      aufgabe: "Die Geschäftsleitung der {{firma}} möchte vor einer Investitionsentscheidung auf\nDaten externer Verbände zurückgreifen, statt eine teure Primärerhebung zu beauftragen.\na) Nennen Sie vier Hauptkriterien zur Beurteilung der Qualität einer Sekundärquelle.\nb) Erläutern Sie zusätzlich die drei klassischen Gütekriterien empirischer Forschung.\nc) Nennen Sie zwei typische Nachteile sekundärstatistischer Daten gegenüber einer\neigenen Primärerhebung.\n"
+      punkte: 7
+      loesungshinweis: "a) Glaubwürdigkeit der Quelle, Kenntnis der Erhebungsgrundlagen (Zweck, Zeitraum, Umstände der Erhebung), Vergleichbarkeit der Daten im Zeitablauf, Erhebungs- und Verarbeitungsmethodik.\n · b) Objektivität (Ergebnis unabhängig von der erhebenden Person), Reliabilität (Wiederholung liefert gleiches Ergebnis), Validität (es wird tatsächlich das gemessen, was gemessen werden soll).\n · c) Die Daten wurden ursprünglich zu einem anderen Zweck erhoben und passen daher oft nicht exakt zur eigenen Fragestellung; unterschiedliche Abgrenzungen der Grundgesamtheit erschweren internationale oder zeitliche Vergleiche.\n"
 ---
 
 Sekundärforschung greift auf bereits vorhandenes, zugängliches Datenmaterial zurück – im Unterschied zur Primärforschung, die Daten originär neu erhebt. Man unterscheidet **interne Quellen** (Umsatz-, Preis-, Absatzstatistiken, Außendienstberichte, Reklamationsstatistiken) und **externe Quellen** (amtliche Statistik, Wirtschaftsverbände, Forschungsinstitute, Wirtschaftsdatenbanken, Internet und Social Media).

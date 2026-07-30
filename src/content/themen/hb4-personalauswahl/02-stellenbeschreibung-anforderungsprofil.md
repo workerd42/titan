@@ -50,6 +50,17 @@ pruefungsfrage:
       werden soll), die konkreten Aufgaben der Stelle sowie die Vertretungsregelung
       (aktive und passive Vertretung).
 wiederholungTage: 4
+pruefungsaufgabe:
+  situation: "Die Personalabteilung der {{firma}} möchte eine neu geschaffene\nStelle „Marketingassistenz Social Media\" besetzen und hat bisher nur eine grobe\nStellenanzeige mit dem Satz „Bewerber sollten kreativ und teamfähig sein\" formuliert.\n"
+  teilaufgaben:
+    - operator: "bewerten"
+      aufgabe: "Bewerten Sie, ob diese Anzeige ausreicht, um eine passgenaue Personalauswahl zu\ntreffen, und schlagen Sie ein strukturierteres Vorgehen vor.\n"
+      punkte: 8
+      loesungshinweis: "Die Anzeige ist zu unspezifisch. Zunächst sollte eine vollständige\nStellenbeschreibung erstellt werden mit Stellenbezeichnung, den Zielen der Stelle,\nden konkreten Aufgaben, den erforderlichen Kompetenzen (z. B. Zugriffsrechte auf\nSocial-Media-Kanäle) und der Vertretungsregelung. Darauf aufbauend sollte ein\nAnforderungsprofil erstellt werden, das die Qualifikationen des optimalen\nStelleninhabers entlang der vier Kompetenzbereiche (Fach-, Methoden-, Sozial- und\nPersonalkompetenz) konkretisiert – „kreativ und teamfähig\" wäre dann nur ein Teil der\nSozial- bzw. Methodenkompetenz, aber die Fachkompetenz (z. B. Erfahrung mit\nbestimmten Plattformen) fehlt bislang völlig.\n"
+    - operator: "erläutern"
+      aufgabe: "Die {{firma}} möchte künftig für jede neue Stelle sowohl eine\nStellenbeschreibung als auch ein Anforderungsprofil erstellen.\na) Erläutern Sie den grundsätzlichen Unterschied zwischen Stellenbeschreibung und\nAnforderungsprofil.\nb) Nennen Sie die vier Bereiche der Handlungskompetenz, die üblicherweise zur\nGliederung eines Anforderungsprofils herangezogen werden.\nc) Nennen Sie zwei Bestandteile, die eine vollständige Stellenbeschreibung\ntypischerweise enthält.\n"
+      punkte: 7
+      loesungshinweis: "Die Stellenbeschreibung hat die Stelle mit ihren Merkmalen im Fokus (was ist zu\ntun), während das Anforderungsprofil die Qualifikationen des optimalen\nStelleninhabers beschreibt (wer soll es tun). Anforderungsprofile sind oft\nBestandteil von Stellenbeschreibungen, können aber auch eigenständig erstellt\nwerden.\n · Fachkompetenz (erforderliche Kenntnisse im Aufgabengebiet), Methodenkompetenz,\nSozialkompetenz (Zusammenarbeit im Team) und Personalkompetenz (persönliche\nEigenschaften und Einstellungen).\n · Zum Beispiel: die Bezeichnung der Stelle, die Ziele der Stelle (was mit ihr erreicht\nwerden soll), die konkreten Aufgaben der Stelle sowie die Vertretungsregelung\n(aktive und passive Vertretung).\n"
 ---
 
 Bevor eine offene Stelle besetzt werden kann, braucht es Klarheit darüber, was genau zu besetzen ist – dafür dient die **Stellenbeschreibung**. Sie ist ein internes Hilfsmittel und beinhaltet typischerweise:

@@ -47,6 +47,17 @@ pruefungsfrage:
       gesamte Marketingorganisation, -strategie und -prozesse noch zeitgemäß und
       zielführend aufgestellt sind, unabhängig von einzelnen bereits erreichten Zielwerten.
 wiederholungTage: 4
+pruefungsaufgabe:
+  situation: "Die {{firma}} hat eine klare strategische Ausrichtung\n(„Premium-Individualreisen für Naturliebhaber\"), aber die einzelnen Reisebüros vor Ort\nverkaufen weiterhin nach eigenem Ermessen, ohne erkennbaren Bezug zu dieser Strategie.\n"
+  teilaufgaben:
+    - operator: "erläutern"
+      aufgabe: "Erläutern Sie anhand des Managementkreislaufs, an welcher Stelle die Abstimmung\nzwischen strategischer und operativer Ebene hier fehlt.\n"
+      punkte: 8
+      loesungshinweis: "Der Managementkreislauf (Zielbildung → Planung → Ausführung → Kontrolle) ist\nunterbrochen zwischen Zielbildung/Planung (auf strategischer Ebene klar vorhanden)\nund der operativen Ausführung vor Ort. Die strategischen Ziele wurden nicht in\nkonkrete, operative Verkaufsvorgaben und Schulungsinhalte für die Reisebüros\nübersetzt. Es fehlt der Rückfluss von Informationen aus der operativen Ebene\n(Kundenreaktionen, Verkaufszahlen) zurück in die strategische Kontrolle – der Kreislauf\nist an mehreren Stellen unterbrochen statt geschlossen.\n"
+    - operator: "erläutern"
+      aufgabe: "Die {{firma}} möchte künftig die operative Ebene besser an die\nStrategie anbinden.\na) Nennen Sie die fünf Phasen des Managementkreislaufs.\nb) Erläutern Sie, warum die Phase „Information\" als Querschnittsfunktion gilt und\nnicht als eigener, abgeschlossener Schritt.\nc) Was unterscheidet einen Soll-Ist-Vergleich grundsätzlich von einem Marketingaudit?\n"
+      punkte: 7
+      loesungshinweis: "a) Zielbildung, Planung, Ausführung (Realisation), Kontrolle – durchzogen von der\nQuerschnittsfunktion Information, die alle vier Phasen mit den nötigen Daten\nversorgt und miteinander verbindet.\n · b) Information ist keine einmalige Phase, sondern eine durchgängige Funktion: Schon\ndie Zielbildung benötigt Informationen (z. B. Marktdaten), die Planung benötigt\nPrognoseinformationen, die Kontrolle benötigt Ist-Daten – ohne kontinuierlichen\nInformationsfluss würde der gesamte Kreislauf zusammenbrechen.\n · c) Der Soll-Ist-Vergleich ist vergangenheitsorientiert und ergebnisorientiert – er\nprüft, ob bereits festgelegte Ziele erreicht wurden. Das Marketingaudit ist\nzukunftsorientiert und systemorientiert – es hinterfragt grundsätzlich, ob die\ngesamte Marketingorganisation, -strategie und -prozesse noch zeitgemäß und\nzielführend aufgestellt sind, unabhängig von einzelnen bereits erreichten Zielwerten.\n"
 ---
 
 Damit Marketingcontrolling wirksam werden kann, muss die strategische Ebene (langfristige Ausrichtung) eng mit der operativen Ebene (laufende Umsetzung) verzahnt sein. Diese Verzahnung beschreibt der **Managementkreislauf**:

@@ -53,6 +53,17 @@ pruefungsfrage:
       zwangsläufig scheitern – die verschiedenen Stile situativ zu kombinieren, gilt
       daher als Kennzeichen erfolgreicher Führung.
 wiederholungTage: 4
+pruefungsaufgabe:
+  situation: "Ein Produktionsleiter entdeckt während einer Betriebsbesichtigung eine akute\nSicherheitsgefahr an einer Maschine. Gleichzeitig arbeitet in der Marketingabteilung\nein erfahrenes Kreativteam an einem neuen Kampagnenkonzept und erwartet, aktiv in die\nEntscheidungsfindung einbezogen zu werden.\n"
+  teilaufgaben:
+    - operator: "begründen"
+      aufgabe: "Empfehlen Sie für beide Situationen jeweils einen passenden Führungsstil und\nbegründen Sie die Wahl.\n"
+      punkte: 8
+      loesungshinweis: "Für die akute Gefahrensituation an der Maschine ist der autoritäre Führungsstil\nangebracht: Direkte Anweisungen ohne Mitbestimmung müssen hier sofort umgesetzt\nwerden, da keine Zeit für Diskussionen bleibt. Für das erfahrene Kreativteam eignet\nsich dagegen der kooperative Führungsstil: Die Mitarbeiter werden angehört, ihre\nMeinung wird integriert – bei qualifizierten Mitarbeitern ist dies unerlässlich, um\ndie Motivation zu erhalten. Dieses Beispiel zeigt, dass die ideale Führungskraft die\nverschiedenen Führungsstile situationsabhängig kombiniert, statt sich starr auf\neinen einzigen Stil festzulegen.\n"
+    - operator: "erläutern"
+      aufgabe: "In einem kreativen Projektteam mit hoch qualifizierten, erfahrenen Mitarbeitern\nentscheidet die Führungskraft künftig, sich weitgehend zurückzuhalten und dem Team\nviele Gestaltungsfreiheiten zu lassen.\na) Um welchen Führungsstil handelt es sich, und was kennzeichnet ihn?\nb) Nennen Sie eine Situation, in der der autoritäre Führungsstil angebracht ist, und\nbegründen Sie kurz.\nc) Erläutern Sie, warum die klassische Lehre von einer „idealen\" Führungskraft\nspricht, die verschiedene Führungsstile kombiniert.\n"
+      punkte: 7
+      loesungshinweis: "Es handelt sich um den Laisser-faire-Führungsstil (übersetzt etwa „einfach laufen\nlassen\"). Die Mitarbeiter haben viele Gestaltungsfreiheiten, können relativ frei\nagieren, bestimmen ihre Arbeit selbst und die Gruppe entscheidet und kontrolliert\nweitgehend gemeinsam – die Führungskraft greift nicht ein.\n · Der autoritäre Führungsstil ist in Gefahrensituationen angebracht, in denen direkte\nAnweisungen ohne Mitbestimmung sofort umgesetzt werden müssen – hier bleibt keine\nZeit für eine gemeinsame Entscheidungsfindung, wie sie der kooperative oder\nLaisser-faire-Stil vorsähe.\n · Weil der Erfolg der Führung von der jeweiligen Situation abhängt: Je nach\nReifegrad, Qualifikation und Erfahrung der Mitarbeiter sowie der Dringlichkeit einer\nEntscheidung ist ein unterschiedlicher Führungsstil erfolgversprechend. Eine\nFührungskraft, die stur nur einen Stil anwendet, wird in manchen Situationen\nzwangsläufig scheitern – die verschiedenen Stile situativ zu kombinieren, gilt\ndaher als Kennzeichen erfolgreicher Führung.\n"
 ---
 
 Der Erfolg von Führung hängt maßgeblich vom **Führungsstil** ab – also davon, wie sich eine Führungskraft in bestimmter Art und Weise gegenüber ihren Mitarbeitern verhält. Die klassische Lehre unterscheidet drei grundlegende Führungsstile:

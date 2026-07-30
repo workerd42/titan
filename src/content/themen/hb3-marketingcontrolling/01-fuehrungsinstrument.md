@@ -49,6 +49,17 @@ pruefungsfrage:
       und Nachhaltigkeitsrisiken übersehen, die sich erst mittelfristig finanziell
       niederschlagen.
 wiederholungTage: 4
+pruefungsaufgabe:
+  situation: "Die GUTGEMACHT Bio-Bäckerei-Kette bewertet ihre Marketingmaßnahmen bislang\nausschließlich am kurzfristigen Monatsumsatz. Ein neues Treueprogramm zeigt im ersten\nMonat kaum Umsatzwirkung und soll deshalb eingestellt werden.\n"
+  teilaufgaben:
+    - operator: "erläutern"
+      aufgabe: "Nehmen Sie zu dieser Entscheidung aus Sicht des Marketingcontrollings Stellung.\n"
+      punkte: 8
+      loesungshinweis: "Die Entscheidung greift zu kurzfristig. Ein Treueprogramm zielt typischerweise nicht\nauf sofortige Umsatzsteigerung, sondern auf die langfristige Kundenbindung – also auf\nden Customer Lifetime Value (CLV) der teilnehmenden Kunden. Statt der reinen\nMonatsumsatzbetrachtung sollte die Entwicklung von Wiederkaufrate, Kundenbindungsdauer\nund durchschnittlichem Bestellwert der Teilnehmer über einen längeren Zeitraum (z. B.\nsechs bis zwölf Monate) ausgewertet werden, bevor eine Entscheidung über Fortführung\noder Einstellung getroffen wird.\n"
+    - operator: "erläutern"
+      aufgabe: "Die GUTGEMACHT Bio-Bäckerei-Kette möchte zusätzlich den Wert ihrer Marke gegenüber\nGeldgebern greifbar machen.\na) Erläutern Sie den Begriff Customer Lifetime Value und seine Bedeutung für\nMarketingentscheidungen.\nb) Was versteht man unter Brand Equity, und nennen Sie zwei Messgrößen, die zu ihrer\nBestimmung herangezogen werden können.\nc) Erläutern Sie, warum der Stakeholder-Ansatz im modernen Marketingcontrolling über\nrein finanzielle Kennzahlen hinausgeht.\n"
+      punkte: 7
+      loesungshinweis: "a) Der Customer Lifetime Value bewertet einen Kunden nicht anhand eines einzelnen\nKaufs, sondern anhand des gesamten zu erwartenden Ertrags über die gesamte Dauer der\nGeschäftsbeziehung. Er begründet, warum Investitionen in Kundenbindung (die sich\nkurzfristig kaum auszahlen) trotzdem wirtschaftlich sinnvoll sein können.\n · b) Brand Equity ist der Wert, den eine Marke über den reinen Produktnutzen hinaus\nschafft. Messgrößen sind u. a. der Bekanntheitsgrad (gestützt/ungestützt) und der\nDistributionsgrad der Marke; weitere Indikatoren sind Werbeerinnerung (Recall) und\nWerbewiedererkennung (Recognition).\n · c) Der Stakeholder-Ansatz berücksichtigt neben den Anteilseignern auch weitere\nInteressengruppen (Mitarbeiter, Gesellschaft, Umwelt) und damit auch soziale und\nökologische „Assets\" – ein rein finanzieller Blick würde langfristige Reputations-\nund Nachhaltigkeitsrisiken übersehen, die sich erst mittelfristig finanziell\nniederschlagen.\n"
 ---
 
 Marketingcontrolling ist weit mehr als nachträgliche Erfolgskontrolle – es ist ein **Führungsinstrument**, das den gesamten Managementkreislauf (Zielbildung → Planung → Ausführung → Kontrolle) unterstützt, indem es laufend Informationen für Entscheidungen bereitstellt.

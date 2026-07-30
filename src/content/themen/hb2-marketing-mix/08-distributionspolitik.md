@@ -50,6 +50,17 @@ pruefungsfrage:
       Distribution als ein Massenprodukt). Weitere mögliche Kriterien: Kosten,
       Kontrollbedarf, Kundennähe der Wettbewerber.
 wiederholungTage: 5
+pruefungsaufgabe:
+  situation: "Die {{firma}} stellt hochpreisige Bio-Erfrischungsgetränke\nher und möchte ihr Markenimage als exklusive Premiummarke schützen, gleichzeitig aber\ndeutschlandweit erhältlich sein.\n"
+  teilaufgaben:
+    - operator: "begründen"
+      aufgabe: "Empfehlen Sie eine Distributionsbreite (intensiv, selektiv oder exklusiv) und\nbegründen Sie die Wahl unter Berücksichtigung des Markenimages.\n"
+      punkte: 8
+      loesungshinweis: "Eine selektive Distribution ist hier am sinnvollsten: Das Produkt soll zwar\ndeutschlandweit erhältlich sein (anders als bei exklusiver Distribution mit nur sehr\nwenigen Verkaufsstellen), aber gezielt nur über ausgewählte Handelspartner, die zum\nPremiumimage passen (z. B. Bio-Supermärkte, gehobene Gastronomie), statt über jeden\nverfügbaren Kanal (intensive Distribution), was das hochwertige Markenimage verwässern\nwürde.\n"
+    - operator: "erläutern"
+      aufgabe: "Die {{firma}} überlegt zusätzlich, einen eigenen Online-Shop\nfür Endkunden aufzubauen statt ausschließlich über den Handel zu verkaufen.\na) Wie wird diese Vertriebsform bezeichnet, und nennen Sie einen Vor- und einen\nNachteil gegenüber dem indirekten Vertrieb.\nb) Erläutern Sie den Unterschied zwischen akquisitorischer und physischer\nDistribution.\nc) Nennen Sie zwei Kriterien, die bei der Wahl des Vertriebsweges generell zu\nberücksichtigen sind.\n"
+      punkte: 7
+      loesungshinweis: "a) Direktvertrieb. Vorteil: volle Kontrolle über Preisgestaltung, Markenauftritt und\ndirekten Kundenkontakt (wertvolle Daten über das Kaufverhalten). Nachteil: höherer\neigener Aufwand für Logistik, Zahlungsabwicklung und Kundenservice, geringere\nReichweite als über etablierte Handelspartner.\n · b) Die akquisitorische Distribution umfasst alle Maßnahmen, die den Kunden zum Kauf\nbewegen und den Kontakt zwischen Anbieter und Nachfrager herstellen (z. B.\nVertriebswegwahl, Verkaufsförderung am Point of Sale). Die physische Distribution\n(Logistik) umfasst die tatsächliche Warenbewegung – Transport, Lagerung,\nAuftragsabwicklung.\n · c) Zum Beispiel: die Art des Produktes (erklärungsbedürftig vs. Standardware) und\ndie gewünschte Markenpositionierung (Premium erfordert meist selektivere\nDistribution als ein Massenprodukt). Weitere mögliche Kriterien: Kosten,\nKontrollbedarf, Kundennähe der Wettbewerber.\n"
 ---
 
 Die Distributionspolitik regelt, wie ein Produkt vom Hersteller zum Kunden gelangt – und besteht aus zwei eng verzahnten Teilbereichen:

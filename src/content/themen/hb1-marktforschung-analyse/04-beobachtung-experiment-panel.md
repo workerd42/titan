@@ -37,6 +37,17 @@ pruefungsfrage:
     - |
       b. Beispiel: Eine Feldbeobachtung wäre die unauffällige Beobachtung von Kunden im echten Supermarktregal (vertraute Umgebung); eine Laborbeobachtung wäre ein künstlich nachgebautes Regal in einem Testlabor mit Blickaufzeichnung (Eyerecorder).
 wiederholungTage: 4
+pruefungsaufgabe:
+  situation: "Die {{firma}} will wissen, ob eine neue, schmalere Verpackung\nden Absatz ihres Bio-Brots steigert – unter sonst gleichen Bedingungen.\n"
+  teilaufgaben:
+    - operator: "begründen"
+      aufgabe: "Welche Erhebungsmethode ist hier geeignet, und welcher Versuchstyp im\nSpeziellen? Begründen Sie.\n"
+      punkte: 8
+      loesungshinweis: "Geeignet ist ein Experiment, da ein Kausalzusammenhang zwischen einem\nWirkungsfaktor (Verpackung) und einer abhängigen Größe (Absatz) überprüft\nwerden soll. Idealerweise ein EBA-CBA-Typ (Vor- und Nachmessung in Experiment-\nund Kontrollgruppe), da hier Entwicklungs- und Carry-over-Effekte rechnerisch\nisoliert werden können. In der Praxis würde dies als Storetest in einer\nbegrenzten Anzahl Testgeschäfte umgesetzt.\n"
+    - operator: "erläutern"
+      aufgabe: "FRISCH & FEIN möchte zusätzlich dauerhaft beobachten, wie sich ihr Marktanteil\ngegenüber Wettbewerbern in den Einkaufsstätten entwickelt.\na) Welche Erhebungsmethode bietet sich hierfür an, und welche Unterform davon\nspeziell für den Lebensmitteleinzelhandel?\nb) Nennen Sie zwei mögliche Verzerrungseffekte dieser Methode und wie man sie\nabmildert.\nc) Erläutern Sie den Unterschied zwischen Feld- und Laborbeobachtung an einem\neigenen Beispiel aus der Lebensmittelbranche.\n"
+      punkte: 7
+      loesungshinweis: "a) Ein Panel – speziell ein Einzelhandelspanel (Handelspanel) für den Food-Sektor, das wiederholt in regelmäßigen Abständen bei denselben Geschäften erhoben wird.\n · b) Panelsterblichkeit (Ausscheiden von Panelteilnehmern, abgemildert durch ein Reserve-Panel von z. B. +20 %) und Paneleffekte (über- oder unterberichtetes Verhalten durch die ständige Beobachtung, kaum vollständig vermeidbar, aber durch Incentives und Anonymität reduzierbar).\n · b. Beispiel: Eine Feldbeobachtung wäre die unauffällige Beobachtung von Kunden im echten Supermarktregal (vertraute Umgebung); eine Laborbeobachtung wäre ein künstlich nachgebautes Regal in einem Testlabor mit Blickaufzeichnung (Eyerecorder).\n"
 ---
 
 Neben der Befragung gibt es drei weitere primärforscherische Erhebungsmethoden.

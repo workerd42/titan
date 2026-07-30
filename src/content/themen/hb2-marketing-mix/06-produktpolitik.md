@@ -50,6 +50,17 @@ pruefungsfrage:
       bereits bewährte Innovation eines Wettbewerbers nachzuahmen oder zu verbessern
       (geringeres Risiko, da der Markt bereits getestet ist, aber kein Pionier-Image).
 wiederholungTage: 5
+pruefungsaufgabe:
+  situation: "Die {{firma}} hat aus einem internen Ideenwettbewerb eine\nvielversprechende Idee für eine neue Pflegeserie erhalten. Mehrere weitere Ideen liegen\nebenfalls vor.\n"
+  teilaufgaben:
+    - operator: "erläutern"
+      aufgabe: "Schlagen Sie ein Verfahren vor, mit dem die Ideen objektiv vorselektiert werden können,\nbevor in die teure Entwicklung investiert wird.\n"
+      punkte: 8
+      loesungshinweis: "Eine Nutzwertanalyse (Scoring-Modell) eignet sich zur Vorauswahl: Kriterien wie\nMarktpotenzial, Passung zur Markenidentität, technische Machbarkeit und geschätzte\nEntwicklungskosten werden gewichtet, jede Idee wird bepunktet, die Ideen mit dem\nhöchsten Gesamtnutzwert kommen in die nächste Stufe (Konzepttest, anschließend\nWirtschaftlichkeitsanalyse z. B. über die Break-even-Methode), bevor eine\nkostenintensive materielle Produktentwicklung beginnt.\n"
+    - operator: "erläutern"
+      aufgabe: "Die {{firma}} plant, die neue Pflegeserie zunächst in\nausgewählten Drogeriemärkten zu testen, bevor die bundesweite Einführung erfolgt.\na) Wie wird ein solches Vorgehen bezeichnet, und welchem Schritt im\nInnovationsprozess ist es zuzuordnen?\nb) Nennen Sie zwei Vorteile dieses Vorgehens gegenüber einer sofortigen\nflächendeckenden Einführung.\nc) Erläutern Sie den Unterschied zwischen einer Pionier- und einer\nImitatorstrategie.\n"
+      punkte: 7
+      loesungshinweis: "a) Es handelt sich um eine Markterprobung, konkret einen Storetest bzw. (bei\ngrößerem Umfang) einen Markttest. Sie ist dem Schritt der Markterprobung im\nInnovationsprozess zuzuordnen, der zwischen der materiellen Produktentwicklung und\nder bundesweiten Markteinführung liegt.\n · b) Das finanzielle Risiko einer Fehleinführung wird begrenzt, da nur ein kleiner\nTeil des Sortiments und Budgets eingesetzt wird. Zudem lassen sich Marketingmix-\nElemente (Preis, Packungsgestaltung, Platzierung) vor der breiten Einführung noch\nanpassen.\n · c) Die Pionierstrategie bedeutet, als erster Anbieter mit einer Innovation in den\nMarkt zu gehen (Vorteil: Imagegewinn, Erstbesetzung des Marktes; Risiko: hohe\nEntwicklungskosten, ungewisse Marktreaktion). Die Imitatorstrategie bedeutet, eine\nbereits bewährte Innovation eines Wettbewerbers nachzuahmen oder zu verbessern\n(geringeres Risiko, da der Markt bereits getestet ist, aber kein Pionier-Image).\n"
 ---
 
 Die Produktpolitik begleitet ein Produkt von der ersten Idee bis zur Marktreife in einem mehrstufigen **Innovationsprozess**:

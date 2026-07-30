@@ -48,6 +48,17 @@ pruefungsfrage:
       wettbewerbsorientierten Preisgestaltung zuzuordnen, da sich der eigene Preis hier
       maßgeblich am Marktpreis der Konkurrenz ausrichtet.
 wiederholungTage: 5
+pruefungsaufgabe:
+  situation: "Die LICHTBLICK Lampenmanufaktur bringt eine technisch innovative LED-Designlampe auf\nden Markt, die es in dieser Form noch nicht gibt. Es gibt aktuell keine direkten\nWettbewerber mit vergleichbarem Produkt.\n"
+  teilaufgaben:
+    - operator: "begründen"
+      aufgabe: "Empfehlen Sie eine Preisstrategie für die Markteinführung und begründen Sie sie.\n"
+      punkte: 8
+      loesungshinweis: "Eine Skimmingstrategie (Hochpreisstrategie) ist hier sinnvoll: Da es keine direkten\nWettbewerber gibt, kann zunächst ein hoher Preis verlangt werden, um die zahlungs-\nbereiten Innovatoren („Early Adopters\") abzuschöpfen und die hohen Entwicklungskosten\nschnell zu amortisieren. Mit zunehmender Marktdurchdringung und einsetzender\nKonkurrenz kann der Preis danach schrittweise gesenkt werden, um weitere\nKundensegmente zu erschließen.\n"
+    - operator: "erläutern"
+      aufgabe: "Ein Wettbewerber bringt sechs Monate später eine ähnliche LED-Designlampe deutlich\ngünstiger auf den Markt, um schnell hohe Stückzahlen zu erreichen.\na) Wie wird die Preisstrategie des Wettbewerbers bezeichnet, und was ist deren Ziel?\nb) Erläutern Sie den Begriff der Preiselastizität der Nachfrage und seine Bedeutung\nfür die Preisentscheidung der LICHTBLICK Lampenmanufaktur.\nc) Nennen Sie die drei grundsätzlichen Ansätze der Preisgestaltung und ordnen Sie\ndiesen Fall einem davon zu.\n"
+      punkte: 7
+      loesungshinweis: "a) Penetrationsstrategie (Niedrigpreisstrategie). Ziel ist es, durch einen niedrigen\nEinführungspreis schnell einen hohen Marktanteil und hohe Absatzmengen zu erreichen,\nbevor weitere Wettbewerber eintreten – oft verbunden mit Skaleneffekten in der\nProduktion.\n · b) Die Preiselastizität misst, wie stark sich die Nachfragemenge bei einer\nPreisänderung verändert (prozentuale Mengenänderung im Verhältnis zur prozentualen\nPreisänderung). Ist die Nachfrage elastisch, würde eine eigene Preissenkung die\nAbsatzmenge deutlich erhöhen – ein wichtiges Argument bei der Entscheidung, wie auf\nden günstigeren Wettbewerber reagiert werden soll.\n · c) Kostenorientierte, nachfrageorientierte und wettbewerbsorientierte\nPreisgestaltung. Die Reaktion auf den Wettbewerberpreis wäre der\nwettbewerbsorientierten Preisgestaltung zuzuordnen, da sich der eigene Preis hier\nmaßgeblich am Marktpreis der Konkurrenz ausrichtet.\n"
 ---
 
 Die Preispolitik (Kontrahierungspolitik) verfolgt absatzwirtschaftliche (Umsatz, Marktanteil), finanzwirtschaftliche (Gewinn, Liquidität) und produktionswirtschaftliche Ziele (Kapazitätsauslastung) gleichzeitig – die häufig im Konflikt zueinanderstehen.

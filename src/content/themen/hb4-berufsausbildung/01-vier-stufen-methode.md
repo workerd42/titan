@@ -52,6 +52,17 @@ pruefungsfrage:
       Unterforderung des Auszubildenden zu vermeiden – die Unterweisung kann so passgenau
       auf den tatsächlichen Wissensstand abgestimmt werden.
 wiederholungTage: 4
+pruefungsaufgabe:
+  situation: "Ein neuer Auszubildender soll lernen, wie ein bestimmtes Verpackungsgerät im\nLager korrekt bedient wird. Der zuständige Ausbilder erklärt die Bedienung nur mündlich\nam Schreibtisch, ohne das Gerät selbst zu zeigen oder den Auszubildenden üben zu\nlassen.\n"
+  teilaufgaben:
+    - operator: "beurteilen"
+      aufgabe: "Beurteilen Sie dieses Vorgehen anhand der Vier-Stufen-Methode und schlagen Sie eine\nbessere Umsetzung vor.\n"
+      punkte: 8
+      loesungshinweis: "Das Vorgehen ist unzureichend, da es die Vier-Stufen-Methode nicht nutzt, obwohl es\nsich um eine psychomotorische Fertigkeit handelt, für die diese Methode besonders\ngeeignet ist. Besser wäre: Stufe 1 (Vorbereitung) – Material bereitstellen, Ziel und\nSinn der Aufgabe erklären, nach Vorkenntnissen fragen. Stufe 2 (Vormachen und\nErklären) – der Ausbilder führt die Bedienung am echten Gerät vor und erklärt dabei\njeden Schritt. Stufe 3 (Nachmachen und Erklärenlassen) – der Auszubildende führt die\nBedienung selbst durch und erklärt dabei seine Schritte, während der Ausbilder\nkorrigierend eingreift. Stufe 4 (Üben) – der Auszubildende übt die Tätigkeit\neigenständig weiter, bis Sicherheit erreicht ist.\n"
+    - operator: "erläutern"
+      aufgabe: "Ein Ausbildungsbetrieb möchte die Qualität der praktischen Unterweisung\nsystematisieren.\na) Nennen Sie die vier Stufen der Vier-Stufen-Methode.\nb) Erläutern Sie, für welche Art von Lerninhalten diese Methode besonders geeignet\nist, und warum.\nc) Nennen Sie einen praktischen Vorteil der ersten Stufe (Vorbereitung), speziell des\nNachfragens nach Vorkenntnissen.\n"
+      punkte: 7
+      loesungshinweis: "Stufe 1: Vorbereitung (Material bereitstellen, sich selbst strukturieren, den\nAuszubildenden zur Lerneinheit hinführen, Ziel definieren). Stufe 2: Vormachen und\nErklären (der Ausbilder führt die Tätigkeit vor und erklärt sie). Stufe 3:\nNachmachen und Erklärenlassen (der Auszubildende führt die Tätigkeit selbst durch\nund erklärt sie). Stufe 4: Üben (eigenständiges Weiterüben zur Festigung).\n · Die Methode ist besonders geeignet für psychomotorische Fertigkeiten, also\npraktische, handwerkliche Tätigkeiten, bei denen es auf konkrete\nBewegungsabläufe und Handgriffe ankommt – reines Erklären ohne Vormachen und Üben\nwürde hier kaum zu echtem Können führen.\n · Das Nachfragen nach Vorkenntnissen in der Vorbereitungsphase hilft, Über- oder\nUnterforderung des Auszubildenden zu vermeiden – die Unterweisung kann so passgenau\nauf den tatsächlichen Wissensstand abgestimmt werden.\n"
 ---
 
 Für die Vermittlung praktischer, handwerklicher Fertigkeiten in der Ausbildung hat sich die **Vier-Stufen-Methode** bewährt. Sie ist eine sehr ausbilderzentrierte Methode, bei der die **psychomotorischen Fertigkeiten** – also konkrete Bewegungsabläufe und Handgriffe – im Vordergrund stehen. Der Ausbilder gibt dabei alle Lernschritte klar vor.

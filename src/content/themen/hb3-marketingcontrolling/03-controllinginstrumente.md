@@ -50,6 +50,17 @@ pruefungsfrage:
       isolierte Einzelkennzahl könnte zu falschen, weil zu einseitigen, Schlussfolgerungen
       verleiten.
 wiederholungTage: 5
+pruefungsaufgabe:
+  situation: "Die {{firma}} stellt fest, dass die geplante Umsatzkurve für\ndie nächsten fünf Jahre deutlich über der erwarteten Kurve liegt, wenn man nur die\nbestehenden Produkte in bestehenden Märkten weiterverfolgt.\n"
+  teilaufgaben:
+    - operator: "erläutern"
+      aufgabe: "Benennen Sie das hier sichtbar werdende Controllinginstrument und erläutern Sie, wie\ndamit umzugehen ist.\n"
+      punkte: 8
+      loesungshinweis: "Es handelt sich um eine Gap-Analyse (strategische Lücke). Die Lücke zwischen\ngeplanter (Soll-)Kurve und der bei unverändertem Vorgehen zu erwartenden (Ist-)Kurve\nmacht sichtbar, dass mit den bisherigen Produkten und Märkten das Planziel nicht\nerreicht wird. Die operative Lücke (innerhalb bestehender Produkt-Markt-Kombinationen,\nz. B. durch effizientere Marktdurchdringung) reicht hier vermutlich nicht aus – es\nbraucht zusätzlich strategische Maßnahmen wie Produkt- oder Marktentwicklung\n(vergleiche Ansoff-Matrix), um die strategische Lücke zu schließen.\n"
+    - operator: "erläutern"
+      aufgabe: "Die {{firma}} möchte zusätzlich systematisch von einem\ndeutlich erfolgreicheren Wettbewerber lernen.\na) Wie wird dieses Vorgehen bezeichnet, und was ist sein grundsätzliches Ziel?\nb) Unterscheiden Sie strategische und operative Controllinginstrumente anhand von\nje einem Beispiel.\nc) Erläutern Sie, wozu ein Kennzahlensystem im Marketingcontrolling beiträgt, das\nüber eine einzelne isolierte Kennzahl hinausgeht.\n"
+      punkte: 7
+      loesungshinweis: "a) Benchmarking. Ziel ist es, die eigene Leistung systematisch mit der besten\nverfügbaren Vergleichsleistung (eines Wettbewerbers oder eines branchenfremden\n„Klassenbesten\") zu vergleichen, um daraus konkrete Verbesserungspotenziale\nabzuleiten.\n · b) Strategisches Instrument: z. B. eine Portfolioanalyse oder ein Frühwarnsystem zur\nlangfristigen Risikoerkennung. Operatives Instrument: z. B. ein laufender\nSoll-Ist-Vergleich von Absatzzahlen oder die Aufbereitung von\nMarktforschungsdaten für die aktuelle Kampagnensteuerung.\n · c) Ein Kennzahlensystem setzt mehrere Einzelkennzahlen in eine sachlogische\nBeziehung zueinander, sodass Wechselwirkungen erkennbar werden (z. B. wie sich eine\nPreissenkung auf Absatzmenge UND Deckungsbeitrag gleichzeitig auswirkt) – eine\nisolierte Einzelkennzahl könnte zu falschen, weil zu einseitigen, Schlussfolgerungen\nverleiten.\n"
 ---
 
 Marketingcontrolling-Instrumente lassen sich nach ihrer Reichweite in drei Gruppen einteilen:

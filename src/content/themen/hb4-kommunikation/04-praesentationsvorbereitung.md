@@ -48,6 +48,17 @@ pruefungsfrage:
       besonders bei wenig Erfahrung sinkt so das Risiko, während der eigentlichen
       Präsentation den roten Faden zu verlieren.
 wiederholungTage: 4
+pruefungsaufgabe:
+  situation: "Ein Junior-Mitarbeiter soll kurzfristig eine 15-minütige Präsentation zum\nKampagnenerfolg vor der Geschäftsführung halten. Er öffnet direkt eine leere\nFolienvorlage und beginnt sofort mit der Gestaltung der ersten Folie.\n"
+  teilaufgaben:
+    - operator: "beurteilen"
+      aufgabe: "Beurteilen Sie dieses Vorgehen und schlagen Sie ein strukturierteres Vorgehen anhand\ndes Fünf-Phasen-Modells vor.\n"
+      punkte: 8
+      loesungshinweis: "Das direkte Starten mit der Foliengestaltung überspringt die inhaltliche Vorbereitung\nund birgt das Risiko eines unstrukturierten, roten Fadens ohne klare Linie. Besser\nwäre: Phase 1 – zunächst alle relevanten Ideen und Inhalte sammeln (z. B. per\nBrainstorming: Kampagnenziele, Ergebnisse, Learnings). Phase 2 – die gesammelten\nIdeen nach Stellenwert und Zusammenhang sortieren. Phase 3 – eine sinnvolle\nReihenfolge festlegen und entscheiden, welche Punkte gemeinsam vermittelt werden\nsollen. Erst danach folgt die eigentliche mediale Umsetzung (Foliengestaltung) und\nein Probedurchlauf, besonders wichtig bei wenig Erfahrung.\n"
+    - operator: "erläutern"
+      aufgabe: "Sie bereiten eine wichtige Präsentation vor einem neuen Großkunden vor.\na) Nennen Sie die fünf Phasen der inhaltlichen Präsentationsvorbereitung.\nb) Erläutern Sie, warum eine gute Vorbereitung in Bezug auf Zielgruppe, Ziele,\nInhalte und Ablauf als Voraussetzung für den Erfolg einer Präsentation gilt.\nc) Begründen Sie, warum bei wenig Erfahrung zusätzliche Probedurchläufe eingeplant\nwerden sollten.\n"
+      punkte: 7
+      loesungshinweis: "Phase 1: Auflisten der Ideen (z. B. per Brainstorming). Phase 2: Sortieren der\nIdeen nach Stellenwert und Zusammenhang. Phase 3: Gliedern der sortierten\nStichpunkte – Reihenfolge festlegen und zusammengehörige Elemente bündeln. Darauf\naufbauend folgen die mediale Umsetzung und die eigentliche Durchführung.\n · Nur wenn die Präsentation zur Zielgruppe, ihren Erwartungen und dem eigentlichen\nZiel der Präsentation passt, kann die Botschaft tatsächlich ankommen. Fehlt diese\nPassung, wird selbst eine inhaltlich korrekte Präsentation von der Zielgruppe nicht\nals relevant empfunden.\n · Probedurchläufe helfen, den zeitlichen Rahmen einzuhalten, sprachliche\nUnsicherheiten frühzeitig zu erkennen und mehr Sicherheit im Vortrag zu gewinnen –\nbesonders bei wenig Erfahrung sinkt so das Risiko, während der eigentlichen\nPräsentation den roten Faden zu verlieren.\n"
 ---
 
 Der Erfolg einer Präsentation entscheidet sich nicht erst beim Vortrag selbst, sondern bereits in der **inhaltlichen Vorbereitung**. Diese lässt sich systematisch anhand eines **Fünf-Phasen-Modells** strukturieren:

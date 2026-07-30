@@ -104,6 +104,63 @@ pruefungsfrage:
       einzelnen Linie.
 
 wiederholungTage: 5
+mcFragen:
+  - frage: "Welcher Begriff passt zu dieser Beschreibung: „Tatsächlich realisierter Gesamtabsatz (mengenmäßig oder wertmäßig) auf einem definierten Markt in einer bestimmten Periode. Formel: Inlandsproduktion − Exporte + Importe.\"?"
+    optionen:
+      - "Marktvolumen"
+      - "Sättigungsgrad"
+      - "Marktpotenzial"
+      - "Absoluter Marktanteil"
+    richtige: 0
+    erklaerung: "Marktvolumen: Tatsächlich realisierter Gesamtabsatz (mengenmäßig oder wertmäßig) auf einem definierten Markt in einer bestimmten Periode. Formel: Inlandsproduktion − Exporte + Importe."
+    operator: "definieren"
+  - frage: "Welcher Begriff passt zu dieser Beschreibung: „Maximale Aufnahmefähigkeit eines Marktes. Theoretischer Höchstwert, der nur bei vollständiger Marktausschöpfung erreicht würde.\"?"
+    optionen:
+      - "Marktpotenzial"
+      - "Relativer Marktanteil"
+      - "Absoluter Marktanteil"
+      - "Marktvolumen"
+    richtige: 0
+    erklaerung: "Marktpotenzial: Maximale Aufnahmefähigkeit eines Marktes. Theoretischer Höchstwert, der nur bei vollständiger Marktausschöpfung erreicht würde."
+    operator: "definieren"
+  - frage: "Welcher Begriff passt zu dieser Beschreibung: „Anteil eines Unternehmens am Gesamtmarktvolumen in Prozent. Zeigt die Stellung eines Unternehmens auf dem Markt.\"?"
+    optionen:
+      - "Absoluter Marktanteil"
+      - "Relativer Marktanteil"
+      - "Marktpotenzial"
+      - "Sättigungsgrad"
+    richtige: 0
+    erklaerung: "Absoluter Marktanteil: Anteil eines Unternehmens am Gesamtmarktvolumen in Prozent. Zeigt die Stellung eines Unternehmens auf dem Markt."
+    operator: "definieren"
+  - frage: "Welcher Begriff passt zu dieser Beschreibung: „Marktanteil des eigenen Unternehmens im Verhältnis zum stärksten Wettbewerber. Basis der BCG-Portfolio-Analyse.\"?"
+    optionen:
+      - "Relativer Marktanteil"
+      - "Sättigungsgrad"
+      - "Marktvolumen"
+      - "Absoluter Marktanteil"
+    richtige: 0
+    erklaerung: "Relativer Marktanteil: Marktanteil des eigenen Unternehmens im Verhältnis zum stärksten Wettbewerber. Basis der BCG-Portfolio-Analyse."
+    operator: "definieren"
+  - frage: "Welcher Begriff passt zu dieser Beschreibung: „Verhältnis von Marktvolumen zu Marktpotenzial in Prozent. Zeigt, wie weit ein Markt bereits ausgeschöpft ist.\"?"
+    optionen:
+      - "Sättigungsgrad"
+      - "Absoluter Marktanteil"
+      - "Marktpotenzial"
+      - "Relativer Marktanteil"
+    richtige: 0
+    erklaerung: "Sättigungsgrad: Verhältnis von Marktvolumen zu Marktpotenzial in Prozent. Zeigt, wie weit ein Markt bereits ausgeschöpft ist."
+    operator: "definieren"
+pruefungsaufgabe:
+  situation: "Die {{firma}} hat 2024 einen Inlandsumsatz von 18 Mio. € erzielt.\nDas gesamte Marktvolumen betrug 120 Mio. €. Der größte Wettbewerber kommt auf 30 %.\n"
+  teilaufgaben:
+    - operator: "berechnen"
+      aufgabe: "Berechnen Sie den absoluten und den relativen Marktanteil der VENTO Klimatechnik\nGmbH und interpretieren Sie das Ergebnis.\n"
+      punkte: 8
+      loesungshinweis: "Absoluter MA = 18 ÷ 120 × 100 = 15 %. Relativer MA = 15 ÷ 30 × 100 = 50.\nVENTO ist kein Marktführer und nur halb so stark. In der BCG-Matrix je nach\nMarktwachstum als Question Mark oder schwacher Star positioniert.\n"
+    - operator: "erläutern"
+      aufgabe: "Die Geschäftsführung der {{firma}} möchte den Umsatz für die\nnächsten drei Jahre prognostizieren.\na) Erläutern Sie den Unterschied zwischen qualitativen und quantitativen Prognoseverfahren.\nb) Nennen Sie die wichtigste Einschränkung einer linearen Trendprognose.\nc) Welches qualitative Verfahren eignet sich für einen Planungshorizont von 10–15 Jahren?\n"
+      punkte: 7
+      loesungshinweis: "a) Qualitative Prognosen: verbale Einschätzungen ohne genaue Zahlenwerte, z. B.\nSzenariotechnik und Delphi. Quantitative Prognosen: mathematisch berechnete\nZahlenwerte, z. B. lineare Trendprognose, Regression.\n · b) Bei der Trendprognose wird unterstellt, dass alle Einflussfaktoren der\nVergangenheit unverändert in dieselbe Richtung wirken (Ceteris-paribus-Annahme).\nDas ist selten länger als 3–4 Jahre zutreffend.\n · c) Die Szenariotechnik (Planungshorizont 10–15 Jahre). Sie liefert mehrere\nalternative Zukunftsbilder (best/wahrscheinlich/worst case) statt einer\neinzelnen Linie.\n"
 ---
 
 Zur Charakterisierung eines Marktes und als Entscheidungsgrundlage dienen quantitative Kennzahlen. Für Prognosen stehen qualitative und quantitative Verfahren zur Verfügung.
