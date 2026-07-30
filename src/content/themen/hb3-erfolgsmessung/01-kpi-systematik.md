@@ -4,6 +4,32 @@ handlungsbereich: "hb3"
 themengruppe: "Erfolgsmessung"
 order: 1
 description: "Die Unterscheidung von Output-, Outcome- und Impact-Kennzahlen sowie die Auswahlkriterien für aussagekräftige Marketing-KPIs."
+definitionen:
+  - begriff: "Output-Kennzahl"
+    definition: "Misst die unmittelbare Aktivität/Leistung einer Maßnahme (z. B. Impressionen, Klicks, Reichweite) – noch keine Wirkung."
+  - begriff: "Outcome-Kennzahl"
+    definition: "Misst die tatsächliche Wirkung beim Empfänger (z. B. Conversion, Kauf, Umsatz) – der eigentliche Erfolgsnachweis."
+  - begriff: "Impact-Kennzahl"
+    definition: "Misst die langfristige, übergeordnete Wirkung (z. B. Veränderung von Markenbekanntheit oder Kundenbindung über die Zeit)."
+  - begriff: "KPI-Auswahlkriterium"
+    definition: "Macht eine Kennzahl erst zur aussagekräftigen KPI: Relevanz, Vergleichbarkeit, Beeinflussbarkeit und Verständlichkeit."
+formeln:
+  - name: "Conversion Rate"
+    formel: "Conversions ÷ Besucher × 100"
+    erklaerung: "Anteil der Besucher, die eine gewünschte Aktion (z. B. Kauf) ausführen."
+    einheit: "%"
+  - name: "ROI (Return on Investment)"
+    formel: "(Gewinn ÷ eingesetztes Kapital) × 100"
+    erklaerung: "Zeigt, ob sich eine Investition wirtschaftlich rechnet."
+    einheit: "%"
+  - name: "CPO (Cost per Order)"
+    formel: "Marketingkosten ÷ Anzahl Bestellungen"
+    erklaerung: "Durchschnittliche Kosten, um eine Bestellung zu gewinnen."
+    einheit: "€"
+zusammenfassung:
+  - "Output misst Aktivität, Outcome misst Wirkung – der Outcome zählt."
+  - "Nicht jede Zahl ist ein KPI: erst Relevanz, Vergleichbarkeit, Beeinflussbarkeit und Verständlichkeit machen sie dazu."
+  - "Kennzahlen nie isoliert betrachten – die Conversion Rate immer gegen die Kosten (CPO/CAC) lesen."
 merksatz: |
   Viele Klicks sind ein Output, ein Kauf ist ein Outcome – verwechsle die beiden nicht, wenn du Erfolg misst.
 begriffe:
