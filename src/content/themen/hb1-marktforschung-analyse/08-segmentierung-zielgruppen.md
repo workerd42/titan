@@ -6,6 +6,54 @@ order: 8
 description: "Voraussetzungen und Kriterien der Marktsegmentierung, STP-Marketing, psychografische Ansätze und Buying-Center-Rollen im B2B."
 werkzeug: "swot"
 merksatz: "Ein gutes Segment muss man messen, erreichen und sich leisten können – sonst bleibt die Segmentierung Theorie."
+definitionen:
+  - begriff: "Marktsegmentierung"
+    definition: "Aufteilung eines heterogenen Gesamtmarktes in Teilmärkte, die in sich möglichst homogen und untereinander möglichst heterogen sind."
+  - begriff: "Voraussetzungen der Segmentierung"
+    definition: "Fünf Bedingungen für ein brauchbares Segment: Kaufverhaltensrelevanz, Messbarkeit, Zugänglichkeit, Wirtschaftlichkeit und zeitliche Stabilität."
+  - begriff: "STP-Marketing"
+    definition: "Dreischrittiger Zielmarktprozess: Segmentation (Markt aufteilen) → Targeting (Zielgruppen auswählen) → Positioning (Leistung in der Zielgruppe positionieren)."
+  - begriff: "Buying-Center"
+    definition: "Das Einkaufsgremium im B2B-Bereich mit verteilten Rollen (Initiator, Verwender, Einkäufer, Beeinflusser, Entscheider, Gatekeeper) – selten entscheidet eine Einzelperson."
+  - begriff: "Gatekeeper"
+    definition: "Rolle im Buying-Center, die den Informationsfluss steuert: Sie gibt Informationen selektiv weiter oder hält sie zurück, ohne selbst zu entscheiden."
+mcFragen:
+  - frage: "Welche fünf Kriteriengruppen zur Segmentierung im B2C-Bereich sind klassisch?"
+    optionen:
+      - "demografisch, sozioökonomisch, geografisch, psychografisch, Verhalten"
+      - "Preis, Produkt, Platz, Promotion, Personal"
+      - "Initiator, Verwender, Einkäufer, Entscheider, Gatekeeper"
+      - "Objektivität, Reliabilität, Validität, Aktualität, Kosten"
+    richtige: 0
+    erklaerung: "Die fünf klassischen Kriteriengruppen sind demografisch, sozioökonomisch, geografisch, psychografisch und Verhaltenskriterien. Die anderen Optionen mischen Marketing-Mix, Buying-Center-Rollen und Gütekriterien ein."
+    operator: "nennen"
+  - frage: "Warum ist ‚alle, die gerne shoppen‘ keine taugliche Zielgruppendefinition?"
+    optionen:
+      - "Weil sie zu klein ist."
+      - "Weil sie kaum messbar und schlecht zugänglich ist und Voraussetzungen der Segmentierung verletzt."
+      - "Weil sie gegen den Datenschutz verstößt."
+      - "Weil sie nur im B2B-Bereich gilt."
+    richtige: 1
+    erklaerung: "Die Definition ist unscharf: Messbarkeit und Zugänglichkeit fehlen, die Kaufverhaltensrelevanz ist unklar – damit lässt sich kein konkretes Marketingkonzept ableiten."
+    operator: "beurteilen"
+  - frage: "Welche Rolle im Buying-Center steuert, welche Information die Entscheider erreicht?"
+    optionen:
+      - "Der Entscheider (Decider)"
+      - "Der Verwender (User)"
+      - "Der Gatekeeper"
+      - "Der Initiator"
+    richtige: 2
+    erklaerung: "Der Gatekeeper filtert den Informationsfluss (z. B. eine Assistenz oder Fachabteilung) und beeinflusst so indirekt, welche Anbieter und Argumente überhaupt durchdringen."
+    operator: "benennen"
+  - frage: "In welcher Reihenfolge läuft das STP-Marketing ab?"
+    optionen:
+      - "Positioning → Targeting → Segmentation"
+      - "Segmentation → Targeting → Positioning"
+      - "Targeting → Segmentation → Positioning"
+      - "Segmentation → Positioning → Targeting"
+    richtige: 1
+    erklaerung: "Erst den Markt aufteilen (Segmentation), dann Zielgruppen auswählen (Targeting), dann positionieren (Positioning) – jede Stufe baut auf der vorigen auf."
+    operator: "ordnen"
 fallbeispiel:
   situation: |
     Die Manufaktur LEDERWERK Maier plant eine neue Linie hochpreisiger Lederwaren

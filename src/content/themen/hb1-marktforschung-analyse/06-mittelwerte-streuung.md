@@ -5,6 +5,56 @@ themengruppe: "Marktforschung & Analyse"
 order: 6
 description: "Skalenarten, Häufigkeiten, Mittelwerte (Median, Modalwert, arithmetisches und geometrisches Mittel) und Streuungsmaße."
 merksatz: "Der Median teilt die Reihe, das arithmetische Mittel rechnet sie zusammen, das geometrische Mittel beschreibt ihr Wachstum."
+definitionen:
+  - begriff: "Skalenart"
+    definition: "Messniveau eines Merkmals: nominal (reine Eigenschaft ohne Rangfolge), ordinal (Rangfolge ohne gleiche Abstände) oder metrisch (Abstände und Verhältnisse messbar)."
+  - begriff: "Median (Zentralwert)"
+    definition: "Der mittlere Wert einer der Größe nach geordneten Reihe; robust gegenüber Extremwerten."
+  - begriff: "Modalwert"
+    definition: "Der am häufigsten vorkommende Wert einer Verteilung; sinnvoll, wenn der ‚typische Fall‘ gefragt ist."
+  - begriff: "Gewogenes arithmetisches Mittel"
+    definition: "Summe aller Werte, jeweils mit ihrer Häufigkeit gewichtet, geteilt durch die Gesamtzahl; korrekt bei Häufigkeitstabellen."
+  - begriff: "Geometrisches Mittel"
+    definition: "Der einzig korrekte Mittelwert zur Verdichtung von Wachstumsraten (z. B. durchschnittliches jährliches Umsatzwachstum)."
+  - begriff: "Standardabweichung"
+    definition: "Streuungsmaß, das angibt, wie eng die Einzelwerte um den Mittelwert liegen; je kleiner, desto repräsentativer der Mittelwert."
+mcFragen:
+  - frage: "Welcher Mittelwert ist korrekt, um eine durchschnittliche jährliche Wachstumsrate zu bestimmen?"
+    optionen:
+      - "Das arithmetische Mittel"
+      - "Der Median"
+      - "Das geometrische Mittel"
+      - "Der Modalwert"
+    richtige: 2
+    erklaerung: "Wachstumsraten sind ein multiplikativer Prozess; nur das geometrische Mittel (n-te Wurzel aus dem Produkt der Wachstumsfaktoren) verdichtet sie korrekt. Das arithmetische Mittel überschätzt."
+    operator: "auswählen"
+  - frage: "Ein Merkmal ‚Schulnote‘ (1–6) besitzt welche Skalenart?"
+    optionen:
+      - "Nominalskala"
+      - "Ordinalskala"
+      - "Metrische (Verhältnis-)Skala"
+      - "Absolutskala"
+    richtige: 1
+    erklaerung: "Noten haben eine natürliche Rangfolge, aber keine garantiert gleichen Abstände (der Sprung von 1 auf 2 ist nicht zwingend gleich dem von 4 auf 5) → ordinalskaliert."
+    operator: "einordnen"
+  - frage: "Warum reicht ein Mittelwert allein oft nicht aus?"
+    optionen:
+      - "Weil er nur bei metrischen Daten berechenbar ist."
+      - "Weil er nichts über die Streuung der Einzelwerte aussagt."
+      - "Weil er immer durch Extremwerte verfälscht wird."
+      - "Weil er rechnerisch zu aufwendig ist."
+    richtige: 1
+    erklaerung: "Zwei Datensätze mit gleichem Mittelwert können völlig unterschiedlich streuen. Erst ein Streuungsmaß (z. B. Standardabweichung) zeigt die Homogenität."
+    operator: "beurteilen"
+  - frage: "Welcher Mittelwert ist gegenüber Extremwerten besonders robust?"
+    optionen:
+      - "Das arithmetische Mittel"
+      - "Der Median"
+      - "Das geometrische Mittel"
+      - "Die Spannweite"
+    richtige: 1
+    erklaerung: "Der Median (mittlerer Wert der geordneten Reihe) reagiert kaum auf Ausreißer – deshalb wird z. B. das Medianeinkommen berichtet. Die Spannweite ist kein Mittelwert, sondern ein Streuungsmaß."
+    operator: "benennen"
 fallbeispiel:
   situation: |
     Die Personalabteilung der {{firma}} hat die Bruttostundenlöhne

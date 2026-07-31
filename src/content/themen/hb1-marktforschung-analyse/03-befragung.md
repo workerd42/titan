@@ -5,6 +5,43 @@ themengruppe: "Marktforschung & Analyse"
 order: 3
 description: "Kommunikationsarten der Befragung sowie standardisierte und nicht standardisierte Interviewstrategien im Vergleich."
 merksatz: "Je standardisierter die Befragung, desto besser die Vergleichbarkeit – je freier das Gespräch, desto tiefer die Erkenntnis."
+definitionen:
+  - begriff: "Standardisiertes Interview"
+    definition: "Befragung mit wortgleich vorgegebenem Fragebogen; der Interviewer liest vor und notiert. Voraussetzung ist eine homogene Zielgruppe. Vorteil: statistische Vergleichbarkeit; Nachteil: erfasst nur Vorgedachtes."
+  - begriff: "Nicht standardisiertes Interview (Leitfadeninterview)"
+    definition: "Freies Gespräch, bei dem nur Thema und Leitfaden feststehen. Typisch im B2B. Vorteil: neue, unerwartete Erkenntnisse; Nachteil: kaum statistisch auswertbar, Gefahr suggestiver Beeinflussung."
+  - begriff: "Kommunikationsart"
+    definition: "Der Weg der Befragung: persönlich, schriftlich, telefonisch oder online. Die Onlinebefragung ist am kostengünstigsten, hat aber oft Schwächen bei der Repräsentanz."
+  - begriff: "Interviewereinfluss"
+    definition: "Verzerrung der Antworten durch das Verhalten oder die Erwartungen des Interviewers; im standardisierten Interview weitgehend ausgeschaltet, im freien Gespräch besonders zu beachten."
+mcFragen:
+  - frage: "Für eine breite, homogene Zielgruppe mit statistischem Auswertungsbedarf eignet sich am besten ein …"
+    optionen:
+      - "nicht standardisiertes Leitfadeninterview."
+      - "standardisiertes Interview."
+      - "teilnehmendes Feldexperiment."
+      - "offenes Tiefeninterview ohne Leitfaden."
+    richtige: 1
+    erklaerung: "Große, homogene Befragtenkreise mit Vergleichsbedarf werden standardisiert befragt – nur so sind die Antworten statistisch vergleichbar auswertbar."
+    operator: "auswählen"
+  - frage: "Wann ist ein nicht standardisiertes Leitfadeninterview vorzuziehen?"
+    optionen:
+      - "Bei einem kleinen, fachlich heterogenen Kreis mit Erkundungsbedarf."
+      - "Bei mehreren tausend Befragten mit identischen Fragen."
+      - "Immer, weil es billiger ist."
+      - "Nur bei rein quantitativen Fragestellungen."
+    richtige: 0
+    erklaerung: "Kleiner, heterogener Fachkreis + Erkundungsbedarf → frei geführtes Gespräch, das auch vorab nicht bedachte Aspekte erfassen kann. Es setzt einen fachlich ebenbürtigen Interviewer voraus."
+    operator: "beurteilen"
+  - frage: "Welche Kommunikationsart ist bei sehr großer Stichprobe in der Regel die kostengünstigste?"
+    optionen:
+      - "Persönliche Face-to-Face-Befragung"
+      - "Telefonische Befragung"
+      - "Onlinebefragung"
+      - "Schriftliche Postbefragung"
+    richtige: 2
+    erklaerung: "Die Onlinebefragung verursacht keinen personellen Erhebungsaufwand und erfasst Daten automatisch – ihr Schwachpunkt ist die Repräsentanz, da die Grundgesamtheit der Internetnutzer nicht exakt bekannt ist."
+    operator: "nennen"
 fallbeispiel:
   situation: |
     Die {{firma}} will herausfinden, welche technischen
