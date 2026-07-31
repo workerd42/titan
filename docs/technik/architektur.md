@@ -57,7 +57,7 @@ Das System nutzt einen **Local-First & Offline-Capable Hybrid-Ansatz**:
                        [ ANTHROPIC CLAUDE API ]
 ```
 
-> **Hinweis (aktualisiert 2026-07-17 — Ist-Stand):** Die folgende Notion-Planung nennt Payload CMS/n8n als Backend. **Real umgesetzt und LIVE ist inzwischen das Phase-2-Fundament:** **Astro-Hybrid (`@astrojs/node`) + Better Auth + Drizzle + self-hosted PostgreSQL**, als **Node+Postgres** containerisiert auf `prototyp-staging.norive.de` (kein nginx-static mehr im Container; Host-nginx nur Reverse-Proxy/TLS). Ein **serverseitiges Login-Gate (invite-only)** + **Admin-Panel/Rollen** sind live. **Payload ist verworfen** — Redaktionssystem wird **Directus** (geplant); n8n/KI-Schicht ist Phase 3 (KI: **formatives Feedback, keine Note** — [ki-governance.md](ki-governance.md)). Maßgeblich: [roadmap.md](roadmap.md), [deployment.md](deployment.md).
+> **Hinweis (aktualisiert 2026-07-17 — Ist-Stand):** Die folgende Notion-Planung nennt Payload CMS/n8n als Backend. **Real umgesetzt und LIVE ist inzwischen das Phase-2-Fundament:** **Astro-Hybrid (`@astrojs/node`) + Better Auth + Drizzle + self-hosted PostgreSQL**, als **Node+Postgres** containerisiert auf `prototyp-staging.norive.de` (kein nginx-static mehr im Container; Host-nginx nur Reverse-Proxy/TLS). Ein **serverseitiges Login-Gate (invite-only)** + **Admin-Panel/Rollen** sind live. **Payload ist verworfen** — Redaktionssystem wird **Directus** (geplant); n8n/KI-Schicht ist Phase 3 (KI: **formatives Feedback, keine Note** — [ki-governance.md](../ki/ki-governance.md)). Maßgeblich: [roadmap.md](../planung/roadmap.md), [deployment.md](deployment.md).
 
 ## 2. Der integrierte Tech-Stack
 

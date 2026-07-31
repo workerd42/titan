@@ -15,7 +15,7 @@ Interaktive Lernplattform (aktuell: Fachwirt Marketing) mit einer Karussell-Navi
 
 ```bash
 npm install
-# Lokales Postgres (einmalig) — siehe docs/spickzettel.md:
+# Lokales Postgres (einmalig) — siehe docs/technik/spickzettel.md:
 docker run -d --name titan-pg-dev -e POSTGRES_USER=titan -e POSTGRES_PASSWORD=titan -e POSTGRES_DB=titan -p 5432:5432 postgres:16-alpine
 cp .env.example .env            # Werte anpassen (BETTER_AUTH_SECRET erzeugen)
 npm run db:migrate              # Schema anlegen
@@ -33,15 +33,15 @@ npm run db:migrate    # Migrationen anwenden
 
 ## Deployment
 
-GitHub (`workerd42/titan`) → VPS: `./deploy.sh` macht `git pull` + `docker compose up -d --build` (baut Astro, startet Node + Postgres, migriert automatisch beim Containerstart). Secrets liegen in einer gitignored `.env` neben `docker-compose.yml` auf dem VPS. Vollständige Anleitung: [docs/deployment.md](docs/deployment.md).
+GitHub (`workerd42/titan`) → VPS: `./deploy.sh` macht `git pull` + `docker compose up -d --build` (baut Astro, startet Node + Postgres, migriert automatisch beim Containerstart). Secrets liegen in einer gitignored `.env` neben `docker-compose.yml` auf dem VPS. Vollständige Anleitung: [docs/technik/deployment.md](docs/technik/deployment.md).
 
 ## Dokumentation
 
 | Datei | Inhalt |
 |---|---|
-| [docs/produktvision.md](docs/produktvision.md) | Leitbild, 4-Phasen-Kompetenzreise, Kompass-System |
-| [docs/architektur.md](docs/architektur.md) | Technische Architektur, Karussell-Engine, Auth/Persistenz |
-| [docs/roadmap.md](docs/roadmap.md) | Phasen 1–4, Stand der Umsetzung |
-| [docs/deployment.md](docs/deployment.md) | VPS/Docker-Setup, Backup/Restore, Stolpersteine |
-| [docs/design-system.md](docs/design-system.md) | Norive Design Tokens, Typografie, Farben |
-| [docs/spickzettel.md](docs/spickzettel.md) | Git/Docker/Deploy-Befehle zum Nachschlagen |
+| [docs/strategie/produktvision.md](docs/strategie/produktvision.md) | Leitbild, 4-Phasen-Kompetenzreise, Kompass-System |
+| [docs/technik/architektur.md](docs/technik/architektur.md) | Technische Architektur, Karussell-Engine, Auth/Persistenz |
+| [docs/planung/roadmap.md](docs/planung/roadmap.md) | Phasen 1–4, Stand der Umsetzung |
+| [docs/technik/deployment.md](docs/technik/deployment.md) | VPS/Docker-Setup, Backup/Restore, Stolpersteine |
+| [docs/technik/design-system.md](docs/technik/design-system.md) | Norive Design Tokens, Typografie, Farben |
+| [docs/technik/spickzettel.md](docs/technik/spickzettel.md) | Git/Docker/Deploy-Befehle zum Nachschlagen |

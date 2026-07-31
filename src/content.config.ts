@@ -50,7 +50,7 @@ const themenSchema = z.object({
   zusammenfassung: z.array(z.string()).optional(),
 
   // Rechtsgrundlagen (optional): eigene Erklärung + Anwendung + amtliche
-  // Quelle. KEINE verbatim Gesetzestexte. Siehe docs/content-richtlinien.md.
+  // Quelle. KEINE verbatim Gesetzestexte. Siehe docs/lernkonzept/content-richtlinien.md.
   gesetze: z.array(z.object({
     norm: z.string(),
     titel: z.string(),
@@ -90,7 +90,7 @@ const themenSchema = z.object({
 
   // ── ÜBEN (Multiple-Choice, optional) ──────────────────
   // Recall-Training (nennen/definieren) — der Aufwärmer, nicht die Prüfung.
-  // Siehe docs/pruefungs-blaupause.md. `richtige` = Index der korrekten Option.
+  // Siehe docs/lernkonzept/pruefungs-blaupause.md. `richtige` = Index der korrekten Option.
   mcFragen: z.array(z.object({
     frage: z.string(),
     optionen: z.array(z.string()).min(2),
@@ -102,7 +102,7 @@ const themenSchema = z.object({
   // ── IHK-TEST-FORMAT (optional) ────────────────────────
   // Bildet die echte Prüfungsstruktur nach: eine betriebliche Situation, dazu
   // Teilaufgaben mit Operator + Punkten + Lösungshinweis (Selbstvergleich).
-  // Blaupause: docs/pruefungs-blaupause.md. Eigenes Titan-Wording.
+  // Blaupause: docs/lernkonzept/pruefungs-blaupause.md. Eigenes Titan-Wording.
   pruefungsaufgabe: z.object({
     situation: z.string(),
     teilaufgaben: z.array(z.object({

@@ -2,7 +2,7 @@
 
 > Visualisiert die Abhängigkeiten aller Konzept-Bausteine. Quelle der Wahrheit ist dieses
 > Mermaid-Diagramm (versionierbar, rendert in GitHub/IDE/Artifact). Konzept:
-> [gesamtkonzept-lernprozess.md](gesamtkonzept-lernprozess.md). **Pfeil A → B = „A wird für B
+> [gesamtkonzept-lernprozess.md](../lernkonzept/gesamtkonzept-lernprozess.md). **Pfeil A → B = „A wird für B
 > gebraucht" (A ist Voraussetzung).** Gepunktet = querschnittlich (misst/testet).
 
 **Legende (Farben):** 🟩 LIVE · 🟨 Content/Redaktion · 🟦 KI Phase 3 · 🟪 Phase 4 (USP/Kosmos) · ⬜ Global · 🟧 Prinzip

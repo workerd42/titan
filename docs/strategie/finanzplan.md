@@ -58,7 +58,7 @@ die Marge geschützt:
 ### 1.2 Fachgespräch-Simulator — Kosten je Gesprächsverlauf (mehrturnig)
 
 > Das **jederzeit auslösbare Fachgespräch** (agile Feedback-Schleife, siehe
-> [gesamtkonzept-lernprozess.md](gesamtkonzept-lernprozess.md) §5) ist mehrturnig →
+> [gesamtkonzept-lernprozess.md](../lernkonzept/gesamtkonzept-lernprozess.md) §5) ist mehrturnig →
 > teurer als eine Einzelaktion. Annahme: gecachter Kontext (System-Prompt +
 > Star-Company + Bewertungskriterien ≈ 3 k Tokens, Cache-Read ≈ 0,1× Input).
 
@@ -111,7 +111,7 @@ Gründung/Recht ~7 k, Puffer ~7 k → ~200 k).
 - **Umsatz, Preise, Kapitalbedarf, Umsatzprognose, Break-even:**
   [businessplan.md](businessplan.md) → Finanzen.
 - **KI-Rahmen (niedrigrisiko, Kontingent-Logik unterstützt Datensparsamkeit):**
-  [ki-governance.md](ki-governance.md).
+  [ki-governance.md](../ki/ki-governance.md).
 
 *Alle Annahmen als solche gekennzeichnet; Token-Mengen und Anbieterpreise vor
 Finalisierung gegenprüfen.*

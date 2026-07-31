@@ -3,7 +3,7 @@
 > **Single Source of Truth** für den pädagogischen Kern, den Wert und die technische Vision
 > von Titan. Adressaten: Team, Bildungspartner, Stakeholder/Investoren.
 > Bezug zur Umsetzung: [gesamtkonzept-lernprozess.md](gesamtkonzept-lernprozess.md) ·
-> [ki-governance.md](ki-governance.md) · [roadmap.md](roadmap.md) ·
+> [ki-governance.md](../ki/ki-governance.md) · [roadmap.md](../planung/roadmap.md) ·
 > [interaktive-module.md](interaktive-module.md).
 
 ---
@@ -64,7 +64,7 @@ Fragen stellt statt Antworten zu liefern.
 
 ## 1.4 Kritischer Rahmen — „Scaffolded PBL", nicht reines PBL
 
-> **Ehrliche Leitplanke, kein Kleingedrucktes.** *Reines* entdeckendes PBL ist für Novizen
+> **Leitplanke, kein Kleingedrucktes.** *Reines* entdeckendes PBL ist für Novizen
 > nachweislich riskant (Kirschner/Sweller/Clark, 2006): ohne Vorwissen fehlt das Gerüst, um
 > ein offenes Problem zu strukturieren → Überforderung.
 
@@ -73,7 +73,7 @@ Titan setzt daher **geführtes, gestütztes PBL**:
    bevor *Anwenden* zur Szenario-Exploration wird.
 2. **Abbaubare Stütze (Fading).** Stützräder werden entfernt, sobald Kompetenz wächst.
 3. **Beraten statt blockieren.** Der Tutor führt und stützt — **er benotet und sperrt nicht**
-   (siehe [ki-governance.md](ki-governance.md): *formatives Feedback ohne Note*).
+   (siehe [ki-governance.md](../ki/ki-governance.md): *formatives Feedback ohne Note*).
 4. **Immer an der IHK verankert.** Jedes Problem ist einem Handlungsbereich + einer
    Prüfungskompetenz zugeordnet — Exploration driftet nicht ins Beliebige.
 

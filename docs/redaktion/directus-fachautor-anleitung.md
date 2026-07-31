@@ -52,7 +52,7 @@ Das Feld **Status** steuert, ob ein Thema live geht:
 
 Bei **Rechtsgrundlagen** (Gesetze) **keine wörtlichen Gesetzestexte** kopieren. Stattdessen:
 **eigene Erklärung + Anwendungsbeispiel + Link zur amtlichen Quelle**
-(z. B. gesetze-im-internet.de). Details: [content-richtlinien.md](content-richtlinien.md).
+(z. B. gesetze-im-internet.de). Details: [content-richtlinien.md](../lernkonzept/content-richtlinien.md).
 
 ## Nach dem Speichern
 

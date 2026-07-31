@@ -2,7 +2,7 @@
 
 > Quelle: [Notion — Produktvision & Konzept](https://app.notion.com/p/39895f8eb37681a98d36f6779d88af35) (Stand: 2026-07-09)
 
-> **Aktualisierung (2026-07-17):** Dieses Dokument beschreibt die **Vision**. Der real umgesetzte Stack weicht bewusst ab: **Better Auth + Drizzle + self-hosted Postgres** (Fundament **live**, Phase 2), **Directus** (statt Payload CMS) als geplantes Redaktionssystem, n8n self-hosted **EU/DE**. Das echte Login-Gate ist live (invite-only). Die KI gibt **formatives Feedback (keine Note)** — siehe [ki-governance.md](ki-governance.md). Maßgeblich für den Ist-Stand: [architektur.md](architektur.md), [roadmap.md](roadmap.md), [deployment.md](deployment.md).
+> **Aktualisierung (2026-07-17):** Dieses Dokument beschreibt die **Vision**. Der real umgesetzte Stack weicht bewusst ab: **Better Auth + Drizzle + self-hosted Postgres** (Fundament **live**, Phase 2), **Directus** (statt Payload CMS) als geplantes Redaktionssystem, n8n self-hosted **EU/DE**. Das echte Login-Gate ist live (invite-only). Die KI gibt **formatives Feedback (keine Note)** — siehe [ki-governance.md](../ki/ki-governance.md). Maßgeblich für den Ist-Stand: [architektur.md](../technik/architektur.md), [roadmap.md](../planung/roadmap.md), [deployment.md](../technik/deployment.md).
 
 > **"Vom trägen Auswendiglernen zum strategischen Handeln."**
 > Ein universelles, kontextbasiertes Kompetenzsystem für IHK-Fachwirte.
@@ -35,7 +35,7 @@ Lerner konsumieren nicht nur Wissen, sondern erarbeiten Schritt für Schritt ihr
 
 ### Navigations-Dynamics
 
-> **Umgesetzt (Frontend-Rework 2026-07-14):** Die ursprüngliche Orbit-Drag-Idee wurde durch eine **Karussell-Navigation** ersetzt (siehe [architektur.md](architektur.md) §4). Das Folgende beschreibt den aktuellen Stand.
+> **Umgesetzt (Frontend-Rework 2026-07-14):** Die ursprüngliche Orbit-Drag-Idee wurde durch eine **Karussell-Navigation** ersetzt (siehe [architektur.md](../technik/architektur.md) §4). Das Folgende beschreibt den aktuellen Stand.
 
 - **Universum & Galaxie (Seite 1+2):** horizontales 3D-Rotations-Karussell — ausgewähltes Element vorne-unten (groß), Nachbarn kleiner/blasser nach hinten, Caption mittig, endlose Rotation. Steuerung per Pfeilen/Tastatur/Swipe/Klick auf Nachbar; Navigation nur per CTA.
 - **Planeten (Seite 3):** vertikales Karussell — ausgewählter Planet größer mittig, Nachbarn oben/unten weich auslaufend, Info-Panel rechts.

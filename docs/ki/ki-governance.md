@@ -19,7 +19,7 @@
 **Zum jetzigen Zeitpunkt ist KEINE KI produktiv im Einsatz.** Die Lernplattform
 arbeitet mit vom Menschen erstellten Inhalten und – für die Personalisierung auf
 das „Star-Company" – mit **rein lokaler, offline arbeitender
-Textersetzung** (`{{platzhalter}}`, siehe [architektur.md](./architektur.md)),
+Textersetzung** (`{{platzhalter}}`, siehe [architektur.md](../technik/architektur.md)),
 also ohne jedes KI-Modell.
 
 Dieses Dokument beschreibt die **geplante** KI-Schicht als **Governance- und
@@ -154,7 +154,7 @@ Transparenzpflichten – vor jedem KI-Livegang umzusetzen.
   Lerner-/Dozentendaten. Damit ist der sensibelste DSGVO-Pfad von vornherein
   vermieden.
 - **EU/Deutschland-Pflicht:** Alle datenverarbeitenden Dienste liegen in
-  EU/Deutschland (stehende Projektvorgabe – siehe [deployment.md](./deployment.md)).
+  EU/Deutschland (stehende Projektvorgabe – siehe [deployment.md](../technik/deployment.md)).
   n8n wird **self-hosted** betrieben; ein etwaiges LLM ist EU-gehostet bzw. über
   einen Anbieter mit EU-Verarbeitung und Auftragsverarbeitungsvertrag (AVV)
   anzubinden.
@@ -205,5 +205,5 @@ IHK-Zusammenarbeit).
 
 ---
 
-*Verweise: [produktvision.md](./produktvision.md) · [architektur.md](./architektur.md) ·
-[roadmap.md](./roadmap.md) · [lastenheft.md](./lastenheft.md) (KI-Anforderungen).*
+*Verweise: [produktvision.md](../strategie/produktvision.md) · [architektur.md](../technik/architektur.md) ·
+[roadmap.md](../planung/roadmap.md) · [lastenheft.md](../planung/lastenheft.md) (KI-Anforderungen).*

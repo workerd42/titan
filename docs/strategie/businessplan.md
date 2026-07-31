@@ -99,7 +99,7 @@ Nutzwertanalyse), **Übungsbereich**, **IHK-Testformat** und **Lernzettel**
 |---|---|
 | Einzigartiger **Orientierungs- + Präsentations-Wedge**; hohe Produkt-/UX-Qualität; **adaptierbarer Kern-Lernstoff** (nur Spezialisierungen je Fachwirt neu); schlanke, EU-konforme Kostenbasis; skalierbare Engine/Content-Trennung | Start mit **vier Fachwirt-Kursen** (fokussierte Ausgangslage); fachliche **Spezialisierungen je Fachwirt** müssen geliefert/gepflegt werden; noch keine Zahlungsstrecke/Marktvalidierung; 📝 Team-/Vertriebsressourcen (ergänzen) |
 | **Chancen** | **Risiken** |
-| Weitere Fachwirte; **Ausweitung auf andere Zielgruppen** (z. B. kaufmännische Ausbildung als Lernhilfe); B2B-Lizenzierung an Bildungsträger; **Aufstiegs-BAföG-getriebene Nachfrage**; KI-gestützte Fall-Varianten als Differenzierer | Wettbewerb durch etablierte Verlage/Lehrgangsanbieter; Abhängigkeit von Content-Qualität; IHK-Rahmenplan-Änderungen (**mit jahrelangem Vorlauf → gut beherrschbar**); Regulatorik (DSGVO/EU-AI-Act — [ki-governance.md](ki-governance.md)) |
+| Weitere Fachwirte; **Ausweitung auf andere Zielgruppen** (z. B. kaufmännische Ausbildung als Lernhilfe); B2B-Lizenzierung an Bildungsträger; **Aufstiegs-BAföG-getriebene Nachfrage**; KI-gestützte Fall-Varianten als Differenzierer | Wettbewerb durch etablierte Verlage/Lehrgangsanbieter; Abhängigkeit von Content-Qualität; IHK-Rahmenplan-Änderungen (**mit jahrelangem Vorlauf → gut beherrschbar**); Regulatorik (DSGVO/EU-AI-Act — [ki-governance.md](../ki/ki-governance.md)) |
 
 ---
 
@@ -210,7 +210,7 @@ Hoheit). 📝 *Bei Bedarf um persönliche Gründungswerte ergänzen.*
 - **Fachautor:innen/Dozent:innen** für Content-Qualität und Aktualität.
 - **Infrastruktur/Dienstleister (EU/DE):** VPS (IONOS), Off-site-Backup (Hetzner),
   Transaktionsmail (Brevo/FR), ggf. Monitoring (Better Stack/CZ), KI-Modell
-  EU-konform. (Anbietergrundsatz: Datenkontakt nur EU/DE — [deployment.md](deployment.md).)
+  EU-konform. (Anbietergrundsatz: Datenkontakt nur EU/DE — [deployment.md](../technik/deployment.md).)
 - 📝 *Konkrete Kontakte/Absichtserklärungen ergänzen, falls vorhanden.*
 
 ---
@@ -246,7 +246,7 @@ Matching) — im Finanzteil berücksichtigt.
     Cookie-Banner nötig), alle Datendienste EU/DE, Auftragsverarbeitung wo nötig.
   - **EU AI Act:** bewusst **niedrigrisiko** ausgelegt (KI erzeugt nur
     Aufgaben-Varianten, bewertet nie) — vollständige Einordnung und Pflichten in
-    **[ki-governance.md](ki-governance.md)**. Formale Einstufung/DPIA vor
+    **[ki-governance.md](../ki/ki-governance.md)**. Formale Einstufung/DPIA vor
     KI-Livegang juristisch bestätigen lassen.
 
 ### Risiken — Was könnte die Entwicklung behindern?
@@ -258,7 +258,7 @@ Matching) — im Finanzteil berücksichtigt.
 | Stärkerer Wettbewerb als erwartet | Verteidigung über Content-Tiefe + einzigartigen Präsentations-Wedge + UX |
 | Content-Pflege / IHK-Rahmenplan-Änderungen | Kern adaptierbar (nur Spezialisierungen je Fachwirt neu); IHK-Änderungen kommen mit **jahrelangem Vorlauf** → genug Anpassungszeit; Engine/Content-Trennung + Fachautor-Partner + Redaktionssystem (Directus geplant) |
 | IHK-Konformität: uniforme Präsentationen könnten den Prüfungsausschüssen auffallen | **Struktureller Schutz vor Uniformität:** jede:r Lerner:in arbeitet am **eigenen fiktiven Star-Company** (andere Branche/Name/Zahlen) + KI erzeugt **hohe Varianz** in Fallstellungen → individuelle Ergebnisse statt Schablone. Das **formative Feedback fördert eigenes Denken** (kein Copy-Paste). Titan **verhindert** Plagiate, statt sie zu erzeugen — ein Verkaufsargument gegenüber IHK/Trägern. |
-| Regulatorik (DSGVO/EU-AI-Act) | Compliance-by-Design ([ki-governance.md](ki-governance.md)) + juristische Bestätigung |
+| Regulatorik (DSGVO/EU-AI-Act) | Compliance-by-Design ([ki-governance.md](../ki/ki-governance.md)) + juristische Bestätigung |
 | Abhängigkeit von KI-/Infra-Anbietern | EU/DE-Anbietergrundsatz, self-hosting, Austauschbarkeit der Modelle |
 | Abhängigkeit vom Kooperationspartner (Netzwerk/Fachtiefe) | Kooperation vertraglich absichern (Rollen/Vergütung/Exklusivität/IP); Fachautoren-Basis verbreitern |
 | **KI-API-Kosten** laufen bei Vielnutzern aus dem Ruder (fixes Abo) | **Inklusiv-Kontingent pro Abo** + Drosselung/Nachbuchung; günstigeres Modell (Haiku) für einfache Aktionen; Prompt-Caching ([finanzplan.md](finanzplan.md)) |
@@ -402,9 +402,9 @@ weitere Kurs/Abo hat sehr hohe Marge.
 ## Anhang
 
 - **[produktvision.md](produktvision.md)** — ausführliche Produkt-/UX-Vision
-- **[ki-governance.md](ki-governance.md)** — EU-AI-Act-/DSGVO-Einordnung
-- **[roadmap.md](roadmap.md)** — Umsetzungsstand & Ausbau
-- **[lastenheft.md](lastenheft.md)** — Anforderungen
+- **[ki-governance.md](../ki/ki-governance.md)** — EU-AI-Act-/DSGVO-Einordnung
+- **[roadmap.md](../planung/roadmap.md)** — Umsetzungsstand & Ausbau
+- **[lastenheft.md](../planung/lastenheft.md)** — Anforderungen
 - **[finanzplan.md](finanzplan.md)** — granularer Kosten-/KI-API-Detailplan
 - **[marketing-konzept.md](marketing-konzept.md)** — Marketing-/Vertriebskonzept
 - 📝 *Ergänzen:* Finanz-Tabellen, Lebensläufe/Qualifikationsnachweise, Referenzen.

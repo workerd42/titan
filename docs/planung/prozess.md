@@ -1,9 +1,9 @@
 # Titan — Prozessbeschreibung (Wie alles zusammenspielt)
 
 > Zweck: ein gemeinsames Verständnis, **wie Titan funktioniert** — für Team,
-> Partner, Dozenten und Investoren. Verweise: [produktvision.md](produktvision.md) ·
-> [rollen-rechte.md](rollen-rechte.md) · [ki-governance.md](ki-governance.md) ·
-> [architektur.md](architektur.md).
+> Partner, Dozenten und Investoren. Verweise: [produktvision.md](../strategie/produktvision.md) ·
+> [rollen-rechte.md](../technik/rollen-rechte.md) · [ki-governance.md](../ki/ki-governance.md) ·
+> [architektur.md](../technik/architektur.md).
 
 ## 1. Der rote Faden (das Herzstück)
 
@@ -40,7 +40,7 @@ IHK-Test · Lernzettel** (die fünf Modi).
 ```
 
 - **Kein offener Self-Signup** — Accounts entstehen im Admin-Panel bzw. (B2B) durch
-  den Org-Admin. Inhalte sind **serverseitig hinter Login** ([rollen-rechte.md](rollen-rechte.md)).
+  den Org-Admin. Inhalte sind **serverseitig hinter Login** ([rollen-rechte.md](../technik/rollen-rechte.md)).
 - **Local-First:** Fortschritt liegt sofort lokal; mit Konto wird er
   geräteübergreifend synchronisiert.
 
@@ -54,7 +54,7 @@ IHK-Test · Lernzettel** (die fünf Modi).
 | **Platform-Admin** | Betrieb, Nutzer-/Rollenverwaltung, Content-Freigabe |
 | **Fachautor** | pflegt/aktualisiert Inhalte (geplant über Directus) |
 
-Details: [rollen-rechte.md](rollen-rechte.md).
+Details: [rollen-rechte.md](../technik/rollen-rechte.md).
 
 ## 5. Content-Prozess (Skalierung)
 
@@ -77,12 +77,12 @@ Fachwirte (und später andere Zielgruppen) ohne Code-Änderung ausrollbar.
 ```
 
 Verbindlicher Rahmen (Transparenz, keine Benotung, keine Personendaten, EU-Hosting):
-[ki-governance.md](ki-governance.md).
+[ki-governance.md](../ki/ki-governance.md).
 
 ## 7. Betriebs- & Absicherungs-Prozess
 
 - **Deploy:** lokal push → VPS `./deploy.sh` (git pull + `docker compose up -d
-  --build`; Migrationen laufen automatisch). Details: [deployment.md](deployment.md).
+  --build`; Migrationen laufen automatisch). Details: [deployment.md](../technik/deployment.md).
 - **Backup:** verschlüsselt, EU/DE (Off-site Hetzner geplant).
 - **Nach jeder Sitzung:** committen/pushen + Stand ins Gedächtnis + **Doku-Abgleich
   VSCode ↔ Notion ↔ GitHub**.
@@ -94,4 +94,4 @@ Verbindlicher Rahmen (Transparenz, keine Benotung, keine Personendaten, EU-Hosti
    →  Lerner bestehen besser + haben fertige Präsentation  →  Referenz  →  weitere Träger
 ```
 
-Details: [businessplan.md](businessplan.md), [marketing-konzept.md](marketing-konzept.md).
+Details: [businessplan.md](../strategie/businessplan.md), [marketing-konzept.md](../strategie/marketing-konzept.md).

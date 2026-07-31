@@ -2,8 +2,8 @@
 
 > Anforderungen an das Produkt (was es leisten muss, nicht wie).
 > **Status je Anforderung:** ✅ umgesetzt · ◐ teilweise · 🔜 geplant.
-> Verweise: [produktvision.md](produktvision.md) · [architektur.md](architektur.md) ·
-> [ki-governance.md](ki-governance.md) · [businessplan.md](businessplan.md) ·
+> Verweise: [produktvision.md](../strategie/produktvision.md) · [architektur.md](../technik/architektur.md) ·
+> [ki-governance.md](../ki/ki-governance.md) · [businessplan.md](../strategie/businessplan.md) ·
 > [roadmap.md](roadmap.md).
 
 ---
@@ -21,7 +21,7 @@ zu einem Präsentations-Deck; Fortschritts-Speicherung pro Konto; Betrieb
 DSGVO-konform in EU/Deutschland.
 
 **Abgrenzung (nicht Teil des Produkts):** keine automatisierte Benotung/Bewertung
-von Lernenden durch KI (siehe [ki-governance.md](ki-governance.md)); keine
+von Lernenden durch KI (siehe [ki-governance.md](../ki/ki-governance.md)); keine
 Terminverwaltung/Abrechnung von Lehrgängen; kein Ersatz für die IHK-Prüfung selbst.
 
 ---
@@ -119,7 +119,7 @@ Terminverwaltung/Abrechnung von Lehrgängen; kein Ersatz für die IHK-Prüfung s
 - **/LF090/** KI erzeugt **Aufgaben-/Fallvarianten** aus dem Dozenten-Master **und
   gibt formatives, inhaltliches Feedback** zu Freitext-Falllösungen — **ohne
   Note/Score**, ohne prüfungsrelevante Entscheidung. 🔜
-  → Rahmen verbindlich in [ki-governance.md](ki-governance.md).
+  → Rahmen verbindlich in [ki-governance.md](../ki/ki-governance.md).
 - **/LF091/** n8n-Agenten mit fiktivem Rollenprofil + gebundenem Master
   (Halluzinations-Vermeidung); keine personenbezogenen Daten. 🔜
 - **/LF092/** KI-generierte Inhalte werden **als solche gekennzeichnet** und sind
@@ -148,7 +148,7 @@ Terminverwaltung/Abrechnung von Lehrgängen; kein Ersatz für die IHK-Prüfung s
 ### 5.2 Rechtskonformität (EU AI Act)
 - **/NF020/** KI-Einsatz bleibt **außerhalb Hochrisiko** (keine Bewertung/
   Zugangsentscheidung durch KI); Transparenzpflichten erfüllt. 🔜/Design
-  → [ki-governance.md](ki-governance.md).
+  → [ki-governance.md](../ki/ki-governance.md).
 
 ### 5.3 Barrierefreiheit
 - **/NF030/** WCAG 2.1 AA; verifiziert (0 axe-Verstöße). ✅
@@ -157,7 +157,7 @@ Terminverwaltung/Abrechnung von Lehrgängen; kein Ersatz für die IHK-Prüfung s
 
 ### 5.4 UX & Design
 - **/NF040/** Ruhiges, organisches „Kosmos"-Erlebnis; Animationen langsam/weich
-  (siehe [design-system.md](design-system.md)). ✅
+  (siehe [design-system.md](../technik/design-system.md)). ✅
 - **/NF041/** Responsive (Desktop + Mobil; auch Ultrawide). ✅
 - **/NF042/** Schnelle Auslieferung (statische Inhalte vorgerendert, wo möglich). ◐
   (durch das Login-Gate sind Lernseiten on-demand; Optimierung möglich)

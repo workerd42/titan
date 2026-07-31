@@ -2,7 +2,7 @@
 
 > Directus ist das **Redaktionssystem für Fachautoren** (Roadmap 2.6 / EPIC-13). Diese
 > Anleitung beschreibt die **lokale** Instanz zum Vorbereiten/Testen und die **Schnittstelle**
-> zu Titan. Konzept-Bezug: [gesamtkonzept-lernprozess.md](gesamtkonzept-lernprozess.md) §7
+> zu Titan. Konzept-Bezug: [gesamtkonzept-lernprozess.md](../lernkonzept/gesamtkonzept-lernprozess.md) §7
 > („Redaktionssystem-Integration").
 
 ## 1. Lokale Instanz (Docker)
@@ -29,7 +29,7 @@ docker compose -f docker-compose.directus.yml down -v
 
 > ⚠️ **Nur lokal.** Die Secrets in `docker-compose.directus.yml` sind Dev-Defaults. Die
 > Produktions-Instanz kommt später als eigener, abgesicherter Service (eigene Sub-Domain im
-> Norive-Ökosystem, echte Secrets, hinter Host-nginx) — siehe [deployment.md](deployment.md).
+> Norive-Ökosystem, echte Secrets, hinter Host-nginx) — siehe [deployment.md](../technik/deployment.md).
 >
 > **Betrieb (festgelegt):** Directus wird vom **Gründer selbst gehostet** (er ist **Admin**) und
 > **auf den eigenen Server gehoben, sobald das System lokal steht**. Der lokale Stack hier ist die
@@ -75,8 +75,8 @@ live zu gehen).
 - **Pflichtfelder**, **Dropdowns** (Handlungsbereich, Werkzeug, **Status „In Bearbeitung/Publikation-Frei"**),
   Defaults (Status=draft, Wiederholung=4), **Feld-Hinweise** (u. a. Urheberrecht bei Gesetzen).
 - **Deutsche Oberfläche** + saubere Feld-Labels (Übersetzungen).
-- **Schema versioniert** im Repo: [`directus/schema-snapshot.json`](../directus/schema-snapshot.json)
-  (+ [`directus/README.md`](../directus/README.md) — Snapshot/Apply). Test-Thema entfernt; nur das
+- **Schema versioniert** im Repo: [`directus/schema-snapshot.json`](../../directus/schema-snapshot.json)
+  (+ [`directus/README.md`](../../directus/README.md) — Snapshot/Apply). Test-Thema entfernt; nur das
   echte KPI-Thema bleibt.
 - `rechenbeispiel` bleibt bewusst JSON (selten/fortgeschritten).
 
@@ -84,7 +84,7 @@ live zu gehen).
 4. **Auto-Deploy** (Webhook → Build → Ausrollen) — der eigentliche Aufwand (Roadmap 2.6).
 5. **Fachwirt-PDFs strukturieren** — einmalig pro Fachwirt in die Collection überführen
    (nicht 1:1 nutzbar; pro Thema/Feld), in **eigenem Titan-Wording**
-   ([content-richtlinien.md](content-richtlinien.md)).
+   ([content-richtlinien.md](../lernkonzept/content-richtlinien.md)).
 **🔁 Render-Kreislauf prototypisiert (2026-07-27):** Route `src/pages/cms-vorschau/[slug].astro`
 (prerender=false, hinter dem Login-Gate) rendert ein Thema **live aus `themenCms` (Directus)** statt
 aus Markdown — schlanke Inhaltsvorschau (Verstehen/Merksatz/Begriffe/Fallbeispiel/Prüfen), Body via

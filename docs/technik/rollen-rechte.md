@@ -3,7 +3,7 @@
 > Vollständige Berechtigungsübersicht für Titan. Rollen kommen aus dem
 > Better-Auth-Admin-Plugin (`src/lib/rollen.ts` / `src/lib/rollen-ac.ts`), das
 > Gate aus `src/middleware.ts`. Status: ✅ umgesetzt · 🔜 geplant.
-> Siehe auch [admin-panel.md](admin-panel.md), [lastenheft.md](lastenheft.md).
+> Siehe auch [admin-panel.md](admin-panel.md), [lastenheft.md](../planung/lastenheft.md).
 
 ## Die Rollen
 
@@ -60,4 +60,4 @@ Zwei Schichten (Seiten-Gate + API-Autorisierung) — Defense-in-Depth.
 Der B2B-Weg (Organisationen/Bildungsträger) nutzt perspektivisch das Better-Auth
 **Organization-Modell**: Org-Admin provisioniert Lerner seiner Organisation,
 Dozent sieht deren Fortschritt im Cockpit — Abrechnung pro Kurs
-(siehe [businessplan.md](businessplan.md), [roadmap.md](roadmap.md)).
+(siehe [businessplan.md](../strategie/businessplan.md), [roadmap.md](../planung/roadmap.md)).

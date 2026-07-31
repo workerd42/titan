@@ -3,7 +3,7 @@
 > Go-to-Market in zwei Wellen: **zuerst B2B** (warmer Partner-Kanal zu
 > Bildungsträgern), **dann B2C** (Prüflinge über SEO/Content, Social Media &
 > Performance-Ads). Verweise: [businessplan.md](businessplan.md) ·
-> [produktvision.md](produktvision.md) · [ki-governance.md](ki-governance.md).
+> [produktvision.md](produktvision.md) · [ki-governance.md](../ki/ki-governance.md).
 
 ---
 
@@ -49,7 +49,7 @@ Unternehmen."*
 - Ehrlich positioniert: **komplementär** zu Drill-Apps, nicht deren Klon.
 
 **Markenwelt:** ruhiges, hochwertiges „Kosmos"-Erlebnis (siehe
-[design-system.md](design-system.md)) — Ruhe/Klarheit als Gegenentwurf zu
+[design-system.md](../technik/design-system.md)) — Ruhe/Klarheit als Gegenentwurf zu
 überladenen Lern-Apps. Umsetzung von Brand, Landingpage & Kreativ mit **externem
 Designer** (Budget im Businessplan hinterlegt).
 
@@ -134,7 +134,7 @@ Schwerpunkt bewusst Content statt teurer Ads.)*
 - **Ehrliche Claims:** keine „Bestehensgarantie" — werben mit Orientierung,
   Struktur, prüfungsnahem Üben und dem fertigen Deck.
 - **KI-Transparenz:** KI-generierte Inhalte werden gekennzeichnet
-  ([ki-governance.md](ki-governance.md)).
+  ([ki-governance.md](../ki/ki-governance.md)).
 - **DSGVO:** die App bleibt **cookie-banner-frei** (nur Session-Cookie); auf der
   Marketing-Website nur **datenschutzfreundliche, EU-konforme** Analyse/Tools;
   E-Mail-Marketing mit Double-Opt-in (Brevo, EU).

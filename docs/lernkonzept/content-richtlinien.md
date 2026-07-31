@@ -22,7 +22,7 @@ Prüfungskontext** und **verlinken den amtlichen Wortlaut**.
 - **Didaktischer Mehrwert = Verkaufsargument.** Der Lernende versteht, *wie* die
   Norm in der IHK-Prüfung angewendet wird — nicht nur, *dass* es sie gibt.
 - **Roter Faden:** Das Anwendungsbeispiel bezieht sich möglichst auf das
-  **Star-Company** des Lernenden ([produktvision.md](produktvision.md)).
+  **Star-Company** des Lernenden ([produktvision.md](../strategie/produktvision.md)).
 - **Rechtlich robust.** Amtliche Gesetzestexte sind zwar nach **§ 5 UrhG
   gemeinfrei** (ein Verbatim-Zitat wäre also nicht per se verboten) — Treiber ist
   hier der **Mehrwert + Konsistenz**, nicht bloß das Urheberrecht. **Verlags­kom­men­tierungen
@@ -34,7 +34,7 @@ Prüfungskontext** und **verlinken den amtlichen Wortlaut**.
 ### Umsetzung im Code (bereits gebaut)
 
 Optionales Frontmatter-Feld `gesetze` in den Themen-Markdown-Dateien
-([src/content.config.ts](../src/content.config.ts)); gerendert als ausklappbare
+([src/content.config.ts](../../src/content.config.ts)); gerendert als ausklappbare
 **§-Karten** (native `<details>` → zero-JS, tastaturbedienbar, `prefers-reduced-motion`-safe,
 Norive-Tokens hell/dunkel) in der Phase „Verstehen".
 
@@ -50,7 +50,7 @@ gesetze:
 ```
 
 **Referenz-Beispiel im Repo:**
-[src/content/themen/hb4-arbeitsschutz/02-gefaehrdungsbeurteilung.md](../src/content/themen/hb4-arbeitsschutz/02-gefaehrdungsbeurteilung.md)
+[src/content/themen/hb4-arbeitsschutz/02-gefaehrdungsbeurteilung.md](../../src/content/themen/hb4-arbeitsschutz/02-gefaehrdungsbeurteilung.md)
 (§ 5 + § 13 ArbSchG).
 
 📝 *Offen (Rollout):* Feld auf die übrigen paragraphenlastigen Themen anwenden;

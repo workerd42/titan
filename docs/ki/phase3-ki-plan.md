@@ -1,9 +1,9 @@
 # Titan — Phase 3 (KI): Plan zu Kosten, Risiken & Umsetzung
 
 > **Zweck:** Bevor eine Zeile KI-Code entsteht — ein klarer, strukturierter Plan, damit
-> wir nicht „ins offene Messer laufen". Bezug: [pbl-konzept-pitch.md](pbl-konzept-pitch.md),
-> [ki-governance.md](ki-governance.md), [gesamtkonzept-lernprozess.md](gesamtkonzept-lernprozess.md) §6,
-> [roadmap.md](roadmap.md) Phase 3.
+> wir nicht „ins offene Messer laufen". Bezug: [pbl-konzept-pitch.md](../lernkonzept/pbl-konzept-pitch.md),
+> [ki-governance.md](ki-governance.md), [gesamtkonzept-lernprozess.md](../lernkonzept/gesamtkonzept-lernprozess.md) §6,
+> [roadmap.md](../planung/roadmap.md) Phase 3.
 >
 > Preise: Stand der Claude-Modell-Tabelle 2026-06 (vor Umsetzung final gegenprüfen).
 

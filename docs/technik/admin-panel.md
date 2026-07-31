@@ -12,8 +12,8 @@ Erreichbar unter `/admin` — ausschließlich für die Rolle `platform-admin`.
 | `dozent` | sieht Fortschritt zugeordneter Lerner (Dozenten-Cockpit, folgt) | ❌ |
 | `lerner` | Standard für neue Registrierungen | ❌ |
 
-Definiert in [src/lib/rollen.ts](../src/lib/rollen.ts) (Labels) und
-[src/lib/rollen-ac.ts](../src/lib/rollen-ac.ts) (Access-Control-Rechte).
+Definiert in [src/lib/rollen.ts](../../src/lib/rollen.ts) (Labels) und
+[src/lib/rollen-ac.ts](../../src/lib/rollen-ac.ts) (Access-Control-Rechte).
 Die Rollen sind im Panel jederzeit änderbar.
 
 ## Funktionsumfang
@@ -27,7 +27,7 @@ Die eigene Zeile ist geschützt: eigene Rolle nicht änderbar, kein Selbst-Sperr
 
 ## Sicherheit (zwei Schichten)
 
-1. **Seiten-Gate** ([src/pages/admin.astro](../src/pages/admin.astro), `prerender = false`):
+1. **Seiten-Gate** ([src/pages/admin.astro](../../src/pages/admin.astro), `prerender = false`):
    rendert das Panel nur bei `Astro.locals.user?.role === 'platform-admin'`,
    sonst eine „Kein Zugriff"-Ansicht.
 2. **API-Autorisierung**: jeder `authClient.admin.*`-Aufruf wird serverseitig
@@ -39,7 +39,7 @@ Die eigene Zeile ist geschützt: eigene Rolle nicht änderbar, kein Selbst-Sperr
 
 Die öffentliche Registrierung ist **invite-only** (`disableSignUp`), deshalb kann
 sich auf einer frischen DB niemand selbst als erster Admin anlegen. Dafür gibt es
-[scripts/bootstrap-admin.mjs](../scripts/bootstrap-admin.mjs) — legt den ersten
+[scripts/bootstrap-admin.mjs](../../scripts/bootstrap-admin.mjs) — legt den ersten
 Admin direkt mit Better-Auths Passwort-Hashing an (login-kompatibel), idempotent.
 Bewusst `.mjs` mit rohem SQL, damit es unverändert auch im schlanken Prod-Image
 läuft (nur Prod-Deps `pg` + `better-auth`).
@@ -65,6 +65,6 @@ normal unter `/konto` einloggen — alle weiteren Accounts und Rollen (z. B. ein
 
 ## Datenmodell
 
-Das Admin-Plugin ergänzt in [src/lib/db/schema.ts](../src/lib/db/schema.ts):
+Das Admin-Plugin ergänzt in [src/lib/db/schema.ts](../../src/lib/db/schema.ts):
 `user.role`, `user.banned`, `user.banReason`, `user.banExpires` und
 `session.impersonatedBy`. Migration: `drizzle/0001_sad_jackal.sql`.

@@ -2,9 +2,9 @@
 
 > Konzept-Landkarte des End-to-End-Lernwegs — von der Zertifizierung bis zur
 > fertigen IHK-Präsentation. Stand 2026-07-24 · **zur Prüfung**. Verweist auf
-> [produktvision.md](produktvision.md), [interaktive-module.md](interaktive-module.md),
-> [ki-governance.md](ki-governance.md), [content-richtlinien.md](content-richtlinien.md),
-> [roadmap.md](roadmap.md). Grundlage Deck-Teil: `docs/Module-Präsi/10 Training
+> [produktvision.md](../strategie/produktvision.md), [interaktive-module.md](interaktive-module.md),
+> [ki-governance.md](../ki/ki-governance.md), [content-richtlinien.md](content-richtlinien.md),
+> [roadmap.md](../planung/roadmap.md). Grundlage Deck-Teil: `docs/Module-Präsi/10 Training
 > Fachgespräch.pdf`.
 
 ---
@@ -81,7 +81,7 @@ gesammelt) **+ Textlabel „X/Y"** (barrierefrei — nicht nur Farbe; der Ring-G
 rot→gold, aber die **Zahl** trägt die Info). **Optional:** Prüfungsdatum-**Countdown**, sobald ein
 Datum gesetzt ist. **Sternbild** (aufleuchtende Sterne) = **Phase 4.2** (Ausbaustufe). **Wichtig:
 Phase-4-Ziel ist NASA-„Eyes"-Qualität** — die Launch-Anzeige soll dort in echtes WebGL-Niveau
-wachsen (siehe [roadmap.md](roadmap.md) 4.2, V2-Konzept im Figma).
+wachsen (siehe [roadmap.md](../planung/roadmap.md) 4.2, V2-Konzept im Figma).
 
 **Satellit in der Umlaufbahn (Phase 4):** Der HB-Trainingsraum-Satellit (§4) soll — mit
 Blick auf Phase 4 — **in der Umlaufbahn mitschweben** (WebGL: umkreist das Handlungsfeld).
@@ -192,7 +192,7 @@ startklar bin ich für die Präsentation dieses HB?", keine Vanity-Zahlen):
 
 > Grundlage: die Fachgespräch-Schulung (`docs/Module-Präsi/…`). **Leitprinzip: der
 > Schüler denkt selbst mit — die KI assistiert, entscheidet aber nicht.** (Passt zum
-> formativen Feedback ohne Note, [ki-governance.md](ki-governance.md).)
+> formativen Feedback ohne Note, [ki-governance.md](../ki/ki-governance.md).)
 
 ### 5.1 Die 4 Spannungsbögen (wählbare Struktur-Templates)
 
@@ -225,7 +225,7 @@ Lernende **wählt bewusst** einen und **begründet** die Wahl (Prüfungskriteriu
    automatisch an die richtigen Bogen-Schritte.
 
 > **Struktureller Schutz vor „Schablonen-Decks" (zugleich Verkaufsargument, vgl.
-> [businessplan.md](businessplan.md)):** Vielfalt entsteht auf **vier** Ebenen —
+> [businessplan.md](../strategie/businessplan.md)):** Vielfalt entsteht auf **vier** Ebenen —
 > (a) unterschiedliche **Star-Company** (Branche/Name/Zahlen), (b) unterschiedlich
 > **gewählter Spannungsbogen**, (c) **große Theme-/Design-Palette** + KI-Theme-Erstellung,
 > (d) **KI-variierter Inhalt/Wording**. Titan **verhindert** uniforme Präsentationen,
@@ -294,7 +294,7 @@ ist das Üben davon **durchgängig** verfügbar, nicht nur am Schluss.
   (Ideenfindung/Bogen/Gliederung) + Fachgespräch-Simulator.
 - **Immer:** KI **assistiert und gibt Feedback — bewertet/benotet nicht**. Der Mensch
   behält die fachliche Hoheit; der Schüler **denkt selbst mit**. Niedrigrisiko-Einstufung,
-  Details in [ki-governance.md](ki-governance.md). Aufgaben-Aufbereitung folgt
+  Details in [ki-governance.md](../ki/ki-governance.md). Aufgaben-Aufbereitung folgt
   [content-richtlinien.md](content-richtlinien.md) (kein Verbatim, eigene Erklärung).
 
 **Entwicklungspfad der KI-Rolle (Assistent ist der Start, nicht das Ende):**
@@ -357,7 +357,7 @@ abgesicherter docker-compose-Service neben Titan, EU/self-hosted, Claude/Langdoc
     wenn Kosten/Souveränität es rechtfertigen** — nicht früh mieten. (Verbindet mit Agenten-QA, §7.)
 - **Kosten je Fachgespräch:** niedrig ~1 ct (Haiku) · **mittel ~6 ct (Sonnet 5 + Caching → Empfehlung)**
   · hoch ~20 ct (Opus). **Kontingent-Risiko niedrig** → großzügiges Fair-Use, Drossel nur bei
-  Missbrauch. Tabelle + Rechnung: [finanzplan.md](finanzplan.md) §1.2.
+  Missbrauch. Tabelle + Rechnung: [finanzplan.md](../strategie/finanzplan.md) §1.2.
 
 ---
 
@@ -383,12 +383,12 @@ abgesicherter docker-compose-Service neben Titan, EU/self-hosted, Claude/Langdoc
   KI); **Freitext-Fallaufgaben + Varianz = Stufe B** (KI ab Phase 3). Aufgaben in **eigenem
   Titan-Wording** (weg von IHK-Formulierungen, [content-richtlinien.md](content-richtlinien.md)).
   Varianz/„Master" über **n8n-Agenten-Teams mit fiktiver Personalakte** (Persona + fachliche Tiefe,
-  gegen Halluzination — [ki-governance.md](ki-governance.md)). *Offen: Menge Aufgaben je Kapitel.*
+  gegen Halluzination — [ki-governance.md](../ki/ki-governance.md)). *Offen: Menge Aufgaben je Kapitel.*
 - **Redaktionssystem-Integration (entschieden 2026-07-24):** **Directus = Quelle der Wahrheit**;
   Titan **zieht beim Build** (Content-Loader + **Zod-Validierung** → statisch), **Webhook → CI-Build
   → Deploy**. **Nicht** Runtime-Fetch, **nicht** Push (bewahrt statisch/schnell/**offline** — kritisch
   in der Prüfung). Vorhandene **Fachwirt-PDFs müssen erst strukturiert** in Directus abgelegt werden
-  (pro Thema/Feld) — der eigentliche Aufwand. Siehe [roadmap.md](roadmap.md) 2.6 / EPIC-13.
+  (pro Thema/Feld) — der eigentliche Aufwand. Siehe [roadmap.md](../planung/roadmap.md) 2.6 / EPIC-13.
 - **Deck-Generator:** Export (HTML-Slides/PDF); Umfang der KI-Assistenz-Stufen.
 - **KI-Ausbaustufen (§6):** Reihenfolge Sparring/Prüfer-Sim/adaptiver Tutor terminieren.
 - **„alle weiteren Themen"** (vom Nutzer angekündigt) — hier andocken.

@@ -1,7 +1,7 @@
 ## Engineering-Prinzipien (verbindlich)
 
 Diese Prinzipien gelten für **jede** Arbeit an Titan (destilliert aus
-`docs/blueprint.md`; die dort genannten konkreten Fremd-Technologien gelten
+`docs/technik/blueprint.md`; die dort genannten konkreten Fremd-Technologien gelten
 bewusst NICHT — maßgeblich ist der reale Titan-Stack unten):
 
 - **Barrierefreiheit (WCAG 2.2 AA):** Tastatur-/Screenreader-Bedienung, sichtbarer
@@ -31,7 +31,7 @@ bewusst NICHT — maßgeblich ist der reale Titan-Stack unten):
 **Vanilla CSS mit Norive Design Tokens** (kein Tailwind) · **localStorage**
 (Local-First) + Postgres-Sync (kein IndexedDB/Web-Crypto) · mehrseitiges Projekt
 (keine Single-File-App) · Betrieb **EU/Deutschland**. Details:
-`docs/architektur.md`, `docs/deployment.md`.
+`docs/technik/architektur.md`, `docs/technik/deployment.md`.
 
 ## Development
 
