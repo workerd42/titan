@@ -28,7 +28,14 @@ services:
       retries: 10
 
   titan:
-    build: .
+    build:
+      context: .
+      args:
+        # Build-Identität für den Info-Panel (roadmap.md 2.1). deploy.sh auf dem
+        # VPS setzt COMMIT_SHA + DEPLOY_ENV in der Shell; ohne sie bleiben die
+        # Werte leer → Fallback „dev"/„local" (src/lib/build-info.ts).
+        COMMIT_SHA: "${COMMIT_SHA:-}"
+        DEPLOY_ENV: "${DEPLOY_ENV:-}"
     container_name: titan
     restart: unless-stopped
     depends_on:

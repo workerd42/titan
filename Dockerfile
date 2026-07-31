@@ -6,6 +6,13 @@ COPY package.json package-lock.json* ./
 RUN npm ci
 
 COPY . .
+# Build-Identität für den Info-Panel (docs/planung/roadmap.md 2.1): vom Deploy
+# durchgereicht, damit Version/Commit/Umgebung nicht im Repo hardcodiert sind.
+# Ohne Args greifen die Fallbacks „dev"/„local" (src/lib/build-info.ts).
+ARG COMMIT_SHA=""
+ARG DEPLOY_ENV=""
+ENV COMMIT_SHA=$COMMIT_SHA
+ENV DEPLOY_ENV=$DEPLOY_ENV
 # Baut dist/client (prerenderte Seiten + Assets) und dist/server (on-demand
 # Routen: /konto, /api/auth/*, /api/progress). Benötigt KEINE DB — Auth/DB
 # werden erst zur Laufzeit geladen (siehe middleware.ts).

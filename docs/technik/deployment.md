@@ -85,8 +85,19 @@ Compose übersetzt diese Werte intern in die Felder `PGHOST`/`PGPORT`/`PGUSER`/`
 set -e
 cd /var/www/prototyp-staging.norive.de
 git pull
+# Build-Identität in den Info-Panel injizieren (roadmap.md 2.1): Short-SHA des
+# gerade ausgecheckten Commits + Umgebung. Die Compose-Datei reicht beide als
+# Build-Args weiter; ohne sie zeigt der Panel „dev"/„local".
+export COMMIT_SHA="$(git rev-parse --short HEAD)"
+export DEPLOY_ENV="staging"   # auf dem Prod-Host stattdessen: prod
 docker compose up -d --build
 ```
+
+> **Warum hier und nicht im Repo:** `deploy.sh` lebt bewusst auf dem VPS (kennt
+> Umgebung + Pfad). Der Git-Short-SHA wird zur **Deploy-Zeit** in der Shell
+> ermittelt und als Build-Arg übergeben (nicht fragil im Repo-Build per `git`
+> nachgeschlagen). Die einzige Quelle für Version/Phase bleibt
+> `package.json` + `src/lib/build-info.ts` (Konstante `PHASE`).
 
 ## Ablauf für ein normales Update
 

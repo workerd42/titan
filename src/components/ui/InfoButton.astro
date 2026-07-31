@@ -5,11 +5,12 @@
  * einmalig eingefroren (statischer Export) — zeigt also "zuletzt gebaut am",
  * nicht die aktuelle Uhrzeit des Betrachters.
  */
-import pkg from '../../../package.json';
+import { BUILD_INFO } from '../../lib/build-info';
 
-const buildDate = new Date();
-const buildDatum = buildDate.toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric' });
-const buildZeit  = buildDate.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' });
+const buildDatum = BUILD_INFO.builtAt.toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric' });
+const buildZeit  = BUILD_INFO.builtAt.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' });
+// Commit + Umgebung nur zeigen, wenn vom Deploy injiziert (sonst „dev"/„local").
+const zeigeBuildId = BUILD_INFO.commit !== 'dev' || BUILD_INFO.env !== 'local';
 ---
 
 <button
@@ -26,9 +27,12 @@ const buildZeit  = buildDate.toLocaleTimeString('de-DE', { hour: '2-digit', minu
 <div class="info-panel" id="info-panel" hidden role="dialog" aria-label="Build-Informationen">
   <button class="ip-close" id="ip-close" aria-label="Schließen">×</button>
   <dl class="ip-list">
-    <div class="ip-row"><dt>Version</dt><dd>{pkg.version}</dd></div>
+    <div class="ip-row"><dt>Version</dt><dd>{BUILD_INFO.version}</dd></div>
     <div class="ip-row"><dt>Build</dt><dd>{buildDatum} · {buildZeit}</dd></div>
-    <div class="ip-row"><dt>Status</dt><dd>Phase 2 · Beta</dd></div>
+    {zeigeBuildId && (
+      <div class="ip-row"><dt>Commit</dt><dd>{BUILD_INFO.commit} · {BUILD_INFO.env}</dd></div>
+    )}
+    <div class="ip-row"><dt>Status</dt><dd>{BUILD_INFO.phase}</dd></div>
   </dl>
 </div>
 
