@@ -6,6 +6,54 @@ order: 2
 description: "Zeitzonen, Sprachbarrieren und kulturell unterschiedliche Interpretationen von Mimik, Gestik und Höflichkeitsnormen als Herausforderungen internationaler Geschäftskommunikation."
 merksatz: |
   Ein „Nein" auszusprechen gilt nicht überall als höflich – wer international kommuniziert, muss die Landesgepflogenheiten kennen, bevor er verhandelt.
+definitionen:
+  - begriff: "Interkulturelle Kommunikation"
+    definition: "Verständigung zwischen Gesprächspartnern aus unterschiedlichen Kulturkreisen, bei der sprachliche, organisatorische und kulturell geprägte Besonderheiten zu berücksichtigen sind."
+  - begriff: "Verkehrssprache"
+    definition: "Gemeinsame Sprache (häufig Englisch), auf die bei unterschiedlichen Muttersprachen ausgewichen wird; kann trotzdem zu Missverständnissen führen."
+  - begriff: "Höflichkeitsnormen"
+    definition: "Kulturell unterschiedliche Regeln des angemessenen Verhaltens; in manchen Kulturkreisen gilt ein direktes „Nein“ als unhöflich."
+  - begriff: "Nonverbale Kommunikation"
+    definition: "Verständigung über Mimik und Gestik, die je nach Kulturraum unterschiedlich gedeutet werden kann."
+  - begriff: "Zeitzonen"
+    definition: "Geografisch bedingte Zeitverschiebung, die bei internationalen Terminen eine sorgfältige und für alle Seiten faire Planung erfordert."
+mcFragen:
+  - frage: "Warum sollte ein zustimmendes Lächeln eines ostasiatischen Geschäftspartners nicht vorschnell als klare Zustimmung gewertet werden?"
+    optionen:
+      - "weil ein Lächeln in allen Kulturen dieselbe Bedeutung hat"
+      - "weil der Partner die Frage sicher nicht verstanden hat"
+      - "weil Mimik je nach Kulturkreis unterschiedlich gedeutet wird und ein Lächeln auch Höflichkeit ausdrücken kann"
+      - "weil Videokonferenzen die Mimik grundsätzlich verzerren"
+    richtige: 2
+    erklaerung: "Mimik und Gestik sind kulturell geprägt; ein Lächeln kann Zustimmung, aber auch bloße Höflichkeit oder Unbehagen ausdrücken."
+    operator: "erläutern"
+  - frage: "Was ist eine typische organisatorische Herausforderung internationaler Kommunikation?"
+    optionen:
+      - "unterschiedliche Zeitzonen der Teilnehmer"
+      - "die Rechtsform des eigenen Unternehmens"
+      - "die Höhe des Marketingbudgets"
+      - "die Farbwahl der Präsentationsfolien"
+    richtige: 0
+    erklaerung: "Zeitverschiebungen können zu ungünstigen Gesprächszeiten führen und erfordern eine sorgfältige, faire Terminplanung."
+    operator: "nennen"
+  - frage: "Welche Handlungsempfehlung gilt für die Vorbereitung internationaler Geschäftskontakte?"
+    optionen:
+      - "die Aussage des Partners vorschnell als Zustimmung werten"
+      - "auf Vorbereitung verzichten, um flexibel zu bleiben"
+      - "grundsätzlich ausschließlich auf Deutsch verhandeln"
+      - "sich vorab über die landestypischen Gepflogenheiten informieren"
+    richtige: 3
+    erklaerung: "Die Vorabinformation über Sprache, Umgangsformen und Höflichkeitsnormen ist ein wesentlicher Baustein professioneller interkultureller Kommunikation."
+    operator: "beurteilen"
+  - frage: "Wie wird ein direktes „Nein“ in manchen Kulturkreisen bewertet?"
+    optionen:
+      - "es gilt dort als besonders höflich"
+      - "es gilt als unhöflich, Ablehnung wird stattdessen indirekt formuliert"
+      - "es ist international einheitlich geregelt"
+      - "es spielt in Verhandlungen keine Rolle"
+    richtige: 1
+    erklaerung: "In manchen Kulturkreisen gilt eine offene Ablehnung als unhöflich; Kritik wird daher indirekt und verklausuliert kommuniziert."
+    operator: "benennen"
 fallbeispiel:
   situation: |
     Ein deutscher Marketingmanager verhandelt per Videokonferenz mit einem Geschäftspartner

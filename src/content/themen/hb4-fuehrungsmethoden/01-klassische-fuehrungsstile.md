@@ -6,6 +6,54 @@ order: 1
 description: "Autoritärer, kooperativer und Laisser-faire-Führungsstil im Vergleich sowie deren jeweils typische Einsatzsituationen."
 merksatz: |
   In der Gefahrensituation führt man autoritär, im Expertenteam kooperativ – die ideale Führungskraft kann beide Register ziehen.
+definitionen:
+  - begriff: "Führungsstil"
+    definition: "Die charakteristische Art und Weise, wie sich eine Führungskraft dauerhaft gegenüber ihren Mitarbeitern verhält; er bestimmt maßgeblich den Führungserfolg."
+  - begriff: "Autoritärer Führungsstil"
+    definition: "Die Führungskraft entscheidet allein und gibt direkte Anweisungen ohne Mitbestimmung; geeignet vor allem in Gefahren- und Eilsituationen, in denen keine Zeit für Diskussionen bleibt."
+  - begriff: "Kooperativer Führungsstil"
+    definition: "Der Mitarbeiter wird angehört und seine Meinung in die Entscheidung einbezogen; besonders bei qualifizierten Mitarbeitern wichtig, um deren Motivation zu erhalten."
+  - begriff: "Laisser-faire-Führungsstil"
+    definition: "Die Mitarbeiter erhalten weitgehende Gestaltungsfreiheit, bestimmen ihre Arbeit selbst und kontrollieren sich als Gruppe; die Führungskraft greift kaum ein."
+  - begriff: "Ideale Führungskraft"
+    definition: "Nach der klassischen Lehre eine Führungskraft, die die verschiedenen Führungsstile situationsabhängig kombiniert, statt starr an einem einzigen Stil festzuhalten."
+mcFragen:
+  - frage: "Welcher Führungsstil ist in einer akuten Gefahrensituation an einer Maschine am ehesten angebracht?"
+    optionen:
+      - "der kooperative Führungsstil"
+      - "der Laisser-faire-Führungsstil"
+      - "der autoritäre Führungsstil"
+      - "ein rein beziehungsorientierter Führungsstil"
+    richtige: 2
+    erklaerung: "In Gefahrensituationen müssen Anweisungen ohne Mitbestimmung sofort umgesetzt werden – dafür ist der autoritäre Führungsstil geeignet."
+    operator: "auswählen"
+  - frage: "Was kennzeichnet den Laisser-faire-Führungsstil?"
+    optionen:
+      - "Die Mitarbeiter haben viele Gestaltungsfreiheiten und bestimmen ihre Arbeit weitgehend selbst."
+      - "Die Führungskraft trifft alle Entscheidungen allein."
+      - "Jede Entscheidung wird gemeinsam im Mitarbeitergespräch vereinbart."
+      - "Die Führungskraft greift nur bei Abweichungen vom Rahmen ein."
+    richtige: 0
+    erklaerung: "Laisser-faire bedeutet sinngemäß „einfach laufen lassen“: Die Mitarbeiter agieren frei, die Führungskraft hält sich zurück."
+    operator: "benennen"
+  - frage: "Bei welcher Mitarbeitergruppe ist der kooperative Führungsstil besonders wichtig, um die Motivation zu erhalten?"
+    optionen:
+      - "bei kurzfristigen Aushilfskräften"
+      - "bei Mitarbeitern in einer akuten Gefahrensituation"
+      - "bei Mitarbeitern, die ausschließlich klare Anweisungen bevorzugen"
+      - "bei qualifizierten Mitarbeitern"
+    richtige: 3
+    erklaerung: "Qualifizierte Mitarbeiter wollen als Experten angehört und eingebunden werden; das kooperative Führen erhält ihre Motivation."
+    operator: "nennen"
+  - frage: "Was versteht die klassische Lehre unter der „idealen“ Führungskraft?"
+    optionen:
+      - "eine Führungskraft, die konsequent nur autoritär führt"
+      - "eine Führungskraft, die die Führungsstile situationsabhängig kombiniert"
+      - "eine Führungskraft, die ausschließlich kooperativ führt"
+      - "eine Führungskraft, die sich in jeder Lage vollständig zurückhält"
+    richtige: 1
+    erklaerung: "Da der Führungserfolg von der Situation abhängt, gilt die situationsabhängige Kombination der Stile als Kennzeichen erfolgreicher Führung."
+    operator: "erläutern"
 fallbeispiel:
   situation: |
     Ein Produktionsleiter entdeckt während einer Betriebsbesichtigung eine akute

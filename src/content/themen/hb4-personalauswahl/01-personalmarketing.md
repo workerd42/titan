@@ -7,6 +7,56 @@ description: "Personalmarketing als Positionierung des Unternehmens auf dem inte
 werkzeug: "swot"
 merksatz: |
   Personalmarketing funktioniert wie Produktmarketing – nur dass das Produkt der Arbeitsplatz ist und die Zielgruppe die eigenen und künftigen Mitarbeiter sind.
+definitionen:
+  - begriff: "Personalmarketing"
+    definition: "Übertragung des Marketinggedankens auf die Personalarbeit; alle Maßnahmen, die das Image als Arbeitgeber am internen und externen Arbeitsmarkt positiv prägen."
+  - begriff: "Employer Branding"
+    definition: "Professioneller Aufbau und Pflege der Arbeitgebermarke, damit sich Mitarbeiter und Bewerber mit dem Arbeitgeber identifizieren und stolz sind, dort zu arbeiten."
+  - begriff: "Interner Arbeitsmarkt"
+    definition: "Die bereits im Unternehmen beschäftigten Mitarbeiter als Zielgruppe des Personalmarketings."
+  - begriff: "Externer Arbeitsmarkt"
+    definition: "Die potenziellen Bewerber außerhalb des Unternehmens als Zielgruppe des Personalmarketings."
+  - begriff: "Soziale Ziele"
+    definition: "Ziele der Personalpolitik wie angemessene Entlohnung, gute Arbeitsbedingungen und zeitgemäße Führung."
+  - begriff: "Wirtschaftliche Ziele"
+    definition: "Ziele wie das Geringhalten der Personalkosten; sie stehen mit den sozialen Zielen in Wechselwirkung."
+mcFragen:
+  - frage: "Was versteht man unter Employer Branding?"
+    optionen:
+      - "das kurzfristige Anwerben von Aushilfen"
+      - "die Senkung aller Gehälter zur Kostenreduktion"
+      - "den Aufbau und die Pflege der Arbeitgebermarke"
+      - "die Auslagerung der gesamten Personalabteilung"
+    richtige: 2
+    erklaerung: "Employer Branding ist die gezielte Positionierung als attraktiver Arbeitgeber, damit sich Mitarbeiter und Bewerber mit dem Unternehmen identifizieren."
+    operator: "benennen"
+  - frage: "Warum ist der scheinbare Zielkonflikt zwischen sozialen und wirtschaftlichen Zielen auflösbar?"
+    optionen:
+      - "weil vernachlässigte soziale Ziele langfristig Motivation und wirtschaftliche Leistung senken"
+      - "weil soziale Ziele wirtschaftlich völlig bedeutungslos sind"
+      - "weil wirtschaftliche Ziele grundsätzlich unwichtig sind"
+      - "weil beide Ziele nie gleichzeitig verfolgt werden können"
+    richtige: 0
+    erklaerung: "Nur zufriedene, motivierte Mitarbeiter setzen sich ein; werden soziale Ziele vernachlässigt, sinkt langfristig auch die wirtschaftliche Leistungsfähigkeit."
+    operator: "begründen"
+  - frage: "Ein Unternehmen findet trotz marktüblicher Gehälter keine Fachkräfte, weil es kaum bekannt ist. Was ist zu empfehlen?"
+    optionen:
+      - "die Gehälter weiter deutlich erhöhen"
+      - "vorerst auf die Stellenbesetzung verzichten"
+      - "ausschließlich intern besetzen"
+      - "in Employer Branding und Sichtbarkeit als Arbeitgeber investieren"
+    richtige: 3
+    erklaerung: "Da nicht das Gehalt, sondern die Bekanntheit das Problem ist, sollte der Fokus auf Sichtbarkeit und Markenbildung als Arbeitgeber liegen."
+    operator: "beurteilen"
+  - frage: "Auf welche Arbeitsmärkte zielt Personalmarketing?"
+    optionen:
+      - "nur auf den externen Arbeitgeberauftritt"
+      - "sowohl auf den externen als auch auf den internen Arbeitsmarkt"
+      - "nur auf die Gehaltsabrechnung"
+      - "ausschließlich auf die Kündigung von Mitarbeitern"
+    richtige: 1
+    erklaerung: "Personalmarketing prägt das Arbeitgeberimage sowohl bei potenziellen Bewerbern (extern) als auch bei den bereits Beschäftigten (intern)."
+    operator: "nennen"
 fallbeispiel:
   situation: |
     Die {{firma}} hat zunehmend Schwierigkeiten, offene Stellen im

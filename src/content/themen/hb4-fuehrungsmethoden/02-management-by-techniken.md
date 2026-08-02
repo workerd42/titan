@@ -6,6 +6,56 @@ order: 2
 description: "Management by Objectives, Management by Results und Management by Exception als die drei prüfungsrelevanten Führungsmodelle sowie direkte und indirekte Führungsmittel."
 merksatz: |
   MbO vereinbart das Ziel im Vorfeld, MbR bewertet erst das Ergebnis danach, MbE greift nur ein, wenn etwas vom Rahmen abweicht.
+definitionen:
+  - begriff: "Management by Objectives (MbO)"
+    definition: "Führung durch gemeinsam im Mitarbeitergespräch vereinbarte Ziele mit regelmäßiger Kontrolle der Zielerreichung; erhöht die Zielakzeptanz."
+  - begriff: "Management by Results (MbR)"
+    definition: "Führung durch Zielvorgabe; bewertet werden allein die im Nachhinein erbrachten Ergebnisse, nicht der Weg dorthin."
+  - begriff: "Management by Exception (MbE)"
+    definition: "Die Mitarbeiter handeln selbstständig innerhalb eines vorgegebenen Rahmens; die Führungskraft greift nur bei Abweichungen (Ausnahmefällen) ein."
+  - begriff: "Direkte Führungsmittel"
+    definition: "Mittel, die unmittelbar zur Personalführung eingesetzt werden, z. B. die Zielvereinbarung im Mitarbeitergespräch."
+  - begriff: "Indirekte Führungsmittel"
+    definition: "Organisatorische Hilfsmittel der Personalpolitik, die den Handlungsrahmen abstecken, ohne dass die Führungskraft direkt eingreift, z. B. die Stellenbeschreibung."
+  - begriff: "Führungsgrundsätze"
+    definition: "Schriftlich definierte, unternehmensindividuelle Leitlinien, die den Führungskräften als Orientierung für ihr Führungsverhalten dienen."
+mcFragen:
+  - frage: "Was ist das Grundprinzip von Management by Objectives (MbO)?"
+    optionen:
+      - "Die Führungskraft greift nur bei Abweichungen vom Rahmen ein."
+      - "Führung durch gemeinsam vereinbarte Ziele mit regelmäßiger Kontrolle der Zielerreichung."
+      - "Bewertet werden allein die Ergebnisse im Nachhinein."
+      - "Die Mitarbeiter führen sich vollständig selbst, ohne dass Ziele festgelegt werden."
+    richtige: 1
+    erklaerung: "Bei MbO werden die Ziele gemeinsam mit dem Mitarbeiter vereinbart und ihre Erreichung regelmäßig kontrolliert – das erhöht die Zielakzeptanz."
+    operator: "benennen"
+  - frage: "Bei welchem Modell greift die Führungskraft nur bei Abweichungen vom vereinbarten Rahmen ein?"
+    optionen:
+      - "Management by Exception (MbE)"
+      - "Management by Objectives (MbO)"
+      - "Management by Results (MbR)"
+      - "Laisser-faire-Führung"
+    richtige: 0
+    erklaerung: "MbE lässt den Mitarbeitern einen Handlungsrahmen; nur bei Abweichungen (Ausnahmen) greift die Führungskraft persönlich ein."
+    operator: "zuordnen"
+  - frage: "Welches ist ein Beispiel für ein indirektes Führungsmittel?"
+    optionen:
+      - "die Zielvereinbarung im Mitarbeitergespräch"
+      - "das direkte mündliche Feedback"
+      - "die Stellenbeschreibung"
+      - "die persönliche Anweisung in einer Gefahrensituation"
+    richtige: 2
+    erklaerung: "Die Stellenbeschreibung wirkt als organisatorisches Hilfsmittel und steckt den Handlungsrahmen ab, ohne dass die Führungskraft unmittelbar eingreift."
+    operator: "nennen"
+  - frage: "Worin liegt die größte praktische Herausforderung von Management by Objectives?"
+    optionen:
+      - "die ständige persönliche Anwesenheit der Führungskraft"
+      - "die vollständige Abschaffung aller Ziele"
+      - "die Vermeidung jeglicher Mitarbeitergespräche"
+      - "Ziele tatsächlich nach den SMART-Kriterien und im Unternehmensinteresse zu formulieren"
+    richtige: 3
+    erklaerung: "In der Praxis gelingt eine präzise, überprüfbare Zielformulierung nach den SMART-Kriterien nicht immer – darin liegt die zentrale Schwierigkeit von MbO."
+    operator: "beurteilen"
 fallbeispiel:
   situation: |
     Eine Vertriebsleiterin führt ihr Team bisher, indem sie am Ende jedes Quartals allein

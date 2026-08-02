@@ -6,6 +6,56 @@ order: 3
 description: "Aufgaben- und beziehungsorientierte Führung in Abhängigkeit vom Reifegrad des Mitarbeiters sowie die Unterscheidung intrinsischer und extrinsischer Motivation."
 merksatz: |
   Führung ist kein Anzug von der Stange – sie muss auf den Reifegrad jedes einzelnen Mitarbeiters zugeschnitten werden.
+definitionen:
+  - begriff: "Situativer Führungsstil"
+    definition: "Führungsansatz (z. B. nach Hersey/Blanchard), nach dem es keinen universell richtigen Stil gibt; der passende Stil hängt von der Situation ab, insbesondere von der Beziehung zum Mitarbeiter."
+  - begriff: "Reifegrad"
+    definition: "Grad an Erfahrung, Qualifikation und Selbstständigkeit eines Mitarbeiters; er bestimmt maßgeblich, wie viel Anleitung dieser benötigt."
+  - begriff: "Aufgabenorientierte Führung"
+    definition: "Stärker anleitende Führung mit klaren Vorgaben; geeignet für unerfahrene Mitarbeiter mit geringem Reifegrad."
+  - begriff: "Beziehungsorientierte Führung"
+    definition: "Unterstützende, wertschätzende Führung, die die Selbstständigkeit fördert; geeignet für erfahrene, hochqualifizierte Mitarbeiter."
+  - begriff: "Intrinsische Motivation"
+    definition: "Antrieb aus der Tätigkeit selbst, weil der Mitarbeiter darin Sinn, Erfüllung und Freude findet."
+  - begriff: "Extrinsische Motivation"
+    definition: "Antrieb durch äußere Anreize wie Gehalt, Bonus oder Anerkennung bzw. durch das Vermeiden negativer Konsequenzen."
+mcFragen:
+  - frage: "Was ist der Grundgedanke des situativen Führungsstils?"
+    optionen:
+      - "Es gibt genau einen universell richtigen Führungsstil für alle Mitarbeiter."
+      - "Der Führungsstil richtet sich allein nach dem Gehalt des Mitarbeiters."
+      - "Der passende Führungsstil hängt von der Situation und der Beziehung zum Mitarbeiter ab."
+      - "Führung sollte grundsätzlich autoritär erfolgen."
+    richtige: 2
+    erklaerung: "Der situative Führungsstil geht davon aus, dass der passende Stil situationsabhängig ist – vor allem abhängig von der Beziehung zwischen Führungskraft und Mitarbeiter."
+    operator: "benennen"
+  - frage: "Welche Führung benötigt ein neuer, unerfahrener Auszubildender in der Regel?"
+    optionen:
+      - "eine stärker aufgabenorientierte, anleitende Führung mit klaren Vorgaben"
+      - "eine rein beziehungsorientierte Führung ganz ohne Vorgaben"
+      - "vollständige Handlungsfreiheit ohne jede Anleitung"
+      - "gar keine Führung"
+    richtige: 0
+    erklaerung: "Bei geringem Reifegrad fehlt die Erfahrung; eine anleitende, aufgabenorientierte Führung mit klaren Vorgaben ist angemessen."
+    operator: "auswählen"
+  - frage: "Welches ist ein Beispiel für intrinsische Motivation?"
+    optionen:
+      - "eine Bonuszahlung am Jahresende"
+      - "die Anerkennung durch den Vorgesetzten"
+      - "das Vermeiden einer Abmahnung"
+      - "die Freude an kreativer Konzeptentwicklung"
+    richtige: 3
+    erklaerung: "Intrinsische Motivation entsteht aus der Tätigkeit selbst; Gehalt, Anerkennung oder Strafvermeidung sind hingegen extrinsische Anreize."
+    operator: "unterscheiden"
+  - frage: "Welche Faktoren beeinflussen laut situativem Führungsstil neben der Beziehung zum Mitarbeiter die Wahl des Stils?"
+    optionen:
+      - "die Höhe des Werbebudgets und der Umsatz"
+      - "die Aufgabe selbst und die Positionsmacht der Führungskraft"
+      - "die Rechtsform und der Standort des Unternehmens"
+      - "die Zahl der Wettbewerber am Markt"
+    richtige: 1
+    erklaerung: "Neben der persönlichen Beziehung spielen die Aufgabe (Komplexität, Dringlichkeit) und die Positionsmacht der Führungskraft eine wichtige Rolle."
+    operator: "nennen"
 fallbeispiel:
   situation: |
     Ein neuer Auszubildender startet in der Marketingabteilung und kennt weder die

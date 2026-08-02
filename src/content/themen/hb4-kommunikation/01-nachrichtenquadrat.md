@@ -6,6 +6,56 @@ order: 1
 description: "Die vier Seiten jeder Nachricht – Sachinhalt, Selbstoffenbarung, Beziehung und Appell – als Werkzeug zur Analyse von Missverständnissen im Berufsalltag."
 merksatz: |
   Jede Nachricht spricht mit vier Ohren gleichzeitig – wer nur die Sachebene hört, überhört oft den eigentlichen Konflikt.
+definitionen:
+  - begriff: "Nachrichtenquadrat"
+    definition: "Kommunikationsmodell von Friedemann Schulz von Thun, nach dem jede Nachricht gleichzeitig vier Botschaften enthält: Sachinhalt, Selbstoffenbarung, Beziehung und Appell."
+  - begriff: "Sachebene"
+    definition: "Die sachliche Information, die mit einer Nachricht übermittelt wird (worüber informiert wird)."
+  - begriff: "Selbstoffenbarung"
+    definition: "Das, was der Sender mit einer Nachricht bewusst oder unbewusst über sich selbst preisgibt."
+  - begriff: "Beziehungsebene"
+    definition: "Das, was die Nachricht darüber aussagt, wie die Gesprächspartner zueinander stehen."
+  - begriff: "Appell"
+    definition: "Das, wozu der Empfänger mit der Nachricht veranlasst werden soll (die Handlungsaufforderung)."
+  - begriff: "Vier-Ohren-Modell"
+    definition: "Andere Bezeichnung für das Nachrichtenquadrat, weil der Empfänger dieselbe Nachricht mit vier verschiedenen „Ohren“ hören und damit unterschiedlich deuten kann."
+mcFragen:
+  - frage: "Welche vier Seiten hat jede Nachricht nach dem Modell von Schulz von Thun?"
+    optionen:
+      - "Sender, Empfänger, Kanal, Störung"
+      - "Sachebene, Selbstoffenbarung, Beziehungsebene, Appell"
+      - "sehen, hören, sprechen, verstehen"
+      - "Frage, Antwort, Feedback, Abschluss"
+    richtige: 1
+    erklaerung: "Das Nachrichtenquadrat unterscheidet die vier Seiten Sachinhalt, Selbstoffenbarung, Beziehung und Appell."
+    operator: "nennen"
+  - frage: "Welche Seite der Nachricht beschreibt, was der Sender über sich selbst preisgibt?"
+    optionen:
+      - "die Sachebene"
+      - "die Beziehungsebene"
+      - "der Appell"
+      - "die Selbstoffenbarung"
+    richtige: 3
+    erklaerung: "Die Selbstoffenbarung enthält alles, was der Sender bewusst oder unbewusst über seine eigene Person mitteilt."
+    operator: "zuordnen"
+  - frage: "Warum wird das Nachrichtenquadrat auch „Vier-Ohren-Modell“ genannt?"
+    optionen:
+      - "weil der Empfänger dieselbe Nachricht mit vier verschiedenen „Ohren“ hören kann"
+      - "weil an jedem Gespräch vier Personen beteiligt sein müssen"
+      - "weil eine Nachricht viermal wiederholt werden muss"
+      - "weil der Mensch vier Sinnesorgane besitzt"
+    richtige: 0
+    erklaerung: "Je nachdem, welches „Ohr“ beim Empfänger dominiert, wird dieselbe Aussage sehr unterschiedlich verstanden – daher die Bezeichnung."
+    operator: "erläutern"
+  - frage: "Was beschreibt die Appellseite einer Nachricht?"
+    optionen:
+      - "was der Sender über sich selbst preisgibt"
+      - "wie die Gesprächspartner zueinander stehen"
+      - "wozu der Empfänger veranlasst werden soll"
+      - "die reine Sachinformation"
+    richtige: 2
+    erklaerung: "Der Appell ist die Handlungsaufforderung: das, was der Empfänger tun, denken oder fühlen soll."
+    operator: "benennen"
 fallbeispiel:
   situation: |
     Ein Kunde ruft bei seiner Marketingagentur an und sagt: „Ich verlasse mich da ganz

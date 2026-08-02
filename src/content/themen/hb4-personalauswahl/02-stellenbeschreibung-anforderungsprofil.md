@@ -6,6 +6,56 @@ order: 2
 description: "Die Elemente einer Stellenbeschreibung und die vier Bereiche der Handlungskompetenz (Fach-, Sozial-, Methoden- und Personalkompetenz) im Anforderungsprofil."
 merksatz: |
   Die Stellenbeschreibung stellt die Stelle in den Mittelpunkt, das Anforderungsprofil den Menschen, der sie ausfüllen soll.
+definitionen:
+  - begriff: "Stellenbeschreibung"
+    definition: "Internes Hilfsmittel, das eine Stelle mit Bezeichnung, Zielen, Aufgaben, Kompetenzen und Vertretungsregelung beschreibt; im Fokus steht die Stelle."
+  - begriff: "Anforderungsprofil"
+    definition: "Beschreibung der Qualifikationen des optimalen Stelleninhabers; im Fokus steht der Mensch. Oft Bestandteil der Stellenbeschreibung, kann aber eigenständig erstellt werden."
+  - begriff: "Handlungskompetenz"
+    definition: "Oberbegriff für die vier Kompetenzbereiche Fach-, Methoden-, Sozial- und Personalkompetenz, die ein Anforderungsprofil gliedern."
+  - begriff: "Fachkompetenz"
+    definition: "Die erforderlichen fachlichen Kenntnisse im jeweiligen Aufgabengebiet."
+  - begriff: "Sozialkompetenz"
+    definition: "Die Fähigkeit zu erfolgreichem Umgang und zur Zusammenarbeit mit anderen Menschen im Team."
+  - begriff: "Vertretungsregelung"
+    definition: "Festlegung der aktiven Vertretung (der Stelleninhaber vertritt eine andere Stelle) und der passiven Vertretung (die Stelle selbst wird vertreten)."
+mcFragen:
+  - frage: "Worin unterscheiden sich Stellenbeschreibung und Anforderungsprofil?"
+    optionen:
+      - "Beide beschreiben ausschließlich das Gehalt der Stelle."
+      - "Das Anforderungsprofil beschreibt die Stelle, die Stellenbeschreibung den Menschen."
+      - "Die Stellenbeschreibung stellt die Stelle in den Mittelpunkt, das Anforderungsprofil den Menschen."
+      - "Es gibt keinen inhaltlichen Unterschied."
+    richtige: 2
+    erklaerung: "Die Stellenbeschreibung fokussiert die Stelle (was ist zu tun), das Anforderungsprofil den optimalen Stelleninhaber (wer soll es tun)."
+    operator: "unterscheiden"
+  - frage: "Welche vier Bereiche gliedern üblicherweise ein Anforderungsprofil?"
+    optionen:
+      - "Sach-, Selbst-, Beziehungs- und Appellkompetenz"
+      - "Fach-, Methoden-, Sozial- und Personalkompetenz"
+      - "Win-, Lose-, Draw- und Neutralkompetenz"
+      - "Früh-, Spät-, Nacht- und Bereitschaftskompetenz"
+    richtige: 1
+    erklaerung: "Die Handlungskompetenz gliedert sich in Fach-, Methoden-, Sozial- und Personalkompetenz."
+    operator: "nennen"
+  - frage: "Welches ist ein typischer Bestandteil einer vollständigen Stellenbeschreibung?"
+    optionen:
+      - "die Vertretungsregelung der Stelle"
+      - "der Familienstand des Bewerbers"
+      - "die Zahl der Wettbewerber am Markt"
+      - "das private Hobby des Vorgesetzten"
+    richtige: 0
+    erklaerung: "Zur Stellenbeschreibung gehören u. a. Bezeichnung, Ziele, Aufgaben, Kompetenzen und die Vertretungsregelung der Stelle."
+    operator: "nennen"
+  - frage: "Was beschreibt die Sozialkompetenz im Anforderungsprofil?"
+    optionen:
+      - "die erforderlichen Fachkenntnisse im Aufgabengebiet"
+      - "die Fähigkeit, Arbeitstechniken sachgerecht einzusetzen"
+      - "persönliche Eigenschaften und Selbstorganisation"
+      - "den erfolgreichen Umgang und die Zusammenarbeit mit anderen im Team"
+    richtige: 3
+    erklaerung: "Sozialkompetenz meint den erfolgreichen Umgang und die Zusammenarbeit mit anderen Menschen; Fach-, Methoden- und Personalkompetenz sind die übrigen Bereiche."
+    operator: "zuordnen"
 fallbeispiel:
   situation: |
     Die Personalabteilung der {{firma}} möchte eine neu geschaffene

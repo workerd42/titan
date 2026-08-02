@@ -6,6 +6,54 @@ order: 4
 description: "Von der Ideensammlung über Sortierung und Gliederung bis zum Probedurchlauf – die inhaltliche Vorbereitung einer Präsentation als systematischer Prozess."
 merksatz: |
   Erst sammeln, dann sortieren, dann gliedern – wer eine Präsentation ohne diese Reihenfolge vorbereitet, verliert unterwegs den roten Faden.
+definitionen:
+  - begriff: "Fünf-Phasen-Modell"
+    definition: "Systematischer Ablauf der inhaltlichen Präsentationsvorbereitung von der Ideensammlung über Sortieren und Gliedern bis zur medialen Umsetzung und Durchführung mit Probedurchläufen."
+  - begriff: "Auflisten der Ideen"
+    definition: "Erste Phase; alle für die Präsentation geeigneten Inhalte werden gesammelt, z. B. mittels Brainstorming."
+  - begriff: "Sortieren der Ideen"
+    definition: "Zweite Phase; die gesammelten Ideen werden nach Stellenwert und inhaltlichem Zusammenhang geordnet."
+  - begriff: "Gliedern"
+    definition: "Dritte Phase; die Reihenfolge wird festgelegt und zusammengehörige Elemente werden gebündelt."
+  - begriff: "Probedurchlauf"
+    definition: "Testvortrag zur Einhaltung des Zeitrahmens und zum Gewinn von Sicherheit; besonders bei wenig Erfahrung wichtig."
+mcFragen:
+  - frage: "Womit sollte die inhaltliche Präsentationsvorbereitung nach dem Fünf-Phasen-Modell beginnen?"
+    optionen:
+      - "mit der Gestaltung der ersten Folie"
+      - "mit dem Sammeln aller relevanten Ideen und Inhalte"
+      - "mit dem Probedurchlauf"
+      - "mit der medialen Umsetzung"
+    richtige: 1
+    erklaerung: "Zuerst werden alle geeigneten Inhalte gesammelt (Auflisten der Ideen); erst danach folgen Sortieren, Gliedern und die mediale Umsetzung."
+    operator: "nennen"
+  - frage: "Was droht, wenn man direkt mit der Foliengestaltung beginnt, ohne vorher zu sammeln, zu sortieren und zu gliedern?"
+    optionen:
+      - "die Präsentation wird automatisch zu kurz"
+      - "die Folien lassen sich technisch nicht erstellen"
+      - "es droht eine unstrukturierte Präsentation ohne roten Faden"
+      - "die Zielgruppe wird zwangsläufig zu groß"
+    richtige: 2
+    erklaerung: "Ohne inhaltliche Vorbereitung fehlt der rote Faden – selbst fachlich korrekte Inhalte wirken dann unstrukturiert."
+    operator: "beurteilen"
+  - frage: "Wozu dienen Probedurchläufe vor allem bei wenig Erfahrung?"
+    optionen:
+      - "den Zeitrahmen einzuhalten und mehr Sicherheit im Vortrag zu gewinnen"
+      - "die Anzahl der Folien zu verdoppeln"
+      - "auf eine Gliederung verzichten zu können"
+      - "die Zielgruppe zu vergrößern"
+    richtige: 0
+    erklaerung: "Probedurchläufe helfen, sprachliche Unsicherheiten zu erkennen, den Zeitrahmen zu wahren und Sicherheit im Vortrag zu gewinnen."
+    operator: "erläutern"
+  - frage: "Welche Tätigkeit gehört zur zweiten Phase der Präsentationsvorbereitung?"
+    optionen:
+      - "Durchführung mit Probedurchläufen"
+      - "mediale Umsetzung in Folien"
+      - "Auflisten der Ideen per Brainstorming"
+      - "Sortieren der Ideen nach Stellenwert und Zusammenhang"
+    richtige: 3
+    erklaerung: "Nach dem Auflisten (Phase 1) folgt das Sortieren der gesammelten Ideen nach Stellenwert und inhaltlichem Zusammenhang (Phase 2)."
+    operator: "zuordnen"
 fallbeispiel:
   situation: |
     Ein Junior-Mitarbeiter soll kurzfristig eine 15-minütige Präsentation zum

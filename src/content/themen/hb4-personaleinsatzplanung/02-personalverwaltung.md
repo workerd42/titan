@@ -6,6 +6,56 @@ order: 2
 description: "Die Unterscheidung von Personalverwaltung und Personalbetreuung sowie die Rolle von Personalinformationssystemen bei der Verwaltung von Stamm-, Entgelt- und Leistungsdaten."
 merksatz: |
   Die Verwaltung liefert die Daten, die Betreuung kümmert sich um den Menschen dahinter – beides zusammen ergibt gute Personalarbeit.
+definitionen:
+  - begriff: "Personalverwaltung"
+    definition: "Bereitstellung und Organisation der für die Personalplanung erforderlichen Unterlagen und Informationen; verwaltungstechnisch-dokumentarischer Charakter."
+  - begriff: "Personalbetreuung"
+    definition: "Der stärker auf die individuelle, mitarbeiterbezogene Begleitung ausgerichtete Teil der Personalarbeit."
+  - begriff: "Personalinformationssystem"
+    definition: "EDV-gestütztes System zur zentralen Erfassung und Verwaltung von Mitarbeiterdaten für die gesamte Personalarbeit."
+  - begriff: "Stammdaten"
+    definition: "Grundlegende persönliche und arbeitsvertragliche Angaben eines Mitarbeiters."
+  - begriff: "Entgeltdaten"
+    definition: "Gehalts- und Lohninformationen eines Mitarbeiters."
+  - begriff: "Leistungsdaten"
+    definition: "Daten wie Arbeitszeiten und Leistungsbeurteilungen eines Mitarbeiters."
+mcFragen:
+  - frage: "Welche Datenarten werden in einem Personalinformationssystem typischerweise erfasst?"
+    optionen:
+      - "ausschließlich die Bankverbindung"
+      - "nur die private Telefonnummer"
+      - "nur die Anzahl der Urlaubstage"
+      - "Stammdaten, Entgeltdaten und Leistungsdaten"
+    richtige: 3
+    erklaerung: "Ein Personalinformationssystem erfasst zentral Stammdaten, Entgeltdaten, Leistungsdaten sowie häufig Daten zur Aus- und Fortbildung."
+    operator: "nennen"
+  - frage: "Wie lassen sich Personalverwaltung und Personalbetreuung voneinander abgrenzen?"
+    optionen:
+      - "Die Personalverwaltung stellt Daten und Unterlagen bereit, die Personalbetreuung begleitet den Mitarbeiter individuell."
+      - "Die Personalverwaltung begleitet den Mitarbeiter, die Betreuung erstellt nur Statistiken."
+      - "Beide Begriffe bezeichnen genau dasselbe."
+      - "Die Personalbetreuung erstellt ausschließlich Gehaltsabrechnungen."
+    richtige: 0
+    erklaerung: "Die Verwaltung ist dokumentarisch-organisatorisch ausgerichtet, die Betreuung stärker auf die individuelle Begleitung des Mitarbeiters."
+    operator: "unterscheiden"
+  - frage: "Worin liegt der Vorteil eines zentralen Personalinformationssystems gegenüber verstreuten Einzeldateien?"
+    optionen:
+      - "Daten müssen an möglichst vielen Stellen doppelt gepflegt werden"
+      - "der Datenschutz kann vollständig entfallen"
+      - "Daten müssen nur an einer Stelle gepflegt werden, was Übertragungsfehler reduziert"
+      - "die Personalarbeit wird dadurch überflüssig"
+    richtige: 2
+    erklaerung: "Zentrale Pflege stellt alle Prozesse auf eine einheitliche, verlässliche Datenbasis und reduziert Übertragungsfehler."
+    operator: "beurteilen"
+  - frage: "Was zählt zu den Stammdaten eines Mitarbeiters?"
+    optionen:
+      - "die Leistungsbeurteilungen"
+      - "grundlegende persönliche und arbeitsvertragliche Angaben"
+      - "die Gehalts- und Lohninformationen"
+      - "die absolvierten Fortbildungen"
+    richtige: 1
+    erklaerung: "Stammdaten sind die grundlegenden persönlichen und arbeitsvertraglichen Angaben; Entgelt- und Leistungsdaten werden getrennt geführt."
+    operator: "zuordnen"
 fallbeispiel:
   situation: |
     Die {{firma}} verwaltet Personaldaten bisher in mehreren

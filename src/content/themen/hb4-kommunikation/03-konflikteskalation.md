@@ -6,6 +6,54 @@ order: 3
 description: "Konflikte als normales, teils sogar positives Phänomen sowie die neun Eskalationsstufen nach Friedrich Glasl von der Verhärtung bis zur gemeinsamen Vernichtung."
 merksatz: |
   Ein Konflikt, der auf der ersten Stufe gelöst wird, kostet ein Gespräch – auf der letzten Stufe kostet er das ganze Unternehmen.
+definitionen:
+  - begriff: "Konflikteskalation nach Glasl"
+    definition: "Modell von Friedrich Glasl, das das Fortschreiten eines Konflikts in neun Stufen beschreibt, zusammengefasst zu drei übergeordneten Ebenen."
+  - begriff: "Win-Win-Ebene"
+    definition: "Erste Ebene (u. a. Verhärtung, Debatte, erste Handlungen); eine für beide Seiten vorteilhafte Lösung ist noch möglich."
+  - begriff: "Win-Lose-Ebene"
+    definition: "Zweite Ebene (u. a. Image und Koalitionen, Gesichtsverlust, Drohungen); eine Seite gewinnt auf Kosten der anderen."
+  - begriff: "Lose-Lose-Ebene"
+    definition: "Dritte Ebene (u. a. begrenzte Vernichtungsschläge, Zersplitterung, gemeinsam in den Abgrund); beide Seiten verlieren, oft unabwendbar."
+  - begriff: "Positive Wirkung von Konflikten"
+    definition: "Konflikte können Energien für Problemlösungen freisetzen, eine Gruppe formen und verborgene Problemfelder für die Führungskraft sichtbar machen."
+mcFragen:
+  - frage: "Wie lauten die drei übergeordneten Ebenen des Glasl-Modells?"
+    optionen:
+      - "Anfang, Mitte, Ende"
+      - "Sach-, Beziehungs-, Appellebene"
+      - "Frühschicht, Spätschicht, Nachtschicht"
+      - "Win-Win, Win-Lose, Lose-Lose"
+    richtige: 3
+    erklaerung: "Die neun Eskalationsstufen fassen sich zu den drei Ebenen Win-Win, Win-Lose und Lose-Lose zusammen."
+    operator: "nennen"
+  - frage: "Was kennzeichnet die erste Ebene (Win-Win) des Glasl-Modells?"
+    optionen:
+      - "eine für beide Seiten vorteilhafte Lösung ist noch möglich"
+      - "beide Seiten verlieren unabwendbar"
+      - "eine Seite gewinnt auf Kosten der anderen"
+      - "der Konflikt ist bereits vollständig eskaliert"
+    richtige: 0
+    erklaerung: "Auf der Win-Win-Ebene sind beide Parteien noch an einer gemeinsamen, konstruktiven Lösung interessiert."
+    operator: "benennen"
+  - frage: "Warum sind Konflikte laut Glasl nicht ausschließlich negativ zu bewerten?"
+    optionen:
+      - "weil Konflikte ausnahmslos schädlich und stets zu vermeiden sind"
+      - "weil Konflikte keinerlei Wirkung auf eine Gruppe haben"
+      - "weil sie Energien freisetzen und verborgene Problemfelder sichtbar machen können"
+      - "weil sie sich ausschließlich durch Kündigung lösen lassen"
+    richtige: 2
+    erklaerung: "Konflikte können Problemlösungsenergien freisetzen und einer Führungskraft verborgene Problemfelder offenlegen."
+    operator: "beurteilen"
+  - frage: "Warum ist ein frühzeitiges Eingreifen als Führungskraft besonders erfolgversprechend?"
+    optionen:
+      - "weil ein Eingreifen erst auf der letzten Stufe am günstigsten ist"
+      - "weil auf der ersten Ebene noch eine Win-Win-Lösung erreichbar ist"
+      - "weil sich Konflikte grundsätzlich von selbst auflösen"
+      - "weil die Führungskraft für Konflikte nicht zuständig ist"
+    richtige: 1
+    erklaerung: "Mit jeder Eskalationsstufe sinkt die Chance auf eine einvernehmliche Lösung; früh ist noch eine für beide Seiten vorteilhafte Lösung möglich."
+    operator: "begründen"
 fallbeispiel:
   situation: |
     Zwei Abteilungsleiter streiten seit Wochen öffentlich über Budgetzuständigkeiten. Was

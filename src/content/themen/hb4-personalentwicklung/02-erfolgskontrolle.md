@@ -6,6 +6,54 @@ order: 2
 description: "Ökonomische Erfolgskontrolle (Kosten-Nutzen) und pädagogische Erfolgskontrolle (Lernerfolg) als zwei komplementäre Sichtweisen auf den Erfolg von Weiterbildungsmaßnahmen."
 merksatz: |
   Die ökonomische Kontrolle fragt, ob sich die Maßnahme rechnet – die pädagogische Kontrolle fragt, ob überhaupt etwas gelernt wurde.
+definitionen:
+  - begriff: "Ökonomische Erfolgskontrolle"
+    definition: "Gegenüberstellung von Kosten und Nutzen einer Personalentwicklungsmaßnahme; versucht, den Erfolg in messbaren Ergebnissen darzustellen."
+  - begriff: "Pädagogische Erfolgskontrolle"
+    definition: "Kontrolle des Lernerfolgs; prüft, was gelernt werden sollte und was tatsächlich gelernt wurde."
+  - begriff: "On-the-Job-Maßnahme"
+    definition: "Lernen direkt am Arbeitsplatz, eingebettet in die normale Tätigkeit; die Kosten sind kaum von den laufenden Betriebskosten zu trennen."
+  - begriff: "Off-the-Job-Maßnahme"
+    definition: "Lernen außerhalb des Arbeitsplatzes; die Kosten sind klar abgrenzbar und daher ökonomisch besser bewertbar."
+  - begriff: "Leitfragen der pädagogischen Kontrolle"
+    definition: "Die beiden zentralen Fragen „Was sollte gelernt werden?“ und „Was wurde tatsächlich gelernt?“, deren Abgleich den Lernerfolg beurteilbar macht."
+mcFragen:
+  - frage: "Worauf richtet sich der Fokus der ökonomischen Erfolgskontrolle?"
+    optionen:
+      - "auf das Lernen und Lehren selbst"
+      - "auf die reine Zufriedenheit der Teilnehmer"
+      - "auf die Gegenüberstellung von Kosten und Nutzen"
+      - "auf die Auswahl neuer Bewerber"
+    richtige: 2
+    erklaerung: "Die ökonomische Erfolgskontrolle stellt Kosten und Nutzen gegenüber und versucht, den Erfolg in messbaren Ergebnissen darzustellen."
+    operator: "benennen"
+  - frage: "Welche Leitfrage gehört zur pädagogischen Erfolgskontrolle?"
+    optionen:
+      - "Was sollte gelernt werden, und was wurde tatsächlich gelernt?"
+      - "Wie hoch waren die Gesamtkosten der Maßnahme?"
+      - "Wie viele Bewerber gab es auf die Stelle?"
+      - "Welches Gehalt erhält der Teilnehmer künftig?"
+    richtige: 0
+    erklaerung: "Durch den Abgleich der ursprünglichen Lernziele mit dem tatsächlich Gelernten lässt sich der pädagogische Erfolg beurteilen."
+    operator: "nennen"
+  - frage: "Warum ist die ökonomische Erfolgskontrolle bei On-the-Job-Maßnahmen besonders schwierig?"
+    optionen:
+      - "weil dabei grundsätzlich nichts gelernt wird"
+      - "weil solche Maßnahmen gesetzlich verboten sind"
+      - "weil sie keinen pädagogischen Wert besitzen"
+      - "weil sich ihre Kosten kaum von den laufenden Betriebskosten trennen lassen"
+    richtige: 3
+    erklaerung: "Beim Lernen direkt am Arbeitsplatz sind die Kosten nicht sauber abgrenzbar; die ökonomische Kontrolle konzentriert sich daher meist auf Off-the-Job-Maßnahmen."
+    operator: "begründen"
+  - frage: "Warum sollten ökonomische und pädagogische Erfolgskontrolle nicht gegeneinander ausgespielt werden?"
+    optionen:
+      - "weil beide exakt dasselbe messen"
+      - "weil sie sich ergänzen und erst zusammen ein vollständiges Bild ergeben"
+      - "weil die pädagogische Kontrolle überflüssig ist"
+      - "weil allein die ökonomische Kontrolle zählt"
+    richtige: 1
+    erklaerung: "Eine Maßnahme kann pädagogisch wertvoll sein, ohne dass sich der Nutzen sofort wirtschaftlich beziffern lässt – beide Sichtweisen ergänzen sich."
+    operator: "beurteilen"
 fallbeispiel:
   situation: |
     Die {{firma}} hat eine große Verkaufsschulung für ihr

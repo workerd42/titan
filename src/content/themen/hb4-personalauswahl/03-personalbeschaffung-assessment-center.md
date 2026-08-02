@@ -6,6 +6,54 @@ order: 3
 description: "Interne versus externe Personalbeschaffung sowie das Assessment-Center als umfassendes, aber aufwendiges Auswahlverfahren für Führungspositionen."
 merksatz: |
   Ein Assessment-Center zeigt, was ein Bewerber wirklich kann – ein Lebenslauf zeigt nur, was er behauptet zu können.
+definitionen:
+  - begriff: "Interne Personalbeschaffung"
+    definition: "Besetzung von Stellen mit Mitarbeitern aus den eigenen Reihen, z. B. durch interne Stellenausschreibung, Versetzung, Überstunden oder Urlaubsverschiebung."
+  - begriff: "Externe Personalbeschaffung"
+    definition: "Gewinnung neuer Mitarbeiter außerhalb des Unternehmens, z. B. über öffentliche Stellenanzeigen, Personalvermittler oder Hochschulmarketing."
+  - begriff: "Assessment-Center (AC)"
+    definition: "Strukturiertes Auswahlverfahren, bei dem mehrere Bewerber in realitätsnahen Situationen (Rollenspiele, Präsentationen, Gruppenübungen) ihr Können zeigen; macht die Auswahl objektiver."
+  - begriff: "Kleines Assessment-Center"
+    definition: "Verkürzte Form des Assessment-Centers, die häufig bei der Auswahl von Auszubildenden eingesetzt wird."
+  - begriff: "Überbrückungsmaßnahmen"
+    definition: "Kurzfristige interne Maßnahmen wie Überstunden, Urlaubsverschiebung oder Aushilfen für vorübergehende Kapazitätsengpässe."
+mcFragen:
+  - frage: "Welche Maßnahme eignet sich für einen kurzfristigen, nicht dauerhaften Kapazitätsengpass?"
+    optionen:
+      - "die dauerhafte externe Neueinstellung"
+      - "die Anordnung von Überstunden und Urlaubsverschiebungen"
+      - "ein vollständiges Assessment-Center"
+      - "die Schließung der Abteilung"
+    richtige: 1
+    erklaerung: "Für kurzfristige Engpässe eignen sich interne Überbrückungsmaßnahmen wie Überstunden, Urlaubsverschiebung oder Aushilfen; eine Neueinstellung wäre nur bei dauerhaftem Bedarf sinnvoll."
+    operator: "auswählen"
+  - frage: "Worin liegt der zentrale Nutzen eines Assessment-Centers?"
+    optionen:
+      - "es senkt die Personalkosten dauerhaft"
+      - "es ersetzt die Stellenbeschreibung"
+      - "es macht die Auswahl objektiver und erfasst mehrere Kompetenzfelder gleichzeitig"
+      - "es ist besonders schnell und günstig durchführbar"
+    richtige: 2
+    erklaerung: "Ein AC vergleicht mehrere Bewerber in realitätsnahen Situationen und erfasst mehrere Kompetenzfelder – das leistet ein reines Vorstellungsgespräch nicht."
+    operator: "erläutern"
+  - frage: "Warum wird ein vollständiges Assessment-Center in der Praxis meist nur für Führungspositionen eingesetzt?"
+    optionen:
+      - "wegen des hohen Zeit-, Verwaltungs- und Kostenaufwands"
+      - "weil es gesetzlich vorgeschrieben ist"
+      - "weil Auszubildende grundsätzlich nicht getestet werden dürfen"
+      - "weil es keine aussagekräftigen Ergebnisse liefert"
+    richtige: 0
+    erklaerung: "Der hohe Aufwand rechtfertigt das vollständige AC meist nur bei Führungspositionen; bei Auszubildenden kommt häufig ein kleines AC zum Einsatz."
+    operator: "begründen"
+  - frage: "Was ist ein Beispiel für externe Personalbeschaffung?"
+    optionen:
+      - "die Anordnung von Überstunden"
+      - "die interne Stellenausschreibung"
+      - "die Versetzung eines Mitarbeiters"
+      - "die öffentliche Stellenanzeige"
+    richtige: 3
+    erklaerung: "Externe Personalbeschaffung gewinnt Mitarbeiter außerhalb des Unternehmens, etwa über öffentliche Stellenanzeigen oder Personalvermittler."
+    operator: "zuordnen"
 fallbeispiel:
   situation: |
     Die {{firma}} möchte kurzfristig einen Kapazitätsengpass in der
