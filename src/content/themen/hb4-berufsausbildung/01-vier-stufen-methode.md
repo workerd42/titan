@@ -7,6 +7,54 @@ description: "Vorbereiten, Vormachen und Erklären, Nachmachen und Erklärenlass
 werkzeug: "vier-stufen"
 merksatz: |
   Erst zeigen, dann erklären lassen, dann üben lassen – die Vier-Stufen-Methode überträgt Können, nicht nur Wissen.
+definitionen:
+  - begriff: "Vier-Stufen-Methode"
+    definition: "Ausbilderzentrierte Unterweisungsmethode zur Vermittlung praktischer Fertigkeiten in vier Stufen: Vorbereiten, Vormachen und Erklären, Nachmachen und Erklärenlassen, Üben."
+  - begriff: "Psychomotorische Fertigkeiten"
+    definition: "Praktische, handwerkliche Fähigkeiten (Bewegungsabläufe, Handgriffe), für deren Vermittlung die Vier-Stufen-Methode besonders geeignet ist."
+  - begriff: "Stufe Vorbereitung"
+    definition: "Erste Stufe: Material bereitstellen, Ziel und Sinn erklären, Befangenheit abbauen und nach Vorkenntnissen fragen."
+  - begriff: "Stufe Nachmachen und Erklärenlassen"
+    definition: "Dritte Stufe: Der Auszubildende führt die Tätigkeit selbst aus und erklärt sie; der Ausbilder erkennt das Verständnis und greift korrigierend ein."
+  - begriff: "Stufe Üben"
+    definition: "Vierte Stufe: eigenständiges Weiterüben, bis die Tätigkeit sicher beherrscht wird."
+mcFragen:
+  - frage: "Wie lautet die richtige Reihenfolge der vier Stufen?"
+    optionen:
+      - "Vorbereiten → Vormachen/Erklären → Nachmachen/Erklärenlassen → Üben"
+      - "Vormachen → Vorbereiten → Üben → Nachmachen"
+      - "Üben → Vormachen → Nachmachen → Vorbereiten"
+      - "Vorbereiten → Üben → Vormachen → Nachmachen"
+    richtige: 0
+    erklaerung: "Die Methode verläuft in der Folge Vorbereiten, Vormachen und Erklären, Nachmachen und Erklärenlassen, Üben."
+    operator: "ordnen"
+  - frage: "Für welche Art von Lerninhalten ist die Methode besonders geeignet?"
+    optionen:
+      - "abstraktes Theoriewissen"
+      - "psychomotorische (praktische) Fertigkeiten"
+      - "reines Faktenlernen"
+      - "kreative Ideenfindung"
+    richtige: 1
+    erklaerung: "Die Vier-Stufen-Methode eignet sich besonders für psychomotorische Fertigkeiten – praktische Bewegungsabläufe und Handgriffe."
+    operator: "nennen"
+  - frage: "Welchen Vorteil bietet das Nachfragen nach Vorkenntnissen in Stufe 1?"
+    optionen:
+      - "Es verkürzt die Ausbildung um ein Jahr."
+      - "Es ersetzt die Zwischenprüfung."
+      - "Es hilft, Über- oder Unterforderung zu vermeiden."
+      - "Es macht das Vormachen überflüssig."
+    richtige: 2
+    erklaerung: "Durch das Abfragen der Vorkenntnisse lässt sich die Unterweisung passgenau auf den Wissensstand abstimmen und Über- oder Unterforderung vermeiden."
+    operator: "erläutern"
+  - frage: "In welcher Stufe erklärt der Auszubildende die Tätigkeit selbst?"
+    optionen:
+      - "Stufe 1 Vorbereitung"
+      - "Stufe 2 Vormachen und Erklären"
+      - "Stufe 4 Üben"
+      - "Stufe 3 Nachmachen und Erklärenlassen"
+    richtige: 3
+    erklaerung: "In Stufe 3 führt der Auszubildende die Tätigkeit selbst aus und erklärt dabei die einzelnen Schritte."
+    operator: "benennen"
 fallbeispiel:
   situation: |
     Ein neuer Auszubildender soll lernen, wie ein bestimmtes Verpackungsgerät im

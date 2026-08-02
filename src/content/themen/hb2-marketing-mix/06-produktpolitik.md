@@ -7,6 +7,56 @@ description: "Der Innovationsprozess von der Ideenfindung über Scoring und Wirt
 werkzeug: "breakeven"
 merksatz: |
   Eine Produktidee wird erst zur Innovation, wenn sie Ideenfindung, Bewertung, Wirtschaftlichkeitsprüfung und Markterprobung durchlaufen hat.
+definitionen:
+  - begriff: "Innovationsprozess"
+    definition: "Mehrstufiger Ablauf von der Idee zur Marktreife: Ideenfindung → Ideenbewertung → Wirtschaftlichkeitsanalyse → materielle Produktentwicklung → Markterprobung → Markteinführung."
+  - begriff: "Ideenbewertung"
+    definition: "Vorselektion der Produktideen, häufig per Scoring-Modell (Nutzwertanalyse); ergänzt durch Conjoint-Analyse und Quality Function Deployment (QFD), um Kundenanforderungen in Produktmerkmale zu übersetzen."
+  - begriff: "Wirtschaftlichkeitsanalyse"
+    definition: "Prüfung, ob sich eine Produktidee rechnet, u. a. über Break-even-Analyse, Pay-off-Methode oder Kapitalwertmethode – vor der kostenintensiven Entwicklung."
+  - begriff: "Markterprobung"
+    definition: "Test des Produkts in begrenztem, realem Rahmen vor der breiten Einführung: Storetest, Markttest, Minitestmarkt oder Testmarktersatzverfahren (TESI) als Laborvariante."
+  - begriff: "Pionierstrategie"
+    definition: "Als erster Anbieter mit einer Innovation in den Markt gehen. Vorteil: Imagegewinn und Erstbesetzung des Marktes. Risiko: hohe Entwicklungskosten, ungewisse Marktreaktion."
+  - begriff: "Imitatorstrategie"
+    definition: "Eine bereits bewährte Innovation eines Wettbewerbers nachahmen oder verbessern. Vorteil: geringeres Risiko, da der Markt getestet ist. Nachteil: kein Pionier-Image."
+mcFragen:
+  - frage: "Welcher Schritt folgt im Innovationsprozess direkt auf die Ideenbewertung?"
+    optionen:
+      - "Markteinführung"
+      - "Wirtschaftlichkeitsanalyse"
+      - "Ideenfindung"
+      - "Markterprobung"
+    richtige: 1
+    erklaerung: "Nach der Bewertung wird die Wirtschaftlichkeit geprüft, bevor in die teure materielle Entwicklung investiert wird."
+    operator: "ordnen"
+  - frage: "Zu welchem Schritt des Innovationsprozesses gehört ein Storetest?"
+    optionen:
+      - "Ideenfindung"
+      - "Wirtschaftlichkeitsanalyse"
+      - "Markterprobung"
+      - "Markteinführung"
+    richtige: 2
+    erklaerung: "Der Storetest ist eine Form der Markterprobung: das Produkt wird in wenigen realen Testgeschäften erprobt, bevor die breite Einführung erfolgt."
+    operator: "zuordnen"
+  - frage: "Was kennzeichnet die Pionierstrategie?"
+    optionen:
+      - "Als erster Anbieter mit der Innovation in den Markt gehen"
+      - "Kurz nach dem Pionier in den Markt folgen"
+      - "Erst in den bereits gesättigten Markt eintreten"
+      - "Jedes Entwicklungsrisiko vermeiden"
+    richtige: 0
+    erklaerung: "Der Pionier ist der erste Anbieter; er gewinnt Image und besetzt den Markt, trägt aber hohe Entwicklungskosten und das Marktrisiko."
+    operator: "erläutern"
+  - frage: "Mit welchem Verfahren werden mehrere Produktideen objektiv vorselektiert?"
+    optionen:
+      - "Break-even-Analyse"
+      - "Scoring-Modell (Nutzwertanalyse)"
+      - "AIDA-Modell"
+      - "Balanced Scorecard"
+    richtige: 1
+    erklaerung: "Das Scoring-Modell gewichtet Kriterien und bepunktet jede Idee; die mit dem höchsten Gesamtnutzwert kommen in die nächste Stufe."
+    operator: "auswählen"
 fallbeispiel:
   situation: |
     Die {{firma}} hat aus einem internen Ideenwettbewerb eine

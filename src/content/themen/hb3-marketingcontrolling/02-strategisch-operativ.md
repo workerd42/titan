@@ -6,6 +6,56 @@ order: 2
 description: "Der fünfstufige Managementkreislauf (Zielbildung, Planung, Ausführung, Kontrolle, Information) und die Abstimmung strategischer mit operativen Marketingprozessen."
 merksatz: |
   Strategie ohne Kontrolle ist Hoffnung – Kontrolle ohne Strategie ist Buchhaltung.
+definitionen:
+  - begriff: "Managementkreislauf"
+    definition: "Phasenfolge Zielbildung → Planung → Ausführung (Realisation) → Kontrolle, die geschlossen zur Zielbildung zurückführt und die strategische mit der operativen Ebene verzahnt."
+  - begriff: "Information (Querschnittsfunktion)"
+    definition: "Durchgängige Funktion, die alle vier Phasen des Managementkreislaufs mit Daten versorgt und verbindet – keine eigene, abgeschlossene Einzelphase."
+  - begriff: "Strategische Ebene"
+    definition: "Die langfristige Ausrichtung eines Unternehmens (Ziele, Grundausrichtung), die den Rahmen für das operative Handeln setzt."
+  - begriff: "Operative Ebene"
+    definition: "Die laufende, kurzfristige Umsetzung der strategischen Vorgaben im Tagesgeschäft."
+  - begriff: "Soll-Ist-Vergleich"
+    definition: "Vergangenheits- und ergebnisorientiertes Kontrollinstrument; prüft, ob bereits festgelegte Ziele erreicht wurden."
+  - begriff: "Marketingaudit"
+    definition: "Zukunfts- und systemorientiertes Instrument; hinterfragt grundsätzlich, ob die gesamte Marketingorganisation und -strategie noch zielführend aufgestellt sind."
+mcFragen:
+  - frage: "Welche vier Phasen bilden den Managementkreislauf?"
+    optionen:
+      - "Zielbildung, Planung, Ausführung, Kontrolle"
+      - "Analyse, Planung, Verkauf, Abrechnung"
+      - "Beschaffung, Produktion, Absatz, Lager"
+      - "Pretest, Schaltung, Posttest, Audit"
+    richtige: 0
+    operator: "nennen"
+    erklaerung: "Der Managementkreislauf umfasst Zielbildung, Planung, Ausführung und Kontrolle – durchzogen von der Querschnittsfunktion Information."
+  - frage: "Warum gilt die Information als Querschnittsfunktion des Managementkreislaufs?"
+    optionen:
+      - "Weil sie die erste, einmalige Phase des Kreislaufs ist"
+      - "Weil sie die abschließende Kontrollphase darstellt"
+      - "Weil sie alle Phasen durchzieht und mit den nötigen Daten versorgt"
+      - "Weil sie im Managementkreislauf gar nicht vorkommt"
+    richtige: 2
+    operator: "erläutern"
+    erklaerung: "Schon Zielbildung, Planung und Kontrolle benötigen Informationen – ohne durchgängigen Informationsfluss bricht der Kreislauf zusammen."
+  - frage: "Worin unterscheiden sich Soll-Ist-Vergleich und Marketingaudit grundsätzlich?"
+    optionen:
+      - "Der Soll-Ist-Vergleich ist zukunftsorientiert, das Audit vergangenheitsorientiert"
+      - "Der Soll-Ist-Vergleich prüft die Zielerreichung, das Audit hinterfragt die gesamte Ausrichtung"
+      - "Beide messen ausschließlich den Umsatz"
+      - "Das Marketingaudit ist ein reiner Kostenvergleich"
+    richtige: 1
+    operator: "unterscheiden"
+    erklaerung: "Der Soll-Ist-Vergleich ist vergangenheits-/ergebnisorientiert; das Audit ist zukunfts-/systemorientiert und hinterfragt die grundsätzliche Ausrichtung."
+  - frage: "Wie lassen sich strategische und operative Ebene korrekt zuordnen?"
+    optionen:
+      - "Operative Prozesse legen die langfristige Ausrichtung fest"
+      - "Strategische Prozesse betreffen nur die tägliche Umsetzung"
+      - "Beide Ebenen sind inhaltlich identisch"
+      - "Die strategische Ebene setzt die langfristige Ausrichtung, die operative die laufende Umsetzung"
+    richtige: 3
+    operator: "ordnen"
+    erklaerung: "Strategie = langfristige Ausrichtung; operativ = laufende Umsetzung. Beide müssen über den Kreislauf verbunden sein."
 fallbeispiel:
   situation: |
     Die {{firma}} hat eine klare strategische Ausrichtung

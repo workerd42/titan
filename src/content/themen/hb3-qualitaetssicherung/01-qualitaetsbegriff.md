@@ -6,6 +6,54 @@ order: 1
 description: "Die zwei Beurteilungsrichtungen von Produktqualität – anbieterbezogene technische Normen versus kundenbezogene, psychologisch geprägte Wahrnehmung."
 merksatz: |
   Ein technisch perfektes Produkt kann trotzdem als minderwertig empfunden werden – Qualität entscheidet am Ende der Kunde, nicht das Prüflabor.
+definitionen:
+  - begriff: "Objektiver Qualitätsbegriff"
+    definition: "Anbieterbezogene, technisch messbare Qualität – Übereinstimmung mit Spezifikationen, Ausschussquoten und technischen Normen."
+  - begriff: "Subjektiver Qualitätsbegriff"
+    definition: "Kundenbezogene, psychologisch geprägte Qualitätswahrnehmung: wie gut ein Produkt die tatsächlichen Bedürfnisse und Nutzenerwartungen des Abnehmers erfüllt."
+  - begriff: "Technische Normen"
+    definition: "Verbindliche Standards als Messlatte der objektiven Qualität, z. B. DIN-/EN-Normen, ISO-Normen und VDE-Vorschriften."
+  - begriff: "Produktanmutung"
+    definition: "Der subjektiv wirkende Gesamteindruck eines Produkts (Design, Haptik, Wertigkeit) – ein zentraler Einflussfaktor der subjektiven Qualität."
+  - begriff: "Marktsegmentierung"
+    definition: "Aufteilung des Marktes in Zielgruppen mit ähnlichen Erwartungen; Voraussetzung, um subjektive Qualitätsansprüche gezielt zu treffen statt zu erraten."
+mcFragen:
+  - frage: "Was umfasst der objektive Qualitätsbegriff?"
+    optionen:
+      - "Anbieterbezogene, technisch messbare Qualität wie Normkonformität und Ausschussquoten"
+      - "Die psychologische Wahrnehmung des Kunden"
+      - "Das Preis-Leistungs-Verhältnis aus Kundensicht"
+      - "Den aktuellen Modetrend"
+    richtige: 0
+    operator: "definieren"
+    erklaerung: "Der objektive Qualitätsbegriff ist anbieterbezogen und technisch messbar (Spezifikationen, Normen); die Kundensicht gehört zum subjektiven Begriff."
+  - frage: "Welcher Faktor beeinflusst die subjektive Qualitätswahrnehmung?"
+    optionen:
+      - "Die Ausschussquote in der Fertigung"
+      - "Die DIN-Normkonformität"
+      - "Das Preis-Leistungs-Verhältnis aus Kundensicht"
+      - "Die Temperaturbeständigkeit des Materials"
+    richtige: 2
+    operator: "nennen"
+    erklaerung: "Preis-Leistungs-Verhältnis, Produktanmutung, Trends und Konkurrenzvergleich prägen die subjektive Wahrnehmung; die übrigen Optionen sind objektive Größen."
+  - frage: "Welche sind Beispiele für technische Normen der objektiven Qualität?"
+    optionen:
+      - "Recall und Recognition"
+      - "DIN-/EN-Normen, ISO-Normen und VDE-Vorschriften"
+      - "Customer Lifetime Value und Customer Equity"
+      - "Pretest und Posttest"
+    richtige: 1
+    operator: "nennen"
+    erklaerung: "DIN-/EN-, ISO-Normen und VDE-Vorschriften dienen als Messlatte der objektiven Qualität; die übrigen Begriffe stammen aus anderen Themenfeldern."
+  - frage: "Warum ist die Marktsegmentierung Voraussetzung für die Beurteilung subjektiver Qualität?"
+    optionen:
+      - "Weil sie die Ausschussquote in der Fertigung senkt"
+      - "Weil sie technische Normen ersetzt"
+      - "Weil sie den objektiven Qualitätsbegriff definiert"
+      - "Weil subjektive Qualitätserwartungen je Zielgruppe verschieden sind und gezielt getroffen werden müssen"
+    richtige: 3
+    operator: "begründen"
+    erklaerung: "Subjektive Qualität ist gruppenspezifisch; erst die Kenntnis der Zielgruppe erlaubt es, subjektive Qualität gezielt zu gestalten statt zu erraten."
 fallbeispiel:
   situation: |
     Die {{firma}} hat ein neues Bügeleisen entwickelt, das alle

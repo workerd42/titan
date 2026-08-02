@@ -7,6 +7,56 @@ description: "Akquisitorische versus physische Distribution, Direktvertrieb vers
 werkzeug: "scoring"
 merksatz: |
   Die akquisitorische Distribution gewinnt den Kunden, die physische Distribution liefert ihm das Produkt – beides muss zusammenpassen.
+definitionen:
+  - begriff: "Akquisitorische Distribution"
+    definition: "Alle Maßnahmen zur Gewinnung des Kunden und zur Gestaltung des Vertriebswegs, z. B. Auswahl der Absatzkanäle und Verkaufsförderung am Point of Sale."
+  - begriff: "Physische Distribution (Logistik)"
+    definition: "Die tatsächliche Warenbewegung vom Hersteller zum Kunden: Transport, Lagerung und Auftragsabwicklung."
+  - begriff: "Direktvertrieb"
+    definition: "Verkauf ohne Zwischenstufe direkt an den Endkunden (z. B. Werksverkauf, eigener Online-Shop, Außendienst im B2B). Vorteil: volle Kontrolle und direkter Kundenkontakt; Nachteil: höherer eigener Aufwand."
+  - begriff: "Indirekter Vertrieb"
+    definition: "Verkauf über einen oder mehrere zwischengeschaltete Absatzmittler (Groß- und/oder Einzelhandel)."
+  - begriff: "Distributionsbreite"
+    definition: "Festlegung, über wie viele Verkaufsstellen ein Produkt vertrieben wird: intensiv (möglichst viele), selektiv (ausgewählte Partner) oder exklusiv (sehr wenige, oft vertraglich gebundene)."
+  - begriff: "Numerische und gewichtete Distribution"
+    definition: "Numerisch = Anteil der Geschäfte, die das Produkt führen, an allen relevanten Geschäften; gewichtet = zusätzlich nach der Umsatzbedeutung der jeweiligen Geschäfte gewichtet."
+mcFragen:
+  - frage: "Worin unterscheiden sich akquisitorische und physische Distribution?"
+    optionen:
+      - "Akquisitorisch = Warenbewegung, physisch = Kundengewinnung"
+      - "Akquisitorisch = Kundengewinnung und Kanalwahl, physisch = Transport und Lagerung"
+      - "Beide betreffen ausschließlich die Logistik"
+      - "Beide betreffen ausschließlich die Preisgestaltung"
+    richtige: 1
+    erklaerung: "Die akquisitorische Distribution gewinnt den Kunden und gestaltet den Vertriebsweg; die physische Distribution ist die tatsächliche Warenbewegung (Logistik)."
+    operator: "erläutern"
+  - frage: "Eine Premiummarke will ihr Image schützen, aber dennoch deutschlandweit erhältlich sein. Welche Distributionsbreite passt am besten?"
+    optionen:
+      - "Intensive Distribution"
+      - "Exklusive Distribution"
+      - "Selektive Distribution"
+      - "Reiner Direktvertrieb"
+    richtige: 2
+    erklaerung: "Die selektive Distribution verkauft über ausgewählte, zum Image passende Partner – breiter als exklusiv, aber ohne die Verwässerung durch intensive Distribution."
+    operator: "auswählen"
+  - frage: "Ein Hersteller baut einen eigenen Online-Shop für Endkunden auf. Um welche Vertriebsform handelt es sich?"
+    optionen:
+      - "Direktvertrieb"
+      - "Indirekter Vertrieb"
+      - "Selektive Distribution"
+      - "Physische Distribution"
+    richtige: 0
+    erklaerung: "Der Verkauf ohne zwischengeschalteten Absatzmittler direkt an den Endkunden ist Direktvertrieb."
+    operator: "nennen"
+  - frage: "Was beschreibt die gewichtete Distribution?"
+    optionen:
+      - "Den Anteil aller Geschäfte, die das Produkt überhaupt führen"
+      - "Den Anteil der geführten Geschäfte, gewichtet nach ihrer Umsatzbedeutung"
+      - "Die Anzahl der eingesetzten Absatzmittler"
+      - "Die Zahl der exklusiven Vertriebsverträge"
+    richtige: 1
+    erklaerung: "Die gewichtete Distribution berücksichtigt zusätzlich die Umsatzbedeutung der Geschäfte; die reine Anzahl ist die numerische Distribution."
+    operator: "definieren"
 fallbeispiel:
   situation: |
     Die {{firma}} stellt hochpreisige Bio-Erfrischungsgetränke

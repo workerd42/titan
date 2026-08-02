@@ -7,6 +7,56 @@ description: "Strategische, operative und führungsübergreifende Controllingins
 werkzeug: "portfolio"
 merksatz: |
   Die Gap-Analyse zeigt nicht nur, dass eine Lücke besteht, sondern zwingt zur Entscheidung, ob sie operativ oder strategisch geschlossen werden muss.
+definitionen:
+  - begriff: "Gap-Analyse (Lückenanalyse)"
+    definition: "Strategisches Instrument, das die geplante Soll-Entwicklung der bei unverändertem Vorgehen zu erwartenden Ist-Entwicklung gegenüberstellt und so die Ziellücke sichtbar macht."
+  - begriff: "Operative Lücke"
+    definition: "Teil der Gesamtlücke, der innerhalb bestehender Produkt-Markt-Kombinationen schließbar ist, z. B. durch effizientere Marktdurchdringung."
+  - begriff: "Strategische Lücke"
+    definition: "Teil der Gesamtlücke, der grundsätzlich neue Maßnahmen erfordert, z. B. Produkt- oder Marktentwicklung oder Diversifikation."
+  - begriff: "Benchmarking"
+    definition: "Systematischer Vergleich der eigenen Leistung mit der besten verfügbaren Vergleichsleistung (Best Practice), um konkrete Verbesserungspotenziale abzuleiten."
+  - begriff: "Kennzahlensystem"
+    definition: "Verknüpft mehrere Einzelkennzahlen sachlogisch miteinander, sodass Wechselwirkungen sichtbar werden, die eine isolierte Einzelbetrachtung übersieht."
+  - begriff: "Führungsübergreifende Instrumente"
+    definition: "Controllinginstrumente, die auf strategischer und operativer Ebene zugleich wirken, z. B. Kennzahlensysteme, Anreizsysteme und Wissensmanagement."
+mcFragen:
+  - frage: "Was leistet die Gap-Analyse?"
+    optionen:
+      - "Sie stellt die geplante Soll-Entwicklung der erwarteten Ist-Entwicklung gegenüber"
+      - "Sie vergleicht die eigenen Prozesse mit dem Klassenbesten"
+      - "Sie verteilt die Fixkosten auf einzelne Produkte"
+      - "Sie misst die Werbeerinnerung der Zielgruppe"
+    richtige: 0
+    operator: "definieren"
+    erklaerung: "Die Gap-Analyse macht die Lücke zwischen geplanter Soll- und erwarteter Ist-Kurve sichtbar; der Best-Practice-Vergleich ist Benchmarking."
+  - frage: "Wie unterscheiden sich operative und strategische Lücke?"
+    optionen:
+      - "Die operative Lücke erfordert stets neue Märkte und Produkte"
+      - "Die strategische Lücke wird allein durch bessere Marktdurchdringung geschlossen"
+      - "Die strategische Lücke erfordert grundsätzlich neue Maßnahmen wie Produkt- oder Marktentwicklung"
+      - "Beide Lücken sind inhaltlich identisch"
+    richtige: 2
+    operator: "unterscheiden"
+    erklaerung: "Die operative Lücke ist innerhalb bestehender Produkt-Markt-Kombinationen schließbar; die strategische Lücke braucht neue strategische Maßnahmen."
+  - frage: "Was bezeichnet man als Benchmarking?"
+    optionen:
+      - "Ein Verfahren zur Verteilung der Fixkosten"
+      - "Den systematischen Vergleich der eigenen Leistung mit der besten Vergleichsleistung"
+      - "Die Befragung von Kunden nach der Kampagne"
+      - "Die Aufteilung des Marktes in Segmente"
+    richtige: 1
+    operator: "nennen"
+    erklaerung: "Benchmarking vergleicht die eigene Leistung mit dem Best Practice, um Verbesserungspotenziale abzuleiten."
+  - frage: "Welchen Vorteil bietet ein Kennzahlensystem gegenüber einer einzelnen Kennzahl?"
+    optionen:
+      - "Es betrachtet bewusst nur eine einzige Kennzahl"
+      - "Es ersetzt jede Form der Datenerhebung"
+      - "Es ist ein rein operatives Frühwarnsystem"
+      - "Es verknüpft mehrere Kennzahlen sachlogisch, sodass Wechselwirkungen sichtbar werden"
+    richtige: 3
+    operator: "erläutern"
+    erklaerung: "Ein Kennzahlensystem macht Wechselwirkungen erkennbar (z. B. Preissenkung auf Absatz UND Deckungsbeitrag), die eine isolierte Kennzahl verbirgt."
 fallbeispiel:
   situation: |
     Die {{firma}} stellt fest, dass die geplante Umsatzkurve für

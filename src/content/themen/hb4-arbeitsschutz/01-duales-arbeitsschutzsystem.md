@@ -6,6 +6,52 @@ order: 1
 description: "Staatliche Arbeitsschutzaufsicht der Bundesländer und Berufsgenossenschaften als zwei zusammenwirkende, gesetzlich zur Kooperation verpflichtete Überwachungsorgane des Arbeitsschutzes in Deutschland."
 merksatz: |
   Zwei Organe wachen über den Arbeitsschutz – die einen branchenweit, die anderen an der Landesgrenze – und beide sind zur Zusammenarbeit verpflichtet.
+definitionen:
+  - begriff: "Duales Arbeitsschutzsystem"
+    definition: "System aus zwei parallel wirkenden Überwachungsorganen – gewerbliche Berufsgenossenschaften und staatliche Arbeitsschutzaufsicht der Bundesländer –, die den Arbeitsschutz gemeinsam sicherstellen."
+  - begriff: "Gewerbliche Berufsgenossenschaft"
+    definition: "Träger der gesetzlichen Unfallversicherung; branchenabhängig, aber bundesweit für Arbeitssicherheit und Unfallverhütung zuständig."
+  - begriff: "Staatliche Arbeitsschutzaufsicht"
+    definition: "Aufsichtsorgan der Bundesländer; branchenübergreifend zuständig, die Zuständigkeit endet jedoch an der jeweiligen Landesgrenze."
+  - begriff: "Zusammenarbeitspflicht"
+    definition: "Gesetzliche Verpflichtung beider Überwachungsorgane zur Kooperation, um Doppelarbeit zu vermeiden und einen lückenlosen Arbeitsschutz sicherzustellen."
+mcFragen:
+  - frage: "Wodurch ist die Zuständigkeit der gewerblichen Berufsgenossenschaften gekennzeichnet?"
+    optionen:
+      - "branchenabhängig, aber bundesweit"
+      - "branchenübergreifend, endet an der Landesgrenze"
+      - "nur für den öffentlichen Dienst"
+      - "ausschließlich für Großbetriebe"
+    richtige: 0
+    erklaerung: "Berufsgenossenschaften sind branchenabhängig, ihre Zuständigkeit erstreckt sich aber bundesweit über alle 16 Bundesländer."
+    operator: "unterscheiden"
+  - frage: "Wo endet die Zuständigkeit der staatlichen Arbeitsschutzaufsicht?"
+    optionen:
+      - "bei Betrieben mit über 50 Mitarbeitern"
+      - "an der jeweiligen Landesgrenze"
+      - "an der Branchengrenze"
+      - "an der Unternehmensgrenze"
+    richtige: 1
+    erklaerung: "Die staatliche Arbeitsschutzaufsicht ist branchenübergreifend zuständig, ihre Zuständigkeit endet aber jeweils an der Landesgrenze."
+    operator: "nennen"
+  - frage: "Welche Institution ist zugleich Träger der gesetzlichen Unfallversicherung?"
+    optionen:
+      - "die staatliche Arbeitsschutzaufsicht"
+      - "das Gewerbeaufsichtsamt allein"
+      - "die gewerbliche Berufsgenossenschaft"
+      - "die Bundesagentur für Arbeit"
+    richtige: 2
+    erklaerung: "Die gewerblichen Berufsgenossenschaften sind zugleich Träger der gesetzlichen Unfallversicherung."
+    operator: "benennen"
+  - frage: "Was ist zur Zusammenarbeit der beiden Überwachungsorgane gesetzlich vorgeschrieben?"
+    optionen:
+      - "Die Zusammenarbeit ist freiwillig."
+      - "Sie arbeiten nur auf Anforderung eines Unternehmens zusammen."
+      - "Eine Zusammenarbeit ist untersagt."
+      - "Sie sind gesetzlich zur Zusammenarbeit verpflichtet."
+    richtige: 3
+    erklaerung: "Beide Organe sind gesetzlich zur Zusammenarbeit verpflichtet, um Doppelarbeit zu vermeiden und lückenlosen Arbeitsschutz sicherzustellen."
+    operator: "nennen"
 fallbeispiel:
   situation: |
     In einem Marketingunternehmen ereignet sich ein Arbeitsunfall an einem Bildschirmarbeitsplatz.

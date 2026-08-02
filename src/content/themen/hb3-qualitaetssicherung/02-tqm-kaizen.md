@@ -6,6 +6,52 @@ order: 2
 description: "TQM als ganzheitliches Managementkonzept der permanenten Verbesserung und Kaizen als japanisches Prinzip der immerwährenden Verbesserung, angewandt auf das Marketing."
 merksatz: |
   TQM macht Qualität zur Aufgabe aller Bereiche – Kaizen macht Verbesserung zur Daueraufgabe aller Mitarbeiter.
+definitionen:
+  - begriff: "Total Quality Management (TQM)"
+    definition: "Ganzheitliches Managementkonzept der permanenten Verbesserung, das Qualität in allen Unternehmensbereichen verankert – nicht nur in der Fertigung. Ursprung: Produktionswirtschaft."
+  - begriff: "Kaizen"
+    definition: "Aus der japanischen Produktionstechnik stammendes Prinzip des Strebens nach immerwährender, meist inkrementeller Verbesserung aller betrieblichen Prozesse."
+  - begriff: "Permanente Verbesserung"
+    definition: "Kontinuierlicher, nie abgeschlossener Verbesserungsprozess; gemeinsamer Kerngedanke von TQM und Kaizen."
+  - begriff: "Qualitätsmanagementsystem"
+    definition: "System bzw. Software zur Abbildung und Begleitung von Prozessverbesserungen, mit der TQM in der Praxis häufig umgesetzt wird."
+mcFragen:
+  - frage: "Was kennzeichnet das Total Quality Management (TQM)?"
+    optionen:
+      - "Ein reines Kontrollverfahren der Fertigung"
+      - "Ein ganzheitliches Managementkonzept der permanenten Verbesserung über alle Bereiche"
+      - "Eine Software zur Lohnabrechnung"
+      - "Ein einmaliges Audit der Marketingabteilung"
+    richtige: 1
+    operator: "definieren"
+    erklaerung: "TQM verankert Qualität als permanente Aufgabe in allen Unternehmensbereichen, nicht nur in der Produktion."
+  - frage: "Woher stammt das Kaizen-Prinzip und was bedeutet es?"
+    optionen:
+      - "Aus der japanischen Produktionstechnik – Streben nach immerwährender Verbesserung"
+      - "Aus der US-amerikanischen Kostenrechnung"
+      - "Aus einem Frühwarnsystem des Controllings"
+      - "Aus einer DIN-Norm für Produktqualität"
+    richtige: 0
+    operator: "nennen"
+    erklaerung: "Kaizen kommt aus der japanischen Produktionstechnik und bezeichnet das Streben nach immerwährender, meist inkrementeller Verbesserung."
+  - frage: "Wie verhalten sich TQM und Kaizen zueinander?"
+    optionen:
+      - "TQM stammt aus Japan, Kaizen aus der Buchhaltung"
+      - "Beide betreffen ausschließlich das einzelne Produkt"
+      - "Beide zielen auf permanente Verbesserung; TQM ist das übergreifende Managementkonzept, Kaizen das japanische Prinzip"
+      - "TQM und Kaizen widersprechen sich grundsätzlich"
+    richtige: 2
+    operator: "unterscheiden"
+    erklaerung: "Beide verfolgen ganzheitliche, permanente Verbesserung; sie unterscheiden sich vor allem im Ursprung und ergänzen sich in der Praxis."
+  - frage: "Warum lässt sich das Marketingcontrolling als Bestandteil des TQM verstehen?"
+    optionen:
+      - "Weil es ausschließlich Kosten senkt"
+      - "Weil es Teil der Produktionsabteilung ist"
+      - "Weil es die Werbung gestaltet"
+      - "Weil es den Managementkreislauf im Marketing umsetzt und laufend Verbesserungspotenziale aufdeckt"
+    richtige: 3
+    operator: "begründen"
+    erklaerung: "Marketingcontrolling setzt den permanenten Verbesserungskreislauf im Marketing um und ist damit im weitesten Sinne Teil des TQM-Gedankens."
 fallbeispiel:
   situation: |
     Die {{firma}} hat Qualitätssicherung bisher ausschließlich als

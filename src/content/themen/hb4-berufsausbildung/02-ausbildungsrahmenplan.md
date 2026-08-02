@@ -6,6 +6,52 @@ order: 2
 description: "Der Ausbildungsrahmenplan als verbindliche Grundlage der Berufsausbildung mit der Möglichkeit betrieblich begründeter Abweichungen in der zeitlichen Gliederung."
 merksatz: |
   Der Ausbildungsrahmenplan gibt vor, was gelernt werden muss – wie und wann genau, darf der Betrieb aus guten Gründen anpassen.
+definitionen:
+  - begriff: "Ausbildungsrahmenplan"
+    definition: "Teil der Ausbildungsordnung; Anleitung zur sachlichen und zeitlichen Gliederung der zu vermittelnden Fertigkeiten, Kenntnisse und Fähigkeiten."
+  - begriff: "Ausbildungsordnung"
+    definition: "Rechtliche Grundlage eines anerkannten Ausbildungsberufs, zu der der Ausbildungsrahmenplan gehört."
+  - begriff: "Sachliche und zeitliche Gliederung"
+    definition: "Vorgabe, welche Inhalte (sachlich) in welcher Reihenfolge und zeitlichen Abfolge (zeitlich) vermittelt werden sollen."
+  - begriff: "Abweichende Gliederung"
+    definition: "Betrieblich begründete Anpassung der sachlichen und zeitlichen Reihenfolge; zulässig, soweit betriebliche Besonderheiten es erfordern und alle Inhalte vollständig vermittelt werden."
+mcFragen:
+  - frage: "Welche Funktion hat der Ausbildungsrahmenplan in erster Linie?"
+    optionen:
+      - "Er legt die Höhe der Ausbildungsvergütung fest."
+      - "Er gliedert die Ausbildungsinhalte sachlich und zeitlich und sichert bundesweite Vergleichbarkeit."
+      - "Er ersetzt den Berufsschulunterricht."
+      - "Er regelt ausschließlich die Prüfungstermine."
+    richtige: 1
+    erklaerung: "Der Rahmenplan gliedert die Inhalte sachlich und zeitlich und stellt bundesweit vergleichbare Ausbildungsinhalte sicher."
+    operator: "erläutern"
+  - frage: "Unter welcher Voraussetzung ist eine abweichende zeitliche Gliederung zulässig?"
+    optionen:
+      - "nie, der Plan ist starr einzuhalten"
+      - "immer, ohne jede Bedingung"
+      - "soweit betriebliche Besonderheiten es erfordern und alle Inhalte vermittelt werden"
+      - "nur mit Zustimmung der Berufsschule"
+    richtige: 2
+    erklaerung: "Eine abweichende Gliederung ist zulässig, soweit betriebliche Besonderheiten dies erfordern und die inhaltliche Vollständigkeit gewahrt bleibt."
+    operator: "nennen"
+  - frage: "Was bleibt trotz zeitlicher Flexibilität verbindlich?"
+    optionen:
+      - "die genaue Reihenfolge der Inhalte"
+      - "die vollständige Vermittlung aller vorgeschriebenen Inhalte"
+      - "der exakte Wochenplan"
+      - "die Verteilung auf einzelne Ausbilder"
+    richtige: 1
+    erklaerung: "Verbindlich ist, dass am Ende der Ausbildungszeit alle vorgeschriebenen Inhalte vollständig vermittelt wurden."
+    operator: "beurteilen"
+  - frage: "Was gibt der Rahmenplan vor allem verbindlich vor?"
+    optionen:
+      - "das verbindliche „Was“, nicht zwingend das exakte „Wann“"
+      - "ausschließlich das exakte „Wann“"
+      - "weder Inhalte noch Zeitpunkt"
+      - "nur die Prüfungsform"
+    richtige: 0
+    erklaerung: "Der Rahmenplan gibt das verbindliche „Was“ (die Inhalte) vor, nicht zwingend das exakte „Wann“ der Vermittlung."
+    operator: "unterscheiden"
 fallbeispiel:
   situation: |
     Ein Marketingunternehmen bildet Kaufleute für Marketingkommunikation aus. Im dritten

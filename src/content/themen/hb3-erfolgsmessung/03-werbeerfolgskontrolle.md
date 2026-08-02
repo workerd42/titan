@@ -6,6 +6,19 @@ order: 3
 description: "Pretest- und Posttest-Verfahren zur Messung der Werbewirkung sowie die Unterscheidung von ökonomischen und außerökonomischen Erfolgsgrößen."
 merksatz: |
   Ein Pretest verhindert die teure Fehlkampagne, ein Posttest erklärt erst hinterher, warum sie funktioniert hat oder nicht.
+definitionen:
+  - begriff: "Pretest"
+    definition: "Werbewirkungstest vor der Schaltung/Ausstrahlung, meist an einer kleinen Testgruppe; deckt Schwächen der Werbemittel auf, bevor Budget in die breite Schaltung investiert wird."
+  - begriff: "Posttest"
+    definition: "Werbewirkungsmessung nach der Ausstrahlung; misst die tatsächlich beim Publikum erzielte Wirkung, kann eine Fehlkampagne aber nicht mehr verhindern."
+  - begriff: "Werbeerinnerung (Recall)"
+    definition: "Fähigkeit der Zielgruppe, sich unaufgefordert an eine Werbung zu erinnern – zentrale Messgröße des Posttests."
+  - begriff: "Werbewiedererkennung (Recognition)"
+    definition: "Wiedererkennen der Werbung durch die Zielgruppe bei Vorlage – zentrale Messgröße des Posttests."
+  - begriff: "Ökonomische Erfolgsgrößen"
+    definition: "Direkt monetär messbare Wirkungen der Werbung, z. B. der zusätzlich erzielte Umsatz oder der Return on Advertising Spend."
+  - begriff: "Außerökonomische Erfolgsgrößen"
+    definition: "Nicht-monetäre, psychologische Wirkungen der Werbung, z. B. veränderte Markeneinstellung oder gesteigerte Markenbekanntheit."
 fallbeispiel:
   situation: |
     Die {{firma}} hat eine neue TV-Kampagne bereits bundesweit

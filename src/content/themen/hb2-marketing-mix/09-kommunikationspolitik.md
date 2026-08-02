@@ -6,6 +6,56 @@ order: 9
 description: "Das AIDA-Modell der Werbewirkung, Above-the-Line versus Below-the-Line-Instrumente sowie Push- und Pull-Strategien."
 merksatz: |
   Erst Attention, dann Interest, dann Desire — und nur wer alle drei schafft, bekommt am Ende die Action.
+definitionen:
+  - begriff: "AIDA-Modell"
+    definition: "Stufenmodell der Werbewirkung: Attention (Aufmerksamkeit) → Interest (Interesse) → Desire (Besitzwunsch) → Action (Kaufhandlung). Beschreibt den Weg vom Wahrnehmen bis zum Kauf."
+  - begriff: "Above the Line"
+    definition: "Klassische Massenmedien-Werbung (TV, Radio, Print, Plakat) mit breiter, eher unpersönlicher Streuung."
+  - begriff: "Below the Line"
+    definition: "Direktere, oft zielgruppenspezifischere Kommunikationsformen ohne klassische Massenmedien, z. B. Verkaufsförderung, Sponsoring, Eventmarketing, PR, Messen, Direktmarketing."
+  - begriff: "Push-Strategie"
+    definition: "Der Handel wird durch Anreize (Sonderkonditionen, Außendienst) motiviert, das Produkt aktiv zu verkaufen – der Druck wird über den Handel zum Kunden geschoben."
+  - begriff: "Pull-Strategie"
+    definition: "Die Nachfrage wird direkt beim Endkunden erzeugt (z. B. durch klassische Werbung), der das Produkt dann selbst aktiv beim Handel nachfragt."
+  - begriff: "USP und UAP"
+    definition: "USP (Unique Selling Proposition) = objektiv einzigartiges Produktmerkmal; UAP (Unique Advertising Proposition) = einzigartiges Werbeversprechen auf kommunikativer Ebene, auch ohne objektives Alleinstellungsmerkmal."
+mcFragen:
+  - frage: "In welcher Reihenfolge verlaufen die Stufen des AIDA-Modells?"
+    optionen:
+      - "Attention, Interest, Desire, Action"
+      - "Attention, Desire, Interest, Action"
+      - "Interest, Attention, Action, Desire"
+      - "Action, Interest, Desire, Attention"
+    richtige: 0
+    erklaerung: "AIDA steht für Attention → Interest → Desire → Action, also von der Aufmerksamkeit bis zur Kaufhandlung."
+    operator: "ordnen"
+  - frage: "Wie ist eine klassische Fernsehwerbekampagne einzuordnen?"
+    optionen:
+      - "Below the Line"
+      - "Above the Line"
+      - "Push-Strategie"
+      - "Direktmarketing"
+    richtige: 1
+    erklaerung: "TV-Werbung ist klassische Massenmedien-Werbung mit breiter, unpersönlicher Streuung – also Above the Line."
+    operator: "auswählen"
+  - frage: "Was kennzeichnet die Push-Strategie?"
+    optionen:
+      - "Die Nachfrage wird direkt beim Endkunden erzeugt"
+      - "Es werden ausschließlich Massenmedien genutzt"
+      - "Der Handel wird durch Anreize zum aktiven Verkauf motiviert"
+      - "Auf jede Form der Werbung wird verzichtet"
+    richtige: 2
+    erklaerung: "Bei der Push-Strategie wird der Druck über den Handel zum Kunden geschoben; die direkte Nachfrageerzeugung beim Endkunden ist die Pull-Strategie."
+    operator: "erläutern"
+  - frage: "Worin unterscheiden sich USP und UAP?"
+    optionen:
+      - "USP ist ein Werbeversprechen, UAP ein Produktmerkmal"
+      - "USP ist ein objektives Produktmerkmal, UAP ein einzigartiges Werbeversprechen"
+      - "Beide bezeichnen dasselbe"
+      - "USP betrifft ausschließlich den Preis"
+    richtige: 1
+    erklaerung: "Die USP ist ein objektiv einzigartiges Produktmerkmal, die UAP ein kommunikativ einzigartiges Werbeversprechen – wichtig in austauschbaren Märkten."
+    operator: "erläutern"
 fallbeispiel:
   situation: |
     Die {{firma}} bringt ein neues Modell auf den Markt und plant eine

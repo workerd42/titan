@@ -6,6 +6,54 @@ order: 2
 description: "Die gesetzliche Pflicht des Arbeitgebers zur Gefährdungsbeurteilung nach dem Arbeitsschutzgesetz sowie die nicht übertragbare Gesamtverantwortung trotz delegierbarer Einzelaufgaben."
 merksatz: |
   Aufgaben lassen sich delegieren, die Verantwortung für den Arbeitsschutz bleibt immer beim Arbeitgeber.
+definitionen:
+  - begriff: "Gefährdungsbeurteilung"
+    definition: "Gesetzliche Pflicht des Arbeitgebers nach § 5 ArbSchG, die mit der Arbeit verbundenen Gefährdungen zu ermitteln und daraus die erforderlichen Arbeitsschutzmaßnahmen abzuleiten."
+  - begriff: "§ 5 ArbSchG"
+    definition: "Rechtsgrundlage der Gefährdungsbeurteilung; verpflichtet den Arbeitgeber, den Bedarf an Arbeitsschutzmaßnahmen durch Beurteilung der Gefährdungen zu ermitteln."
+  - begriff: "Stellvertretende Beurteilung"
+    definition: "Bei gleichartigen Arbeitsbedingungen genügt die Beurteilung eines Arbeitsplatzes oder einer Tätigkeit stellvertretend für vergleichbare Arbeitsplätze."
+  - begriff: "Pflichtenübertragung (§ 13 ArbSchG)"
+    definition: "Schriftliche Übertragung einzelner Arbeitsschutzpflichten auf zuverlässige und fachkundige Personen."
+  - begriff: "Gesamtverantwortung"
+    definition: "Die oberste Aufsichts- und Kontrollpflicht des Arbeitgebers, die nicht übertragbar ist – Delegation der Aufgabe ist keine Delegation der Verantwortung."
+mcFragen:
+  - frage: "Welche Norm bildet die gesetzliche Grundlage der Gefährdungsbeurteilung?"
+    optionen:
+      - "§ 13 ArbSchG"
+      - "§ 5 ArbSchG"
+      - "§ 5 BGB"
+      - "§ 3 BDSG"
+    richtige: 1
+    erklaerung: "Rechtsgrundlage der Gefährdungsbeurteilung ist § 5 ArbSchG (§ 13 regelt die Pflichtenübertragung)."
+    operator: "nennen"
+  - frage: "Was gilt bei gleichartigen Arbeitsbedingungen?"
+    optionen:
+      - "Jeder Einzelarbeitsplatz muss separat beurteilt werden."
+      - "Die Beurteilung eines stellvertretenden Arbeitsplatzes genügt."
+      - "Eine Beurteilung ist nicht erforderlich."
+      - "Nur die Berufsgenossenschaft darf beurteilen."
+    richtige: 1
+    erklaerung: "Bei gleichartigen Arbeitsbedingungen reicht die Beurteilung eines stellvertretenden Arbeitsplatzes – nicht jeder Einzelplatz muss separat beurteilt werden."
+    operator: "erläutern"
+  - frage: "Kann sich der Arbeitgeber durch Delegation der Durchführung von seiner Verantwortung befreien?"
+    optionen:
+      - "Ja, mit schriftlicher Übertragung entfällt die Verantwortung."
+      - "Ja, sobald eine fachkundige Person benannt ist."
+      - "Nein, die Gesamtverantwortung bleibt beim Arbeitgeber."
+      - "Nur wenn kein Betriebsrat existiert."
+    richtige: 2
+    erklaerung: "Einzelne Pflichten sind übertragbar, die Gesamtverantwortung sowie die Aufsichts- und Kontrollpflicht bleiben jedoch beim Arbeitgeber."
+    operator: "beurteilen"
+  - frage: "Was darf nach § 13 ArbSchG übertragen werden?"
+    optionen:
+      - "die Gesamtverantwortung für den Arbeitsschutz"
+      - "die oberste Aufsichts- und Kontrollpflicht"
+      - "die gesetzliche Unfallversicherung"
+      - "einzelne Arbeitsschutzpflichten auf fachkundige Personen"
+    richtige: 3
+    erklaerung: "§ 13 ArbSchG erlaubt die schriftliche Übertragung einzelner Arbeitsschutzpflichten auf zuverlässige, fachkundige Personen."
+    operator: "unterscheiden"
 gesetze:
   - norm: "§ 5 ArbSchG"
     titel: "Gefährdungsbeurteilung"

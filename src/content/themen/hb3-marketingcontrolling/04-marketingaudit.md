@@ -7,6 +7,54 @@ description: "Das Marketingaudit als systemorientierte, zukunftsgerichtete Gener
 werkzeug: "swot"
 merksatz: |
   Der Soll-Ist-Vergleich fragt, ob das Ziel erreicht wurde – das Marketingaudit fragt, ob das Ziel überhaupt noch das richtige war.
+definitionen:
+  - begriff: "Marketingaudit"
+    definition: "Systematische, zukunfts- und systemorientierte Generalinspektion der gesamten Marketingorganisation, -strategie, -ziele und -prozesse – unabhängig von der bisherigen Zielerreichung."
+  - begriff: "Systemorientierung"
+    definition: "Merkmal des Marketingaudits: Es betrachtet die gesamte Marketingorganisation als zusammenhängendes System, nicht einzelne Kennzahlen isoliert."
+  - begriff: "Zukunftsorientierung"
+    definition: "Merkmal des Marketingaudits: Es fragt nach der Zukunftstauglichkeit der Ausrichtung, unabhängig davon, ob vergangene Ziele erreicht wurden."
+  - begriff: "Soll-Ist-Vergleich"
+    definition: "Vergangenheits- und ergebnisorientiertes Kontrollinstrument, das prüft, ob festgelegte Ziele erreicht wurden – Abgrenzung zum Marketingaudit."
+  - begriff: "Präventive Wirkung"
+    definition: "Nutzen des Marketingaudits: Es deckt Anpassungsbedarf auf, bevor er sich in sinkenden Erfolgskennzahlen niederschlägt."
+mcFragen:
+  - frage: "Durch welche zwei Merkmale ist das Marketingaudit gekennzeichnet?"
+    optionen:
+      - "Es ist vergangenheits- und ergebnisorientiert"
+      - "Es ist system- und zukunftsorientiert"
+      - "Es prüft nur einzelne Kennzahlen"
+      - "Es misst ausschließlich den Umsatz"
+    richtige: 1
+    operator: "nennen"
+    erklaerung: "Das Marketingaudit betrachtet die Organisation als System (systemorientiert) und fragt nach der Zukunftstauglichkeit (zukunftsorientiert)."
+  - frage: "Wie grenzt sich das Marketingaudit vom Soll-Ist-Vergleich ab?"
+    optionen:
+      - "Der Soll-Ist-Vergleich prüft die Zielerreichung, das Audit die grundsätzliche Ausrichtung"
+      - "Beide fragen gleichermaßen, ob die Ziele noch die richtigen sind"
+      - "Das Audit ist vergangenheitsorientiert, der Soll-Ist-Vergleich zukunftsorientiert"
+      - "Der Soll-Ist-Vergleich betrachtet das gesamte Marketing als System"
+    richtige: 0
+    operator: "unterscheiden"
+    erklaerung: "Der Soll-Ist-Vergleich prüft, ob Ziele erreicht wurden; das Audit hinterfragt, ob die gesamte Ausrichtung noch die richtige ist."
+  - frage: "Warum sollte ein Marketingaudit auch ohne akute Probleme durchgeführt werden?"
+    optionen:
+      - "Weil es den laufenden Umsatz unmittelbar steigert"
+      - "Weil es die Fixkosten senkt"
+      - "Weil es vergangene Ziele bestätigt"
+      - "Weil sich Marktveränderungen oft erst spät in den Ist-Kennzahlen zeigen"
+    richtige: 3
+    operator: "begründen"
+    erklaerung: "Neue Wettbewerber, veränderte Präferenzen oder Technologien wirken oft, bevor sie in Kennzahlen sichtbar werden – das Audit wirkt präventiv."
+  - frage: "Welche Bereiche erfasst ein vollständiges Marketingaudit typischerweise?"
+    optionen:
+      - "Nur die Produktionsabteilung"
+      - "Nur die Finanzbuchhaltung"
+      - "Marketingziele und -strategie, -organisation, -systeme und -prozesse sowie den Marketingmix"
+      - "Ausschließlich die Höhe der Werbebudgets"
+    richtige: 2
+    operator: "nennen"
+    erklaerung: "Ein vollständiges Audit prüft Ziele/Strategie, Organisation, Systeme/Prozesse und den Marketingmix im Abgleich mit der Marktentwicklung."
 fallbeispiel:
   situation: |
     Die {{firma}} erreicht seit Jahren zuverlässig ihre

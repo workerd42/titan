@@ -7,6 +7,54 @@ description: "Die Nutzwertanalyse (Scoring-Modell) zur Bewertung von Handlungsal
 werkzeug: "scoring"
 merksatz: |
   Eine Balanced Scorecard zwingt dazu, neben Finanzen auch Kunden, Prozesse und Mitarbeiter im Blick zu behalten.
+definitionen:
+  - begriff: "Scoring-Modell (Nutzwertanalyse)"
+    definition: "Punktbewertungsverfahren zur transparenten Auswahl zwischen mehreren Handlungsalternativen: Kriterien festlegen, gewichten, Alternativen bepunkten, gewichtete Punktwerte aufsummieren, Alternative mit dem höchsten Gesamtnutzwert wählen."
+  - begriff: "Balanced Scorecard"
+    definition: "Dauerhaftes, ganzheitliches Steuerungssystem, das die Unternehmensstrategie in messbare Ziele entlang vier Perspektiven übersetzt und so die laufende Überwachung der gesamten Strategie ermöglicht."
+  - begriff: "Vier Perspektiven der Balanced Scorecard"
+    definition: "Finanz-, Kunden-, Prozess- und Potenzial-/Mitarbeiterperspektive; sie zwingen das Management, neben den Finanzkennzahlen auch nicht-finanzielle Treiber gleichrangig zu steuern."
+  - begriff: "Frühindikator"
+    definition: "Nicht-finanzielle Kennzahl (z. B. Kundenzufriedenheit, Prozessqualität), die Probleme sichtbar macht, bevor sie sich in den nachlaufenden Finanzkennzahlen niederschlagen."
+  - begriff: "Gewichtung (im Scoring-Modell)"
+    definition: "Zuordnung der relativen Wichtigkeit je Kriterium (Gewichtungssumme = 100 %), damit unterschiedlich bedeutsame Kriterien angemessen in den Gesamtnutzwert eingehen."
+mcFragen:
+  - frage: "Wie viele Perspektiven umfasst die Balanced Scorecard?"
+    optionen:
+      - "Zwei"
+      - "Drei"
+      - "Vier"
+      - "Fünf"
+    richtige: 2
+    erklaerung: "Die Balanced Scorecard betrachtet vier Perspektiven: Finanz-, Kunden-, Prozess- und Potenzial-/Mitarbeiterperspektive."
+    operator: "nennen"
+  - frage: "Welcher Schritt steht im Scoring-Modell ganz am Anfang?"
+    optionen:
+      - "Die Punktwerte aufsummieren"
+      - "Die relevanten Kriterien festlegen"
+      - "Die beste Alternative auswählen"
+      - "Die Kriterien gewichten"
+    richtige: 1
+    erklaerung: "Zuerst werden die relevanten Kriterien festgelegt; erst danach folgen Gewichtung, Bewertung, Aufsummierung und Auswahl."
+    operator: "ordnen"
+  - frage: "Worin unterscheidet sich das Scoring-Modell grundsätzlich von der Balanced Scorecard?"
+    optionen:
+      - "Beide messen ausschließlich Finanzkennzahlen"
+      - "Die Balanced Scorecard kennt keine Gewichtung, das Scoring-Modell schon"
+      - "Das Scoring-Modell dient einer punktuellen Auswahlentscheidung, die Balanced Scorecard der laufenden Steuerung"
+      - "Das Scoring-Modell ist ein dauerhaftes Steuerungssystem, die Balanced Scorecard ein einmaliges Auswahlinstrument"
+    richtige: 2
+    erklaerung: "Das Scoring-Modell ist ein punktuelles Entscheidungsinstrument für eine konkrete Auswahl, die Balanced Scorecard ein dauerhaftes Steuerungssystem – nicht umgekehrt."
+    operator: "beurteilen"
+  - frage: "Welche Kennzahl passt am ehesten zur Kundenperspektive der Balanced Scorecard?"
+    optionen:
+      - "Kundenzufriedenheitsindex"
+      - "Eigenkapitalrendite"
+      - "Durchlaufzeit in der Produktion"
+      - "Mitarbeiterfluktuation"
+    richtige: 0
+    erklaerung: "Der Kundenzufriedenheitsindex misst die Außenwirkung auf die Kunden. Eigenkapitalrendite gehört zur Finanz-, Durchlaufzeit zur Prozess-, Fluktuation zur Potenzialperspektive."
+    operator: "zuordnen"
 fallbeispiel:
   situation: |
     Die {{firma}} muss sich zwischen drei möglichen neuen

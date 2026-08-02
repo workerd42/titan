@@ -6,6 +6,54 @@ order: 3
 description: "Marketingcontrolling als bereichsübergreifende Funktion und die besondere Eignung des Onlinemarketings für eine nahezu verzögerungsfreie Erfolgsmessung."
 merksatz: |
   Kosten pro Klick sagen wenig – erst Neukundenzahl, Kundenwert und Umsatz zeigen, ob eine Online-Maßnahme wirklich erfolgreich war.
+definitionen:
+  - begriff: "Bereichsübergreifende Vernetzung"
+    definition: "Marketingcontrolling ist keine isolierte Abteilungsaufgabe, sondern mit dem gesamten Unternehmen verzahnt; nahezu jede Einheit wirkt als Datenlieferant oder Adressat mit."
+  - begriff: "Verzögerungsfreie Erfolgsmessung"
+    definition: "Nahezu in Echtzeit mögliche Wirkungsmessung im Onlinemarketing, weil digitale Interaktionen automatisiert erfasst werden – anders als bei klassischen Medien mit zeitversetzter Messung."
+  - begriff: "Balanced Scorecard"
+    definition: "Steuerungsinstrument, das mehrere Perspektiven strukturiert zusammenführt und auch zur Strukturierung eines Onlinemarketing-Kennzahlensystems herangezogen werden kann."
+  - begriff: "User-orientiertes Kennzahlensystem"
+    definition: "Speziell fürs Onlinemarketing entwickeltes System, das die Nutzer selbst statt nur monetärer Größen in den Mittelpunkt der Betrachtung stellt."
+  - begriff: "Kosten pro Klick"
+    definition: "Reine Kosteninformation einer Online-Maßnahme; für sich genommen wenig aussagekräftig, da sie nichts über die tatsächliche Wirkung aussagt."
+mcFragen:
+  - frage: "Warum eignet sich das Onlinemarketing besonders gut für eine zeitnahe Erfolgskontrolle?"
+    optionen:
+      - "Weil digitale Interaktionen nahezu verzögerungsfrei und automatisiert erfasst werden können"
+      - "Weil es grundsätzlich keine Kosten verursacht"
+      - "Weil klassische Medien noch schneller messbar sind"
+      - "Weil es keine Kennzahlen benötigt"
+    richtige: 0
+    operator: "begründen"
+    erklaerung: "Digitale Interaktionen (Klicks, Käufe, Verweildauer) sind sofort und automatisiert messbar – bei klassischen Medien braucht es zeitversetzte Befragungen."
+  - frage: "Wie ist die Aussagekraft der Kennzahl Kosten pro Klick zu bewerten?"
+    optionen:
+      - "Sie beweist allein den Kampagnenerfolg"
+      - "Sie ersetzt alle Wirkungskennzahlen"
+      - "Sie ist für sich genommen wenig aussagekräftig über den tatsächlichen Erfolg"
+      - "Sie misst direkt den Customer Lifetime Value"
+    richtige: 2
+    operator: "beurteilen"
+    erklaerung: "Reine Kosteninformationen sagen nichts über die Wirkung aus; erst Neukundenzahl, Kundenwert und Umsatz zeigen den tatsächlichen Erfolg."
+  - frage: "Welches bekannte Steuerungsinstrument kann ein Onlinemarketing-Kennzahlensystem strukturieren?"
+    optionen:
+      - "Die Gap-Analyse"
+      - "Die Balanced Scorecard"
+      - "Die Deckungsbeitragsrechnung"
+      - "Der Pretest"
+    richtige: 1
+    operator: "nennen"
+    erklaerung: "Die Balanced Scorecard führt verschiedene Perspektiven strukturiert zusammen und lässt sich analog aufs Onlinemarketing übertragen."
+  - frage: "Welche Kennzahl ist für die Erfolgsbeurteilung einer Online-Maßnahme am aussagekräftigsten?"
+    optionen:
+      - "Kosten pro Klick"
+      - "Kosten pro Bestellung"
+      - "Anzahl der Impressionen"
+      - "Anzahl gewonnener Neukunden und deren Customer Lifetime Value"
+    richtige: 3
+    operator: "beurteilen"
+    erklaerung: "Neukundenzahl und Kundenwert (CLV) bilden den wirtschaftlichen Erfolg ab; reine Kosten- oder Reichweitengrößen sind für sich wenig aussagekräftig."
 fallbeispiel:
   situation: |
     Die {{firma}} präsentiert

@@ -6,6 +6,54 @@ order: 5
 description: "Die acht Aufgabenbereiche des Produktmanagements nach Kotler sowie die Unterscheidung von Konsumgüter-, Industriegüter- und Dienstleistungsmarketing."
 merksatz: |
   Wer Industriegütermarketing wie Konsumgütermarketing betreibt, übersieht das Buying-Center und verliert das Geschäft.
+definitionen:
+  - begriff: "Buying-Center"
+    definition: "Mehrköpfiges Entscheidungsgremium im B2B mit unterschiedlichen Rollen (Einkäufer, Verwender, Entscheider, Beeinflusser), das überwiegend nach rationalen, wirtschaftlichen Kriterien urteilt."
+  - begriff: "Industriegütermarketing (B2B)"
+    definition: "Marketing für Organisationen/Unternehmen als Kunden; kennzeichnend sind das Buying-Center, rationale und langwierige Entscheidungsprozesse sowie kleinere, oft langjährige Kundenkreise."
+  - begriff: "Konsumgütermarketing (B2C)"
+    definition: "Marketing für private Endverbraucher; kennzeichnend sind eine große Kundenzahl sowie oft spontanere, auch emotional geprägte Kaufentscheidungen."
+  - begriff: "Dienstleistungsmarketing"
+    definition: "Marketing für immaterielle, nicht lagerfähige Leistungen, die im Moment der Erbringung gemeinsam mit dem Kunden entstehen (Simultanität von Produktion und Konsum)."
+  - begriff: "Aufgabenbereiche des Produktmanagements (nach Kotler)"
+    definition: "Acht zentrale Aufgaben, u. a. Pflege der Produktinformationen, Entwicklung/Test neuer Produkte, Markteinführung, Sortiments- und Programmentscheidungen sowie Verpackungsgestaltung."
+mcFragen:
+  - frage: "Wie viele Aufgabenbereiche des Produktmanagements nennt Kotler?"
+    optionen:
+      - "Vier"
+      - "Sechs"
+      - "Acht"
+      - "Zehn"
+    richtige: 2
+    erklaerung: "Kotler ordnet dem Produktmanagement acht zentrale Aufgabenbereiche zu."
+    operator: "nennen"
+  - frage: "Was kennzeichnet das Industriegütermarketing gegenüber dem Konsumgütermarketing?"
+    optionen:
+      - "Emotionale Massenwerbung an anonyme Endverbraucher"
+      - "Die Entscheidung fällt ein Buying-Center nach überwiegend rationalen Kriterien"
+      - "Eine sehr große, anonyme Kundenzahl"
+      - "Überwiegend spontane, emotionale Einzelentscheidungen"
+    richtige: 1
+    erklaerung: "Im B2B entscheidet meist ein mehrköpfiges Buying-Center nach rationalen, wirtschaftlichen Kriterien – nicht eine Einzelperson emotional."
+    operator: "beurteilen"
+  - frage: "Welche Besonderheit gilt für eine Dienstleistung?"
+    optionen:
+      - "Sie ist gut lagerfähig"
+      - "Sie wird vollständig auf Vorrat produziert"
+      - "Sie ist immateriell und entsteht simultan mit dem Konsum"
+      - "People, Process und Physical Facilities spielen keine Rolle"
+    richtige: 2
+    erklaerung: "Dienstleistungen sind immateriell und nicht lagerfähig; sie entstehen im Moment der Erbringung gemeinsam mit dem Kunden."
+    operator: "erläutern"
+  - frage: "Welche zusätzlichen P gewinnen im Dienstleistungsmarketing besonders an Bedeutung?"
+    optionen:
+      - "People, Process, Physical Facilities"
+      - "Product, Price, Place"
+      - "Promotion, Price, Product"
+      - "Positioning, Packaging, People"
+    richtige: 0
+    erklaerung: "Weil die Leistung nicht vorab produziert und gelagert werden kann, treten People, Process und Physical Facilities neben die klassischen 4P."
+    operator: "nennen"
 fallbeispiel:
   situation: |
     Die {{firma}} verkauft CNC-Fertigungsanlagen an Automobilzulieferer.
