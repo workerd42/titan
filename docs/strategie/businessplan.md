@@ -28,10 +28,14 @@ in der Hand.
 - **Nutzen:** höhere Bestehenswahrscheinlichkeit, spürbare Zeitersparnis und ein
   prüfungsfertiges Ergebnis statt nur „gelernt zu haben".
 - **Team:** **Einzelgründung** durch einen technischen Gründer (Konzept, Plattform,
-  Live-Betrieb; produktiv belegt), flankiert von **Jürgen Laudien** — Fachwirt-Dozent
-  mit **20 Jahren Erfahrung**, Branchennetzwerk und eigenem Bildungsträger im Aufbau
-  — als **Kooperationspartner** (Fachtiefe + warmer Marktzugang; nicht am Kapital
-  beteiligt → saubere Cap Table).
+  Live-Betrieb; produktiv belegt), flankiert von **zwei strategischen Partnern**
+  (beide **nicht am Kapital** beteiligt → saubere Cap Table): **Jürgen Laudien** —
+  Fachwirt-Dozent mit **20 Jahren Erfahrung**, Branchennetzwerk und eigenem
+  Bildungsträger im Aufbau (Fachtiefe + warmer Marktzugang); und **Dr. Carsten
+  Wittling** — promovierter Wissenschaftler/Autor hinter **Prorsus Digital** (Agentur
+  für interaktive Lernmedien, Prüfungsfragen-Entwicklung, Autoren-Netzwerk) als
+  **strategischer Beirat** (didaktische/wissenschaftliche Fundierung + Content-Skalierung
+  auf weitere Fachwirte).
 - **Ab wann Gewinn:** Sach-/Infrastrukturkosten schlank (~120 €/Monat inkl. KI);
   Gewinnschwelle inkl. Gründer-Lebensunterhalt (Familie) bei **≈ 175 B2C-Abos** oder
   **≈ 5–6 parallel laufenden B2B-Kursen** (siehe Finanzen).
@@ -170,8 +174,8 @@ Fragendatenbank.
 
 ### Gründer*innen & Team
 
-**Einzelgründung durch den technischen Gründer — mit einem starken
-Kooperationspartner an der Seite:**
+**Einzelgründung durch den technischen Gründer — mit zwei starken strategischen
+Partnern an der Seite (beide nicht am Kapital → saubere Cap Table):**
 
 - **Gründer (Produkt & Betrieb):** Softwareentwicklung & Produktarchitektur
   (moderne Web-Plattform mit Auth, DB, Rollen/Admin, live deployt), didaktische
@@ -182,16 +186,27 @@ Kooperationspartner an der Seite:**
   Branchennetzwerk**, eigener Bildungsträger im Aufbau. **Nicht am Kapital
   beteiligt** — bringt als Kooperation Fachtiefe, Content-Autorität und **warmen
   Vertriebszugang** (erster B2B-Kanal).
+- **Dr. Carsten Wittling — strategischer Beirat (Didaktik & Content-Skalierung):**
+  promovierter Wissenschaftler und wissenschaftlicher Autor, langjährig in der
+  Erwachsenen- und Hochschulbildung tätig. Hinter **Prorsus Digital** (Agentur für
+  interaktive Lernmedien: Skripte, Lehrbriefe, **Prüfungsfragen-Entwicklung**,
+  E-Learning, **Autoren-Netzwerk**). Bringt didaktische & wissenschaftliche
+  Fundierung, Zugang zur Hochschul-/Erwachsenenbildung und — über Prorsus —
+  **professionelle Content-Produktion samt Autoren-Netzwerk** ein. **Nicht am
+  Kapital beteiligt.** **Strategischer Hebel:** entschärft den Autoren-Engpass beim
+  Ausbau auf weitere Fachwirte und bei der Erstellung von Übungs-/Prüfungsaufgaben
+  (MC/IHK-Test).
 
 So werden die zwei kritischen Risiken einer Bildungs-Gründung —
-**Fach-/Content-Tiefe** und **Vertriebszugang** — über die Kooperation abgedeckt,
+**Fach-/Content-Tiefe** und **Vertriebszugang** — über die Partner abgedeckt,
 ohne die Gründer-Anteile zu verwässern. **Motivation:** ein Lernprodukt, das die
 tatsächliche IHK-Prüfungsleistung abbildet und echte Orientierung gibt.
 
-💡 *Empfehlung:* die Kooperation mit Jürgen Laudien **vertraglich absichern**
-(Rollen, Vergütung/Provision, ggf. Exklusivität, IP-/Content-Rechte) — für
-Investoren/Förderung ein Pluspunkt und Schutz gegen Klumpenrisiko.
-📝 *Lebenslauf/Referenzen von Jürgen Laudien ergänzen; weitere geplante
+💡 *Empfehlung:* die Kooperationen mit Jürgen Laudien und Dr. Carsten Wittling
+**vertraglich absichern** (Rollen, Vergütung/Provision, ggf. Exklusivität,
+IP-/Content-Rechte) — für Investoren/Förderung ein Pluspunkt und Schutz gegen
+Klumpenrisiko.
+📝 *Lebensläufe/Referenzen der Partner ergänzen; weitere geplante
 Fachautor:innen benennen.*
 
 ### Werte
@@ -206,6 +221,9 @@ Hoheit). 📝 *Bei Bedarf um persönliche Gründungswerte ergänzen.*
 - **Jürgen Laudien & sein künftiger Bildungsträger** (Schlüsselpartner): bringt
   Netzwerk + Fachtiefe und setzt Titan als **erster Bildungsträger-Kunde/Pilot** in
   eigenen Kursen ein.
+- **Dr. Carsten Wittling / Prorsus Digital** (strategischer Beirat + Content-Partner):
+  didaktisch-wissenschaftliche Fundierung, Prüfungsfragen-Entwicklung und ein
+  **Autoren-Netzwerk** zur Content-Skalierung auf weitere Fachwirte.
 - **Weitere Bildungsträger/IHK-Lehrgangsanbieter** (Distribution + B2B-Umsatz).
 - **Fachautor:innen/Dozent:innen** für Content-Qualität und Aktualität.
 - **Infrastruktur/Dienstleister (EU/DE):** VPS (IONOS), Off-site-Backup (Hetzner),
