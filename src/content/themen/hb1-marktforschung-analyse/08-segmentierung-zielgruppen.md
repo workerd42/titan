@@ -56,7 +56,7 @@ mcFragen:
     operator: "ordnen"
 fallbeispiel:
   situation: |
-    Die Manufaktur LEDERWERK Maier plant eine neue Linie hochpreisiger Lederwaren
+    Die {{firma}} plant eine neue Linie hochpreisiger Lederwaren
     für eine kaufkräftige, qualitätsbewusste Zielgruppe ab 50 Jahren.
   aufgabe: |
     Schlagen Sie drei Segmentierungskriterien mit je einem konkreten Merkmal vor,
@@ -87,7 +87,7 @@ pruefungsfrage:
       c) Der Gatekeeper steuert den Informationsfluss im Einkaufsgremium, indem er Informationen selektiv weitergibt oder zurückhält – er beeinflusst damit indirekt, welche Anbieter und Argumente die eigentlichen Entscheider überhaupt erreichen, ohne selbst die Kaufentscheidung zu treffen.
 wiederholungTage: 5
 pruefungsaufgabe:
-  situation: "Die Manufaktur LEDERWERK Maier plant eine neue Linie hochpreisiger Lederwaren\nfür eine kaufkräftige, qualitätsbewusste Zielgruppe ab 50 Jahren.\n"
+  situation: "Die {{firma}} plant eine neue Linie hochpreisiger Lederwaren\nfür eine kaufkräftige, qualitätsbewusste Zielgruppe ab 50 Jahren.\n"
   teilaufgaben:
     - operator: "erläutern"
       aufgabe: "Schlagen Sie drei Segmentierungskriterien mit je einem konkreten Merkmal vor,\ndie für diese Zielgruppendefinition relevant sind.\n"
