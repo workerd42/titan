@@ -54,48 +54,8 @@ const ihkPunkte = ihkTeilaufgaben.reduce((s, t) => s + t.punkte, 0);
     <span class="tr-pct" id="thema-progress-pct">0%</span>
   </div>
 
-  {/* ── MODUS-AUSWAHL (vorangestellt, Norive-Stil) ──
-      Wird beim Kapitel-Einstieg gezeigt; „Entdecken" führt zur vollen Seite,
-      „Interaktive Module" springt zum Werkzeug. Nicht verfügbare Modi sind
-      ausgegraut. Standardmäßig sichtbar (kein Flash), JS entlässt bei Auswahl. */}
-  <div class="modus-select" id="modus-select" data-has-werkzeug={d.werkzeug ? 'true' : 'false'} data-has-begriffe={(d.begriffe && d.begriffe.length > 0) || (d.definitionen && d.definitionen.length > 0) ? 'true' : 'false'} data-has-mc={d.mcFragen && d.mcFragen.length > 0 ? 'true' : 'false'} data-has-ihk={d.pruefungsaufgabe ? 'true' : 'false'} hidden>
-    <a class="ms-back" href={hbBase} aria-label={`Zurück zu ${bereich.titel}`}>
-      <span aria-hidden="true">←</span> Zurück
-    </a>
-    <div class="ms-inner">
-      <p class="ms-eyebrow">{bereich.titel} · {d.themengruppe}</p>
-      <h1 class="ms-titel">{d.title}</h1>
-      <p class="ms-lead">Wie möchtest du dieses Kapitel bearbeiten?</p>
-      <div class="ms-cards">
-        <button class="ms-card" data-mode="entdecken" type="button">
-          <span class="ms-icon" aria-hidden="true">◉</span>
-          <span class="ms-name">Entdecken</span>
-          <span class="ms-desc">Alles auf einer Seite: Verstehen · Merken · Anwenden · Prüfen.</span>
-        </button>
-        <button class="ms-card" data-mode="module" data-needs="werkzeug" type="button">
-          <span class="ms-icon" aria-hidden="true">◆</span>
-          <span class="ms-name">Interaktive Module</span>
-          <span class="ms-desc">Werkzeuge zum Anwenden auf deine Star-Company.</span>
-        </button>
-        <button class="ms-card" data-mode="uebung" type="button" disabled>
-          <span class="ms-icon" aria-hidden="true">✎</span>
-          <span class="ms-name">Übungsbereich</span>
-          <span class="ms-desc">Fallaufgaben & Multiple-Choice. <em class="ms-soon">bald</em></span>
-        </button>
-        <button class="ms-card" data-mode="ihk" type="button" disabled>
-          <span class="ms-icon" aria-hidden="true">◎</span>
-          <span class="ms-name">IHK-Test-Format</span>
-          <span class="ms-desc">Prüfung im Original-Format. <em class="ms-soon">bald</em></span>
-        </button>
-        <button class="ms-card" data-mode="lernzettel" type="button" disabled>
-          <span class="ms-icon" aria-hidden="true">▤</span>
-          <span class="ms-name">Lernzettel</span>
-          <span class="ms-desc">Karteikarten mit den Schlüsselbegriffen. <em class="ms-soon">bald</em></span>
-        </button>
-      </div>
-    </div>
-  </div>
-
+  {/* Kein Vorab-Gate mehr: das Kapitel öffnet direkt in die geführte Reise.
+      Die Modi sind jetzt Stationen EINER Seite (Stations-Leiste im Kopf). */}
   <div class="thema-wrap" data-thema-slug={thema.id} data-wiederholung-tage={d.wiederholungTage} data-modus="entdecken">
 
     <!-- ╔══ KOPF ══════════════════════════════╗ -->
@@ -107,9 +67,19 @@ const ihkPunkte = ihkTeilaufgaben.reduce((s, t) => s + t.punkte, 0);
       </nav>
       <h1 class="thema-titel">{d.title}</h1>
 
-      <button class="modus-reopen" id="modus-reopen" type="button">
-        <span aria-hidden="true">↺</span> Modus wechseln
-      </button>
+      {/* Stationen EINER Reise (kein Vorab-Gate) — direkt umschaltbar */}
+      <nav class="stationen" id="stationen" aria-label="Kapitel-Stationen">
+        <button class="station" data-mode="entdecken" type="button" aria-current="true">Entdecken</button>
+        {((d.begriffe && d.begriffe.length > 0) || (d.definitionen && d.definitionen.length > 0)) && (
+          <button class="station" data-mode="lernzettel" type="button" aria-current="false">Lernzettel</button>
+        )}
+        {d.mcFragen && d.mcFragen.length > 0 && (
+          <button class="station" data-mode="uebung" type="button" aria-current="false">Übung</button>
+        )}
+        {d.pruefungsaufgabe && (
+          <button class="station" data-mode="ihk" type="button" aria-current="false">IHK-Test</button>
+        )}
+      </nav>
 
       {/* Lese- & Barrierefreiheits-Optionen — Trigger ist die „Aa"-Aktion im
           Speed-Dial (siehe SpeedDial.astro / PlanetLayout). Modal, position:fixed,
@@ -773,96 +743,29 @@ const ihkPunkte = ihkTeilaufgaben.reduce((s, t) => s + t.punkte, 0);
 
 <!-- Modus-Auswahl: vorangestellte „Wie bearbeiten?"-Wahl -->
 <script>
-  const MODUS_KEY = 'titan-modus-v1';
-  function applyModus(mode: string): void {
-    // Jeder Modus ist jetzt eine EIGENE, fokussierte Ansicht (Lernzettel/Übung
-    // getrennt von Entdecken). data-modus am .thema-wrap steuert per CSS, welche
-    // Inhalte sichtbar sind.
+  // Stationen EINER Reise: data-modus am .thema-wrap steuert per CSS die
+  // sichtbare Station (Entdecken/Lernzettel/Übung/IHK-Test). Kein Vorab-Gate,
+  // direkt umschaltbar; jedes Kapitel startet bewusst bei „Entdecken" (Reise).
+  function applyModus(mode: string, scroll = true): void {
     const wrap = document.querySelector<HTMLElement>('.thema-wrap');
     if (wrap) wrap.dataset.modus = mode;
-    // „module" → zum Werkzeug scrollen; sonst frisch oben starten.
-    if (mode === 'module') {
-      window.setTimeout(() => document.getElementById('modul-mount')?.scrollIntoView({ behavior: 'smooth', block: 'center' }), 120);
-    } else {
-      window.setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 60);
-    }
-  }
-  function initModusSelect(): void {
-    const ov = document.getElementById('modus-select');
-    if (!ov || ov.dataset.done === 'true') return;
-    ov.dataset.done = 'true';
-
-    const moduleAvail = ov.dataset.hasWerkzeug === 'true';
-    if (!moduleAvail) {
-      const m = ov.querySelector<HTMLButtonElement>('.ms-card[data-mode="module"]');
-      if (m) {
-        m.disabled = true;
-        const d = m.querySelector('.ms-desc');
-        if (d) d.innerHTML = 'Für dieses Kapitel (noch) kein interaktives Werkzeug. <em class="ms-soon">bald</em>';
-      }
-    }
-    const begriffeAvail = ov.dataset.hasBegriffe === 'true';
-    if (begriffeAvail) {
-      const lz = ov.querySelector<HTMLButtonElement>('.ms-card[data-mode="lernzettel"]');
-      if (lz) { lz.disabled = false; const d = lz.querySelector('.ms-desc'); if (d) d.textContent = 'Karteikarten mit den Schlüsselbegriffen.'; }
-    }
-    const mcAvail = ov.dataset.hasMc === 'true';
-    if (mcAvail) {
-      const ub = ov.querySelector<HTMLButtonElement>('.ms-card[data-mode="uebung"]');
-      if (ub) { ub.disabled = false; const d = ub.querySelector('.ms-desc'); if (d) d.textContent = 'Multiple-Choice zum schnellen Selbsttest.'; }
-    }
-    const ihkAvail = ov.dataset.hasIhk === 'true';
-    if (ihkAvail) {
-      const ih = ov.querySelector<HTMLButtonElement>('.ms-card[data-mode="ihk"]');
-      if (ih) { ih.disabled = false; const d = ih.querySelector('.ms-desc'); if (d) d.textContent = 'Prüfungsaufgabe im Original-Format mit Musterlösung.'; }
-    }
-    const verfuegbar = (m: string) => m === 'module' ? moduleAvail : m === 'lernzettel' ? begriffeAvail : m === 'uebung' ? mcAvail : m === 'ihk' ? ihkAvail : m === 'entdecken';
-
-    const open = () => { ov.removeAttribute('hidden'); ov.classList.remove('is-gone'); document.body.style.overflow = 'hidden'; };
-    const close = (animate = true) => {
-      document.body.style.overflow = '';
-      if (animate) { ov.classList.add('is-gone'); window.setTimeout(() => ov.setAttribute('hidden', ''), 360); }
-      else ov.setAttribute('hidden', '');
-    };
-
-    // Gemerkte Auswahl → Screen überspringen (außer „module" ohne Werkzeug)
-    let remembered: string | null = null;
-    try { remembered = localStorage.getItem(MODUS_KEY); } catch { /* blockiert */ }
-    if (remembered && verfuegbar(remembered)) { close(false); applyModus(remembered); }
-    else open();
-
-    ov.querySelectorAll<HTMLButtonElement>('.ms-card').forEach((c) => {
-      if (c.disabled) return;
-      c.addEventListener('click', () => {
-        const mode = c.dataset.mode ?? 'entdecken';
-        try { localStorage.setItem(MODUS_KEY, mode); } catch { /* blockiert */ }
-        close();
-        applyModus(mode);
-      });
+    document.querySelectorAll<HTMLButtonElement>('#stationen .station').forEach((b) => {
+      b.setAttribute('aria-current', b.dataset.mode === mode ? 'true' : 'false');
     });
-    // Hintergrund-Klick → Standard „Entdecken" (wird gemerkt)
-    ov.addEventListener('click', (e) => {
-      if (e.target !== ov) return;
-      try { localStorage.setItem(MODUS_KEY, 'entdecken'); } catch { /* blockiert */ }
-      close();
-      applyModus('entdecken');
-    });
-    // „Modus wechseln" im Kopf öffnet den Screen erneut
-    document.getElementById('modus-reopen')?.addEventListener('click', open);
+    if (scroll) window.setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 60);
   }
-  document.addEventListener('astro:page-load', initModusSelect);
-  if (document.readyState !== 'loading') initModusSelect();
-  else document.addEventListener('DOMContentLoaded', initModusSelect);
-  // ESC schließt den offenen Modus-Screen (einmalig)
-  document.addEventListener('keydown', (e) => {
-    if (e.key !== 'Escape') return;
-    const ov = document.getElementById('modus-select');
-    if (ov && !ov.hasAttribute('hidden')) {
-      document.body.style.overflow = '';
-      ov.classList.add('is-gone');
-      window.setTimeout(() => ov.setAttribute('hidden', ''), 360);
-    }
-  });
+  function initStationen(): void {
+    const bar = document.getElementById('stationen');
+    if (!bar || bar.dataset.init === 'true') return;
+    bar.dataset.init = 'true';
+    applyModus('entdecken', false);
+    bar.querySelectorAll<HTMLButtonElement>('.station').forEach((b) => {
+      b.addEventListener('click', () => applyModus(b.dataset.mode ?? 'entdecken'));
+    });
+  }
+  document.addEventListener('astro:page-load', initStationen);
+  if (document.readyState !== 'loading') initStationen();
+  else document.addEventListener('DOMContentLoaded', initStationen);
 </script>
 
 <!-- Übungsbereich: Multiple-Choice-Quiz (Recall-Training, ohne KI) -->
@@ -1050,15 +953,29 @@ const ihkPunkte = ihkTeilaufgaben.reduce((s, t) => s + t.punkte, 0);
   .tr-pct { font-family: var(--mono); font-size: 11px; font-weight: 600; color: var(--accent, #6E5035); font-variant-numeric: tabular-nums; }
   @media (prefers-reduced-motion: reduce) { .tr-fill { transition: none; } }
 
-  /* „Modus wechseln" im Kopf */
-  .modus-reopen {
-    font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em;
-    color: var(--text-muted); background: none; border: 1px solid var(--border-mid);
-    border-radius: 999px; padding: 6px 14px; min-height: 38px; cursor: pointer;
-    display: inline-flex; align-items: center; gap: 6px; margin-bottom: var(--sp-xl);
-    transition: color .2s ease, border-color .2s ease;
+  /* Stations-Leiste im Kopf — die Modi als Stationen EINER Reise */
+  .stationen {
+    display: flex; flex-wrap: wrap; gap: 4px;
+    padding: 4px; margin-bottom: var(--sp-xl);
+    background: rgba(28,25,23,0.05);
+    border-radius: 999px;
+    width: fit-content;
+    max-width: 100%;
   }
-  .modus-reopen:hover { color: var(--text); border-color: var(--accent); }
+  .station {
+    font-family: var(--mono); font-size: 13px; letter-spacing: 0.04em;
+    color: var(--text-muted); background: none; border: none;
+    border-radius: 999px; padding: 9px 18px; min-height: 40px; cursor: pointer;
+    white-space: nowrap;
+    transition: color .18s ease, background .25s cubic-bezier(0.16,1,0.3,1), box-shadow .18s ease;
+  }
+  .station:hover:not([aria-current="true"]) { color: var(--text); }
+  .station:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .station[aria-current="true"] {
+    background: #F6F3EC; color: var(--text); font-weight: 600;
+    box-shadow: 0 1px 3px rgba(28,25,23,0.16);
+  }
+  @media (prefers-reduced-motion: reduce) { .station { transition: color .15s ease; } }
 
   /* ── Lernzettel / Karteikarten ── */
   .lz-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 14px; max-width: var(--max-read); margin: 0 auto; }
@@ -1104,47 +1021,7 @@ const ihkPunkte = ihkTeilaufgaben.reduce((s, t) => s + t.punkte, 0);
   .lm-title { font-family: var(--serif); font-size: 20px; font-weight: 400; color: var(--text); margin: 0; }
   .lm-sub { font-family: var(--mono); font-size: 11px; color: var(--text-muted); margin: -6px 0 6px; }
 
-  /* ── Modus-Auswahl (vorangestellt) ── */
-  .modus-select {
-    position: fixed; inset: 0; z-index: 300;
-    display: flex; align-items: center; justify-content: center;
-    padding: clamp(24px, 5vw, 64px);
-    background: var(--bg);
-    opacity: 1; transition: opacity 0.36s cubic-bezier(0.16,1,0.3,1);
-  }
-  .modus-select[hidden] { display: none; }
-  .modus-select.is-gone { opacity: 0; pointer-events: none; }
-  /* Zurück zur Themen-Übersicht (oben links) */
-  .ms-back {
-    position: absolute; top: clamp(20px, 4vw, 32px); left: clamp(20px, 4vw, 32px);
-    display: inline-flex; align-items: center; gap: 8px;
-    min-height: 44px; padding: 0 6px;
-    font-family: var(--mono); font-size: 12px; letter-spacing: 0.1em;
-    text-transform: uppercase; color: var(--text-muted);
-    text-decoration: none; transition: color var(--dur-fast) var(--ease);
-  }
-  .ms-back:hover { color: var(--accent); }
-  .ms-back:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-  @media (prefers-reduced-motion: reduce) { .ms-back { transition: none; } }
-  .ms-inner { width: min(960px, 100%); text-align: center; }
-  .ms-eyebrow { font-family: var(--mono); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); margin: 0 0 12px; }
-  .ms-titel { font-family: var(--serif); font-weight: 300; font-size: clamp(24px, 4vw, 40px); letter-spacing: -0.02em; color: var(--text); line-height: 1.15; margin: 0 0 10px; text-wrap: balance; }
-  .ms-lead { font-family: var(--mono); font-size: 13px; color: var(--text-muted); margin: 0 0 clamp(24px, 4vw, 40px); }
-  .ms-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 14px; }
-  .ms-card {
-    display: flex; flex-direction: column; align-items: flex-start; gap: 8px; text-align: left;
-    background: var(--bg-alt); border: 1px solid var(--border-mid); border-radius: 6px;
-    padding: 22px 20px; cursor: pointer; min-height: 156px;
-    transition: transform 0.35s cubic-bezier(0.16,1,0.3,1), border-color 0.25s ease, box-shadow 0.35s cubic-bezier(0.16,1,0.3,1);
-  }
-  .ms-card:hover:not(:disabled) { transform: translateY(-3px); border-color: var(--accent-dark, #C4A882); box-shadow: 0 12px 30px rgba(0,0,0,0.08); }
-  .ms-card:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-  .ms-card:disabled { opacity: 0.5; cursor: not-allowed; }
-  .ms-icon { font-size: 22px; color: var(--accent); line-height: 1; }
-  .ms-name { font-family: var(--serif); font-size: 19px; color: var(--text); }
-  .ms-desc { font-family: var(--mono); font-size: 12px; line-height: 1.6; color: var(--text-muted); }
-  .ms-soon { font-style: normal; font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); border: 1px solid var(--border-strong); border-radius: 999px; padding: 2px 7px; margin-left: 4px; white-space: nowrap; }
-  @media (prefers-reduced-motion: reduce) { .modus-select, .ms-card { transition: opacity 0.2s ease; } }
+  /* (Modus-Auswahl-Overlay entfernt — ersetzt durch die inline Stations-Leiste) */
   .lese-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
   .lese-label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); }
   /* Moderner segmentierter Schalter (Norive): Track + gleitende Auswahl-Pille */
