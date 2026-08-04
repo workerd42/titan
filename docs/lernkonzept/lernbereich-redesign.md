@@ -37,16 +37,63 @@ Heute: einziger Zugang zu Lernbereich/Deck/Admin/Cockpit ist ein FAB-Modal. Neu:
 - Ästhetik bleibt Kosmos; der Pfad ersetzt das „Karten ohne Richtung"-Gefühl.
 
 ## Zielbild C — 3-Zonen-Kapitel-Layout (löst die Modi-Fragmentierung)
-Statt 5 vorgeschalteter Modi **eine Kapitel-Ansicht** in drei Zonen:
-- **Links — Lernbaum & Fortschritt:** Kapitel des HB, „du bist hier", Sprung zu
-  erledigten Modulen, Mini-Fortschritt. (Die heutige Modus-Wahl entfällt als
-  Hürde.)
-- **Mitte — Lern-Hub:** die Reise **Verstehen → Merken → Anwenden → Prüfen** als
-  durchgehender Fluss in verdaulichen Häppchen (Microlearning), mit dem
-  **interaktiven Werkzeug** als Herzstück der Anwenden-Phase. Lernzettel/Übung
-  (MC)/IHK-Test sind **Stationen dieser einen Reise**, nicht konkurrierende Tabs.
-- **Rechts/Unten — Hilfe & Feedback:** Notizen, sofortiges Quiz-Feedback (warum
-  richtig/falsch, schon vorhanden), später der **KI-Lernassistent** (Phase 3).
+Statt 5 vorgeschalteter Modi **eine Kapitel-Ansicht** in drei Zonen. Leitziel:
+**Fokus maximieren, kognitive Last senken** — der Nutzer weiß jederzeit *wo er
+steht, was als Nächstes kommt und warum*.
+
+**Zone A — Linke Sidebar (Orientierung & Lernpfad):**
+- Vertikaler Lernbaum mit Status je Einheit: **erledigt** (Häkchen) · **aktiv**
+  (hervorgehoben, dezenter Puls) · **offen** · optional **empfohlen**.
+- **Mini-/Kompaktmodus:** per Klick zu einer Icon-Leiste einklappbar → 100 % Fokus
+  auf den Inhalt.
+- Sprung zu bereits erledigten Einheiten jederzeit möglich (Hybrid).
+
+**Zone B — Hauptbereich (kognitiver Anker):**
+- **Karten statt Endlos-Scroll:** jede Lektion = eine klar abgegrenzte Karte/ein
+  Screen-Abschnitt (Microlearning, ~5 Min).
+- **Progress-Bar oben:** zeigt exakt „Schritt 3 von 5" innerhalb der Lektion.
+- **Typografie/Struktur:** große Lesbarkeit, kurze Absätze (3–4 Zeilen),
+  Kernbegriffe fett; viel Whitespace.
+- Die Reise **Verstehen → Merken → Anwenden → Prüfen** wird zum **Karten-Fluss**;
+  Lernzettel/Übung(MC)/IHK-Test sind **Stationen dieser einen Reise**, nicht Tabs.
+- **Genau ein primärer Folge-Button** je Karte („Verstanden & Weiter").
+
+**Zone C — Rechte Sidebar (Interaktion & Assistenz):**
+- Kontextuelle, **nicht-statische** Werkzeuge: interaktiver Rechner/Widget, MC-Frage,
+  Live-Vorschau — passend zur aktuellen Karte.
+- **Aufklappbarer KI-Tutor** („Das genauer erklären") strikt zum aktuellen
+  Screen-Inhalt → **Phase 3 (KI)**; Andockpunkt jetzt reservieren.
+
+## User Flow — die Lernschleife (Habit Loop)
+Jede Lektion folgt derselben Schleife (schafft Vertrautheit + Momentum):
+1. **Einstieg / Kontext:** prägnante **Lernziel-Karte** — „In ~5 Min lernst du X
+   und kannst danach Y." Setzt Erwartung + Motivation.
+2. **Wissensvermittlung (scaffolded):** kurze Häppchen, **direkt gekoppelt** an eine
+   interaktive Komponente (z. B. Regler verstellen → Wirkung sofort sehen).
+3. **Formative Überprüfung:** **Mikro-Quizzes zwischendurch** statt eines langen
+   Tests am Ende.
+4. **Instant Feedback:** bei falsch → **konstruktiver Hinweis** (nicht nur „falsch");
+   bei richtig → ruhige visuelle Bestätigung.
+5. **Abschluss & Momentum:** kurzer **Belohnungs-Screen** (Fortschritt, Streak/Punkte)
+   + prominenter **„Nächste Lektion starten"**.
+
+## UI/UX-Regeln & Micro-Interactions (verbindlich, Kosmos-konform)
+- **Signalfarben sparsam:** Primärfarbe nur für die Haupt-Aktion, Grün = Erfolg,
+  Gelb = Hinweis; Rest neutral (Norive-Tokens, Hell/Dunkel). Kein Kitsch.
+- **Whitespace** großzügig um Text/Widgets → Konzentration.
+- **Sanfte Übergänge:** richtige Antwort → weiches Gleiten zur nächsten Karte
+  (ruhig/organisch, `prefers-reduced-motion` respektieren).
+- **Tactile Feedback:** dezentes Einfedern von Buttons beim Klick („Substanz").
+- **No Dead Ends:** kein leerer Screen/Sackgasse — **jede** Ansicht hat genau eine
+  primäre Folgeaktion (Primary CTA). *(Löst zugleich das heutige „31 Planeten ohne
+  Werkzeug wirken leer".)*
+
+## ⚠️ Offener Widerspruch (deine Entscheidung)
+Die Detailspezifikation nennt **„Sperre / Schloss = Mastery-Freischaltung"** —
+das steht im Konflikt zur getroffenen **hybriden Führung (frei springbar, kein
+hartes Gating)**. Beides gleichzeitig geht nicht sauber. Zu klären (siehe Rückfrage):
+soft (empfohlen/optional, keine echten Schlösser) · Soft-Lock mit Ein-Klick-Override ·
+oder doch echtes Gating (revidiert die Hybrid-Entscheidung).
 
 ## Framework-Abgleich (dein Maßstab → wie adressiert / Stufe)
 | Prinzip | Umsetzung im Redesign | Stufe |
