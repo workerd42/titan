@@ -44,3 +44,46 @@ export function letzteAktivitaet(
   const d = progress?.lastLernDatum;
   return typeof d === 'string' && d.length > 0 ? d : null;
 }
+
+/** Aktueller Lernstreak in Tagen (>= 0). */
+export function lernstreak(progress: Partial<NoriveProgress> | null | undefined): number {
+  return Math.max(0, Number(progress?.lernStreakTage ?? 0) || 0);
+}
+
+/** Anzahl vollständig erledigter Themen (alle 4 Phasen). */
+export function erledigteThemen(progress: Partial<NoriveProgress> | null | undefined): number {
+  const themen = progress?.themen ?? {};
+  return Object.values(themen).filter((t) => erledigtePhasen(t) === 4).length;
+}
+
+/** Anzahl deck-reifer Artefakte (fürs Präsentations-Deck freigegeben). */
+export function anzahlArtefakte(progress: Partial<NoriveProgress> | null | undefined): number {
+  const themen = progress?.themen ?? {};
+  return Object.values(themen).filter((t) => t?.artefakt?.deckReif === true).length;
+}
+
+/**
+ * Fortschritt je Handlungsbereich in Prozent (0–100).
+ * @param hbVonSlug   Zuordnung Thema-Slug → Handlungsbereich (aus der Content-Collection).
+ * @param themenProHB Anzahl Themen je Handlungsbereich (Nenner-Basis, × 4 Phasen).
+ * @returns Record hb → Prozent (nur für in `themenProHB` gelistete Bereiche).
+ */
+export function fortschrittJeHB(
+  progress: Partial<NoriveProgress> | null | undefined,
+  hbVonSlug: Record<string, string>,
+  themenProHB: Record<string, number>,
+): Record<string, number> {
+  const themen = progress?.themen ?? {};
+  const erledigtProHB: Record<string, number> = {};
+  for (const [slug, t] of Object.entries(themen)) {
+    const hb = hbVonSlug[slug];
+    if (!hb) continue;
+    erledigtProHB[hb] = (erledigtProHB[hb] ?? 0) + erledigtePhasen(t);
+  }
+  const out: Record<string, number> = {};
+  for (const [hb, anzahl] of Object.entries(themenProHB)) {
+    const moeglich = anzahl * 4;
+    out[hb] = moeglich > 0 ? Math.min(100, Math.round(((erledigtProHB[hb] ?? 0) / moeglich) * 100)) : 0;
+  }
+  return out;
+}

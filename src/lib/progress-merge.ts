@@ -12,6 +12,14 @@
 
 export type Pruefen = 'geloest' | 'wiederholen' | null | undefined;
 
+export interface Artefakt {
+  deckReif?: boolean;
+  titel?: string;
+  modul?: string;
+  daten?: unknown;
+  [k: string]: unknown;
+}
+
 export interface ThemaState {
   verstehen?: boolean;
   merken?: boolean;
@@ -19,6 +27,10 @@ export interface ThemaState {
   pruefen?: Pruefen;
   eigeneEinschaetzung?: string;
   wiederholungFaelligAm?: number | null;
+  // Vom Nutzer erzeugtes Modul-Artefakt (SWOT, Deckungsbeitrag …) fürs
+  // Präsentations-Deck. MUSS den Server-Merge überleben (sonst Datenverlust
+  // beim Geräte-Sync + im Dozenten-Cockpit nicht zählbar).
+  artefakt?: Artefakt;
 }
 
 export interface NoriveProgress {
@@ -66,6 +78,11 @@ function mergeThema(a: ThemaState = {}, b: ThemaState = {}): ThemaState {
   const faellig = [a.wiederholungFaelligAm, b.wiederholungFaelligAm]
     .filter((v): v is number => typeof v === 'number');
   if (faellig.length) merged.wiederholungFaelligAm = Math.max(...faellig);
+
+  // Artefakt bewahren (Union): der gerade gepushte Stand (a) gewinnt, sonst der
+  // Server-Stand (b). Nie verwerfen — sonst geht das Deck-Artefakt verloren.
+  const artefakt = a.artefakt ?? b.artefakt;
+  if (artefakt !== undefined) merged.artefakt = artefakt;
 
   return merged;
 }

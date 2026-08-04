@@ -18,8 +18,9 @@ import { getCollection } from 'astro:content';
 import { and, eq, inArray } from 'drizzle-orm';
 import { db } from '../lib/db';
 import { member, user as userTable, userProgress, organization } from '../lib/db/schema';
-import { gesamtProzent, letzteAktivitaet } from '../lib/progress-stats';
+import { gesamtProzent, letzteAktivitaet, lernstreak, erledigteThemen, anzahlArtefakte, fortschrittJeHB } from '../lib/progress-stats';
 import { ROLLEN_LABEL } from '../lib/rollen';
+import { BEREICHE } from '../data/bereiche';
 import type { NoriveProgress } from '../lib/progress-merge';
 
 const user = Astro.locals.user as { id: string; email?: string; name?: string; role?: string } | null;
@@ -28,14 +29,35 @@ if (!user) return Astro.redirect('/konto/');
 const ERLAUBTE_ROLLEN = ['dozent', 'org-admin', 'platform-admin'];
 const hatZugang = ERLAUBTE_ROLLEN.includes(user.role ?? '');
 
-type Lerner = { userId: string; name: string; email: string; prozent: number; letzte: string };
+type HBWert = { id: string; label: string; prozent: number };
+type Lerner = {
+  userId: string; name: string; email: string;
+  prozent: number; letzte: string;
+  streak: number; erledigt: number; artefakte: number;
+  hb: HBWert[];
+};
 type OrgGruppe = { id: string; name: string; lerner: Lerner[] };
 
 let gruppen: OrgGruppe[] = [];
 let themenGesamt = 0;
+// Zuordnung Thema → Handlungsbereich + Anzahl Themen je HB (Nenner-Basis).
+let hbVonSlug: Record<string, string> = {};
+let themenProHB: Record<string, number> = {};
+// Geordnete HB-Liste (nur vorhandene), mit kurzem Label „HB1" … für die Balken.
+let hbListe: { id: string; label: string }[] = [];
 
 if (hatZugang) {
-  themenGesamt = (await getCollection('themen')).length;
+  const alleThemen = await getCollection('themen');
+  themenGesamt = alleThemen.length;
+  hbVonSlug = Object.fromEntries(alleThemen.map((t) => [t.id, t.data.handlungsbereich]));
+  themenProHB = {};
+  for (const t of alleThemen) {
+    const hb = t.data.handlungsbereich;
+    themenProHB[hb] = (themenProHB[hb] ?? 0) + 1;
+  }
+  hbListe = BEREICHE
+    .filter((b) => themenProHB[b.id])
+    .map((b) => ({ id: b.id, label: `HB${b.nummer}` }));
 
   // Organisationen, denen der/die Angemeldete angehört.
   const meine = await db
@@ -86,12 +108,17 @@ if (hatZugang) {
           .filter((r) => r.orgId === org.id)
           .map((r) => {
             const data = (r.data as Partial<NoriveProgress> | null) ?? null;
+            const hbWerte = fortschrittJeHB(data, hbVonSlug, themenProHB);
             return {
               userId: r.userId,
               name: r.name,
               email: r.email,
               prozent: gesamtProzent(data, themenGesamt),
               letzte: fmtDatum(letzteAktivitaet(data), r.updatedAt ?? null),
+              streak: lernstreak(data),
+              erledigt: erledigteThemen(data),
+              artefakte: anzahlArtefakte(data),
+              hb: hbListe.map((h) => ({ id: h.id, label: h.label, prozent: hbWerte[h.id] ?? 0 })),
             };
           })
           .sort((a, b) => a.name.localeCompare(b.name, 'de')),
@@ -137,25 +164,35 @@ const lernerGesamt = gruppen.reduce((n, g) => n + g.lerner.length, 0);
               {org.lerner.length === 0 ? (
                 <p class="ck-org-empty">Noch keine Lernenden in dieser Organisation.</p>
               ) : (
-                <div class="ck-table" role="table" aria-label={`Lernfortschritt ${org.name}`}>
-                  <div class="ck-row ck-row-head" role="row">
-                    <span role="columnheader">Lernende:r</span>
-                    <span role="columnheader">Gesamtfortschritt</span>
-                    <span role="columnheader">Letzte Aktivität</span>
-                  </div>
+                <div class="ck-cards">
                   {org.lerner.map((l) => (
-                    <div class="ck-row" role="row">
-                      <div class="ck-user" role="cell">
-                        <b>{l.name}</b><span>{l.email}</span>
-                      </div>
-                      <div class="ck-progress" role="cell">
-                        <div class="ck-bar" role="progressbar" aria-valuenow={l.prozent} aria-valuemin="0" aria-valuemax="100" aria-label={`${l.prozent} Prozent`}>
-                          <span class="ck-bar-fill" style={`width:${l.prozent}%`}></span>
+                    <article class="ck-card">
+                      <div class="ck-card-head">
+                        <div class="ck-user"><b>{l.name}</b><span>{l.email}</span></div>
+                        <div class="ck-gesamt">
+                          <span class="ck-gesamt-pct">{l.prozent}%</span>
+                          <span class="ck-gesamt-lbl">gesamt</span>
                         </div>
-                        <span class="ck-pct">{l.prozent}%</span>
                       </div>
-                      <div class="ck-last" role="cell">{l.letzte}</div>
-                    </div>
+
+                      <div class="ck-hb-grid">
+                        {l.hb.map((h) => (
+                          <div class="ck-hb">
+                            <div class="ck-hb-top"><span>{h.label}</span><span class="ck-hb-pct">{h.prozent}%</span></div>
+                            <div class="ck-bar" role="progressbar" aria-valuenow={h.prozent} aria-valuemin="0" aria-valuemax="100" aria-label={`${h.label}: ${h.prozent} Prozent`}>
+                              <span class="ck-bar-fill" style={`width:${h.prozent}%`}></span>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+
+                      <dl class="ck-chips">
+                        <div class="ck-chip"><dt>Streak</dt><dd>{l.streak} {l.streak === 1 ? 'Tag' : 'Tage'}</dd></div>
+                        <div class="ck-chip"><dt>Erledigte Themen</dt><dd>{l.erledigt}/{themenGesamt}</dd></div>
+                        <div class="ck-chip"><dt>Artefakte</dt><dd>{l.artefakte}</dd></div>
+                        <div class="ck-chip"><dt>Letzte Aktivität</dt><dd>{l.letzte}</dd></div>
+                      </dl>
+                    </article>
                   ))}
                 </div>
               )}
@@ -177,17 +214,26 @@ const lernerGesamt = gruppen.reduce((n, g) => n + g.lerner.length, 0);
     .ck-org-name { font-family: var(--serif,Georgia,serif); font-weight: 400; font-size: clamp(18px,3vw,24px); margin: 0 0 14px; padding-bottom: 8px; border-bottom: 1px solid rgba(28,25,23,0.14); }
     .ck-org-empty { font-family: var(--mono,monospace); font-size: 12px; color: var(--text-muted); }
 
-    .ck-table { display: flex; flex-direction: column; }
-    .ck-row { display: grid; grid-template-columns: 2fr 1.5fr 1.3fr; gap: 12px; align-items: center; padding: 12px 4px; border-bottom: 1px solid rgba(28,25,23,0.08); }
-    .ck-row-head { font-family: var(--mono,monospace); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); padding-bottom: 10px; border-bottom: 1px solid rgba(28,25,23,0.14); }
+    .ck-cards { display: flex; flex-direction: column; gap: 14px; }
+    .ck-card { border: 1px solid rgba(28,25,23,0.12); border-radius: 8px; padding: 18px 20px; }
+    .ck-card-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 16px; }
     .ck-user { display: flex; flex-direction: column; }
-    .ck-user b { font-family: var(--serif,Georgia,serif); font-weight: 400; font-size: 15px; }
+    .ck-user b { font-family: var(--serif,Georgia,serif); font-weight: 400; font-size: 16px; }
     .ck-user span { font-family: var(--mono,monospace); font-size: 11px; color: var(--text-muted); }
-    .ck-progress { display: flex; align-items: center; gap: 10px; }
-    .ck-bar { flex: 1; height: 8px; background: rgba(28,25,23,0.10); border-radius: 999px; overflow: hidden; }
+    .ck-gesamt { display: flex; flex-direction: column; align-items: flex-end; line-height: 1; }
+    .ck-gesamt-pct { font-family: var(--serif,Georgia,serif); font-weight: 300; font-size: 30px; color: var(--text); font-variant-numeric: tabular-nums; }
+    .ck-gesamt-lbl { font-family: var(--mono,monospace); font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); margin-top: 4px; }
+
+    .ck-hb-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 12px 18px; margin-bottom: 16px; }
+    .ck-hb-top { display: flex; justify-content: space-between; font-family: var(--mono,monospace); font-size: 11px; color: var(--text-muted); margin-bottom: 5px; }
+    .ck-hb-pct { color: var(--text); font-variant-numeric: tabular-nums; }
+    .ck-bar { height: 7px; background: rgba(28,25,23,0.10); border-radius: 999px; overflow: hidden; }
     .ck-bar-fill { display: block; height: 100%; background: var(--accent); border-radius: 999px; }
-    .ck-pct { font-family: var(--mono,monospace); font-size: 12px; color: var(--text); min-width: 3ch; text-align: right; font-variant-numeric: tabular-nums; }
-    .ck-last { font-family: var(--mono,monospace); font-size: 12px; color: var(--text-muted); }
+
+    .ck-chips { display: flex; flex-wrap: wrap; gap: 10px 22px; margin: 0; padding-top: 14px; border-top: 1px solid rgba(28,25,23,0.08); }
+    .ck-chip { display: flex; flex-direction: column; gap: 2px; }
+    .ck-chip dt { font-family: var(--mono,monospace); font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); }
+    .ck-chip dd { font-family: var(--mono,monospace); font-size: 13px; color: var(--text); margin: 0; font-variant-numeric: tabular-nums; }
 
     .ck-empty { margin-top: 40px; padding: 28px; border: 1px dashed rgba(28,25,23,0.2); border-radius: 6px; text-align: center; }
     .ck-empty p { font-family: var(--mono,monospace); font-size: 13px; color: var(--text); margin: 0 0 8px; }
@@ -201,8 +247,8 @@ const lernerGesamt = gruppen.reduce((n, g) => n + g.lerner.length, 0);
     .ck-link { font-family: var(--mono,monospace); font-size: 12px; color: var(--accent); display: inline-block; margin-top: 20px; }
 
     @media (max-width: 640px) {
-      .ck-row-head { display: none; }
-      .ck-row { grid-template-columns: 1fr; gap: 8px; }
+      .ck-hb-grid { grid-template-columns: 1fr 1fr; }
+      .ck-gesamt-pct { font-size: 24px; }
     }
   </style>
 </BaseLayout>
