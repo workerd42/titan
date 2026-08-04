@@ -1,0 +1,208 @@
+---
+/**
+ * /cockpit — Dozenten-Cockpit (Rollen 'dozent' / 'org-admin' / 'platform-admin').
+ *
+ * Reine serverseitige Lese-Sicht auf den Lernfortschritt der Lernenden in den
+ * Organisationen, denen der/die Angemeldete angehört. On-demand (prerender=false),
+ * damit die Middleware die Session setzt und die Rolle serverseitig geprüft wird.
+ * Ein Dozent sieht AUSSCHLIESSLICH Lernende seiner eigenen Organisation(en) —
+ * die Einschränkung wird in der DB-Query erzwungen, nie clientseitig.
+ *
+ * Kennzahlen (erstes Inkrement): Gesamtfortschritt (%) + letzte Aktivität,
+ * on-the-fly aus user_progress berechnet (src/lib/progress-stats.ts).
+ */
+export const prerender = false;
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import { and, eq, inArray } from 'drizzle-orm';
+import { db } from '../lib/db';
+import { member, user as userTable, userProgress, organization } from '../lib/db/schema';
+import { gesamtProzent, letzteAktivitaet } from '../lib/progress-stats';
+import { ROLLEN_LABEL } from '../lib/rollen';
+import type { NoriveProgress } from '../lib/progress-merge';
+
+const user = Astro.locals.user as { id: string; email?: string; name?: string; role?: string } | null;
+if (!user) return Astro.redirect('/konto/');
+
+const ERLAUBTE_ROLLEN = ['dozent', 'org-admin', 'platform-admin'];
+const hatZugang = ERLAUBTE_ROLLEN.includes(user.role ?? '');
+
+type Lerner = { userId: string; name: string; email: string; prozent: number; letzte: string };
+type OrgGruppe = { id: string; name: string; lerner: Lerner[] };
+
+let gruppen: OrgGruppe[] = [];
+let themenGesamt = 0;
+
+if (hatZugang) {
+  themenGesamt = (await getCollection('themen')).length;
+
+  // Organisationen, denen der/die Angemeldete angehört.
+  const meine = await db
+    .select({ orgId: member.organizationId })
+    .from(member)
+    .where(eq(member.userId, user.id));
+  const orgIds = [...new Set(meine.map((m) => m.orgId))];
+
+  if (orgIds.length) {
+    const orgRows = await db
+      .select({ id: organization.id, name: organization.name })
+      .from(organization)
+      .where(inArray(organization.id, orgIds));
+
+    // Alle Lernenden (globale Rolle 'lerner') dieser Organisationen + Fortschritt.
+    const rows = await db
+      .select({
+        orgId: member.organizationId,
+        userId: userTable.id,
+        name: userTable.name,
+        email: userTable.email,
+        data: userProgress.data,
+        updatedAt: userProgress.updatedAt,
+      })
+      .from(member)
+      .innerJoin(userTable, eq(member.userId, userTable.id))
+      .leftJoin(userProgress, eq(userProgress.userId, userTable.id))
+      .where(and(inArray(member.organizationId, orgIds), eq(userTable.role, 'lerner')));
+
+    const fmtDatum = (iso: string | null, fallback: Date | null): string => {
+      const d = iso ? new Date(iso + 'T00:00:00') : fallback;
+      if (!d || Number.isNaN(d.getTime())) return '—';
+      const heute = new Date(); heute.setHours(0, 0, 0, 0);
+      const tag = new Date(d); tag.setHours(0, 0, 0, 0);
+      const diff = Math.round((heute.getTime() - tag.getTime()) / 86_400_000);
+      const datum = d.toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric' });
+      if (diff <= 0) return `heute (${datum})`;
+      if (diff === 1) return `gestern (${datum})`;
+      if (diff < 30) return `vor ${diff} Tagen (${datum})`;
+      return datum;
+    };
+
+    gruppen = orgRows
+      .map((org) => ({
+        id: org.id,
+        name: org.name,
+        lerner: rows
+          .filter((r) => r.orgId === org.id)
+          .map((r) => {
+            const data = (r.data as Partial<NoriveProgress> | null) ?? null;
+            return {
+              userId: r.userId,
+              name: r.name,
+              email: r.email,
+              prozent: gesamtProzent(data, themenGesamt),
+              letzte: fmtDatum(letzteAktivitaet(data), r.updatedAt ?? null),
+            };
+          })
+          .sort((a, b) => a.name.localeCompare(b.name, 'de')),
+      }))
+      .sort((a, b) => a.name.localeCompare(b.name, 'de'));
+  }
+}
+
+const lernerGesamt = gruppen.reduce((n, g) => n + g.lerner.length, 0);
+---
+
+<BaseLayout title="Cockpit — Titan" description="Dozenten-Sicht auf den Lernfortschritt." canonicalPath="/cockpit/" theme="light">
+  <main id="hauptinhalt" class="cockpit-shell">
+    {!hatZugang ? (
+      <div class="ck-403">
+        <p class="ck-eyebrow ck-warn">Kein Zugriff</p>
+        <h1 class="ck-title">Das Cockpit ist Dozentinnen und Dozenten vorbehalten.</h1>
+        <p class="ck-lead">Angemeldet als {user.email} (Rolle: {ROLLEN_LABEL[user.role ?? 'lerner'] ?? user.role}).</p>
+        <a class="ck-link" href={import.meta.env.BASE_URL}>← Zurück</a>
+      </div>
+    ) : (
+      <>
+        <header class="cockpit-head">
+          <a class="cockpit-back" href={import.meta.env.BASE_URL}>← Zurück</a>
+          <p class="cockpit-eyebrow">Dozenten-Cockpit</p>
+          <h1 class="cockpit-title">Lernfortschritt</h1>
+          <p class="cockpit-lead">
+            {lernerGesamt === 0
+              ? 'Noch keine Lernenden zugeordnet.'
+              : `${lernerGesamt} Lernende in ${gruppen.length} Organisation${gruppen.length === 1 ? '' : 'en'}`}
+          </p>
+        </header>
+
+        {gruppen.length === 0 ? (
+          <div class="ck-empty">
+            <p>Dir ist noch keine Organisation mit Lernenden zugeordnet.</p>
+            <p class="ck-empty-hint">Die Zuordnung erfolgt über die Plattform-Verwaltung (Admin → Organisationen).</p>
+          </div>
+        ) : (
+          gruppen.map((org) => (
+            <section class="ck-org" aria-label={`Organisation ${org.name}`}>
+              <h2 class="ck-org-name">{org.name}</h2>
+              {org.lerner.length === 0 ? (
+                <p class="ck-org-empty">Noch keine Lernenden in dieser Organisation.</p>
+              ) : (
+                <div class="ck-table" role="table" aria-label={`Lernfortschritt ${org.name}`}>
+                  <div class="ck-row ck-row-head" role="row">
+                    <span role="columnheader">Lernende:r</span>
+                    <span role="columnheader">Gesamtfortschritt</span>
+                    <span role="columnheader">Letzte Aktivität</span>
+                  </div>
+                  {org.lerner.map((l) => (
+                    <div class="ck-row" role="row">
+                      <div class="ck-user" role="cell">
+                        <b>{l.name}</b><span>{l.email}</span>
+                      </div>
+                      <div class="ck-progress" role="cell">
+                        <div class="ck-bar" role="progressbar" aria-valuenow={l.prozent} aria-valuemin="0" aria-valuemax="100" aria-label={`${l.prozent} Prozent`}>
+                          <span class="ck-bar-fill" style={`width:${l.prozent}%`}></span>
+                        </div>
+                        <span class="ck-pct">{l.prozent}%</span>
+                      </div>
+                      <div class="ck-last" role="cell">{l.letzte}</div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </section>
+          ))
+        )}
+      </>
+    )}
+  </main>
+
+  <style is:global>
+    .cockpit-shell { max-width: 940px; margin: 0 auto; padding: clamp(28px,5vw,64px) clamp(18px,4vw,32px) 96px; color: var(--text); }
+    .cockpit-back { font-family: var(--mono,monospace); font-size: 12px; color: var(--accent); text-decoration: none; }
+    .cockpit-eyebrow { font-family: var(--mono,monospace); font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--accent); margin: 20px 0 8px; }
+    .cockpit-title { font-family: var(--serif,Georgia,serif); font-weight: 300; font-size: clamp(28px,5vw,44px); margin: 0 0 8px; }
+    .cockpit-lead { font-family: var(--mono,monospace); font-size: 13px; color: var(--text-muted); }
+
+    .ck-org { margin-top: 44px; }
+    .ck-org-name { font-family: var(--serif,Georgia,serif); font-weight: 400; font-size: clamp(18px,3vw,24px); margin: 0 0 14px; padding-bottom: 8px; border-bottom: 1px solid rgba(28,25,23,0.14); }
+    .ck-org-empty { font-family: var(--mono,monospace); font-size: 12px; color: var(--text-muted); }
+
+    .ck-table { display: flex; flex-direction: column; }
+    .ck-row { display: grid; grid-template-columns: 2fr 1.5fr 1.3fr; gap: 12px; align-items: center; padding: 12px 4px; border-bottom: 1px solid rgba(28,25,23,0.08); }
+    .ck-row-head { font-family: var(--mono,monospace); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); padding-bottom: 10px; border-bottom: 1px solid rgba(28,25,23,0.14); }
+    .ck-user { display: flex; flex-direction: column; }
+    .ck-user b { font-family: var(--serif,Georgia,serif); font-weight: 400; font-size: 15px; }
+    .ck-user span { font-family: var(--mono,monospace); font-size: 11px; color: var(--text-muted); }
+    .ck-progress { display: flex; align-items: center; gap: 10px; }
+    .ck-bar { flex: 1; height: 8px; background: rgba(28,25,23,0.10); border-radius: 999px; overflow: hidden; }
+    .ck-bar-fill { display: block; height: 100%; background: var(--accent); border-radius: 999px; }
+    .ck-pct { font-family: var(--mono,monospace); font-size: 12px; color: var(--text); min-width: 3ch; text-align: right; font-variant-numeric: tabular-nums; }
+    .ck-last { font-family: var(--mono,monospace); font-size: 12px; color: var(--text-muted); }
+
+    .ck-empty { margin-top: 40px; padding: 28px; border: 1px dashed rgba(28,25,23,0.2); border-radius: 6px; text-align: center; }
+    .ck-empty p { font-family: var(--mono,monospace); font-size: 13px; color: var(--text); margin: 0 0 8px; }
+    .ck-empty-hint { color: var(--text-muted) !important; font-size: 12px !important; }
+
+    .ck-403 { max-width: 560px; margin: 12vh auto 0; text-align: center; }
+    .ck-eyebrow { font-family: var(--mono,monospace); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); }
+    .ck-warn { color: var(--incorrect-border); }
+    .ck-title { font-family: var(--serif,Georgia,serif); font-weight: 300; font-size: clamp(22px,4vw,32px); margin: 12px 0; }
+    .ck-lead { font-family: var(--mono,monospace); font-size: 13px; color: var(--text-muted); }
+    .ck-link { font-family: var(--mono,monospace); font-size: 12px; color: var(--accent); display: inline-block; margin-top: 20px; }
+
+    @media (max-width: 640px) {
+      .ck-row-head { display: none; }
+      .ck-row { grid-template-columns: 1fr; gap: 8px; }
+    }
+  </style>
+</BaseLayout>

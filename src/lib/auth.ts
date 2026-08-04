@@ -7,7 +7,7 @@
  */
 import { betterAuth } from 'better-auth';
 import { drizzleAdapter } from 'better-auth/adapters/drizzle';
-import { admin } from 'better-auth/plugins';
+import { admin, organization } from 'better-auth/plugins';
 import { BETTER_AUTH_SECRET, BETTER_AUTH_URL } from 'astro:env/server';
 import { db } from './db';
 import * as schema from './db/schema';
@@ -23,6 +23,9 @@ export const auth = betterAuth({
       session: schema.session,
       account: schema.account,
       verification: schema.verification,
+      organization: schema.organization,
+      member: schema.member,
+      invitation: schema.invitation,
     },
   }),
   emailAndPassword: {
@@ -44,6 +47,14 @@ export const auth = betterAuth({
       roles,
       defaultRole: 'lerner',
       adminRoles: ['platform-admin'],
+    }),
+    // B2B-Struktur: Bildungsträger als Organisationen. Nur die Zuordnung
+    // (Nutzer ↔ Organisation) — das Gating bleibt an der globalen user.role.
+    // Orgs legt ausschließlich der platform-admin an; der Einladungs-/Mail-Flow
+    // (sendInvitationEmail) folgt später mit Brevo. Zuordnung erfolgt vorerst
+    // serverseitig manuell (siehe /api/org-member).
+    organization({
+      allowUserToCreateOrganization: false,
     }),
   ],
 });

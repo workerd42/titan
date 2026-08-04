@@ -40,6 +40,8 @@ export const session = pgTable('session', {
   userId: text('user_id').notNull().references(() => user.id, { onDelete: 'cascade' }),
   // Admin-Plugin: gesetzt, wenn ein Admin sich als dieser Nutzer ausgibt.
   impersonatedBy: text('impersonated_by'),
+  // Organization-Plugin: aktuell gewählte Organisation dieser Session.
+  activeOrganizationId: text('active_organization_id'),
 });
 
 export const account = pgTable('account', {
@@ -81,4 +83,39 @@ export const kompassProfile = pgTable('kompass_profile', {
   userId: text('user_id').primaryKey().references(() => user.id, { onDelete: 'cascade' }),
   data: jsonb('data').notNull().default({}),
   updatedAt: timestamp('updated_at').notNull().defaultNow(),
+});
+
+// ── Better-Auth Organization-Plugin (B2B-Struktur) ───────────
+// Bildungsträger = Organisation; `member` verbindet Nutzer ↔ Organisation.
+// Die globale `user.role` bleibt maßgeblich fürs Gating (Admin/Cockpit); diese
+// Tabellen liefern NUR die Zugehörigkeit (welcher Lerner/Dozent zu welchem
+// Träger). Spaltenform folgt dem vom Plugin erwarteten Schema.
+export const organization = pgTable('organization', {
+  id: text('id').primaryKey(),
+  name: text('name').notNull(),
+  slug: text('slug').notNull().unique(),
+  logo: text('logo'),
+  // Better Auth legt metadata als JSON-String ab (kein jsonb).
+  metadata: text('metadata'),
+  createdAt: timestamp('created_at').notNull().defaultNow(),
+});
+
+export const member = pgTable('member', {
+  id: text('id').primaryKey(),
+  organizationId: text('organization_id').notNull().references(() => organization.id, { onDelete: 'cascade' }),
+  userId: text('user_id').notNull().references(() => user.id, { onDelete: 'cascade' }),
+  role: text('role').notNull().default('member'),
+  createdAt: timestamp('created_at').notNull().defaultNow(),
+});
+
+export const invitation = pgTable('invitation', {
+  id: text('id').primaryKey(),
+  organizationId: text('organization_id').notNull().references(() => organization.id, { onDelete: 'cascade' }),
+  email: text('email').notNull(),
+  role: text('role'),
+  status: text('status').notNull().default('pending'),
+  teamId: text('team_id'),
+  inviterId: text('inviter_id').notNull().references(() => user.id, { onDelete: 'cascade' }),
+  expiresAt: timestamp('expires_at').notNull(),
+  createdAt: timestamp('created_at').notNull().defaultNow(),
 });

@@ -96,8 +96,12 @@ Zwei gleichrangige Zielgruppen, zwei Einstiegswege:
 
 ### 2.4 Dozenten-Cockpit
 
-- [ ] Rolle „Dozent" (sieht Fortschritt zugeordneter Schüler).
-- [ ] Dashboard: Fortschritt pro Schüler/Handlungsfeld, Lernstreak, letzte Aktivität. Genaue Kennzahlen noch zu definieren.
+> **Erstes Inkrement LIVE-fähig (2026-08-04):** B2B-Organisationen (Better-Auth **Organization-Plugin**: `organization`/`member`/`invitation`, Migration 0002) + **Dozenten-Cockpit** `/cockpit` (serverseitige Rollen-Gate, Dozent sieht **nur** Lernende seiner Organisation). Kennzahlen im ersten Schritt: **Gesamtfortschritt (%) + letzte Aktivität** (on-the-fly aus `user_progress`, `src/lib/progress-stats.ts`). Zuordnung **manuell** über das Admin-Panel (Abschnitt „Organisationen" + `/api/org`, platform-admin-gated) — **Einladungs-Mail via Brevo bewusst später**. E2E lokal verifiziert (Gate, API-403, Happy-Path, Org-Isolation).
+
+- [x] Rolle „Dozent" (sieht Fortschritt zugeordneter Lernender) — org-scoped.
+- [x] Dashboard: **Gesamtfortschritt + letzte Aktivität** je Lernendem. *(Fortschritt je Handlungsfeld, Lernstreak, Artefakte folgen inkrementell.)*
+- [ ] Brevo-Einladungs-Mail + Selbst-Registrierung/Acceptance-Flow (nächster Schritt).
+- [ ] Org-Admin-Self-Service (aktuell legt/ordnet nur platform-admin).
 - [ ] Telemetrie-Kontrakt aus dem Frontend nutzen (`data-universum-id`, `data-hb-slugs`, `data-progress-hb`).
 
 **Datenmodell — Entscheidung revidiert (2026-07-15):** Ursprünglich war eine Normalisierung des JSONB-Fortschritts geplant. Nachgerechnet ist das **verfrühte Optimierung**: 200 Lernende × 46 Themen ≈ 9.200 Einträge — dafür reicht JSONB mit GIN-Index mühelos. **Stattdessen:** beim Cockpit-Bau eine kleine abgeleitete Zusammenfassung (Prozent je Handlungsfeld + letzte Aktivität) neben dem Blob mitschreiben → triviale, schnelle Abfragen ohne Migrationsrisiko.

@@ -4,9 +4,9 @@
  * Bietet u.a. authClient.signUp.email / signIn.email / signOut / getSession.
  */
 import { createAuthClient } from 'better-auth/client';
-import { adminClient } from 'better-auth/client/plugins';
+import { adminClient, organizationClient } from 'better-auth/client/plugins';
 import { ac, roles } from './rollen-ac';
 
 export const authClient = createAuthClient({
-  plugins: [adminClient({ ac, roles })],
+  plugins: [adminClient({ ac, roles }), organizationClient()],
 });
