@@ -190,6 +190,48 @@ function renderPlanetComplete(state: NoriveProgress): void {
   });
 }
 
+/**
+ * Kosmos-Pfad (Increment 2): setzt je Planet/Listen-Knoten den Zustand
+ * (done · recommended · open) und befüllt den „Weiter"-Hinweis im Header.
+ * „recommended" = erster nicht vollständig erledigter Knoten in Reihenfolge
+ * (hybride Führung: alles bleibt anklickbar, kein Gating).
+ */
+function renderPfadZustand(state: NoriveProgress): void {
+  const planeten = [...document.querySelectorAll<HTMLElement>('.theme-planet[data-slug]')];
+  const listItems = [...document.querySelectorAll<HTMLElement>('.tls-item[data-slug]')];
+  const alle = [...planeten, ...listItems];
+  if (!alle.length) return;
+
+  // Reihenfolge bestimmt den empfohlenen nächsten Schritt (Planeten sind autoritativ).
+  const order = planeten.length ? planeten : listItems;
+  let recSlug = '';
+  for (const el of order) {
+    const slug = el.getAttribute('data-slug') ?? '';
+    if (phasenAbgeschlossen(state.themen[slug]) !== 4) { recSlug = slug; break; }
+  }
+
+  alle.forEach((el) => {
+    const slug = el.getAttribute('data-slug') ?? '';
+    const done = phasenAbgeschlossen(state.themen[slug]) === 4;
+    el.setAttribute('data-state', done ? 'done' : (slug === recSlug ? 'recommended' : 'open'));
+  });
+
+  // „Weiter: <Titel> →"-Hinweis im Header (alles erledigt → ausblenden).
+  const cue = document.getElementById('pfad-weiter') as HTMLAnchorElement | null;
+  if (cue) {
+    const recEl = order.find((el) => el.getAttribute('data-slug') === recSlug) as HTMLAnchorElement | undefined;
+    if (recSlug && recEl) {
+      const titel = recEl.getAttribute('data-titel') ?? recEl.textContent?.trim() ?? '';
+      const titelEl = cue.querySelector('[data-weiter-titel]');
+      if (titelEl) titelEl.textContent = titel;
+      if (recEl.href) cue.href = recEl.href;
+      cue.removeAttribute('hidden');
+    } else {
+      cue.setAttribute('hidden', '');
+    }
+  }
+}
+
 const PHASE_LABEL: Record<string, string> = {
   verstehen: 'Verstehen', merken: 'Merken', anwenden: 'Anwenden', pruefen: 'Prüfen',
 };
@@ -398,6 +440,7 @@ function init(): void {
   renderPhaseDots(state);
   renderPlanetComplete(state);
   renderPlanetProgress(state);
+  renderPfadZustand(state);
   initThemaPage();
   initReset();
 }
@@ -418,4 +461,5 @@ window.addEventListener('norive:synced', () => {
   renderPhaseDots(state);
   renderPlanetComplete(state);
   renderPlanetProgress(state);
+  renderPfadZustand(state);
 });

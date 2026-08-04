@@ -68,6 +68,9 @@ const gId = (s: string) => `tp-${slug}-${s}`;
     <span class="tpl-name">{titel}</span>
     <span class="tpl-gruppe">{gruppe}</span>
   </span>
+
+  <!-- Pfad-Hinweis: nur am empfohlenen nächsten Planeten sichtbar (JS setzt data-state) -->
+  <span class="tp-weiter" aria-hidden="true">Weiter →</span>
 </a>
 
 <style>
@@ -166,5 +169,63 @@ const gId = (s: string) => `tp-${slug}-${s}`;
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: rgba(110, 80, 53, 0.5);
+  }
+
+  /* ── PFAD-ZUSTÄNDE (Increment 2) — JS setzt data-state ──────── */
+  /* erledigt: dezenter Gold-Haken oben rechts */
+  .theme-planet[data-state="done"]::after {
+    content: '✓';
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #6E5035;
+    color: #EDE8DF;
+    font-family: var(--mono, monospace);
+    font-size: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 0 2px rgba(237, 232, 223, 0.35);
+    z-index: 20;
+  }
+
+  /* empfohlen (nächster Schritt): ruhig pulsierender Gold-Ring + „Weiter"-Pille */
+  .theme-planet[data-state="recommended"] {
+    animation: tp-pulse 2.8s ease-in-out infinite;
+    border-radius: 50%;
+  }
+  @keyframes tp-pulse {
+    0%, 100% { box-shadow: 0 0 0 2px rgba(196, 168, 130, 0.75), 0 0 16px rgba(196, 168, 130, 0.32); }
+    50%      { box-shadow: 0 0 0 3px rgba(196, 168, 130, 1.0),  0 0 30px rgba(196, 168, 130, 0.6); }
+  }
+
+  .tp-weiter {
+    position: absolute;
+    bottom: -34px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--mono, monospace);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #141210;
+    background: #C4A882;
+    padding: 3px 11px;
+    border-radius: 999px;
+    white-space: nowrap;
+    display: none;
+    z-index: 25;
+    pointer-events: none;
+  }
+  .theme-planet[data-state="recommended"] .tp-weiter { display: block; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .theme-planet[data-state="recommended"] {
+      animation: none;
+      box-shadow: 0 0 0 2px rgba(196, 168, 130, 0.9);
+    }
   }
 </style>

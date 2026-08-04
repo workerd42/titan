@@ -61,6 +61,7 @@ const themenMitIndex = (() => {
     <div class="uih-center">
       <span class="uih-nr">HF {bereich.nummer}</span>
       <span class="uih-titel">{bereich.titel}</span>
+      <a id="pfad-weiter" class="uih-weiter" hidden>Weiter: <span data-weiter-titel></span> →</a>
     </div>
     <span class="uih-count">{themen.length} Kapitel</span>
   </header>
@@ -92,7 +93,7 @@ const themenMitIndex = (() => {
           <div class="tls-gruppe">
             <p class="tls-gruppe-titel">{gruppe}</p>
             {gt.map(t => (
-              <a href={`${hbBase}${t.id}/`} class="tls-item">
+              <a href={`${hbBase}${t.id}/`} class="tls-item" data-slug={t.id} data-titel={t.data.title}>
                 {t.data.title}
               </a>
             ))}
@@ -264,6 +265,20 @@ const themenMitIndex = (() => {
     text-align: center;
   }
 
+  .uih-weiter {
+    font-family: var(--mono, monospace);
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    color: var(--accent);
+    text-decoration: none;
+    margin-top: 4px;
+    max-width: 60vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .uih-weiter:hover { text-decoration: underline; }
+
   .uih-count {
     font-family: var(--mono, monospace);
     font-size: 10px;
@@ -309,6 +324,15 @@ const themenMitIndex = (() => {
     }
     .tls-item::after { content: '→'; color: var(--text-muted); }
     .tls-item:hover { color: var(--accent); }
+    /* Pfad-Zustände in der Liste (Increment 2) */
+    .tls-item[data-state="done"] { color: var(--text-muted); }
+    .tls-item[data-state="done"]::before { content: '✓'; color: var(--accent); margin-right: 10px; }
+    .tls-item[data-state="recommended"] { color: var(--accent); }
+    .tls-item[data-state="recommended"]::before {
+      content: 'Weiter';
+      font-family: var(--mono, monospace); font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase;
+      color: #141210; background: var(--accent); padding: 2px 8px; border-radius: 999px; margin-right: 10px;
+    }
   }
 
   /* ── RESPONSIVE HEADER ──────────────────── */
