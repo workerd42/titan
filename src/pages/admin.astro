@@ -10,6 +10,7 @@
 export const prerender = false;
 
 import BaseLayout from '../layouts/BaseLayout.astro';
+import AppNav from '../components/ui/AppNav.astro';
 import { ROLLEN, ROLLEN_LABEL } from '../lib/rollen';
 
 const user = Astro.locals.user as { id: string; email?: string; name?: string; role?: string } | null;
@@ -19,6 +20,7 @@ const istAdmin = user.role === 'platform-admin';
 
 <BaseLayout title="Admin — Titan" description="Nutzer- und Rollenverwaltung." canonicalPath="/admin/" theme="light">
   <main id="hauptinhalt" class="admin-shell">
+    <div class="tool-nav"><AppNav /></div>
     {!istAdmin ? (
       <div class="admin-403">
         <p class="a4-eyebrow">Kein Zugriff</p>
@@ -226,6 +228,7 @@ const istAdmin = user.role === 'platform-admin';
 
   <style is:global>
     .admin-shell { max-width: 940px; margin: 0 auto; padding: clamp(28px,5vw,64px) clamp(18px,4vw,32px) 96px; color: var(--text); }
+    .tool-nav { margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid rgba(28,25,23,0.10); }
     .admin-back { font-family: var(--mono,monospace); font-size: 12px; color: var(--accent); text-decoration: none; }
     .admin-eyebrow { font-family: var(--mono,monospace); font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--accent); margin: 20px 0 8px; }
     .admin-title { font-family: var(--serif,Georgia,serif); font-weight: 300; font-size: clamp(28px,5vw,44px); margin: 0 0 8px; }

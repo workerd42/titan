@@ -14,6 +14,7 @@
 export const prerender = false;
 
 import BaseLayout from '../layouts/BaseLayout.astro';
+import AppNav from '../components/ui/AppNav.astro';
 import { getCollection } from 'astro:content';
 import { and, eq, inArray } from 'drizzle-orm';
 import { db } from '../lib/db';
@@ -132,6 +133,7 @@ const lernerGesamt = gruppen.reduce((n, g) => n + g.lerner.length, 0);
 
 <BaseLayout title="Cockpit — Titan" description="Dozenten-Sicht auf den Lernfortschritt." canonicalPath="/cockpit/" theme="light">
   <main id="hauptinhalt" class="cockpit-shell">
+    <div class="tool-nav"><AppNav /></div>
     {!hatZugang ? (
       <div class="ck-403">
         <p class="ck-eyebrow ck-warn">Kein Zugriff</p>
@@ -205,6 +207,7 @@ const lernerGesamt = gruppen.reduce((n, g) => n + g.lerner.length, 0);
 
   <style is:global>
     .cockpit-shell { max-width: 940px; margin: 0 auto; padding: clamp(28px,5vw,64px) clamp(18px,4vw,32px) 96px; color: var(--text); }
+    .tool-nav { margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid rgba(28,25,23,0.10); }
     .cockpit-back { font-family: var(--mono,monospace); font-size: 12px; color: var(--accent); text-decoration: none; }
     .cockpit-eyebrow { font-family: var(--mono,monospace); font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--accent); margin: 20px 0 8px; }
     .cockpit-title { font-family: var(--serif,Georgia,serif); font-weight: 300; font-size: clamp(28px,5vw,44px); margin: 0 0 8px; }

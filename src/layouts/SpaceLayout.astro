@@ -6,6 +6,7 @@ import KonzeptPanel from '../components/ui/KonzeptPanel.astro';
 import SpeedDial from '../components/ui/SpeedDial.astro';
 import FocusView from '../components/ui/FocusView.astro';
 import SearchOverlay from '../components/ui/SearchOverlay.astro';
+import AppNav from '../components/ui/AppNav.astro';
 import { getThemenSlugsByHb } from '../lib/content';
 import '../styles/space.css';
 
@@ -45,6 +46,7 @@ const themenSlugs = await getThemenSlugsByHb();
       <a href={base} class="norive-wordmark" aria-label="Titan — Startseite">
         Titan
       </a>
+      <AppNav />
     </nav>
 
     <!-- Hauptinhalt -->

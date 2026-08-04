@@ -87,13 +87,16 @@ Jede Lektion folgt derselben Schleife (schafft Vertrautheit + Momentum):
 - **No Dead Ends:** kein leerer Screen/Sackgasse — **jede** Ansicht hat genau eine
   primäre Folgeaktion (Primary CTA). *(Löst zugleich das heutige „31 Planeten ohne
   Werkzeug wirken leer".)*
+- **Typografie großzügig & lesbar (verbindlich, Nutzer-Priorität):** die heutige UI
+  nutzt viele **10–12 px Mono-Labels — teils unlesbar**. Grundgröße spürbar rauf
+  (Fließtext komfortabel, Labels/Meta nicht unter ~13 px), klare Größen-Hierarchie,
+  genug Zeilenabstand. Lesbarkeit vor Dichte. Der A+/A−-Zoom bleibt zusätzlich.
 
-## ⚠️ Offener Widerspruch (deine Entscheidung)
-Die Detailspezifikation nennt **„Sperre / Schloss = Mastery-Freischaltung"** —
-das steht im Konflikt zur getroffenen **hybriden Führung (frei springbar, kein
-hartes Gating)**. Beides gleichzeitig geht nicht sauber. Zu klären (siehe Rückfrage):
-soft (empfohlen/optional, keine echten Schlösser) · Soft-Lock mit Ein-Klick-Override ·
-oder doch echtes Gating (revidiert die Hybrid-Entscheidung).
+## Gating-Darstellung — ENTSCHIEDEN: soft, keine Schlösser
+Der Lernbaum zeigt Zustände **erledigt · aktiv · empfohlen · offen**, aber **alle
+Einheiten bleiben jederzeit anklickbar** (kein Schloss, kein hartes Gating).
+Führung entsteht durch **Hervorhebung des empfohlenen nächsten Schritts** und den
+Fortschritts-Sog — passend zu Erwachsenen in der Prüfungsvorbereitung.
 
 ## Framework-Abgleich (dein Maßstab → wie adressiert / Stufe)
 | Prinzip | Umsetzung im Redesign | Stufe |

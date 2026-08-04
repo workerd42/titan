@@ -1,0 +1,52 @@
+---
+/**
+ * AppNav — persistente, rollenbewusste Bereichsnavigation.
+ *
+ * Löst das „ich muss die URL kennen"-Problem: Lernbereich · Präsentation und —
+ * rollenabhängig — Cockpit/Admin sind von überall sichtbar erreichbar. Wird in
+ * die vorhandenen Kopfbereiche jedes Kontexts eingesetzt (SpaceLayout-Nav,
+ * PlanetLayout-Topbar, Tool-Seiten) statt als globales Overlay → keine Kollision.
+ *
+ * Rolle wird SERVERSEITIG aus Astro.locals gelesen (alle Hauptseiten sind
+ * on-demand) — kein Client-Flackern. Tokens statt Festfarben → hell/dunkel-adaptiv.
+ */
+const base = import.meta.env.BASE_URL;
+const user = Astro.locals.user as { role?: string } | null;
+const role = user?.role ?? null;
+const darfCockpit = ['dozent', 'org-admin', 'platform-admin'].includes(role ?? '');
+const darfAdmin = role === 'platform-admin';
+
+const norm = (p: string) => p.replace(/\/+$/, '');
+const here = norm(Astro.url.pathname);
+
+const links = [
+  { href: base, label: 'Lernbereich', match: norm(base) },
+  { href: `${base}deck/`, label: 'Präsentation', match: norm(`${base}deck`) },
+  ...(darfCockpit ? [{ href: `${base}cockpit/`, label: 'Cockpit', match: norm(`${base}cockpit`) }] : []),
+  ...(darfAdmin ? [{ href: `${base}admin/`, label: 'Admin', match: norm(`${base}admin`) }] : []),
+];
+---
+
+<nav class="app-nav" aria-label="Bereichsnavigation">
+  {links.map((l) => (
+    <a href={l.href} class="app-nav-link" aria-current={here === l.match ? 'page' : undefined}>{l.label}</a>
+  ))}
+</nav>
+
+<style>
+  .app-nav { display: flex; flex-wrap: wrap; align-items: center; gap: clamp(14px, 2vw, 26px); }
+  .app-nav-link {
+    font-family: var(--mono, monospace);
+    font-size: var(--text-sm);
+    letter-spacing: 0.03em;
+    color: var(--text-muted);
+    text-decoration: none;
+    padding: 6px 1px;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s ease, border-color 0.2s ease;
+    white-space: nowrap;
+  }
+  .app-nav-link:hover { color: var(--text); }
+  .app-nav-link[aria-current="page"] { color: var(--accent); border-bottom-color: var(--accent); }
+  .app-nav-link:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+</style>

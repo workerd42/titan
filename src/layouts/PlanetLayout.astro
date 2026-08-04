@@ -6,6 +6,7 @@ import KompassOnboarding from '../components/ui/KompassOnboarding.astro';
 import KonzeptPanel from '../components/ui/KonzeptPanel.astro';
 import SpeedDial from '../components/ui/SpeedDial.astro';
 import SearchOverlay from '../components/ui/SearchOverlay.astro';
+import AppNav from '../components/ui/AppNav.astro';
 import { getThemenSlugsByHb } from '../lib/content';
 import '../styles/planet.css';
 
@@ -38,6 +39,8 @@ const themenSlugs = await getThemenSlugsByHb();
           ← Handlungsfeld {hbNummer}
         </CTAButton>
       </div>
+
+      <AppNav />
 
       <div class="planet-topbar-progress" id="topbar-progress" aria-live="polite" data-hb-id={hbId}>
         <!-- Wird durch norive-progress.ts befüllt -->

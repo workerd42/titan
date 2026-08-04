@@ -10,6 +10,7 @@
 export const prerender = false;
 
 import BaseLayout from '../layouts/BaseLayout.astro';
+import AppNav from '../components/ui/AppNav.astro';
 import { getCollection } from 'astro:content';
 import { BEREICHE } from '../data/bereiche';
 import '../styles/modules.css';
@@ -28,6 +29,7 @@ const totalWerkzeuge = themen.filter((t) => t.data.werkzeug).length;
 
 <BaseLayout title="Präsentations-Deck — Titan" description="Deine gesammelten Artefakte für die IHK-Präsentation." canonicalPath="/deck/" theme="light">
   <main id="hauptinhalt" class="deck-shell">
+    <div class="tool-nav"><AppNav /></div>
     <header class="deck-head">
       <a href={base} id="deck-back" class="deck-back">← Zurück</a>
       <p class="deck-eyebrow">Missions-Launch</p>
@@ -173,6 +175,7 @@ const totalWerkzeuge = themen.filter((t) => t.data.werkzeug).length;
     /* global, da der Deck-Inhalt client-seitig injiziert wird (scoped CSS
        greift auf innerHTML-Elemente nicht). */
     .deck-shell { max-width: 900px; margin: 0 auto; padding: clamp(28px,5vw,64px) clamp(18px,4vw,32px) 96px; color: var(--text); }
+    .tool-nav { margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid rgba(28,25,23,0.10); }
     .deck-back { font-family: var(--mono,monospace); font-size: 12px; color: var(--accent); text-decoration: none; }
     .deck-eyebrow { font-family: var(--mono,monospace); font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--accent); margin: 20px 0 8px; }
     .deck-title { font-family: var(--serif,Georgia,serif); font-weight: 300; font-size: clamp(28px,5vw,46px); letter-spacing: -0.02em; margin: 0 0 12px; }
