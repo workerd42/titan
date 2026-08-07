@@ -4,6 +4,7 @@ handlungsbereich: "hb4"
 themengruppe: "Personalauswahl & Rekrutierung"
 order: 3
 description: "Interne versus externe Personalbeschaffung sowie das Assessment-Center als umfassendes, aber aufwendiges Auswahlverfahren für Führungspositionen."
+werkzeug: "scoring"
 merksatz: |
   Ein Assessment-Center zeigt, was ein Bewerber wirklich kann – ein Lebenslauf zeigt nur, was er behauptet zu können.
 definitionen:

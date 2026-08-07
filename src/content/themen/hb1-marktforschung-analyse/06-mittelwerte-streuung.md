@@ -4,6 +4,7 @@ handlungsbereich: "hb1"
 themengruppe: "Marktforschung & Analyse"
 order: 6
 description: "Skalenarten, Häufigkeiten, Mittelwerte (Median, Modalwert, arithmetisches und geometrisches Mittel) und Streuungsmaße."
+werkzeug: "statistik"
 merksatz: "Der Median teilt die Reihe, das arithmetische Mittel rechnet sie zusammen, das geometrische Mittel beschreibt ihr Wachstum."
 definitionen:
   - begriff: "Skalenart"

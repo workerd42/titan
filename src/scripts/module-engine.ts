@@ -494,6 +494,55 @@ const portfolioModul: ModulFn = (ctx) => {
   wrap.appendChild(btn); ctx.mount.appendChild(wrap);
 };
 
+// Statistik-Rechner (Familie: Rechner) — Mittelwerte & Streuung ────
+const statistikModul: ModulFn = (ctx) => {
+  const saved = (ctx.savedDaten as any) || {};
+  const wrap = el('div', 'tm');
+  wrap.appendChild(el('p', 'tm-lead', `Datenreihe aus dem Umfeld von <strong>${esc(ctx.firma)}</strong> auswerten — z. B. Absatzzahlen oder Bewertungen (Dezimaltrennung mit Punkt).`));
+  const inp = el('input', 'tm-input') as HTMLInputElement;
+  inp.type = 'text';
+  inp.placeholder = 'z. B. 12, 15, 15, 18, 22, 40';
+  inp.value = saved.reihe || '';
+  const lab = el('label', 'tm-label', 'Werte (durch Komma getrennt)'); lab.appendChild(inp);
+  const form = el('div', 'tm-form'); form.appendChild(lab); wrap.appendChild(form);
+  const out = el('div', 'tm-out'); wrap.appendChild(out);
+
+  const f = (n: number) => isFinite(n) ? n.toLocaleString('de-DE', { maximumFractionDigits: 2 }) : '—';
+
+  function recalc() {
+    const werte = inp.value.split(/[,;\s]+/).map(Number).filter((n) => isFinite(n));
+    if (werte.length < 2) {
+      out.innerHTML = `<div class="tm-out-row"><span>Bitte mindestens zwei Werte eingeben.</span><b>—</b></div>`;
+      return;
+    }
+    const n = werte.length;
+    const mean = werte.reduce((a, b) => a + b, 0) / n;
+    const sorted = [...werte].sort((a, b) => a - b);
+    const median = n % 2 ? sorted[(n - 1) / 2] : (sorted[n / 2 - 1] + sorted[n / 2]) / 2;
+    // Modalwert (häufigster Wert)
+    const cnt = new Map<number, number>();
+    werte.forEach((v) => cnt.set(v, (cnt.get(v) || 0) + 1));
+    let modal = werte[0], best = 0, mehrere = false;
+    cnt.forEach((c, v) => { if (c > best) { best = c; modal = v; mehrere = false; } else if (c === best && v !== modal) mehrere = true; });
+    const modalTxt = best <= 1 ? 'kein (alle einmalig)' : (mehrere ? `${f(modal)} (mehrdeutig)` : f(modal));
+    const spannweite = sorted[n - 1] - sorted[0];
+    const std = Math.sqrt(werte.reduce((a, v) => a + (v - mean) ** 2, 0) / n);
+    out.innerHTML = `
+      <div class="tm-out-row"><span>Anzahl n</span><b>${n}</b></div>
+      <div class="tm-out-row"><span>Arithmetisches Mittel</span><b>${f(mean)}</b></div>
+      <div class="tm-out-row"><span>Median (Zentralwert)</span><b>${f(median)}</b></div>
+      <div class="tm-out-row"><span>Modalwert</span><b>${modalTxt}</b></div>
+      <div class="tm-out-row"><span>Spannweite</span><b>${f(spannweite)}</b></div>
+      <div class="tm-out-row tm-out-total"><span>Standardabweichung σ</span><b>${f(std)}</b></div>`;
+  }
+  inp.addEventListener('input', recalc); recalc();
+
+  const btn = el('button', 'tm-save', 'Als Artefakt speichern <span aria-hidden="true">→</span>') as HTMLButtonElement;
+  btn.type = 'button';
+  btn.addEventListener('click', () => ctx.save(`Statistische Auswertung — ${ctx.firma}`, { reihe: inp.value.trim() }));
+  wrap.appendChild(btn); ctx.mount.appendChild(wrap);
+};
+
 // ── Mini-Kurs-Kopf: „Was ist das? · Wann? · Beispiel" pro Werkzeug ──
 // Macht aus dem nackten Formular eine geführte Lektion (Konzept + Worked Example),
 // bevor der/die Lernende es frei auf die Star-Company anwendet. Statischer,
@@ -544,6 +593,11 @@ const MODUL_INFO: Record<string, { konzept: string; wann: string; beispiel: stri
     wann: 'Um zu prüfen, ab welcher Absatzmenge sich ein Produkt lohnt.',
     beispiel: '10.000 € Fixkosten ÷ 20 € DB/Stück = 500 Stück Break-even.',
   },
+  statistik: {
+    konzept: 'Der Statistik-Rechner verdichtet eine Datenreihe zu <b>Mittelwerten</b> (arithmetisches Mittel, Median, Modalwert) und <b>Streuungsmaßen</b> (Spannweite, Standardabweichung).',
+    wann: 'Wenn du Zahlenreihen (Absatz, Preise, Bewertungen) auf einen Blick beurteilen willst.',
+    beispiel: 'Reihe 12, 15, 15, 18, 22, 40 → Mittel 20,3 · Median 16,5 · Modalwert 15 · Spannweite 28.',
+  },
 };
 
 const REGISTRY: Record<string, ModulFn> = {
@@ -556,6 +610,7 @@ const REGISTRY: Record<string, ModulFn> = {
   scoring: scoringModul,
   breakeven: breakevenModul,
   portfolio: portfolioModul,
+  statistik: statistikModul,
 };
 
 // ── Mount ─────────────────────────────────────────────────
