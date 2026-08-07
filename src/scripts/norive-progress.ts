@@ -232,6 +232,16 @@ function renderPfadZustand(state: NoriveProgress): void {
   }
 }
 
+/** Lernbaum-Zone (Increment 3): erledigte Kapitel bekommen einen Haken.
+ *  „Du bist hier" ist serverseitig via aria-current gesetzt. */
+function renderLernbaum(state: NoriveProgress): void {
+  document.querySelectorAll<HTMLElement>('.lb-item[data-slug]').forEach((el) => {
+    const slug = el.getAttribute('data-slug') ?? '';
+    if (phasenAbgeschlossen(state.themen[slug]) === 4) el.setAttribute('data-done', 'true');
+    else el.removeAttribute('data-done');
+  });
+}
+
 const PHASE_LABEL: Record<string, string> = {
   verstehen: 'Verstehen', merken: 'Merken', anwenden: 'Anwenden', pruefen: 'Prüfen',
 };
@@ -441,6 +451,7 @@ function init(): void {
   renderPlanetComplete(state);
   renderPlanetProgress(state);
   renderPfadZustand(state);
+  renderLernbaum(state);
   initThemaPage();
   initReset();
 }
@@ -462,4 +473,5 @@ window.addEventListener('norive:synced', () => {
   renderPlanetComplete(state);
   renderPlanetProgress(state);
   renderPfadZustand(state);
+  renderLernbaum(state);
 });
