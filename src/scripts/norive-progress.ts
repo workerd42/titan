@@ -295,6 +295,32 @@ function renderWiederholungHinweis(slug: string, state: NoriveProgress, tage: nu
   }
 }
 
+/**
+ * Kapitelabschluss-Belohnung (Increment 5): zeigt den Momentum-Screen, sobald
+ * alle 4 Phasen erledigt sind (Habit-Loop-Abschluss). `erlaubeScroll` nur bei
+ * echter Nutzeraktion (persist), damit ein bereits fertiges Kapitel beim Laden
+ * nicht ungefragt scrollt.
+ */
+function renderKapitelAbschluss(slug: string, state: NoriveProgress, erlaubeScroll = false): void {
+  const el = document.getElementById('kapitel-abschluss');
+  if (!el) return;
+  const done = phasenAbgeschlossen(state.themen[slug]) === 4;
+  const warSichtbar = el.dataset.visible === 'true';
+  el.dataset.visible = done ? 'true' : 'false';
+  if (done) {
+    const s = state.lernStreakTage;
+    const streakEl = document.getElementById('ka-streak');
+    if (streakEl) {
+      streakEl.textContent = s > 0
+        ? `Lernstreak: ${s} ${s === 1 ? 'Tag' : 'Tage'} in Folge — dranbleiben lohnt sich.`
+        : 'Alle vier Phasen geschafft.';
+    }
+    if (!warSichtbar && erlaubeScroll) {
+      window.setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'center' }), 200);
+    }
+  }
+}
+
 // ─── THEMA-SEITEN INTERAKTION ──────────────────────
 
 // Da initThemaPage bei JEDER Client-Navigation (astro:page-load) neu läuft, muss
@@ -319,6 +345,7 @@ function initThemaPage(): void {
     renderPhasenLeiste(slug, state);
     renderPlanetProgress(state);
     renderThemaProgress(slug, state);
+    renderKapitelAbschluss(slug, state, true);
   }
 
   // Deutliches Feedback: Toast mit Phase + neuem Gesamt-Prozentsatz.
@@ -424,6 +451,7 @@ function initThemaPage(): void {
   renderPhasenLeiste(slug, state);
   renderWiederholungHinweis(slug, state, tage);
   renderThemaProgress(slug, state);
+  renderKapitelAbschluss(slug, state, false);
 }
 
 // ─── RESET ────────────────────────────────────────

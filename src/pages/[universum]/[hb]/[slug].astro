@@ -599,6 +599,21 @@ const ihkPunkte = ihkTeilaufgaben.reduce((s, t) => s + t.punkte, 0);
       </section>
     )}
 
+    {/* ── Kapitelabschluss-Belohnung (Increment 5): erscheint, wenn alle 4 Phasen
+        erledigt sind — Momentum + klarer nächster Schritt (Habit Loop). JS steuert
+        Sichtbarkeit über data-visible. ── */}
+    <section class="kapitel-abschluss" id="kapitel-abschluss" data-visible="false" aria-live="polite">
+      <span class="ka-mark" aria-hidden="true">✦</span>
+      <p class="ka-eyebrow">Kapitel abgeschlossen</p>
+      <h2 class="ka-title">Geschafft — alle vier Phasen dieses Kapitels.</h2>
+      <p class="ka-streak" id="ka-streak"></p>
+      {naechstesThema ? (
+        <a class="ka-cta" href={`${hbBase}${naechstesThema.id}/`}>Nächstes Kapitel: {naechstesThema.data.title} →</a>
+      ) : (
+        <a class="ka-cta" href={hbBase}>Handlungsfeld abschließen — zur Übersicht →</a>
+      )}
+    </section>
+
     <!-- ╔══ NAVIGATION ═══════════════════════╗ -->
     <nav class="thema-nav" aria-label="Zwischen Themen wechseln">
       <div>
@@ -1945,6 +1960,33 @@ const ihkPunkte = ihkTeilaufgaben.reduce((s, t) => s + t.punkte, 0);
     color: var(--text-muted);
     max-width: var(--max-read);
   }
+
+  /* ── KAPITELABSCHLUSS-BELOHNUNG (Increment 5) ── */
+  .kapitel-abschluss {
+    max-width: var(--max-read);
+    margin: 0 auto;
+    padding: var(--sp-xl) var(--sp-lg);
+    text-align: center;
+    border: 1px solid var(--accent);
+    background: rgba(110,80,53,0.05);
+    display: none;
+  }
+  .kapitel-abschluss[data-visible="true"] { display: block; animation: kaIn 0.5s cubic-bezier(0.16,1,0.3,1); }
+  @keyframes kaIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) { .kapitel-abschluss[data-visible="true"] { animation: none; } }
+  .ka-mark { display: block; font-size: 26px; color: var(--accent); margin-bottom: 8px; }
+  .ka-eyebrow { font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; max-width: none; }
+  .ka-title { font-family: var(--serif); font-weight: 300; font-size: clamp(22px, 3vw, 30px); color: var(--text); margin-bottom: 10px; text-wrap: balance; }
+  .ka-streak { font-family: var(--mono); font-size: 13px; color: var(--text-muted); margin-bottom: var(--sp-lg); max-width: none; }
+  .ka-cta {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--mono); font-size: 13px; letter-spacing: 0.05em;
+    color: #141210; background: var(--accent); border-radius: 999px;
+    padding: 14px 26px; text-decoration: none; min-height: 48px;
+    transition: opacity 0.18s ease;
+  }
+  .ka-cta:hover { opacity: 0.9; }
+  .ka-cta:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
   /* ── NAVIGATION ─────────────────────────────── */
   .thema-nav {
