@@ -533,14 +533,52 @@ const statistikModul: ModulFn = (ctx) => {
   const form = el('div', 'tm-form'); form.appendChild(lab); wrap.appendChild(form);
   const out = el('div', 'tm-out'); wrap.appendChild(out);
 
+  // Histogramm (Chart.js, lazy geladen) + visuell versteckte Datentabelle (a11y).
+  const chartHost = el('div', 'tm-histo-host');
+  const canvas = el('canvas', 'tm-histo') as HTMLCanvasElement;
+  canvas.setAttribute('role', 'img');
+  const srTable = el('div', 'tm-sr');
+  chartHost.appendChild(canvas); chartHost.appendChild(srTable);
+  wrap.appendChild(chartHost);
+
   const f = (n: number) => isFinite(n) ? n.toLocaleString('de-DE', { maximumFractionDigits: 2 }) : '—';
+
+  // Datenreihe klassieren: wenige distinkte Werte → je Wert eine Klasse,
+  // sonst 6 gleich breite Intervalle.
+  function bins(werte: number[]): { labels: string[]; values: number[] } {
+    const distinct = [...new Set(werte)].sort((a, b) => a - b);
+    if (distinct.length <= 7) {
+      const c = new Map<number, number>();
+      werte.forEach((v) => c.set(v, (c.get(v) || 0) + 1));
+      return { labels: distinct.map((v) => f(v)), values: distinct.map((v) => c.get(v) || 0) };
+    }
+    const min = Math.min(...werte), max = Math.max(...werte), k = 6, w = (max - min) / k || 1;
+    const labels: string[] = [], values: number[] = new Array(k).fill(0);
+    for (let i = 0; i < k; i++) labels.push(`${f(min + i * w)}–${f(min + (i + 1) * w)}`);
+    werte.forEach((v) => { let idx = Math.floor((v - min) / w); idx = Math.max(0, Math.min(k - 1, idx)); values[idx]++; });
+    return { labels, values };
+  }
+
+  let chart: import('chart.js').Chart | null = null;
+  let makeHistogram: ((c: HTMLCanvasElement, s: { labels: string[]; values: number[]; label?: string }) => import('chart.js').Chart) | null = null;
+  const chartReady = import('./chart').then((m) => { makeHistogram = m.makeHistogram; });
+
+  function zeichne(b: { labels: string[]; values: number[] }): void {
+    srTable.innerHTML = `<table><caption>Häufigkeitsverteilung</caption><thead><tr><th>Klasse</th><th>Häufigkeit</th></tr></thead><tbody>${b.labels.map((l, i) => `<tr><td>${esc(l)}</td><td>${b.values[i]}</td></tr>`).join('')}</tbody></table>`;
+    canvas.setAttribute('aria-label', `Histogramm der Datenreihe — ${b.labels.map((l, i) => `${l}: ${b.values[i]}`).join(', ')}.`);
+    if (!makeHistogram) return;
+    if (chart) { chart.data.labels = b.labels; chart.data.datasets[0].data = b.values; chart.update('none'); }
+    else chart = makeHistogram(canvas, { labels: b.labels, values: b.values, label: 'Häufigkeit' });
+  }
 
   function recalc() {
     const werte = inp.value.split(/[,;\s]+/).map(Number).filter((n) => isFinite(n));
     if (werte.length < 2) {
       out.innerHTML = `<div class="tm-out-row"><span>Bitte mindestens zwei Werte eingeben.</span><b>—</b></div>`;
+      chartHost.style.display = 'none';
       return;
     }
+    chartHost.style.display = '';
     const n = werte.length;
     const mean = werte.reduce((a, b) => a + b, 0) / n;
     const sorted = [...werte].sort((a, b) => a - b);
@@ -560,8 +598,10 @@ const statistikModul: ModulFn = (ctx) => {
       <div class="tm-out-row"><span>Modalwert</span><b>${modalTxt}</b></div>
       <div class="tm-out-row"><span>Spannweite</span><b>${f(spannweite)}</b></div>
       <div class="tm-out-row tm-out-total"><span>Standardabweichung σ</span><b>${f(std)}</b></div>`;
+    zeichne(bins(werte));
   }
   inp.addEventListener('input', recalc); recalc();
+  chartReady.then(() => recalc());
 
   const btn = el('button', 'tm-save', 'Als Artefakt speichern <span aria-hidden="true">→</span>') as HTMLButtonElement;
   btn.type = 'button';
@@ -736,6 +776,7 @@ function mountModule(): void {
   const slug = mount.dataset.slug || '';
   const fn = REGISTRY[werkzeug];
   mount.dataset.mounted = 'true';
+  (window as unknown as { __titanDestroyChartsIn?: (r: ParentNode) => void }).__titanDestroyChartsIn?.(mount);
   mount.replaceChildren();
 
   const kompass = readKompass();
@@ -777,6 +818,7 @@ function mountModule(): void {
   // Werkzeug-Host — wird neu gerendert, wenn ein Fallbeispiel geladen wird.
   const toolHost = el('div', 'tm-toolhost');
   function renderTool(daten: unknown): void {
+    (window as unknown as { __titanDestroyChartsIn?: (r: ParentNode) => void }).__titanDestroyChartsIn?.(toolHost);
     toolHost.replaceChildren();
     fn({
       mount: toolHost, slug, kompass, firma,

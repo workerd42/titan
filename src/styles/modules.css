@@ -176,3 +176,9 @@
 .be-leg::before { content: ''; width: 14px; height: 2px; display: inline-block; }
 .be-leg-rev::before { background: var(--accent, #6E5035); }
 .be-leg-cost::before { background: var(--text-muted, #5E5450); }
+
+/* ── Histogramm (Chart.js) + a11y-Datentabelle ── */
+.tm-histo-host { position: relative; height: 190px; }
+.tm-histo { width: 100%; }
+/* visuell versteckt, für Screenreader vorhanden (Textalternative zum Canvas) */
+.tm-sr { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; border: 0; }
