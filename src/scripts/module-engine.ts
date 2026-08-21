@@ -397,7 +397,32 @@ const breakevenModul: ModulFn = (ctx) => {
   });
   wrap.appendChild(form);
   const out = el('div', 'tm-out'); wrap.appendChild(out);
+  const chart = el('div', 'tm-chart'); wrap.appendChild(chart);
   const fmt = (n: number) => n.toLocaleString('de-DE', { maximumFractionDigits: 2 });
+
+  // Bespoke-SVG-Diagramm (zero-dep, theme-aware via CSS): Kosten- vs. Erlösgerade
+  // + Gewinnschwelle. (Chart.js folgt später gemäß Integrations-Konzept.)
+  function renderChart(p: number, v: number, f: number, beM: number): void {
+    if (!(p > v) || !isFinite(beM) || beM <= 0 || !(f > 0)) { chart.innerHTML = ''; return; }
+    const W = 320, H = 170, padL = 10, padR = 12, padT = 12, padB = 22;
+    const qMax = beM * 1.8;
+    const yMax = Math.max(p * qMax, f + v * qMax) || 1;
+    const X = (q: number) => padL + (q / qMax) * (W - padL - padR);
+    const Y = (val: number) => H - padB - (val / yMax) * (H - padT - padB);
+    const bx = X(beM), by = Y(p * beM);
+    chart.innerHTML = `
+      <svg viewBox="0 0 ${W} ${H}" class="tm-chart-svg" role="img" aria-label="Break-even-Diagramm: Erlös- und Kostengerade schneiden sich bei ${Math.ceil(beM)} Stück.">
+        <line class="be-axis" x1="${padL}" y1="${H - padB}" x2="${W - padR}" y2="${H - padB}"/>
+        <line class="be-axis" x1="${padL}" y1="${padT}" x2="${padL}" y2="${H - padB}"/>
+        <polyline class="be-cost" points="${padL},${Y(f)} ${X(qMax)},${Y(f + v * qMax)}"/>
+        <polyline class="be-rev" points="${padL},${Y(0)} ${X(qMax)},${Y(p * qMax)}"/>
+        <line class="be-guide" x1="${bx}" y1="${by}" x2="${bx}" y2="${H - padB}"/>
+        <circle class="be-pt" cx="${bx}" cy="${by}" r="4"/>
+        <text class="be-txt" x="${Math.min(bx + 6, W - padR - 64)}" y="${Math.max(by - 6, padT + 9)}">BE ${Math.ceil(beM)} Stk</text>
+      </svg>
+      <div class="be-legend"><span class="be-leg be-leg-rev">Erlös</span><span class="be-leg be-leg-cost">Kosten (fix + variabel)</span></div>`;
+  }
+
   function recalc(): void {
     const p = +inputs.preis.value, v = +inputs.vark.value, f = +inputs.fixk.value, z = +inputs.ziel.value || 0;
     const db = p - v;
@@ -409,6 +434,7 @@ const breakevenModul: ModulFn = (ctx) => {
       <div class="tm-out-row"><span>Break-even-Menge</span><b>${isFinite(beM) ? fmt(Math.ceil(beM)) + ' Stück' : '—'}</b></div>
       <div class="tm-out-row"><span>Break-even-Umsatz</span><b>${isFinite(beU) ? fmt(beU) + ' €' : '—'}</b></div>
       <div class="tm-out-row tm-out-total"><span>Menge für Zielgewinn</span><b class="${z > 0 ? 'pos' : ''}">${isFinite(zielM) && z > 0 ? fmt(Math.ceil(zielM)) + ' Stück' : '—'}</b></div>`;
+    renderChart(p, v, f, beM);
   }
   Object.values(inputs).forEach((i) => i.addEventListener('input', recalc));
   recalc();
@@ -547,53 +573,77 @@ const statistikModul: ModulFn = (ctx) => {
 // Macht aus dem nackten Formular eine geführte Lektion (Konzept + Worked Example),
 // bevor der/die Lernende es frei auf die Star-Company anwendet. Statischer,
 // vertrauenswürdiger Autoreninhalt (innerHTML mit eigenen <b> ok).
-const MODUL_INFO: Record<string, { konzept: string; wann: string; beispiel: string }> = {
+interface ModulBeispiel { titel: string; daten: Record<string, unknown>; hinweis?: string }
+interface ModulInfo {
+  name: string;                 // klarer Anzeigename (statt generisch „Interaktives Werkzeug")
+  icon: string;                 // dekoratives Glyph (aria-hidden)
+  konzept: string;
+  wann: string;
+  beispiel: string;             // Ein-Zeilen-Fallback, wenn (noch) keine beispiele[]
+  beispiele?: ModulBeispiel[];  // durchklickbare Fallbeispiele, die das Werkzeug vorbefüllen
+}
+const MODUL_INFO: Record<string, ModulInfo> = {
   swot: {
+    name: 'SWOT-Analyse', icon: '◱',
     konzept: 'Die SWOT-Analyse stellt <b>interne</b> Stärken/Schwächen den <b>externen</b> Chancen/Risiken gegenüber — ein ehrliches Gesamtbild der Ausgangslage.',
     wann: 'Vor jeder Strategie-Entscheidung, um die eigene Position zu bestimmen.',
     beispiel: 'Eine Bäckerei: <b>Stärke</b> frische Handwerksware · <b>Schwäche</b> nur eine Filiale · <b>Chance</b> Bio-Trend · <b>Risiko</b> Discounter nebenan.',
   },
   smart: {
+    name: 'SMART-Zielprüfer', icon: '◎',
     konzept: 'SMART macht aus einem vagen Wunsch ein <b>überprüfbares Ziel</b>: Spezifisch, Messbar, Attraktiv, Realistisch, Terminiert.',
     wann: 'Immer wenn du ein Marketingziel formulierst, das später bewertbar sein soll.',
     beispiel: '„Mehr Umsatz" → „Den Online-Umsatz bis 31.12. um 15 % steigern."',
   },
   deckungsbeitrag: {
+    name: 'Deckungsbeitrags-Rechner', icon: '€',
     konzept: 'Der Deckungsbeitrag zeigt, was ein Produkt nach Abzug der <b>variablen Kosten</b> zur Deckung der Fixkosten beiträgt.',
     wann: 'Wenn du wissen willst, ob und ab wann ein Produkt Geld verdient.',
     beispiel: 'Preis 50 € − variable Kosten 30 € = 20 € DB/Stück; bei 10.000 € Fixkosten trägt ab 500 Stück jedes weitere zum Gewinn bei.',
   },
   marktanteil: {
+    name: 'Marktanteils-Rechner', icon: '◐',
     konzept: 'Der Marktanteil setzt den <b>eigenen Umsatz</b> ins Verhältnis zum Gesamtmarkt (absolut) bzw. zum stärksten Wettbewerber (relativ).',
     wann: 'Zur Standortbestimmung im Wettbewerb und für Ziele wie „Marktführerschaft".',
     beispiel: '18 Mio. € Umsatz bei 120 Mio. € Marktvolumen = 15 % Marktanteil.',
   },
   preisberechnung: {
+    name: 'Preis-Kalkulation', icon: '＋',
     konzept: 'Die Zuschlagskalkulation baut den Angebotspreis Schritt für Schritt aus den <b>Selbstkosten</b> + Gewinn + Rabatt/Skonto auf.',
     wann: 'Wenn du einen kostendeckenden, marktfähigen Angebotspreis brauchst.',
     beispiel: '80 € Selbstkosten + 20 % Gewinn = 96 € Barpreis, hochgerechnet um Skonto/Rabatt zum Listenpreis.',
   },
   'vier-stufen': {
+    name: 'Vier-Stufen-Methode', icon: '◆',
     konzept: 'Die Vier-Stufen-Methode ist die klassische Unterweisung: Vorbereiten → Vormachen → Nachmachen → Üben.',
     wann: 'Wenn du eine:n Auszubildende:n eine konkrete Tätigkeit anlernst.',
     beispiel: 'Eine Reklamation bearbeiten: erst erklären, dann vormachen, dann selbst machen lassen, dann festigen.',
   },
   scoring: {
+    name: 'Nutzwertanalyse', icon: '⚖',
     konzept: 'Die Nutzwertanalyse vergleicht Alternativen anhand <b>gewichteter Kriterien</b> — die höchste Punktsumme gewinnt.',
     wann: 'Bei Entscheidungen mit mehreren Kriterien (Lieferant, Standort, Agentur …).',
     beispiel: 'Agentur A vs. B nach Preis (40 %), Qualität (40 %), Nähe (20 %) bewerten.',
   },
   portfolio: {
+    name: 'BCG-Portfolio-Matrix', icon: '⊞',
     konzept: 'Die BCG-Matrix ordnet Produkte nach <b>Marktwachstum</b> und <b>relativem Marktanteil</b> in Stars, Fragezeichen, Cash Cows und Arme Hunde.',
     wann: 'Um ein Produktportfolio zu steuern: investieren, abschöpfen oder aufgeben.',
     beispiel: 'Wachsendes Produkt mit hohem Anteil = Star (investieren); schrumpfendes mit niedrigem Anteil = Armer Hund (aufgeben).',
   },
   breakeven: {
+    name: 'Break-even-Rechner', icon: '◪',
     konzept: 'Der Break-even (Gewinnschwelle) ist die Menge, ab der die <b>Deckungsbeiträge die Fixkosten</b> genau decken — ab da beginnt der Gewinn.',
     wann: 'Um zu prüfen, ab welcher Absatzmenge sich ein Produkt lohnt.',
     beispiel: '10.000 € Fixkosten ÷ 20 € DB/Stück = 500 Stück Break-even.',
+    beispiele: [
+      { titel: 'Bäckerei · Bio-Brot', daten: { preis: 3.5, vark: 1.2, fixk: 8000, ziel: 0 }, hinweis: 'Kleiner DB (2,30 €) → viele Stück nötig.' },
+      { titel: 'Kosmetik · Pflegeserie', daten: { preis: 25, vark: 9, fixk: 40000, ziel: 20000 }, hinweis: 'Mit Zielgewinn 20.000 € gerechnet.' },
+      { titel: 'Software · Monats-Abo', daten: { preis: 12, vark: 2, fixk: 15000, ziel: 0 }, hinweis: 'Hoher DB (10 €) pro Einheit.' },
+    ],
   },
   statistik: {
+    name: 'Statistik-Rechner', icon: '▤',
     konzept: 'Der Statistik-Rechner verdichtet eine Datenreihe zu <b>Mittelwerten</b> (arithmetisches Mittel, Median, Modalwert) und <b>Streuungsmaßen</b> (Spannweite, Standardabweichung).',
     wann: 'Wenn du Zahlenreihen (Absatz, Preise, Bewertungen) auf einen Blick beurteilen willst.',
     beispiel: 'Reihe 12, 15, 15, 18, 22, 40 → Mittel 20,3 · Median 16,5 · Modalwert 15 · Spannweite 28.',
@@ -631,16 +681,27 @@ function mountModule(): void {
     mount.appendChild(el('p', 'tm-soon', `Interaktives Modul „${esc(werkzeug)}" ist in Vorbereitung. Nutze bis dahin das Textfeld unten.`));
     return;
   }
-  // Mini-Kurs-Kopf: Konzept + Worked Example VOR dem Werkzeug (falls hinterlegt).
   const info = MODUL_INFO[werkzeug];
+
+  // Schritt 0 — benannter Kopf: klare Modul-Identität (statt „Interaktives Werkzeug").
+  if (info) {
+    const kopf = el('div', 'tm-kopf');
+    kopf.innerHTML = `<span class="tm-kopf-icon" aria-hidden="true">${info.icon}</span><span class="tm-kopf-name">${esc(info.name)}</span>`;
+    mount.appendChild(kopf);
+  }
+
+  // Schritt 1 — Was & Wozu: Konzept + typischer Einsatz.
   if (info) {
     const box = el('div', 'tm-konzept');
-    box.innerHTML =
+    let html =
       `<p class="tm-konzept-label">Was ist das?</p>`
       + `<p class="tm-konzept-text">${info.konzept}</p>`
-      + `<p class="tm-konzept-row"><span class="tm-konzept-tag">Wann</span><span>${info.wann}</span></p>`
-      + `<p class="tm-konzept-row"><span class="tm-konzept-tag">Beispiel</span><span>${info.beispiel}</span></p>`
-      + `<p class="tm-konzept-cta">Jetzt selbst — auf deine Star-Company angewendet:</p>`;
+      + `<p class="tm-konzept-row"><span class="tm-konzept-tag">Wann</span><span>${info.wann}</span></p>`;
+    // Ein-Zeilen-Beispiel nur, solange (noch) keine durchklickbaren Fallbeispiele da sind.
+    if (!info.beispiele?.length) {
+      html += `<p class="tm-konzept-row"><span class="tm-konzept-tag">Beispiel</span><span>${info.beispiel}</span></p>`;
+    }
+    box.innerHTML = html;
     mount.appendChild(box);
   }
 
@@ -648,14 +709,48 @@ function mountModule(): void {
     mount.appendChild(el('p', 'tm-hinweis', '◆ Richte zuerst deine Star-Company ein (Mein Bereich), damit dieses Werkzeug auf deine Firma zugeschnitten arbeitet. Du kannst es aber auch schon jetzt ausfüllen.'));
   }
 
-  fn({
-    mount, slug, kompass, firma,
-    savedDaten: readSavedArtefakt(slug),
-    save: (titel, daten) => {
-      window.dispatchEvent(new CustomEvent('norive:artefakt-speichern', { detail: { slug, modul: werkzeug, titel, daten } }));
-    },
-    toast: showToast,
-  });
+  // Werkzeug-Host — wird neu gerendert, wenn ein Fallbeispiel geladen wird.
+  const toolHost = el('div', 'tm-toolhost');
+  function renderTool(daten: unknown): void {
+    toolHost.replaceChildren();
+    fn({
+      mount: toolHost, slug, kompass, firma,
+      savedDaten: daten,
+      save: (titel, d) => {
+        window.dispatchEvent(new CustomEvent('norive:artefakt-speichern', { detail: { slug, modul: werkzeug, titel, daten: d } }));
+      },
+      toast: showToast,
+    });
+  }
+
+  // Schritt 2 — An Beispielen üben: lädt einen durchgerechneten Fall ins Werkzeug.
+  if (info?.beispiele?.length) {
+    const bs = el('div', 'tm-beispiele');
+    bs.innerHTML =
+      `<p class="tm-beispiele-label">An Beispielen üben</p>`
+      + `<p class="tm-beispiele-hint">Beispiel laden, Ergebnis ansehen — dann unten selbst mit deiner Star-Company rechnen.</p>`
+      + `<div class="tm-beispiele-row" role="group" aria-label="Fallbeispiele laden"></div>`;
+    const row = bs.querySelector('.tm-beispiele-row') as HTMLElement;
+    info.beispiele.forEach((b) => {
+      const btn = el('button', 'tm-beispiel-btn') as HTMLButtonElement;
+      btn.type = 'button';
+      btn.textContent = b.titel;
+      btn.addEventListener('click', () => {
+        row.querySelectorAll('.tm-beispiel-btn').forEach((x) => x.removeAttribute('data-active'));
+        btn.setAttribute('data-active', 'true');
+        renderTool(b.daten);
+        if (b.hinweis) showToast(b.hinweis);
+        toolHost.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      });
+      row.appendChild(btn);
+    });
+    mount.appendChild(bs);
+  }
+
+  // Schritt 3 — Jetzt selbst (an der Star-Company).
+  mount.appendChild(el('p', 'tm-konzept-cta', 'Jetzt selbst — auf deine Star-Company angewendet:'));
+  mount.appendChild(toolHost);
+  renderTool(readSavedArtefakt(slug));
 }
 
 // Nach dem Speichern: „gespeichert"-Zustand am Button (Toast kommt aus

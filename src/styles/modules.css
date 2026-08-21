@@ -141,3 +141,38 @@
 .tm-konzept-tag { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent, #6E5035); padding-top: 2px; }
 .tm-konzept-cta { font-family: var(--mono, monospace); font-size: 12px; color: var(--text-muted, #5E5450); border-top: 1px solid rgba(110,126,160,0.18); padding-top: 10px; margin-top: 2px; }
 @media (max-width: 560px) { .tm-konzept-row { grid-template-columns: 1fr; gap: 2px; } }
+
+/* ── Benannter Modul-Kopf (klare Identität statt „Interaktives Werkzeug") ── */
+.tm-kopf { display: flex; align-items: center; gap: 12px; margin-bottom: 2px; }
+.tm-kopf-icon { font-size: 22px; line-height: 1; color: var(--accent, #6E5035); }
+.tm-kopf-name { font-family: var(--serif, Georgia, serif); font-size: 22px; font-weight: 400; color: var(--text, #1C1917); }
+
+/* ── An Beispielen üben ── */
+.tm-beispiele { display: flex; flex-direction: column; gap: 8px; margin: 2px 0 4px; }
+.tm-beispiele-label { font-family: var(--mono, monospace); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent, #6E5035); }
+.tm-beispiele-hint { font-family: var(--mono, monospace); font-size: 12px; line-height: 1.6; color: var(--text-muted, #5E5450); }
+.tm-beispiele-row { display: flex; flex-wrap: wrap; gap: 8px; }
+.tm-beispiel-btn {
+  font-family: var(--mono, monospace); font-size: 12.5px; color: var(--text, #1C1917);
+  background: var(--bg-alt, rgba(28,25,23,0.04)); border: 1px solid var(--border-mid, rgba(28,25,23,0.16));
+  border-radius: 999px; padding: 8px 15px; min-height: 38px; cursor: pointer;
+  transition: border-color .18s ease, background .18s ease, color .18s ease;
+}
+.tm-beispiel-btn:hover { border-color: var(--accent, #6E5035); }
+.tm-beispiel-btn[data-active="true"] { background: var(--accent, #6E5035); color: #fff; border-color: var(--accent, #6E5035); }
+.tm-beispiel-btn:focus-visible { outline: 2px solid var(--accent, #6E5035); outline-offset: 2px; }
+
+/* ── Break-even-Diagramm (bespoke SVG, theme-aware via Tokens) ── */
+.tm-chart { display: flex; flex-direction: column; gap: 6px; }
+.tm-chart-svg { width: 100%; height: auto; max-width: 360px; }
+.be-axis { stroke: var(--border, rgba(28,25,23,0.2)); stroke-width: 1; }
+.be-cost { fill: none; stroke: var(--text-muted, #5E5450); stroke-width: 2; }
+.be-rev  { fill: none; stroke: var(--accent, #6E5035); stroke-width: 2; }
+.be-guide { stroke: var(--accent, #6E5035); stroke-width: 1; stroke-dasharray: 3 3; opacity: 0.6; }
+.be-pt { fill: var(--accent, #6E5035); }
+.be-txt { font-family: var(--mono, monospace); font-size: 10px; fill: var(--accent, #6E5035); }
+.be-legend { display: flex; gap: 16px; flex-wrap: wrap; }
+.be-leg { font-family: var(--mono, monospace); font-size: 11px; color: var(--text-muted, #5E5450); display: inline-flex; align-items: center; gap: 6px; }
+.be-leg::before { content: ''; width: 14px; height: 2px; display: inline-block; }
+.be-leg-rev::before { background: var(--accent, #6E5035); }
+.be-leg-cost::before { background: var(--text-muted, #5E5450); }
