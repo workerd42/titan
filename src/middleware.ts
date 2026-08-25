@@ -15,7 +15,7 @@
 import { defineMiddleware } from 'astro:middleware';
 
 // Öffentlich erreichbar ohne Login (Präfix-Vergleich, base ist '/').
-const OEFFENTLICHE_PFADE = ['/konto', '/api/auth', '/willkommen', '/impressum', '/datenschutz'];
+const OEFFENTLICHE_PFADE = ['/konto', '/api/auth', '/willkommen', '/fachrichtungen', '/impressum', '/datenschutz'];
 
 function istOeffentlich(pfad: string): boolean {
   return OEFFENTLICHE_PFADE.some((p) => pfad === p || pfad.startsWith(p + '/') || pfad.startsWith(p));

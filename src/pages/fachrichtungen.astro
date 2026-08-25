@@ -1,0 +1,190 @@
+---
+/**
+ * /fachrichtungen — öffentliche Übersicht ALLER IHK-Fachwirt-Richtungen.
+ * Verlinkt aus der Galerie auf /willkommen („Alle ansehen"). On-demand,
+ * öffentlich (Middleware-Allowlist). Stil wie die Landingpage (Navy-Gold),
+ * inkl. orizon-artigem Cursor.
+ *
+ * Quelle der Liste: vom Betreiber gelieferte Tabelle der 38 bundeseinheitlich
+ * geregelten IHK-Fachwirte (alle DQR-Niveau 6 / „Bachelor Professional").
+ * Marketing ist live; alle weiteren Richtungen sind in Vorbereitung.
+ */
+export const prerender = false;
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+const base = import.meta.env.BASE_URL;
+
+type Status = 'live' | 'soon';
+interface Fach { name: string; branche: string; status: Status }
+
+const FACHRICHTUNGEN: Fach[] = [
+  { name: 'Automobilfachwirt/in', branche: 'Automobilbranche', status: 'soon' },
+  { name: 'Bankfachwirt/in', branche: 'Bankwesen', status: 'soon' },
+  { name: 'Energiefachwirt/in', branche: 'Energiewirtschaft', status: 'soon' },
+  { name: 'Fachwirt/in Controlling', branche: 'Finanzen & Controlling', status: 'soon' },
+  { name: 'Fachwirt/in Erziehungswesen', branche: 'Sozialwesen & Bildung', status: 'soon' },
+  { name: 'Fachwirt/in Facility Management', branche: 'Gebäudemanagement', status: 'soon' },
+  { name: 'Fachwirt/in für Abfall- und Kreislaufwirtschaft', branche: 'Umwelt & Entsorgung', status: 'soon' },
+  { name: 'Fachwirt/in für Außenwirtschaft', branche: 'Internationaler Handel', status: 'soon' },
+  { name: 'Fachwirt/in für Büro- und Projektorganisation', branche: 'Büro & Management', status: 'soon' },
+  { name: 'Fachwirt/in für Dialogmarketing / Call-Center', branche: 'Dienstleistung & Service', status: 'soon' },
+  { name: 'Fachwirt/in für E-Commerce', branche: 'Online-Handel', status: 'soon' },
+  { name: 'Fachwirt/in für Einkauf', branche: 'Einkauf & SCM', status: 'soon' },
+  { name: 'Fachwirt/in für Finanzberatung', branche: 'Finanzen & Anlage', status: 'soon' },
+  { name: 'Fachwirt/in für Fitness und Gesundheit', branche: 'Sport & Gesundheit', status: 'soon' },
+  { name: 'Fachwirt/in für Güterverkehr und Logistik', branche: 'Logistik & Transport', status: 'soon' },
+  { name: 'Fachwirt/in für Hotelmanagement', branche: 'Hotellerie & Gastgewerbe', status: 'soon' },
+  { name: 'Fachwirt/in für Logistiksysteme', branche: 'Logistik & Supply Chain', status: 'soon' },
+  { name: 'Fachwirt/in für Marketing', branche: 'Marketing & Medien', status: 'live' },
+  { name: 'Fachwirt/in für Organisation und Führung', branche: 'Management & Führung', status: 'soon' },
+  { name: 'Fachwirt/in für Personaldienstleistung', branche: 'HR & Personal', status: 'soon' },
+  { name: 'Fachwirt/in für Personenverkehr und Mobilität', branche: 'Transport & Mobilität', status: 'soon' },
+  { name: 'Fachwirt/in für Prävention & Gesundheitsförderung', branche: 'Prävention & Wellness', status: 'soon' },
+  { name: 'Fachwirt/in für Schutz und Sicherheit', branche: 'Sicherheitsgewerbe', status: 'soon' },
+  { name: 'Fachwirt/in für Versicherungen und Finanzen', branche: 'Finanzen & Versicherung', status: 'soon' },
+  { name: 'Fachwirt/in für Vertrieb im Einzelhandel', branche: 'Einzelhandel', status: 'soon' },
+  { name: 'Fachwirt/in im Gastgewerbe', branche: 'Gastronomie & Hotel', status: 'soon' },
+  { name: 'Fachwirt/in im Gesundheits- und Sozialwesen', branche: 'Gesundheit & Soziales', status: 'soon' },
+  { name: 'Handelsfachwirt/in', branche: 'Handel & Vertrieb', status: 'soon' },
+  { name: 'Immobilienfachwirt/in', branche: 'Immobilienwirtschaft', status: 'soon' },
+  { name: 'Industriefachwirt/in', branche: 'Industrie & Produktion', status: 'soon' },
+  { name: 'Medienfachwirt/in (Print & Digital)', branche: 'Medien & Drucktechnik', status: 'soon' },
+  { name: 'Musikfachwirt/in', branche: 'Musik- & Eventbranche', status: 'soon' },
+  { name: 'Sportfachwirt/in', branche: 'Sportmanagement', status: 'soon' },
+  { name: 'Technischer Fachwirt/in', branche: 'Technik & Gewerbe', status: 'soon' },
+  { name: 'Tourismusfachwirt/in', branche: 'Tourismus & Reisen', status: 'soon' },
+  { name: 'Veranstaltungsfachwirt/in', branche: 'Event & Kultur', status: 'soon' },
+  { name: 'Verkehrsfachwirt/in', branche: 'Personen- & Güterverkehr', status: 'soon' },
+  { name: 'Wirtschaftsfachwirt/in', branche: 'Wirtschaft & Verwaltung', status: 'soon' },
+];
+
+const liveCount = FACHRICHTUNGEN.filter((f) => f.status === 'live').length;
+---
+
+<BaseLayout
+  title="Alle Fachrichtungen"
+  description="Titan als Learning Experience Platform für die gesamte Fachwirt-Familie — alle 38 IHK-Fachwirt-Richtungen (DQR 6 / Bachelor Professional) im Überblick."
+  canonicalPath="/fachrichtungen/"
+  theme="light"
+>
+  <main id="hauptinhalt" class="fr">
+    <div class="fr-container">
+      <a class="fr-back" href={`${base}willkommen/#fachwirte`}><span aria-hidden="true">←</span> Zurück zu Titan</a>
+
+      <header class="fr-head">
+        <span class="fr-eyebrow"><i class="fr-dot" aria-hidden="true"></i> Fachrichtungen</span>
+        <h1 class="fr-title">Alle {FACHRICHTUNGEN.length} Fachwirt-Richtungen</h1>
+        <p class="fr-intro">Alle bundeseinheitlich geregelten IHK-Fachwirte stehen auf <strong>DQR-Niveau 6</strong> — auf einer Stufe mit dem Bachelor und berechtigt zum Titel <strong>Bachelor Professional</strong>. Der Marketing-Fachwirt ist live, alle weiteren Richtungen entstehen laufend.</p>
+      </header>
+
+      <div class="fr-grid" role="list">
+        {FACHRICHTUNGEN.map((f) => (
+          <article class="fr-card" role="listitem">
+            <span class={`fr-status ${f.status === 'live' ? 'is-live' : 'is-soon'}`}>{f.status === 'live' ? 'Verfügbar' : 'In Vorbereitung'}</span>
+            <div class="fr-card-body">
+              <h2 class="fr-name">{f.name}</h2>
+              <p class="fr-branche">{f.branche}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <p class="fr-note">{liveCount} Richtung live · {FACHRICHTUNGEN.length - liveCount} in Vorbereitung. Die Reihenfolge folgt dem Ausbau-Fahrplan.</p>
+    </div>
+
+    <div class="fr-cursor" aria-hidden="true"></div>
+  </main>
+
+  <style>
+    @font-face { font-family: 'Space Grotesk'; font-style: normal; font-weight: 500; font-display: swap; src: url('/fonts/SpaceGrotesk-500.woff2') format('woff2'); }
+    @font-face { font-family: 'Space Grotesk'; font-style: normal; font-weight: 700; font-display: swap; src: url('/fonts/SpaceGrotesk-700.woff2') format('woff2'); }
+    @font-face { font-family: 'Inter'; font-style: normal; font-weight: 400; font-display: swap; src: url('/fonts/Inter-400.woff2') format('woff2'); }
+    @font-face { font-family: 'Inter'; font-style: normal; font-weight: 500; font-display: swap; src: url('/fonts/Inter-500.woff2') format('woff2'); }
+    @font-face { font-family: 'Inter'; font-style: normal; font-weight: 600; font-display: swap; src: url('/fonts/Inter-600.woff2') format('woff2'); }
+
+    .fr {
+      --bg: #EFEDE7; --ink: #14181F; --navy: #1B2A4A; --gold: #C4A882;
+      --ink-muted: #5A6172; --line: rgba(20,24,31,0.10);
+      --display: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg); color: var(--ink); font-family: var(--body); min-height: 100vh;
+    }
+    .fr * { box-sizing: border-box; }
+    .fr-container { max-width: 1200px; margin: 0 auto; padding: clamp(28px, 5vw, 56px) 32px clamp(64px, 8vw, 120px); }
+
+    .fr-back { display: inline-flex; align-items: center; gap: 8px; margin-bottom: clamp(36px, 5vw, 64px); font-size: 14px; font-weight: 600; color: var(--ink-muted); text-decoration: none; transition: color .2s ease; }
+    .fr-back:hover { color: var(--ink); }
+    .fr-back:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 4px; }
+
+    .fr-head { max-width: 720px; }
+    .fr-eyebrow { display: inline-flex; align-items: center; gap: 9px; font-size: 12.5px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--navy); margin-bottom: 16px; }
+    .fr-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--gold); }
+    .fr-title { font-family: var(--display); font-size: clamp(32px, 5vw, 54px); font-weight: 700; letter-spacing: -0.025em; line-height: 1.03; margin: 0 0 16px; text-wrap: balance; }
+    .fr-intro { font-size: clamp(15.5px, 1.3vw, 18px); line-height: 1.62; color: var(--ink-muted); margin: 0; }
+    .fr-intro strong { color: var(--ink); font-weight: 600; }
+
+    .fr-grid { margin-top: clamp(40px, 5vw, 64px); display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+    .fr-card {
+      min-height: 168px; display: flex; flex-direction: column; justify-content: space-between; gap: 18px;
+      background: radial-gradient(140% 130% at 20% 8%, #33569E 0%, #1B2A4A 58%);
+      border: 1px solid rgba(255,255,255,0.10); border-radius: 22px; padding: 22px 22px 24px; position: relative; overflow: hidden;
+      box-shadow: 0 18px 40px -26px rgba(12,20,36,0.7);
+      transition: transform .35s cubic-bezier(0.16,1,0.3,1), box-shadow .35s ease, border-color .35s ease;
+    }
+    .fr-card::after { content: ''; position: absolute; width: 170px; height: 170px; right: -60px; bottom: -70px; background: radial-gradient(circle, rgba(196,168,130,0.28), rgba(196,168,130,0) 70%); pointer-events: none; }
+    .fr-card:hover { transform: translateY(-5px); border-color: rgba(255,255,255,0.24); box-shadow: 0 34px 64px -30px rgba(12,20,36,0.85); }
+    .fr-status { position: relative; z-index: 1; align-self: flex-start; display: inline-block; font-size: 10.5px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; padding: 5px 11px; border-radius: 999px; }
+    .fr-status.is-live { background: rgba(120,180,140,0.22); color: #A7D8B8; }
+    .fr-status.is-soon { background: rgba(245,246,248,0.10); color: rgba(245,246,248,0.72); }
+    .fr-card-body { position: relative; z-index: 1; }
+    .fr-name { font-family: var(--display); font-size: 17px; font-weight: 700; letter-spacing: -0.01em; line-height: 1.18; color: #F5F6F8; margin: 0 0 6px; }
+    .fr-branche { font-size: 12.5px; color: rgba(245,246,248,0.62); margin: 0; }
+
+    .fr-note { margin: clamp(32px, 4vw, 48px) 0 0; font-size: 14px; color: var(--ink-muted); }
+
+    /* orizon-artiger Cursor (konsistent zur Landingpage) */
+    .fr-cursor {
+      position: fixed; top: 0; left: 0; width: 12px; height: 12px; border-radius: 50%;
+      background: #fff; mix-blend-mode: difference; pointer-events: none; z-index: 60;
+      transform: translate(-50%, -50%); opacity: 0;
+      transition: width .25s ease, height .25s ease, background .25s ease, opacity .25s ease;
+    }
+    .fr-cursor.is-active { opacity: 1; }
+    .fr-cursor.is-hover { width: 46px; height: 46px; background: rgba(255,255,255,0.85); }
+
+    @media (max-width: 900px) { .fr-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 520px) { .fr-grid { grid-template-columns: 1fr; } .fr-container { padding-left: 22px; padding-right: 22px; } }
+    @media (hover: none), (pointer: coarse) { .fr-cursor { display: none; } }
+    @media (prefers-reduced-motion: reduce) { .fr-cursor { display: none; } }
+  </style>
+
+  <script>
+    import { gsap } from 'gsap';
+
+    function initFr(): void {
+      const root = document.querySelector<HTMLElement>('.fr');
+      if (!root || root.dataset.wired === 'true') return;
+      root.dataset.wired = 'true';
+
+      const cursor = document.querySelector<HTMLElement>('.fr-cursor');
+      const fine = window.matchMedia('(pointer:fine)').matches;
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (!cursor || !fine || reduce) return;
+
+      const xTo = gsap.quickTo(cursor, 'x', { duration: 0.4, ease: 'power3' });
+      const yTo = gsap.quickTo(cursor, 'y', { duration: 0.4, ease: 'power3' });
+      gsap.set(cursor, { xPercent: -50, yPercent: -50 });
+      window.addEventListener('mousemove', (e) => {
+        cursor.classList.add('is-active');
+        xTo(e.clientX); yTo(e.clientY);
+      });
+      window.addEventListener('mouseout', (e) => { if (!e.relatedTarget) cursor.classList.remove('is-active'); });
+      document.addEventListener('mouseover', (e) => {
+        const t = (e.target as HTMLElement).closest('a, button');
+        cursor.classList.toggle('is-hover', !!t);
+      });
+    }
+
+    document.addEventListener('astro:page-load', initFr);
+  </script>
+</BaseLayout>
