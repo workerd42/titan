@@ -1,0 +1,157 @@
+---
+/**
+ * /so-funktionierts — öffentliche Erklärseite (Ablauf/Didaktik von Titan).
+ * Verlinkt aus der B2C-Card auf /willkommen. On-demand, öffentlich
+ * (Middleware-Allowlist). Stil wie die Landingpage (Navy-Gold), orizon-Cursor.
+ */
+export const prerender = false;
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+const base = import.meta.env.BASE_URL;
+
+const PHASEN = [
+  {
+    num: '01', titel: 'Verstehen',
+    text: 'Statt trockener Skripte werden anspruchsvolle Fachinhalte als interaktive Erlebnisse aufbereitet. Konzepte werden Schritt für Schritt erfahrbar — man durchdringt den Stoff, statt ihn nur zu überfliegen.',
+  },
+  {
+    num: '02', titel: 'Merken',
+    text: 'Verstandenes wird verankert: kompakte Karten bündeln das Wesentliche, und Wiederholung im richtigen Moment (Spaced Repetition) sorgt dafür, dass Wissen langfristig abrufbar bleibt — ohne stures Pauken.',
+  },
+  {
+    num: '03', titel: 'Anwenden',
+    text: 'An einer durchgängigen Fallfirma wird das Gelernte praktisch angewandt: mit interaktiven Werkzeugen von der Analyse bis zur begründeten Entscheidung. So entsteht Handlungskompetenz statt reines Faktenwissen.',
+  },
+  {
+    num: '04', titel: 'Prüfen',
+    text: 'Prüfungsnahe Aufgaben zeigen den Stand ehrlich — und ganz nebenbei entsteht ein präsentationsreifes Ergebnis, das direkt für die mündliche Prüfung genutzt werden kann.',
+  },
+];
+---
+
+<BaseLayout
+  title="So funktioniert's"
+  description="Titan in vier Phasen: Verstehen, Merken, Anwenden, Prüfen — vom Wissen zur Wirkung. Der didaktische Ablauf im Detail."
+  canonicalPath="/so-funktionierts/"
+  theme="light"
+>
+  <main id="hauptinhalt" class="sf">
+    <div class="sf-container">
+      <a class="sf-back" href={`${base}willkommen/`}><span aria-hidden="true">←</span> Zurück zu Titan</a>
+
+      <header class="sf-head">
+        <span class="sf-eyebrow"><i class="sf-dot" aria-hidden="true"></i> So funktioniert's</span>
+        <h1 class="sf-title">In vier Phasen vom Wissen zur Wirkung</h1>
+        <p class="sf-intro">Titan ist kein weiteres 800-Seiten-Skript, sondern eine durchgängige Lernreise. Jede Phase baut auf der vorigen auf — mit einem roten Faden bis zur Prüfung.</p>
+      </header>
+
+      <ol class="sf-steps">
+        {PHASEN.map((p) => (
+          <li class="sf-step">
+            <div class="sf-step-num" aria-hidden="true">{p.num}</div>
+            <div class="sf-step-body">
+              <h2 class="sf-step-title">{p.titel}</h2>
+              <p class="sf-step-text">{p.text}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+
+      <section class="sf-cta">
+        <h2 class="sf-cta-title">Am eigenen Kurs erleben?</h2>
+        <p class="sf-cta-text">Sehen Sie Titan an Ihrer Fachrichtung in einer kurzen Demo.</p>
+        <a class="sf-cta-btn" href={`${base}willkommen/#angebot`}>Zum Angebot <span aria-hidden="true">↗</span></a>
+      </section>
+    </div>
+
+    <div class="sf-cursor" aria-hidden="true"></div>
+  </main>
+
+  <style>
+    @font-face { font-family: 'Space Grotesk'; font-style: normal; font-weight: 500; font-display: swap; src: url('/fonts/SpaceGrotesk-500.woff2') format('woff2'); }
+    @font-face { font-family: 'Space Grotesk'; font-style: normal; font-weight: 700; font-display: swap; src: url('/fonts/SpaceGrotesk-700.woff2') format('woff2'); }
+    @font-face { font-family: 'Inter'; font-style: normal; font-weight: 400; font-display: swap; src: url('/fonts/Inter-400.woff2') format('woff2'); }
+    @font-face { font-family: 'Inter'; font-style: normal; font-weight: 500; font-display: swap; src: url('/fonts/Inter-500.woff2') format('woff2'); }
+    @font-face { font-family: 'Inter'; font-style: normal; font-weight: 600; font-display: swap; src: url('/fonts/Inter-600.woff2') format('woff2'); }
+
+    .sf {
+      --bg: #EFEDE7; --ink: #14181F; --navy: #1B2A4A; --gold: #C4A882;
+      --ink-muted: #5A6172; --line: rgba(20,24,31,0.10);
+      --display: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg); color: var(--ink); font-family: var(--body); min-height: 100vh;
+    }
+    .sf * { box-sizing: border-box; }
+    .sf-container { max-width: 860px; margin: 0 auto; padding: clamp(28px, 5vw, 56px) 32px clamp(64px, 8vw, 120px); }
+
+    .sf-back { display: inline-flex; align-items: center; gap: 8px; margin-bottom: clamp(36px, 5vw, 64px); font-size: 14px; font-weight: 600; color: var(--ink-muted); text-decoration: none; transition: color .2s ease; }
+    .sf-back:hover { color: var(--ink); }
+    .sf-back:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 4px; }
+
+    .sf-eyebrow { display: inline-flex; align-items: center; gap: 9px; font-size: 12.5px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--navy); margin-bottom: 16px; }
+    .sf-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--gold); }
+    .sf-title { font-family: var(--display); font-size: clamp(30px, 4.6vw, 50px); font-weight: 700; letter-spacing: -0.025em; line-height: 1.04; margin: 0 0 16px; text-wrap: balance; }
+    .sf-intro { font-size: clamp(16px, 1.4vw, 19px); line-height: 1.62; color: var(--ink-muted); margin: 0; max-width: 62ch; }
+
+    .sf-steps { list-style: none; margin: clamp(44px, 6vw, 72px) 0 0; padding: 0; display: flex; flex-direction: column; gap: 4px; }
+    .sf-step { display: grid; grid-template-columns: 92px 1fr; gap: clamp(16px, 3vw, 32px); align-items: start; padding: clamp(24px, 3vw, 34px) 0; border-top: 1px solid var(--line); }
+    .sf-step:last-child { border-bottom: 1px solid var(--line); }
+    .sf-step-num { font-family: var(--display); font-size: clamp(30px, 4vw, 44px); font-weight: 700; letter-spacing: -0.02em; color: var(--gold); line-height: 1; }
+    .sf-step-title { font-family: var(--display); font-size: clamp(21px, 2.2vw, 27px); font-weight: 700; letter-spacing: -0.015em; color: var(--ink); margin: 2px 0 10px; }
+    .sf-step-text { font-size: 16px; line-height: 1.62; color: var(--ink-muted); margin: 0; max-width: 60ch; }
+
+    .sf-cta {
+      margin-top: clamp(48px, 6vw, 80px); text-align: center;
+      background: radial-gradient(130% 130% at 20% 8%, #33569E 0%, #1B2A4A 62%);
+      border-radius: 28px; padding: clamp(40px, 5vw, 64px) 32px; position: relative; overflow: hidden;
+    }
+    .sf-cta::after { content: ''; position: absolute; width: 240px; height: 240px; right: -70px; bottom: -90px; background: radial-gradient(circle, rgba(196,168,130,0.30), rgba(196,168,130,0) 70%); pointer-events: none; }
+    .sf-cta-title { position: relative; z-index: 1; font-family: var(--display); font-size: clamp(24px, 3vw, 34px); font-weight: 700; letter-spacing: -0.02em; color: #F5F6F8; margin: 0 0 10px; }
+    .sf-cta-text { position: relative; z-index: 1; font-size: 16px; color: rgba(245,246,248,0.78); margin: 0 0 26px; }
+    .sf-cta-btn { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: 12px; background: #F5F6F8; color: var(--navy); text-decoration: none; font-size: 15px; font-weight: 600; border-radius: 999px; padding: 13px 26px; transition: transform .2s ease, background .2s ease; }
+    .sf-cta-btn span { color: var(--gold); }
+    .sf-cta-btn:hover { transform: translateY(-2px); }
+    .sf-cta-btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+    /* orizon-artiger Cursor (konsistent) */
+    .sf-cursor {
+      position: fixed; top: 0; left: 0; width: 12px; height: 12px; border-radius: 50%;
+      background: #fff; mix-blend-mode: difference; pointer-events: none; z-index: 60;
+      transform: translate(-50%, -50%); opacity: 0;
+      transition: width .25s ease, height .25s ease, background .25s ease, opacity .25s ease;
+    }
+    .sf-cursor.is-active { opacity: 1; }
+    .sf-cursor.is-hover { width: 46px; height: 46px; background: rgba(255,255,255,0.85); }
+
+    @media (max-width: 560px) { .sf-step { grid-template-columns: 1fr; gap: 6px; } .sf-container { padding-left: 22px; padding-right: 22px; } }
+    @media (hover: none), (pointer: coarse) { .sf-cursor { display: none; } }
+    @media (prefers-reduced-motion: reduce) { .sf-cursor { display: none; } }
+  </style>
+
+  <script>
+    import { gsap } from 'gsap';
+
+    function initSf(): void {
+      const root = document.querySelector<HTMLElement>('.sf');
+      if (!root || root.dataset.wired === 'true') return;
+      root.dataset.wired = 'true';
+
+      const cursor = document.querySelector<HTMLElement>('.sf-cursor');
+      const fine = window.matchMedia('(pointer:fine)').matches;
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (!cursor || !fine || reduce) return;
+
+      const xTo = gsap.quickTo(cursor, 'x', { duration: 0.4, ease: 'power3' });
+      const yTo = gsap.quickTo(cursor, 'y', { duration: 0.4, ease: 'power3' });
+      gsap.set(cursor, { xPercent: -50, yPercent: -50 });
+      window.addEventListener('mousemove', (e) => { cursor.classList.add('is-active'); xTo(e.clientX); yTo(e.clientY); });
+      window.addEventListener('mouseout', (e) => { if (!e.relatedTarget) cursor.classList.remove('is-active'); });
+      document.addEventListener('mouseover', (e) => {
+        const t = (e.target as HTMLElement).closest('a, button');
+        cursor.classList.toggle('is-hover', !!t);
+      });
+    }
+
+    document.addEventListener('astro:page-load', initSf);
+  </script>
+</BaseLayout>

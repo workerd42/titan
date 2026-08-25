@@ -11,9 +11,10 @@ Marketing-spezifisch. Wird **im Code, Section für Section, nach Absprache** geb
 |---|---|---|
 | `/willkommen` | `src/pages/willkommen.astro` | Haupt-Landingpage (Hero + Sections) |
 | `/fachrichtungen` | `src/pages/fachrichtungen.astro` | Übersicht ALLER 38 Fachwirt-Richtungen |
+| `/so-funktionierts` | `src/pages/so-funktionierts.astro` | Erklärseite (Ablauf/Didaktik, 4 Phasen im Detail) |
 
-- Beide `prerender = false`, **öffentlich** via Allowlist in `src/middleware.ts`
-  (`OEFFENTLICHE_PFADE` enthält `/willkommen`, `/fachrichtungen`).
+- Alle `prerender = false`, **öffentlich** via Allowlist in `src/middleware.ts`
+  (`OEFFENTLICHE_PFADE` enthält `/willkommen`, `/fachrichtungen`, `/so-funktionierts`).
 - Verifikation: liefern **200 ohne Login**; gegatete Seiten weiterhin 302 → `/konto`.
 
 ## Designsystem (landing-lokal, nicht global)
@@ -47,7 +48,16 @@ externer CDN (CSP `font-src 'self'`). `@font-face` je Seite scoped dekliniert.
 3. **Trennstrich** (`.lp-divider`) markiert das Section-Ende.
 4. **Section 2 „Fachrichtungen":** horizontale **Galerie** (orizon-Muster) mit den
    ersten **12** Richtungen (Navy-Gold-Cards, Größe wie Section 1), Prev/Next-Kreis-
-   Buttons + Drag-to-Scroll, **„Alle Fachrichtungen ansehen ↗"** → `/fachrichtungen`.
+   Buttons + Drag-to-Scroll, Kanten weich auslaufend (Fade-Maske),
+   **„Alle Fachrichtungen ansehen ↗"** → `/fachrichtungen`.
+5. **Section 3 „Angebot" (B2B & B2C):** **Scroll-Cross-Fade** — zuerst Text mittig
+   (gepinnte Stage), beim Weiterscrollen blendet der Text aus und die zwei Info-Cards
+   (Bildungsträger / Prüflinge) erscheinen. CTAs: „Demo anfragen" = mailto,
+   „So funktioniert's" → `/so-funktionierts`. (reduced-motion → statisch untereinander).
+6. **Section 4 „Warum Titan":** horizontale 4-Spalten-Darstellung der
+   Differenzierungsgründe (roter Faden · Fallfirma · Deck als Nebenprodukt · Premium-UX).
+
+Trenner (`.lp-divider`) mit **symmetrischen Abständen** zwischen allen Sections.
 
 ### Interaktion & Bewegung
 - **GSAP** (bereits im Stack): Hero-Entrance (gestaffelt), Parallax des Erd-Wraps,
@@ -68,13 +78,19 @@ Vom Betreiber gelieferte Tabelle der **38 bundeseinheitlich geregelten IHK-Fachw
 Vorbereitung" (ehrlich, kein Vortäuschen). Galerie auf `/willkommen` zeigt eine
 kuratierte Auswahl von 12 dieser Richtungen.
 
+## CTAs (v1)
+- **„Demo anfragen"** (Hero, Burger, B2B-Card) = **`mailto:`** an `KONTAKT_EMAIL`
+  (`willkommen.astro`) — aktuell **Platzhalter `kontakt@norive.de`**, vom Betreiber
+  bestätigen/ersetzen; echtes Formular später via Brevo.
+- **„So funktioniert's"** (B2C-Card) → Erklärseite `/so-funktionierts`.
+  Hero-Ghost „So funktioniert's" bleibt Anker `#wie` (Section 1).
+
 ## Offen / Roadmap
-- Weitere Sections: **B2B & B2C** (Vorteils-Karten) · **Why Titan** (horizontal) ·
-  **Vertrauen** (KI niedrigrisiko, EU/DSGVO, erfahrene Fachdozenten) · **CTA-Band** ·
-  **Footer** (Impressum · Datenschutz · Login) · optional FAQ.
-- CTA v1 = `mailto:` (Kontaktadresse als Platzhalter, echtes Formular später via Brevo).
+- Weitere Sections: **Vertrauen** (KI niedrigrisiko, EU/DSGVO, erfahrene Fachdozenten) ·
+  **CTA-Band** · **Footer** (Impressum · Datenschutz · Login) · optional FAQ.
 - `impressum.astro` / `datenschutz.astro` noch anzulegen (Allowlist bereits gesetzt).
 - Keine erfundenen Referenzen/Testimonials; Social-Media-Bereich später.
+- Erledigt: Hero · Section 1–4 · /fachrichtungen (38) · /so-funktionierts · mailto-CTA.
 
 ## Doku-Parität
 Diese Datei ist die Quelle für den Notion-Abgleich (docs Repo ↔ Notion). Bei
