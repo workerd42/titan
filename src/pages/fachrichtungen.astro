@@ -77,9 +77,15 @@ const liveCount = FACHRICHTUNGEN.filter((f) => f.status === 'live').length;
         <p class="fr-intro">Alle bundeseinheitlich geregelten IHK-Fachwirte stehen auf <strong>DQR-Niveau 6</strong> — auf einer Stufe mit dem Bachelor und berechtigt zum Titel <strong>Bachelor Professional</strong>. Der Marketing-Fachwirt ist live, alle weiteren Richtungen entstehen laufend.</p>
       </header>
 
-      <div class="fr-grid" role="list">
+      <div class="fr-search">
+        <svg class="fr-search-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.2-3.2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <label class="fr-sr" for="fr-suche">Fachrichtung suchen</label>
+        <input id="fr-suche" class="fr-search-input" type="search" placeholder="Fachrichtung oder Branche suchen …" autocomplete="off" data-fr-search />
+      </div>
+
+      <div class="fr-grid" role="list" data-fr-grid>
         {FACHRICHTUNGEN.map((f) => (
-          <article class="fr-card" role="listitem">
+          <article class="fr-card" role="listitem" data-name={`${f.name} ${f.branche}`.toLowerCase()}>
             <span class={`fr-status ${f.status === 'live' ? 'is-live' : 'is-soon'}`}>{f.status === 'live' ? 'Verfügbar' : 'In Vorbereitung'}</span>
             <div class="fr-card-body">
               <h2 class="fr-name">{f.name}</h2>
@@ -89,6 +95,7 @@ const liveCount = FACHRICHTUNGEN.filter((f) => f.status === 'live').length;
         ))}
       </div>
 
+      <p class="fr-empty" hidden data-fr-empty>Keine Fachrichtung gefunden — bitte Suchbegriff anpassen.</p>
       <p class="fr-note">{liveCount} Richtung live · {FACHRICHTUNGEN.length - liveCount} in Vorbereitung. Die Reihenfolge folgt dem Ausbau-Fahrplan.</p>
     </div>
 
@@ -123,9 +130,20 @@ const liveCount = FACHRICHTUNGEN.filter((f) => f.status === 'live').length;
     .fr-intro { font-size: clamp(15.5px, 1.3vw, 18px); line-height: 1.62; color: var(--ink-muted); margin: 0; }
     .fr-intro strong { color: var(--ink); font-weight: 600; }
 
-    .fr-grid { margin-top: clamp(40px, 5vw, 64px); display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+    /* Suche */
+    .fr-sr { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
+    .fr-search { position: relative; max-width: 440px; margin: clamp(28px, 4vw, 44px) 0 0; }
+    .fr-search-icon { position: absolute; left: 18px; top: 50%; transform: translateY(-50%); width: 20px; height: 20px; color: var(--ink-muted); pointer-events: none; }
+    .fr-search-input { width: 100%; font-family: var(--body); font-size: 15px; color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 14px 20px 14px 46px; transition: border-color .2s ease, box-shadow .2s ease; }
+    .fr-search-input::placeholder { color: var(--ink-muted); }
+    .fr-search-input:focus { outline: none; border-color: var(--navy); box-shadow: 0 0 0 3px rgba(27,42,74,0.12); }
+    .fr-empty { margin: clamp(20px, 3vw, 32px) 0 0; font-size: 15px; color: var(--ink-muted); }
+    .fr-empty[hidden] { display: none; }
+
+    .fr-grid { margin-top: clamp(22px, 3vw, 34px); display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+    .fr-card[hidden] { display: none; }
     .fr-card {
-      min-height: 168px; display: flex; flex-direction: column; justify-content: space-between; gap: 18px;
+      height: 186px; display: flex; flex-direction: column; justify-content: space-between; gap: 16px;
       background: radial-gradient(140% 130% at 20% 8%, #33569E 0%, #1B2A4A 58%);
       border: 1px solid rgba(255,255,255,0.10); border-radius: 22px; padding: 22px 22px 24px; position: relative; overflow: hidden;
       box-shadow: 0 18px 40px -26px rgba(12,20,36,0.7);
@@ -165,6 +183,24 @@ const liveCount = FACHRICHTUNGEN.filter((f) => f.status === 'live').length;
       const root = document.querySelector<HTMLElement>('.fr');
       if (!root || root.dataset.wired === 'true') return;
       root.dataset.wired = 'true';
+
+      /* Live-Suche über Name + Branche */
+      const search = document.querySelector<HTMLInputElement>('[data-fr-search]');
+      const grid = document.querySelector<HTMLElement>('[data-fr-grid]');
+      const empty = document.querySelector<HTMLElement>('[data-fr-empty]');
+      if (search && grid && empty) {
+        const cards = Array.from(grid.querySelectorAll<HTMLElement>('.fr-card'));
+        search.addEventListener('input', () => {
+          const q = search.value.trim().toLowerCase();
+          let shown = 0;
+          cards.forEach((c) => {
+            const match = !q || (c.dataset.name || '').includes(q);
+            c.hidden = !match;
+            if (match) shown += 1;
+          });
+          empty.hidden = shown !== 0;
+        });
+      }
 
       const cursor = document.querySelector<HTMLElement>('.fr-cursor');
       const fine = window.matchMedia('(pointer:fine)').matches;

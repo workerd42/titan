@@ -46,16 +46,16 @@ externer CDN (CSP `font-src 'self'`). `@font-face` je Seite scoped dekliniert.
 2. **Section 1 „So funktioniert's":** 4-Phasen-Reise (Verstehen → Merken → Anwenden
    → Prüfen) als dunkle Navy-Gold-Cards mit SVG-Grafik, Icon unten.
 3. **Trennstrich** (`.lp-divider`) markiert das Section-Ende.
-4. **Section 2 „Fachrichtungen":** horizontale **Galerie** (orizon-Muster) mit den
-   ersten **12** Richtungen (Navy-Gold-Cards, Größe wie Section 1), Prev/Next-Kreis-
-   Buttons + Drag-to-Scroll, Kanten weich auslaufend (Fade-Maske),
-   **„Alle Fachrichtungen ansehen ↗"** → `/fachrichtungen`.
-5. **Section 3 „Angebot" (B2B & B2C):** **Scroll-Cross-Fade** — zuerst Text mittig
-   (gepinnte Stage), beim Weiterscrollen blendet der Text aus und die zwei Info-Cards
-   (Bildungsträger / Prüflinge) erscheinen. CTAs: „Demo anfragen" = mailto,
-   „So funktioniert's" → `/so-funktionierts`. (reduced-motion → statisch untereinander).
-6. **Section 4 „Warum Titan":** horizontale 4-Spalten-Darstellung der
-   Differenzierungsgründe (roter Faden · Fallfirma · Deck als Nebenprodukt · Premium-UX).
+4. **Section 2 „Fachrichtungen":** **fortlaufendes Endlos-Karussell** (full-bleed,
+   orizon-Muster) mit 12 Richtungen (Navy-Gold-Cards, **Höhe wie Section 1 = 336px**);
+   Karten per JS dupliziert für nahtlosen Loop, Hover pausiert, Kanten-Fade,
+   **„Alle ansehen ↗"** → `/fachrichtungen`.
+5. **Section 3 „Angebot" (B2B & B2C):** **Scroll-Cross-Fade** — Text mittig (gepinnt),
+   beim Scrollen erscheinen die zwei **Info-Cards im Navy-Gold-Schema** (Bildungsträger /
+   Prüflinge). CTAs: „Demo anfragen" = mailto, „So funktioniert's" → `/so-funktionierts`.
+6. **Section 4 „Warum Titan":** **drei gestapelte Sticky-Scroll-Cards** (schieben sich
+   beim Scrollen übereinander), je mit ausführlichem Text + Grafik (roter Faden ·
+   Fallfirma · Deck als Nebenprodukt).
 
 Trenner (`.lp-divider`) mit **symmetrischen Abständen** zwischen allen Sections.
 
@@ -75,8 +75,9 @@ Vom Betreiber gelieferte Tabelle der **38 bundeseinheitlich geregelten IHK-Fachw
 (alle DQR-Niveau 6, Titel „Bachelor Professional"). Datenarray in
 `src/pages/fachrichtungen.astro` (`FACHRICHTUNGEN`: `name`, `branche`, `status`).
 **Status:** aktuell nur **Fachwirt/in für Marketing = live**, alle übrigen 37 = „in
-Vorbereitung" (ehrlich, kein Vortäuschen). Galerie auf `/willkommen` zeigt eine
-kuratierte Auswahl von 12 dieser Richtungen.
+Vorbereitung" (ehrlich, kein Vortäuschen). Karussell auf `/willkommen` zeigt eine
+kuratierte Auswahl von 12; `/fachrichtungen` listet alle 38 mit **Live-Suche**
+(Name/Branche) und **einheitlicher Card-Größe**.
 
 ## CTAs (v1)
 - **„Demo anfragen"** (Hero, Burger, B2B-Card) = **`mailto:`** an `KONTAKT_EMAIL`
