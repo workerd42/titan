@@ -55,7 +55,8 @@ externer CDN (CSP `font-src 'self'`). `@font-face` je Seite scoped dekliniert.
    Prüflinge). CTAs: „Demo anfragen" = mailto, „So funktioniert's" → `/so-funktionierts`.
 6. **Section 4 „Warum Titan":** **„Karten-austeilen"** — drei Cards liegen aufeinander
    (Card 1 oben), beim Scrollen wischt die oberste nach oben weg (rAF, gepinnt).
-   Layout je Card wie orizon (Headline links, Grafik rechts, zwei Sub-Spalten);
+   Layout je Card wie orizon: **oben** Headline + Grafik, **unten** zwei gestapelte
+   Texte + zweite Grafik daneben (**Card 2 gespiegelt** — Bild links, Text rechts);
    **Card 1/2/3 visuell unterschiedlich** (Blau / Indigo / Petrol), Gold verbindet.
    Cards füllen die **volle Screenhöhe**; der **Section-Kopf** (Eyebrow/Headline/
    Subtitle) steckt in **Card 1**.
