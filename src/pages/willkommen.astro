@@ -659,11 +659,11 @@ const KONTAKT_MAILTO = `mailto:${KONTAKT_EMAIL}?subject=${encodeURIComponent('De
     @media (max-width: 560px) { .lp-steps { grid-template-columns: 1fr; } .lp-container { padding: 0 22px; } }
 
     /* Trennstrich am Ende von Section 1 (klar erkennbar, symmetrisch umschlossen) */
-    .lp-divider { height: 1px; background: rgba(20,24,31,0.16); margin: clamp(58px, 7vw, 92px) 0 0; }
+    .lp-divider { height: 1px; background: rgba(20,24,31,0.16); margin: clamp(42px, 5vw, 74px) 0; }
 
     /* ── SECTION 2 · Fachrichtungen (Galerie) ── */
     /* Oben symmetrisch zum Trenner-Abstand → einheitliche Fläche um die Linie. */
-    .lp-fields-sec { background: var(--bg); color: var(--ink); padding: clamp(58px, 7vw, 92px) 0 0; }
+    .lp-fields-sec { background: var(--bg); color: var(--ink); padding: 0; }
     .lp-fields-head { max-width: none; display: flex; align-items: flex-end; justify-content: space-between; gap: 32px; flex-wrap: wrap; }
     .lp-fields-head > div:first-child { max-width: 640px; }
 
@@ -721,7 +721,7 @@ const KONTAKT_MAILTO = `mailto:${KONTAKT_EMAIL}?subject=${encodeURIComponent('De
     /* ── SECTION 3 · Für wen (B2B & B2C) · Scroll-Cross-Fade ── */
     .lp-offers-sec { background: var(--bg); color: var(--ink); }
     /* Standard (ohne JS / reduced-motion): statisch, Text über den Cards */
-    .lp-offers-stage { padding: clamp(72px, 9vw, 120px) 0; }
+    .lp-offers-stage { padding: clamp(42px, 5vw, 74px) 0; }
     .lp-offers-head { text-align: center; max-width: 700px; margin: 0 auto clamp(40px, 5vw, 64px); }
     .lp-offers { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
     /* Gepinnt (JS aktiviert): Text mittig; beim Scrollen Cross-Fade zu den Cards */
@@ -768,7 +768,6 @@ const KONTAKT_MAILTO = `mailto:${KONTAKT_EMAIL}?subject=${encodeURIComponent('De
 
     /* ── SECTION 4 · Warum Titan (gestapelte Scroll-Cards, sticky-stack) ── */
     .lp-why-sec { background: var(--bg); color: var(--ink); padding: 0; }
-    .lp-why-sec .lp-divider { margin: clamp(58px, 7vw, 92px) 0; }
     /* Deck-Deal: Cards liegen aufeinander (Card 1 oben); beim Scrollen wischt die
        oberste nach oben weg wie beim Kartenverteilen. Layout je Card wie im
        orizon-Screenshot: Headline links, Grafik rechts, darunter zwei Sub-Spalten. */

@@ -66,7 +66,9 @@ externer CDN (CSP `font-src 'self'`). `@font-face` je Seite scoped dekliniert.
    niedrigrisiko KI · didaktisch fundiert (erfahrene Fachdozenten, ohne Namen) ·
    Barrierefreiheit (WCAG 2.2 AA).
 
-Trenner (`.lp-divider`) mit **symmetrischen Abständen** zwischen allen Sections.
+**Einheitlicher Abstands-Rhythmus:** jeder Section-Übergang misst
+`clamp(84px, 10vw, 148px)`; die Trenner (`.lp-divider`) sitzen mittig mit je der
+Hälfte (`clamp(42px, 5vw, 74px)`), Sektionen haben an Trenner-Seiten 0 Padding.
 
 ### Interaktion & Bewegung
 - **GSAP** (bereits im Stack): Hero-Entrance (gestaffelt), Parallax des Erd-Wraps,
