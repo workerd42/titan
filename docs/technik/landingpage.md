@@ -57,6 +57,8 @@ externer CDN (CSP `font-src 'self'`). `@font-face` je Seite scoped dekliniert.
    (Card 1 oben), beim Scrollen wischt die oberste nach oben weg (rAF, gepinnt).
    Layout je Card wie orizon (Headline links, Grafik rechts, zwei Sub-Spalten);
    **Card 1/2/3 visuell unterschiedlich** (Blau / Indigo / Petrol), Gold verbindet.
+   Cards füllen die **volle Screenhöhe**; der **Section-Kopf** (Eyebrow/Headline/
+   Subtitle) steckt in **Card 1**.
 
 Trenner (`.lp-divider`) mit **symmetrischen Abständen** zwischen allen Sections.
 

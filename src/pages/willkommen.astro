@@ -276,18 +276,17 @@ const KONTAKT_MAILTO = `mailto:${KONTAKT_EMAIL}?subject=${encodeURIComponent('De
     <section class="lp-why-sec" id="warum">
       <div class="lp-container">
         <div class="lp-divider" role="presentation"></div>
-        <header class="lp-sec-head" data-reveal>
-          <span class="lp-sec-eyebrow"><i class="lp-dot" aria-hidden="true"></i> Warum Titan</span>
-          <h2 class="lp-sec-title">Was Titan anders macht</h2>
-          <p class="lp-sec-intro">Drei Gründe, warum aus Prüfungsvorbereitung echte Kompetenz wird.</p>
-        </header>
       </div>
 
       <div class="lp-deal-scroll">
         <div class="lp-deal-stage">
           <article class="lp-deal-card">
             <div class="lp-deal-top">
-              <h3 class="lp-deal-h">Ein durchgängiger<br />roter Faden</h3>
+              <div class="lp-deal-head">
+                <span class="lp-sec-eyebrow"><i class="lp-dot" aria-hidden="true"></i> Warum Titan</span>
+                <h2 class="lp-deal-h">Was Titan anders macht</h2>
+                <p class="lp-deal-lead">Drei Gründe, warum aus Prüfungsvorbereitung echte Kompetenz wird.</p>
+              </div>
               <div class="lp-deal-media" aria-hidden="true">
                 <svg viewBox="0 0 220 160" fill="none"><path d="M18 132 C 70 132, 55 40, 110 44 C 165 48, 150 118, 202 96" stroke="#C4A882" stroke-width="3" stroke-linecap="round"/><circle cx="18" cy="132" r="6" fill="#fff"/><circle cx="110" cy="44" r="6" fill="#fff"/><circle cx="202" cy="96" r="6" fill="#C4A882"/></svg>
               </div>
@@ -720,11 +719,11 @@ const KONTAKT_MAILTO = `mailto:${KONTAKT_EMAIL}?subject=${encodeURIComponent('De
     .lp-deal-scroll { position: relative; height: 320vh; margin-top: clamp(20px, 3vw, 40px); }
     .lp-deal-stage { position: sticky; top: 0; min-height: 100vh; display: grid; grid-template-areas: 'stack'; place-items: center; }
     .lp-deal-card {
-      grid-area: stack; width: min(92vw, 1000px);
-      display: flex; flex-direction: column; gap: clamp(30px, 4vw, 54px);
+      grid-area: stack; width: min(92vw, 1000px); height: calc(100svh - 44px);
+      display: flex; flex-direction: column; justify-content: space-between; gap: clamp(28px, 4vw, 48px);
       background: radial-gradient(120% 130% at 12% 8%, #33569E 0%, #1B2A4A 60%);
       border: 1px solid rgba(255,255,255,0.10); border-radius: 28px; overflow: hidden;
-      padding: clamp(30px, 4vw, 58px);
+      padding: clamp(30px, 4vw, 64px);
       box-shadow: 0 40px 90px -36px rgba(12,20,36,0.85);
       will-change: transform;
     }
@@ -734,6 +733,8 @@ const KONTAKT_MAILTO = `mailto:${KONTAKT_EMAIL}?subject=${encodeURIComponent('De
     .lp-deal-card:nth-child(3) { z-index: 1; background: radial-gradient(120% 130% at 14% 8%, #256E79 0%, #0F2930 62%); }
     .lp-deal-top { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 3vw, 48px); align-items: center; }
     .lp-deal-h { font-family: var(--display); font-size: clamp(30px, 4.2vw, 52px); font-weight: 700; letter-spacing: -0.03em; line-height: 1.02; color: #F5F6F8; margin: 0; }
+    .lp-deal-head .lp-sec-eyebrow { color: var(--gold); margin-bottom: 14px; }
+    .lp-deal-lead { font-size: clamp(15px, 1.4vw, 17px); line-height: 1.6; color: rgba(245,246,248,0.72); margin: 16px 0 0; max-width: 42ch; }
     .lp-deal-media { border-radius: 18px; aspect-ratio: 16 / 10; background: rgba(245,246,248,0.05); border: 1px solid rgba(245,246,248,0.10); display: flex; align-items: center; justify-content: center; padding: clamp(18px, 2vw, 28px); }
     .lp-deal-media svg { width: 100%; height: 100%; max-width: 300px; }
     .lp-deal-cols { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px, 4vw, 56px); }
@@ -741,11 +742,12 @@ const KONTAKT_MAILTO = `mailto:${KONTAKT_EMAIL}?subject=${encodeURIComponent('De
     .lp-deal-col p { font-size: 15px; line-height: 1.6; color: rgba(245,246,248,0.68); margin: 0; }
     .lp-deal-scroll.no-pin { height: auto; }
     .lp-deal-scroll.no-pin .lp-deal-stage { position: static; min-height: 0; display: flex; flex-direction: column; gap: 22px; }
+    .lp-deal-scroll.no-pin .lp-deal-card { height: auto; }
     @media (max-width: 760px) {
       .lp-deal-scroll { height: auto; }
       .lp-deal-stage { position: static; min-height: 0; display: flex; flex-direction: column; gap: 22px; }
       .lp-deal-top, .lp-deal-cols { grid-template-columns: 1fr; }
-      .lp-deal-card { width: 100%; }
+      .lp-deal-card { width: 100%; height: auto; }
       .lp-deal-card:nth-child(n) { z-index: auto; }
     }
 
