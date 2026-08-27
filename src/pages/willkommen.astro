@@ -767,7 +767,8 @@ const KONTAKT_MAILTO = `mailto:${KONTAKT_EMAIL}?subject=${encodeURIComponent('De
     @media (max-width: 820px) { .lp-offers { grid-template-columns: 1fr; } }
 
     /* ── SECTION 4 · Warum Titan (gestapelte Scroll-Cards, sticky-stack) ── */
-    .lp-why-sec { background: var(--bg); color: var(--ink); padding: 0; }
+    /* Padding-Bottom = heller Abstand vor dem Petrol-Band (S5), damit es nicht klebt */
+    .lp-why-sec { background: var(--bg); color: var(--ink); padding: 0 0 clamp(84px, 10vw, 148px); }
     /* Deck-Deal: Cards liegen aufeinander (Card 1 oben); beim Scrollen wischt die
        oberste nach oben weg wie beim Kartenverteilen. Layout je Card wie im
        orizon-Screenshot: Headline links, Grafik rechts, darunter zwei Sub-Spalten. */
@@ -811,7 +812,7 @@ const KONTAKT_MAILTO = `mailto:${KONTAKT_EMAIL}?subject=${encodeURIComponent('De
     }
 
     /* ── SECTION 5 · Vertrauen (volles Petrol-Band, Farbschema von Card 3) ── */
-    .lp-trust-sec { background: radial-gradient(120% 130% at 14% 8%, #256E79 0%, #0F2930 62%); color: #F5F6F8; padding: clamp(84px, 10vw, 148px) 0; }
+    .lp-trust-sec { background: radial-gradient(120% 130% at 14% 8%, #256E79 0%, #0F2930 62%); color: #F5F6F8; padding: clamp(64px, 7vw, 100px) 0; }
     .lp-trust-sec .lp-sec-eyebrow { color: var(--gold); }
     .lp-trust-sec .lp-sec-title { color: #F5F6F8; }
     .lp-trust-sec .lp-sec-intro { color: rgba(245,246,248,0.78); }
