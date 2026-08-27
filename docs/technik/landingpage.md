@@ -61,9 +61,10 @@ externer CDN (CSP `font-src 'self'`). `@font-face` je Seite scoped dekliniert.
    Cards füllen die **volle Screenhöhe**; der **Section-Kopf** (Eyebrow/Headline/
    Subtitle) steckt in **Card 1**. In Card 1 zeichnet sich der **rote Faden**
    (Pfad-Linie) langsam animiert nach.
-7. **Section 5 „Vertrauen":** 4 Icon-Kachel-Punkte — EU/DE-Hosting & DSGVO ·
-   verantwortungsvolle/niedrigrisiko KI · didaktisch fundiert (erfahrene Fachdozenten,
-   ohne Namen) · Barrierefreiheit (WCAG 2.2 AA).
+7. **Section 5 „Vertrauen":** volles **Petrol-Band** (Farbschema von Card 3, heller
+   Text), 4 Icon-Kachel-Punkte — EU/DE-Hosting & DSGVO · verantwortungsvolle/
+   niedrigrisiko KI · didaktisch fundiert (erfahrene Fachdozenten, ohne Namen) ·
+   Barrierefreiheit (WCAG 2.2 AA).
 
 Trenner (`.lp-divider`) mit **symmetrischen Abständen** zwischen allen Sections.
 

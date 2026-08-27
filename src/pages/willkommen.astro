@@ -362,7 +362,6 @@ const KONTAKT_MAILTO = `mailto:${KONTAKT_EMAIL}?subject=${encodeURIComponent('De
     <!-- ── SECTION 5 · Vertrauen ── -->
     <section class="lp-trust-sec" id="vertrauen">
       <div class="lp-container">
-        <div class="lp-divider" role="presentation"></div>
         <header class="lp-sec-head" data-reveal>
           <span class="lp-sec-eyebrow"><i class="lp-dot" aria-hidden="true"></i> Vertrauen</span>
           <h2 class="lp-sec-title">Sicher, fundiert, verantwortungsvoll</h2>
@@ -812,18 +811,20 @@ const KONTAKT_MAILTO = `mailto:${KONTAKT_EMAIL}?subject=${encodeURIComponent('De
       .lp-deal-card:nth-child(n) { z-index: auto; }
     }
 
-    /* ── SECTION 5 · Vertrauen ── */
-    .lp-trust-sec { background: var(--bg); color: var(--ink); padding: 0 0 clamp(84px, 10vw, 148px); }
-    .lp-trust-sec .lp-divider { margin: clamp(58px, 7vw, 92px) 0; }
+    /* ── SECTION 5 · Vertrauen (volles Petrol-Band, Farbschema von Card 3) ── */
+    .lp-trust-sec { background: radial-gradient(120% 130% at 14% 8%, #256E79 0%, #0F2930 62%); color: #F5F6F8; padding: clamp(84px, 10vw, 148px) 0; }
+    .lp-trust-sec .lp-sec-eyebrow { color: var(--gold); }
+    .lp-trust-sec .lp-sec-title { color: #F5F6F8; }
+    .lp-trust-sec .lp-sec-intro { color: rgba(245,246,248,0.78); }
     .lp-trust { margin-top: clamp(40px, 5vw, 64px); display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(22px, 3vw, 34px); }
     .lp-trust-icon {
       width: 52px; height: 52px; border-radius: 14px; margin-bottom: 20px;
-      background: radial-gradient(140% 130% at 20% 8%, #33569E 0%, #1B2A4A 60%);
+      background: rgba(245,246,248,0.08); border: 1px solid rgba(245,246,248,0.16);
       display: flex; align-items: center; justify-content: center;
     }
     .lp-trust-icon svg { width: 28px; height: 28px; }
-    .lp-trust-title { font-family: var(--display); font-size: 18px; font-weight: 700; letter-spacing: -0.01em; color: var(--ink); margin: 0 0 8px; }
-    .lp-trust-text { font-size: 14.5px; line-height: 1.6; color: var(--ink-muted); margin: 0; }
+    .lp-trust-title { font-family: var(--display); font-size: 18px; font-weight: 700; letter-spacing: -0.01em; color: #F5F6F8; margin: 0 0 8px; }
+    .lp-trust-text { font-size: 14.5px; line-height: 1.6; color: rgba(245,246,248,0.72); margin: 0; }
     @media (max-width: 900px) { .lp-trust { grid-template-columns: repeat(2, 1fr); } }
     @media (max-width: 520px) { .lp-trust { grid-template-columns: 1fr; } }
 
