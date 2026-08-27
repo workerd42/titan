@@ -59,7 +59,11 @@ externer CDN (CSP `font-src 'self'`). `@font-face` je Seite scoped dekliniert.
    Texte + zweite Grafik daneben (**Card 2 gespiegelt** — Bild links, Text rechts);
    **Card 1/2/3 visuell unterschiedlich** (Blau / Indigo / Petrol), Gold verbindet.
    Cards füllen die **volle Screenhöhe**; der **Section-Kopf** (Eyebrow/Headline/
-   Subtitle) steckt in **Card 1**.
+   Subtitle) steckt in **Card 1**. In Card 1 zeichnet sich der **rote Faden**
+   (Pfad-Linie) langsam animiert nach.
+7. **Section 5 „Vertrauen":** 4 Icon-Kachel-Punkte — EU/DE-Hosting & DSGVO ·
+   verantwortungsvolle/niedrigrisiko KI · didaktisch fundiert (erfahrene Fachdozenten,
+   ohne Namen) · Barrierefreiheit (WCAG 2.2 AA).
 
 Trenner (`.lp-divider`) mit **symmetrischen Abständen** zwischen allen Sections.
 
@@ -91,11 +95,10 @@ kuratierte Auswahl von 12; `/fachrichtungen` listet alle 38 mit **Live-Suche**
   Hero-Ghost „So funktioniert's" bleibt Anker `#wie` (Section 1).
 
 ## Offen / Roadmap
-- Weitere Sections: **Vertrauen** (KI niedrigrisiko, EU/DSGVO, erfahrene Fachdozenten) ·
-  **CTA-Band** · **Footer** (Impressum · Datenschutz · Login) · optional FAQ.
+- Weitere Sections: **CTA-Band** · **Footer** (Impressum · Datenschutz · Login) · optional FAQ.
 - `impressum.astro` / `datenschutz.astro` noch anzulegen (Allowlist bereits gesetzt).
 - Keine erfundenen Referenzen/Testimonials; Social-Media-Bereich später.
-- Erledigt: Hero · Section 1–4 · /fachrichtungen (38) · /so-funktionierts · mailto-CTA.
+- Erledigt: Hero · Section 1–5 · /fachrichtungen (38, Suche) · /so-funktionierts · mailto-CTA.
 
 ## Doku-Parität
 Diese Datei ist die Quelle für den Notion-Abgleich (docs Repo ↔ Notion). Bei
