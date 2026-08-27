@@ -288,7 +288,7 @@ const KONTAKT_MAILTO = `mailto:${KONTAKT_EMAIL}?subject=${encodeURIComponent('De
                 <p class="lp-deal-lead">Drei Gründe, warum aus Prüfungsvorbereitung echte Kompetenz wird.</p>
               </div>
               <div class="lp-deal-media" aria-hidden="true">
-                <svg viewBox="0 0 220 160" fill="none"><path d="M18 132 C 70 132, 55 40, 110 44 C 165 48, 150 118, 202 96" stroke="#C4A882" stroke-width="3" stroke-linecap="round"/><circle cx="18" cy="132" r="6" fill="#fff"/><circle cx="110" cy="44" r="6" fill="#fff"/><circle cx="202" cy="96" r="6" fill="#C4A882"/></svg>
+                <svg viewBox="0 0 220 160" fill="none"><path d="M18 132 C 70 132, 55 40, 110 44 C 165 48, 150 118, 202 96" stroke="#C4A882" stroke-width="3" stroke-linecap="round" opacity="0.45"/><path class="lp-thread" d="M18 132 C 70 132, 55 40, 110 44 C 165 48, 150 118, 202 96" stroke="#CB4B3E" stroke-width="3.4" stroke-linecap="round" pathLength="100"/><circle cx="18" cy="132" r="6" fill="#fff"/><circle cx="110" cy="44" r="6" fill="#fff"/><circle cx="202" cy="96" r="6" fill="#C4A882"/></svg>
               </div>
             </div>
             <div class="lp-deal-bottom">
@@ -752,6 +752,9 @@ const KONTAKT_MAILTO = `mailto:${KONTAKT_EMAIL}?subject=${encodeURIComponent('De
     .lp-deal-lead { font-size: clamp(15px, 1.4vw, 17px); line-height: 1.6; color: rgba(245,246,248,0.72); margin: 16px 0 0; max-width: 42ch; }
     .lp-deal-media { border-radius: 18px; height: clamp(150px, 22vh, 260px); background: rgba(245,246,248,0.05); border: 1px solid rgba(245,246,248,0.10); display: flex; align-items: center; justify-content: center; padding: clamp(16px, 2vw, 26px); }
     .lp-deal-media svg { width: 100%; height: 100%; max-width: 300px; }
+    /* „Roter Faden": rote Linie zeichnet sich langsam über die goldene */
+    .lp-thread { stroke-dasharray: 100; stroke-dashoffset: 100; animation: lp-thread-draw 5.5s ease-in-out infinite alternate; }
+    @keyframes lp-thread-draw { to { stroke-dashoffset: 0; } }
     .lp-deal-bottom { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: clamp(28px, 4vw, 56px); align-items: center; }
     .lp-deal-texts { display: flex; flex-direction: column; gap: clamp(20px, 2.4vw, 30px); }
     .lp-deal-col h4 { font-family: var(--display); font-size: clamp(18px, 1.9vw, 23px); font-weight: 700; letter-spacing: -0.01em; color: #F5F6F8; margin: 0 0 10px; }
@@ -786,7 +789,8 @@ const KONTAKT_MAILTO = `mailto:${KONTAKT_EMAIL}?subject=${encodeURIComponent('De
     }
     @media (prefers-reduced-motion: reduce) {
       .lp-cta, .lp-cta-circle, .lp-burger span, .lp-cursor { transition: none; }
-      .lp-dot { animation: none; }
+      .lp-dot, .lp-thread { animation: none; }
+      .lp-thread { stroke-dashoffset: 0; }
       .lp-cursor { display: none; }
     }
   </style>
