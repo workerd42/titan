@@ -53,9 +53,10 @@ externer CDN (CSP `font-src 'self'`). `@font-face` je Seite scoped dekliniert.
 5. **Section 3 „Angebot" (B2B & B2C):** **Scroll-Cross-Fade** — Text mittig (gepinnt),
    beim Scrollen erscheinen die zwei **Info-Cards im Navy-Gold-Schema** (Bildungsträger /
    Prüflinge). CTAs: „Demo anfragen" = mailto, „So funktioniert's" → `/so-funktionierts`.
-6. **Section 4 „Warum Titan":** **drei gestapelte Sticky-Scroll-Cards** (schieben sich
-   beim Scrollen übereinander), je mit ausführlichem Text + Grafik (roter Faden ·
-   Fallfirma · Deck als Nebenprodukt).
+6. **Section 4 „Warum Titan":** **„Karten-austeilen"** — drei Cards liegen aufeinander
+   (Card 1 oben), beim Scrollen wischt die oberste nach oben weg (rAF, gepinnt).
+   Layout je Card wie orizon (Headline links, Grafik rechts, zwei Sub-Spalten);
+   **Card 1/2/3 visuell unterschiedlich** (Blau / Indigo / Petrol), Gold verbindet.
 
 Trenner (`.lp-divider`) mit **symmetrischen Abständen** zwischen allen Sections.
 
@@ -81,8 +82,8 @@ kuratierte Auswahl von 12; `/fachrichtungen` listet alle 38 mit **Live-Suche**
 
 ## CTAs (v1)
 - **„Demo anfragen"** (Hero, Burger, B2B-Card) = **`mailto:`** an `KONTAKT_EMAIL`
-  (`willkommen.astro`) — aktuell **Platzhalter `kontakt@norive.de`**, vom Betreiber
-  bestätigen/ersetzen; echtes Formular später via Brevo.
+  (`willkommen.astro`) — aktuell **vorläufige Adresse `service@norive.de`**;
+  echtes Formular später via Brevo.
 - **„So funktioniert's"** (B2C-Card) → Erklärseite `/so-funktionierts`.
   Hero-Ghost „So funktioniert's" bleibt Anker `#wie` (Section 1).
 

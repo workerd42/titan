@@ -19,7 +19,7 @@ const NAV = [
 ];
 
 // CTA v1: mailto. E-Mail ist ein PLATZHALTER — vom Betreiber bestätigen/ersetzen.
-const KONTAKT_EMAIL = 'kontakt@norive.de';
+const KONTAKT_EMAIL = 'service@norive.de';
 const KONTAKT_MAILTO = `mailto:${KONTAKT_EMAIL}?subject=${encodeURIComponent('Demo-Anfrage – Titan')}&body=${encodeURIComponent(
   'Hallo Titan-Team,\n\nich interessiere mich für eine Demo von Titan.\n\nName / Einrichtung:\nAnzahl Kurse / Teilnehmende:\nWunschtermin:\n\nViele Grüße'
 )}`;
@@ -283,39 +283,65 @@ const KONTAKT_MAILTO = `mailto:${KONTAKT_EMAIL}?subject=${encodeURIComponent('De
         </header>
       </div>
 
-      <div class="lp-container lp-stack">
-        <article class="lp-stack-card" style="--i: 0">
-          <div class="lp-stack-text">
-            <span class="lp-stack-num" aria-hidden="true">01</span>
-            <h3 class="lp-stack-title">Ein roter Faden</h3>
-            <p class="lp-stack-desc">Wechselnde Dozenten, lose Kapitel, kein Zusammenhang — so fühlt sich klassische Prüfungsvorbereitung oft an. Titan macht daraus eine durchgängige Reise: Jede Phase baut auf der vorigen auf, vom ersten Konzept bis zur fertigen Prüfungsleistung. So verlieren Lernende nie den Überblick.</p>
-          </div>
-          <div class="lp-stack-visual" aria-hidden="true">
-            <svg viewBox="0 0 220 160" fill="none"><path d="M18 132 C 70 132, 55 40, 110 44 C 165 48, 150 118, 202 96" stroke="#C4A882" stroke-width="3" stroke-linecap="round"/><circle cx="18" cy="132" r="6" fill="#fff"/><circle cx="110" cy="44" r="6" fill="#fff"/><circle cx="202" cy="96" r="6" fill="#C4A882"/></svg>
-          </div>
-        </article>
+      <div class="lp-deal-scroll">
+        <div class="lp-deal-stage">
+          <article class="lp-deal-card">
+            <div class="lp-deal-top">
+              <h3 class="lp-deal-h">Ein durchgängiger<br />roter Faden</h3>
+              <div class="lp-deal-media" aria-hidden="true">
+                <svg viewBox="0 0 220 160" fill="none"><path d="M18 132 C 70 132, 55 40, 110 44 C 165 48, 150 118, 202 96" stroke="#C4A882" stroke-width="3" stroke-linecap="round"/><circle cx="18" cy="132" r="6" fill="#fff"/><circle cx="110" cy="44" r="6" fill="#fff"/><circle cx="202" cy="96" r="6" fill="#C4A882"/></svg>
+              </div>
+            </div>
+            <div class="lp-deal-cols">
+              <div class="lp-deal-col">
+                <h4>Eine Reise, kein Flickenteppich</h4>
+                <p>Jede Phase baut auf der vorigen auf — vom ersten Konzept bis zur fertigen Prüfungsleistung.</p>
+              </div>
+              <div class="lp-deal-col">
+                <h4>Nie den Überblick verlieren</h4>
+                <p>Statt wechselnder Dozenten und loser Kapitel führt ein klarer Pfad sicher zum Ziel.</p>
+              </div>
+            </div>
+          </article>
 
-        <article class="lp-stack-card" style="--i: 1">
-          <div class="lp-stack-text">
-            <span class="lp-stack-num" aria-hidden="true">02</span>
-            <h3 class="lp-stack-title">An der eigenen Fallfirma üben</h3>
-            <p class="lp-stack-desc">Statt Definitionen auswendig zu lernen, arbeiten Lernende an einer durchgängigen Fallfirma. Mit interaktiven Werkzeugen — von der Analyse bis zur begründeten Entscheidung — entsteht echte Handlungskompetenz, genau wie sie die IHK-Prüfung verlangt.</p>
-          </div>
-          <div class="lp-stack-visual" aria-hidden="true">
-            <svg viewBox="0 0 220 160" fill="none"><rect x="24" y="26" width="172" height="108" rx="10" stroke="#fff" stroke-width="2.5"/><path d="M24 52 H196" stroke="#fff" stroke-width="2"/><circle cx="39" cy="39" r="3" fill="#C4A882"/><line x1="48" y1="80" x2="172" y2="80" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/><circle cx="140" cy="80" r="7" fill="#C4A882"/><line x1="48" y1="108" x2="172" y2="108" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/><circle cx="80" cy="108" r="7" fill="#fff"/></svg>
-          </div>
-        </article>
+          <article class="lp-deal-card">
+            <div class="lp-deal-top">
+              <h3 class="lp-deal-h">An der eigenen<br />Fallfirma üben</h3>
+              <div class="lp-deal-media" aria-hidden="true">
+                <svg viewBox="0 0 220 160" fill="none"><rect x="24" y="26" width="172" height="108" rx="10" stroke="#fff" stroke-width="2.5"/><path d="M24 52 H196" stroke="#fff" stroke-width="2"/><circle cx="39" cy="39" r="3" fill="#C4A882"/><line x1="48" y1="80" x2="172" y2="80" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/><circle cx="140" cy="80" r="7" fill="#C4A882"/><line x1="48" y1="108" x2="172" y2="108" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/><circle cx="80" cy="108" r="7" fill="#fff"/></svg>
+              </div>
+            </div>
+            <div class="lp-deal-cols">
+              <div class="lp-deal-col">
+                <h4>Handeln statt auswendig lernen</h4>
+                <p>Interaktive Werkzeuge begleiten von der Analyse bis zur begründeten Entscheidung.</p>
+              </div>
+              <div class="lp-deal-col">
+                <h4>Genau wie in der Prüfung</h4>
+                <p>Die Aufgaben spiegeln die echten Anforderungen der IHK-Prüfung wider.</p>
+              </div>
+            </div>
+          </article>
 
-        <article class="lp-stack-card" style="--i: 2">
-          <div class="lp-stack-text">
-            <span class="lp-stack-num" aria-hidden="true">03</span>
-            <h3 class="lp-stack-title">Deck als Nebenprodukt</h3>
-            <p class="lp-stack-desc">Während des Übens entsteht Schritt für Schritt ein präsentationsreifes Deck. Was andernorts mühsame Zusatzarbeit ist, fällt bei Titan als Nebenprodukt an — direkt bereit für die mündliche Prüfung.</p>
-          </div>
-          <div class="lp-stack-visual" aria-hidden="true">
-            <svg viewBox="0 0 220 160" fill="none"><rect x="40" y="28" width="140" height="94" rx="8" stroke="#fff" stroke-width="2.5"/><path d="M40 106 H180" stroke="#fff" stroke-width="2"/><line x1="58" y1="52" x2="120" y2="52" stroke="#C4A882" stroke-width="3" stroke-linecap="round"/><line x1="58" y1="70" x2="150" y2="70" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/><line x1="58" y1="86" x2="132" y2="86" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/><path d="M96 136 h28 M110 122 v14" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/></svg>
-          </div>
-        </article>
+          <article class="lp-deal-card">
+            <div class="lp-deal-top">
+              <h3 class="lp-deal-h">Das Deck als<br />Nebenprodukt</h3>
+              <div class="lp-deal-media" aria-hidden="true">
+                <svg viewBox="0 0 220 160" fill="none"><rect x="40" y="28" width="140" height="94" rx="8" stroke="#fff" stroke-width="2.5"/><path d="M40 106 H180" stroke="#fff" stroke-width="2"/><line x1="58" y1="52" x2="120" y2="52" stroke="#C4A882" stroke-width="3" stroke-linecap="round"/><line x1="58" y1="70" x2="150" y2="70" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/><line x1="58" y1="86" x2="132" y2="86" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/><path d="M96 136 h28 M110 122 v14" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/></svg>
+              </div>
+            </div>
+            <div class="lp-deal-cols">
+              <div class="lp-deal-col">
+                <h4>Ergebnis fällt nebenbei an</h4>
+                <p>Während des Übens entsteht Schritt für Schritt ein präsentationsreifes Deck.</p>
+              </div>
+              <div class="lp-deal-col">
+                <h4>Bereit für die mündliche Prüfung</h4>
+                <p>Kein mühsames Zusammenstellen am Ende — das Ergebnis ist prüfungsfertig.</p>
+              </div>
+            </div>
+          </article>
+        </div>
       </div>
     </section>
 
@@ -688,23 +714,39 @@ const KONTAKT_MAILTO = `mailto:${KONTAKT_EMAIL}?subject=${encodeURIComponent('De
     /* ── SECTION 4 · Warum Titan (gestapelte Scroll-Cards, sticky-stack) ── */
     .lp-why-sec { background: var(--bg); color: var(--ink); padding: 0 0 clamp(84px, 10vw, 148px); }
     .lp-why-sec .lp-divider { margin: clamp(58px, 7vw, 92px) 0; }
-    .lp-stack { margin-top: clamp(40px, 5vw, 64px); display: flex; flex-direction: column; gap: 26px; }
-    .lp-stack-card {
-      position: sticky; top: calc(88px + var(--i) * 22px);
-      display: grid; grid-template-columns: 1.05fr 1fr; gap: clamp(24px, 3vw, 48px); align-items: center;
+    /* Deck-Deal: Cards liegen aufeinander (Card 1 oben); beim Scrollen wischt die
+       oberste nach oben weg wie beim Kartenverteilen. Layout je Card wie im
+       orizon-Screenshot: Headline links, Grafik rechts, darunter zwei Sub-Spalten. */
+    .lp-deal-scroll { position: relative; height: 320vh; margin-top: clamp(20px, 3vw, 40px); }
+    .lp-deal-stage { position: sticky; top: 0; min-height: 100vh; display: grid; grid-template-areas: 'stack'; place-items: center; }
+    .lp-deal-card {
+      grid-area: stack; width: min(92vw, 1000px);
+      display: flex; flex-direction: column; gap: clamp(30px, 4vw, 54px);
       background: radial-gradient(120% 130% at 12% 8%, #33569E 0%, #1B2A4A 60%);
       border: 1px solid rgba(255,255,255,0.10); border-radius: 28px; overflow: hidden;
-      padding: clamp(30px, 3.4vw, 52px); min-height: 320px;
-      box-shadow: 0 30px 62px -34px rgba(12,20,36,0.72);
+      padding: clamp(30px, 4vw, 58px);
+      box-shadow: 0 40px 90px -36px rgba(12,20,36,0.85);
+      will-change: transform;
     }
-    .lp-stack-num { font-family: var(--display); font-size: 14px; font-weight: 700; letter-spacing: 0.14em; color: var(--gold); }
-    .lp-stack-title { font-family: var(--display); font-size: clamp(23px, 2.6vw, 34px); font-weight: 700; letter-spacing: -0.02em; line-height: 1.06; color: #F5F6F8; margin: 12px 0 14px; }
-    .lp-stack-desc { font-size: 16px; line-height: 1.62; color: rgba(245,246,248,0.78); margin: 0; max-width: 48ch; }
-    .lp-stack-visual { border-radius: 18px; background: rgba(245,246,248,0.05); border: 1px solid rgba(245,246,248,0.10); aspect-ratio: 220 / 150; display: flex; align-items: center; justify-content: center; padding: clamp(18px, 2vw, 30px); }
-    .lp-stack-visual svg { width: 100%; height: 100%; max-width: 300px; }
+    /* Card 1/2/3 visuell unterschiedlich (Blau → Indigo → Petrol), Gold verbindet */
+    .lp-deal-card:nth-child(1) { z-index: 3; background: radial-gradient(120% 130% at 14% 8%, #2E4C8C 0%, #13213E 62%); }
+    .lp-deal-card:nth-child(2) { z-index: 2; background: radial-gradient(120% 130% at 14% 8%, #4A3F86 0%, #191536 62%); }
+    .lp-deal-card:nth-child(3) { z-index: 1; background: radial-gradient(120% 130% at 14% 8%, #256E79 0%, #0F2930 62%); }
+    .lp-deal-top { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 3vw, 48px); align-items: center; }
+    .lp-deal-h { font-family: var(--display); font-size: clamp(30px, 4.2vw, 52px); font-weight: 700; letter-spacing: -0.03em; line-height: 1.02; color: #F5F6F8; margin: 0; }
+    .lp-deal-media { border-radius: 18px; aspect-ratio: 16 / 10; background: rgba(245,246,248,0.05); border: 1px solid rgba(245,246,248,0.10); display: flex; align-items: center; justify-content: center; padding: clamp(18px, 2vw, 28px); }
+    .lp-deal-media svg { width: 100%; height: 100%; max-width: 300px; }
+    .lp-deal-cols { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px, 4vw, 56px); }
+    .lp-deal-col h4 { font-family: var(--display); font-size: clamp(18px, 1.9vw, 23px); font-weight: 700; letter-spacing: -0.01em; color: #F5F6F8; margin: 0 0 10px; }
+    .lp-deal-col p { font-size: 15px; line-height: 1.6; color: rgba(245,246,248,0.68); margin: 0; }
+    .lp-deal-scroll.no-pin { height: auto; }
+    .lp-deal-scroll.no-pin .lp-deal-stage { position: static; min-height: 0; display: flex; flex-direction: column; gap: 22px; }
     @media (max-width: 760px) {
-      .lp-stack-card { grid-template-columns: 1fr; position: static; min-height: 0; }
-      .lp-stack-visual { max-height: 200px; }
+      .lp-deal-scroll { height: auto; }
+      .lp-deal-stage { position: static; min-height: 0; display: flex; flex-direction: column; gap: 22px; }
+      .lp-deal-top, .lp-deal-cols { grid-template-columns: 1fr; }
+      .lp-deal-card { width: 100%; }
+      .lp-deal-card:nth-child(n) { z-index: auto; }
     }
 
     /* ── ENTRANCE ── */
@@ -923,6 +965,36 @@ const KONTAKT_MAILTO = `mailto:${KONTAKT_EMAIL}?subject=${encodeURIComponent('De
         window.addEventListener('scroll', onScroll, { passive: true });
         window.addEventListener('resize', onScroll);
         render();
+      }
+
+      /* Section 4: „Karten austeilen" — oberste Card wischt beim Scrollen nach oben weg */
+      const dealScroll = document.querySelector<HTMLElement>('.lp-deal-scroll');
+      const dealCards = Array.from(document.querySelectorAll<HTMLElement>('.lp-deal-card'));
+      if (dealScroll && dealCards.length) {
+        if (reduce) {
+          dealScroll.classList.add('no-pin');
+        } else {
+          const n = dealCards.length;
+          let dticking = false;
+          const renderDeal = (): void => {
+            dticking = false;
+            const total = Math.max(dealScroll.offsetHeight - window.innerHeight, 1);
+            const scrolled = Math.min(Math.max(-dealScroll.getBoundingClientRect().top, 0), total);
+            const p = scrolled / total;
+            dealCards.forEach((card, i) => {
+              if (i === n - 1) { card.style.transform = ''; card.style.opacity = '1'; return; }
+              let local = (p - i / n) / (1 / n);
+              local = Math.min(Math.max(local, 0), 1);
+              const gone = window.innerHeight / 2 + card.offsetHeight / 2 + 60;
+              card.style.transform = `translate(${local * 46}px, ${-local * gone}px) rotate(${-local * 7}deg)`;
+              card.style.opacity = String(1 - local * 0.12);
+            });
+          };
+          const onDeal = (): void => { if (!dticking) { dticking = true; requestAnimationFrame(renderDeal); } };
+          window.addEventListener('scroll', onDeal, { passive: true });
+          window.addEventListener('resize', onDeal);
+          renderDeal();
+        }
       }
     }
 
