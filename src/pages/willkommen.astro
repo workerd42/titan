@@ -682,7 +682,7 @@ const JAHR = new Date().getFullYear();
     /* Ganze Card im Navy-Gold-Farbschema (Icon bleibt unten an seiner Position) */
     .lp-step {
       display: flex; flex-direction: column; min-height: 336px;
-      background: radial-gradient(140% 130% at 20% 8%, #33569E 0%, #1B2A4A 58%);
+      background: radial-gradient(120% 130% at 14% 8%, #2E4C8C 0%, #13213E 62%);
       border: 1px solid rgba(255,255,255,0.10); border-radius: 24px;
       padding: 28px 26px 26px; position: relative; overflow: hidden;
       box-shadow: 0 18px 40px -26px rgba(12,20,36,0.7);
@@ -744,6 +744,10 @@ const JAHR = new Date().getFullYear();
       background: radial-gradient(circle, rgba(196,168,130,0.30), rgba(196,168,130,0) 70%); pointer-events: none;
     }
     .lp-field:hover { transform: translateY(-6px); border-color: rgba(255,255,255,0.24); box-shadow: 0 40px 72px -30px rgba(12,20,36,0.85); }
+    /* Dreier-Rhythmus Blau · Indigo · Petrol (12 Karten → nahtlos im Loop) */
+    .lp-field:nth-child(3n+1) { background: radial-gradient(120% 130% at 14% 8%, #2E4C8C 0%, #13213E 62%); }
+    .lp-field:nth-child(3n+2) { background: radial-gradient(120% 130% at 14% 8%, #4A3F86 0%, #191536 62%); }
+    .lp-field:nth-child(3n)   { background: radial-gradient(120% 130% at 14% 8%, #256E79 0%, #0F2930 62%); }
     .lp-field-body { position: relative; z-index: 1; }
     .lp-field-status { display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; padding: 5px 11px; border-radius: 999px; }
     .lp-field-status.is-live { background: rgba(120,180,140,0.22); color: #A7D8B8; }
@@ -787,7 +791,7 @@ const JAHR = new Date().getFullYear();
     /* Cards im Navy-Gold-Schema (analog zu Section 1/2) */
     .lp-offer {
       display: flex; flex-direction: column; position: relative; overflow: hidden;
-      background: radial-gradient(140% 130% at 20% 8%, #33569E 0%, #1B2A4A 58%);
+      background: radial-gradient(120% 130% at 14% 8%, #4A3F86 0%, #191536 62%);
       border: 1px solid rgba(255,255,255,0.10); border-radius: 26px;
       padding: clamp(30px, 3vw, 46px);
       box-shadow: 0 22px 48px -32px rgba(12,20,36,0.7);
@@ -897,7 +901,7 @@ const JAHR = new Date().getFullYear();
     .lp-cta-actions { display: flex; align-items: center; justify-content: center; gap: 18px; flex-wrap: wrap; }
 
     /* ── Footer ── */
-    .lp-footer { background: #0E1626; color: rgba(245,246,248,0.72); padding: clamp(56px, 7vw, 88px) 0 clamp(30px, 4vw, 44px); }
+    .lp-footer { background: radial-gradient(120% 130% at 14% 6%, #241E48 0%, #100C24 70%); color: rgba(245,246,248,0.72); padding: clamp(56px, 7vw, 88px) 0 clamp(30px, 4vw, 44px); }
     .lp-foot-top { display: grid; grid-template-columns: 1.3fr 2fr; gap: clamp(32px, 5vw, 64px); }
     .lp-foot-logo { font-family: var(--display); font-size: 24px; font-weight: 700; color: #F5F6F8; text-decoration: none; letter-spacing: -0.01em; }
     .lp-foot-logo:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }

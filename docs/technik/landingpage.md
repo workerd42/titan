@@ -25,7 +25,11 @@ Norive-Tokens, damit die App unberührt bleibt. Palette **Kosmos-Blau + Gold auf
 
 - `--navy #1B2A4A`, `--gold #C4A882`, `--ink #14181F`, `--ink-muted #5A6172`,
   `--bg #EFEDE7`, `--surface #FFFFFF`, `--line rgba(20,24,31,0.10)`.
-- Dunkle Cards: Radial-Gradient `#33569E → #1B2A4A` + Gold-Glow.
+- **Dunkle Card-Triade** (Geometrie `radial-gradient(120% 130% at 14% 8%)`, Gold-Glow):
+  Blau `#2E4C8C → #13213E` · Indigo `#4A3F86 → #191536` · Petrol `#256E79 → #0F2930`.
+- **Verteilung:** S1 Blau · S2 Karussell im **Blau/Indigo/Petrol-Dreier-Rhythmus** ·
+  S3 Indigo · S4 alle drei (Card 1/2/3) · S5 Petrol-Band · CTA Navy · **Footer tiefes
+  Indigo** (`#241E48 → #100C24`).
 
 ### Fonts (self-hosted, CSP-konform)
 `public/fonts/` (latin-Subset, deckt DE-Umlaute + ß):
