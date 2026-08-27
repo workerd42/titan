@@ -1,13 +1,11 @@
 ---
 /**
- * /fachrichtungen — öffentliche Übersicht ALLER IHK-Fachwirt-Richtungen.
- * Verlinkt aus der Galerie auf /willkommen („Alle ansehen"). On-demand,
- * öffentlich (Middleware-Allowlist). Stil wie die Landingpage (Navy-Gold),
- * inkl. orizon-artigem Cursor.
+ * /fachrichtungen — öffentliche Übersicht ALLER 38 IHK-Fachwirt-Richtungen.
+ * Farbe = Bereich (Oberbegriff); Filter per Chips + Live-Textsuche.
+ * On-demand, öffentlich (Middleware-Allowlist). Stil wie die Landingpage.
  *
- * Quelle der Liste: vom Betreiber gelieferte Tabelle der 38 bundeseinheitlich
- * geregelten IHK-Fachwirte (alle DQR-Niveau 6 / „Bachelor Professional").
- * Marketing ist live; alle weiteren Richtungen sind in Vorbereitung.
+ * Quelle: Betreiber-Tabelle der 38 bundeseinheitlich geregelten IHK-Fachwirte
+ * (alle DQR-Niveau 6 / „Bachelor Professional"). Nur Marketing ist live.
  */
 export const prerender = false;
 
@@ -15,47 +13,58 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 const base = import.meta.env.BASE_URL;
 
 type Status = 'live' | 'soon';
-interface Fach { name: string; branche: string; status: Status }
+type Kat = 'wirtschaft' | 'industrie' | 'handel' | 'logistik' | 'gesundheit' | 'dienstleistung';
+interface Fach { name: string; branche: string; status: Status; kat: Kat }
+
+const KATEGORIEN: { slug: Kat; label: string; kurz: string }[] = [
+  { slug: 'wirtschaft', label: 'Wirtschaft & Management', kurz: 'Wirtschaft' },
+  { slug: 'industrie', label: 'Industrie & Technik', kurz: 'Industrie' },
+  { slug: 'handel', label: 'Handel & Marketing', kurz: 'Handel' },
+  { slug: 'logistik', label: 'Logistik & Verkehr', kurz: 'Logistik' },
+  { slug: 'gesundheit', label: 'Gesundheit & Soziales', kurz: 'Gesundheit' },
+  { slug: 'dienstleistung', label: 'Dienstleistung & Kultur', kurz: 'Dienstleistung' },
+];
+const KAT_KURZ: Record<Kat, string> = Object.fromEntries(KATEGORIEN.map((k) => [k.slug, k.kurz])) as Record<Kat, string>;
 
 const FACHRICHTUNGEN: Fach[] = [
-  { name: 'Automobilfachwirt/in', branche: 'Automobilbranche', status: 'soon' },
-  { name: 'Bankfachwirt/in', branche: 'Bankwesen', status: 'soon' },
-  { name: 'Energiefachwirt/in', branche: 'Energiewirtschaft', status: 'soon' },
-  { name: 'Fachwirt/in Controlling', branche: 'Finanzen & Controlling', status: 'soon' },
-  { name: 'Fachwirt/in Erziehungswesen', branche: 'Sozialwesen & Bildung', status: 'soon' },
-  { name: 'Fachwirt/in Facility Management', branche: 'Gebäudemanagement', status: 'soon' },
-  { name: 'Fachwirt/in für Abfall- und Kreislaufwirtschaft', branche: 'Umwelt & Entsorgung', status: 'soon' },
-  { name: 'Fachwirt/in für Außenwirtschaft', branche: 'Internationaler Handel', status: 'soon' },
-  { name: 'Fachwirt/in für Büro- und Projektorganisation', branche: 'Büro & Management', status: 'soon' },
-  { name: 'Fachwirt/in für Dialogmarketing / Call-Center', branche: 'Dienstleistung & Service', status: 'soon' },
-  { name: 'Fachwirt/in für E-Commerce', branche: 'Online-Handel', status: 'soon' },
-  { name: 'Fachwirt/in für Einkauf', branche: 'Einkauf & SCM', status: 'soon' },
-  { name: 'Fachwirt/in für Finanzberatung', branche: 'Finanzen & Anlage', status: 'soon' },
-  { name: 'Fachwirt/in für Fitness und Gesundheit', branche: 'Sport & Gesundheit', status: 'soon' },
-  { name: 'Fachwirt/in für Güterverkehr und Logistik', branche: 'Logistik & Transport', status: 'soon' },
-  { name: 'Fachwirt/in für Hotelmanagement', branche: 'Hotellerie & Gastgewerbe', status: 'soon' },
-  { name: 'Fachwirt/in für Logistiksysteme', branche: 'Logistik & Supply Chain', status: 'soon' },
-  { name: 'Fachwirt/in für Marketing', branche: 'Marketing & Medien', status: 'live' },
-  { name: 'Fachwirt/in für Organisation und Führung', branche: 'Management & Führung', status: 'soon' },
-  { name: 'Fachwirt/in für Personaldienstleistung', branche: 'HR & Personal', status: 'soon' },
-  { name: 'Fachwirt/in für Personenverkehr und Mobilität', branche: 'Transport & Mobilität', status: 'soon' },
-  { name: 'Fachwirt/in für Prävention & Gesundheitsförderung', branche: 'Prävention & Wellness', status: 'soon' },
-  { name: 'Fachwirt/in für Schutz und Sicherheit', branche: 'Sicherheitsgewerbe', status: 'soon' },
-  { name: 'Fachwirt/in für Versicherungen und Finanzen', branche: 'Finanzen & Versicherung', status: 'soon' },
-  { name: 'Fachwirt/in für Vertrieb im Einzelhandel', branche: 'Einzelhandel', status: 'soon' },
-  { name: 'Fachwirt/in im Gastgewerbe', branche: 'Gastronomie & Hotel', status: 'soon' },
-  { name: 'Fachwirt/in im Gesundheits- und Sozialwesen', branche: 'Gesundheit & Soziales', status: 'soon' },
-  { name: 'Handelsfachwirt/in', branche: 'Handel & Vertrieb', status: 'soon' },
-  { name: 'Immobilienfachwirt/in', branche: 'Immobilienwirtschaft', status: 'soon' },
-  { name: 'Industriefachwirt/in', branche: 'Industrie & Produktion', status: 'soon' },
-  { name: 'Medienfachwirt/in (Print & Digital)', branche: 'Medien & Drucktechnik', status: 'soon' },
-  { name: 'Musikfachwirt/in', branche: 'Musik- & Eventbranche', status: 'soon' },
-  { name: 'Sportfachwirt/in', branche: 'Sportmanagement', status: 'soon' },
-  { name: 'Technischer Fachwirt/in', branche: 'Technik & Gewerbe', status: 'soon' },
-  { name: 'Tourismusfachwirt/in', branche: 'Tourismus & Reisen', status: 'soon' },
-  { name: 'Veranstaltungsfachwirt/in', branche: 'Event & Kultur', status: 'soon' },
-  { name: 'Verkehrsfachwirt/in', branche: 'Personen- & Güterverkehr', status: 'soon' },
-  { name: 'Wirtschaftsfachwirt/in', branche: 'Wirtschaft & Verwaltung', status: 'soon' },
+  { name: 'Automobilfachwirt/in', branche: 'Automobilbranche', status: 'soon', kat: 'industrie' },
+  { name: 'Bankfachwirt/in', branche: 'Bankwesen', status: 'soon', kat: 'wirtschaft' },
+  { name: 'Energiefachwirt/in', branche: 'Energiewirtschaft', status: 'soon', kat: 'industrie' },
+  { name: 'Fachwirt/in Controlling', branche: 'Finanzen & Controlling', status: 'soon', kat: 'wirtschaft' },
+  { name: 'Fachwirt/in Erziehungswesen', branche: 'Sozialwesen & Bildung', status: 'soon', kat: 'gesundheit' },
+  { name: 'Fachwirt/in Facility Management', branche: 'Gebäudemanagement', status: 'soon', kat: 'dienstleistung' },
+  { name: 'Fachwirt/in für Abfall- und Kreislaufwirtschaft', branche: 'Umwelt & Entsorgung', status: 'soon', kat: 'industrie' },
+  { name: 'Fachwirt/in für Außenwirtschaft', branche: 'Internationaler Handel', status: 'soon', kat: 'handel' },
+  { name: 'Fachwirt/in für Büro- und Projektorganisation', branche: 'Büro & Management', status: 'soon', kat: 'wirtschaft' },
+  { name: 'Fachwirt/in für Dialogmarketing / Call-Center', branche: 'Dienstleistung & Service', status: 'soon', kat: 'handel' },
+  { name: 'Fachwirt/in für E-Commerce', branche: 'Online-Handel', status: 'soon', kat: 'handel' },
+  { name: 'Fachwirt/in für Einkauf', branche: 'Einkauf & SCM', status: 'soon', kat: 'wirtschaft' },
+  { name: 'Fachwirt/in für Finanzberatung', branche: 'Finanzen & Anlage', status: 'soon', kat: 'wirtschaft' },
+  { name: 'Fachwirt/in für Fitness und Gesundheit', branche: 'Sport & Gesundheit', status: 'soon', kat: 'gesundheit' },
+  { name: 'Fachwirt/in für Güterverkehr und Logistik', branche: 'Logistik & Transport', status: 'soon', kat: 'logistik' },
+  { name: 'Fachwirt/in für Hotelmanagement', branche: 'Hotellerie & Gastgewerbe', status: 'soon', kat: 'dienstleistung' },
+  { name: 'Fachwirt/in für Logistiksysteme', branche: 'Logistik & Supply Chain', status: 'soon', kat: 'logistik' },
+  { name: 'Fachwirt/in für Marketing', branche: 'Marketing & Medien', status: 'live', kat: 'handel' },
+  { name: 'Fachwirt/in für Organisation und Führung', branche: 'Management & Führung', status: 'soon', kat: 'wirtschaft' },
+  { name: 'Fachwirt/in für Personaldienstleistung', branche: 'HR & Personal', status: 'soon', kat: 'dienstleistung' },
+  { name: 'Fachwirt/in für Personenverkehr und Mobilität', branche: 'Transport & Mobilität', status: 'soon', kat: 'logistik' },
+  { name: 'Fachwirt/in für Prävention & Gesundheitsförderung', branche: 'Prävention & Wellness', status: 'soon', kat: 'gesundheit' },
+  { name: 'Fachwirt/in für Schutz und Sicherheit', branche: 'Sicherheitsgewerbe', status: 'soon', kat: 'dienstleistung' },
+  { name: 'Fachwirt/in für Versicherungen und Finanzen', branche: 'Finanzen & Versicherung', status: 'soon', kat: 'wirtschaft' },
+  { name: 'Fachwirt/in für Vertrieb im Einzelhandel', branche: 'Einzelhandel', status: 'soon', kat: 'handel' },
+  { name: 'Fachwirt/in im Gastgewerbe', branche: 'Gastronomie & Hotel', status: 'soon', kat: 'dienstleistung' },
+  { name: 'Fachwirt/in im Gesundheits- und Sozialwesen', branche: 'Gesundheit & Soziales', status: 'soon', kat: 'gesundheit' },
+  { name: 'Handelsfachwirt/in', branche: 'Handel & Vertrieb', status: 'soon', kat: 'handel' },
+  { name: 'Immobilienfachwirt/in', branche: 'Immobilienwirtschaft', status: 'soon', kat: 'dienstleistung' },
+  { name: 'Industriefachwirt/in', branche: 'Industrie & Produktion', status: 'soon', kat: 'industrie' },
+  { name: 'Medienfachwirt/in (Print & Digital)', branche: 'Medien & Drucktechnik', status: 'soon', kat: 'handel' },
+  { name: 'Musikfachwirt/in', branche: 'Musik- & Eventbranche', status: 'soon', kat: 'dienstleistung' },
+  { name: 'Sportfachwirt/in', branche: 'Sportmanagement', status: 'soon', kat: 'gesundheit' },
+  { name: 'Technischer Fachwirt/in', branche: 'Technik & Gewerbe', status: 'soon', kat: 'industrie' },
+  { name: 'Tourismusfachwirt/in', branche: 'Tourismus & Reisen', status: 'soon', kat: 'dienstleistung' },
+  { name: 'Veranstaltungsfachwirt/in', branche: 'Event & Kultur', status: 'soon', kat: 'dienstleistung' },
+  { name: 'Verkehrsfachwirt/in', branche: 'Personen- & Güterverkehr', status: 'soon', kat: 'logistik' },
+  { name: 'Wirtschaftsfachwirt/in', branche: 'Wirtschaft & Verwaltung', status: 'soon', kat: 'wirtschaft' },
 ];
 
 const liveCount = FACHRICHTUNGEN.filter((f) => f.status === 'live').length;
@@ -63,7 +72,7 @@ const liveCount = FACHRICHTUNGEN.filter((f) => f.status === 'live').length;
 
 <BaseLayout
   title="Alle Fachrichtungen"
-  description="Titan als Learning Experience Platform für die gesamte Fachwirt-Familie — alle 38 IHK-Fachwirt-Richtungen (DQR 6 / Bachelor Professional) im Überblick."
+  description="Alle 38 IHK-Fachwirt-Richtungen (DQR 6 / Bachelor Professional) — nach Bereich farblich gruppiert und filterbar."
   canonicalPath="/fachrichtungen/"
   theme="light"
 >
@@ -74,28 +83,36 @@ const liveCount = FACHRICHTUNGEN.filter((f) => f.status === 'live').length;
       <header class="fr-head">
         <span class="fr-eyebrow"><i class="fr-dot" aria-hidden="true"></i> Fachrichtungen</span>
         <h1 class="fr-title">Alle {FACHRICHTUNGEN.length} Fachwirt-Richtungen</h1>
-        <p class="fr-intro">Alle bundeseinheitlich geregelten IHK-Fachwirte stehen auf <strong>DQR-Niveau 6</strong> — auf einer Stufe mit dem Bachelor und berechtigt zum Titel <strong>Bachelor Professional</strong>. Der Marketing-Fachwirt ist live, alle weiteren Richtungen entstehen laufend.</p>
+        <p class="fr-intro">Alle bundeseinheitlich geregelten IHK-Fachwirte stehen auf <strong>DQR-Niveau 6</strong> — auf einer Stufe mit dem Bachelor (Titel <strong>Bachelor Professional</strong>). Farbe = Bereich; filtern per Chip oder Suche.</p>
       </header>
 
       <div class="fr-search">
         <svg class="fr-search-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.2-3.2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
         <label class="fr-sr" for="fr-suche">Fachrichtung suchen</label>
-        <input id="fr-suche" class="fr-search-input" type="search" placeholder="Fachrichtung oder Branche suchen …" autocomplete="off" data-fr-search />
+        <input id="fr-suche" class="fr-search-input" type="search" placeholder="Fachrichtung, Branche oder Bereich suchen …" autocomplete="off" data-fr-search />
+      </div>
+
+      <div class="fr-filters" role="group" aria-label="Nach Bereich filtern">
+        <button type="button" class="fr-chip is-active" data-cat="alle" aria-pressed="true">Alle</button>
+        {KATEGORIEN.map((k) => (
+          <button type="button" class="fr-chip" data-cat={k.slug} aria-pressed="false"><i class="fr-cat-dot" data-cat={k.slug} aria-hidden="true"></i>{k.label}</button>
+        ))}
       </div>
 
       <div class="fr-grid" role="list" data-fr-grid>
         {FACHRICHTUNGEN.map((f) => (
-          <article class="fr-card" role="listitem" data-name={`${f.name} ${f.branche}`.toLowerCase()}>
+          <article class="fr-card" role="listitem" data-cat={f.kat} data-name={`${f.name} ${f.branche} ${KAT_KURZ[f.kat]}`.toLowerCase()}>
             <span class={`fr-status ${f.status === 'live' ? 'is-live' : 'is-soon'}`}>{f.status === 'live' ? 'Verfügbar' : 'In Vorbereitung'}</span>
             <div class="fr-card-body">
               <h2 class="fr-name">{f.name}</h2>
               <p class="fr-branche">{f.branche}</p>
             </div>
+            <span class="fr-cat"><i class="fr-cat-dot" data-cat={f.kat} aria-hidden="true"></i>{KAT_KURZ[f.kat]}</span>
           </article>
         ))}
       </div>
 
-      <p class="fr-empty" hidden data-fr-empty>Keine Fachrichtung gefunden — bitte Suchbegriff anpassen.</p>
+      <p class="fr-empty" hidden data-fr-empty>Keine Fachrichtung gefunden — bitte Suchbegriff oder Bereich anpassen.</p>
       <p class="fr-note">{liveCount} Richtung live · {FACHRICHTUNGEN.length - liveCount} in Vorbereitung. Die Reihenfolge folgt dem Ausbau-Fahrplan.</p>
     </div>
 
@@ -111,7 +128,7 @@ const liveCount = FACHRICHTUNGEN.filter((f) => f.status === 'live').length;
 
     .fr {
       --bg: #EFEDE7; --ink: #14181F; --navy: #1B2A4A; --gold: #C4A882;
-      --ink-muted: #5A6172; --line: rgba(20,24,31,0.10);
+      --ink-muted: #5A6172; --line: rgba(20,24,31,0.10); --surface: #FFFFFF;
       --display: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       --body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       background: var(--bg); color: var(--ink); font-family: var(--body); min-height: 100vh;
@@ -119,11 +136,11 @@ const liveCount = FACHRICHTUNGEN.filter((f) => f.status === 'live').length;
     .fr * { box-sizing: border-box; }
     .fr-container { max-width: 1200px; margin: 0 auto; padding: clamp(28px, 5vw, 56px) 32px clamp(64px, 8vw, 120px); }
 
-    .fr-back { display: inline-flex; align-items: center; gap: 8px; margin-bottom: clamp(36px, 5vw, 64px); font-size: 14px; font-weight: 600; color: var(--ink-muted); text-decoration: none; transition: color .2s ease; }
+    .fr-back { display: inline-flex; align-items: center; gap: 8px; margin-bottom: clamp(36px, 5vw, 64px); font-size: 14px; font-weight: 600; color: var(--ink-muted); text-decoration: none; }
     .fr-back:hover { color: var(--ink); }
     .fr-back:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 4px; }
 
-    .fr-head { max-width: 720px; }
+    .fr-head { max-width: 760px; }
     .fr-eyebrow { display: inline-flex; align-items: center; gap: 9px; font-size: 12.5px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--navy); margin-bottom: 16px; }
     .fr-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--gold); }
     .fr-title { font-family: var(--display); font-size: clamp(32px, 5vw, 54px); font-weight: 700; letter-spacing: -0.025em; line-height: 1.03; margin: 0 0 16px; text-wrap: balance; }
@@ -137,30 +154,51 @@ const liveCount = FACHRICHTUNGEN.filter((f) => f.status === 'live').length;
     .fr-search-input { width: 100%; font-family: var(--body); font-size: 15px; color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 14px 20px 14px 46px; transition: border-color .2s ease, box-shadow .2s ease; }
     .fr-search-input::placeholder { color: var(--ink-muted); }
     .fr-search-input:focus { outline: none; border-color: var(--navy); box-shadow: 0 0 0 3px rgba(27,42,74,0.12); }
-    .fr-empty { margin: clamp(20px, 3vw, 32px) 0 0; font-size: 15px; color: var(--ink-muted); }
-    .fr-empty[hidden] { display: none; }
 
+    /* Bereichs-Filter (Chips) */
+    .fr-filters { display: flex; flex-wrap: wrap; gap: 10px; margin: clamp(18px, 2.5vw, 26px) 0 0; }
+    .fr-chip { display: inline-flex; align-items: center; gap: 8px; font-family: var(--body); font-size: 13.5px; font-weight: 600; color: var(--ink-muted); background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 9px 15px; cursor: pointer; transition: border-color .2s ease, color .2s ease, background .2s ease; }
+    .fr-chip:hover { border-color: rgba(27,42,74,0.4); color: var(--ink); }
+    .fr-chip.is-active { background: var(--navy); color: #F5F6F8; border-color: var(--navy); }
+    .fr-chip:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+    .fr-cat-dot { width: 9px; height: 9px; border-radius: 50%; flex: none; }
+    .fr-cat-dot[data-cat="wirtschaft"] { background: #5B86D6; }
+    .fr-cat-dot[data-cat="industrie"] { background: #3FA9BC; }
+    .fr-cat-dot[data-cat="handel"] { background: #8E7BE0; }
+    .fr-cat-dot[data-cat="logistik"] { background: #5D97C4; }
+    .fr-cat-dot[data-cat="gesundheit"] { background: #4FB894; }
+    .fr-cat-dot[data-cat="dienstleistung"] { background: #C77FB6; }
+
+    /* Grid + Karten (Farbe = Bereich) */
     .fr-grid { margin-top: clamp(22px, 3vw, 34px); display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
     .fr-card[hidden] { display: none; }
     .fr-card {
-      height: 186px; display: flex; flex-direction: column; justify-content: space-between; gap: 16px;
-      background: radial-gradient(140% 130% at 20% 8%, #33569E 0%, #1B2A4A 58%);
-      border: 1px solid rgba(255,255,255,0.10); border-radius: 22px; padding: 22px 22px 24px; position: relative; overflow: hidden;
+      height: 200px; display: flex; flex-direction: column; gap: 12px;
+      border: 1px solid rgba(255,255,255,0.10); border-radius: 22px; padding: 22px 22px 22px; position: relative; overflow: hidden;
       box-shadow: 0 18px 40px -26px rgba(12,20,36,0.7);
       transition: transform .35s cubic-bezier(0.16,1,0.3,1), box-shadow .35s ease, border-color .35s ease;
     }
-    .fr-card::after { content: ''; position: absolute; width: 170px; height: 170px; right: -60px; bottom: -70px; background: radial-gradient(circle, rgba(196,168,130,0.28), rgba(196,168,130,0) 70%); pointer-events: none; }
+    .fr-card[data-cat="wirtschaft"]    { background: radial-gradient(140% 130% at 20% 8%, #2E4C8C 0%, #13213E 62%); }
+    .fr-card[data-cat="industrie"]     { background: radial-gradient(140% 130% at 20% 8%, #256E79 0%, #0F2930 62%); }
+    .fr-card[data-cat="handel"]        { background: radial-gradient(140% 130% at 20% 8%, #4A3F86 0%, #191536 62%); }
+    .fr-card[data-cat="logistik"]      { background: radial-gradient(140% 130% at 20% 8%, #356081 0%, #11212E 62%); }
+    .fr-card[data-cat="gesundheit"]    { background: radial-gradient(140% 130% at 20% 8%, #2C6E5A 0%, #0E2A22 62%); }
+    .fr-card[data-cat="dienstleistung"]{ background: radial-gradient(140% 130% at 20% 8%, #6E3B63 0%, #241326 62%); }
+    .fr-card::after { content: ''; position: absolute; width: 170px; height: 170px; right: -60px; bottom: -70px; background: radial-gradient(circle, rgba(196,168,130,0.26), rgba(196,168,130,0) 70%); pointer-events: none; }
     .fr-card:hover { transform: translateY(-5px); border-color: rgba(255,255,255,0.24); box-shadow: 0 34px 64px -30px rgba(12,20,36,0.85); }
     .fr-status { position: relative; z-index: 1; align-self: flex-start; display: inline-block; font-size: 10.5px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; padding: 5px 11px; border-radius: 999px; }
     .fr-status.is-live { background: rgba(120,180,140,0.22); color: #A7D8B8; }
-    .fr-status.is-soon { background: rgba(245,246,248,0.10); color: rgba(245,246,248,0.72); }
-    .fr-card-body { position: relative; z-index: 1; }
+    .fr-status.is-soon { background: rgba(245,246,248,0.12); color: rgba(245,246,248,0.78); }
+    .fr-card-body { position: relative; z-index: 1; margin-top: auto; }
     .fr-name { font-family: var(--display); font-size: 17px; font-weight: 700; letter-spacing: -0.01em; line-height: 1.18; color: #F5F6F8; margin: 0 0 6px; }
-    .fr-branche { font-size: 12.5px; color: rgba(245,246,248,0.62); margin: 0; }
+    .fr-branche { font-size: 12.5px; color: rgba(245,246,248,0.6); margin: 0; }
+    .fr-cat { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: 7px; font-size: 11px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: rgba(245,246,248,0.72); }
 
-    .fr-note { margin: clamp(32px, 4vw, 48px) 0 0; font-size: 14px; color: var(--ink-muted); }
+    .fr-empty[hidden] { display: none; }
+    .fr-empty { margin: clamp(20px, 3vw, 32px) 0 0; font-size: 15px; color: var(--ink-muted); }
+    .fr-note { margin: clamp(28px, 4vw, 44px) 0 0; font-size: 14px; color: var(--ink-muted); }
 
-    /* orizon-artiger Cursor (konsistent zur Landingpage) */
+    /* orizon-artiger Cursor (konsistent) */
     .fr-cursor {
       position: fixed; top: 0; left: 0; width: 12px; height: 12px; border-radius: 50%;
       background: #fff; mix-blend-mode: difference; pointer-events: none; z-index: 60;
@@ -184,36 +222,44 @@ const liveCount = FACHRICHTUNGEN.filter((f) => f.status === 'live').length;
       if (!root || root.dataset.wired === 'true') return;
       root.dataset.wired = 'true';
 
-      /* Live-Suche über Name + Branche */
+      /* Filter: Bereich (Chips) + Live-Textsuche kombiniert */
       const search = document.querySelector<HTMLInputElement>('[data-fr-search]');
       const grid = document.querySelector<HTMLElement>('[data-fr-grid]');
       const empty = document.querySelector<HTMLElement>('[data-fr-empty]');
-      if (search && grid && empty) {
+      const chips = Array.from(document.querySelectorAll<HTMLButtonElement>('.fr-chip'));
+      if (grid && empty) {
         const cards = Array.from(grid.querySelectorAll<HTMLElement>('.fr-card'));
-        search.addEventListener('input', () => {
-          const q = search.value.trim().toLowerCase();
+        let activeCat = 'alle';
+        const apply = (): void => {
+          const q = (search?.value || '').trim().toLowerCase();
           let shown = 0;
           cards.forEach((c) => {
-            const match = !q || (c.dataset.name || '').includes(q);
-            c.hidden = !match;
-            if (match) shown += 1;
+            const okCat = activeCat === 'alle' || c.dataset.cat === activeCat;
+            const okText = !q || (c.dataset.name || '').includes(q);
+            const show = okCat && okText;
+            c.hidden = !show;
+            if (show) shown += 1;
           });
           empty.hidden = shown !== 0;
-        });
+        };
+        search?.addEventListener('input', apply);
+        chips.forEach((chip) => chip.addEventListener('click', () => {
+          chips.forEach((c) => { c.classList.remove('is-active'); c.setAttribute('aria-pressed', 'false'); });
+          chip.classList.add('is-active'); chip.setAttribute('aria-pressed', 'true');
+          activeCat = chip.dataset.cat || 'alle';
+          apply();
+        }));
       }
 
+      /* orizon-artiger Cursor */
       const cursor = document.querySelector<HTMLElement>('.fr-cursor');
       const fine = window.matchMedia('(pointer:fine)').matches;
       const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       if (!cursor || !fine || reduce) return;
-
       const xTo = gsap.quickTo(cursor, 'x', { duration: 0.4, ease: 'power3' });
       const yTo = gsap.quickTo(cursor, 'y', { duration: 0.4, ease: 'power3' });
       gsap.set(cursor, { xPercent: -50, yPercent: -50 });
-      window.addEventListener('mousemove', (e) => {
-        cursor.classList.add('is-active');
-        xTo(e.clientX); yTo(e.clientY);
-      });
+      window.addEventListener('mousemove', (e) => { cursor.classList.add('is-active'); xTo(e.clientX); yTo(e.clientY); });
       window.addEventListener('mouseout', (e) => { if (!e.relatedTarget) cursor.classList.remove('is-active'); });
       document.addEventListener('mouseover', (e) => {
         const t = (e.target as HTMLElement).closest('a, button');

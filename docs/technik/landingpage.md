@@ -97,8 +97,11 @@ Vom Betreiber gelieferte Tabelle der **38 bundeseinheitlich geregelten IHK-Fachw
 `src/pages/fachrichtungen.astro` (`FACHRICHTUNGEN`: `name`, `branche`, `status`).
 **Status:** aktuell nur **Fachwirt/in für Marketing = live**, alle übrigen 37 = „in
 Vorbereitung" (ehrlich, kein Vortäuschen). Karussell auf `/willkommen` zeigt eine
-kuratierte Auswahl von 12; `/fachrichtungen` listet alle 38 mit **Live-Suche**
-(Name/Branche) und **einheitlicher Card-Größe**.
+kuratierte Auswahl von 12; `/fachrichtungen` listet alle 38, gruppiert in **6 Bereiche**
+(Farbe = Bereich): Wirtschaft & Management (Blau) · Industrie & Technik (Petrol) ·
+Handel & Marketing (Indigo) · Logistik & Verkehr (Stahlblau) · Gesundheit & Soziales
+(Smaragd) · Dienstleistung & Kultur (Plum). **Filter per Bereichs-Chips + Live-Suche**
+(Name/Branche/Bereich), einheitliche Card-Größe, Bereichs-Label je Karte.
 
 ## CTAs (v1)
 - **„Demo anfragen"** (Hero, Burger, B2B-Card) = **`mailto:`** an `KONTAKT_EMAIL`
