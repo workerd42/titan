@@ -12,6 +12,8 @@ Marketing-spezifisch. Wird **im Code, Section für Section, nach Absprache** geb
 | `/willkommen` | `src/pages/willkommen.astro` | Haupt-Landingpage (Hero + Sections) |
 | `/fachrichtungen` | `src/pages/fachrichtungen.astro` | Übersicht ALLER 38 Fachwirt-Richtungen |
 | `/so-funktionierts` | `src/pages/so-funktionierts.astro` | Erklärseite (Ablauf/Didaktik, 4 Phasen im Detail) |
+| `/impressum` | `src/pages/impressum.astro` | Impressum — **Gerüst mit Platzhaltern** (keine erfundenen Rechtsdaten) |
+| `/datenschutz` | `src/pages/datenschutz.astro` | Datenschutz — **Gerüst mit Platzhaltern** |
 
 - Alle `prerender = false`, **öffentlich** via Allowlist in `src/middleware.ts`
   (`OEFFENTLICHE_PFADE` enthält `/willkommen`, `/fachrichtungen`, `/so-funktionierts`).
@@ -65,6 +67,10 @@ externer CDN (CSP `font-src 'self'`). `@font-face` je Seite scoped dekliniert.
    Text), 4 Icon-Kachel-Punkte — EU/DE-Hosting & DSGVO · verantwortungsvolle/
    niedrigrisiko KI · didaktisch fundiert (erfahrene Fachdozenten, ohne Namen) ·
    Barrierefreiheit (WCAG 2.2 AA).
+8. **CTA-Band:** zentriertes Navy-Gold-Panel auf hellem Grund — „Demo anfragen"
+   (mailto) + „Zum Angebot".
+9. **Footer:** dunkles Navy (`#0E1626`) — Wortmarke + Tagline, Nav (Plattform /
+   Rechtliches / Zugang), reservierter „Referenzen & Social — folgt", EU/DE-Hinweis, ©.
 
 **Einheitlicher Abstands-Rhythmus:** jeder Section-Übergang misst
 `clamp(84px, 10vw, 148px)`; die Trenner (`.lp-divider`) sitzen mittig mit je der
@@ -98,10 +104,13 @@ kuratierte Auswahl von 12; `/fachrichtungen` listet alle 38 mit **Live-Suche**
   Hero-Ghost „So funktioniert's" bleibt Anker `#wie` (Section 1).
 
 ## Offen / Roadmap
-- Weitere Sections: **CTA-Band** · **Footer** (Impressum · Datenschutz · Login) · optional FAQ.
-- `impressum.astro` / `datenschutz.astro` noch anzulegen (Allowlist bereits gesetzt).
-- Keine erfundenen Referenzen/Testimonials; Social-Media-Bereich später.
-- Erledigt: Hero · Section 1–5 · /fachrichtungen (38, Suche) · /so-funktionierts · mailto-CTA.
+- **Impressum/Datenschutz** sind **Gerüste** — Betreiber muss die `[…]`-Platzhalter
+  rechtsverbindlich ausfüllen (keine erfundenen Rechtsdaten im Repo).
+- **Kontakt-Mail** `service@norive.de` ist vorläufig; echtes Kontaktformular später via Brevo.
+- Keine erfundenen Referenzen/Testimonials; Social-Media-Bereich später (Footer-Platzhalter steht).
+- Optional: FAQ, Go-Live-Indexierung (BaseLayout `noindex` derzeit global).
+- **Erledigt:** Hero · Section 1–5 · CTA-Band · Footer · /fachrichtungen (38, Suche) ·
+  /so-funktionierts · /impressum · /datenschutz · mailto-CTA · einheitliche Abstände.
 
 ## Doku-Parität
 Diese Datei ist die Quelle für den Notion-Abgleich (docs Repo ↔ Notion). Bei

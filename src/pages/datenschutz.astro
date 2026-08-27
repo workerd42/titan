@@ -1,0 +1,71 @@
+---
+/**
+ * /datenschutz — öffentliche Datenschutzerklärung (GERÜST mit Platzhaltern).
+ * WICHTIG: KEINE erfundenen/rechtsverbindlichen Aussagen. Vom Betreiber
+ * zu vervollständigen und rechtlich prüfen zu lassen. Öffentlich via Allowlist.
+ */
+export const prerender = false;
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+const base = import.meta.env.BASE_URL;
+---
+
+<BaseLayout title="Datenschutz" description="Datenschutzerklärung von Titan." canonicalPath="/datenschutz/" theme="light">
+  <main id="hauptinhalt" class="lg">
+    <div class="lg-container">
+      <a class="lg-back" href={`${base}willkommen/`}><span aria-hidden="true">←</span> Zurück zu Titan</a>
+      <h1 class="lg-title">Datenschutzerklärung</h1>
+
+      <p class="lg-hint">📝 <strong>Gerüst.</strong> Dieser Text ist eine Vorlage und ersetzt keine Rechtsberatung. Die mit <code>[…]</code> markierten Stellen sind vom Betreiber zu ergänzen und juristisch zu prüfen.</p>
+
+      <h2 class="lg-h2">1. Verantwortlicher</h2>
+      <p class="lg-p">Verantwortlich für die Datenverarbeitung ist [Betreiber, Anschrift]. Kontakt: <a class="lg-a" href="mailto:service@norive.de">service@norive.de</a>. [Datenschutzbeauftragte(r), falls benannt.]</p>
+
+      <h2 class="lg-h2">2. Hosting &amp; Serverstandort</h2>
+      <p class="lg-p">Titan wird in der EU / Deutschland betrieben. Hosting-Anbieter und Serverstandort: [Anbieter / Standort]. Es werden [Auftragsverarbeitungsverträge] geschlossen. Beim Aufruf werden serverseitig technisch notwendige Zugriffsdaten (z. B. IP-Adresse, Zeitpunkt) verarbeitet [Speicherdauer].</p>
+
+      <h2 class="lg-h2">3. Konto &amp; Anmeldung</h2>
+      <p class="lg-p">Für den geschützten Bereich ist eine Anmeldung erforderlich. Die Authentifizierung erfolgt über Better Auth; hierfür werden technisch notwendige Session-Cookies gesetzt. Verarbeitet werden [E-Mail, Name, Rolle] zur Bereitstellung des Kontos (Art. 6 Abs. 1 lit. b DSGVO).</p>
+
+      <h2 class="lg-h2">4. Lokale Speicherung (Local-First)</h2>
+      <p class="lg-p">Lernfortschritt wird zunächst lokal im Browser (localStorage) gespeichert und mit dem Konto synchronisiert. Diese Daten dienen ausschließlich der Bereitstellung der Lernfunktionen. [Details zu Umfang und Löschung.]</p>
+
+      <h2 class="lg-h2">5. E-Mail-Kontakt</h2>
+      <p class="lg-p">Bei Kontaktaufnahme per E-Mail (z. B. Demo-Anfrage) werden die übermittelten Angaben zur Bearbeitung verarbeitet. [Versanddienstleister, z. B. Brevo, sowie Rechtsgrundlage ergänzen.]</p>
+
+      <h2 class="lg-h2">6. Ihre Rechte</h2>
+      <p class="lg-p">Sie haben das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit und Widerspruch sowie ein Beschwerderecht bei einer Aufsichtsbehörde. Anfragen an: <a class="lg-a" href="mailto:service@norive.de">service@norive.de</a>.</p>
+
+      <h2 class="lg-h2">7. Änderungen</h2>
+      <p class="lg-p">Diese Erklärung wird bei Bedarf angepasst. Stand: [Datum].</p>
+
+      <p class="lg-foot"><a class="lg-a" href={`${base}impressum/`}>Zum Impressum →</a></p>
+    </div>
+  </main>
+
+  <style>
+    @font-face { font-family: 'Space Grotesk'; font-style: normal; font-weight: 700; font-display: swap; src: url('/fonts/SpaceGrotesk-700.woff2') format('woff2'); }
+    @font-face { font-family: 'Inter'; font-style: normal; font-weight: 400; font-display: swap; src: url('/fonts/Inter-400.woff2') format('woff2'); }
+    @font-face { font-family: 'Inter'; font-style: normal; font-weight: 600; font-display: swap; src: url('/fonts/Inter-600.woff2') format('woff2'); }
+
+    .lg {
+      --bg: #EFEDE7; --ink: #14181F; --navy: #1B2A4A; --gold: #C4A882; --ink-muted: #5A6172; --line: rgba(20,24,31,0.10);
+      --display: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg); color: var(--ink); font-family: var(--body); min-height: 100vh;
+    }
+    .lg * { box-sizing: border-box; }
+    .lg-container { max-width: 760px; margin: 0 auto; padding: clamp(28px, 5vw, 56px) 32px clamp(64px, 8vw, 120px); }
+    .lg-back { display: inline-flex; align-items: center; gap: 8px; margin-bottom: clamp(32px, 5vw, 56px); font-size: 14px; font-weight: 600; color: var(--ink-muted); text-decoration: none; }
+    .lg-back:hover { color: var(--ink); }
+    .lg-back:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 4px; }
+    .lg-title { font-family: var(--display); font-size: clamp(32px, 5vw, 48px); font-weight: 700; letter-spacing: -0.025em; margin: 0 0 24px; }
+    .lg-hint { background: rgba(196,168,130,0.14); border: 1px solid rgba(196,168,130,0.4); border-radius: 12px; padding: 14px 18px; font-size: 14.5px; line-height: 1.55; color: var(--ink); margin: 0 0 36px; }
+    .lg-hint code { font-family: ui-monospace, monospace; font-size: 13px; }
+    .lg-h2 { font-family: var(--display); font-size: clamp(18px, 2.2vw, 22px); font-weight: 700; letter-spacing: -0.01em; margin: 32px 0 10px; }
+    .lg-p { font-size: 16px; line-height: 1.7; color: var(--ink-muted); margin: 0; }
+    .lg-a { color: var(--navy); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+    .lg-a:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 3px; }
+    .lg-foot { margin: 44px 0 0; }
+  </style>
+</BaseLayout>
