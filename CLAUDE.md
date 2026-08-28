@@ -71,7 +71,7 @@ hinterlegt); die Spalte „Leit-Dokumente" nennt den jeweiligen Schwerpunkt.
 | **`@titan-qa-a11y`** | WCAG 2.2 AA, Accessibility, Builds/Playwright/axe | `technik/blueprint.md`, `technik/design-system.md`, `technik/architektur.md`, `technik/spickzettel.md`, `technik/deployment.md`, `lernkonzept/lernbereich-redesign.md`, `technik/landingpage.md` |
 | **`@titan-controller`** | B2B-Pricing, Infra-/LLM-Kosten, Unit Economics, KPIs | `strategie/finanzplan.md`, `strategie/businessplan.md`, `strategie/marketing-konzept.md`, `ki/phase3-ki-plan.md`, `ki/ki-governance.md`, `technik/deployment.md` |
 | **`@titan-pm`** | Priorisierung, Task-Breakdown, Roadmap, Sprint-Planning | `planung/lastenheft.md`, `planung/roadmap.md`, `planung/prozess.md`, `strategie/produktvision.md`, `technik/abhaengigkeiten.md`, `lernkonzept/lernbereich-redesign.md` |
-| **`@titan-advisor`** | Strategisches Sparring, Business-Cases, Feature-ROI | `strategie/businessplan.md`, `strategie/produktvision.md`, `strategie/marketing-konzept.md`, `strategie/finanzplan.md`, `planung/lastenheft.md`, `planung/roadmap.md` |
+| **`@titan-advisor`** | Strategie, Sparring, B2B-Pricing & Business-Cases (Feature-ROI) | `strategie/businessplan.md`, `strategie/produktvision.md`, `strategie/marketing-konzept.md`, `strategie/finanzplan.md`, `planung/lastenheft.md`, `planung/roadmap.md` |
 
 > Alle `docs/` liegen in thematischen Ordnern: `ki/`, `lernkonzept/`, `planung/`,
 > `redaktion/`, `strategie/`, `technik/`. Bei Doku-Änderungen die Repo↔Notion-Parität
