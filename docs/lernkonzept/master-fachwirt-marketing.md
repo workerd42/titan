@@ -7,8 +7,8 @@
 > **Status (2026-07-30):** Basis steht. **Herr Laudien** schreibt darauf zum **Jahresende** den
 > vollständigen Master-Content für diesen Fachwirt neu. Bis dahin ist dies das Ziel-Gerüst.
 >
-> Quellen: `docs/quellen/` (5 Lehrbücher + 13 IHK-Prüfungen), `docs/pruefungs-blaupause.md`,
-> `docs/content-richtlinien.md`, `docs/content-schema` (Notion) und die bestehenden 46 Themen.
+> Quellen: `docs/quellen/` (5 Lehrbücher + 13 IHK-Prüfungen), `docs/lernkonzept/pruefungs-blaupause.md`,
+> `docs/lernkonzept/content-richtlinien.md`, `docs/content-schema` (Notion) und die bestehenden 46 Themen.
 > Technisch maßgeblich: das Zod-Schema in `src/content.config.ts` (Markdown **und** Directus).
 
 ---
@@ -68,7 +68,8 @@ Legende: **⬛ Pflicht** · ◻ optional (aber empfohlen) · ▽ nur wo fachlich
 - **⬛ fallbeispiel** `{situation, aufgabe, musterloesung}` — realistischer Fall; **`{{firma}}`** statt
   Fantasienamen (Star-Company schlägt durch)
 - **▽ werkzeug** — eines von: `swot · smart · deckungsbeitrag · marktanteil · preisberechnung ·
-  vier-stufen · scoring · portfolio · breakeven`; wo ein interaktives Werkzeug fachlich passt
+  vier-stufen · scoring · portfolio · breakeven · statistik` (**10**, maßgeblich das Enum in
+  `src/content.config.ts`); wo ein interaktives Werkzeug fachlich passt
 
 ### ④ Prüfen
 - **⬛ pruefungsfrage** `{frage, loesungsweg[]}` — prüfungsnahe Frage + Lösungsweg

@@ -100,7 +100,7 @@ mit Varianz zum echten Üben).
 | Modus | Zweck | Ergebnis | Stand |
 |---|---|---|---|
 | **Entdecken** | Lernen in 4 Phasen: **Verstehen · Merken · Anwenden · Prüfen** | Verständnis + Merksatz + Fallbeispiel + Prüfungsfrage | ✅ live |
-| **Interaktive Module** | Werkzeug an der Star-Company anwenden (SWOT, DB-Rechner, Scoring …) | **Artefakt** fürs Deck | ✅ 7 Werkzeuge, 13 Planeten |
+| **Interaktive Module** | Werkzeug an der Star-Company anwenden (SWOT, DB-Rechner, Scoring …) | **Artefakt** fürs Deck | ✅ 10 Werkzeuge, 17 Planeten |
 | **Übungsbereich** | Üben mit **Varianz** — Fallaufgaben/MC, immer neue Stellung | Übungs-Ergebnis, Selbstcheck | ⬜ (bald; KI-Stufe-B veredelt) |
 | **IHK-Test-Format** | Prüfung im **Original-Format**, getaktet | Probelauf-Auswertung | ⬜ (bald) |
 | **Lernzettel** | Karteikarten der Schlüsselbegriffe (Flip) | Wiederholung | ✅ wo `begriffe` vorhanden |

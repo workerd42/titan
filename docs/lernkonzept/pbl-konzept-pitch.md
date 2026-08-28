@@ -188,4 +188,14 @@ hängen zu lassen:
 
 ---
 
+## Fundierung & Bezug
+
+Die didaktische/wissenschaftliche Fundierung dieses PBL-Ansatzes sowie Prüfungsfragen-
+Entwicklung und ein Autoren-Netzwerk für die Content-Skalierung kommen über den
+strategischen Beirat (**Dr. Carsten Wittling / Prorsus Digital** — Agentur für interaktive
+Lernmedien). Die KI-Umsetzung (Sokratischer Tutor / Fachgespräch) ist Phase 3 — Kosten/
+Risiken/Reihenfolge in [phase3-ki-plan.md](../ki/phase3-ki-plan.md).
+
+---
+
 *Dieses Dokument ist die pädagogische SSOT. Änderungen hier zuerst, dann Abgleich mit Notion.*
