@@ -90,10 +90,14 @@ Sobald Referenzen stehen und die Marke Kontur hat, parallel Endkunden gewinnen.
 - **Performance-Ads:** **Google Search** auf Prüfungs-/Fachwirt-Keywords
   (hohe Kaufabsicht), **Meta & Bing** für Reichweite/Retargeting. Start klein
   (~300–500 €/Monat), datengetrieben skalieren.
-- **Lead-Magnets:** kostenloser „Prüfungs-Countdown", Beispiel-Artefakt,
-  Mini-Lernzettel → E-Mail-Liste (transaktional/EU-konform, Brevo).
+- **Kein B2C-Freebie:** bewusst **keine kostenlosen Lock-Angebote** (kein Gratis-
+  „Prüfungs-Countdown", keine Free-Tier, keine Freemium-Stufe). B2C wird direkt als
+  **bezahltes** Produkt positioniert; Awareness läuft über SEO/Content/Social, die
+  Conversion führt ohne Umweg zum Abo (ggf. kurze Produkt-Demo statt Giveaway).
+  E-Mail-Kontakt nur transaktional (EU-konform, Brevo). *(Kostenloser Zugang existiert
+  ausschließlich im B2B-Kanal: Kursteilnehmer bis zur Prüfung.)*
 
-**KPIs Phase 2:** Website-Traffic, Lead→Registrierung-Conversion, **CAC**,
+**KPIs Phase 2:** Website-Traffic, **Besuch→Abo-Conversion**, **CAC**,
 Abo-Abschlüsse, **Retention/Streak**, Churn.
 
 ---

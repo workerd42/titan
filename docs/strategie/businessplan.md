@@ -308,6 +308,19 @@ skalierender Umsatzhebel** ohne zusätzlichen Vertriebsaufwand pro Kurs.
 💡 *Empfehlung:* B2B priorisieren (hoher, planbarer Umsatz je Kurs; vorhandene
 Distribution zum Prüfling).
 
+**Zugang bis zur Prüfung (B2B, inklusive).** Bildungsträger verlangen eine bestimmte
+**Präsenzzeit**, doch die **IHK-Prüfung liegt oft erst deutlich später** — zwischen
+Lehrgangsende und Prüfungstermin klafft eine Lücke. Genau die überbrückt Titan:
+**Alle B2B-Kursteilnehmer nutzen Titan bis zur Prüfung kostenlos.** Der Träger
+lizenziert den laufenden Kurs; die Weiter- und Prüfungsvorbereitung bis zum
+Prüfungstermin ist für die Lernenden **inklusive**, auch nach Ende der Präsenzzeit.
+Das erhöht Bestehensquote und Bindung und macht Titan zum selbstverständlichen
+Begleiter **bis zum Abschluss** (starkes Verkaufsargument gegenüber dem Träger).
+
+**B2C ohne Freemium.** Es gibt **kein kostenloses B2C-Angebot und keine Gratis-Stufe**
+— der Selbstzahler-Zugang ist durchgehend kostenpflichtig. Kostenlosen Zugang gibt es
+**ausschließlich im B2B-Kanal** (Kursteilnehmer bis zur Prüfung, s. o.).
+
 ### Kosten — Wofür gibst du Geld aus?
 
 **Laufende Betriebskosten (EU/self-hosted):**
