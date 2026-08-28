@@ -12,7 +12,7 @@ graph TD
   KOMPASS["⭐ Design-Kompass<br/>begründete Entscheidung"]
 
   subgraph FUND["Fundament — LIVE ✅"]
-    ENGINE["Modul-Engine + 7 Werkzeuge → Artefakte"]
+    ENGINE["Modul-Engine + 10 Werkzeuge → Artefakte"]
     DECK0["Deck-Aggregator (Vorstufe)"]
     AUTH["Auth + DB + Progress-Sync"]
     COSMOS["Dunkler Kosmos (Seiten 1–3)"]
