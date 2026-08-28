@@ -2,6 +2,8 @@
 
 > Quelle: [Notion — Produktvision & Konzept](https://app.notion.com/p/39895f8eb37681a98d36f6779d88af35) (Stand: 2026-07-09)
 
+> **Aktueller Stand (2026-07-29):** Die Vision unten gilt weiter — real umgesetzt: **46 Themen** live (4 Handlungsfelder) hinter Login-Gate; Redaktion über **Directus** (Payload verworfen), Multi-Fachwirt über `fachwirt`-Feld. **Lernbereich in getrennten, fokussierten Modi** (Entdecken · Lernzettel · Übung/MC · IHK-Test); **interaktive Werkzeuge** als Mini-Kurs (Konzept + Beispiel → selbst anwenden). **Star-Company** schlägt in alle Fallaufgaben durch. **Navigation:** Karussell (Orbit-Drag entfernt). **KI** (formatives Feedback **ohne Note**) = **Phase 3**. **Team:** strategischer Beirat **Dr. Carsten Wittling** (Prorsus Digital — didaktische Fundierung & Content-Skalierung). Maßgeblich für den Ist-Stand: [architektur.md](../technik/architektur.md), [roadmap.md](../planung/roadmap.md).
+
 > **Aktualisierung (2026-07-17):** Dieses Dokument beschreibt die **Vision**. Der real umgesetzte Stack weicht bewusst ab: **Better Auth + Drizzle + self-hosted Postgres** (Fundament **live**, Phase 2), **Directus** (statt Payload CMS) als geplantes Redaktionssystem, n8n self-hosted **EU/DE**. Das echte Login-Gate ist live (invite-only). Die KI gibt **formatives Feedback (keine Note)** — siehe [ki-governance.md](../ki/ki-governance.md). Maßgeblich für den Ist-Stand: [architektur.md](../technik/architektur.md), [roadmap.md](../planung/roadmap.md), [deployment.md](../technik/deployment.md).
 
 > **"Vom trägen Auswendiglernen zum strategischen Handeln."**
@@ -115,7 +117,7 @@ Die Trennung von **Engine (Software)** und **Content-Packs (IHK-Daten)** garanti
                              ▼
 ┌───────────────────────────────────────────────────────────────┐
 │               HEADLESS BACKEND & DATENBANK                     │
-│ - Payload CMS v3 (Node.js/TypeScript) + PostgreSQL DB          │
+│ - Directus (Redaktionssystem) + PostgreSQL + Better Auth       │
 │ - Verwaltet Universen, Galaxien, Planeten, Schemas, Artefakte  │
 └───────────────────────────────────────────────────────────────┘
 ```
