@@ -43,7 +43,7 @@ Reines Faktenwissen (nennen/definieren) ist die Minderheit. → Konsequenzen fü
 | Modus | Deckt ab | Baubar |
 |-------|----------|--------|
 | **Lernzettel** | definieren/nennen (Fakten-Retrieval) | ✅ (Schritt 1) |
-| **Werkzeuge (Mini-Kurs)** | ermitteln/berechnen + Methodenverständnis | ✅ (Schritt 2, 9 Werkzeuge) |
+| **Werkzeuge (Mini-Kurs)** | ermitteln/berechnen + Methodenverständnis | ✅ (Schritt 2, 10 Werkzeuge) |
 | **Übungsbereich MC** | nennen/definieren/beschreiben als **Recall-Training** — die *Basis*, nicht die Prüfung selbst | 🔧 Schritt 4 (Content + Modell) |
 | **IHK-Test-Format** | die **echte Struktur**: Situation → Teilaufgaben (Operator + Anzahl + Punkte) → Musterlösung-Selbstvergleich | 🔧 Schritt 5 |
 | **KI-Feedback** | die **eigentliche Prüfungskompetenz** (erläutern/begründen/empfehlen als Freitext) | ⬜ Schritt 6 (Phase 3) |

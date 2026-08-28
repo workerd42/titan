@@ -55,3 +55,24 @@ Consult these guides before working on related tasks:
 - [Adding or managing content](https://docs.astro.build/en/guides/content-collections/)
 - [Adding styles or using Tailwind](https://docs.astro.build/en/guides/styling/)
 - [Supporting multiple languages](https://docs.astro.build/en/guides/internationalization/)
+
+## Spezialisierte Subagenten & Routing
+
+Bei spezifischen Aufgaben gezielt die Subagenten aus `.claude/agents/` einsetzen.
+Jeder Agent kennt seine relevanten `docs/`-Dokumente (in seinem System-Prompt
+hinterlegt); die Spalte „Leit-Dokumente" nennt den jeweiligen Schwerpunkt.
+
+| Agent | Zuständig für | Leit-Dokumente (`docs/`) |
+|-------|---------------|--------------------------|
+| **`@titan-engineer`** | Code, Features, UI, Refactoring (Astro/Vanilla-CSS/Better Auth/Drizzle) | `technik/architektur.md`, `technik/design-system.md`, `technik/rollen-rechte.md`, `technik/admin-panel.md`, `technik/deployment.md`, `technik/landingpage.md`, `technik/chart-integration.md`, `technik/spickzettel.md`, `technik/blueprint.md` (Prinzipien), `redaktion/directus-setup.md`, `lernkonzept/lernbereich-redesign.md`, `lernkonzept/interaktive-module.md` |
+| **`@titan-content-autor`** | IHK-Lerninhalte, Didaktik, Themen-Frontmatter | `lernkonzept/master-fachwirt-marketing.md`, `lernkonzept/content-richtlinien.md`, `lernkonzept/pruefungs-blaupause.md`, `lernkonzept/gesamtkonzept-lernprozess.md`, `lernkonzept/interaktive-module.md`, `lernkonzept/pbl-konzept-pitch.md`, `redaktion/directus-fachautor-anleitung.md` (+ `src/content.config.ts`, `src/content/themen/`) |
+| **`@titan-ai-architect`** | KI-Schicht: n8n-Workflows, Prompts, Deklinations-JSON | `ki/ki-governance.md`, `ki/phase3-ki-plan.md`, `lernkonzept/gesamtkonzept-lernprozess.md`, `lernkonzept/interaktive-module.md`, `technik/architektur.md`, `technik/abhaengigkeiten.md`, `planung/lastenheft.md` |
+| **`@titan-compliance`** | Security, DSGVO, EU AI Act, Better-Auth-/CSRF-/XSS-Audit | `ki/ki-governance.md`, `ki/phase3-ki-plan.md`, `technik/rollen-rechte.md`, `technik/admin-panel.md`, `technik/architektur.md`, `technik/deployment.md`, `technik/blueprint.md` |
+| **`@titan-qa-a11y`** | WCAG 2.2 AA, Accessibility, Builds/Playwright/axe | `technik/blueprint.md`, `technik/design-system.md`, `technik/architektur.md`, `technik/spickzettel.md`, `technik/deployment.md`, `lernkonzept/lernbereich-redesign.md`, `technik/landingpage.md` |
+| **`@titan-controller`** | B2B-Pricing, Infra-/LLM-Kosten, Unit Economics, KPIs | `strategie/finanzplan.md`, `strategie/businessplan.md`, `strategie/marketing-konzept.md`, `ki/phase3-ki-plan.md`, `ki/ki-governance.md`, `technik/deployment.md` |
+| **`@titan-pm`** | Priorisierung, Task-Breakdown, Roadmap, Sprint-Planning | `planung/lastenheft.md`, `planung/roadmap.md`, `planung/prozess.md`, `strategie/produktvision.md`, `technik/abhaengigkeiten.md`, `lernkonzept/lernbereich-redesign.md` |
+| **`@titan-advisor`** | Strategisches Sparring, Business-Cases, Feature-ROI | `strategie/businessplan.md`, `strategie/produktvision.md`, `strategie/marketing-konzept.md`, `strategie/finanzplan.md`, `planung/lastenheft.md`, `planung/roadmap.md` |
+
+> Alle `docs/` liegen in thematischen Ordnern: `ki/`, `lernkonzept/`, `planung/`,
+> `redaktion/`, `strategie/`, `technik/`. Bei Doku-Änderungen die Repo↔Notion-Parität
+> beachten (immer der neueste Stand gewinnt, Fakten gegen den Code validieren).
