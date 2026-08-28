@@ -6,6 +6,7 @@
 > [roadmap.md](../planung/roadmap.md) Phase 3.
 >
 > Preise: Stand der Claude-Modell-Tabelle 2026-06 (vor Umsetzung final gegenprüfen).
+> Notion-Spiegel: [Phase 3 (KI) — Plan](https://app.notion.com/p/3ac95f8eb37681f5b708eaa60fefd404) (Repo maßgeblich).
 
 ---
 
@@ -107,15 +108,20 @@ gebraucht werden. (n8n-Instanz auf dem VPS ist vorhanden, aber noch nicht konfig
   Sokratische Fragen, **Frustrations-Ventil** (mehrstufiges Scaffolding).
 - **M4 — Fall-Recast (C):** Star-Company-Stufe 2; ggf. n8n-Agenten; Agenten-QA.
 
-## 7. Entscheidungen, die JETZT anstehen (Voraussetzung für M0)
+## 7. Entscheidungen — ✅ vom Gründer bestätigt
 
-1. **Architektur:** Direkt (Astro-API) starten? → Empfehlung **ja**.
-2. **Startmodell:** Sonnet 5 (mit Caching)? Einfaches Feedback auf Haiku? → Empfehlung **Sonnet 5**.
-3. **Kosten-Obergrenze** pro Nutzer/Monat (hartes Gate) — welcher Betrag? (Vorschlag: **5 €**, großzügig,
-   trotzdem sicher unter Abo-Marge.)
-4. **Langdock:** Von Anfang an, oder erst ab X aktiven Nutzern? → Empfehlung **erst ab Skalierung**
-   (Start direkt Anthropic, Abstraktion macht Umstieg billig).
-5. **Reihenfolge bestätigen:** A → (Blind-Test) → B → C.
+> **Phase 3 ist bewusst pausiert**, bis der Lernbereich fertig durchdacht und
+> gebaut ist. Die folgenden Grundsatz-Entscheidungen stehen aber fest und gelten
+> als Vorgabe für M0, sobald Phase 3 startet:
+
+1. **Architektur:** **Direkt** (Astro-API + Anthropic-SDK) starten; n8n erst für
+   Agenten-/Varianz-Baustein (C).
+2. **Startmodell:** **Sonnet 5** (mit Prompt-Caching); einfaches Feedback ggf. auf Haiku 4.5.
+3. **Kosten-Obergrenze:** hartes Gate bei **5 €** pro Nutzer/Monat.
+4. **EU-Pfad (Langdock):** **erst ab Skalierung** (Start direkt Anthropic; die
+   `ki-client`-Abstraktion macht den Umstieg billig). **Ziel: Soofi** (DE/Open-Source)
+   nach Blind-Vergleich.
+5. **Reihenfolge:** **A → (Blind-Test) → B → C.**
 
 > Nichts davon ist unumkehrbar: Die `ki-client`-Abstraktion + das Feature-Flag halten die
 > Architektur konform und den Ausstieg jederzeit offen.

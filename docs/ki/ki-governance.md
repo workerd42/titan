@@ -206,4 +206,6 @@ IHK-Zusammenarbeit).
 ---
 
 *Verweise: [produktvision.md](../strategie/produktvision.md) · [architektur.md](../technik/architektur.md) ·
-[roadmap.md](../planung/roadmap.md) · [lastenheft.md](../planung/lastenheft.md) (KI-Anforderungen).*
+[roadmap.md](../planung/roadmap.md) · [lastenheft.md](../planung/lastenheft.md) (KI-Anforderungen) ·
+[phase3-ki-plan.md](phase3-ki-plan.md) (Umsetzung/Kosten).*
+*Notion-Spiegel: [KI-Governance & EU-AI-Act-Konformität](https://app.notion.com/p/3ca95f8eb3768184a274ef9f59f9a9a6) (Repo maßgeblich).*
