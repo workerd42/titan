@@ -1,7 +1,44 @@
 # TITAN — Produkt- & Entwicklungs-Roadmap
 
 > Quelle: [Notion — Produkt- & Entwicklungs-Roadmap](https://app.notion.com/p/39895f8eb376811fb6aee7e9c6274216)
-> Ursprung: 2026-07-09 · Zuletzt mit echtem Code-Stand abgeglichen: 2026-07-21
+> Ursprung: 2026-07-09 · Zuletzt mit echtem Code-Stand abgeglichen: 2026-08-28
+
+## ⚠️ Aktueller Stand (2026-08-28, Repo↔Notion-Abgleich)
+
+Konsolidiert die Notion-Stände 2026-07-23/-27/-29, gegen den Code validiert:
+
+- **Directus-Vollmigration:** alle **46 Themen** strukturiert in Directus
+  (reproduzierbar via `directus/migrate-all.mjs`); **Multi-Fachwirt** über ein
+  `fachwirt`-Feld (z. B. „Marketing – HB1"); `themenCms` zieht alle 46 durch Zod.
+- **Interaktive Werkzeuge: 10** (maßgeblich das `werkzeug`-Enum in
+  `src/content.config.ts`) — `swot`, `smart`, `deckungsbeitrag`, `marktanteil`,
+  `preisberechnung`, `vier-stufen`, `scoring`, **`portfolio`** (BCG-/Portfolio-Matrix),
+  **`breakeven`** (Break-even-Rechner), **`statistik`** (Mittelwerte & Streuung).
+  Modul-Engine + Artefakt-Vertrag + Deck-Aggregation stehen (Stufe A).
+- **Lernbereich als getrennte Modi:** Entdecken (4 Phasen) · Lernzettel · Übungs­bereich (MC)
+  · IHK-Test-Format; Werkzeuge als **Mini-Kurs** (Was? · Wann? · Beispiel → selbst anwenden).
+  Siehe [lernbereich-redesign.md](../lernkonzept/lernbereich-redesign.md).
+- **Star-Company Stufe 1 LIVE:** hartkodierte Fantasie-Firmennamen → `{{firma}}` in allen
+  betroffenen Themen; Stufe 2 (Branchen-Recast) = KI, Phase 3.
+- **Übungs-Pilot HB3:** 12 MC-Fragen + IHK-Test-Format als Muster; danach Roll-out auf alle 46.
+  Fundament: [pruefungs-blaupause.md](../lernkonzept/pruefungs-blaupause.md) (13 echte IHK-Prüfungen
+  programmatisch analysiert — Operatoren/Aufgabentypen, **kein** Verbatim).
+- **Gesetzes-Erklärer LIVE:** §-Karten (eigene Erklärung + Anwendung + amtliche Quelle,
+  native `<details>`, 0 axe). Siehe [content-richtlinien.md](../lernkonzept/content-richtlinien.md).
+- **Neue Konzept-Docs:** [pbl-konzept-pitch.md](../lernkonzept/pbl-konzept-pitch.md),
+  [phase3-ki-plan.md](../ki/phase3-ki-plan.md) (Kosten/Risiken, Start Sonnet + Caching,
+  hartes Kosten-Gate, EU-Pfad Anthropic→Langdock→Soofi/Mistral),
+  [gesamtkonzept-lernprozess.md](../lernkonzept/gesamtkonzept-lernprozess.md),
+  [abhaengigkeiten.md](../technik/abhaengigkeiten.md).
+- **Team:** strategischer Partner/Beirat **Dr. Carsten Wittling** (Prorsus Digital — Agentur
+  für interaktive Lernmedien/Prüfungsfragen; Content-Skalierung & didaktische Fundierung).
+
+Die datierten Detail-Callouts (2026-07-21 usw.) und Phasen-Blöcke unten bleiben als
+Historie erhalten.
+
+---
+
+> Ursprünglicher Abgleich-Stand: 2026-07-21
 
 ## ✅ Phase 1: Local-First MVP (Astro + GSAP + localStorage)
 

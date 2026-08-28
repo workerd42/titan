@@ -5,6 +5,7 @@
 > Verweise: [produktvision.md](../strategie/produktvision.md) · [architektur.md](../technik/architektur.md) ·
 > [ki-governance.md](../ki/ki-governance.md) · [businessplan.md](../strategie/businessplan.md) ·
 > [roadmap.md](roadmap.md).
+> Notion-Spiegel: [Lastenheft — Titan](https://app.notion.com/p/3ca95f8eb376816fb4dcebb93cff4b4b) (Repo maßgeblich).
 
 ---
 
@@ -82,8 +83,8 @@ Terminverwaltung/Abrechnung von Lehrgängen; kein Ersatz für die IHK-Prüfung s
 
 ### 4.4 Interaktive Werkzeuge & Artefakte
 - **/LF040/** Werkzeuge in Phase „Anwenden" (SWOT, Deckungsbeitrag,
-  Nutzwertanalyse, Marketing-Mix …), je Kapitel passend zugeordnet. ◐ (Kern-Set ✅,
-  weiterer Katalog 🔜)
+  Nutzwertanalyse, Marketing-Mix …), je Kapitel passend zugeordnet. ◐ (Kern-Set ✅
+  — **10 Werkzeuge**, `werkzeug`-Enum in `src/content.config.ts`; weiterer Katalog 🔜)
 - **/LF041/** Jedes abgeschlossene Werkzeug erzeugt ein **Artefakt** (Folie) für
   das Präsentations-Deck. ✅
 - **/LF042/** Werkzeuge arbeiten mit den Star-Company-Daten (personalisiert). ✅
@@ -108,9 +109,13 @@ Terminverwaltung/Abrechnung von Lehrgängen; kein Ersatz für die IHK-Prüfung s
 - **/LF071/** Zweischichtiger Schutz: Seiten-Gate + serverseitige API-Autorisierung. ✅
 
 ### 4.8 Dozenten-Cockpit & Organisationen (B2B)
-- **/LF080/** Dozent sieht den Fortschritt der ihm zugeordneten Lerner. 🔜
+- **/LF080/** Dozent sieht den Fortschritt der ihm zugeordneten Lerner. ◐
+  (erstes Inkrement live seit 2026-08-04: `/cockpit`, org-scoped, Kennzahlen aus
+  `user_progress`; Einladungs-Mail/Self-Service 🔜)
 - **/LF081/** Organisation/Bildungsträger registriert sich; Org-Admin legt Lerner
-  an / lädt per E-Mail ein; Lerner sind der Organisation zugeordnet. 🔜
+  an / lädt per E-Mail ein; Lerner sind der Organisation zugeordnet. ◐
+  (Better-Auth Organization-Plugin + manuelle Zuordnung via Admin-Panel ✅;
+  Self-Service-Registrierung/Einladung 🔜)
 - **/LF082/** Lizenz-/Platzverwaltung pro Kurs (Abrechnungsgrundlage
   800 €/Monat je Kurs). 🔜
 - **/LF083/** Transaktionale E-Mails (Einladung, Passwort-Reset) über EU-Anbieter. 🔜
