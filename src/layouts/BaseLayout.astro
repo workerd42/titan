@@ -94,6 +94,9 @@ const finalJsonLd = jsonLd ?? {
 
     <!-- View Transitions — Astro 7 ClientRouter -->
     <ClientRouter />
+
+    <!-- Seitenspezifische <head>-Ergänzungen (z. B. Font-Preloads der Landing) -->
+    <slot name="head" />
   </head>
   <body>
     <a href="#hauptinhalt" class="skip-link">Zum Hauptinhalt springen</a>

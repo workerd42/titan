@@ -27,16 +27,41 @@ const JAHR = new Date().getFullYear();
 ---
 
 <BaseLayout
-  title="Für Bildungsträger"
+  title="IHK-Fachwirt-Vorbereitung für Bildungsträger"
   description="Die IHK-Fachwirt-Vorbereitung als interaktives Kompetenz-Erlebnis — für Bildungsträger, die Bestehensquote und Kurs-Qualität steigern."
   canonicalPath="/willkommen/"
   theme="light"
 >
-  <main id="hauptinhalt" class="lp">
+  <Fragment slot="head">
+    <link rel="preload" href={`${base}fonts/SpaceGrotesk-700.woff2`} as="font" type="font/woff2" crossorigin="anonymous" />
+    <link rel="preload" href={`${base}fonts/Inter-400.woff2`} as="font" type="font/woff2" crossorigin="anonymous" />
+  </Fragment>
+
+  <div class="lp">
+    <!-- Navigation (Wortmarke + Burger) — Landmark AUSSERHALB von <main> -->
+    <header class="lp-nav">
+      <div class="lp-nav-inner">
+        <a class="lp-brand" href={`${base}willkommen/`}>Titan</a>
+        <button type="button" class="lp-burger" aria-label="Menü öffnen" aria-expanded="false" aria-controls="lp-menu">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </button>
+      </div>
+    </header>
+
+    <!-- ── Menü-Overlay (kreisförmiges Aufblähen vom Burger) ── -->
+    <div class="lp-menu" id="lp-menu" hidden>
+      <nav class="lp-menu-nav" aria-label="Menü">
+        {NAV.map((n) => <a class="lp-menu-link" href={n.href}>{n.label}</a>)}
+        <a class="lp-menu-cta" href={KONTAKT_MAILTO}>Kontakt aufnehmen <span aria-hidden="true">↗</span></a>
+      </nav>
+    </div>
+
+    <main id="hauptinhalt">
     <!-- ── HERO (Vollbild) ─────────────────────────────── -->
     <section class="lp-hero">
       <div class="lp-bg-wrap" aria-hidden="true">
-        <img class="lp-bg" src={`${base}willkommen/hero-earth.jpg`} alt="" width="2560" height="2560" />
+        <img class="lp-bg" src={`${base}willkommen/hero-earth.jpg`} alt="" width="2560" height="2560" fetchpriority="high" decoding="async" />
       </div>
       <div class="lp-scrim" aria-hidden="true"></div>
 
@@ -59,26 +84,6 @@ const JAHR = new Date().getFullYear();
         <a class="lp-ghost" href="#wie">So funktioniert's</a>
       </div>
     </section>
-
-    <!-- Navigation (außerhalb des Hero-Stapelkontexts, damit der Burger als
-         X über dem Menü-Overlay sichtbar/klickbar bleibt) -->
-    <header class="lp-nav">
-      <div class="lp-nav-inner">
-        <a class="lp-brand" href={`${base}willkommen/`}>Titan</a>
-        <button type="button" class="lp-burger" aria-label="Menü öffnen" aria-expanded="false" aria-controls="lp-menu">
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-        </button>
-      </div>
-    </header>
-
-    <!-- ── Menü-Overlay (kreisförmiges Aufblähen vom Burger) ── -->
-    <div class="lp-menu" id="lp-menu" hidden>
-      <nav class="lp-menu-nav" aria-label="Menü">
-        {NAV.map((n) => <a class="lp-menu-link" href={n.href}>{n.label}</a>)}
-        <a class="lp-menu-cta" href={KONTAKT_MAILTO}>Kontakt aufnehmen <span aria-hidden="true">↗</span></a>
-      </nav>
-    </div>
 
     <!-- ── SECTION 1 · So funktioniert's (4-Phasen-Reise) ── -->
     <section class="lp-how" id="wie">
@@ -416,6 +421,8 @@ const JAHR = new Date().getFullYear();
       </div>
     </section>
 
+    </main>
+
     <!-- ── Footer ── -->
     <footer class="lp-footer">
       <div class="lp-container">
@@ -454,7 +461,7 @@ const JAHR = new Date().getFullYear();
 
     <!-- orizon-artiger Cursor (nur Zeiger-Geräte, JS-gesteuert) -->
     <div class="lp-cursor" aria-hidden="true"></div>
-  </main>
+  </div>
 
   <style>
     /* ── Self-hosted Fonts (latin, deckt DE-Umlaute + ß) ── */
@@ -781,7 +788,7 @@ const JAHR = new Date().getFullYear();
     .lp-offers-head { text-align: center; max-width: 700px; margin: 0 auto clamp(40px, 5vw, 64px); }
     .lp-offers { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
     /* Gepinnt (JS aktiviert): Text mittig; beim Scrollen Cross-Fade zu den Cards */
-    .lp-offers-scroll.is-pinned { position: relative; height: 200vh; }
+    .lp-offers-scroll.is-pinned { position: relative; height: 160vh; }
     .lp-offers-scroll.is-pinned .lp-offers-stage {
       position: sticky; top: 0; min-height: 100vh; padding: 0;
       display: grid; grid-template-areas: 'stack'; place-items: center; overflow: hidden;
@@ -821,6 +828,13 @@ const JAHR = new Date().getFullYear();
     .lp-offer-cta:hover span { transform: rotate(45deg); }
     .lp-offer-cta:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 4px; }
     @media (max-width: 820px) { .lp-offers { grid-template-columns: 1fr; } }
+    /* Mobile: kein Pinning/Cross-Fade — ruhiger statischer Fluss (Endgeräte-Fix) */
+    @media (max-width: 760px) {
+      .lp-offers-scroll.is-pinned { height: auto; }
+      .lp-offers-scroll.is-pinned .lp-offers-stage { position: static; min-height: 0; padding: clamp(42px, 6vw, 74px) 0; display: block; overflow: visible; }
+      .lp-offers-scroll.is-pinned .lp-offers-head { margin: 0 auto clamp(32px, 6vw, 56px); opacity: 1 !important; transform: none !important; }
+      .lp-offers-scroll.is-pinned .lp-offers-cardswrap { opacity: 1 !important; transform: none !important; }
+    }
 
     /* ── SECTION 4 · Warum Titan (gestapelte Scroll-Cards, sticky-stack) ── */
     /* Padding-Bottom = heller Abstand vor dem Petrol-Band (S5), damit es nicht klebt */
@@ -828,7 +842,7 @@ const JAHR = new Date().getFullYear();
     /* Deck-Deal: Cards liegen aufeinander (Card 1 oben); beim Scrollen wischt die
        oberste nach oben weg wie beim Kartenverteilen. Layout je Card wie im
        orizon-Screenshot: Headline links, Grafik rechts, darunter zwei Sub-Spalten. */
-    .lp-deal-scroll { position: relative; height: 320vh; margin-top: clamp(20px, 3vw, 40px); }
+    .lp-deal-scroll { position: relative; height: 240vh; margin-top: clamp(20px, 3vw, 40px); }
     .lp-deal-stage { position: sticky; top: 0; min-height: 100vh; display: grid; grid-template-areas: 'stack'; place-items: center; }
     .lp-deal-card {
       grid-area: stack; width: min(92vw, 1000px); min-height: calc(100svh - 44px);
@@ -908,12 +922,12 @@ const JAHR = new Date().getFullYear();
     .lp-foot-tag { margin: 14px 0 0; font-size: 14.5px; line-height: 1.6; color: rgba(245,246,248,0.62); max-width: 34ch; }
     .lp-foot-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(20px, 3vw, 40px); }
     .lp-foot-col { display: flex; flex-direction: column; gap: 11px; }
-    .lp-foot-col h3 { font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(245,246,248,0.5); margin: 0 0 4px; }
+    .lp-foot-col h3 { font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(245,246,248,0.66); margin: 0 0 4px; }
     .lp-foot-col a { font-size: 14.5px; color: rgba(245,246,248,0.8); text-decoration: none; transition: color .2s ease; }
     .lp-foot-col a:hover { color: #F5F6F8; }
     .lp-foot-col a:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 3px; }
-    .lp-foot-soon { font-size: 13px; color: rgba(245,246,248,0.42); }
-    .lp-foot-bottom { margin-top: clamp(40px, 5vw, 64px); padding-top: 22px; border-top: 1px solid rgba(245,246,248,0.10); display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-size: 13px; color: rgba(245,246,248,0.5); }
+    .lp-foot-soon { font-size: 13px; color: rgba(245,246,248,0.66); }
+    .lp-foot-bottom { margin-top: clamp(40px, 5vw, 64px); padding-top: 22px; border-top: 1px solid rgba(245,246,248,0.10); display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-size: 13px; color: rgba(245,246,248,0.66); }
     @media (max-width: 760px) {
       .lp-foot-top { grid-template-columns: 1fr; gap: 32px; }
       .lp-foot-cols { grid-template-columns: repeat(2, 1fr); }
@@ -955,7 +969,23 @@ const JAHR = new Date().getFullYear();
 
       const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       const fine = window.matchMedia('(pointer:fine)').matches;
+      const mqMobile = window.matchMedia('(max-width: 760px)');
       const anim = Array.from(document.querySelectorAll<HTMLElement>('[data-anim]'));
+
+      /* Aufräum-Register: alle globalen Listener werden bei der Weg-Navigation
+         (View Transitions) wieder entfernt → kein Leak, kein DOM-Spaghetti. */
+      const cleanups: Array<() => void> = [];
+      const onWin = (type: string, handler: EventListener, opts?: AddEventListenerOptions | boolean): void => {
+        window.addEventListener(type, handler, opts);
+        cleanups.push(() => window.removeEventListener(type, handler, opts));
+      };
+      const onDoc = (type: string, handler: EventListener, opts?: AddEventListenerOptions | boolean): void => {
+        document.addEventListener(type, handler, opts);
+        cleanups.push(() => document.removeEventListener(type, handler, opts));
+      };
+      document.addEventListener('astro:before-swap', function onSwap(): void {
+        cleanups.forEach((fn) => fn());
+      }, { once: true });
 
       /* Entrance */
       if (reduce) {
@@ -999,7 +1029,7 @@ const JAHR = new Date().getFullYear();
             { '--nh': `${nh}px`, duration: 0.6, ease: 'power2.out' }, '-=0.42');
         }
         // Bei Größenänderung Kerbe neu vermessen (statisch nachziehen).
-        window.addEventListener('resize', () => {
+        onWin('resize', () => {
           const f = measureNotch();
           cardBg.style.setProperty('--nh', `${f}px`);
         });
@@ -1023,6 +1053,17 @@ const JAHR = new Date().getFullYear();
       const menu = document.querySelector<HTMLElement>('#lp-menu');
       if (burger && menu) {
         const links = Array.from(menu.querySelectorAll<HTMLAnchorElement>('a'));
+        const mainEl = document.querySelector<HTMLElement>('#hauptinhalt');
+        const footerEl = document.querySelector<HTMLElement>('.lp-footer');
+        // Fokus-Falle: bei offenem Overlay wird der Hintergrund (main + footer)
+        // inert → Tastatur/Screenreader bleiben im Menü, der Burger schließt es.
+        const setBackgroundInert = (on: boolean): void => {
+          [mainEl, footerEl].forEach((el) => {
+            if (!el) return;
+            if (on) el.setAttribute('inert', '');
+            else el.removeAttribute('inert');
+          });
+        };
         const radius = (cx: number, cy: number): number =>
           Math.hypot(Math.max(cx, window.innerWidth - cx), Math.max(cy, window.innerHeight - cy));
 
@@ -1032,6 +1073,7 @@ const JAHR = new Date().getFullYear();
           menu.style.setProperty('--cx', `${cx}px`);
           menu.style.setProperty('--cy', `${cy}px`);
           menu.hidden = false;
+          setBackgroundInert(true);
           burger.setAttribute('aria-expanded', 'true');
           burger.setAttribute('aria-label', 'Menü schließen');
           const r = radius(cx, cy) + 40;
@@ -1046,13 +1088,14 @@ const JAHR = new Date().getFullYear();
         const closeMenu = (focusBurger = true) => {
           burger.setAttribute('aria-expanded', 'false');
           burger.setAttribute('aria-label', 'Menü öffnen');
+          setBackgroundInert(false);
           if (focusBurger) burger.focus();
           if (reduce) { menu.hidden = true; menu.style.setProperty('--r', '0px'); return; }
           gsap.to(menu, { '--r': '0px', duration: 0.5, ease: 'power3.inOut', onComplete: () => { menu.hidden = true; } });
         };
         burger.addEventListener('click', () => (menu.hidden ? openMenu() : closeMenu()));
         links.forEach((a) => a.addEventListener('click', () => closeMenu(false)));
-        document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !menu.hidden) closeMenu(); });
+        onDoc('keydown', (e) => { if ((e as KeyboardEvent).key === 'Escape' && !menu.hidden) closeMenu(); });
         menu.addEventListener('click', (e) => { if (e.target === menu) closeMenu(); });
       }
 
@@ -1062,12 +1105,13 @@ const JAHR = new Date().getFullYear();
         const xTo = gsap.quickTo(cursor, 'x', { duration: 0.4, ease: 'power3' });
         const yTo = gsap.quickTo(cursor, 'y', { duration: 0.4, ease: 'power3' });
         gsap.set(cursor, { xPercent: -50, yPercent: -50 });
-        window.addEventListener('mousemove', (e) => {
+        onWin('mousemove', (e) => {
           cursor.classList.add('is-active');
-          xTo(e.clientX); yTo(e.clientY);
+          const me = e as MouseEvent;
+          xTo(me.clientX); yTo(me.clientY);
         });
-        window.addEventListener('mouseout', (e) => { if (!e.relatedTarget) cursor.classList.remove('is-active'); });
-        document.addEventListener('mouseover', (e) => {
+        onWin('mouseout', (e) => { if (!(e as MouseEvent).relatedTarget) cursor.classList.remove('is-active'); });
+        onDoc('mouseover', (e) => {
           const t = (e.target as HTMLElement).closest('a, button');
           cursor.classList.toggle('is-hover', !!t);
         });
@@ -1121,6 +1165,12 @@ const JAHR = new Date().getFullYear();
         let ticking = false;
         const render = (): void => {
           ticking = false;
+          // Mobile: kein Pinning — inline-Styles zurücksetzen, CSS übernimmt.
+          if (mqMobile.matches) {
+            oHead.style.opacity = ''; oHead.style.transform = ''; oHead.style.pointerEvents = '';
+            oCards.style.opacity = ''; oCards.style.transform = ''; oCards.style.pointerEvents = '';
+            return;
+          }
           const total = Math.max(oScroll.offsetHeight - window.innerHeight, 1);
           const scrolled = Math.min(Math.max(-oScroll.getBoundingClientRect().top, 0), total);
           const p = scrolled / total;
@@ -1134,8 +1184,8 @@ const JAHR = new Date().getFullYear();
           oCards.style.pointerEvents = cardOp > 0.5 ? 'auto' : 'none';
         };
         const onScroll = (): void => { if (!ticking) { ticking = true; requestAnimationFrame(render); } };
-        window.addEventListener('scroll', onScroll, { passive: true });
-        window.addEventListener('resize', onScroll);
+        onWin('scroll', onScroll, { passive: true });
+        onWin('resize', onScroll);
         render();
       }
 
@@ -1150,6 +1200,12 @@ const JAHR = new Date().getFullYear();
           let dticking = false;
           const renderDeal = (): void => {
             dticking = false;
+            // Mobile (<=760px): CSS stapelt die Cards statisch — keine
+            // Scroll-Transforms setzen (sonst wird das Stack-Layout zerschossen).
+            if (mqMobile.matches) {
+              dealCards.forEach((card) => { card.style.transform = ''; card.style.opacity = ''; });
+              return;
+            }
             const total = Math.max(dealScroll.offsetHeight - window.innerHeight, 1);
             const scrolled = Math.min(Math.max(-dealScroll.getBoundingClientRect().top, 0), total);
             const p = scrolled / total;
@@ -1163,8 +1219,8 @@ const JAHR = new Date().getFullYear();
             });
           };
           const onDeal = (): void => { if (!dticking) { dticking = true; requestAnimationFrame(renderDeal); } };
-          window.addEventListener('scroll', onDeal, { passive: true });
-          window.addEventListener('resize', onDeal);
+          onWin('scroll', onDeal, { passive: true });
+          onWin('resize', onDeal);
           renderDeal();
         }
       }
