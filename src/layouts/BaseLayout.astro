@@ -83,7 +83,7 @@ const finalJsonLd = jsonLd ?? {
           try {
             var t = localStorage.getItem('zendify-theme');
             if (t !== 'dark' && t !== 'light') {
-              // Einmalige Migration vom früheren Key (Rebrand Titan→Zendify).
+              // Einmalige Migration vom früheren Theme-Key (Alt-Bestand).
               var legacy = localStorage.getItem('titan-theme');
               if (legacy === 'dark' || legacy === 'light') {
                 t = legacy;
