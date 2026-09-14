@@ -3,7 +3,7 @@
 **Zendify (The Competence Engine)** · Interaktive IHK-Fachwirt-Vorbereitung
 Stand: 14.09.2026 · Vertraulich
 
-*Für: Herrn Maziar Arsalan* · *Von: [Vorname] Stadler, Gründer Zendify* · *Kontakt: [E-Mail / Telefon]*
+*Für: Herrn Maziar Arsalan* · *Von: Thomas Stadler, Gründer Zendify* · *Kontakt: [E-Mail / Telefon]*
 
 ---
 
@@ -83,7 +83,7 @@ Nach erfolgreichem Piloten ist ein reguläres **B2B-Lizenzmodell pro Kurs** vorg
 
 Gerne stellen wir Zendify in einer **kurzen Live-Demo** an einer Fachrichtung Ihrer Wahl vor und stimmen Zuschnitt und Zeitraum eines Piloten ab.
 
-**[Vorname] Stadler** — Gründer, Zendify
+**Thomas Stadler** — Gründer, Zendify
 [E-Mail] · [Telefon] · [Web]
 
 ---
