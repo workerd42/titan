@@ -1,4 +1,4 @@
-# Mein Businessplan — Titan (The Competence Engine)
+# Mein Businessplan — Zendify (The Competence Engine)
 
 > Struktur nach der Gründerplattform-Vorlage („Mein Businessplan mit KI-Hilfe").
 > **Legende:** Fließtext = geschärft aus Produktvision/Roadmap. 📝 **Von dir zu
@@ -11,7 +11,7 @@
 
 **Was hast du vor?**
 
-Titan ist ein interaktives Kompetenz-Cockpit für die Prüfungsvorbereitung
+Zendify ist ein interaktives Kompetenz-Cockpit für die Prüfungsvorbereitung
 geprüfter **IHK-Fachwirte** (Start: Fachwirt Marketing). Statt Auswendiglernen
 erarbeiten Lernende echte Marketing-Artefakte (SWOT, Deckungsbeitrag,
 Marketing-Mix …) an **ihrem eigenen fiktiven Übungsunternehmen** („Star-Company") und
@@ -59,10 +59,10 @@ Nutzwertanalyse), **Übungsbereich**, **IHK-Testformat** und **Lernzettel**
 
 - **Was du verkaufst:** einen **Zugang** (Abo/Lizenz) zu einem Lernsystem, das
   Prüfungswissen in anwendbare, prüfungsnahe Ergebnisse überführt.
-- **USP — Orientierung + prüfungsfertiges Ergebnis:** Titan gibt Lernenden von
+- **USP — Orientierung + prüfungsfertiges Ergebnis:** Zendify gibt Lernenden von
   Anfang an einen **konsistenten roten Faden**, den klassische Lehrgänge so nicht
   bieten: Dort bringen wechselnde Dozent:innen unterschiedliche Bezugspunkte aus
-  ihren Branchen/Erfahrungen mit — bei Titan gestaltet jede:r stattdessen das
+  ihren Branchen/Erfahrungen mit — bei Zendify gestaltet jede:r stattdessen das
   **eigene (fiktive) Unternehmen** strategisch und wendet alle Werkzeuge
   durchgängig darauf an. Das erzeugt ein **neuartiges, interaktives Lernerlebnis**
   mit echter Orientierung — und mündet nebenbei in ein **fertiges
@@ -85,7 +85,7 @@ Nutzwertanalyse), **Übungsbereich**, **IHK-Testformat** und **Lernzettel**
 - **Warum nützlich:** Fachwirt-Fortbildungen sind teuer — beim aktuellen
   Referenz-Bildungsträger kostet allein der **Fachwirt Marketing 11.000 €**. Alles,
   was Bestehensquote und Orientierung erhöht und Zeit spart, hat hohen, bezahlbaren
-  Wert. Für Bildungsträger steigert Titan die **Erfolgsquote ihrer Kurse** — ein
+  Wert. Für Bildungsträger steigert Zendify die **Erfolgsquote ihrer Kurse** — ein
   starkes Verkaufsargument im eigenen Markt.
 
 ### Kernfähigkeiten — Was kannst du gut?
@@ -120,7 +120,7 @@ Nutzwertanalyse), **Übungsbereich**, **IHK-Testformat** und **Lernzettel**
 - **Erste Aufträge in Aussicht:** konkreter Erst-Zielkunde ist der **aktuelle
   Referenz-Bildungsträger** — er bietet **vier Fachwirt-Kurse** an (4 × 800 €
   = **3.200 €/Monat Potenzial** allein bei diesem einen Träger); der Dozent, dem
-  Titan gezeigt wird, ist ein möglicher Türöffner/Referenz. 📝 *Status der Gespräche
+  Zendify gezeigt wird, ist ein möglicher Türöffner/Referenz. 📝 *Status der Gespräche
   ergänzen.*
 
 ### Vertrieb und Kommunikation
@@ -132,7 +132,7 @@ Nutzwertanalyse), **Übungsbereich**, **IHK-Testformat** und **Lernzettel**
 - **Erreichen (B2C):** Content/SEO (später — aktuell bewusst `noindex`), Social,
   Prüflings-Communities.
 - **Kommunikation:** vorgeschaltete Marketing-/Landingpage → Paywall →
-  Registrierung → Titan (das harte Login-Gate ist live).
+  Registrierung → Zendify (das harte Login-Gate ist live).
 - **Gewinnen & halten:** Pilot mit einem Bildungsträger/Dozenten als Referenz;
   Erfolgsquote als Argument; Bindung über den fortlaufenden Lernpfad + das
   greifbare Ergebnis (Präsentations-Deck).
@@ -152,7 +152,7 @@ Bundesamt — vor Investorengespräch mit Aktualjahr bestätigen.)*
 
 **Wettbewerb (eingeordnet):**
 
-| Anbieter | Was es ist | Titans Abgrenzung |
+| Anbieter | Was es ist | Zendifys Abgrenzung |
 |---|---|---|
 | **Fachwirt Hero** | Lern-App (Wirtschaftsfachwirt), 20.000+ Fragen, Spaced-Repetition, Schwächenanalyse | Starker **Fragen-Drill**, aber reines Abfragen — keine Strategie-Anwendung, kein Artefakt/Präsentation, keine Orientierung am eigenen Unternehmen |
 | **QuizAcademy** | Quiz-/Karteikarten-Plattform, adaptiv, viele Fachwirt-Richtungen | Breit, aber **generische Quiz-Mechanik**; kein durchgehender roter Faden, kein prüfungsfertiges Ergebnis |
@@ -160,12 +160,12 @@ Bundesamt — vor Investorengespräch mit Aktualjahr bestätigen.)*
 | **IHK-App(s)** | Offizielle Prüfungs-/Lern-Apps der IHKs | Amtlich, aber funktional/UX-basisch; kein strategisches Kompetenz-Cockpit |
 
 **Kern-Differenzierung:** Alle Wettbewerber sind **Abfrage-/Drill-Werkzeuge**
-(Fragen, Karteikarten, Spaced Repetition). **Keiner** bietet Titans Kern:
+(Fragen, Karteikarten, Spaced Repetition). **Keiner** bietet Zendifys Kern:
 strategische Anwendung am **eigenen (fiktiven) Unternehmen → Artefakte → fertige
-IHK-Präsentation** samt echter **Orientierung**. Titan spielt damit in einer
+IHK-Präsentation** samt echter **Orientierung**. Zendify spielt damit in einer
 eigenen Kategorie (Kompetenz-Cockpit) und ist zu Quiz-Apps eher **komplementär** als
 konkurrierend. 💡 *Ehrlich:* beim reinen Fragen-Umfang sind die etablierten Apps
-heute voraus — Titans Stärke ist **Anwendung & Orientierung**, nicht die größte
+heute voraus — Zendifys Stärke ist **Anwendung & Orientierung**, nicht die größte
 Fragendatenbank.
 
 ---
@@ -211,7 +211,7 @@ Fachautor:innen benennen.*
 
 ### Werte
 
-Wofür Titan steht: **Wirksamkeit statt Auswendiglernen**, **Ruhe & Qualität** im
+Wofür Zendify steht: **Wirksamkeit statt Auswendiglernen**, **Ruhe & Qualität** im
 Produkt (das „Kosmos"-Gefühl), **Datenschutz & EU-Souveränität** (alle Dienste in
 EU/DE), **Ehrlichkeit** (klare KI-Kennzeichnung, Mensch behält die fachliche
 Hoheit). 📝 *Bei Bedarf um persönliche Gründungswerte ergänzen.*
@@ -219,7 +219,7 @@ Hoheit). 📝 *Bei Bedarf um persönliche Gründungswerte ergänzen.*
 ### Partner — Welche externen Schlüsselpartner brauchst du?
 
 - **Jürgen Laudien & sein künftiger Bildungsträger** (Schlüsselpartner): bringt
-  Netzwerk + Fachtiefe und setzt Titan als **erster Bildungsträger-Kunde/Pilot** in
+  Netzwerk + Fachtiefe und setzt Zendify als **erster Bildungsträger-Kunde/Pilot** in
   eigenen Kursen ein.
 - **Dr. Carsten Wittling / Prorsus Digital** (strategischer Beirat + Content-Partner):
   didaktisch-wissenschaftliche Fundierung, Prüfungsfragen-Entwicklung und ein
@@ -275,7 +275,7 @@ Matching) — im Finanzteil berücksichtigt.
 | Zielkunden ohne erwarteten Bedarf / geringe Zahlungsbereitschaft | Pilot als Marktvalidierung vor großem Invest; Preis am Lehrgangs-Budget ankern |
 | Stärkerer Wettbewerb als erwartet | Verteidigung über Content-Tiefe + einzigartigen Präsentations-Wedge + UX |
 | Content-Pflege / IHK-Rahmenplan-Änderungen | Kern adaptierbar (nur Spezialisierungen je Fachwirt neu); IHK-Änderungen kommen mit **jahrelangem Vorlauf** → genug Anpassungszeit; Engine/Content-Trennung + Fachautor-Partner + Redaktionssystem (Directus geplant) |
-| IHK-Konformität: uniforme Präsentationen könnten den Prüfungsausschüssen auffallen | **Struktureller Schutz vor Uniformität:** jede:r Lerner:in arbeitet am **eigenen fiktiven Star-Company** (andere Branche/Name/Zahlen) + KI erzeugt **hohe Varianz** in Fallstellungen → individuelle Ergebnisse statt Schablone. Das **formative Feedback fördert eigenes Denken** (kein Copy-Paste). Titan **verhindert** Plagiate, statt sie zu erzeugen — ein Verkaufsargument gegenüber IHK/Trägern. |
+| IHK-Konformität: uniforme Präsentationen könnten den Prüfungsausschüssen auffallen | **Struktureller Schutz vor Uniformität:** jede:r Lerner:in arbeitet am **eigenen fiktiven Star-Company** (andere Branche/Name/Zahlen) + KI erzeugt **hohe Varianz** in Fallstellungen → individuelle Ergebnisse statt Schablone. Das **formative Feedback fördert eigenes Denken** (kein Copy-Paste). Zendify **verhindert** Plagiate, statt sie zu erzeugen — ein Verkaufsargument gegenüber IHK/Trägern. |
 | Regulatorik (DSGVO/EU-AI-Act) | Compliance-by-Design ([ki-governance.md](../ki/ki-governance.md)) + juristische Bestätigung |
 | Abhängigkeit von KI-/Infra-Anbietern | EU/DE-Anbietergrundsatz, self-hosting, Austauschbarkeit der Modelle |
 | Abhängigkeit vom Kooperationspartner (Netzwerk/Fachtiefe) | Kooperation vertraglich absichern (Rollen/Vergütung/Exklusivität/IP); Fachautoren-Basis verbreitern |
@@ -293,7 +293,7 @@ Matching) — im Finanzteil berücksichtigt.
 
 Zwei Erlössäulen, **Anker: Lehrgangskosten** — beim Referenz-Bildungsträger kostet
 allein der Fachwirt Marketing **11.000 €** (oft via Aufstiegs-BAföG gefördert).
-Titans Preise sind ein Bruchteil davon → leichte Kaufentscheidung.
+Zendifys Preise sind ein Bruchteil davon → leichte Kaufentscheidung.
 
 | Modell | Preis | Logik |
 |---|---|---|
@@ -310,11 +310,11 @@ Distribution zum Prüfling).
 
 **Zugang bis zur Prüfung (B2B, inklusive).** Bildungsträger verlangen eine bestimmte
 **Präsenzzeit**, doch die **IHK-Prüfung liegt oft erst deutlich später** — zwischen
-Lehrgangsende und Prüfungstermin klafft eine Lücke. Genau die überbrückt Titan:
-**Alle B2B-Kursteilnehmer nutzen Titan bis zur Prüfung kostenlos.** Der Träger
+Lehrgangsende und Prüfungstermin klafft eine Lücke. Genau die überbrückt Zendify:
+**Alle B2B-Kursteilnehmer nutzen Zendify bis zur Prüfung kostenlos.** Der Träger
 lizenziert den laufenden Kurs; die Weiter- und Prüfungsvorbereitung bis zum
 Prüfungstermin ist für die Lernenden **inklusive**, auch nach Ende der Präsenzzeit.
-Das erhöht Bestehensquote und Bindung und macht Titan zum selbstverständlichen
+Das erhöht Bestehensquote und Bindung und macht Zendify zum selbstverständlichen
 Begleiter **bis zum Abschluss** (starkes Verkaufsargument gegenüber dem Träger).
 
 **B2C ohne Freemium.** Es gibt **kein kostenloses B2C-Angebot und keine Gratis-Stufe**

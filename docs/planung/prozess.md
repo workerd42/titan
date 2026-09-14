@@ -1,13 +1,13 @@
-# Titan — Prozessbeschreibung (Wie alles zusammenspielt)
+# Zendify — Prozessbeschreibung (Wie alles zusammenspielt)
 
-> Zweck: ein gemeinsames Verständnis, **wie Titan funktioniert** — für Team,
+> Zweck: ein gemeinsames Verständnis, **wie Zendify funktioniert** — für Team,
 > Partner, Dozenten und Investoren. Verweise: [produktvision.md](../strategie/produktvision.md) ·
 > [rollen-rechte.md](../technik/rollen-rechte.md) · [ki-governance.md](../ki/ki-governance.md) ·
 > [architektur.md](../technik/architektur.md).
 
 ## 1. Der rote Faden (das Herzstück)
 
-Titan führt Lernende von der Theorie bis zur **fertigen IHK-Präsentation** —
+Zendify führt Lernende von der Theorie bis zur **fertigen IHK-Präsentation** —
 entlang **eines** durchgehenden Fadens:
 
 ```
@@ -90,7 +90,7 @@ Verbindlicher Rahmen (Transparenz, keine Benotung, keine Personendaten, EU-Hosti
 ## 8. Geschäftsprozess (kurz)
 
 ```
- Bildungsträger lizenziert Kurs (800 €/Monat je Kohorte)  →  Dozent setzt Titan im Kurs ein
+ Bildungsträger lizenziert Kurs (800 €/Monat je Kohorte)  →  Dozent setzt Zendify im Kurs ein
    →  Lerner bestehen besser + haben fertige Präsentation  →  Referenz  →  weitere Träger
 ```
 

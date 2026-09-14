@@ -1,4 +1,4 @@
-# Finanz- & Kostenplan — Titan
+# Finanz- & Kostenplan — Zendify
 
 > Granularer Kosten-Detailplan, ergänzend zum Finanzteil im
 > [businessplan.md](businessplan.md) (Umsatzsäulen, Kapitalbedarf ~200 k,

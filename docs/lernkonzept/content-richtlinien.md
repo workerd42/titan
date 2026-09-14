@@ -1,4 +1,4 @@
-# Titan — Content-Richtlinien
+# Zendify — Content-Richtlinien
 
 > Verbindliche Regeln für die redaktionelle Aufbereitung der Lerninhalte. Ergänzt
 > [interaktive-module.md](interaktive-module.md) (interaktive Werkzeuge) um die
@@ -67,7 +67,7 @@ Fachautor:innen es strukturiert liefern.
 - **Lehrbücher/Verlagswerke** (`docs/quellen/`, gitignored) sind Recherchequelle,
   kein Kopiervorlagen-Fundus — Inhalte in **eigener Formulierung**.
 - Im Zweifel: eigener Text + Quellenverweis statt Übernahme.
-- **Eigenes Titan-Wording (Prinzip, 2026-07-24):** grundsätzlich **weg von IHK-Formulierungen**
-  — Inhalte, Aufgaben und Merksätze in Titans **eigener Stimme/Stil** neu formulieren
+- **Eigenes Zendify-Wording (Prinzip, 2026-07-24):** grundsätzlich **weg von IHK-Formulierungen**
+  — Inhalte, Aufgaben und Merksätze in Zendifys **eigener Stimme/Stil** neu formulieren
   (nicht nur Synonyme tauschen). Das ist zugleich **rechtlich sicherer** (kein Verbatim)
-  **und markenbildend** (unverwechselbarer Titan-Ton).
+  **und markenbildend** (unverwechselbarer Zendify-Ton).

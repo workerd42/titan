@@ -1,14 +1,14 @@
-# Titan — Directus (Redaktionssystem) · lokales Setup & Schnittstelle
+# Zendify — Directus (Redaktionssystem) · lokales Setup & Schnittstelle
 
 > Directus ist das **Redaktionssystem für Fachautoren** (Roadmap 2.6 / EPIC-13). Diese
 > Anleitung beschreibt die **lokale** Instanz zum Vorbereiten/Testen und die **Schnittstelle**
-> zu Titan. Konzept-Bezug: [gesamtkonzept-lernprozess.md](../lernkonzept/gesamtkonzept-lernprozess.md) §7
+> zu Zendify. Konzept-Bezug: [gesamtkonzept-lernprozess.md](../lernkonzept/gesamtkonzept-lernprozess.md) §7
 > („Redaktionssystem-Integration").
 
 ## 1. Lokale Instanz (Docker)
 
-Bewusst **separat** vom Titan-Prod-Stack (`docker-compose.yml`) — eigene DB, eigene Volumes,
-eigener Port. Berührt den bestehenden Titan-Stack nicht.
+Bewusst **separat** vom Zendify-Prod-Stack (`docker-compose.yml`) — eigene DB, eigene Volumes,
+eigener Port. Berührt den bestehenden Zendify-Stack nicht.
 
 ```bash
 # Start
@@ -20,7 +20,7 @@ docker compose -f docker-compose.directus.yml down -v
 ```
 
 - **Admin-UI:** http://localhost:8055
-- **Login:** `admin@titan.dev` / `directus-dev-admin`  *(nur lokal! Dev-Defaults)*
+- **Login:** `admin@zendify.dev` / `directus-dev-admin`  *(nur lokal! Dev-Defaults)*
   - ⚠️ **Gotcha:** Directus' Login-Validator lehnt `.local`-Domains als „ungültige E-Mail" ab →
     der Admin-Bootstrap scheitert **stillschweigend** (Schema da, aber 0 User). Darum eine
     **echte TLD** (`.dev`) verwenden. Bei „0 users": `down -v` + `up -d` (frischer Bootstrap).
@@ -36,7 +36,7 @@ docker compose -f docker-compose.directus.yml down -v
 > Vorstufe zum Modellieren/Testen. **Docker-Hinweis:** aktuell kostenlose Docker-Nutzung — bei
 > vollem Speicher/steigendem Bedarf den Wechsel auf eine kostenpflichtige Variante prüfen (Ops-Kostenposten).
 
-## 2. Schnittstelle Titan ↔ Directus (entschieden)
+## 2. Schnittstelle Zendify ↔ Directus (entschieden)
 
 **Build-time Pull + Webhook** (nicht Runtime, nicht Push):
 
@@ -44,12 +44,12 @@ docker compose -f docker-compose.directus.yml down -v
 Fachautor pflegt in Directus  ──►  Directus = Quelle der Wahrheit
         │  (Webhook bei Änderung)
         ▼
-   CI-Build von Titan  ──►  Astro-Content-Loader ZIEHT per Directus-API
+   CI-Build von Zendify  ──►  Astro-Content-Loader ZIEHT per Directus-API
                              + validiert gegen Zod-Schema (content.config.ts)
                              + rendert STATISCH  ──►  Deploy
 ```
 
-**Warum so:** bewahrt Titans **statisch/schnell/offline** (kritisch in der Prüfungssituation)
+**Warum so:** bewahrt Zendifys **statisch/schnell/offline** (kritisch in der Prüfungssituation)
 und **Zod bleibt das Sicherheitsnetz** (fehlerhafte Inhalte lassen den Build scheitern statt
 live zu gehen).
 
@@ -83,7 +83,7 @@ live zu gehen).
 **⬜ Offen:**
 4. **Auto-Deploy** (Webhook → Build → Ausrollen) — der eigentliche Aufwand (Roadmap 2.6).
 5. **Fachwirt-PDFs strukturieren** — einmalig pro Fachwirt in die Collection überführen
-   (nicht 1:1 nutzbar; pro Thema/Feld), in **eigenem Titan-Wording**
+   (nicht 1:1 nutzbar; pro Thema/Feld), in **eigenem Zendify-Wording**
    ([content-richtlinien.md](../lernkonzept/content-richtlinien.md)).
 **🔁 Render-Kreislauf prototypisiert (2026-07-27):** Route `src/pages/cms-vorschau/[slug].astro`
 (prerender=false, hinter dem Login-Gate) rendert ein Thema **live aus `themenCms` (Directus)** statt

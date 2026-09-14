@@ -1,4 +1,4 @@
-# TITAN — Norive Design System v2
+# ZENDIFY — Norive Design System v2
 
 > Quelle: [Notion — Norive Design System v2](https://app.notion.com/p/39895f8eb37681b3a233fbec0b9c08dd) (Stand: 2026-07-09)
 
@@ -84,13 +84,13 @@ Damit die Phasenfarben auf `--bg-stage-light` (#EDE8DF) gut lesbar sind und glei
 
 ## 5. UI-Interaktions- & Motion-Rules
 
-> **Leitprinzip Motion (festgelegt 2026-07-16): Kosmos-Gefühl.** ALLE Animationen sollen **ruhig, organisch und harmonisch** wirken — langsam, mit weichem Ein-/Ausschwingen (`sine.inOut`, `power2.inOut` bzw. `--ease-titan`), nie schnell/hart/„poppig". Weniger, aber sanfter — nicht mehr Effekte. `prefers-reduced-motion` immer respektieren. Richtwerte nach diesem Feedback: Karussell-Rotation ~0.85 s, Linear-Karussell ~0.7 s, Caption-Crossfade 0.28 s aus / 0.5 s ein, Speed-Dial 0.4 s.
+> **Leitprinzip Motion (festgelegt 2026-07-16): Kosmos-Gefühl.** ALLE Animationen sollen **ruhig, organisch und harmonisch** wirken — langsam, mit weichem Ein-/Ausschwingen (`sine.inOut`, `power2.inOut` bzw. `--ease-zendify`), nie schnell/hart/„poppig". Weniger, aber sanfter — nicht mehr Effekte. `prefers-reduced-motion` immer respektieren. Richtwerte nach diesem Feedback: Karussell-Rotation ~0.85 s, Linear-Karussell ~0.7 s, Caption-Crossfade 0.28 s aus / 0.5 s ein, Speed-Dial 0.4 s.
 
 ### A. Timing & Easing
 
 ```css
 :root {
-  --ease-titan: cubic-bezier(0.16, 1, 0.3, 1); /* Seidig weicher Power3.out-Smooth */
+  --ease-zendify: cubic-bezier(0.16, 1, 0.3, 1); /* Seidig weicher Power3.out-Smooth */
   --dur-fast:   0.25s; /* Micro-Interactions, Button Hover, Tooltips */
   --dur-mid:    0.45s; /* Panel Slide-ins, Tab-Switches */
   --dur-slow:   0.75s; /* View-Transitions, Orbit-Zoom, Galaxie-Eintritt */
@@ -106,7 +106,7 @@ Damit die Phasenfarben auf `--bg-stage-light` (#EDE8DF) gut lesbar sind und glei
    ```css
    .space-stage.panel-open {
      filter: blur(5px) saturate(85%);
-     transition: filter var(--dur-mid) var(--ease-titan);
+     transition: filter var(--dur-mid) var(--ease-zendify);
      pointer-events: none;
    }
    ```

@@ -18,7 +18,7 @@ const ROOT = 'src/content/themen';
 
 const tok = (await (await fetch(BASE + '/auth/login', {
   method: 'POST', headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify({ email: 'admin@titan.dev', password: 'directus-dev-admin' }),
+  body: JSON.stringify({ email: 'admin@zendify.dev', password: 'directus-dev-admin' }),
 })).json()).data.access_token;
 const H = { Authorization: 'Bearer ' + tok, 'Content-Type': 'application/json' };
 async function api(method, path, body) {

@@ -25,12 +25,12 @@ function galaxienVon(universumId: string) {
 ---
 
 <SpaceLayout
-  title="Titan"
+  title="Zendify"
   description="Digitales Kompetenzsystem für die berufliche Weiterbildung — wähle dein Universum."
   canonicalPath="/"
   showPersonal={true}
 >
-  <CarouselStage stageId="kosmos-stage" universumId="titan-kosmos" itemCount={UNIVERSEN.length}>
+  <CarouselStage stageId="kosmos-stage" universumId="zendify-kosmos" itemCount={UNIVERSEN.length}>
     {UNIVERSEN.map((u, i) => (
       <UniversumGlobe
         universumId={u.id}
@@ -124,7 +124,7 @@ function galaxienVon(universumId: string) {
       orientation: 'horizontal',
       mode: 'ring',
       showHint: true,
-      persistKey: 'titan-carousel:' + window.location.pathname,
+      persistKey: 'zendify-carousel:' + window.location.pathname,
       onCenterChange: (i, el) => { caption?.sync(el); updateDots('kosmos-stage', i); },
     });
     wireDots('kosmos-stage', controller);

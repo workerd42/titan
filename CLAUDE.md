@@ -1,8 +1,8 @@
 ## Engineering-Prinzipien (verbindlich)
 
-Diese Prinzipien gelten für **jede** Arbeit an Titan (destilliert aus
+Diese Prinzipien gelten für **jede** Arbeit an Zendify (destilliert aus
 `docs/technik/blueprint.md`; die dort genannten konkreten Fremd-Technologien gelten
-bewusst NICHT — maßgeblich ist der reale Titan-Stack unten):
+bewusst NICHT — maßgeblich ist der reale Zendify-Stack unten):
 
 - **Barrierefreiheit (WCAG 2.2 AA):** Tastatur-/Screenreader-Bedienung, sichtbarer
   Fokus, aria-Namen für Bedienelemente, `prefers-reduced-motion` respektieren.
@@ -26,7 +26,7 @@ bewusst NICHT — maßgeblich ist der reale Titan-Stack unten):
 - **Nach jeder Sitzung absichern:** committen/pushen + Stand ins Gedächtnis +
   Doku-Abgleich VSCode ↔ Notion ↔ GitHub.
 
-**Realer Titan-Stack (maßgeblich):** Astro-Hybrid (`@astrojs/node`, `output:
+**Realer Zendify-Stack (maßgeblich):** Astro-Hybrid (`@astrojs/node`, `output:
 'static'` + on-demand-Routen) · Better Auth + Drizzle + self-hosted PostgreSQL ·
 **Vanilla CSS mit Norive Design Tokens** (kein Tailwind) · **localStorage**
 (Local-First) + Postgres-Sync (kein IndexedDB/Web-Crypto) · mehrseitiges Projekt
@@ -64,14 +64,14 @@ hinterlegt); die Spalte „Leit-Dokumente" nennt den jeweiligen Schwerpunkt.
 
 | Agent | Zuständig für | Leit-Dokumente (`docs/`) |
 |-------|---------------|--------------------------|
-| **`@titan-engineer`** | Code, Features, UI, Refactoring (Astro/Vanilla-CSS/Better Auth/Drizzle) | `technik/architektur.md`, `technik/design-system.md`, `technik/rollen-rechte.md`, `technik/admin-panel.md`, `technik/deployment.md`, `technik/landingpage.md`, `technik/chart-integration.md`, `technik/spickzettel.md`, `technik/blueprint.md` (Prinzipien), `redaktion/directus-setup.md`, `lernkonzept/lernbereich-redesign.md`, `lernkonzept/interaktive-module.md` |
-| **`@titan-content-autor`** | IHK-Lerninhalte, Didaktik, Themen-Frontmatter | `lernkonzept/master-fachwirt-marketing.md`, `lernkonzept/content-richtlinien.md`, `lernkonzept/pruefungs-blaupause.md`, `lernkonzept/gesamtkonzept-lernprozess.md`, `lernkonzept/interaktive-module.md`, `lernkonzept/pbl-konzept-pitch.md`, `redaktion/directus-fachautor-anleitung.md` (+ `src/content.config.ts`, `src/content/themen/`) |
-| **`@titan-ai-architect`** | KI-Schicht: n8n-Workflows, Prompts, Deklinations-JSON | `ki/ki-governance.md`, `ki/phase3-ki-plan.md`, `lernkonzept/gesamtkonzept-lernprozess.md`, `lernkonzept/interaktive-module.md`, `technik/architektur.md`, `technik/abhaengigkeiten.md`, `planung/lastenheft.md` |
-| **`@titan-compliance`** | Security, DSGVO, EU AI Act, Better-Auth-/CSRF-/XSS-Audit | `ki/ki-governance.md`, `ki/phase3-ki-plan.md`, `technik/rollen-rechte.md`, `technik/admin-panel.md`, `technik/architektur.md`, `technik/deployment.md`, `technik/blueprint.md` |
-| **`@titan-qa-a11y`** | WCAG 2.2 AA, Accessibility, Builds/Playwright/axe | `technik/blueprint.md`, `technik/design-system.md`, `technik/architektur.md`, `technik/spickzettel.md`, `technik/deployment.md`, `lernkonzept/lernbereich-redesign.md`, `technik/landingpage.md` |
-| **`@titan-controller`** | B2B-Pricing, Infra-/LLM-Kosten, Unit Economics, KPIs | `strategie/finanzplan.md`, `strategie/businessplan.md`, `strategie/marketing-konzept.md`, `ki/phase3-ki-plan.md`, `ki/ki-governance.md`, `technik/deployment.md` |
-| **`@titan-pm`** | Priorisierung, Task-Breakdown, Roadmap, Sprint-Planning | `planung/lastenheft.md`, `planung/roadmap.md`, `planung/prozess.md`, `strategie/produktvision.md`, `technik/abhaengigkeiten.md`, `lernkonzept/lernbereich-redesign.md` |
-| **`@titan-advisor`** | Strategie, Sparring, B2B-Pricing & Business-Cases (Feature-ROI) | `strategie/businessplan.md`, `strategie/produktvision.md`, `strategie/marketing-konzept.md`, `strategie/finanzplan.md`, `planung/lastenheft.md`, `planung/roadmap.md` |
+| **`@zendify-engineer`** | Code, Features, UI, Refactoring (Astro/Vanilla-CSS/Better Auth/Drizzle) | `technik/architektur.md`, `technik/design-system.md`, `technik/rollen-rechte.md`, `technik/admin-panel.md`, `technik/deployment.md`, `technik/landingpage.md`, `technik/chart-integration.md`, `technik/spickzettel.md`, `technik/blueprint.md` (Prinzipien), `redaktion/directus-setup.md`, `lernkonzept/lernbereich-redesign.md`, `lernkonzept/interaktive-module.md` |
+| **`@zendify-content-autor`** | IHK-Lerninhalte, Didaktik, Themen-Frontmatter | `lernkonzept/master-fachwirt-marketing.md`, `lernkonzept/content-richtlinien.md`, `lernkonzept/pruefungs-blaupause.md`, `lernkonzept/gesamtkonzept-lernprozess.md`, `lernkonzept/interaktive-module.md`, `lernkonzept/pbl-konzept-pitch.md`, `redaktion/directus-fachautor-anleitung.md` (+ `src/content.config.ts`, `src/content/themen/`) |
+| **`@zendify-ai-architect`** | KI-Schicht: n8n-Workflows, Prompts, Deklinations-JSON | `ki/ki-governance.md`, `ki/phase3-ki-plan.md`, `lernkonzept/gesamtkonzept-lernprozess.md`, `lernkonzept/interaktive-module.md`, `technik/architektur.md`, `technik/abhaengigkeiten.md`, `planung/lastenheft.md` |
+| **`@zendify-compliance`** | Security, DSGVO, EU AI Act, Better-Auth-/CSRF-/XSS-Audit | `ki/ki-governance.md`, `ki/phase3-ki-plan.md`, `technik/rollen-rechte.md`, `technik/admin-panel.md`, `technik/architektur.md`, `technik/deployment.md`, `technik/blueprint.md` |
+| **`@zendify-qa-a11y`** | WCAG 2.2 AA, Accessibility, Builds/Playwright/axe | `technik/blueprint.md`, `technik/design-system.md`, `technik/architektur.md`, `technik/spickzettel.md`, `technik/deployment.md`, `lernkonzept/lernbereich-redesign.md`, `technik/landingpage.md` |
+| **`@zendify-controller`** | B2B-Pricing, Infra-/LLM-Kosten, Unit Economics, KPIs | `strategie/finanzplan.md`, `strategie/businessplan.md`, `strategie/marketing-konzept.md`, `ki/phase3-ki-plan.md`, `ki/ki-governance.md`, `technik/deployment.md` |
+| **`@zendify-pm`** | Priorisierung, Task-Breakdown, Roadmap, Sprint-Planning | `planung/lastenheft.md`, `planung/roadmap.md`, `planung/prozess.md`, `strategie/produktvision.md`, `technik/abhaengigkeiten.md`, `lernkonzept/lernbereich-redesign.md` |
+| **`@zendify-advisor`** | Strategie, Sparring, B2B-Pricing & Business-Cases (Feature-ROI) | `strategie/businessplan.md`, `strategie/produktvision.md`, `strategie/marketing-konzept.md`, `strategie/finanzplan.md`, `planung/lastenheft.md`, `planung/roadmap.md` |
 
 > Alle `docs/` liegen in thematischen Ordnern: `ki/`, `lernkonzept/`, `planung/`,
 > `redaktion/`, `strategie/`, `technik/`. Bei Doku-Änderungen die Repo↔Notion-Parität

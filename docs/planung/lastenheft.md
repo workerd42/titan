@@ -1,17 +1,17 @@
-# Lastenheft — Titan (The Competence Engine)
+# Lastenheft — Zendify (The Competence Engine)
 
 > Anforderungen an das Produkt (was es leisten muss, nicht wie).
 > **Status je Anforderung:** ✅ umgesetzt · ◐ teilweise · 🔜 geplant.
 > Verweise: [produktvision.md](../strategie/produktvision.md) · [architektur.md](../technik/architektur.md) ·
 > [ki-governance.md](../ki/ki-governance.md) · [businessplan.md](../strategie/businessplan.md) ·
 > [roadmap.md](roadmap.md).
-> Notion-Spiegel: [Lastenheft — Titan](https://app.notion.com/p/3ca95f8eb376816fb4dcebb93cff4b4b) (Repo maßgeblich).
+> Notion-Spiegel: [Lastenheft — Zendify](https://app.notion.com/p/3ca95f8eb376816fb4dcebb93cff4b4b) (Repo maßgeblich).
 
 ---
 
 ## 1. Zielbestimmung
 
-Titan ist eine webbasierte Lernplattform, die angehende **IHK-Fachwirte** von der
+Zendify ist eine webbasierte Lernplattform, die angehende **IHK-Fachwirte** von der
 Theorie bis zur **prüfungsfertigen Präsentation** begleitet. Kern ist das Lernen
 durch Anwenden am eigenen fiktiven „Star-Company" (roter Faden:
 Star-Company → Artefakte → IHK-Präsentation).

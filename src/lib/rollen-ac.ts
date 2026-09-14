@@ -1,5 +1,5 @@
 /**
- * Access-Control für die Titan-Rollen (Better-Auth Admin-Plugin).
+ * Access-Control für die Zendify-Rollen (Better-Auth Admin-Plugin).
  *
  * Das Admin-Plugin verlangt, dass jede in `adminRoles` genannte Rolle hier als
  * Access-Control-Rolle definiert ist. `ac` + `roles` werden identisch in

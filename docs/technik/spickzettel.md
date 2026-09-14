@@ -21,19 +21,19 @@ Der Dev-Server braucht ein laufendes Postgres + eine `.env` (Vorlage: `.env.exam
 
 ```bash
 # Einmalig: lokales Postgres starten
-docker run -d --name titan-pg-dev \
-  -e POSTGRES_USER=titan -e POSTGRES_PASSWORD=titan -e POSTGRES_DB=titan \
+docker run -d --name zendify-pg-dev \
+  -e POSTGRES_USER=zendify -e POSTGRES_PASSWORD=zendify -e POSTGRES_DB=zendify \
   -p 5432:5432 postgres:16-alpine
 
-docker start titan-pg-dev    # nach Neustart wieder hochfahren
-docker stop titan-pg-dev     # anhalten
+docker start zendify-pg-dev    # nach Neustart wieder hochfahren
+docker stop zendify-pg-dev     # anhalten
 
 # Schema-Änderungen (src/lib/db/schema.ts)
 npm run db:generate          # erzeugt SQL-Migration in drizzle/
 npm run db:migrate           # wendet Migrationen auf die DB an
 
 # In die DB schauen
-docker exec -it titan-pg-dev psql -U titan -d titan
+docker exec -it zendify-pg-dev psql -U zendify -d zendify
 #   \dt                       Tabellen auflisten
 #   \d "user"                 Spalten einer Tabelle
 #   SELECT email FROM "user"; Nutzer ansehen
@@ -95,23 +95,23 @@ docker rmi <image>                         # Image löschen (Speicher freigeben)
 ```bash
 cd /var/www/prototyp-staging.norive.de
 
-./scripts/backup.sh                    # Dump + Rotation (Default: /var/backups/titan, 7 Stück)
-ls -lh /var/backups/titan              # Was liegt da?
+./scripts/backup.sh                    # Dump + Rotation (Default: /var/backups/zendify, 7 Stück)
+ls -lh /var/backups/zendify              # Was liegt da?
 
 # Restore (fragt vor dem Überschreiben nach)
-./scripts/restore.sh /var/backups/titan/titan_2026-07-15_031500.sql.gz
+./scripts/restore.sh /var/backups/zendify/zendify_2026-07-15_031500.sql.gz
 
 # Cron (täglich 03:15) — crontab -e
-# 15 3 * * * cd /var/www/prototyp-staging.norive.de && ./scripts/backup.sh >> /var/log/titan-backup.log 2>&1
+# 15 3 * * * cd /var/www/prototyp-staging.norive.de && ./scripts/backup.sh >> /var/log/zendify-backup.log 2>&1
 ```
 
 **Regel:** Restore mindestens **einmal echt proben** — ein ungetestetes Backup ist nur ein Versprechen. Off-site geht nur verschlüsselt (`BACKUP_PASSPHRASE`), das Skript verweigert es sonst. Details: [deployment.md](deployment.md).
 
-## Unser Deploy-Workflow (Titan auf `prototyp-staging.norive.de`)
+## Unser Deploy-Workflow (Zendify auf `prototyp-staging.norive.de`)
 
 **Lokal auf dem Mac** (nach Änderungen):
 ```bash
-cd /Users/Dude/Downloads/titan
+cd /Users/Dude/Downloads/zendify
 git add <geänderte Dateien>
 git commit -m "..."
 git push
@@ -131,7 +131,7 @@ cd /var/www/prototyp-staging.norive.de
 Seit Phase 2 ist der App-Container ein **Node-Server** (kein nginx-static mehr), Postgres läuft daneben.
 
 ```bash
-docker compose ps        # titan "Up", titan-postgres "healthy"
+docker compose ps        # zendify "Up", zendify-postgres "healthy"
 
 # App über das Reverse-Proxy-Ziel (nur lokal auf dem VPS gebunden):
 curl -s -o /dev/null -w "%{http_code}\n" http://127.0.0.1:8080/          # → 200
@@ -143,7 +143,7 @@ curl -s -o /dev/null -w "%{http_code}\n" https://prototyp-staging.norive.de/   #
 curl -s https://prototyp-staging.norive.de/ | grep -o "Content-Security-Policy" | head -1
 
 # DB erreichbar + Tabellen vorhanden (Prod-User/DB: monarch/hermes):
-docker exec titan-postgres psql -U monarch -d hermes -c "\dt"
+docker exec zendify-postgres psql -U monarch -d hermes -c "\dt"
 ```
 
 > Frühere Fassung prüfte drei identische CSP-Ausgaben aus `/usr/share/nginx/html/` — das galt für den alten nginx-Container und trifft seit Phase 2 nicht mehr zu.
@@ -151,7 +151,7 @@ docker exec titan-postgres psql -U monarch -d hermes -c "\dt"
 ## SSH-Deploy-Key (nur einmalig beim VPS-Setup nötig)
 
 ```bash
-ssh-keygen -t ed25519 -f ~/.ssh/titan_deploy -N "" -C "vps-deploy-titan"   # auf dem VPS erzeugen
-cat ~/.ssh/titan_deploy.pub                                                 # → als Deploy-Key bei GitHub hinterlegen
-ssh -T git@github-titan                                                    # Testen (Alias aus ~/.ssh/config)
+ssh-keygen -t ed25519 -f ~/.ssh/zendify_deploy -N "" -C "vps-deploy-zendify"   # auf dem VPS erzeugen
+cat ~/.ssh/zendify_deploy.pub                                                 # → als Deploy-Key bei GitHub hinterlegen
+ssh -T git@github-zendify                                                    # Testen (Alias aus ~/.ssh/config)
 ```

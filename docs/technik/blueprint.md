@@ -1,14 +1,14 @@
 # SYSTEM PROMPT & ARCHITECTURE BLUEPRINT: ADVANCED ENTERPRISE WEB APP
 
-> ⚠️ **Dies ist eine generische Engineering-Standards-/Prompt-Vorlage — NICHT die Beschreibung von Titans realem Stack.**
+> ⚠️ **Dies ist eine generische Engineering-Standards-/Prompt-Vorlage — NICHT die Beschreibung von Zendifys realem Stack.**
 >
 > Verbindlich sind die **Prinzipien** dieses Dokuments (Barrierefreiheit nach WCAG 2.2, Zero-Trust-Input / kein `innerHTML` ohne Maskierung, defensives Error-Handling, keine Platzhalter/halben Funktionen, Premium-UI-Sorgfalt).
 >
-> **Nicht** verbindlich sind die hier genannten **konkreten Technologien** — sie treffen auf Titan bewusst nicht zu:
-> - **IndexedDB / verschlüsselter Storage** → Titan nutzt `localStorage` (Local-First) + serverseitig Postgres.
-> - **Tailwind** → Titan nutzt Vanilla CSS mit Norive Design Tokens.
-> - **Single-File `index.html`** → Titan ist ein mehrseitiges Astro-Projekt.
-> - **Web Crypto / clientseitige Verschlüsselung** → in Titan nicht im Einsatz.
+> **Nicht** verbindlich sind die hier genannten **konkreten Technologien** — sie treffen auf Zendify bewusst nicht zu:
+> - **IndexedDB / verschlüsselter Storage** → Zendify nutzt `localStorage` (Local-First) + serverseitig Postgres.
+> - **Tailwind** → Zendify nutzt Vanilla CSS mit Norive Design Tokens.
+> - **Single-File `index.html`** → Zendify ist ein mehrseitiges Astro-Projekt.
+> - **Web Crypto / clientseitige Verschlüsselung** → in Zendify nicht im Einsatz.
 >
 > Für den tatsächlichen Stack und die Architektur siehe [architektur.md](architektur.md) und [README](../../README.md).
 

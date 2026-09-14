@@ -1,4 +1,4 @@
-# TITAN — Produkt- & Entwicklungs-Roadmap
+# ZENDIFY — Produkt- & Entwicklungs-Roadmap
 
 > Quelle: [Notion — Produkt- & Entwicklungs-Roadmap](https://app.notion.com/p/39895f8eb376811fb6aee7e9c6274216)
 > Ursprung: 2026-07-09 · Zuletzt mit echtem Code-Stand abgeglichen: 2026-08-28
@@ -70,7 +70,7 @@ Historie erhalten.
 
 **Ziel:** Vom reinen Local-First-Frontend zu einem System mit Accounts, serverseitiger Persistenz und einem Dozenten-Cockpit. **Nächste aktive Phase.**
 
-> **Status (2026-07-16):** **Fundament live.** Der Stack läuft containerisiert als **Node + Postgres** auf dem VPS `prototyp-staging.norive.de`, ausgerollt von GitHub (`workerd42/titan`) via `deploy.sh`. Auth, DB und Fortschritts-Sync sind umgesetzt und in Produktion verifiziert (erste Registrierung liegt in der DB). Siehe [deployment.md](../technik/deployment.md). **Offen:** Dozenten-Cockpit (2.4), Admin (2.5), Redaktionssystem (2.6).
+> **Status (2026-07-16):** **Fundament live.** Der Stack läuft containerisiert als **Node + Postgres** auf dem VPS `prototyp-staging.norive.de`, ausgerollt von GitHub (`workerd42/zendify`) via `deploy.sh`. Auth, DB und Fortschritts-Sync sind umgesetzt und in Produktion verifiziert (erste Registrierung liegt in der DB). Siehe [deployment.md](../technik/deployment.md). **Offen:** Dozenten-Cockpit (2.4), Admin (2.5), Redaktionssystem (2.6).
 >
 > **Aktualisierung (2026-07-17):** **Admin (2.5) ist LIVE** — Admin-Panel `/admin` + Rollen (platform-admin/org-admin/dozent/lerner) via Better-Auth-Admin-Plugin ([admin-panel.md](../technik/admin-panel.md)). **Echtes Login-Gate LIVE** (invite-only, Basic-Auth entfernt — [deployment.md](../technik/deployment.md)). **CMS-Entscheidung: Directus** (Payload verworfen). **Offen:** Dozenten-Cockpit (2.4), Redaktionssystem/Directus (2.6), KI-Schicht (Phase 3, **formatives Feedback ohne Note** — [ki-governance.md](../ki/ki-governance.md)).
 >
@@ -80,7 +80,7 @@ Historie erhalten.
 
 ### 2.0 Account- & Onboarding-Modell (festgelegt 2026-07-14)
 
-> **Zugangsmodell revidiert (2026-07-16): Hartes Gate statt Freemium.** Titan (die App) sitzt **vollständig hinter Login**. Vorgeschaltet ist ein **eigenes Projekt**: Unternehmens-/Produktseite + Lead-Pages + Landingpage → **Paywall** → Registrierung/Login → Titan. Das bisherige Freemium-/„anonym lernen"-Modell entfällt für die Lerninhalte.
+> **Zugangsmodell revidiert (2026-07-16): Hartes Gate statt Freemium.** Zendify (die App) sitzt **vollständig hinter Login**. Vorgeschaltet ist ein **eigenes Projekt**: Unternehmens-/Produktseite + Lead-Pages + Landingpage → **Paywall** → Registrierung/Login → Zendify. Das bisherige Freemium-/„anonym lernen"-Modell entfällt für die Lerninhalte.
 >
 > **Technische Konsequenz (Pflicht, sonst nur Kosmetik):** Die Lernseiten sind aktuell statisch vorgerendert und würden per Direkt-URL trotzdem ausgeliefert. Ein echtes Gate verlangt **serverseitiges Rendern hinter der Session** (`prerender = false` + Middleware-Redirect zu Login/Paywall) für die geschützten Routen. Ein reiner Client-Redirect schützt die Inhalte nicht. SEO ist dafür bereits aus (noindex/Disallow). Local-First (localStorage als schnelle Arbeitskopie) bleibt **post-Login** gültig.
 >
@@ -101,7 +101,7 @@ Zwei gleichrangige Zielgruppen, zwei Einstiegswege:
 
 **Sequenzierung (festgelegt):** Erst das **Einzel-Account-Fundament** (2.2/2.3 — registrieren/login/eigener Fortschritts-Sync; bedient B2C sofort und ist Voraussetzung für alles). **Direkt danach** die Organisations-/Rollen-/Einladungs-Schicht **zusammen mit dem Dozenten-Cockpit** (2.4), da dasselbe Modell.
 
-**Separat (eigenes Projekt, vorgeschaltet):** Unternehmens-/Produktseite + Lead-Pages + **Landingpage + Paywall** existieren noch nicht (aktuell ist `/` die App selbst). Sie sind dem Login **vorgeschaltet** und ein eigener Baustein — nicht diese Astro-App. Titan beginnt erst nach erfolgreichem Login/Entitlement.
+**Separat (eigenes Projekt, vorgeschaltet):** Unternehmens-/Produktseite + Lead-Pages + **Landingpage + Paywall** existieren noch nicht (aktuell ist `/` die App selbst). Sie sind dem Login **vorgeschaltet** und ein eigener Baustein — nicht diese Astro-App. Zendify beginnt erst nach erfolgreichem Login/Entitlement.
 
 ### 2.1 Deployment-Infrastruktur
 
@@ -155,7 +155,7 @@ Zwei gleichrangige Zielgruppen, zwei Einstiegswege:
 
 **Auslöser:** Die Inhalte werden **dauerhaft von einem Fachautor** (ohne Technikkenntnisse) geliefert. „Markdown-Datei + Git-Commit" ist damit kein tragfähiger Weg mehr — ein CMS ist berechtigt.
 
-- [ ] **Auto-Deploy als Voraussetzung** — Titan rendert die Themenseiten statisch beim Build; ohne automatischen Deploy (Webhook → Build → Ausrollen) geht keine Textänderung live. **Das ist der eigentliche Aufwand, nicht das CMS.** Betrifft jede CMS-Variante.
+- [ ] **Auto-Deploy als Voraussetzung** — Zendify rendert die Themenseiten statisch beim Build; ohne automatischen Deploy (Webhook → Build → Ausrollen) geht keine Textänderung live. **Das ist der eigentliche Aufwand, nicht das CMS.** Betrifft jede CMS-Variante.
 - [ ] CMS-Entscheidung umsetzen (Richtung: **Directus**, selbst gehostet auf einer Sub-Domain im Norive-Ökosystem)
 - [ ] Zod-Schema-Validierung erhalten: Astro-Content-Collections können per API laden **und** weiterhin gegen das Schema validieren → fehlerhafte Inhalte lassen den Build scheitern, statt live zu gehen.
 
@@ -165,7 +165,7 @@ Zwei gleichrangige Zielgruppen, zwei Einstiegswege:
 |---|---|---|
 | **Directus** (selbst gehostet, kostenlos) — *Empfehlung* | Fachautor meldet sich mit **E-Mail/Passwort** an, kein GitHub nötig; sehr gute Editor-UI für verschachtelte Strukturen; EU-tauglich; eigene Revisionshistorie | Zweites System (Betrieb, Patches, Absicherung) |
 | **Git-basierter CMS** (Decap/Sveltia/Pages CMS) | Inhalte bleiben versioniert/überprüfbar (bei Prüfungsinhalten wertvoll); kein zweites System; kostenlos | **Fachautor bräuchte ein GitHub-Konto** oder wir betreiben einen OAuth-Proxy — praktische Hürde |
-| ~~PIM-System~~ | — | **Falsches Werkzeug.** PIM verwaltet Produktdaten (Artikel, Varianten, Attribute, Preise) für Verkaufskanäle. Titans Inhalte sind redaktionelle Lerntexte — Kategorie-Verwechslung. |
+| ~~PIM-System~~ | — | **Falsches Werkzeug.** PIM verwaltet Produktdaten (Artikel, Varianten, Attribute, Preise) für Verkaufskanäle. Zendifys Inhalte sind redaktionelle Lerntexte — Kategorie-Verwechslung. |
 | ~~Payload CMS~~ | — | Wollte **auch** Auth/API übernehmen → hätten wir doppelt (zwei Nutzersysteme). Directus wird bewusst **nur** als Redaktionswerkzeug für Mitarbeiter eingesetzt, sauber getrennt von der Lernenden-Anmeldung. |
 
 ## 🤖 Phase 3: KI-Orchestrierung & Interaktiver Baukasten

@@ -27,7 +27,7 @@ Ein zentrales Utility, das die Guardrails an EINER Stelle erfüllt; Module rufen
   Chart gebraucht wird (Modul-/Cockpit-Seite) — nicht global (~60 KB gzip).
 - **Theme-aware:** Farben zur Laufzeit aus Norive-Tokens lesen (`getComputedStyle`
   auf `--accent`/`--text`/`--border`) und **beim Hell/Dunkel-Umschalter neu setzen**
-  (Titan hat den Toggle) — sonst wirkt der Chart „fremd".
+  (Zendify hat den Toggle) — sonst wirkt der Chart „fremd".
 - **Kosmos-Ruhe:** langsame, weiche Animation; **`prefers-reduced-motion` → Animation
   aus** (`animation: false`).
 - **Barrierefreiheit (WCAG 2.2, 0 axe):** Canvas ist für Screenreader opak → der

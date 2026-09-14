@@ -484,7 +484,7 @@ function init(): void {
   initReset();
 }
 
-// WICHTIG: astro:page-load (nicht DOMContentLoaded) — Titan nutzt den ClientRouter
+// WICHTIG: astro:page-load (nicht DOMContentLoaded) — Zendify nutzt den ClientRouter
 // (View Transitions). DOMContentLoaded feuert bei Client-seitiger Navigation NICHT,
 // dadurch blieben nach einem Kapitelwechsel die Phasen-Buttons OHNE Handler und der
 // Fortschritt (%/Ring) aktualisierte sich beim Klick nicht. astro:page-load feuert

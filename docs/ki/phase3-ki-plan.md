@@ -1,4 +1,4 @@
-# Titan — Phase 3 (KI): Plan zu Kosten, Risiken & Umsetzung
+# Zendify — Phase 3 (KI): Plan zu Kosten, Risiken & Umsetzung
 
 > **Zweck:** Bevor eine Zeile KI-Code entsteht — ein klarer, strukturierter Plan, damit
 > wir nicht „ins offene Messer laufen". Bezug: [pbl-konzept-pitch.md](../lernkonzept/pbl-konzept-pitch.md),
@@ -73,7 +73,7 @@ Kostenfaktor.
 | **Anbieter-Abhängigkeit** | niedrig / mittel | Abstraktionsschicht (ein `ki-client`), damit Anthropic↔Langdock↔Soofi tauschbar; **Blind-Vergleich Soofi vs. Claude** vor Umstieg. |
 | **Prompt-Injection** (Nutzer manipuliert Tutor) | mittel / niedrig | Nutzereingabe strikt als Daten kennzeichnen; System-Prompt-Härtung; keine Tool-/DB-Rechte im Tutor-Call. |
 | **Latenz/Ausfall** | mittel / niedrig | **Streaming** (gefühlte Schnelligkeit); Timeout + Fallback auf Musterlösung; App bleibt ohne KI nutzbar. |
-| **EU-AI-Act** | — | Titan = **niedriges Risiko** (Lern-Assistenz, keine verbotene/Hochrisiko-Nutzung); Transparenzpflicht „KI-generiert" erfüllen. Kein EU-Modell-Zwang. |
+| **EU-AI-Act** | — | Zendify = **niedriges Risiko** (Lern-Assistenz, keine verbotene/Hochrisiko-Nutzung); Transparenzpflicht „KI-generiert" erfüllen. Kein EU-Modell-Zwang. |
 
 ## 5. Umsetzungs-Architektur (zwei Optionen)
 

@@ -1,10 +1,10 @@
-# Titan — Prüfungs-Blaupause (Fachwirt für Marketing)
+# Zendify — Prüfungs-Blaupause (Fachwirt für Marketing)
 
 > Fundament für die Übungs-/Test-Modi. Basiert auf der **programmatischen Analyse von 13 echten
 > IHK-Prüfungen** (`docs/quellen/Prüfungen/`, FWfM 2017–2025, ~970.000 Zeichen).
 >
 > ⚠️ **Urheberrecht:** Analysiert werden **Format, Struktur und Operator-Häufigkeit** (Fakten über
-> die Prüfung) — **kein** Prüfungstext wird reproduziert. Alle Titan-Aufgaben entstehen in
+> die Prüfung) — **kein** Prüfungstext wird reproduziert. Alle Zendify-Aufgaben entstehen in
 > **eigenem Wording** (siehe [content-richtlinien.md](content-richtlinien.md)).
 
 ---
@@ -22,7 +22,7 @@
 
 ## 2. Die Aufgabentypen — IHK-Operatoren (Häufigkeit über 13 Prüfungen)
 
-| Operator | Häufigkeit | Was er verlangt | Titan-Modus |
+| Operator | Häufigkeit | Was er verlangt | Zendify-Modus |
 |----------|-----------:|-----------------|-------------|
 | **Erläutern** | 136 | Sachverhalt **verständlich ausführen** (nicht nur nennen) | Freitext → KI-Feedback |
 | **Beschreiben** | 49 | Merkmale/Abläufe **darstellen** | Freitext / MC-Basis |
@@ -38,7 +38,7 @@
 **Kern-Erkenntnis:** Die Prüfung ist **überwiegend Freitext-Erläuterung/Begründung/Empfehlung**.
 Reines Faktenwissen (nennen/definieren) ist die Minderheit. → Konsequenzen für die Modi (unten).
 
-## 3. Was das für die Titan-Modi bedeutet
+## 3. Was das für die Zendify-Modi bedeutet
 
 | Modus | Deckt ab | Baubar |
 |-------|----------|--------|
@@ -56,7 +56,7 @@ bewusst: erst Fakten & Struktur ohne KI, dann die teure KI-Schicht obendrauf.
 ## 4. Zusätzliche Design-Empfehlung: Operatoren explizit lehren
 
 Weil **„erläutern" ≠ „nennen" ≠ „begründen"** über Bestehen/Durchfallen entscheidet (viele
-Kandidaten „nennen" nur, wo „erläutert" verlangt ist), sollte Titan die **IHK-Operatoren
+Kandidaten „nennen" nur, wo „erläutert" verlangt ist), sollte Zendify die **IHK-Operatoren
 explizit** vermitteln — als kleine Referenz + als sichtbaren Hinweis an jeder Übungs-/Testaufgabe
 („Dieser Operator verlangt: …"). Hoher, prüfungsspezifischer Mehrwert, geringer Aufwand.
 
@@ -66,5 +66,5 @@ Ergänzend zum bestehenden `pruefungsfrage`-Feld:
 - **`mcFragen`** (Array): `{ frage, optionen[4], richtigeAntwort, erklaerung, operator }` — für den Übungsbereich.
 - **`pruefungsaufgabe`** (reicher als heute): `{ situation, teilaufgaben: [{ operator, anzahl, aufgabe, punkte, loesungshinweis }] }` — bildet die echte Situationsaufgabe nach.
 
-Beides in **eigenem Titan-Wording**, Struktur/Niveau an der Blaupause orientiert. Inhaltlich zuerst
+Beides in **eigenem Zendify-Wording**, Struktur/Niveau an der Blaupause orientiert. Inhaltlich zuerst
 1–2 Themen als Muster, dann skalieren (später KI-gestützt generierbar).

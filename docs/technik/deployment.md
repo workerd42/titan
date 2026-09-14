@@ -1,6 +1,6 @@
 # Deployment — VPS, Docker, GitHub
 
-Wie Titan von der lokalen Entwicklung bis zur Live-Domain kommt, und wie künftige Änderungen ausgerollt werden.
+Wie Zendify von der lokalen Entwicklung bis zur Live-Domain kommt, und wie künftige Änderungen ausgerollt werden.
 
 > **Stand Phase 2 (2026-07-15):** Der Stack besteht jetzt aus **zwei** Containern — die App läuft als **Node-Server** (nicht mehr nginx-static), dazu kommt **Postgres** für Accounts/Fortschritt. Migrationen laufen automatisch beim Containerstart.
 
@@ -12,14 +12,14 @@ Wie Titan von der lokalen Entwicklung bis zur Live-Domain kommt, und wie künfti
 Mac (lokale Entwicklung)
    │  git push
    ▼
-GitHub — workerd42/titan (privates Repo, Quelle der Wahrheit)
+GitHub — workerd42/zendify (privates Repo, Quelle der Wahrheit)
    │  git pull (via Deploy-Key)
    ▼
 VPS — /var/www/prototyp-staging.norive.de
    │  docker compose up -d --build   (liest Secrets aus .env daneben)
    ▼
 ┌─────────────────────────────────────────────┐
-│ Container "titan" (node:22)                 │
+│ Container "zendify" (node:22)                 │
 │  1. node scripts/migrate.mjs  (idempotent)  │
 │  2. node dist/server/entry.mjs              │
 │  → liefert prerenderte Seiten UND           │
@@ -28,8 +28,8 @@ VPS — /var/www/prototyp-staging.norive.de
 └──────────────────┬──────────────────────────┘
                    │ nur im Docker-Netz
 ┌──────────────────▼──────────────────────────┐
-│ Container "titan-postgres" (postgres:16)    │
-│  Volume: titan_pgdata  ·  KEIN Host-Port    │
+│ Container "zendify-postgres" (postgres:16)    │
+│  Volume: zendify_pgdata  ·  KEIN Host-Port    │
 └─────────────────────────────────────────────┘
    │
    ▼
@@ -42,15 +42,15 @@ https://prototyp-staging.norive.de
 ## Komponenten
 
 ### 1. GitHub — Quelle der Wahrheit
-- Repo: `workerd42/titan` (privat)
-- Lokal auf dem Mac: `/Users/Dude/Downloads/titan`, Remote `origin` zeigt auf GitHub
-- Auf dem VPS: eigener Git-Checkout unter `/var/www/prototyp-staging.norive.de`, verbunden über einen **Deploy-Key** (read-only, SSH-Alias `github-titan` in `~/.ssh/config`) — nicht über den persönlichen SSH-Key
+- Repo: `workerd42/zendify` (privat)
+- Lokal auf dem Mac: `/Users/Dude/Downloads/zendify`, Remote `origin` zeigt auf GitHub
+- Auf dem VPS: eigener Git-Checkout unter `/var/www/prototyp-staging.norive.de`, verbunden über einen **Deploy-Key** (read-only, SSH-Alias `github-zendify` in `~/.ssh/config`) — nicht über den persönlichen SSH-Key
 
 ### 2. Docker-Setup (im Repo)
 - **`Dockerfile`** — Zweistufiger Build: Build-Stage baut den Astro-Output; **Serve-Stage ist `node:22-alpine`** (seit Phase 2 kein nginx mehr im Container — der `@astrojs/node`-Adapter liefert prerenderte Seiten *und* on-demand-Routen selbst aus). Der Container führt beim Start erst `scripts/migrate.mjs` aus, dann `dist/server/entry.mjs`.
 - **`docker-compose.yml`** — zwei Services:
-  - `titan` (App) → nur an `127.0.0.1:8080` gebunden, Port 4321 im Container
-  - `postgres` (DB) → **kein Host-Port**, nur im Docker-Netz erreichbar; Daten im Volume `titan_pgdata`; die App startet erst, wenn der Healthcheck grün ist
+  - `zendify` (App) → nur an `127.0.0.1:8080` gebunden, Port 4321 im Container
+  - `postgres` (DB) → **kein Host-Port**, nur im Docker-Netz erreichbar; Daten im Volume `zendify_pgdata`; die App startet erst, wenn der Healthcheck grün ist
   - Secrets kommen aus einer `.env` **neben** der Compose-Datei; fehlt eine, schlägt `docker compose up` bewusst sofort fehl (`${VAR:?}`)
 - **`scripts/migrate.mjs`** — programmatischer Drizzle-Migrator. Bewusst nicht `drizzle-kit` (devDependency, nicht im schlanken Prod-Image); nutzt nur `drizzle-orm`/`pg` und die generierten SQL-Dateien aus `drizzle/`. Idempotent.
 - **Kein `docker/nginx.conf` mehr** (in Phase 2 entfernt). **Wichtig bleibt:** Weder Container noch Host-nginx dürfen eine eigene CSP setzen — die App liefert ihre CSP per `<meta>`-Tag aus (`BaseLayout.astro`). Eine zweite, widersprüchliche CSP hat früher genau den Bug verursacht, dass Buttons live tot waren (siehe Stolpersteine unten).
@@ -73,11 +73,11 @@ Compose übersetzt diese Werte intern in die Felder `PGHOST`/`PGPORT`/`PGUSER`/`
 
 **Warum Einzelfelder statt einer `DATABASE_URL`?** Beim ersten Live-Deploy stand hier eine zusammengebaute URL (`postgres://user:passwort@postgres:5432/db`). Enthält das Passwort ein Zeichen mit Sonderbedeutung in URLs — `@ / : ? # %` — zerreisst es die Syntax: Der Container lief in eine Neustart-Schleife mit `ERR_INVALID_URL`, während Postgres selbst kerngesund war (irreführendes Fehlerbild, das nach einem DB-Problem aussah). Die Zugangsdaten werden jetzt als diskrete Felder an `pg` übergeben. Damit ist **jedes Passwort erlaubt** — es gibt keine Zeichen-Beschränkung mehr, und der Fehler kann bei künftigen Passwortwechseln nicht wiederkehren.
 
-**Namensgebung (festgelegt 2026-07-15):** Benutzer `monarch`, Datenbank `hermes` — bewusst **nicht** der Projektname (`titan` benennt das Projekt, nicht die Datenbank-Identität). Die **lokale Entwicklung darf abweichen** und nutzt weiterhin `titan/titan` (siehe [spickzettel.md](spickzettel.md)).
+**Namensgebung (festgelegt 2026-07-15):** Benutzer `monarch`, Datenbank `hermes` — bewusst **nicht** der Projektname (`zendify` benennt das Projekt, nicht die Datenbank-Identität). Die **lokale Entwicklung darf abweichen** und nutzt weiterhin `zendify/zendify` (siehe [spickzettel.md](spickzettel.md)).
 
-> ⚠️ **Nur einmal einstellbar:** Postgres übernimmt `POSTGRES_USER`/`POSTGRES_DB` **ausschließlich beim allerersten Start mit leerem Datenverzeichnis**. Danach stecken die Namen im Volume `titan_pgdata` fest — eine spätere Änderung in der `.env` greift wirkungslos ins Leere (die App bekäme dann Verbindungsfehler). Nachträglich zu ändern hieße: Volume löschen (= Datenverlust) oder manuell per SQL umbenennen. **Also vor dem ersten `docker compose up` festlegen.**
+> ⚠️ **Nur einmal einstellbar:** Postgres übernimmt `POSTGRES_USER`/`POSTGRES_DB` **ausschließlich beim allerersten Start mit leerem Datenverzeichnis**. Danach stecken die Namen im Volume `zendify_pgdata` fest — eine spätere Änderung in der `.env` greift wirkungslos ins Leere (die App bekäme dann Verbindungsfehler). Nachträglich zu ändern hieße: Volume löschen (= Datenverlust) oder manuell per SQL umbenennen. **Also vor dem ersten `docker compose up` festlegen.**
 
-*(Der Container heißt weiterhin `titan-postgres` — das ist ein Docker-interner Name des Projekt-Stacks, keine Zugangsdaten.)*
+*(Der Container heißt weiterhin `zendify-postgres` — das ist ein Docker-interner Name des Projekt-Stacks, keine Zugangsdaten.)*
 
 ### 4. `deploy.sh` (auf dem VPS, im Projektordner)
 ```bash
@@ -103,7 +103,7 @@ docker compose up -d --build
 
 ```bash
 # Lokal auf dem Mac
-cd /Users/Dude/Downloads/titan
+cd /Users/Dude/Downloads/zendify
 git add <geänderte Dateien>
 git commit -m "..."
 git push
@@ -121,7 +121,7 @@ cd /var/www/prototyp-staging.norive.de
 docker compose ps
 
 # 2. Migration gelaufen + Server gestartet? (erwartet "[migrate] Migrationen angewendet.")
-docker compose logs titan | tail -10
+docker compose logs zendify | tail -10
 
 # 3. CSP identisch von außen und innen?
 curl -s https://prototyp-staging.norive.de/ | grep -o "Content-Security-Policy[^>]*"
@@ -131,7 +131,7 @@ curl -s http://127.0.0.1:8080/ | grep -o "Content-Security-Policy[^>]*"
 curl -s https://prototyp-staging.norive.de/api/auth/get-session
 
 # 5. Tabellen vorhanden?
-docker exec titan-postgres psql -U monarch -d hermes -c "\dt"
+docker exec zendify-postgres psql -U monarch -d hermes -c "\dt"
 ```
 
 ## Datensicherung (Backup & Restore)
@@ -140,7 +140,7 @@ docker exec titan-postgres psql -U monarch -d hermes -c "\dt"
 
 ### Warum `pg_dump` und nicht Plesk/Panel-Backups
 
-**Plesk** (bzw. vergleichbare Hosting-Panels) ist eine grafische Server-Verwaltung. Es sichert das, **was es selbst verwaltet** — Titan läuft aber als rohe Docker-Container mit einem Postgres im Docker-Volume, an dem ein Panel vorbeischaut. **Ein Plesk-Backup erfasst unsere Datenbank aller Voraussicht nach nicht.**
+**Plesk** (bzw. vergleichbare Hosting-Panels) ist eine grafische Server-Verwaltung. Es sichert das, **was es selbst verwaltet** — Zendify läuft aber als rohe Docker-Container mit einem Postgres im Docker-Volume, an dem ein Panel vorbeischaut. **Ein Plesk-Backup erfasst unsere Datenbank aller Voraussicht nach nicht.**
 
 Ein **VPS-Snapshot** (Abbild der ganzen Maschine, z. B. als IONOS-Zusatz) enthält das Volume zwar, ist aber grobkörnig (Restore = ganzer Server zurück, inkl. anderer Dienste), meist kostenpflichtig und bei laufender DB potenziell inkonsistent. → Sinnvolle **Ergänzung**, kein Ersatz.
 
@@ -151,7 +151,7 @@ Ein **VPS-Snapshot** (Abbild der ganzen Maschine, z. B. als IONOS-Zusatz) enthä
 ```bash
 cd /var/www/prototyp-staging.norive.de
 
-# Einmalig testen (schreibt nach /var/backups/titan)
+# Einmalig testen (schreibt nach /var/backups/zendify)
 ./scripts/backup.sh
 
 # Für Verschlüsselung (PFLICHT sobald off-site) auf dem VPS nötig:
@@ -161,15 +161,15 @@ apt-get install -y gnupg      # bzw. apk add gnupg
 **Cron einrichten** (`crontab -e`), täglich 03:15 Uhr:
 
 ```cron
-15 3 * * * cd /var/www/prototyp-staging.norive.de && ./scripts/backup.sh >> /var/log/titan-backup.log 2>&1
+15 3 * * * cd /var/www/prototyp-staging.norive.de && ./scripts/backup.sh >> /var/log/zendify-backup.log 2>&1
 ```
 
 **Konfiguration** (Umgebungsvariablen, alle optional):
 
 | Variable | Wirkung |
 |---|---|
-| `BACKUP_DIR` | Zielverzeichnis (Default `/var/backups/titan`) |
-| `PG_CONTAINER` | DB-Container (Default `titan-postgres`) |
+| `BACKUP_DIR` | Zielverzeichnis (Default `/var/backups/zendify`) |
+| `PG_CONTAINER` | DB-Container (Default `zendify-postgres`) |
 | `KEEP_DAILY` | Wie viele Dumps behalten (Default 7) |
 | `BACKUP_PASSPHRASE` | Wenn gesetzt → GPG-verschlüsselt. **Pflicht für off-site** |
 | `RCLONE_REMOTE` | rclone-Ziel → Off-site-Kopie (Anbieter noch offen, s. u.) |
@@ -186,9 +186,9 @@ apt-get install -y gnupg      # bzw. apk add gnupg
 > Ein Backup, dessen Wiederherstellung nie getestet wurde, ist nur ein Versprechen. Dieser Weg wurde lokal verifiziert (14 Nutzer gelöscht → vollständig wiederhergestellt).
 
 ```bash
-./scripts/restore.sh /var/backups/titan/titan_2026-07-15_031500.sql.gz
+./scripts/restore.sh /var/backups/zendify/zendify_2026-07-15_031500.sql.gz
 # verschlüsselt:
-BACKUP_PASSPHRASE=... ./scripts/restore.sh /var/backups/titan/titan_....sql.gz.gpg
+BACKUP_PASSPHRASE=... ./scripts/restore.sh /var/backups/zendify/zendify_....sql.gz.gpg
 ```
 Das Skript fragt vor dem Überschreiben nach und zeigt danach eine Kurzprüfung (Anzahl Nutzer/Fortschritte).
 

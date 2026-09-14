@@ -18,7 +18,7 @@
         "hidden": false,
         "icon": "school",
         "item_duplication_fields": null,
-        "note": "Titan Lern-Themen (spiegelt src/content.config.ts). Zod validiert beim Pull.",
+        "note": "Zendify Lern-Themen (spiegelt src/content.config.ts). Zod validiert beim Pull.",
         "preview_url": null,
         "singleton": false,
         "sort": null,

@@ -11,7 +11,7 @@ lokalen Instanz läge). So ist der Aufbau der `themen`-Collection reproduzierbar
 ```bash
 TOKEN=$(curl -s -X POST http://localhost:8055/auth/login \
   -H 'Content-Type: application/json' \
-  -d '{"email":"admin@titan.dev","password":"directus-dev-admin"}' | sed -n 's/.*"access_token":"\([^"]*\)".*/\1/p')
+  -d '{"email":"admin@zendify.dev","password":"directus-dev-admin"}' | sed -n 's/.*"access_token":"\([^"]*\)".*/\1/p')
 curl -s http://localhost:8055/schema/snapshot -H "Authorization: Bearer $TOKEN" \
   | sed 's/^{"data"://; s/}$//' > directus/schema-snapshot.json
 ```
@@ -30,7 +30,7 @@ curl -s -X POST http://localhost:8055/schema/apply \
 ```
 
 > **Inhalte** (die Themen-Datensätze) sind NICHT Teil des Schema-Snapshots — nur die Struktur.
-> Inhalte pflegt die Redaktion in Directus; Titan zieht sie beim Build (`status=published`).
+> Inhalte pflegt die Redaktion in Directus; Zendify zieht sie beim Build (`status=published`).
 
 Setup & Schnittstelle: [../docs/directus-setup.md](../docs/directus-setup.md) ·
 Autoren-Anleitung: [../docs/directus-fachautor-anleitung.md](../docs/directus-fachautor-anleitung.md)

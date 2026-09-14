@@ -1,8 +1,8 @@
 # Öffentliche Marketing-Seiten (Landingpage & Fachrichtungen)
 
-Stand: 2026-08-25 · Autor: Titan Dev
+Stand: 2026-08-25 · Autor: Zendify Dev
 
-Öffentlicher, immersiver Vor-Login-Auftritt (B2B-first) für Titan als **Learning
+Öffentlicher, immersiver Vor-Login-Auftritt (B2B-first) für Zendify als **Learning
 Experience Platform (LXP)** — allgemein für **alle IHK-Fachwirt-Richtungen**, nicht
 Marketing-spezifisch. Wird **im Code, Section für Section, nach Absprache** gebaut.
 
@@ -59,7 +59,7 @@ externer CDN (CSP `font-src 'self'`). `@font-face` je Seite scoped dekliniert.
 5. **Section 3 „Angebot" (B2B & B2C):** **Scroll-Cross-Fade** — Text mittig (gepinnt),
    beim Scrollen erscheinen die zwei **Info-Cards im Navy-Gold-Schema** (Bildungsträger /
    Prüflinge). CTAs: „Demo anfragen" = mailto, „So funktioniert's" → `/so-funktionierts`.
-6. **Section 4 „Warum Titan":** **„Karten-austeilen"** — drei Cards liegen aufeinander
+6. **Section 4 „Warum Zendify":** **„Karten-austeilen"** — drei Cards liegen aufeinander
    (Card 1 oben), beim Scrollen wischt die oberste nach oben weg (rAF, gepinnt).
    Layout je Card wie orizon: **oben** Headline + Grafik, **unten** zwei gestapelte
    Texte + zweite Grafik daneben (**Card 2 gespiegelt** — Bild links, Text rechts);

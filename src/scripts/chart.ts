@@ -91,8 +91,8 @@ export function destroyChartsIn(root: ParentNode): void {
 // Theme-Wechsel (data-theme am <html>) → Farben nachziehen.
 new MutationObserver(recolor).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
 
-// Cleanup-Hook OHNE Import nutzbar (module-engine ruft window.__titanDestroyChartsIn?.(el)).
-(window as unknown as { __titanDestroyChartsIn?: (r: ParentNode) => void }).__titanDestroyChartsIn = destroyChartsIn;
+// Cleanup-Hook OHNE Import nutzbar (module-engine ruft window.__zendifyDestroyChartsIn?.(el)).
+(window as unknown as { __zendifyDestroyChartsIn?: (r: ParentNode) => void }).__zendifyDestroyChartsIn = destroyChartsIn;
 
 // ClientRouter: vor jedem Seiten-Swap alle Charts zerstören.
 document.addEventListener('astro:before-swap', () => destroyChartsIn(document));

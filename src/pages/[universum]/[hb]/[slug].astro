@@ -683,7 +683,7 @@ const ihkPunkte = ihkTeilaufgaben.reduce((s, t) => s + t.punkte, 0);
 
 <!-- Lese- & Barrierefreiheits-Optionen: Zustand global gespeichert, gilt für alle vier Phasen -->
 <script>
-  const LESE_KEY = 'titan-lese-v1';
+  const LESE_KEY = 'zendify-lese-v1';
   const LESE_DEFAULT = { lesemodus: 'false', groesse: 'normal', abstand: 'normal' };
 
   function leseLoad(): Record<string, string> {
@@ -1424,7 +1424,7 @@ const ihkPunkte = ihkTeilaufgaben.reduce((s, t) => s + t.punkte, 0);
   .ge-summary:hover { background: var(--accent-soft); }
   .ge-summary:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
   /* „+"/„×"-Marker kommt global aus planet.css (summary::before) — links, konsistent
-     mit den übrigen Titan-Accordions. Er soll den Akzent-Ton tragen. */
+     mit den übrigen Zendify-Accordions. Er soll den Akzent-Ton tragen. */
   .ge-summary::before { color: var(--accent); }
   .ge-norm {
     font-family: var(--mono); font-size: 13px; font-weight: 400;

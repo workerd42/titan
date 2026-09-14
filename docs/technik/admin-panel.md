@@ -1,6 +1,6 @@
 # Admin-Panel & Rollen
 
-Nutzer- und Rollenverwaltung für Titan, umgesetzt mit dem **Better-Auth Admin-Plugin**.
+Nutzer- und Rollenverwaltung für Zendify, umgesetzt mit dem **Better-Auth Admin-Plugin**.
 Erreichbar unter `/admin` — ausschließlich für die Rolle `platform-admin`.
 
 ## Rollen
@@ -54,7 +54,7 @@ node scripts/bootstrap-admin.mjs admin@example.de "SicheresPasswort" "Anzeigenam
 docker-compose-Root auf dem VPS:
 
 ```bash
-docker compose exec titan node scripts/bootstrap-admin.mjs admin@example.de "…" "Name"
+docker compose exec zendify node scripts/bootstrap-admin.mjs admin@example.de "…" "Name"
 ```
 
 Das Script verbindet über dieselben Env-Variablen wie die Migrationen

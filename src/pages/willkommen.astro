@@ -2,7 +2,7 @@
 /**
  * /willkommen — öffentliche Marketing-Landingpage (B2B-first, immersiver Stil).
  * On-demand, aber ÖFFENTLICH (Middleware-Allowlist). Wird Section für Section
- * aufgebaut/abgestimmt. Palette: Kosmos-Blau (Navy) + Titan-Gold.
+ * aufgebaut/abgestimmt. Palette: Kosmos-Blau (Navy) + Zendify-Gold.
  * Hero: Blue-Marble-Erde unten-mittig (Screen-Blend, nahtlos), Nav = Wortmarke +
  * Burger, dessen Overlay sich kreisförmig über den Screen aufbläht.
  * Self-hosted Fonts (Space Grotesk / Inter). GSAP; prefers-reduced-motion.
@@ -20,8 +20,8 @@ const NAV = [
 
 // CTA v1: mailto. E-Mail ist ein PLATZHALTER — vom Betreiber bestätigen/ersetzen.
 const KONTAKT_EMAIL = 'service@norive.de';
-const KONTAKT_MAILTO = `mailto:${KONTAKT_EMAIL}?subject=${encodeURIComponent('Demo-Anfrage – Titan')}&body=${encodeURIComponent(
-  'Hallo Titan-Team,\n\nich interessiere mich für eine Demo von Titan.\n\nName / Einrichtung:\nAnzahl Kurse / Teilnehmende:\nWunschtermin:\n\nViele Grüße'
+const KONTAKT_MAILTO = `mailto:${KONTAKT_EMAIL}?subject=${encodeURIComponent('Demo-Anfrage – Zendify')}&body=${encodeURIComponent(
+  'Hallo Zendify-Team,\n\nich interessiere mich für eine Demo von Zendify.\n\nName / Einrichtung:\nAnzahl Kurse / Teilnehmende:\nWunschtermin:\n\nViele Grüße'
 )}`;
 const JAHR = new Date().getFullYear();
 ---
@@ -41,7 +41,7 @@ const JAHR = new Date().getFullYear();
     <!-- Navigation (Wortmarke + Burger) — Landmark AUSSERHALB von <main> -->
     <header class="lp-nav">
       <div class="lp-nav-inner">
-        <a class="lp-brand" href={`${base}willkommen/`}>Titan</a>
+        <a class="lp-brand" href={`${base}willkommen/`}>Zendify</a>
         <button type="button" class="lp-burger" aria-label="Menü öffnen" aria-expanded="false" aria-controls="lp-menu">
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
@@ -155,7 +155,7 @@ const JAHR = new Date().getFullYear();
           <div>
             <span class="lp-sec-eyebrow"><i class="lp-dot" aria-hidden="true"></i> Fachrichtungen</span>
             <h2 class="lp-sec-title">Eine Plattform, viele Fachwirte</h2>
-            <p class="lp-sec-intro">Titan ist fachrichtungsübergreifend angelegt. Der Marketing-Fachwirt ist live — weitere Richtungen entstehen laufend.</p>
+            <p class="lp-sec-intro">Zendify ist fachrichtungsübergreifend angelegt. Der Marketing-Fachwirt ist live — weitere Richtungen entstehen laufend.</p>
           </div>
         </header>
       </div>
@@ -226,7 +226,7 @@ const JAHR = new Date().getFullYear();
           <div class="lp-offers-head" data-offers-head>
             <span class="lp-sec-eyebrow"><i class="lp-dot" aria-hidden="true"></i> Angebot</span>
             <h2 class="lp-sec-title">Für Bildungsträger und Prüflinge</h2>
-            <p class="lp-sec-intro">Titan bringt beide Seiten zusammen — messbar bessere Kurse für Träger, ein ruhigerer Weg zur Prüfung für Lernende.</p>
+            <p class="lp-sec-intro">Zendify bringt beide Seiten zusammen — messbar bessere Kurse für Träger, ein ruhigerer Weg zur Prüfung für Lernende.</p>
           </div>
 
           <div class="lp-offers-cardswrap" data-offers-cards>
@@ -242,7 +242,7 @@ const JAHR = new Date().getFullYear();
                   </div>
                   <span class="lp-offer-eyebrow">Für Bildungsträger · B2B</span>
                   <h3 class="lp-offer-title">Bessere Kurse, höhere Erfolgsquoten</h3>
-                  <p class="lp-offer-desc">Setzen Sie Titan im Präsenz- und Online-Unterricht ein — pro Kurs lizenzierbar, individuelles Angebot.</p>
+                  <p class="lp-offer-desc">Setzen Sie Zendify im Präsenz- und Online-Unterricht ein — pro Kurs lizenzierbar, individuelles Angebot.</p>
                   <ul class="lp-offer-list">
                     <li>Dozenten-Cockpit: Fortschritt der Kohorte im Blick</li>
                     <li>Höhere Bestehensquote &amp; klare Differenzierung</li>
@@ -278,7 +278,7 @@ const JAHR = new Date().getFullYear();
       </div>
     </section>
 
-    <!-- ── SECTION 4 · Warum Titan (gestapelte Scroll-Cards) ── -->
+    <!-- ── SECTION 4 · Warum Zendify (gestapelte Scroll-Cards) ── -->
     <section class="lp-why-sec" id="warum">
       <div class="lp-container">
         <div class="lp-divider" role="presentation"></div>
@@ -289,8 +289,8 @@ const JAHR = new Date().getFullYear();
           <article class="lp-deal-card">
             <div class="lp-deal-top">
               <div class="lp-deal-head">
-                <span class="lp-sec-eyebrow"><i class="lp-dot" aria-hidden="true"></i> Warum Titan</span>
-                <h2 class="lp-deal-h">Was Titan anders macht</h2>
+                <span class="lp-sec-eyebrow"><i class="lp-dot" aria-hidden="true"></i> Warum Zendify</span>
+                <h2 class="lp-deal-h">Was Zendify anders macht</h2>
                 <p class="lp-deal-lead">Drei Gründe, warum aus Prüfungsvorbereitung echte Kompetenz wird.</p>
               </div>
               <div class="lp-deal-media" aria-hidden="true">
@@ -301,7 +301,7 @@ const JAHR = new Date().getFullYear();
               <div class="lp-deal-texts">
                 <div class="lp-deal-col">
                   <h4>Eine Reise, kein Flickenteppich</h4>
-                  <p>Klassische Vorbereitung zerfällt in lose Kapitel, wechselnde Dozenten und Skripte ohne roten Faden. Titan führt stattdessen durch eine zusammenhängende Reise — vom ersten Konzept über das Üben bis zur fertigen Prüfungsleistung. Jeder Schritt baut logisch auf dem vorigen auf.</p>
+                  <p>Klassische Vorbereitung zerfällt in lose Kapitel, wechselnde Dozenten und Skripte ohne roten Faden. Zendify führt stattdessen durch eine zusammenhängende Reise — vom ersten Konzept über das Üben bis zur fertigen Prüfungsleistung. Jeder Schritt baut logisch auf dem vorigen auf.</p>
                 </div>
                 <div class="lp-deal-col">
                   <h4>Nie den Überblick verlieren</h4>
@@ -332,7 +332,7 @@ const JAHR = new Date().getFullYear();
                 </div>
                 <div class="lp-deal-col">
                   <h4>Genau wie in der Prüfung</h4>
-                  <p>Die Aufgaben spiegeln die realen Anforderungen der IHK-Prüfung wider. Wer bei Titan übt, trainiert exakt die Situationen, die später in der schriftlichen und mündlichen Prüfung zählen.</p>
+                  <p>Die Aufgaben spiegeln die realen Anforderungen der IHK-Prüfung wider. Wer bei Zendify übt, trainiert exakt die Situationen, die später in der schriftlichen und mündlichen Prüfung zählen.</p>
                 </div>
               </div>
             </div>
@@ -349,7 +349,7 @@ const JAHR = new Date().getFullYear();
               <div class="lp-deal-texts">
                 <div class="lp-deal-col">
                   <h4>Ergebnis fällt nebenbei an</h4>
-                  <p>Während des Übens entsteht Schritt für Schritt ein präsentationsreifes Deck. Was bei anderen mühsame Zusatzarbeit am Ende ist, wächst bei Titan ganz nebenbei mit — sauber strukturiert und vorzeigbar.</p>
+                  <p>Während des Übens entsteht Schritt für Schritt ein präsentationsreifes Deck. Was bei anderen mühsame Zusatzarbeit am Ende ist, wächst bei Zendify ganz nebenbei mit — sauber strukturiert und vorzeigbar.</p>
                 </div>
                 <div class="lp-deal-col">
                   <h4>Bereit für die mündliche Prüfung</h4>
@@ -371,7 +371,7 @@ const JAHR = new Date().getFullYear();
         <header class="lp-sec-head" data-reveal>
           <span class="lp-sec-eyebrow"><i class="lp-dot" aria-hidden="true"></i> Vertrauen</span>
           <h2 class="lp-sec-title">Sicher, fundiert, verantwortungsvoll</h2>
-          <p class="lp-sec-intro">Titan ist von Grund auf auf Datenschutz, Barrierefreiheit und seriöse Didaktik ausgelegt.</p>
+          <p class="lp-sec-intro">Zendify ist von Grund auf auf Datenschutz, Barrierefreiheit und seriöse Didaktik ausgelegt.</p>
         </header>
         <div class="lp-trust">
           <div class="lp-trust-item" data-reveal>
@@ -411,8 +411,8 @@ const JAHR = new Date().getFullYear();
       <div class="lp-container">
         <div class="lp-cta-band" data-reveal>
           <span class="lp-cta-eyebrow"><i class="lp-dot" aria-hidden="true"></i> Demo</span>
-          <h2 class="lp-cta-h">Sehen Sie Titan an Ihrer Fachrichtung</h2>
-          <p class="lp-cta-sub">In einer kurzen Demo zeigen wir, wie Titan Bestehensquote und Kursqualität steigert — unverbindlich und auf Ihre Kurse zugeschnitten.</p>
+          <h2 class="lp-cta-h">Sehen Sie Zendify an Ihrer Fachrichtung</h2>
+          <p class="lp-cta-sub">In einer kurzen Demo zeigen wir, wie Zendify Bestehensquote und Kursqualität steigert — unverbindlich und auf Ihre Kurse zugeschnitten.</p>
           <div class="lp-cta-actions">
             <a class="lp-cta" href={KONTAKT_MAILTO}><span>Demo anfragen</span><span class="lp-cta-circle" aria-hidden="true">↗</span></a>
             <a class="lp-ghost" href="#angebot">Zum Angebot</a>
@@ -428,7 +428,7 @@ const JAHR = new Date().getFullYear();
       <div class="lp-container">
         <div class="lp-foot-top">
           <div class="lp-foot-brand">
-            <a class="lp-foot-logo" href={`${base}willkommen/`}>Titan</a>
+            <a class="lp-foot-logo" href={`${base}willkommen/`}>Zendify</a>
             <p class="lp-foot-tag">Die Learning Experience Platform für die IHK-Fachwirt-Vorbereitung.</p>
           </div>
           <div class="lp-foot-cols">
@@ -453,7 +453,7 @@ const JAHR = new Date().getFullYear();
           </div>
         </div>
         <div class="lp-foot-bottom">
-          <span>© {JAHR} Titan</span>
+          <span>© {JAHR} Zendify</span>
           <span>Gehostet in der EU / Deutschland · DSGVO-konform</span>
         </div>
       </div>
@@ -836,7 +836,7 @@ const JAHR = new Date().getFullYear();
       .lp-offers-scroll.is-pinned .lp-offers-cardswrap { opacity: 1 !important; transform: none !important; }
     }
 
-    /* ── SECTION 4 · Warum Titan (gestapelte Scroll-Cards, sticky-stack) ── */
+    /* ── SECTION 4 · Warum Zendify (gestapelte Scroll-Cards, sticky-stack) ── */
     /* Padding-Bottom = heller Abstand vor dem Petrol-Band (S5), damit es nicht klebt */
     .lp-why-sec { background: var(--bg); color: var(--ink); padding: 0 0 clamp(84px, 10vw, 148px); }
     /* Deck-Deal: Cards liegen aufeinander (Card 1 oben); beim Scrollen wischt die

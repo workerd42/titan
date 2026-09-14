@@ -1,4 +1,4 @@
-# TITAN — The Competence Engine
+# ZENDIFY — The Competence Engine
 
 > Quelle: [Notion — Produktvision & Konzept](https://app.notion.com/p/39895f8eb37681a98d36f6779d88af35) (Stand: 2026-07-09)
 
@@ -11,7 +11,7 @@
 
 ## 1. Das Leitbild & das Core-Versprechen
 
-TITAN ist kein trockenes Learning-Management-System (LMS), sondern ein **interaktives Arbeits- und Kompetenz-Cockpit**.
+ZENDIFY ist kein trockenes Learning-Management-System (LMS), sondern ein **interaktives Arbeits- und Kompetenz-Cockpit**.
 
 Lerner konsumieren nicht nur Wissen, sondern erarbeiten Schritt für Schritt ihren eigenen **digitalen Zwilling für den beruflichen Erfolg**:
 
@@ -76,7 +76,7 @@ Beim ersten Betreten des Universums konfiguriert der Nutzer die Star-Company.
 
 ### Der KI-Kontext-Puffer
 
-Um "Grammatik-Glitches" einfacher Template-Substitutionen zu vermeiden, schickt TITAN die Unternehmensdaten bei der Erstellung einmalig durch Claude. Daraus entsteht ein **dekliniertes Kontext-JSON**, das clientseitig und in den Prompts nahtlos eingesetzt wird:
+Um "Grammatik-Glitches" einfacher Template-Substitutionen zu vermeiden, schickt ZENDIFY die Unternehmensdaten bei der Erstellung einmalig durch Claude. Daraus entsteht ein **dekliniertes Kontext-JSON**, das clientseitig und in den Prompts nahtlos eingesetzt wird:
 
 ```json
 {
@@ -95,7 +95,7 @@ Jedes Mal, wenn Phase 3 (Anwenden) auf einem Planeten erfolgreich abgeschlossen 
 
 Am Ende aller Handlungsfelder heißt es: **"Missions-Launch"**
 
-- TITAN fügt alle gesammelten Artefakte zu einem durchgängigen **IHK-Präsentationsentwurf** zusammen.
+- ZENDIFY fügt alle gesammelten Artefakte zu einem durchgängigen **IHK-Präsentationsentwurf** zusammen.
 - Inklusive KI-generiertem **Leitfaden für das anschließende Fachgespräch**.
 
 ## 5. Technisches Fundament & Skalierbarkeit

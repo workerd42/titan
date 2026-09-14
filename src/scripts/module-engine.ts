@@ -776,7 +776,7 @@ function mountModule(): void {
   const slug = mount.dataset.slug || '';
   const fn = REGISTRY[werkzeug];
   mount.dataset.mounted = 'true';
-  (window as unknown as { __titanDestroyChartsIn?: (r: ParentNode) => void }).__titanDestroyChartsIn?.(mount);
+  (window as unknown as { __zendifyDestroyChartsIn?: (r: ParentNode) => void }).__zendifyDestroyChartsIn?.(mount);
   mount.replaceChildren();
 
   const kompass = readKompass();
@@ -818,7 +818,7 @@ function mountModule(): void {
   // Werkzeug-Host — wird neu gerendert, wenn ein Fallbeispiel geladen wird.
   const toolHost = el('div', 'tm-toolhost');
   function renderTool(daten: unknown): void {
-    (window as unknown as { __titanDestroyChartsIn?: (r: ParentNode) => void }).__titanDestroyChartsIn?.(toolHost);
+    (window as unknown as { __zendifyDestroyChartsIn?: (r: ParentNode) => void }).__zendifyDestroyChartsIn?.(toolHost);
     toolHost.replaceChildren();
     fn({
       mount: toolHost, slug, kompass, firma,

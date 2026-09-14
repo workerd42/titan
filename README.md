@@ -1,4 +1,4 @@
-# TITAN — Kompetenz-Engine für IHK-Fachwirte
+# ZENDIFY — Kompetenz-Engine für IHK-Fachwirte
 
 Interaktive Lernplattform (aktuell: Fachwirt Marketing) mit einer Karussell-Navigation durch **Universum → Galaxie (Handlungsfeld) → Planet (Thema) → 4-Phasen-Lernseite**. Local-First: anonyme Nutzer lernen offline im `localStorage`; mit Login wird der Fortschritt in einen Account synchronisiert.
 
@@ -16,7 +16,7 @@ Interaktive Lernplattform (aktuell: Fachwirt Marketing) mit einer Karussell-Navi
 ```bash
 npm install
 # Lokales Postgres (einmalig) — siehe docs/technik/spickzettel.md:
-docker run -d --name titan-pg-dev -e POSTGRES_USER=titan -e POSTGRES_PASSWORD=titan -e POSTGRES_DB=titan -p 5432:5432 postgres:16-alpine
+docker run -d --name zendify-pg-dev -e POSTGRES_USER=zendify -e POSTGRES_PASSWORD=zendify -e POSTGRES_DB=zendify -p 5432:5432 postgres:16-alpine
 cp .env.example .env            # Werte anpassen (BETTER_AUTH_SECRET erzeugen)
 npm run db:migrate              # Schema anlegen
 npm run dev                     # http://localhost:4321
@@ -33,7 +33,7 @@ npm run db:migrate    # Migrationen anwenden
 
 ## Deployment
 
-GitHub (`workerd42/titan`) → VPS: `./deploy.sh` macht `git pull` + `docker compose up -d --build` (baut Astro, startet Node + Postgres, migriert automatisch beim Containerstart). Secrets liegen in einer gitignored `.env` neben `docker-compose.yml` auf dem VPS. Vollständige Anleitung: [docs/technik/deployment.md](docs/technik/deployment.md).
+GitHub (`workerd42/zendify`) → VPS: `./deploy.sh` macht `git pull` + `docker compose up -d --build` (baut Astro, startet Node + Postgres, migriert automatisch beim Containerstart). Secrets liegen in einer gitignored `.env` neben `docker-compose.yml` auf dem VPS. Vollständige Anleitung: [docs/technik/deployment.md](docs/technik/deployment.md).
 
 ## Dokumentation
 

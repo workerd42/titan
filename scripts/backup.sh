@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Titan — Datenbank-Backup (pg_dump aus dem Postgres-Container).
+# Zendify — Datenbank-Backup (pg_dump aus dem Postgres-Container).
 #
 # Bewusst unabhängig vom Hoster und von Verwaltungspanels (Plesk & Co. kennen
 # unsere Docker-Container nicht). Ein pg_dump ist präzise (nur unsere DB),
@@ -13,12 +13,12 @@
 #   ./scripts/backup.sh
 #
 # Konfiguration über Umgebungsvariablen (alles optional außer den Defaults):
-#   BACKUP_DIR        Zielverzeichnis           (Default: /var/backups/titan)
-#   PG_CONTAINER      Name des DB-Containers    (Default: titan-postgres)
+#   BACKUP_DIR        Zielverzeichnis           (Default: /var/backups/zendify)
+#   PG_CONTAINER      Name des DB-Containers    (Default: zendify-postgres)
 #   KEEP_DAILY        tägliche Dumps behalten   (Default: 7)
 #   BACKUP_PASSPHRASE wenn gesetzt -> Dump wird GPG-symmetrisch verschlüsselt
 #                     (PFLICHT, sobald off-site: es sind personenbezogene Daten)
-#   RCLONE_REMOTE     z.B. "scaleway:titan-backups" -> Off-site-Kopie via rclone
+#   RCLONE_REMOTE     z.B. "scaleway:zendify-backups" -> Off-site-Kopie via rclone
 #   HEARTBEAT_URL     wird bei Erfolg gepingt (Totmannschalter, s.u.)
 #
 # WARUM Heartbeat: Ein still fehlschlagender Backup-Cron ist schlimmer als gar
@@ -27,8 +27,8 @@
 
 set -euo pipefail
 
-BACKUP_DIR="${BACKUP_DIR:-/var/backups/titan}"
-PG_CONTAINER="${PG_CONTAINER:-titan-postgres}"
+BACKUP_DIR="${BACKUP_DIR:-/var/backups/zendify}"
+PG_CONTAINER="${PG_CONTAINER:-zendify-postgres}"
 KEEP_DAILY="${KEEP_DAILY:-7}"
 
 STAMP="$(date +%Y-%m-%d_%H%M%S)"
@@ -49,7 +49,7 @@ PG_USER="$(docker exec "$PG_CONTAINER" printenv POSTGRES_USER)"
 PG_DB="$(docker exec "$PG_CONTAINER" printenv POSTGRES_DB)"
 [ -n "$PG_USER" ] && [ -n "$PG_DB" ] || fail "POSTGRES_USER/POSTGRES_DB nicht aus dem Container lesbar"
 
-OUT="$BACKUP_DIR/titan_${STAMP}.sql.gz"
+OUT="$BACKUP_DIR/zendify_${STAMP}.sql.gz"
 
 # ── Dump ─────────────────────────────────────────────────────────────────
 echo "[backup] Dump ${PG_DB} -> ${OUT}"
@@ -74,9 +74,9 @@ echo "[backup] OK: $OUT ($(du -h "$OUT" | cut -f1))"
 
 # ── Rotation ─────────────────────────────────────────────────────────────
 # Behält die neuesten KEEP_DAILY Dumps, löscht ältere.
-COUNT=$(find "$BACKUP_DIR" -maxdepth 1 -name 'titan_*.sql.gz*' -type f | wc -l | tr -d ' ')
+COUNT=$(find "$BACKUP_DIR" -maxdepth 1 -name 'zendify_*.sql.gz*' -type f | wc -l | tr -d ' ')
 if [ "$COUNT" -gt "$KEEP_DAILY" ]; then
-  find "$BACKUP_DIR" -maxdepth 1 -name 'titan_*.sql.gz*' -type f -print0 \
+  find "$BACKUP_DIR" -maxdepth 1 -name 'zendify_*.sql.gz*' -type f -print0 \
     | xargs -0 ls -1t \
     | tail -n +$((KEEP_DAILY + 1)) \
     | while read -r old; do echo "[backup] Rotation: entferne $(basename "$old")"; rm -f "$old"; done

@@ -1,22 +1,22 @@
 #!/bin/bash
 #
-# Titan — Datenbank-Restore aus einem Dump von scripts/backup.sh
+# Zendify — Datenbank-Restore aus einem Dump von scripts/backup.sh
 #
 # Existiert bewusst als eigenes Skript: Ein Backup, dessen Wiederherstellung
 # nie geprobt wurde, ist nur ein Versprechen. Diesen Weg mindestens EINMAL
 # echt durchspielen (idealerweise gegen eine Wegwerf-DB), nicht erst im Ernstfall.
 #
 # Aufruf:
-#   ./scripts/restore.sh /var/backups/titan/titan_2026-07-15_030000.sql.gz
+#   ./scripts/restore.sh /var/backups/zendify/zendify_2026-07-15_030000.sql.gz
 #   BACKUP_PASSPHRASE=... ./scripts/restore.sh <datei>.sql.gz.gpg
 #
-#   PG_CONTAINER   Ziel-Container (Default: titan-postgres)
+#   PG_CONTAINER   Ziel-Container (Default: zendify-postgres)
 #   FORCE=1        überspringt die Rückfrage (für Automatisierung/Tests)
 
 set -euo pipefail
 
 FILE="${1:-}"
-PG_CONTAINER="${PG_CONTAINER:-titan-postgres}"
+PG_CONTAINER="${PG_CONTAINER:-zendify-postgres}"
 
 [ -n "$FILE" ] || { echo "Aufruf: $0 <dump-datei>" >&2; exit 1; }
 [ -f "$FILE" ] || { echo "Datei nicht gefunden: $FILE" >&2; exit 1; }

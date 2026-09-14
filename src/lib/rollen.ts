@@ -1,5 +1,5 @@
 /**
- * Rollen im Titan-System (im Admin-Panel änderbar). Bewusst ohne DB-/Auth-
+ * Rollen im Zendify-System (im Admin-Panel änderbar). Bewusst ohne DB-/Auth-
  * Import, damit es auch aus statisch/prerenderten Kontexten geladen werden darf.
  *
  * - platform-admin: Betreiber, voller Zugriff (einziger mit Admin-Panel-Zugriff)

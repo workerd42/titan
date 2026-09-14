@@ -85,7 +85,7 @@ Legende: **⬛ Pflicht** · ◻ optional (aber empfohlen) · ▽ nur wo fachlich
 
 1. **Star-Company:** In Fällen/Aufgaben **`{{firma}}`** verwenden (nie hartkodierte Firmennamen).
    Weitere Platzhalter: `{{branche}}`, `{{rechtsform}}`, `{{groesse}}`.
-2. **Kein IHK-/Verlags-Verbatim** — eigenes Titan-Wording (siehe `content-richtlinien.md`).
+2. **Kein IHK-/Verlags-Verbatim** — eigenes Zendify-Wording (siehe `content-richtlinien.md`).
 3. **Gesetze:** eigene Erklärung + Anwendung + Link zu gesetze-im-internet.de; keine Kommentar-Zitate.
 4. **IHK-Operatoren** korrekt einsetzen (erläutern ≠ nennen ≠ begründen; siehe `pruefungs-blaupause.md`).
    Idealerweise pro Thema mind. eine Aufgabe je dominierendem Operator.

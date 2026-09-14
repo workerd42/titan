@@ -1,4 +1,4 @@
-# Marketing-Konzept — Titan
+# Marketing-Konzept — Zendify
 
 > Go-to-Market in zwei Wellen: **zuerst B2B** (warmer Partner-Kanal zu
 > Bildungsträgern), **dann B2C** (Prüflinge über SEO/Content, Social Media &
@@ -9,7 +9,7 @@
 
 ## 1. Ausgangslage & Ziele
 
-**Produkt in einem Satz:** Titan verwandelt IHK-Fachwirt-Vorbereitung in Anwendung
+**Produkt in einem Satz:** Zendify verwandelt IHK-Fachwirt-Vorbereitung in Anwendung
 am eigenen fiktiven Unternehmen — mit **Orientierung** von Tag 1 und einem
 **prüfungsfertigen Präsentations-Deck** als Ergebnis.
 
@@ -17,7 +17,7 @@ am eigenen fiktiven Unternehmen — mit **Orientierung** von Tag 1 und einem
 - **B2B:** vom Partner-Träger als Referenz zu **mehreren zahlenden Bildungsträgern**
   (Ziel: Break-even ~Monat 10–11 über B2B-Kurse, siehe Businessplan).
 - **B2C:** parallel Reichweite/Marke aufbauen, ab ~Monat 6 messbar Abos gewinnen.
-- **Marke:** Titan als **eigene Kategorie** etablieren (Kompetenz-Cockpit, nicht
+- **Marke:** Zendify als **eigene Kategorie** etablieren (Kompetenz-Cockpit, nicht
   „noch eine Quiz-App").
 
 ---
@@ -39,12 +39,12 @@ am eigenen fiktiven Unternehmen — mit **Orientierung** von Tag 1 und einem
 
 ## 3. Positionierung & Kernbotschaft
 
-**Kernbotschaft:** *„Nicht auswendig lernen — strategisch handeln. Titan begleitet
+**Kernbotschaft:** *„Nicht auswendig lernen — strategisch handeln. Zendify begleitet
 dich vom ersten Kapitel bis zur fertigen IHK-Präsentation — an deinem eigenen
 Unternehmen."*
 
 **Differenzierung (ggü. Quiz-/Karteikarten-Apps wie Fachwirt Hero, QuizAcademy):**
-- Sie trainieren **Abfragen**; Titan trainiert **Anwendung + Orientierung** und
+- Sie trainieren **Abfragen**; Zendify trainiert **Anwendung + Orientierung** und
   liefert ein **prüfungsfertiges Ergebnis**.
 - Ehrlich positioniert: **komplementär** zu Drill-Apps, nicht deren Klon.
 
@@ -61,13 +61,13 @@ Designer** (Budget im Businessplan hinterlegt).
 Kooperationspartners** + sein **eigener Träger als Referenz/Pilot**.
 
 **Maßnahmen:**
-1. **Referenz/Pilot aufsetzen:** Partner-Träger nutzt Titan in laufenden Kursen →
+1. **Referenz/Pilot aufsetzen:** Partner-Träger nutzt Zendify in laufenden Kursen →
    belegbare Ergebnisse & O-Töne (Dozent + Lerner).
 2. **Direktansprache Bildungsträger** über das Netzwerk (warme Leads statt
    Kaltakquise); Erst-Termine mit Bildungsleitungen.
 3. **Verkaufsmaterial:** kompakter **One-Pager**, **Demo-Zugang**, kurze
    **Fallstudie/Referenz**, ROI-/Erfolgsquoten-Argument, Hinweis auf
-   **Aufstiegs-BAföG-Bündelung** (Titan als Teil der geförderten Maßnahme).
+   **Aufstiegs-BAföG-Bündelung** (Zendify als Teil der geförderten Maßnahme).
 4. **Multiplikatoren:** Branchenverbände, IHK-nahe Netzwerke, Dozenten-Communities.
 
 **KPIs Phase 1:** Anzahl Demos → Piloten → **zahlende Kurse (à 800 €/Monat)**;

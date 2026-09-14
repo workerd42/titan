@@ -1,4 +1,4 @@
-# TITAN — Katalog interaktiver Lern-Module
+# ZENDIFY — Katalog interaktiver Lern-Module
 
 > Stand 2026-07-16. Build-Spezifikation für die interaktiven Werkzeuge der Phase „Anwenden" (Phase 3) — und darüber hinaus. Grundlage: die vier IHK-Handlungsbereiche, die fünf Lehrbücher (`docs/quellen/`, gitignored) und die 46 vorhandenen Planeten/Themen.
 

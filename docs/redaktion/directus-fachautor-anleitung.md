@@ -1,4 +1,4 @@
-# Titan — Fachautor-Kurzanleitung (Directus)
+# Zendify — Fachautor-Kurzanleitung (Directus)
 
 > Für **Redakteur:innen/Fachautor:innen**, die Lerninhalte pflegen. Keine Technik nötig —
 > reines Ausfüllen von Formularen. Technischer Hintergrund: [directus-setup.md](directus-setup.md).
@@ -43,9 +43,9 @@ Das Feld **Status** steuert, ob ein Thema live geht:
 
 - **In Bearbeitung** — Entwurf. Wird **nicht** auf der Lernplattform angezeigt. Ideal zum
   Vorbereiten, unfertig lassen, mit Kolleg:innen abstimmen.
-- **Publikation-Frei** — freigegeben. Wird beim **nächsten Build** von Titan live gezogen.
+- **Publikation-Frei** — freigegeben. Wird beim **nächsten Build** von Zendify live gezogen.
 
-> Titan zieht **nur** Themen mit Status „Publikation-Frei". Solange etwas „In Bearbeitung" ist,
+> Zendify zieht **nur** Themen mit Status „Publikation-Frei". Solange etwas „In Bearbeitung" ist,
 > sieht es niemand außer im Redaktionssystem.
 
 ## Wichtig: Rechtsgrundlagen (Urheberrecht)
@@ -56,7 +56,7 @@ Bei **Rechtsgrundlagen** (Gesetze) **keine wörtlichen Gesetzestexte** kopieren.
 
 ## Nach dem Speichern
 
-Directus speichert sofort. Damit die Änderung **auf der Lernplattform** erscheint, muss Titan neu
+Directus speichert sofort. Damit die Änderung **auf der Lernplattform** erscheint, muss Zendify neu
 gebaut/synchronisiert werden (aktuell manuell; später automatisch per Webhook —
 [directus-setup.md](directus-setup.md) „Auto-Deploy"). Zur Kontrolle gibt es die
-**Redaktions-Vorschau** unter `/cms-vorschau/<slug>` (nach Titan-Login).
+**Redaktions-Vorschau** unter `/cms-vorschau/<slug>` (nach Zendify-Login).

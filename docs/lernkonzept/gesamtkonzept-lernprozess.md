@@ -1,4 +1,4 @@
-# Titan — Gesamtkonzept & Lernprozess
+# Zendify — Gesamtkonzept & Lernprozess
 
 > Konzept-Landkarte des End-to-End-Lernwegs — von der Zertifizierung bis zur
 > fertigen IHK-Präsentation. Stand 2026-07-24 · **zur Prüfung**. Verweist auf
@@ -11,7 +11,7 @@
 
 ## Auf einen Blick (Executive Summary)
 
-- **Was:** Titan führt den Lernenden vom **Universum** (IHK-Zertifizierung) bis zur **fertigen
+- **Was:** Zendify führt den Lernenden vom **Universum** (IHK-Zertifizierung) bis zur **fertigen
   IHK-Präsentation** — einmal die eigene **Star-Company** beschreiben, jedes Kapitel erzeugt ein
   **Artefakt**, alle Artefakte werden zur Prüfungspräsentation (**Missions-Launch**, der USP).
 - **Nordstern (Design-Kompass):** *„Ich zeige nicht, was Marketing ist, sondern dass ich als Fachwirt
@@ -32,7 +32,7 @@
 
 **„Ich zeige nicht, was Marketing ist, sondern dass ich als Fachwirt Entscheidungen
 treffen kann — unter Berücksichtigung von Markt, Wirtschaftlichkeit und Menschen."**
-(Abschluss-Merksatz aus der Fachgespräch-Schulung — er ist Titans didaktischer Nordstern.)
+(Abschluss-Merksatz aus der Fachgespräch-Schulung — er ist Zendifys didaktischer Nordstern.)
 
 > **Design-Kompass (VERBINDLICH):** **Jede** Feature-/Design-Entscheidung wird an genau
 > diesem Satz gemessen. Prüffrage immer: *„Bringt das den Lernenden näher an eine
@@ -217,7 +217,7 @@ Lernende **wählt bewusst** einen und **begründet** die Wahl (Prüfungskriteriu
 4. **Theme/Design — bewusst VIELFÄLTIG:** **Auswahl aus vielen fertigen Themes**
    (Norive-Familie, breite Palette) **oder** KI-gestützte Theme-Erstellung.
    ⚠️ **Anti-Uniformität ist Pflicht, kein Nice-to-have:** Der Prüfungsausschuss achtet
-   darauf, **dass nicht alle Prüflinge dasselbe Deck mitbringen** — also braucht Titan
+   darauf, **dass nicht alle Prüflinge dasselbe Deck mitbringen** — also braucht Zendify
    **große Design-Vielfalt** (viele Themes + KI-Generierung + individuelle Farbwelt je
    Star-Company). Dennoch: „Der Prüfungsausschuss prüft **Kompetenz, nicht
    Designpreise**" → Design bleibt unterstützend, nie Selbstzweck.
@@ -228,7 +228,7 @@ Lernende **wählt bewusst** einen und **begründet** die Wahl (Prüfungskriteriu
 > [businessplan.md](../strategie/businessplan.md)):** Vielfalt entsteht auf **vier** Ebenen —
 > (a) unterschiedliche **Star-Company** (Branche/Name/Zahlen), (b) unterschiedlich
 > **gewählter Spannungsbogen**, (c) **große Theme-/Design-Palette** + KI-Theme-Erstellung,
-> (d) **KI-variierter Inhalt/Wording**. Titan **verhindert** uniforme Präsentationen,
+> (d) **KI-variierter Inhalt/Wording**. Zendify **verhindert** uniforme Präsentationen,
 > statt sie zu erzeugen.
 
 ### 5.3 Qualitäts-Gate: die 9 Bewertungskriterien
@@ -271,7 +271,7 @@ ist das Üben davon **durchgängig** verfügbar, nicht nur am Schluss.
 
 - **Export = portable Datei (prüfungstauglich):** **PDF** als primäres, **offline-sicheres**
   Ergebnis (läuft auf jedem IHK-Beamer/Laptop ohne Internet); **PPTX** zum Nachbearbeiten als
-  spätere Option. **Titan-Web = Bau-Werkzeug, nicht Präsentations-Laufzeit.** Erst der Export
+  spätere Option. **Zendify-Web = Bau-Werkzeug, nicht Präsentations-Laufzeit.** Erst der Export
   macht „fertiges Deck" real.
 - **Zwei Zustände + Versionierung:** **„In Bearbeitung"** (editierbar) ↔ **„Publikation-Frei"**
   (eingefrorene Prüfungsversion). Entspricht sichtbar dem `deckReif`-Flag.
@@ -322,10 +322,10 @@ Kosten-Gate (Inklusiv-Kontingent + Haiku-Fallback). **n8n-Flows erst ab Schritt 
 Over-Engineering) — **aber das Agenten-Team + die „Personalakten" (Persona + fachliche Tiefe) werden
 früh als Design-Artefakt DEFINIERT**, bevor gebaut wird.
 📝 *n8n-Instanz auf dem VPS vorhanden, aber noch zu installieren/konfigurieren (Support nötig) →
-abgesicherter docker-compose-Service neben Titan, EU/self-hosted, Claude/Langdock-Anbindung.*
+abgesicherter docker-compose-Service neben Zendify, EU/self-hosted, Claude/Langdock-Anbindung.*
 
 **Kosten, EU-Souveränität & AI Act (Review 2026-07-24):**
-- **AI Act ≠ Modell-Herkunft:** Der EU AI Act ist **risikobasiert**. Titan ist **niedrigrisiko**
+- **AI Act ≠ Modell-Herkunft:** Der EU AI Act ist **risikobasiert**. Zendify ist **niedrigrisiko**
   (formatives Feedback, **keine Benotung/Entscheidung über die Person**); die Pflicht ist v. a.
   **Transparenz** („es ist KI"). **Der AI Act verlangt kein EU-Modell** — ein US-Anbieter
   (Anthropic) ist AI-Act-konform, solange Risikoklasse + Transparenz stimmen.
@@ -339,7 +339,7 @@ abgesicherter docker-compose-Service neben Titan, EU/self-hosted, Claude/Langdoc
      durch), sobald Compliance/Vertrieb es verlangt.
   3. **Perspektivisch nativ EU (beobachten, gestuft einsetzen):**
      - **Soofi S** (DE, 30B **quelloffen**, München/Telekom-AI-Cloud, erneuerbare Energie) — **der
-       spannendste souveräne, nachhaltige EU-Kandidat**: deutsch-optimiert (passt zu Titans Content!),
+       spannendste souveräne, nachhaltige EU-Kandidat**: deutsch-optimiert (passt zu Zendifys Content!),
        **self-hostbar → volle Souveränität, ~0 Token-Kosten**. **Heute** schlägt es andere *offene*
        Modelle (OLMo 3/Apertus), ist aber **noch nicht Claude-Frontier** fürs nuancierte
        Fachgespräch/Feedback; die **~100B-Version** ist das Ziel.
@@ -370,7 +370,7 @@ abgesicherter docker-compose-Service neben Titan, EU/self-hosted, Claude/Langdoc
   **ab Phase 3** (sobald der Flow steht). Als **Subagent on-demand** (interne QA, vernachlässigbare
   Kosten). Ergebnis: knappes **„Fallstrick-Protokoll"**.
 - **Lastentest (bestätigt):** **vor dem ersten öffentlichen/Marketing-Launch UND vor der ersten
-  großen B2B-Kohorte**. Titan ist überwiegend **statisch** (Lernseiten prerendered → sehr lastarm);
+  großen B2B-Kohorte**. Zendify ist überwiegend **statisch** (Lernseiten prerendered → sehr lastarm);
   der Test zielt auf die **dynamischen Teile**: gleichzeitige **Auth/Sessions**, **/api/progress**-
   Durchsatz, **DB unter Last**, und (Phase 3) die **KI/n8n-Pipeline** + Kontingent-Kosten bei
   Parallelnutzung. Werkzeug: **k6** oder **Artillery** (EU/self-host-freundlich), gegen den
@@ -381,11 +381,11 @@ abgesicherter docker-compose-Service neben Titan, EU/self-hosted, Claude/Langdoc
   Sternbild / Countdown) — Kandidat für den Phase-4.2-Block.
 - **Übungswelten-Content (entschieden 2026-07-24):** **Stufe A = MC + Selbstcheck** (jetzt, ohne
   KI); **Freitext-Fallaufgaben + Varianz = Stufe B** (KI ab Phase 3). Aufgaben in **eigenem
-  Titan-Wording** (weg von IHK-Formulierungen, [content-richtlinien.md](content-richtlinien.md)).
+  Zendify-Wording** (weg von IHK-Formulierungen, [content-richtlinien.md](content-richtlinien.md)).
   Varianz/„Master" über **n8n-Agenten-Teams mit fiktiver Personalakte** (Persona + fachliche Tiefe,
   gegen Halluzination — [ki-governance.md](../ki/ki-governance.md)). *Offen: Menge Aufgaben je Kapitel.*
 - **Redaktionssystem-Integration (entschieden 2026-07-24):** **Directus = Quelle der Wahrheit**;
-  Titan **zieht beim Build** (Content-Loader + **Zod-Validierung** → statisch), **Webhook → CI-Build
+  Zendify **zieht beim Build** (Content-Loader + **Zod-Validierung** → statisch), **Webhook → CI-Build
   → Deploy**. **Nicht** Runtime-Fetch, **nicht** Push (bewahrt statisch/schnell/**offline** — kritisch
   in der Prüfung). Vorhandene **Fachwirt-PDFs müssen erst strukturiert** in Directus abgelegt werden
   (pro Thema/Feld) — der eigentliche Aufwand. Siehe [roadmap.md](../planung/roadmap.md) 2.6 / EPIC-13.

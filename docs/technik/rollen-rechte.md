@@ -1,6 +1,6 @@
 # Rollen & Rechte — wer darf was, wo
 
-> Vollständige Berechtigungsübersicht für Titan. Rollen kommen aus dem
+> Vollständige Berechtigungsübersicht für Zendify. Rollen kommen aus dem
 > Better-Auth-Admin-Plugin (`src/lib/rollen.ts` / `src/lib/rollen-ac.ts`), das
 > Gate aus `src/middleware.ts`. Status: ✅ umgesetzt · 🔜 geplant.
 > Siehe auch [admin-panel.md](admin-panel.md), [lastenheft.md](../planung/lastenheft.md).

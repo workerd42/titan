@@ -102,7 +102,7 @@ const themenSchema = z.object({
   // ── IHK-TEST-FORMAT (optional) ────────────────────────
   // Bildet die echte Prüfungsstruktur nach: eine betriebliche Situation, dazu
   // Teilaufgaben mit Operator + Punkten + Lösungshinweis (Selbstvergleich).
-  // Blaupause: docs/lernkonzept/pruefungs-blaupause.md. Eigenes Titan-Wording.
+  // Blaupause: docs/lernkonzept/pruefungs-blaupause.md. Eigenes Zendify-Wording.
   pruefungsaufgabe: z.object({
     situation: z.string(),
     teilaufgaben: z.array(z.object({
@@ -140,7 +140,7 @@ const themen = defineCollection({
 const DIRECTUS_URL = process.env.DIRECTUS_URL ?? 'http://localhost:8055';
 const DIRECTUS_TOKEN =
   process.env.DIRECTUS_TOKEN ??
-  (DIRECTUS_URL.includes('localhost') ? 'titan-directus-dev-token' : undefined);
+  (DIRECTUS_URL.includes('localhost') ? 'zendify-directus-dev-token' : undefined);
 
 async function directusThemenLoader() {
   if (!DIRECTUS_TOKEN) {

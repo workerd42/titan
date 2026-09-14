@@ -21,14 +21,14 @@ const {
 const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? '';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const canonicalUrl = `${siteUrl}${base}${canonicalPath}`;
-const pageTitle = title === 'Titan' ? title : `${title} — Titan`;
+const pageTitle = title === 'Zendify' ? title : `${title} — Zendify`;
 
 // Basis-Strukturdaten für jede Seite — Einzelseiten können über die
 // jsonLd-Prop spezifischere Schemas (z. B. LearningResource) mitgeben.
 const finalJsonLd = jsonLd ?? {
   '@context': 'https://schema.org',
   '@type': 'EducationalOrganization',
-  name: 'Titan',
+  name: 'Zendify',
   description: 'Digitales Kompetenzsystem für die IHK-Fortbildungsprüfung Geprüfte/r Fachwirt/in für Marketing.',
   url: `${siteUrl}${base}/`,
 };
@@ -81,7 +81,15 @@ const finalJsonLd = jsonLd ?? {
       (function () {
         function applyTheme() {
           try {
-            var t = localStorage.getItem('titan-theme');
+            var t = localStorage.getItem('zendify-theme');
+            if (t !== 'dark' && t !== 'light') {
+              // Einmalige Migration vom früheren Key (Rebrand Titan→Zendify).
+              var legacy = localStorage.getItem('titan-theme');
+              if (legacy === 'dark' || legacy === 'light') {
+                t = legacy;
+                try { localStorage.setItem('zendify-theme', legacy); localStorage.removeItem('titan-theme'); } catch (e) {}
+              }
+            }
             if (t === 'dark' || t === 'light') document.documentElement.dataset.theme = t;
           } catch (e) {}
         }

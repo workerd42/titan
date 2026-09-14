@@ -1,4 +1,4 @@
-# Titan — Abhängigkeiten (Mindmap)
+# Zendify — Abhängigkeiten (Mindmap)
 
 > Visualisiert die Abhängigkeiten aller Konzept-Bausteine. Quelle der Wahrheit ist dieses
 > Mermaid-Diagramm (versionierbar, rendert in GitHub/IDE/Artifact). Konzept:

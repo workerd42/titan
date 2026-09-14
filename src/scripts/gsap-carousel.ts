@@ -1,5 +1,5 @@
 /**
- * TITAN CAROUSEL ENGINE
+ * ZENDIFY CAROUSEL ENGINE
  * Ersetzt das elliptische Drag-Orbit-System (gsap-orbits.ts) durch ein
  * Index-Modell: eine flache, geordnete Liste pro Stage, ein centerIndex.
  *
@@ -132,7 +132,7 @@ function normalizeRingIndex(index: number, count: number): number {
   return ((index % count) + count) % count;
 }
 
-const HINT_STORAGE_KEY = 'titan-carousel-hint-seen';
+const HINT_STORAGE_KEY = 'zendify-carousel-hint-seen';
 
 /**
  * Einmaliger Bedienhinweis für Erstbesucher — Pfeile/Wischen/Klick sind sonst

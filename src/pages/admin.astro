@@ -18,7 +18,7 @@ if (!user) return Astro.redirect('/konto/');
 const istAdmin = user.role === 'platform-admin';
 ---
 
-<BaseLayout title="Admin — Titan" description="Nutzer- und Rollenverwaltung." canonicalPath="/admin/" theme="light">
+<BaseLayout title="Admin — Zendify" description="Nutzer- und Rollenverwaltung." canonicalPath="/admin/" theme="light">
   <main id="hauptinhalt" class="admin-shell">
     <div class="tool-nav"><AppNav /></div>
     {!istAdmin ? (

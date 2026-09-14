@@ -1,7 +1,7 @@
-# Titan — Problembasiertes Lernen (PBL): Konzept & Pitch
+# Zendify — Problembasiertes Lernen (PBL): Konzept & Pitch
 
 > **Single Source of Truth** für den pädagogischen Kern, den Wert und die technische Vision
-> von Titan. Adressaten: Team, Bildungspartner, Stakeholder/Investoren.
+> von Zendify. Adressaten: Team, Bildungspartner, Stakeholder/Investoren.
 > Bezug zur Umsetzung: [gesamtkonzept-lernprozess.md](gesamtkonzept-lernprozess.md) ·
 > [ki-governance.md](../ki/ki-governance.md) · [roadmap.md](../planung/roadmap.md) ·
 > [interaktive-module.md](interaktive-module.md).
@@ -10,14 +10,14 @@
 
 ## Kurzfassung
 
-Titan verwandelt die Fachwirt-Weiterbildung **vom Auswendiglernen von Theorie in das Lösen
+Zendify verwandelt die Fachwirt-Weiterbildung **vom Auswendiglernen von Theorie in das Lösen
 echter betrieblicher Probleme** — am eigenen Unternehmen des Lernenden („Star-Company"). Der
 didaktische Kern ist **Problembasiertes Lernen (PBL)**, umgesetzt als **geführtes, gestütztes
 PBL**: erst Schema-Aufbau, dann Szenario-Exploration mit einem **Sokratischen KI-Tutor**, der
 Fragen stellt statt Antworten zu liefern.
 
 > **Kernthese:** Die IHK-Fachwirtprüfung ist **handlungsspezifisch** (Situationsaufgaben,
-> Fachgespräch). Wer nur Fakten büffelt, scheitert am Transfer. Titan trainiert genau die
+> Fachgespräch). Wer nur Fakten büffelt, scheitert am Transfer. Zendify trainiert genau die
 > Kompetenz, die geprüft *und* im Berufsalltag gebraucht wird: **begründet entscheiden.**
 
 ---
@@ -68,7 +68,7 @@ Fragen stellt statt Antworten zu liefern.
 > nachweislich riskant (Kirschner/Sweller/Clark, 2006): ohne Vorwissen fehlt das Gerüst, um
 > ein offenes Problem zu strukturieren → Überforderung.
 
-Titan setzt daher **geführtes, gestütztes PBL**:
+Zendify setzt daher **geführtes, gestütztes PBL**:
 1. **Erst Schema, dann Problem.** Die Phasen *Verstehen* und *Merken* bauen das Fundament,
    bevor *Anwenden* zur Szenario-Exploration wird.
 2. **Abbaubare Stütze (Fading).** Stützräder werden entfernt, sobald Kompetenz wächst.
@@ -123,7 +123,7 @@ einer generischen Übung wird *sein* Problem. (Aktueller Ausbau: siehe Roadmap-P
 
 ## 2.3 Der Sokratische KI-Tutor
 
-> Titans **Fachgespräch-Simulator** *ist* der Sokratische Tutor. EU-Pfad:
+> Zendifys **Fachgespräch-Simulator** *ist* der Sokratische Tutor. EU-Pfad:
 > Anthropic → optional Langdock (DE-Gateway) → Perspektive Soofi.
 
 ### Rolle
@@ -156,9 +156,9 @@ hängen zu lassen:
 
 ---
 
-## Einordnung in die Titan-Architektur (Fit-Matrix)
+## Einordnung in die Zendify-Architektur (Fit-Matrix)
 
-| PBL-Baustein | Titan-Heimat | Projekt-Phase | Status |
+| PBL-Baustein | Zendify-Heimat | Projekt-Phase | Status |
 |--------------|--------------|---------------|--------|
 | Personalisiertes Problem | Star-Company (`{{firma}}`) | P2 | 🔧 Ausbau |
 | Szenario-Explorer/Dashboard | Anwenden-Phase | P3 | ⬜ |

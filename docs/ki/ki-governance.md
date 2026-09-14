@@ -1,6 +1,6 @@
 # KI-Governance & EU-AI-Act-Konformität
 
-> **Zweck:** Dieses Dokument beschreibt, wie Titan Künstliche Intelligenz einsetzt,
+> **Zweck:** Dieses Dokument beschreibt, wie Zendify Künstliche Intelligenz einsetzt,
 > und weist nach, dass der Einsatz **bewusst niedrigrisiko** ausgelegt ist —
 > für Rechtskonformität (EU AI Act, DSGVO) und als belastbare Grundlage für
 > Investoren und Bildungsträger.
@@ -31,7 +31,7 @@ diesem Dokument zu messen.
 
 ## 1. Leitprinzip: Der Mensch bleibt die fachliche Autorität
 
-Titan setzt KI **assistierend**, nie **entscheidend** ein. Der rote Faden:
+Zendify setzt KI **assistierend**, nie **entscheidend** ein. Der rote Faden:
 
 ```
  Dozent (Mensch)            KI-Schicht (assistierend)          Lerner
@@ -91,7 +91,7 @@ freigegebenen Masters zu „erfinden".
 ## 3. Einordnung nach EU AI Act (VO (EU) 2024/1689)
 
 ### 3.1 Keine verbotene Praktik (Art. 5)
-Titan nutzt keine der verbotenen Praktiken (kein Social Scoring, keine
+Zendify nutzt keine der verbotenen Praktiken (kein Social Scoring, keine
 manipulative/ausnutzende KI, keine biometrische Kategorisierung o. Ä.).
 
 ### 3.2 **Nicht Hochrisiko** — Begründung (Annex III Nr. 3 „Bildung")
@@ -102,7 +102,7 @@ eingesetzt wird, um
 - das angemessene Bildungsniveau einer Person zu bestimmen,
 - **unzulässiges Verhalten während Prüfungen** zu überwachen/erkennen.
 
-**Einordnung für Titan:** Die KI **bestimmt keinen Zugang/kein Bildungsniveau** und
+**Einordnung für Zendify:** Die KI **bestimmt keinen Zugang/kein Bildungsniveau** und
 **überwacht keine Prüfungen**. Sie gibt bei Fallaufgaben **formatives, inhaltliches
 Feedback** — aber **ohne Note/Score, ohne prüfungsrelevante Entscheidung und ohne
 den offiziellen Lern-/Prüfungsweg festzulegen**. Bewertung, Benotung und Prüfung
@@ -111,7 +111,7 @@ das der Lerner ignorieren kann und das keine offizielle Wirkung entfaltet,
 „bewertet Lernergebnisse" nach unserer Einschätzung **nicht** im regulatorisch
 gemeinten (ergebnis-/entscheidungswirksamen) Sinn.
 
-→ **Design-Einordnung: Titan ist voraussichtlich kein Hochrisiko-KI-System.**
+→ **Design-Einordnung: Zendify ist voraussichtlich kein Hochrisiko-KI-System.**
 ⚠️ **Dies ist der sensibelste Punkt der Einstufung** und **vor KI-Livegang
 juristisch verbindlich zu bestätigen** — formatives Feedback liegt näher an der
 Hochrisiko-Grenze als reine Aufgaben-Varianten. Abgesichert wird es durch die
@@ -120,7 +120,7 @@ Noten/Scores mit **offizieller Wirkung** vergäbe, kippt die Einstufung in
 Hochrisiko — das ist ausgeschlossen.
 
 ### 3.3 Anwendbare Pflicht: **Transparenz (Art. 50)**
-Für KI, die Inhalte erzeugt, gelten **Transparenzpflichten**. Titan setzt sie um:
+Für KI, die Inhalte erzeugt, gelten **Transparenzpflichten**. Zendify setzt sie um:
 - **Kennzeichnung:** KI-generierte/-variierte Aufgabenstellungen werden für den
   Lerner **klar als KI-erzeugt ausgewiesen** (keine Vortäuschung menschlicher
   bzw. „amtlicher" Autorschaft).
@@ -130,7 +130,7 @@ Für KI, die Inhalte erzeugt, gelten **Transparenzpflichten**. Titan setzt sie u
   Modell/Anbieter unterstützt), wird dies genutzt.
 
 ### 3.4 GPAI / Rollen (Anbieter vs. Betreiber)
-Wird ein Universalmodell (GPAI) eines Dritten eingesetzt, ist Titan dessen
+Wird ein Universalmodell (GPAI) eines Dritten eingesetzt, ist Zendify dessen
 **Betreiber („Deployer")** und zugleich Anbieter des daraus gebauten Features.
 Die Anbieter-Pflichten beschränken sich im Niedrigrisiko-Fall im Kern auf
 **Transparenz** (3.3). Die genaue Rollen-/Pflichtenabgrenzung ist mit dem
@@ -142,7 +142,7 @@ gewählten Modellanbieter und juristisch zu fixieren.
 - GPAI-Pflichten: seit **2. Aug 2025**
 - Hochrisiko-Pflichten (Annex III): überwiegend ab **2. Aug 2026**
 
-Da Titan **nicht** hochrisiko ist, sind die einschlägigen Pflichten die
+Da Zendify **nicht** hochrisiko ist, sind die einschlägigen Pflichten die
 Transparenzpflichten – vor jedem KI-Livegang umzusetzen.
 
 ---
@@ -194,8 +194,8 @@ Transparenzpflichten – vor jedem KI-Livegang umzusetzen.
 
 ## 7. Unabhängigkeit & Disclaimer (in Footer/Impressum aufnehmen)
 
-> **TITAN ist ein unabhängiges Lern- & Kompetenzsystem.** Alle Lehrinhalte,
-> Fallbeispiele und Übungen wurden von Dozenten eigenständig entwickelt. TITAN
+> **ZENDIFY ist ein unabhängiges Lern- & Kompetenzsystem.** Alle Lehrinhalte,
+> Fallbeispiele und Übungen wurden von Dozenten eigenständig entwickelt. ZENDIFY
 > steht in **keiner offiziellen Verbindung** zur Deutschen Industrie- und
 > Handelskammer (DIHK) oder zu regionalen Industrie- und Handelskammern.
 

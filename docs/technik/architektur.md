@@ -1,10 +1,10 @@
-# TITAN — Technische Architektur
+# ZENDIFY — Technische Architektur
 
 > Repo ist primäres Arbeitsmedium; Notion spiegelt (Doku-Parität). **Stand 2026-08-28 (IST, validiert gegen den Code).** Diese Fassung ist auf den real umgesetzten Stand gemergt — die frühere **Payload-CMS/n8n-Planung** und das **Orbit-Drag-Navigationssystem** wurden entfernt (nicht mehr Teil der Architektur).
 
 ## 1. Überblick (IST)
 
-Titan ist eine **Astro-Hybrid-App** (`output: 'static'` + `@astrojs/node`-Adapter, `mode: 'standalone'`, `trailingSlash: 'ignore'`): Lern-/Karussell-Seiten sind **prerendered** (2–12 ms, offline-fähig, kein Session-Overhead), Auth-/API-/gegatete Seiten laufen **on-demand** (`prerender = false`). **Local-First:** Nutzerzustand primär im `localStorage`, serverseitig durabel gesynct. Betrieb **EU/Deutschland** (self-hosted, Docker) auf `prototyp-staging.norive.de`; ein **serverseitiges Login-Gate (invite-only)** + **Admin-Panel/Rollen** sind live.
+Zendify ist eine **Astro-Hybrid-App** (`output: 'static'` + `@astrojs/node`-Adapter, `mode: 'standalone'`, `trailingSlash: 'ignore'`): Lern-/Karussell-Seiten sind **prerendered** (2–12 ms, offline-fähig, kein Session-Overhead), Auth-/API-/gegatete Seiten laufen **on-demand** (`prerender = false`). **Local-First:** Nutzerzustand primär im `localStorage`, serverseitig durabel gesynct. Betrieb **EU/Deutschland** (self-hosted, Docker) auf `prototyp-staging.norive.de`; ein **serverseitiges Login-Gate (invite-only)** + **Admin-Panel/Rollen** sind live.
 
 ## 2. Tech-Stack (real umgesetzt & live)
 

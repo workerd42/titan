@@ -1,4 +1,4 @@
-# Titan — Lernbereich- & Navigations-Redesign (Konzept / SSOT)
+# Zendify — Lernbereich- & Navigations-Redesign (Konzept / SSOT)
 
 > Stand 2026-08-04. Entstanden aus einer kritischen Grundsatz-Prüfung: Navigation
 > zu versteckt, Lernbereich fragmentiert (5 parallele Modi statt einer Reise),
